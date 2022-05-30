@@ -11,3 +11,4 @@ For people that would like to test some alternatives in the meantime.
 - https://nexusdev.tools/
 - https://hyperview.org/
 - https://www.componentbox.io/
+- https://github.com/peiffer-innovations/json_dynamic_widget
