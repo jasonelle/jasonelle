@@ -1,0 +1,70 @@
+//
+//  JLJSConfigLoader.m
+//  JLKernel
+//
+//  Created by clsource on 15-04-22
+//
+//  Copyright (c) 2022 Jasonelle.com
+//
+//  This Source Code Form is subject to the terms
+//  of the Mozilla Public License, v. 2.0.
+//  If a copy of the MPL was not distributed
+//  with this file, You can obtain one at
+//
+//  https://mozilla.org/MPL/2.0/.
+//
+
+#import "JLJSConfigLoader.h"
+
+static NSString *OBJ_NAME = @"__com_jasonelle_bridges_app.Config";
+
+@implementation JLJSConfigLoader
+
+- (instancetype)initWithContext:(JLJSContext *)context {
+    self = [super init];
+
+    if (self) {
+        self.context = context;
+        self.logger = context.logger;
+    }
+
+    return self;
+}
+
+- (nonnull JLJSValue *)value {
+    // Return the variable that holds the config object
+
+    // Path must not have ; at the end so we can concatenate it later
+    NSString *path = [NSString stringWithFormat:@"%@", OBJ_NAME];
+
+    JLJSValue *val = [self.context eval:[NSString stringWithFormat:@"%@;", path] withSourceURLString:@"file://com.jasonelle.js.kernel.config"];
+
+    val.path = path;
+    return val;
+}
+
+- (nonnull JLJSConfig *)load {
+    // Return the variable that holds the config object
+    JLJSValue *value = [self value];
+
+    NSDictionary *dictionary = [value toDictionary];
+
+    if (!dictionary) {
+        NSString *message = @"JS Configuration Object not found. "                \
+            @"Be sure to set __com_jasonelle_bridges_app.Config " \
+            @"inside _build/app.js";
+
+        [self.logger critical:message];
+
+        NSException *ex = [NSException exceptionWithName:@"com.jasonelle.runtime.exception" reason:message userInfo:nil];
+
+        [ex raise];
+    }
+
+    return [[JLJSConfig alloc]
+            initWithDictionary:dictionary
+                       context:self.context
+                      andValue:value];
+}
+
+@end

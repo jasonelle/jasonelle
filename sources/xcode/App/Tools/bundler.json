@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@jasonelle": ["../../Jasonelle"],
+      "@jasonelle/kernel": ["../../Jasonelle/JLKernel/JS/kernel"],
+      "@jasonelle/ext": ["../../Extensions"]
+    }
+  }
+}

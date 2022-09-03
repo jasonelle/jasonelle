@@ -1,0 +1,51 @@
+#!/usr/bin/env sh
+# Format Jasonelle JS Files
+echo "FORMATTER"
+echo "Make sure the Tools/ directory are present and have executable permissions"
+echo "=================="
+echo
+echo "Formatting JS Files"
+echo
+
+DPRINT=../Tools/dprint/dprint
+CONFIG_DPRINT_JASONELLE=./Formatter/js.formatter.jsonc
+${DPRINT} fmt --config ${CONFIG_DPRINT_JASONELLE}
+${DPRINT} output-format-times --config ${CONFIG_DPRINT_JASONELLE}
+
+echo
+echo "Formatting Objective-C Files"
+echo
+
+# Format Jasonelle Objective-C Files
+UNCRUSTIFY=../Tools/uncrustify/uncrustify
+CONFIG_UNCRUSTIFY_JASONELLE=./Formatter/objective-c.formatter.cfg
+
+function format_dir(){
+    # Extracted from 
+    # https://raw.githubusercontent.com/suhugo/objc-formatter/master/format_dir.sh
+    for element in `ls $1`
+    do
+        dir_or_file=$1"/"$element
+        if [ -d $dir_or_file ]
+        then
+            format_dir $dir_or_file
+        else
+            file=$element
+            if [ "${file##*.}"x = "h"x ] || [ "${file##*.}"x = "m"x ] || [ "${file##*.}"x = "mm"x ];then
+                ${UNCRUSTIFY} -c ${CONFIG_UNCRUSTIFY_JASONELLE} --no-backup -l OC $dir_or_file
+            fi
+        fi
+    done
+}
+
+format_dir .
+
+# Format Jasonelle Swift Files
+echo
+echo "Formatting Swift Files"
+echo
+
+SWIFTFORMAT=../Tools/swiftformat/swiftformat
+CONFIG_SWIFTFORMAT_JASONELLE=./Formatter/swift.formatter
+
+${SWIFTFORMAT} --config ${CONFIG_SWIFTFORMAT_JASONELLE} .

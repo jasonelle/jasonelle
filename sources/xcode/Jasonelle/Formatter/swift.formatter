@@ -1,0 +1,2 @@
+--exclude Pods,Generated
+--swiftversion 5

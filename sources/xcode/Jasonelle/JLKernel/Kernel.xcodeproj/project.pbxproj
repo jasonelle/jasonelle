@@ -1,0 +1,1284 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 53;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EF348F2C27AC1C190095E0FB /* JLApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF348F2A27AC18BD0095E0FB /* JLApplicationTests.m */; };
+		EF348F2E27AC1D820095E0FB /* JLLoggerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF348F2D27AC1D820095E0FB /* JLLoggerTests.m */; };
+		EF348F3127AC1F350095E0FB /* JLEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = EF348F2F27AC1F350095E0FB /* JLEnvironment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF348F3227AC1F350095E0FB /* JLEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = EF348F3027AC1F350095E0FB /* JLEnvironment.m */; };
+		EF348F3627AC25C90095E0FB /* JLProcess.h in Headers */ = {isa = PBXBuildFile; fileRef = EF348F3427AC25C90095E0FB /* JLProcess.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF348F3727AC25C90095E0FB /* JLProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = EF348F3527AC25C90095E0FB /* JLProcess.m */; };
+		EF3F88F428097E9D00777B7E /* JLJSConfigLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = EF3F88F228097E9D00777B7E /* JLJSConfigLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF3F88F528097E9D00777B7E /* JLJSConfigLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3F88F328097E9D00777B7E /* JLJSConfigLoader.m */; };
+		EF3F88F928097F8E00777B7E /* JLJSBridgeApp.h in Headers */ = {isa = PBXBuildFile; fileRef = EF3F88F728097F8E00777B7E /* JLJSBridgeApp.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF3F88FA28097F8E00777B7E /* JLJSBridgeApp.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3F88F828097F8E00777B7E /* JLJSBridgeApp.m */; };
+		EF3F88FE28098A7500777B7E /* JLJSConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = EF3F88FC28098A7500777B7E /* JLJSConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF3F88FF28098A7500777B7E /* JLJSConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3F88FD28098A7500777B7E /* JLJSConfig.m */; };
+		EF47FE952824CF4A006E2B9B /* JLUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = EF47FE932824CF4A006E2B9B /* JLUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF47FE962824CF4A006E2B9B /* JLUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EF47FE942824CF4A006E2B9B /* JLUtil.m */; };
+		EF47FE9E2824DFCF006E2B9B /* JLApplicationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = EF47FE9C2824DFCF006E2B9B /* JLApplicationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF47FE9F2824DFCF006E2B9B /* JLApplicationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF47FE9D2824DFCF006E2B9B /* JLApplicationExtensions.m */; };
+		EF47FEA32824E31F006E2B9B /* JLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = EF47FEA12824E31F006E2B9B /* JLExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF47FEA42824E31F006E2B9B /* JLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = EF47FEA22824E31F006E2B9B /* JLExtension.m */; };
+		EF47FEF72824FE2D006E2B9B /* JLUtilsPlist.h in Headers */ = {isa = PBXBuildFile; fileRef = EF47FEF52824FE2D006E2B9B /* JLUtilsPlist.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF47FEF82824FE2D006E2B9B /* JLUtilsPlist.m in Sources */ = {isa = PBXBuildFile; fileRef = EF47FEF62824FE2D006E2B9B /* JLUtilsPlist.m */; };
+		EF47FEFB282503AF006E2B9B /* JLHTTPAdapterProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = EF47FEFA282503AF006E2B9B /* JLHTTPAdapterProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF5A4E252822BB620088B14D /* JLLoggerMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = EF5A4E242822BB620088B14D /* JLLoggerMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF61714127AAC2DC007B929C /* JLLoggerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = EF61714027AAC2DC007B929C /* JLLoggerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF61714327AAC316007B929C /* JLLogHandlerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = EF61714227AAC316007B929C /* JLLogHandlerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF61714627AAC3C1007B929C /* JLLoggingSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = EF61714427AAC3C1007B929C /* JLLoggingSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF61714727AAC3C1007B929C /* JLLoggingSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61714527AAC3C1007B929C /* JLLoggingSystem.m */; };
+		EF61714B27AACC3D007B929C /* JLLogLevel.h in Headers */ = {isa = PBXBuildFile; fileRef = EF61714927AACC3D007B929C /* JLLogLevel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF61714C27AACC3D007B929C /* JLLogLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61714A27AACC3D007B929C /* JLLogLevel.m */; };
+		EF61715327AACC7D007B929C /* JLLogLevelFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = EF61715127AACC7D007B929C /* JLLogLevelFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF61715427AACC7D007B929C /* JLLogLevelFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61715227AACC7D007B929C /* JLLogLevelFactory.m */; };
+		EF61715927AADB5F007B929C /* JLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = EF61715727AADB5F007B929C /* JLLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF61715A27AADB5F007B929C /* JLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61715827AADB5F007B929C /* JLLogger.m */; };
+		EF61715F27AAEA33007B929C /* JLStreamLogHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF61715D27AAEA33007B929C /* JLStreamLogHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF61716027AAEA33007B929C /* JLStreamLogHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61715E27AAEA33007B929C /* JLStreamLogHandler.m */; };
+		EF682C1E2823309A00870531 /* JLApplicationVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = EF682C1C2823309A00870531 /* JLApplicationVersion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF682C1F2823309A00870531 /* JLApplicationVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = EF682C1D2823309A00870531 /* JLApplicationVersion.m */; };
+		EF6E368B2812F12700BBC0C6 /* JLEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = EF6E36892812F12700BBC0C6 /* JLEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF6E368C2812F12700BBC0C6 /* JLEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6E368A2812F12700BBC0C6 /* JLEvent.m */; };
+		EF6E36902812F36E00BBC0C6 /* JLEventOrientationDidChange.h in Headers */ = {isa = PBXBuildFile; fileRef = EF6E368E2812F36E00BBC0C6 /* JLEventOrientationDidChange.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF6E36912812F36E00BBC0C6 /* JLEventOrientationDidChange.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6E368F2812F36E00BBC0C6 /* JLEventOrientationDidChange.m */; };
+		EF6E36952812F90100BBC0C6 /* JLApplicationEvents.h in Headers */ = {isa = PBXBuildFile; fileRef = EF6E36932812F90100BBC0C6 /* JLApplicationEvents.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF6E36962812F90100BBC0C6 /* JLApplicationEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6E36942812F90100BBC0C6 /* JLApplicationEvents.m */; };
+		EF73C5CF2816A39E006E3CFB /* JLEventAppDidEnterBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = EF73C5CD2816A39E006E3CFB /* JLEventAppDidEnterBackground.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF73C5D02816A39E006E3CFB /* JLEventAppDidEnterBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73C5CE2816A39E006E3CFB /* JLEventAppDidEnterBackground.m */; };
+		EF73C5D42816A3BC006E3CFB /* JLEventAppWillEnterForeground.h in Headers */ = {isa = PBXBuildFile; fileRef = EF73C5D22816A3BC006E3CFB /* JLEventAppWillEnterForeground.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF73C5D52816A3BC006E3CFB /* JLEventAppWillEnterForeground.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73C5D32816A3BC006E3CFB /* JLEventAppWillEnterForeground.m */; };
+		EF83738427A996C400485E03 /* JLKernel.docc in Sources */ = {isa = PBXBuildFile; fileRef = EF83738327A996C400485E03 /* JLKernel.docc */; };
+		EF83738A27A996C500485E03 /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF83737F27A996C400485E03 /* JLKernel.framework */; };
+		EF83738F27A996C500485E03 /* JLKernelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF83738E27A996C500485E03 /* JLKernelTests.m */; };
+		EF83739027A996C500485E03 /* JLKernel.h in Headers */ = {isa = PBXBuildFile; fileRef = EF83738227A996C400485E03 /* JLKernel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF945E942811A3DB0085380D /* JLJSPolyfillCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = EF945E922811A3DB0085380D /* JLJSPolyfillCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF945E952811A3DB0085380D /* JLJSPolyfillCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = EF945E932811A3DB0085380D /* JLJSPolyfillCrypto.m */; };
+		EF945E9A2811A4550085380D /* JLJSPolyfill.h in Headers */ = {isa = PBXBuildFile; fileRef = EF945E982811A4550085380D /* JLJSPolyfill.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF945E9B2811A4550085380D /* JLJSPolyfill.m in Sources */ = {isa = PBXBuildFile; fileRef = EF945E992811A4550085380D /* JLJSPolyfill.m */; };
+		EF945E9F2811BEBC0085380D /* JLJSPolyfillCrypto.js in Resources */ = {isa = PBXBuildFile; fileRef = EF945E9E2811BEBC0085380D /* JLJSPolyfillCrypto.js */; };
+		EF96865D283167D6006C623F /* JLJSMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF96865B283167D6006C623F /* JLJSMessageHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF96865E283167D6006C623F /* JLJSMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF96865C283167D6006C623F /* JLJSMessageHandler.m */; };
+		EF96866628316B5E006C623F /* JLJSMessageHandlers.h in Headers */ = {isa = PBXBuildFile; fileRef = EF96866428316B5E006C623F /* JLJSMessageHandlers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF96866728316B5E006C623F /* JLJSMessageHandlers.m in Sources */ = {isa = PBXBuildFile; fileRef = EF96866528316B5E006C623F /* JLJSMessageHandlers.m */; };
+		EF968669283186FE006C623F /* JLWebViewMessageHandlerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = EF968668283186FE006C623F /* JLWebViewMessageHandlerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF96866C2831D5CA006C623F /* JLJSLoggerMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF96866A2831D5CA006C623F /* JLJSLoggerMessageHandler.h */; };
+		EF96866D2831D5CA006C623F /* JLJSLoggerMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF96866B2831D5CA006C623F /* JLJSLoggerMessageHandler.m */; };
+		EF9A8868280F0A5100778F0C /* JLNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9A8866280F0A5100778F0C /* JLNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF9A8869280F0A5100778F0C /* JLNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9A8867280F0A5100778F0C /* JLNotificationCenter.m */; };
+		EFB31401281D6BA2003737B0 /* JLJSBridgei18n.h in Headers */ = {isa = PBXBuildFile; fileRef = EFB313FF281D6BA2003737B0 /* JLJSBridgei18n.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFB31402281D6BA2003737B0 /* JLJSBridgei18n.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB31400281D6BA2003737B0 /* JLJSBridgei18n.m */; };
+		EFB31406281D956E003737B0 /* JLEventAppDidLoad.h in Headers */ = {isa = PBXBuildFile; fileRef = EFB31404281D956E003737B0 /* JLEventAppDidLoad.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFB31407281D956E003737B0 /* JLEventAppDidLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB31405281D956E003737B0 /* JLEventAppDidLoad.m */; };
+		EFB73D0F27AFF95A00A21457 /* JLRendererProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = EFB73D0E27AFF95A00A21457 /* JLRendererProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFD4ED3F2823F89B00153CA9 /* JLApplicationUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EFD4ED3D2823F89A00153CA9 /* JLApplicationUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFD4ED402823F89B00153CA9 /* JLApplicationUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD4ED3E2823F89B00153CA9 /* JLApplicationUtils.m */; };
+		EFD4ED442823F8EF00153CA9 /* JLUtilsBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = EFD4ED422823F8EF00153CA9 /* JLUtilsBase64.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFD4ED452823F8EF00153CA9 /* JLUtilsBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD4ED432823F8EF00153CA9 /* JLUtilsBase64.m */; };
+		EFD4ED492823FAE300153CA9 /* JLUtilsJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = EFD4ED472823FAE300153CA9 /* JLUtilsJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFD4ED4A2823FAE300153CA9 /* JLUtilsJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD4ED482823FAE300153CA9 /* JLUtilsJSON.m */; };
+		EFD5655E2815D3BC00FBA0E7 /* JLUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = EFD5655C2815D3BC00FBA0E7 /* JLUserInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFD5655F2815D3BC00FBA0E7 /* JLUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD5655D2815D3BC00FBA0E7 /* JLUserInfo.m */; };
+		EFDD98A928123BE600DDE6D4 /* JLJSRoutesLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = EFDD98A728123BE600DDE6D4 /* JLJSRoutesLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFDD98AA28123BE600DDE6D4 /* JLJSRoutesLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EFDD98A828123BE600DDE6D4 /* JLJSRoutesLoader.m */; };
+		EFDD98AF28123C2D00DDE6D4 /* JLJSRoutes.h in Headers */ = {isa = PBXBuildFile; fileRef = EFDD98AD28123C2D00DDE6D4 /* JLJSRoutes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFDD98B028123C2D00DDE6D4 /* JLJSRoutes.m in Sources */ = {isa = PBXBuildFile; fileRef = EFDD98AE28123C2D00DDE6D4 /* JLJSRoutes.m */; };
+		EFE51B40281ECB2E00DA0C53 /* JLEventViewDidAppear.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE51B3E281ECB2E00DA0C53 /* JLEventViewDidAppear.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFE51B41281ECB2E00DA0C53 /* JLEventViewDidAppear.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE51B3F281ECB2E00DA0C53 /* JLEventViewDidAppear.m */; };
+		EFE51B45281ECB5600DA0C53 /* JLEventViewDidDisappear.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE51B43281ECB5600DA0C53 /* JLEventViewDidDisappear.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFE51B46281ECB5600DA0C53 /* JLEventViewDidDisappear.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE51B44281ECB5600DA0C53 /* JLEventViewDidDisappear.m */; };
+		EFE51B4A281ED05200DA0C53 /* JLJSBridgeOpenURL.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE51B48281ED05200DA0C53 /* JLJSBridgeOpenURL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFE51B4B281ED05200DA0C53 /* JLJSBridgeOpenURL.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE51B49281ED05200DA0C53 /* JLJSBridgeOpenURL.m */; };
+		EFE51B4F281F01EF00DA0C53 /* JLEventDidReceiveOpenURL.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE51B4D281F01EF00DA0C53 /* JLEventDidReceiveOpenURL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFE51B50281F01EF00DA0C53 /* JLEventDidReceiveOpenURL.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE51B4E281F01EF00DA0C53 /* JLEventDidReceiveOpenURL.m */; };
+		EFE60724280880E600C8146A /* JLJSContext.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE60722280880E600C8146A /* JLJSContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFE60725280880E600C8146A /* JLJSContext.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE60723280880E600C8146A /* JLJSContext.m */; };
+		EFE6072E2808AC2600C8146A /* JLJSValue.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE6072C2808AC2600C8146A /* JLJSValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFE6072F2808AC2600C8146A /* JLJSValue.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE6072D2808AC2600C8146A /* JLJSValue.m */; };
+		EFE607352808AD6900C8146A /* JLJSParams.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE607332808AD6900C8146A /* JLJSParams.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFE607362808AD6900C8146A /* JLJSParams.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE607342808AD6900C8146A /* JLJSParams.m */; };
+		EFE6512527ACCDD200D4B37F /* JLHTTPClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE6512427ACCDD200D4B37F /* JLHTTPClientTests.m */; };
+		EFE70F0B27AB80550070391E /* JLApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE70F0927AB80550070391E /* JLApplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFE70F0C27AB80550070391E /* JLApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE70F0A27AB80550070391E /* JLApplication.m */; };
+		EFECF214282E7447009D0579 /* JLUtilsFileSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = EFECF212282E7447009D0579 /* JLUtilsFileSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFECF215282E7447009D0579 /* JLUtilsFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = EFECF213282E7447009D0579 /* JLUtilsFileSystem.m */; };
+		EFEDE8F32808D2D30050EE13 /* JLJSBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = EFEDE8F12808D2D30050EE13 /* JLJSBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFEDE8F42808D2D30050EE13 /* JLJSBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEDE8F22808D2D30050EE13 /* JLJSBridge.m */; };
+		EFEDE8F82808D2F20050EE13 /* JLJSBridgeLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = EFEDE8F62808D2F20050EE13 /* JLJSBridgeLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFEDE8F92808D2F20050EE13 /* JLJSBridgeLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEDE8F72808D2F20050EE13 /* JLJSBridgeLogger.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EF83738B27A996C500485E03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EF83737627A996C400485E03 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF83737E27A996C400485E03;
+			remoteInfo = JLKernel;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EF348F2A27AC18BD0095E0FB /* JLApplicationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLApplicationTests.m; sourceTree = "<group>"; };
+		EF348F2D27AC1D820095E0FB /* JLLoggerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLLoggerTests.m; sourceTree = "<group>"; };
+		EF348F2F27AC1F350095E0FB /* JLEnvironment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLEnvironment.h; sourceTree = "<group>"; };
+		EF348F3027AC1F350095E0FB /* JLEnvironment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLEnvironment.m; sourceTree = "<group>"; };
+		EF348F3427AC25C90095E0FB /* JLProcess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLProcess.h; sourceTree = "<group>"; };
+		EF348F3527AC25C90095E0FB /* JLProcess.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLProcess.m; sourceTree = "<group>"; };
+		EF3F88F228097E9D00777B7E /* JLJSConfigLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSConfigLoader.h; sourceTree = "<group>"; };
+		EF3F88F328097E9D00777B7E /* JLJSConfigLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSConfigLoader.m; sourceTree = "<group>"; };
+		EF3F88F728097F8E00777B7E /* JLJSBridgeApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSBridgeApp.h; sourceTree = "<group>"; };
+		EF3F88F828097F8E00777B7E /* JLJSBridgeApp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSBridgeApp.m; sourceTree = "<group>"; };
+		EF3F88FC28098A7500777B7E /* JLJSConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSConfig.h; sourceTree = "<group>"; };
+		EF3F88FD28098A7500777B7E /* JLJSConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSConfig.m; sourceTree = "<group>"; };
+		EF47FE932824CF4A006E2B9B /* JLUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLUtil.h; sourceTree = "<group>"; };
+		EF47FE942824CF4A006E2B9B /* JLUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLUtil.m; sourceTree = "<group>"; };
+		EF47FE9C2824DFCF006E2B9B /* JLApplicationExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLApplicationExtensions.h; sourceTree = "<group>"; };
+		EF47FE9D2824DFCF006E2B9B /* JLApplicationExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLApplicationExtensions.m; sourceTree = "<group>"; };
+		EF47FEA12824E31F006E2B9B /* JLExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLExtension.h; sourceTree = "<group>"; };
+		EF47FEA22824E31F006E2B9B /* JLExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLExtension.m; sourceTree = "<group>"; };
+		EF47FEF52824FE2D006E2B9B /* JLUtilsPlist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLUtilsPlist.h; sourceTree = "<group>"; };
+		EF47FEF62824FE2D006E2B9B /* JLUtilsPlist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLUtilsPlist.m; sourceTree = "<group>"; };
+		EF47FEFA282503AF006E2B9B /* JLHTTPAdapterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLHTTPAdapterProtocol.h; sourceTree = "<group>"; };
+		EF53D4962811E7DA00BF8060 /* JS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = JS; sourceTree = SOURCE_ROOT; };
+		EF5A4E242822BB620088B14D /* JLLoggerMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLLoggerMacros.h; sourceTree = "<group>"; };
+		EF61714027AAC2DC007B929C /* JLLoggerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLLoggerProtocol.h; sourceTree = "<group>"; };
+		EF61714227AAC316007B929C /* JLLogHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLLogHandlerProtocol.h; sourceTree = "<group>"; };
+		EF61714427AAC3C1007B929C /* JLLoggingSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLLoggingSystem.h; sourceTree = "<group>"; };
+		EF61714527AAC3C1007B929C /* JLLoggingSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLLoggingSystem.m; sourceTree = "<group>"; };
+		EF61714927AACC3D007B929C /* JLLogLevel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLLogLevel.h; sourceTree = "<group>"; };
+		EF61714A27AACC3D007B929C /* JLLogLevel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLLogLevel.m; sourceTree = "<group>"; };
+		EF61715127AACC7D007B929C /* JLLogLevelFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLLogLevelFactory.h; sourceTree = "<group>"; };
+		EF61715227AACC7D007B929C /* JLLogLevelFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLLogLevelFactory.m; sourceTree = "<group>"; };
+		EF61715727AADB5F007B929C /* JLLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLLogger.h; sourceTree = "<group>"; };
+		EF61715827AADB5F007B929C /* JLLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLLogger.m; sourceTree = "<group>"; };
+		EF61715D27AAEA33007B929C /* JLStreamLogHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLStreamLogHandler.h; sourceTree = "<group>"; };
+		EF61715E27AAEA33007B929C /* JLStreamLogHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLStreamLogHandler.m; sourceTree = "<group>"; };
+		EF682C1C2823309A00870531 /* JLApplicationVersion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLApplicationVersion.h; sourceTree = "<group>"; };
+		EF682C1D2823309A00870531 /* JLApplicationVersion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLApplicationVersion.m; sourceTree = "<group>"; };
+		EF6E36892812F12700BBC0C6 /* JLEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLEvent.h; sourceTree = "<group>"; };
+		EF6E368A2812F12700BBC0C6 /* JLEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLEvent.m; sourceTree = "<group>"; };
+		EF6E368E2812F36E00BBC0C6 /* JLEventOrientationDidChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLEventOrientationDidChange.h; sourceTree = "<group>"; };
+		EF6E368F2812F36E00BBC0C6 /* JLEventOrientationDidChange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLEventOrientationDidChange.m; sourceTree = "<group>"; };
+		EF6E36932812F90100BBC0C6 /* JLApplicationEvents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLApplicationEvents.h; sourceTree = "<group>"; };
+		EF6E36942812F90100BBC0C6 /* JLApplicationEvents.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLApplicationEvents.m; sourceTree = "<group>"; };
+		EF73C5CD2816A39E006E3CFB /* JLEventAppDidEnterBackground.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLEventAppDidEnterBackground.h; sourceTree = "<group>"; };
+		EF73C5CE2816A39E006E3CFB /* JLEventAppDidEnterBackground.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLEventAppDidEnterBackground.m; sourceTree = "<group>"; };
+		EF73C5D22816A3BC006E3CFB /* JLEventAppWillEnterForeground.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLEventAppWillEnterForeground.h; sourceTree = "<group>"; };
+		EF73C5D32816A3BC006E3CFB /* JLEventAppWillEnterForeground.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLEventAppWillEnterForeground.m; sourceTree = "<group>"; };
+		EF83737F27A996C400485E03 /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF83738227A996C400485E03 /* JLKernel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLKernel.h; sourceTree = "<group>"; };
+		EF83738327A996C400485E03 /* JLKernel.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = JLKernel.docc; sourceTree = "<group>"; };
+		EF83738927A996C500485E03 /* JLKernelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JLKernelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF83738E27A996C500485E03 /* JLKernelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLKernelTests.m; sourceTree = "<group>"; };
+		EF945E922811A3DB0085380D /* JLJSPolyfillCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSPolyfillCrypto.h; sourceTree = "<group>"; };
+		EF945E932811A3DB0085380D /* JLJSPolyfillCrypto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSPolyfillCrypto.m; sourceTree = "<group>"; };
+		EF945E982811A4550085380D /* JLJSPolyfill.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSPolyfill.h; sourceTree = "<group>"; };
+		EF945E992811A4550085380D /* JLJSPolyfill.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSPolyfill.m; sourceTree = "<group>"; };
+		EF945E9E2811BEBC0085380D /* JLJSPolyfillCrypto.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = JLJSPolyfillCrypto.js; sourceTree = "<group>"; };
+		EF96865B283167D6006C623F /* JLJSMessageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSMessageHandler.h; sourceTree = "<group>"; };
+		EF96865C283167D6006C623F /* JLJSMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSMessageHandler.m; sourceTree = "<group>"; };
+		EF96866428316B5E006C623F /* JLJSMessageHandlers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSMessageHandlers.h; sourceTree = "<group>"; };
+		EF96866528316B5E006C623F /* JLJSMessageHandlers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSMessageHandlers.m; sourceTree = "<group>"; };
+		EF968668283186FE006C623F /* JLWebViewMessageHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLWebViewMessageHandlerProtocol.h; sourceTree = "<group>"; };
+		EF96866A2831D5CA006C623F /* JLJSLoggerMessageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSLoggerMessageHandler.h; sourceTree = "<group>"; };
+		EF96866B2831D5CA006C623F /* JLJSLoggerMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSLoggerMessageHandler.m; sourceTree = "<group>"; };
+		EF9A8866280F0A5100778F0C /* JLNotificationCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLNotificationCenter.h; sourceTree = "<group>"; };
+		EF9A8867280F0A5100778F0C /* JLNotificationCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLNotificationCenter.m; sourceTree = "<group>"; };
+		EFB313FF281D6BA2003737B0 /* JLJSBridgei18n.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSBridgei18n.h; sourceTree = "<group>"; };
+		EFB31400281D6BA2003737B0 /* JLJSBridgei18n.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSBridgei18n.m; sourceTree = "<group>"; };
+		EFB31404281D956E003737B0 /* JLEventAppDidLoad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLEventAppDidLoad.h; sourceTree = "<group>"; };
+		EFB31405281D956E003737B0 /* JLEventAppDidLoad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLEventAppDidLoad.m; sourceTree = "<group>"; };
+		EFB73D0E27AFF95A00A21457 /* JLRendererProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLRendererProtocol.h; sourceTree = "<group>"; };
+		EFD4ED3D2823F89A00153CA9 /* JLApplicationUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLApplicationUtils.h; sourceTree = "<group>"; };
+		EFD4ED3E2823F89B00153CA9 /* JLApplicationUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLApplicationUtils.m; sourceTree = "<group>"; };
+		EFD4ED422823F8EF00153CA9 /* JLUtilsBase64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLUtilsBase64.h; sourceTree = "<group>"; };
+		EFD4ED432823F8EF00153CA9 /* JLUtilsBase64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLUtilsBase64.m; sourceTree = "<group>"; };
+		EFD4ED472823FAE300153CA9 /* JLUtilsJSON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLUtilsJSON.h; sourceTree = "<group>"; };
+		EFD4ED482823FAE300153CA9 /* JLUtilsJSON.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLUtilsJSON.m; sourceTree = "<group>"; };
+		EFD5655C2815D3BC00FBA0E7 /* JLUserInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLUserInfo.h; sourceTree = "<group>"; };
+		EFD5655D2815D3BC00FBA0E7 /* JLUserInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLUserInfo.m; sourceTree = "<group>"; };
+		EFDD98A728123BE600DDE6D4 /* JLJSRoutesLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSRoutesLoader.h; sourceTree = "<group>"; };
+		EFDD98A828123BE600DDE6D4 /* JLJSRoutesLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSRoutesLoader.m; sourceTree = "<group>"; };
+		EFDD98AD28123C2D00DDE6D4 /* JLJSRoutes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSRoutes.h; sourceTree = "<group>"; };
+		EFDD98AE28123C2D00DDE6D4 /* JLJSRoutes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSRoutes.m; sourceTree = "<group>"; };
+		EFE51B3E281ECB2E00DA0C53 /* JLEventViewDidAppear.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLEventViewDidAppear.h; sourceTree = "<group>"; };
+		EFE51B3F281ECB2E00DA0C53 /* JLEventViewDidAppear.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLEventViewDidAppear.m; sourceTree = "<group>"; };
+		EFE51B43281ECB5600DA0C53 /* JLEventViewDidDisappear.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLEventViewDidDisappear.h; sourceTree = "<group>"; };
+		EFE51B44281ECB5600DA0C53 /* JLEventViewDidDisappear.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLEventViewDidDisappear.m; sourceTree = "<group>"; };
+		EFE51B48281ED05200DA0C53 /* JLJSBridgeOpenURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSBridgeOpenURL.h; sourceTree = "<group>"; };
+		EFE51B49281ED05200DA0C53 /* JLJSBridgeOpenURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSBridgeOpenURL.m; sourceTree = "<group>"; };
+		EFE51B4D281F01EF00DA0C53 /* JLEventDidReceiveOpenURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLEventDidReceiveOpenURL.h; sourceTree = "<group>"; };
+		EFE51B4E281F01EF00DA0C53 /* JLEventDidReceiveOpenURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLEventDidReceiveOpenURL.m; sourceTree = "<group>"; };
+		EFE60722280880E600C8146A /* JLJSContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSContext.h; sourceTree = "<group>"; };
+		EFE60723280880E600C8146A /* JLJSContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSContext.m; sourceTree = "<group>"; };
+		EFE6072C2808AC2600C8146A /* JLJSValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSValue.h; sourceTree = "<group>"; };
+		EFE6072D2808AC2600C8146A /* JLJSValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSValue.m; sourceTree = "<group>"; };
+		EFE607332808AD6900C8146A /* JLJSParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSParams.h; sourceTree = "<group>"; };
+		EFE607342808AD6900C8146A /* JLJSParams.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSParams.m; sourceTree = "<group>"; };
+		EFE6512427ACCDD200D4B37F /* JLHTTPClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLHTTPClientTests.m; sourceTree = "<group>"; };
+		EFE70F0927AB80550070391E /* JLApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLApplication.h; sourceTree = "<group>"; };
+		EFE70F0A27AB80550070391E /* JLApplication.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLApplication.m; sourceTree = "<group>"; };
+		EFECF212282E7447009D0579 /* JLUtilsFileSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLUtilsFileSystem.h; sourceTree = "<group>"; };
+		EFECF213282E7447009D0579 /* JLUtilsFileSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLUtilsFileSystem.m; sourceTree = "<group>"; };
+		EFEDE8F12808D2D30050EE13 /* JLJSBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSBridge.h; sourceTree = "<group>"; };
+		EFEDE8F22808D2D30050EE13 /* JLJSBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSBridge.m; sourceTree = "<group>"; };
+		EFEDE8F62808D2F20050EE13 /* JLJSBridgeLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSBridgeLogger.h; sourceTree = "<group>"; };
+		EFEDE8F72808D2F20050EE13 /* JLJSBridgeLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSBridgeLogger.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EF83737C27A996C400485E03 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF83738627A996C500485E03 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF83738A27A996C500485E03 /* JLKernel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EF348F3327AC1F3C0095E0FB /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				EF348F2F27AC1F350095E0FB /* JLEnvironment.h */,
+				EF348F3027AC1F350095E0FB /* JLEnvironment.m */,
+				EF348F3827AC25CF0095E0FB /* Process */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
+		EF348F3827AC25CF0095E0FB /* Process */ = {
+			isa = PBXGroup;
+			children = (
+				EF348F3427AC25C90095E0FB /* JLProcess.h */,
+				EF348F3527AC25C90095E0FB /* JLProcess.m */,
+			);
+			path = Process;
+			sourceTree = "<group>";
+		};
+		EF3F88F628097EA200777B7E /* ConfigLoader */ = {
+			isa = PBXGroup;
+			children = (
+				EF3F890028098A7A00777B7E /* Loader */,
+				EF3F890128098A8000777B7E /* Config */,
+			);
+			path = ConfigLoader;
+			sourceTree = "<group>";
+		};
+		EF3F88FB28097F9200777B7E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				EF3F88F728097F8E00777B7E /* JLJSBridgeApp.h */,
+				EF3F88F828097F8E00777B7E /* JLJSBridgeApp.m */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		EF3F890028098A7A00777B7E /* Loader */ = {
+			isa = PBXGroup;
+			children = (
+				EF3F88F228097E9D00777B7E /* JLJSConfigLoader.h */,
+				EF3F88F328097E9D00777B7E /* JLJSConfigLoader.m */,
+			);
+			path = Loader;
+			sourceTree = "<group>";
+		};
+		EF3F890128098A8000777B7E /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				EF3F88FC28098A7500777B7E /* JLJSConfig.h */,
+				EF3F88FD28098A7500777B7E /* JLJSConfig.m */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		EF47FE9B2824D7CB006E2B9B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				EF47FE932824CF4A006E2B9B /* JLUtil.h */,
+				EF47FE942824CF4A006E2B9B /* JLUtil.m */,
+				EFD4ED462823F8F400153CA9 /* Base64 */,
+				EFD4ED4B2823FAE700153CA9 /* JSON */,
+				EF47FEF92824FE32006E2B9B /* Plist */,
+				EFECF216282E744B009D0579 /* FileSystem */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		EF47FEA02824DFD3006E2B9B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EF47FE9C2824DFCF006E2B9B /* JLApplicationExtensions.h */,
+				EF47FE9D2824DFCF006E2B9B /* JLApplicationExtensions.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EF47FEA52824E324006E2B9B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EF47FEA12824E31F006E2B9B /* JLExtension.h */,
+				EF47FEA22824E31F006E2B9B /* JLExtension.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EF47FEF92824FE32006E2B9B /* Plist */ = {
+			isa = PBXGroup;
+			children = (
+				EF47FEF52824FE2D006E2B9B /* JLUtilsPlist.h */,
+				EF47FEF62824FE2D006E2B9B /* JLUtilsPlist.m */,
+			);
+			path = Plist;
+			sourceTree = "<group>";
+		};
+		EF61713F27AAC2DC007B929C /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				EF61714E27AACC4F007B929C /* Protocols */,
+				EF61714F27AACC55007B929C /* System */,
+				EF61715027AACC5B007B929C /* Level */,
+				EF61715C27AADB64007B929C /* Logger */,
+				EF61716227AAEA37007B929C /* Handlers */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		EF61714E27AACC4F007B929C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				EF61714027AAC2DC007B929C /* JLLoggerProtocol.h */,
+				EF61714227AAC316007B929C /* JLLogHandlerProtocol.h */,
+				EF5A4E242822BB620088B14D /* JLLoggerMacros.h */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		EF61714F27AACC55007B929C /* System */ = {
+			isa = PBXGroup;
+			children = (
+				EF61714427AAC3C1007B929C /* JLLoggingSystem.h */,
+				EF61714527AAC3C1007B929C /* JLLoggingSystem.m */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		EF61715027AACC5B007B929C /* Level */ = {
+			isa = PBXGroup;
+			children = (
+				EF61714927AACC3D007B929C /* JLLogLevel.h */,
+				EF61714A27AACC3D007B929C /* JLLogLevel.m */,
+				EF61715627AACC80007B929C /* Factory */,
+			);
+			path = Level;
+			sourceTree = "<group>";
+		};
+		EF61715627AACC80007B929C /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				EF61715127AACC7D007B929C /* JLLogLevelFactory.h */,
+				EF61715227AACC7D007B929C /* JLLogLevelFactory.m */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		EF61715C27AADB64007B929C /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				EF61715727AADB5F007B929C /* JLLogger.h */,
+				EF61715827AADB5F007B929C /* JLLogger.m */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		EF61716227AAEA37007B929C /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				EF61716327AAEA3D007B929C /* Stream */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		EF61716327AAEA3D007B929C /* Stream */ = {
+			isa = PBXGroup;
+			children = (
+				EF61715D27AAEA33007B929C /* JLStreamLogHandler.h */,
+				EF61715E27AAEA33007B929C /* JLStreamLogHandler.m */,
+			);
+			path = Stream;
+			sourceTree = "<group>";
+		};
+		EF682C202823309E00870531 /* Version */ = {
+			isa = PBXGroup;
+			children = (
+				EF682C1C2823309A00870531 /* JLApplicationVersion.h */,
+				EF682C1D2823309A00870531 /* JLApplicationVersion.m */,
+			);
+			path = Version;
+			sourceTree = "<group>";
+		};
+		EF6E368D2812F12C00BBC0C6 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				EF6E36892812F12700BBC0C6 /* JLEvent.h */,
+				EF6E368A2812F12700BBC0C6 /* JLEvent.m */,
+				EF6E36922812F37300BBC0C6 /* DeviceOrientationDidChange */,
+				EF73C5D12816A3A2006E3CFB /* AppDidEnterBackground */,
+				EF73C5D62816A3D8006E3CFB /* AppWillEnterForeground */,
+				EFB31408281D95DE003737B0 /* AppDidLoad */,
+				EFE51B42281ECB3300DA0C53 /* ViewDidAppear */,
+				EFE51B47281ECB5900DA0C53 /* ViewDidDisappear */,
+				EFE51B51281F01F400DA0C53 /* AppDidReceiveOpenURL */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		EF6E36922812F37300BBC0C6 /* DeviceOrientationDidChange */ = {
+			isa = PBXGroup;
+			children = (
+				EF6E368E2812F36E00BBC0C6 /* JLEventOrientationDidChange.h */,
+				EF6E368F2812F36E00BBC0C6 /* JLEventOrientationDidChange.m */,
+			);
+			path = DeviceOrientationDidChange;
+			sourceTree = "<group>";
+		};
+		EF6E36972812F90600BBC0C6 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				EF6E36932812F90100BBC0C6 /* JLApplicationEvents.h */,
+				EF6E36942812F90100BBC0C6 /* JLApplicationEvents.m */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		EF73C5D12816A3A2006E3CFB /* AppDidEnterBackground */ = {
+			isa = PBXGroup;
+			children = (
+				EF73C5CD2816A39E006E3CFB /* JLEventAppDidEnterBackground.h */,
+				EF73C5CE2816A39E006E3CFB /* JLEventAppDidEnterBackground.m */,
+			);
+			path = AppDidEnterBackground;
+			sourceTree = "<group>";
+		};
+		EF73C5D62816A3D8006E3CFB /* AppWillEnterForeground */ = {
+			isa = PBXGroup;
+			children = (
+				EF73C5D22816A3BC006E3CFB /* JLEventAppWillEnterForeground.h */,
+				EF73C5D32816A3BC006E3CFB /* JLEventAppWillEnterForeground.m */,
+			);
+			path = AppWillEnterForeground;
+			sourceTree = "<group>";
+		};
+		EF83737527A996C400485E03 = {
+			isa = PBXGroup;
+			children = (
+				EF83738127A996C400485E03 /* JLKernel */,
+				EF83738D27A996C500485E03 /* JLKernelTests */,
+				EF83738027A996C400485E03 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EF83738027A996C400485E03 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EF83737F27A996C400485E03 /* JLKernel.framework */,
+				EF83738927A996C500485E03 /* JLKernelTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EF83738127A996C400485E03 /* JLKernel */ = {
+			isa = PBXGroup;
+			children = (
+				EF83738227A996C400485E03 /* JLKernel.h */,
+				EF83738327A996C400485E03 /* JLKernel.docc */,
+				EF53D4962811E7DA00BF8060 /* JS */,
+				EFE6072128087FFA00C8146A /* JSEngine */,
+				EFB73D1427B00C8400A21457 /* Renderers */,
+				EFE70F0E27AB805A0070391E /* Application */,
+				EF61713F27AAC2DC007B929C /* Logger */,
+				EF348F3327AC1F3C0095E0FB /* Environment */,
+				EFE6511427ACB15300D4B37F /* Networking */,
+				EF9A886A280F0A5700778F0C /* Notifications */,
+				EF47FE9B2824D7CB006E2B9B /* Utils */,
+				EF6E368D2812F12C00BBC0C6 /* Events */,
+				EF47FEA52824E324006E2B9B /* Extensions */,
+			);
+			path = JLKernel;
+			sourceTree = "<group>";
+		};
+		EF83738D27A996C500485E03 /* JLKernelTests */ = {
+			isa = PBXGroup;
+			children = (
+				EF83738E27A996C500485E03 /* JLKernelTests.m */,
+				EF348F2A27AC18BD0095E0FB /* JLApplicationTests.m */,
+				EF348F2D27AC1D820095E0FB /* JLLoggerTests.m */,
+				EFE6512427ACCDD200D4B37F /* JLHTTPClientTests.m */,
+			);
+			path = JLKernelTests;
+			sourceTree = "<group>";
+		};
+		EF945E962811A3E50085380D /* Polyfills */ = {
+			isa = PBXGroup;
+			children = (
+				EF945E972811A3F00085380D /* Crypto */,
+				EF945E982811A4550085380D /* JLJSPolyfill.h */,
+				EF945E992811A4550085380D /* JLJSPolyfill.m */,
+			);
+			path = Polyfills;
+			sourceTree = "<group>";
+		};
+		EF945E972811A3F00085380D /* Crypto */ = {
+			isa = PBXGroup;
+			children = (
+				EF945E922811A3DB0085380D /* JLJSPolyfillCrypto.h */,
+				EF945E932811A3DB0085380D /* JLJSPolyfillCrypto.m */,
+				EF945E9E2811BEBC0085380D /* JLJSPolyfillCrypto.js */,
+			);
+			path = Crypto;
+			sourceTree = "<group>";
+		};
+		EF96865A283167B8006C623F /* MessageHandlers */ = {
+			isa = PBXGroup;
+			children = (
+				EF96865B283167D6006C623F /* JLJSMessageHandler.h */,
+				EF96865C283167D6006C623F /* JLJSMessageHandler.m */,
+				EF96866428316B5E006C623F /* JLJSMessageHandlers.h */,
+				EF96866528316B5E006C623F /* JLJSMessageHandlers.m */,
+				EF968668283186FE006C623F /* JLWebViewMessageHandlerProtocol.h */,
+				EF96866E2831D5D0006C623F /* Logger */,
+			);
+			path = MessageHandlers;
+			sourceTree = "<group>";
+		};
+		EF96866E2831D5D0006C623F /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				EF96866A2831D5CA006C623F /* JLJSLoggerMessageHandler.h */,
+				EF96866B2831D5CA006C623F /* JLJSLoggerMessageHandler.m */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		EF9A886A280F0A5700778F0C /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				EF9A8866280F0A5100778F0C /* JLNotificationCenter.h */,
+				EF9A8867280F0A5100778F0C /* JLNotificationCenter.m */,
+				EFD565602815D3C000FBA0E7 /* UserInfo */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		EFB31403281D6BA7003737B0 /* i18n */ = {
+			isa = PBXGroup;
+			children = (
+				EFB313FF281D6BA2003737B0 /* JLJSBridgei18n.h */,
+				EFB31400281D6BA2003737B0 /* JLJSBridgei18n.m */,
+			);
+			path = i18n;
+			sourceTree = "<group>";
+		};
+		EFB31408281D95DE003737B0 /* AppDidLoad */ = {
+			isa = PBXGroup;
+			children = (
+				EFB31404281D956E003737B0 /* JLEventAppDidLoad.h */,
+				EFB31405281D956E003737B0 /* JLEventAppDidLoad.m */,
+			);
+			path = AppDidLoad;
+			sourceTree = "<group>";
+		};
+		EFB73D1427B00C8400A21457 /* Renderers */ = {
+			isa = PBXGroup;
+			children = (
+				EFB73D0E27AFF95A00A21457 /* JLRendererProtocol.h */,
+			);
+			path = Renderers;
+			sourceTree = "<group>";
+		};
+		EFD4ED412823F89F00153CA9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				EFD4ED3D2823F89A00153CA9 /* JLApplicationUtils.h */,
+				EFD4ED3E2823F89B00153CA9 /* JLApplicationUtils.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		EFD4ED462823F8F400153CA9 /* Base64 */ = {
+			isa = PBXGroup;
+			children = (
+				EFD4ED422823F8EF00153CA9 /* JLUtilsBase64.h */,
+				EFD4ED432823F8EF00153CA9 /* JLUtilsBase64.m */,
+			);
+			path = Base64;
+			sourceTree = "<group>";
+		};
+		EFD4ED4B2823FAE700153CA9 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				EFD4ED472823FAE300153CA9 /* JLUtilsJSON.h */,
+				EFD4ED482823FAE300153CA9 /* JLUtilsJSON.m */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		EFD565602815D3C000FBA0E7 /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				EFD5655C2815D3BC00FBA0E7 /* JLUserInfo.h */,
+				EFD5655D2815D3BC00FBA0E7 /* JLUserInfo.m */,
+			);
+			path = UserInfo;
+			sourceTree = "<group>";
+		};
+		EFDD98AB28123BEC00DDE6D4 /* RoutesLoader */ = {
+			isa = PBXGroup;
+			children = (
+				EFDD98B128123C3200DDE6D4 /* Loader */,
+				EFDD98B228123C3C00DDE6D4 /* Routes */,
+			);
+			path = RoutesLoader;
+			sourceTree = "<group>";
+		};
+		EFDD98AC28123BF500DDE6D4 /* Loaders */ = {
+			isa = PBXGroup;
+			children = (
+				EF3F88F628097EA200777B7E /* ConfigLoader */,
+				EFDD98AB28123BEC00DDE6D4 /* RoutesLoader */,
+			);
+			path = Loaders;
+			sourceTree = "<group>";
+		};
+		EFDD98B128123C3200DDE6D4 /* Loader */ = {
+			isa = PBXGroup;
+			children = (
+				EFDD98A728123BE600DDE6D4 /* JLJSRoutesLoader.h */,
+				EFDD98A828123BE600DDE6D4 /* JLJSRoutesLoader.m */,
+			);
+			path = Loader;
+			sourceTree = "<group>";
+		};
+		EFDD98B228123C3C00DDE6D4 /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				EFDD98AD28123C2D00DDE6D4 /* JLJSRoutes.h */,
+				EFDD98AE28123C2D00DDE6D4 /* JLJSRoutes.m */,
+			);
+			path = Routes;
+			sourceTree = "<group>";
+		};
+		EFE51B42281ECB3300DA0C53 /* ViewDidAppear */ = {
+			isa = PBXGroup;
+			children = (
+				EFE51B3E281ECB2E00DA0C53 /* JLEventViewDidAppear.h */,
+				EFE51B3F281ECB2E00DA0C53 /* JLEventViewDidAppear.m */,
+			);
+			path = ViewDidAppear;
+			sourceTree = "<group>";
+		};
+		EFE51B47281ECB5900DA0C53 /* ViewDidDisappear */ = {
+			isa = PBXGroup;
+			children = (
+				EFE51B43281ECB5600DA0C53 /* JLEventViewDidDisappear.h */,
+				EFE51B44281ECB5600DA0C53 /* JLEventViewDidDisappear.m */,
+			);
+			path = ViewDidDisappear;
+			sourceTree = "<group>";
+		};
+		EFE51B4C281ED05800DA0C53 /* OpenURL */ = {
+			isa = PBXGroup;
+			children = (
+				EFE51B48281ED05200DA0C53 /* JLJSBridgeOpenURL.h */,
+				EFE51B49281ED05200DA0C53 /* JLJSBridgeOpenURL.m */,
+			);
+			path = OpenURL;
+			sourceTree = "<group>";
+		};
+		EFE51B51281F01F400DA0C53 /* AppDidReceiveOpenURL */ = {
+			isa = PBXGroup;
+			children = (
+				EFE51B4D281F01EF00DA0C53 /* JLEventDidReceiveOpenURL.h */,
+				EFE51B4E281F01EF00DA0C53 /* JLEventDidReceiveOpenURL.m */,
+			);
+			path = AppDidReceiveOpenURL;
+			sourceTree = "<group>";
+		};
+		EFE6072128087FFA00C8146A /* JSEngine */ = {
+			isa = PBXGroup;
+			children = (
+				EFE607312808AC6E00C8146A /* Context */,
+				EFE607322808AC7300C8146A /* Value */,
+				EFE607372808AD6E00C8146A /* Params */,
+				EFEDE8F52808D2D90050EE13 /* Bridges */,
+				EFDD98AC28123BF500DDE6D4 /* Loaders */,
+				EF945E962811A3E50085380D /* Polyfills */,
+				EF96865A283167B8006C623F /* MessageHandlers */,
+			);
+			path = JSEngine;
+			sourceTree = "<group>";
+		};
+		EFE607312808AC6E00C8146A /* Context */ = {
+			isa = PBXGroup;
+			children = (
+				EFE60722280880E600C8146A /* JLJSContext.h */,
+				EFE60723280880E600C8146A /* JLJSContext.m */,
+			);
+			path = Context;
+			sourceTree = "<group>";
+		};
+		EFE607322808AC7300C8146A /* Value */ = {
+			isa = PBXGroup;
+			children = (
+				EFE6072C2808AC2600C8146A /* JLJSValue.h */,
+				EFE6072D2808AC2600C8146A /* JLJSValue.m */,
+			);
+			path = Value;
+			sourceTree = "<group>";
+		};
+		EFE607372808AD6E00C8146A /* Params */ = {
+			isa = PBXGroup;
+			children = (
+				EFE607332808AD6900C8146A /* JLJSParams.h */,
+				EFE607342808AD6900C8146A /* JLJSParams.m */,
+			);
+			path = Params;
+			sourceTree = "<group>";
+		};
+		EFE6511427ACB15300D4B37F /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				EF47FEFA282503AF006E2B9B /* JLHTTPAdapterProtocol.h */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		EFE70F0E27AB805A0070391E /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				EFE70F0927AB80550070391E /* JLApplication.h */,
+				EFE70F0A27AB80550070391E /* JLApplication.m */,
+				EF6E36972812F90600BBC0C6 /* Events */,
+				EF682C202823309E00870531 /* Version */,
+				EFD4ED412823F89F00153CA9 /* Utils */,
+				EF47FEA02824DFD3006E2B9B /* Extensions */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		EFECF216282E744B009D0579 /* FileSystem */ = {
+			isa = PBXGroup;
+			children = (
+				EFECF212282E7447009D0579 /* JLUtilsFileSystem.h */,
+				EFECF213282E7447009D0579 /* JLUtilsFileSystem.m */,
+			);
+			path = FileSystem;
+			sourceTree = "<group>";
+		};
+		EFEDE8F52808D2D90050EE13 /* Bridges */ = {
+			isa = PBXGroup;
+			children = (
+				EFEDE8F12808D2D30050EE13 /* JLJSBridge.h */,
+				EFEDE8F22808D2D30050EE13 /* JLJSBridge.m */,
+				EFEDE8FE2808D43C0050EE13 /* Logger */,
+				EF3F88FB28097F9200777B7E /* App */,
+				EFB31403281D6BA7003737B0 /* i18n */,
+				EFE51B4C281ED05800DA0C53 /* OpenURL */,
+			);
+			path = Bridges;
+			sourceTree = "<group>";
+		};
+		EFEDE8FE2808D43C0050EE13 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				EFEDE8F62808D2F20050EE13 /* JLJSBridgeLogger.h */,
+				EFEDE8F72808D2F20050EE13 /* JLJSBridgeLogger.m */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		EF83737A27A996C400485E03 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF61714127AAC2DC007B929C /* JLLoggerProtocol.h in Headers */,
+				EF61714627AAC3C1007B929C /* JLLoggingSystem.h in Headers */,
+				EF61715927AADB5F007B929C /* JLLogger.h in Headers */,
+				EF61714B27AACC3D007B929C /* JLLogLevel.h in Headers */,
+				EF61715F27AAEA33007B929C /* JLStreamLogHandler.h in Headers */,
+				EF348F3127AC1F350095E0FB /* JLEnvironment.h in Headers */,
+				EF61715327AACC7D007B929C /* JLLogLevelFactory.h in Headers */,
+				EFE70F0B27AB80550070391E /* JLApplication.h in Headers */,
+				EF348F3627AC25C90095E0FB /* JLProcess.h in Headers */,
+				EF61714327AAC316007B929C /* JLLogHandlerProtocol.h in Headers */,
+				EFB73D0F27AFF95A00A21457 /* JLRendererProtocol.h in Headers */,
+				EFE60724280880E600C8146A /* JLJSContext.h in Headers */,
+				EFE6072E2808AC2600C8146A /* JLJSValue.h in Headers */,
+				EFEDE8F32808D2D30050EE13 /* JLJSBridge.h in Headers */,
+				EFE607352808AD6900C8146A /* JLJSParams.h in Headers */,
+				EF3F88F928097F8E00777B7E /* JLJSBridgeApp.h in Headers */,
+				EF3F88F428097E9D00777B7E /* JLJSConfigLoader.h in Headers */,
+				EFEDE8F82808D2F20050EE13 /* JLJSBridgeLogger.h in Headers */,
+				EF3F88FE28098A7500777B7E /* JLJSConfig.h in Headers */,
+				EF9A8868280F0A5100778F0C /* JLNotificationCenter.h in Headers */,
+				EF945E942811A3DB0085380D /* JLJSPolyfillCrypto.h in Headers */,
+				EFDD98A928123BE600DDE6D4 /* JLJSRoutesLoader.h in Headers */,
+				EF6E36902812F36E00BBC0C6 /* JLEventOrientationDidChange.h in Headers */,
+				EF945E9A2811A4550085380D /* JLJSPolyfill.h in Headers */,
+				EF6E368B2812F12700BBC0C6 /* JLEvent.h in Headers */,
+				EFDD98AF28123C2D00DDE6D4 /* JLJSRoutes.h in Headers */,
+				EF6E36952812F90100BBC0C6 /* JLApplicationEvents.h in Headers */,
+				EF73C5D42816A3BC006E3CFB /* JLEventAppWillEnterForeground.h in Headers */,
+				EFD5655E2815D3BC00FBA0E7 /* JLUserInfo.h in Headers */,
+				EF73C5CF2816A39E006E3CFB /* JLEventAppDidEnterBackground.h in Headers */,
+				EFB31401281D6BA2003737B0 /* JLJSBridgei18n.h in Headers */,
+				EFE51B45281ECB5600DA0C53 /* JLEventViewDidDisappear.h in Headers */,
+				EFB31406281D956E003737B0 /* JLEventAppDidLoad.h in Headers */,
+				EFE51B40281ECB2E00DA0C53 /* JLEventViewDidAppear.h in Headers */,
+				EFE51B4A281ED05200DA0C53 /* JLJSBridgeOpenURL.h in Headers */,
+				EFE51B4F281F01EF00DA0C53 /* JLEventDidReceiveOpenURL.h in Headers */,
+				EF5A4E252822BB620088B14D /* JLLoggerMacros.h in Headers */,
+				EFD4ED442823F8EF00153CA9 /* JLUtilsBase64.h in Headers */,
+				EF682C1E2823309A00870531 /* JLApplicationVersion.h in Headers */,
+				EFD4ED492823FAE300153CA9 /* JLUtilsJSON.h in Headers */,
+				EF47FE952824CF4A006E2B9B /* JLUtil.h in Headers */,
+				EFD4ED3F2823F89B00153CA9 /* JLApplicationUtils.h in Headers */,
+				EF96866C2831D5CA006C623F /* JLJSLoggerMessageHandler.h in Headers */,
+				EF47FEFB282503AF006E2B9B /* JLHTTPAdapterProtocol.h in Headers */,
+				EF47FEF72824FE2D006E2B9B /* JLUtilsPlist.h in Headers */,
+				EF47FE9E2824DFCF006E2B9B /* JLApplicationExtensions.h in Headers */,
+				EFECF214282E7447009D0579 /* JLUtilsFileSystem.h in Headers */,
+				EF96865D283167D6006C623F /* JLJSMessageHandler.h in Headers */,
+				EF96866628316B5E006C623F /* JLJSMessageHandlers.h in Headers */,
+				EF47FEA32824E31F006E2B9B /* JLExtension.h in Headers */,
+				EF968669283186FE006C623F /* JLWebViewMessageHandlerProtocol.h in Headers */,
+				EF83739027A996C500485E03 /* JLKernel.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		EF83737E27A996C400485E03 /* JLKernel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF83739327A996C500485E03 /* Build configuration list for PBXNativeTarget "JLKernel" */;
+			buildPhases = (
+				EF83737A27A996C400485E03 /* Headers */,
+				EF83737B27A996C400485E03 /* Sources */,
+				EF83737C27A996C400485E03 /* Frameworks */,
+				EF83737D27A996C400485E03 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JLKernel;
+			productName = JLKernel;
+			productReference = EF83737F27A996C400485E03 /* JLKernel.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EF83738827A996C500485E03 /* JLKernelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF83739627A996C500485E03 /* Build configuration list for PBXNativeTarget "JLKernelTests" */;
+			buildPhases = (
+				EF83738527A996C500485E03 /* Sources */,
+				EF83738627A996C500485E03 /* Frameworks */,
+				EF83738727A996C500485E03 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EF83738C27A996C500485E03 /* PBXTargetDependency */,
+			);
+			name = JLKernelTests;
+			productName = JLKernelTests;
+			productReference = EF83738927A996C500485E03 /* JLKernelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EF83737627A996C400485E03 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				CLASSPREFIX = JL;
+				LastUpgradeCheck = 1320;
+				ORGANIZATIONNAME = Jasonelle.com;
+				TargetAttributes = {
+					EF83737E27A996C400485E03 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
+					EF83738827A996C500485E03 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = EF83737927A996C400485E03 /* Build configuration list for PBXProject "Kernel" */;
+			compatibilityVersion = "Xcode 11.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EF83737527A996C400485E03;
+			productRefGroup = EF83738027A996C400485E03 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EF83737E27A996C400485E03 /* JLKernel */,
+				EF83738827A996C500485E03 /* JLKernelTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EF83737D27A996C400485E03 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF945E9F2811BEBC0085380D /* JLJSPolyfillCrypto.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF83738727A996C500485E03 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EF83737B27A996C400485E03 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF945E9B2811A4550085380D /* JLJSPolyfill.m in Sources */,
+				EFDD98AA28123BE600DDE6D4 /* JLJSRoutesLoader.m in Sources */,
+				EFEDE8F92808D2F20050EE13 /* JLJSBridgeLogger.m in Sources */,
+				EF73C5D52816A3BC006E3CFB /* JLEventAppWillEnterForeground.m in Sources */,
+				EFECF215282E7447009D0579 /* JLUtilsFileSystem.m in Sources */,
+				EF6E36962812F90100BBC0C6 /* JLApplicationEvents.m in Sources */,
+				EFD5655F2815D3BC00FBA0E7 /* JLUserInfo.m in Sources */,
+				EF3F88FA28097F8E00777B7E /* JLJSBridgeApp.m in Sources */,
+				EF682C1F2823309A00870531 /* JLApplicationVersion.m in Sources */,
+				EFE51B46281ECB5600DA0C53 /* JLEventViewDidDisappear.m in Sources */,
+				EFE60725280880E600C8146A /* JLJSContext.m in Sources */,
+				EF61714727AAC3C1007B929C /* JLLoggingSystem.m in Sources */,
+				EFEDE8F42808D2D30050EE13 /* JLJSBridge.m in Sources */,
+				EF6E36912812F36E00BBC0C6 /* JLEventOrientationDidChange.m in Sources */,
+				EF9A8869280F0A5100778F0C /* JLNotificationCenter.m in Sources */,
+				EFD4ED4A2823FAE300153CA9 /* JLUtilsJSON.m in Sources */,
+				EF61715A27AADB5F007B929C /* JLLogger.m in Sources */,
+				EF3F88F528097E9D00777B7E /* JLJSConfigLoader.m in Sources */,
+				EFE6072F2808AC2600C8146A /* JLJSValue.m in Sources */,
+				EF47FE962824CF4A006E2B9B /* JLUtil.m in Sources */,
+				EFE51B41281ECB2E00DA0C53 /* JLEventViewDidAppear.m in Sources */,
+				EF61714C27AACC3D007B929C /* JLLogLevel.m in Sources */,
+				EF348F3727AC25C90095E0FB /* JLProcess.m in Sources */,
+				EF96866728316B5E006C623F /* JLJSMessageHandlers.m in Sources */,
+				EF3F88FF28098A7500777B7E /* JLJSConfig.m in Sources */,
+				EF945E952811A3DB0085380D /* JLJSPolyfillCrypto.m in Sources */,
+				EF96866D2831D5CA006C623F /* JLJSLoggerMessageHandler.m in Sources */,
+				EFD4ED402823F89B00153CA9 /* JLApplicationUtils.m in Sources */,
+				EFD4ED452823F8EF00153CA9 /* JLUtilsBase64.m in Sources */,
+				EFB31402281D6BA2003737B0 /* JLJSBridgei18n.m in Sources */,
+				EFE607362808AD6900C8146A /* JLJSParams.m in Sources */,
+				EFE51B4B281ED05200DA0C53 /* JLJSBridgeOpenURL.m in Sources */,
+				EF61716027AAEA33007B929C /* JLStreamLogHandler.m in Sources */,
+				EF73C5D02816A39E006E3CFB /* JLEventAppDidEnterBackground.m in Sources */,
+				EF61715427AACC7D007B929C /* JLLogLevelFactory.m in Sources */,
+				EF348F3227AC1F350095E0FB /* JLEnvironment.m in Sources */,
+				EF96865E283167D6006C623F /* JLJSMessageHandler.m in Sources */,
+				EF6E368C2812F12700BBC0C6 /* JLEvent.m in Sources */,
+				EFE70F0C27AB80550070391E /* JLApplication.m in Sources */,
+				EFB31407281D956E003737B0 /* JLEventAppDidLoad.m in Sources */,
+				EF47FEA42824E31F006E2B9B /* JLExtension.m in Sources */,
+				EFE51B50281F01EF00DA0C53 /* JLEventDidReceiveOpenURL.m in Sources */,
+				EFDD98B028123C2D00DDE6D4 /* JLJSRoutes.m in Sources */,
+				EF47FEF82824FE2D006E2B9B /* JLUtilsPlist.m in Sources */,
+				EF47FE9F2824DFCF006E2B9B /* JLApplicationExtensions.m in Sources */,
+				EF83738427A996C400485E03 /* JLKernel.docc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF83738527A996C500485E03 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF348F2C27AC1C190095E0FB /* JLApplicationTests.m in Sources */,
+				EF348F2E27AC1D820095E0FB /* JLLoggerTests.m in Sources */,
+				EFE6512527ACCDD200D4B37F /* JLHTTPClientTests.m in Sources */,
+				EF83738F27A996C500485E03 /* JLKernelTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EF83738C27A996C500485E03 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF83737E27A996C400485E03 /* JLKernel */;
+			targetProxy = EF83738B27A996C500485E03 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		EF83739127A996C500485E03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EF83739227A996C500485E03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EF83739427A996C500485E03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLKernel;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EF83739527A996C500485E03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLKernel;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EF83739727A996C500485E03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLKernelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EF83739827A996C500485E03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLKernelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EF83737927A996C400485E03 /* Build configuration list for PBXProject "Kernel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF83739127A996C500485E03 /* Debug */,
+				EF83739227A996C500485E03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF83739327A996C500485E03 /* Build configuration list for PBXNativeTarget "JLKernel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF83739427A996C500485E03 /* Debug */,
+				EF83739527A996C500485E03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF83739627A996C500485E03 /* Build configuration list for PBXNativeTarget "JLKernelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF83739727A996C500485E03 /* Debug */,
+				EF83739827A996C500485E03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EF83737627A996C400485E03 /* Project object */;
+}

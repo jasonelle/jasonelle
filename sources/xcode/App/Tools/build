@@ -1,0 +1,72 @@
+#!/bin/sh
+#//  Created by clsource on 13-04-22
+#//
+#//  Copyright (c) 2022 Jasonelle.com
+#//
+#//  This Source Code Form is subject to the terms
+#//  of the Mozilla Public License, v. 2.0.
+#//  If a copy of the MPL was not distributed
+#//  with this file, You can obtain one at
+#//
+#//  https://mozilla.org/MPL/2.0/.
+#//
+#// This script is executed on the Build Phases
+#// It will format the JS files using dprint https://dprint.dev/config/ and then
+#// It will call esbuild command to bundle all javascript files
+#// see: https://esbuild.github.io/getting-started/
+
+# app.js normally stores the main logic for the app
+INPUT_APP=${SRCROOT}/JS/app.js
+
+# webview.js stores injected javascript to every webview instance
+INPUT_WEBVIEW=${SRCROOT}/JS/webview.js
+
+OUTPUT=${SRCROOT}/App/_build
+CONFIG_ESBUILD=${SRCROOT}/Tools/bundler.json
+
+# Specify if should format on build
+# 1 = format, 0 = none
+FORMAT=1
+CONFIG_DPRINT=${SRCROOT}/Tools/formatter.json
+
+# If you want to obfuscate the JS, enable this option
+MINIFY=""
+#MINIFY=--minify
+
+# Begin esbuild execution
+# Ensure that these binaries have execution rights!
+# Append -arm to the binaries name if you are using M1 processors
+# ESBUILD=${SRCROOT}/../Tools/esbuild/esbuild-arm
+# DPRINT=${SRCROOT}/../Tools/dprint/dprint-arm
+ESBUILD=${SRCROOT}/../Tools/esbuild/esbuild
+DPRINT=${SRCROOT}/../Tools/dprint/dprint
+
+echo "note: Using: $(${DPRINT} --version)"
+echo "note: Using: esbuild $(${ESBUILD} --version)"
+
+if [ ${FORMAT} -eq 1 ]; then
+  echo "----------------"
+  echo "Begin Formatting"
+  # Format files only inside the App directory
+  ${DPRINT} fmt --config ${CONFIG_DPRINT}
+  ${DPRINT} output-format-times --config ${CONFIG_DPRINT}
+fi
+
+echo "----------------"
+echo "Begin Bundling"
+BANNER_JS=/*--automatically-generated-by-esbuild--*/
+
+${ESBUILD} ${INPUT_APP} --outdir=${OUTPUT} --bundle ${MINIFY}  --target=safari11 --analyze --tsconfig=${CONFIG_ESBUILD} --banner:js=${BANNER_JS}
+
+# Stores the exit code from the previous command
+BUILD1=$?
+
+${ESBUILD} ${INPUT_WEBVIEW} --outdir=${OUTPUT} --bundle ${MINIFY}  --target=safari11 --analyze --tsconfig=${CONFIG_ESBUILD} --banner:js=${BANNER_JS}
+
+BUILD2=$?
+
+#// Must always be zero
+EXIT=$(expr $BUILD1 + $BUILD2)
+
+#// Pass the exit code to the main script runner in Xcode build phases
+exit $EXIT

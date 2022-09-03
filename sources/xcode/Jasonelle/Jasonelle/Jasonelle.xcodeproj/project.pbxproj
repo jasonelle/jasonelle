@@ -1,0 +1,500 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 53;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EF8373B427A9A04300485E03 /* Jasonelle.docc in Sources */ = {isa = PBXBuildFile; fileRef = EF8373B327A9A04300485E03 /* Jasonelle.docc */; };
+		EF8373BA27A9A04400485E03 /* Jasonelle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8373AF27A9A04300485E03 /* Jasonelle.framework */; };
+		EF8373BF27A9A04400485E03 /* JasonelleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8373BE27A9A04400485E03 /* JasonelleTests.m */; };
+		EF8373C027A9A04400485E03 /* Jasonelle.h in Headers */ = {isa = PBXBuildFile; fileRef = EF8373B227A9A04300485E03 /* Jasonelle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF8373D927A9A2E200485E03 /* JLAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = EF8373D727A9A2E200485E03 /* JLAppDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF8373DA27A9A2E200485E03 /* JLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8373D827A9A2E200485E03 /* JLAppDelegate.m */; };
+		EF8373DB27A9A2E200485E03 /* JLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8373D827A9A2E200485E03 /* JLAppDelegate.m */; };
+		EFC39C1828250AD00037750A /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC39C1728250AD00037750A /* JLKernel.framework */; };
+		EFC39C1A28250AE20037750A /* JLExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC39C1928250AE20037750A /* JLExtensions.framework */; };
+		EFF0728F2807250500F2FEFF /* JS in Resources */ = {isa = PBXBuildFile; fileRef = EFF0728E2807250500F2FEFF /* JS */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EF8373BB27A9A04400485E03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EF8373A627A9A04300485E03 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF8373AE27A9A04300485E03;
+			remoteInfo = Jasonelle;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EF47FEFE282506E5006E2B9B /* JLExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF47FF002825071B006E2B9B /* JLExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF8373AF27A9A04300485E03 /* Jasonelle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Jasonelle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF8373B227A9A04300485E03 /* Jasonelle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Jasonelle.h; sourceTree = "<group>"; };
+		EF8373B327A9A04300485E03 /* Jasonelle.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Jasonelle.docc; sourceTree = "<group>"; };
+		EF8373B927A9A04400485E03 /* JasonelleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JasonelleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF8373BE27A9A04400485E03 /* JasonelleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JasonelleTests.m; sourceTree = "<group>"; };
+		EF8373CA27A9A05500485E03 /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF8373D727A9A2E200485E03 /* JLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLAppDelegate.h; sourceTree = "<group>"; };
+		EF8373D827A9A2E200485E03 /* JLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLAppDelegate.m; sourceTree = "<group>"; };
+		EFC39C00282507BA0037750A /* JLExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFC39C0D2825096C0037750A /* JLExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFC39C1728250AD00037750A /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFC39C1928250AE20037750A /* JLExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFD3738227B064BA00D6F7CF /* Logger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Logger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFF0728E2807250500F2FEFF /* JS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = JS; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EF8373AC27A9A04300485E03 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFC39C1A28250AE20037750A /* JLExtensions.framework in Frameworks */,
+				EFC39C1828250AD00037750A /* JLKernel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF8373B627A9A04400485E03 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF8373BA27A9A04400485E03 /* Jasonelle.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EF8373A527A9A04300485E03 = {
+			isa = PBXGroup;
+			children = (
+				EFF0728E2807250500F2FEFF /* JS */,
+				EF8373B127A9A04300485E03 /* Jasonelle */,
+				EF8373BD27A9A04400485E03 /* JasonelleTests */,
+				EF8373B027A9A04300485E03 /* Products */,
+				EF8373C927A9A05500485E03 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EF8373B027A9A04300485E03 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EF8373AF27A9A04300485E03 /* Jasonelle.framework */,
+				EF8373B927A9A04400485E03 /* JasonelleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EF8373B127A9A04300485E03 /* Jasonelle */ = {
+			isa = PBXGroup;
+			children = (
+				EF8373B227A9A04300485E03 /* Jasonelle.h */,
+				EF8373B327A9A04300485E03 /* Jasonelle.docc */,
+				EF8373D727A9A2E200485E03 /* JLAppDelegate.h */,
+				EF8373D827A9A2E200485E03 /* JLAppDelegate.m */,
+			);
+			path = Jasonelle;
+			sourceTree = "<group>";
+		};
+		EF8373BD27A9A04400485E03 /* JasonelleTests */ = {
+			isa = PBXGroup;
+			children = (
+				EF8373BE27A9A04400485E03 /* JasonelleTests.m */,
+			);
+			path = JasonelleTests;
+			sourceTree = "<group>";
+		};
+		EF8373C927A9A05500485E03 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EFC39C1928250AE20037750A /* JLExtensions.framework */,
+				EFC39C1728250AD00037750A /* JLKernel.framework */,
+				EFC39C0D2825096C0037750A /* JLExtensions.framework */,
+				EFC39C00282507BA0037750A /* JLExtensions.framework */,
+				EF47FF002825071B006E2B9B /* JLExtensions.framework */,
+				EF47FEFE282506E5006E2B9B /* JLExtensions.framework */,
+				EFD3738227B064BA00D6F7CF /* Logger.framework */,
+				EF8373CA27A9A05500485E03 /* JLKernel.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		EF8373AA27A9A04300485E03 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF8373C027A9A04400485E03 /* Jasonelle.h in Headers */,
+				EF8373D927A9A2E200485E03 /* JLAppDelegate.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		EF8373AE27A9A04300485E03 /* Jasonelle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF8373C327A9A04400485E03 /* Build configuration list for PBXNativeTarget "Jasonelle" */;
+			buildPhases = (
+				EF8373AA27A9A04300485E03 /* Headers */,
+				EF8373AB27A9A04300485E03 /* Sources */,
+				EF8373AC27A9A04300485E03 /* Frameworks */,
+				EF8373AD27A9A04300485E03 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Jasonelle;
+			productName = Jasonelle;
+			productReference = EF8373AF27A9A04300485E03 /* Jasonelle.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EF8373B827A9A04400485E03 /* JasonelleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF8373C627A9A04400485E03 /* Build configuration list for PBXNativeTarget "JasonelleTests" */;
+			buildPhases = (
+				EF8373B527A9A04400485E03 /* Sources */,
+				EF8373B627A9A04400485E03 /* Frameworks */,
+				EF8373B727A9A04400485E03 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EF8373BC27A9A04400485E03 /* PBXTargetDependency */,
+			);
+			name = JasonelleTests;
+			productName = JasonelleTests;
+			productReference = EF8373B927A9A04400485E03 /* JasonelleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EF8373A627A9A04300485E03 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				CLASSPREFIX = JL;
+				LastUpgradeCheck = 1320;
+				ORGANIZATIONNAME = Jasonelle.com;
+				TargetAttributes = {
+					EF8373AE27A9A04300485E03 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
+					EF8373B827A9A04400485E03 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = EF8373A927A9A04300485E03 /* Build configuration list for PBXProject "Jasonelle" */;
+			compatibilityVersion = "Xcode 11.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EF8373A527A9A04300485E03;
+			productRefGroup = EF8373B027A9A04300485E03 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EF8373AE27A9A04300485E03 /* Jasonelle */,
+				EF8373B827A9A04400485E03 /* JasonelleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EF8373AD27A9A04300485E03 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFF0728F2807250500F2FEFF /* JS in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF8373B727A9A04400485E03 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EF8373AB27A9A04300485E03 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF8373DA27A9A2E200485E03 /* JLAppDelegate.m in Sources */,
+				EF8373B427A9A04300485E03 /* Jasonelle.docc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF8373B527A9A04400485E03 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF8373DB27A9A2E200485E03 /* JLAppDelegate.m in Sources */,
+				EF8373BF27A9A04400485E03 /* JasonelleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EF8373BC27A9A04400485E03 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF8373AE27A9A04300485E03 /* Jasonelle */;
+			targetProxy = EF8373BB27A9A04400485E03 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		EF8373C127A9A04400485E03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EF8373C227A9A04400485E03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EF8373C427A9A04400485E03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 3.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.Jasonelle;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EF8373C527A9A04400485E03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 3.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.Jasonelle;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EF8373C727A9A04400485E03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JasonelleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EF8373C827A9A04400485E03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JasonelleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EF8373A927A9A04300485E03 /* Build configuration list for PBXProject "Jasonelle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF8373C127A9A04400485E03 /* Debug */,
+				EF8373C227A9A04400485E03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF8373C327A9A04400485E03 /* Build configuration list for PBXNativeTarget "Jasonelle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF8373C427A9A04400485E03 /* Debug */,
+				EF8373C527A9A04400485E03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF8373C627A9A04400485E03 /* Build configuration list for PBXNativeTarget "JasonelleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF8373C727A9A04400485E03 /* Debug */,
+				EF8373C827A9A04400485E03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EF8373A627A9A04300485E03 /* Project object */;
+}

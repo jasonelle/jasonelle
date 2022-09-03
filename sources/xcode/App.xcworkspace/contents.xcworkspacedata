@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "container:"
+      name = "Renderers">
+      <FileRef
+         location = "group:Jasonelle/WebViewRendererUI/WebViewRendererUI.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "container:"
+      name = "Extensions">
+      <FileRef
+         location = "group:Extensions/JLExtensions/JLExtensions.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Extensions/JLApplicationBadge/JLApplicationBadge.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Extensions/JLATTrackingManager/JLATTrackingManager.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "container:"
+      name = "Jasonelle">
+      <FileRef
+         location = "group:Jasonelle/index.js">
+      </FileRef>
+      <FileRef
+         location = "group:Jasonelle/JLKernel/Kernel.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Jasonelle/JasonelleSwift/JasonelleSwift.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Jasonelle/Jasonelle/Jasonelle.xcodeproj">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "container:App/App.xcodeproj">
+   </FileRef>
+</Workspace>

@@ -1,0 +1,21 @@
+/* 
+  Localized.strings
+  WebViewRendererUI
+
+  Created by CLSource on 17-04-22.
+  Copyright (c) 2022 Jasonelle.com
+
+  This Source Code Form is subject to the terms
+  of the Mozilla Public License, v.2.0
+ 
+  If a copy of the MPL was not distributed
+  with this file, You can obtain one at
+
+  https://mozilla.org/MPL/2.0/
+
+  For testing in this language set the language in
+  Edit Scheme -> Run -> Options -> App Language
+*/
+
+// Pull to refresh in Refresh Control for the WebView
+"com.jasonelle.webviewrendererui.pull.title" = "Pull to Refresh";

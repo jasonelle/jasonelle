@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+CWD=$(dirname "$0")
+ASSETS=${CWD}/../../App/App/Assets.xcassets/AppIcon.appiconset
+ICON=${ASSETS}/AppIcon.png
+
+${CWD}/image-tool resize -g -d 20x20 -o ${ASSETS}/20.png ${ICON}
+${CWD}/image-tool resize -g -d 29x29 -o ${ASSETS}/29.png ${ICON}
+${CWD}/image-tool resize -g -d 40x40 -o ${ASSETS}/40.png ${ICON}
+${CWD}/image-tool resize -g -d 48x48 -o ${ASSETS}/48.png ${ICON}
+${CWD}/image-tool resize -g -d 55x55 -o ${ASSETS}/55.png ${ICON}
+${CWD}/image-tool resize -g -d 58x58 -o ${ASSETS}/58.png ${ICON}
+${CWD}/image-tool resize -g -d 60x60 -o ${ASSETS}/60.png ${ICON}
+${CWD}/image-tool resize -g -d 76x76 -o ${ASSETS}/76.png ${ICON}
+${CWD}/image-tool resize -g -d 80x80 -o ${ASSETS}/80.png ${ICON}
+${CWD}/image-tool resize -g -d 87x87 -o ${ASSETS}/87.png ${ICON}
+${CWD}/image-tool resize -g -d 88x88 -o ${ASSETS}/88.png ${ICON}
+${CWD}/image-tool resize -g -d 100x100 -o ${ASSETS}/100.png ${ICON}
+${CWD}/image-tool resize -g -d 120x120 -o ${ASSETS}/120.png ${ICON}
+${CWD}/image-tool resize -g -d 152x152 -o ${ASSETS}/152.png ${ICON}
+${CWD}/image-tool resize -g -d 167x167 -o ${ASSETS}/167.png ${ICON}
+${CWD}/image-tool resize -g -d 172x172 -o ${ASSETS}/172.png ${ICON}
+${CWD}/image-tool resize -g -d 180x180 -o ${ASSETS}/180.png ${ICON}
+${CWD}/image-tool resize -g -d 196x196 -o ${ASSETS}/196.png ${ICON}
+${CWD}/image-tool resize -g -d 216x216 -o ${ASSETS}/216.png ${ICON}

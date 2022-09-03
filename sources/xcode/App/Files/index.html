@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Hello Jasonelle</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        
+        <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+        
+        <script type="text/javascript">
+            
+            // Test Native Logger
+            const log = () => {
+              // This call will be shown in Safari Debug Console Only
+              console.log("Calling Native Logger from WebView");
+              // This call will be shown in XCode Console
+              $logger.trace("Calling Native Logger from WebView");
+            };
+            
+            // Test Badge Extension
+            // Native extension use $agent.trigger
+            // Native extensions can use Promises
+            const badge = {};
+            badge.set = async (number = 3) => {
+                const response = await $agent.trigger("$badge.set", number);
+                $logger.trace("Got Response " + response);
+            };
+            badge.clear = async () => $agent.trigger("$badge.clear");
+            
+            // Test Hello Action
+            // JS Actions use $agent.call
+            // These actions cannot return a Promise (yet)
+            // Define these actions inside the main.js actions
+            const hello = (world = "world") => {
+              const result = $agent.call("hello", world);
+              $logger.trace(result);
+            };
+        </script>
+    </head>
+    <body>
+        <img src="https://jasonelle.com/assets/AppIcon.png" title="Jasonelle Icon">
+        <ul>
+            <li><h3 onClick="log()">Test Native Logger</h3></li>
+            <li><h3 onClick="badge.set()">Increment App Badge</h3></li>
+            <li><h3 onClick="badge.clear()">Clear App Badge</h3></li>
+            <li><h3 onClick="hello()">Test Bridge From WebView to JSContext</h3></li>
+        </ul>
+    </body>
+</html>
