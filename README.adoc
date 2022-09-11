@@ -28,7 +28,7 @@ The latest releases are available at:
 
 The current version is *v3*.
 
-- Download: https://github.com/jasonelle/jasonelle/releases
+- Download: https://github.com/jasonelle/jasonelle/releases/tag/v3.0.0
 - Docs: https://jasonelle.com/docs/3.0/ios/
 
 ## Documentation
