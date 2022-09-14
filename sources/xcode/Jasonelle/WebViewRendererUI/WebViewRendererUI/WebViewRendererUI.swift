@@ -82,7 +82,7 @@ class WebViewModel: ObservableObject {
             isResource = true
             res = app?.utils.fs.fileURL(forPath:
                 app?.utils.fs.path(forResource: res) ?? "")
-                .absoluteString ?? "404.html"
+                .absoluteString ?? "about:blank"
         }
 
         guard let href = URL(string: res) else {
@@ -112,6 +112,13 @@ class WebViewModel: ObservableObject {
     }
 
     private func setStyles(with config: WebViewRendererUILoader) {
+        
+        // TODO: Add more style options
+        
+        if config.params.components().pull().params.hidden() || config.params.components().pull().options.hidden() {
+            refreshControl.removeFromSuperview();
+        }
+        
         refreshControl.attributedTitle = config.params.components().pull().style.title()
         refreshControl.tintColor = config.params.components().pull().style.tint()
         refreshControl.setNeedsDisplay()

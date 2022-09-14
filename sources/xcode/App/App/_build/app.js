@@ -1809,9 +1809,7 @@
             color: Paint("blue"),
             tint: Paint("orange")
           },
-          options: {
-            enabled: true
-          },
+          options: {},
           hooks: {
             onPull(event) {
               log(event);

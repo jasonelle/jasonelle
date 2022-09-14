@@ -25,11 +25,13 @@ class PullComponent {
     let hooks: PullHooks
     let style: PullStyle
     let strings = PullStrings.self
+    let options: PullOptions
 
     init(_ app: Jasonelle.App, params: JLJSParams) {
         self.app = app
         self.params = PullParams(params)
         hooks = PullHooks(app.events, params: self.params)
         style = PullStyle(self.params)
+        options = PullOptions(self.params)
     }
 }

@@ -16,15 +16,17 @@ class MainScreen extends Component {
 
     // View components
     components = {
+        // Scissor comment to enable/disable the pull to refresh
+        // *
         pull: {
             title: _t("main.pull.title", "Pull to Refresh"),
+            hidden: false,
             style: {
                 color: Paint("blue"),
                 tint: Paint("orange"),
             },
             options: {
                 // TODO: Add option to hide the progress bar
-                enabled: true,
             },
             hooks: {
                 // pull gets called whenever user makes a pull to refresh action
@@ -34,6 +36,7 @@ class MainScreen extends Component {
                 },
             },
         },
+        // */
     };
 
     //    headers = {};

@@ -11,6 +11,7 @@
 		EF3F890328098FFE00777B7E /* WebViewRendererUILoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3F890228098FFE00777B7E /* WebViewRendererUILoader.swift */; };
 		EF5458A6280C7D2900B87600 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF5458A8280C7D2900B87600 /* Localizable.strings */; };
 		EF5458AD280C8F1D00B87600 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5458AC280C8F1D00B87600 /* Strings.swift */; };
+		EF5F6D1628D210230037F054 /* PullOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5F6D1528D210230037F054 /* PullOptions.swift */; };
 		EFB73CF727AFF84700A21457 /* WebViewRendererUI.docc in Sources */ = {isa = PBXBuildFile; fileRef = EFB73CF627AFF84700A21457 /* WebViewRendererUI.docc */; };
 		EFB73CFD27AFF84700A21457 /* WebViewRendererUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB73CF227AFF84700A21457 /* WebViewRendererUI.framework */; };
 		EFB73D0227AFF84700A21457 /* WebViewRendererUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB73D0127AFF84700A21457 /* WebViewRendererUITests.swift */; };
@@ -47,6 +48,7 @@
 		EF5458A7280C7D2900B87600 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EF5458AA280C825400B87600 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EF5458AC280C8F1D00B87600 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		EF5F6D1528D210230037F054 /* PullOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullOptions.swift; sourceTree = "<group>"; };
 		EFB73CF227AFF84700A21457 /* WebViewRendererUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WebViewRendererUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFB73CF527AFF84700A21457 /* WebViewRendererUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewRendererUI.h; sourceTree = "<group>"; };
 		EFB73CF627AFF84700A21457 /* WebViewRendererUI.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = WebViewRendererUI.docc; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				EFD5656A2815E04700FBA0E7 /* PullStyle.swift */,
 				EFD5656C2815E76400FBA0E7 /* PullComponent.swift */,
 				EFD5656E2815F57B00FBA0E7 /* PullStrings.swift */,
+				EF5F6D1528D210230037F054 /* PullOptions.swift */,
 			);
 			path = Pull;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				EFD565672815E02B00FBA0E7 /* PullHooks.swift in Sources */,
 				EF3F890328098FFE00777B7E /* WebViewRendererUILoader.swift in Sources */,
 				EFD565622815DE6F00FBA0E7 /* Components.swift in Sources */,
+				EF5F6D1628D210230037F054 /* PullOptions.swift in Sources */,
 				EFD565692815E03600FBA0E7 /* PullParams.swift in Sources */,
 				EFB73D0D27AFF89800A21457 /* WebViewRendererUI.swift in Sources */,
 				EF5458AD280C8F1D00B87600 /* Strings.swift in Sources */,

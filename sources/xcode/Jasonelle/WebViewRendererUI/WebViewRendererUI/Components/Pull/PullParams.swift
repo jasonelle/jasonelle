@@ -45,6 +45,10 @@ class PullParams {
     func title() -> String {
         return params.string("title", default: PullStrings.defaultTitle())!
     }
+    
+    func hidden() -> Bool {
+        return params.boolean("hidden")
+    }
 
     func hooks() -> PullHooksParams {
         return PullHooksParams(params.get("hooks"))
