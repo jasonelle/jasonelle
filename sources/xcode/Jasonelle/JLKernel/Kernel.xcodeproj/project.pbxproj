@@ -67,7 +67,7 @@
 		EF96866628316B5E006C623F /* JLJSMessageHandlers.h in Headers */ = {isa = PBXBuildFile; fileRef = EF96866428316B5E006C623F /* JLJSMessageHandlers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF96866728316B5E006C623F /* JLJSMessageHandlers.m in Sources */ = {isa = PBXBuildFile; fileRef = EF96866528316B5E006C623F /* JLJSMessageHandlers.m */; };
 		EF968669283186FE006C623F /* JLWebViewMessageHandlerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = EF968668283186FE006C623F /* JLWebViewMessageHandlerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EF96866C2831D5CA006C623F /* JLJSLoggerMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF96866A2831D5CA006C623F /* JLJSLoggerMessageHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF96866C2831D5CA006C623F /* JLJSLoggerMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF96866A2831D5CA006C623F /* JLJSLoggerMessageHandler.h */; };
 		EF96866D2831D5CA006C623F /* JLJSLoggerMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF96866B2831D5CA006C623F /* JLJSLoggerMessageHandler.m */; };
 		EF9A8868280F0A5100778F0C /* JLNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9A8866280F0A5100778F0C /* JLNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF9A8869280F0A5100778F0C /* JLNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9A8867280F0A5100778F0C /* JLNotificationCenter.m */; };
@@ -867,9 +867,9 @@
 				EF96865D283167D6006C623F /* JLJSMessageHandler.h in Headers */,
 				EF96866628316B5E006C623F /* JLJSMessageHandlers.h in Headers */,
 				EF47FEA32824E31F006E2B9B /* JLExtension.h in Headers */,
-				EF96866C2831D5CA006C623F /* JLJSLoggerMessageHandler.h in Headers */,
 				EF968669283186FE006C623F /* JLWebViewMessageHandlerProtocol.h in Headers */,
 				EF83739027A996C500485E03 /* JLKernel.h in Headers */,
+				EF96866C2831D5CA006C623F /* JLJSLoggerMessageHandler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
