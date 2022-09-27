@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nonnull) JLProcess *process;
 @property (nonatomic) JLEnvironmentType type;
+@property (nonatomic) BOOL licensed;
 
 - (instancetype)initWithApplication:(UIApplication *)application andLaunchOptions:(nullable NSDictionary *)launchOptions;
 
