@@ -28,6 +28,8 @@
             };
             badge.clear = async () => $agent.trigger("$badge.clear");
             
+            
+            // Actions defined in main.js
             // Test Hello Action
             // JS Actions use $agent.call
             // These actions cannot return a Promise (yet)
@@ -37,8 +39,9 @@
               $logger.trace(result);
             };
             
-            const camera = () => {
-                
+            // Open app in safari
+            const safari = (url) => {
+                $agent.call("safari", url);
             };
         </script>
     </head>
@@ -49,7 +52,7 @@
             <li><h3 onClick="badge.set()">Increment App Badge</h3></li>
             <li><h3 onClick="badge.clear()">Clear App Badge</h3></li>
             <li><h3 onClick="hello()">Test Bridge From WebView to JSContext</h3></li>
-            <li><h3 onClick="hello()">Test Bridge From WebView to JSContext</h3></li>
+            <li><h3 onClick="safari('https://google.com')">Test Opening Safari Link</h3></li>
             <li>
                 <h3>Example Image Picker</h3>
                 <input

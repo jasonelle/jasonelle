@@ -1,6 +1,12 @@
 // Our initial Screen
 
-import { Color, Component, i18n as _t, Logger } from "@jasonelle/kernel";
+import {
+    Color,
+    Component,
+    i18n as _t,
+    Logger,
+    openURL,
+} from "@jasonelle/kernel";
 
 const Paint = Color.Factory;
 
@@ -48,6 +54,13 @@ class MainScreen extends Component {
     actions = {
         hello: function(params = {}) {
             log("Hello World Action " + JSON.stringify(params));
+            return true;
+        },
+        safari: function(url) {
+            log("Opening Safari " + url);
+            // available protocols
+            // sms, email, phone, facetime, app
+            openURL.app(url);
             return true;
         },
     };

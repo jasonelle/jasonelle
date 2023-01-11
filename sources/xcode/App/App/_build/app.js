@@ -1823,6 +1823,11 @@
         hello: function(params = {}) {
           log("Hello World Action " + JSON.stringify(params));
           return true;
+        },
+        safari: function(url) {
+          log("Opening Safari " + url);
+          openurl_default.app(url);
+          return true;
         }
       });
       __publicField(this, "hooks", {
