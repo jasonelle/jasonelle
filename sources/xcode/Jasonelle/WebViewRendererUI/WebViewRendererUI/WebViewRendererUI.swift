@@ -112,13 +112,12 @@ class WebViewModel: ObservableObject {
     }
 
     private func setStyles(with config: WebViewRendererUILoader) {
-        
         // TODO: Add more style options
-        
+
         if config.params.components().pull().params.hidden() || config.params.components().pull().options.hidden() {
-            refreshControl.removeFromSuperview();
+            refreshControl.removeFromSuperview()
         }
-        
+
         refreshControl.attributedTitle = config.params.components().pull().style.title()
         refreshControl.tintColor = config.params.components().pull().style.tint()
         refreshControl.setNeedsDisplay()
@@ -194,12 +193,19 @@ public struct ContentView: View {
                 ProgressView().progressViewStyle(CircularProgressViewStyle())
             }
         }.onAppear {
-            // Loader must be installed after the view is created
-            web.setLoader(loader)
-            // App must be set after the loader so it can trigger the hooks
-            web.setApp(app)
-            web.load(url)
-            web.onLoad()
+            // Only setup app once.
+            // Since it will trigger every time the app will appear
+            // For example being called after file input modal.
+            // Is similar to an onViewDidLoad method.
+            if web.app == nil {
+                // Loader must be installed after the view is created
+                web.setLoader(loader)
+                // App must be set after the loader so it can trigger the hooks
+                web.setApp(app)
+                web.load(url)
+                web.onLoad()
+            }
+
             web.onAppear()
         }.onDisappear {
             web.onDisappear()

@@ -15,6 +15,9 @@
          location = "group:Extensions/JLExtensions/JLExtensions.xcodeproj">
       </FileRef>
       <FileRef
+         location = "group:Extensions/JLPhotoLibrary/JLPhotoLibrary.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Extensions/JLApplicationBadge/JLApplicationBadge.xcodeproj">
       </FileRef>
       <FileRef

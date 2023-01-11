@@ -48,7 +48,7 @@
     if (NSClassFromString(@"XCTest") != nil) {
         return JLEnvironmentTypeTesting;
     }
-    
+
    #if DEBUG
         return JLEnvironmentTypeDevelop;
    #else

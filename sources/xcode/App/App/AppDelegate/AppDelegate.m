@@ -44,6 +44,9 @@ didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
     [extensions add:JLATTrackingManager.class];
     [extensions add:JLApplicationBadge.class];
     
+    // Setup permissions in info.plist to access photos
+    [extensions add:JLPhotoLibrary.class];
+    
     ready = [extensions install] && [extensions application:application didFinishLaunchingWithOptions:launchOptions];
     
     return ready;

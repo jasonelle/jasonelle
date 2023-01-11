@@ -28,7 +28,7 @@ static NSString *DNS = @"com.jasonelle";
 
 - (void)setEnv:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions {
     JLEnvironment *env = [[JLEnvironment alloc] initWithApplication:application andLaunchOptions:launchOptions];
-    
+
     env.licensed = I_LOVE_JASONELLE;
     self.app.env = env;
 }
@@ -134,26 +134,26 @@ static NSString *DNS = @"com.jasonelle";
     // add push notification json events (if the push contains json data)
 }
 
-- (void) setLicense {
+- (void)setLicense {
     if (!I_LOVE_JASONELLE) {
-        
+
         printf("\n========================\n");
         printf("⚠️ A T T E N T I O N ⚠️");
         printf("\n========================\n");
         printf("\nThis app will crash in Production or Hardware if Love.h is not activated.\n");
         printf("Please, become a member of Jasonelle's Friends. See more info at https://jasonelle.gumroad.com\n");
         printf("\n========================\n\n");
-        
-        if (self.app.env.device == JLEnvironmentDeviceHardware || self.app.env.type == JLEnvironmentTypeProduction) {
+
+        if ((self.app.env.device == JLEnvironmentDeviceHardware) || (self.app.env.type == JLEnvironmentTypeProduction)) {
             [[[NSException alloc] initWithName:@"Free Version" reason:@"Please, become a member of Jasonelle's Friends. See more info at https://jasonelle.gumroad.com" userInfo:@{}] raise];
         }
-        
+
         return;
     }
-    
+
     // Set the values in Jasonelle/Love.h
     self.app.env.licenseKey = @(JASONELLE_KEY);
-    
+
     printf("\n===================================================\n");
     printf("❤️ THANKS FOR SUPPORTING JASONELLE'S DEVELOPMENT ❤️");
     printf("\n===================================================\n\n");
@@ -164,12 +164,12 @@ static NSString *DNS = @"com.jasonelle";
     [self setApp];
     [self setEnv:application launchOptions:launchOptions];
     [self setLicense];
-    
+
     [self setLogger];
     [self setHTTPClient];
     [self setEvents];
     [self setJSEngine];
-    
+
     jlog_trace(@"Jasonelle Boot Complete");
 
     return YES;

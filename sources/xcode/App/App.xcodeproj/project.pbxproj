@@ -29,6 +29,8 @@
 		EF77097B28DF6CE300D28B89 /* JLATTrackingManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF77097928DF6CE300D28B89 /* JLATTrackingManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EF77097C28DF6CF600D28B89 /* JasonelleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD373C227B06BC500D6F7CF /* JasonelleSwift.framework */; };
 		EF77097D28DF6CF600D28B89 /* JasonelleSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFD373C227B06BC500D6F7CF /* JasonelleSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EFA6A1EA296F099900DA12D4 /* JLPhotoLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA6A1E9296F099900DA12D4 /* JLPhotoLibrary.framework */; };
+		EFA6A1EB296F099900DA12D4 /* JLPhotoLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFA6A1E9296F099900DA12D4 /* JLPhotoLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EFAF61CB2806DB3C001B265B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAF61CA2806DB3C001B265B /* AppDelegate.m */; };
 		EFD65C5528C12966000350B1 /* Files in Resources */ = {isa = PBXBuildFile; fileRef = EFD65C5428C12966000350B1 /* Files */; };
 		EFE607392808B5D300C8146A /* _build in Resources */ = {isa = PBXBuildFile; fileRef = EFE607382808B5D300C8146A /* _build */; };
@@ -59,6 +61,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				EF77097528DF6CAC00D28B89 /* Jasonelle.framework in Embed Frameworks */,
+				EFA6A1EB296F099900DA12D4 /* JLPhotoLibrary.framework in Embed Frameworks */,
 				EF77096E28DF6CA800D28B89 /* WebViewRendererUI.framework in Embed Frameworks */,
 				EF77097B28DF6CE300D28B89 /* JLATTrackingManager.framework in Embed Frameworks */,
 				EF77097828DF6CDB00D28B89 /* JLApplicationBadge.framework in Embed Frameworks */,
@@ -92,12 +95,13 @@
 		EF83737327A9939B00485E03 /* Kernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF83739D27A9973D00485E03 /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF8373CC27A9A06800485E03 /* Jasonelle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Jasonelle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EF9A5B9628232750002D1324 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFA6A1E9296F099900DA12D4 /* JLPhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFAF61C92806DB3C001B265B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EFAF61CA2806DB3C001B265B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		EFAF61DB2806F262001B265B /* JS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = JS; sourceTree = SOURCE_ROOT; };
 		EFB43AEC280B32FF002BF066 /* Tools */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tools; sourceTree = "<group>"; };
 		EFB73D1227AFFE8500A21457 /* WebViewRendererUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WebViewRendererUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFBE6D62296F045500952B4A /* JLPhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC39C07282508130037750A /* JLExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC39C1528250AB20037750A /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD373C227B06BC500D6F7CF /* JasonelleSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JasonelleSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +115,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF77097428DF6CAC00D28B89 /* Jasonelle.framework in Frameworks */,
+				EFA6A1EA296F099900DA12D4 /* JLPhotoLibrary.framework in Frameworks */,
 				EF77097228DF6CAB00D28B89 /* JLExtensions.framework in Frameworks */,
 				EF77097A28DF6CE300D28B89 /* JLATTrackingManager.framework in Frameworks */,
 				EF77097728DF6CDB00D28B89 /* JLApplicationBadge.framework in Frameworks */,
@@ -141,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				EF682C1A2823285F00870531 /* AppIcon.png */,
-				EF9A5B9628232750002D1324 /* Info.plist */,
 				EF5458A2280C795400B87600 /* Localizable.strings */,
 				EFB43AEC280B32FF002BF066 /* Tools */,
 				EFD65C5428C12966000350B1 /* Files */,
@@ -207,6 +211,8 @@
 		EF83737227A9939B00485E03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EFA6A1E9296F099900DA12D4 /* JLPhotoLibrary.framework */,
+				EFBE6D62296F045500952B4A /* JLPhotoLibrary.framework */,
 				EF77097928DF6CE300D28B89 /* JLATTrackingManager.framework */,
 				EF77097628DF6CDB00D28B89 /* JLApplicationBadge.framework */,
 				EFC39C1528250AB20037750A /* JLKernel.framework */,
@@ -572,6 +578,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "PLACEHOLDER. Explain why you need Camera Usage";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "PLACEHOLDER. Explain why you need Photo Library Usage";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -607,6 +615,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "PLACEHOLDER. Explain why you need Camera Usage";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "PLACEHOLDER. Explain why you need Photo Library Usage";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

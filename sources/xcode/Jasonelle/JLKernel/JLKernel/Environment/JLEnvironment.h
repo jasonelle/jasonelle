@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) JLEnvironmentType type;
 @property (nonatomic) JLEnvironmentDevice device;
 @property (nonatomic) BOOL licensed;
-@property (nonatomic, strong, nullable) NSString * licenseKey;
+@property (nonatomic, strong, nullable) NSString *licenseKey;
 
 - (instancetype)initWithApplication:(UIApplication *)application andLaunchOptions:(nullable NSDictionary *)launchOptions;
 

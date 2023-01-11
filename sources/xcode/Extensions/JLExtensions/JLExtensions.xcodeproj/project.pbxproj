@@ -13,6 +13,7 @@
 		EF47FEE72824F653006E2B9B /* JLExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = EF47FED92824F653006E2B9B /* JLExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF4A7C07282614D500EDA14C /* JLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF4A7C06282614D500EDA14C /* JLExtensions.m */; };
 		EF4A7C09282619A100EDA14C /* JLApplicationBadge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF4A7C08282619A100EDA14C /* JLApplicationBadge.framework */; };
+		EFA6A1E6296F095600DA12D4 /* JLPhotoLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA6A1E5296F095600DA12D4 /* JLPhotoLibrary.framework */; };
 		EFC39C0C282508FE0037750A /* JLATTrackingManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC39C0B282508FE0037750A /* JLATTrackingManager.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,11 @@
 		EF47FF0228250746006E2B9B /* JLATTrackingManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLATTrackingManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4A7C06282614D500EDA14C /* JLExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLExtensions.m; sourceTree = "<group>"; };
 		EF4A7C08282619A100EDA14C /* JLApplicationBadge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLApplicationBadge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFA6A194296F07DE00DA12D4 /* JLPhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFA6A1E5296F095600DA12D4 /* JLPhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFBE6D64296F04A900952B4A /* JLPhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFBE6D68296F05E300952B4A /* JLPhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFBE6D6A296F06F300952B4A /* JLPhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC39C02282507CE0037750A /* JLATTrackingManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLATTrackingManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC39C09282508350037750A /* JLATTrackingManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLATTrackingManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC39C0B282508FE0037750A /* JLATTrackingManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLATTrackingManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFA6A1E6296F095600DA12D4 /* JLPhotoLibrary.framework in Frameworks */,
 				EF4A7C09282619A100EDA14C /* JLApplicationBadge.framework in Frameworks */,
 				EFC39C0C282508FE0037750A /* JLATTrackingManager.framework in Frameworks */,
 			);
@@ -104,6 +111,11 @@
 		EF47FEF02824F666006E2B9B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EFA6A1E5296F095600DA12D4 /* JLPhotoLibrary.framework */,
+				EFA6A194296F07DE00DA12D4 /* JLPhotoLibrary.framework */,
+				EFBE6D6A296F06F300952B4A /* JLPhotoLibrary.framework */,
+				EFBE6D68296F05E300952B4A /* JLPhotoLibrary.framework */,
+				EFBE6D64296F04A900952B4A /* JLPhotoLibrary.framework */,
 				EF4A7C08282619A100EDA14C /* JLApplicationBadge.framework */,
 				EFC39C11282509DA0037750A /* JLKernel.framework */,
 				EFC39C0B282508FE0037750A /* JLATTrackingManager.framework */,

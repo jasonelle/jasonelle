@@ -24,7 +24,6 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-
 import Foundation
 import JLKernel
 import UIKit
@@ -36,6 +35,6 @@ class PullOptions {
     }
 
     func hidden() -> Bool {
-        return self.params.params.boolean("hidden")
+        return params.params.boolean("hidden")
     }
 }

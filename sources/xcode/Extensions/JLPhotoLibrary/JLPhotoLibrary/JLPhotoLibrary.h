@@ -1,8 +1,8 @@
 //
-//  Params.swift
-//  WebViewRendererUI
+//  JLPhotoLibrary.h
+//  JLPhotoLibrary
 //
-//  Created by clsource on 24-04-22
+//  Created by clsource on 11-01-23
 //
 //  Copyright (c) 2022 Jasonelle.com
 //
@@ -24,43 +24,34 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-import Foundation
-import JLKernel
 
-// Get the properties defined in the JS of the component
+#import <Foundation/Foundation.h>
+#import <JLKernel/JLKernel.h>
 
-class PullHooksParams {
-    let params: JLJSParams
+//! Project version number for JLPhotoLibrary.
+FOUNDATION_EXPORT double JLPhotoLibraryVersionNumber;
 
-    init(_ params: JLJSParams) {
-        self.params = params
-    }
+//! Project version string for JLPhotoLibrary.
+FOUNDATION_EXPORT const unsigned char JLPhotoLibraryVersionString[];
 
-    func onPull() -> JLJSParams {
-        return params.get("onPull")
-    }
-}
+// In this header, you should import all the public headers of your framework using statements like #import <JLPhotoLibrary/PublicHeader.h>
 
-class PullParams {
-    let params: JLJSParams
-    // Initialize with the params at the `pull` level
-    init(_ params: JLJSParams) {
-        self.params = params
-    }
 
-    func style() -> JLJSParams {
-        return params.get("style")
-    }
+NS_ASSUME_NONNULL_BEGIN
 
-    func title() -> String {
-        return params.string("title", default: PullStrings.defaultTitle())!
-    }
+@interface JLPhotoLibrary : JLExtension
 
-    func hidden() -> Bool {
-        return params.boolean("hidden")
-    }
+@property (nonatomic) BOOL granted;
 
-    func hooks() -> PullHooksParams {
-        return PullHooksParams(params.get("hooks"))
-    }
-}
+// Native Camera Support
+// Add these permissions to info.plist
+//
+//    <key>NSPhotoLibraryUsageDescription</key>
+//    <string>If you want to use the photolibrary, you have to give permission.</string>
+//    <key>NSCameraUsageDescription</key>
+//    <string>If you want to use the camera, you have to give permission.</string>
+- (NSInteger) authorize;
+
+@end
+
+NS_ASSUME_NONNULL_END
