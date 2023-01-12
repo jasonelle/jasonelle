@@ -35,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JLEvent : NSObject
 
 @property (nonatomic, strong, nonnull) NSString * name;
+@property (nonatomic, strong, nonnull) NSNotificationName identifier;
 @property (nonatomic, strong, nonnull) id<JLLoggerProtocol> logger;
 @property (nonatomic, strong, nonnull) JLNotificationCenter * center;
 @property (nonatomic, strong, nonnull) JLEnvironment * env;
@@ -71,6 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *) namespaceForClass: (Class) class;
 + (NSString *) name;
++ (NSNotificationName) notificationName;
 
 + (void) listenIn:(JLNotificationCenter *) center
                      with: (id) observer

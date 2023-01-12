@@ -29,9 +29,12 @@
 @implementation JLEventDidReceiveOpenURL
 
 - (void)triggerWithURL:(NSURL *)url andOptions:(NSDictionary *)options {
-    BOOL isOAuth = [[url absoluteString] containsString:@"://oauth"];
-    BOOL isHref = [[url absoluteString] containsString:@"://href?"];
-    BOOL isJSON = [[url absoluteString] containsString:@"://json?"];
+    
+    NSString * urlString = [url absoluteString];
+    
+    BOOL isOAuth = [urlString containsString:@"://oauth"];
+    BOOL isHref = [urlString containsString:@"://href?"];
+    BOOL isJSON = [urlString containsString:@"://json?"];
 
     NSString *type = @"unknown";
 
@@ -46,10 +49,14 @@
     if (isJSON) {
         type = @"json";
     }
+    
+    NSURLComponents * components = [[NSURLComponents alloc] initWithString:urlString];
+    NSString * param = components.queryItems.firstObject.value;
 
     NSDictionary *params = @{
-        @"url": [url absoluteString],
+        @"url": urlString,
         @"options": options,
+        @"value": param,
         @"type": type
     };
 

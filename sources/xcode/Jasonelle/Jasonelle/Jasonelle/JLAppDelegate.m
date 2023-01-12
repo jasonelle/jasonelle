@@ -182,8 +182,12 @@ static NSString *DNS = @"com.jasonelle";
 #pragma mark - Event Listeners
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {
+    
+    jlog_trace_join(@"Event Did Receive Open URL: ", url.description);
+    
     JLEventDidReceiveOpenURL *event = (JLEventDidReceiveOpenURL *) [self.app.events eventFor:[JLEventDidReceiveOpenURL class]];
 
+    
     [event triggerWithURL:url andOptions:options];
 
     return YES;

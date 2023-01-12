@@ -146,6 +146,20 @@ class WebViewModel: ObservableObject {
         loader?.hooks.onAppDidLoad()
         app?.ext.extensions.appDidLoad()
         webView = app?.ext.extensions.appDidLoad(with: webView) ?? webView
+        
+        app?.events.addListener(self, with: #selector(didReceiveHrefDeepLinkNotification(_:)), for: JLEventDidReceiveOpenURL.self)
+    }
+        
+    @objc
+    func didReceiveHrefDeepLinkNotification(_ notification: Notification) {
+        
+        app?.logger.trace("Received URL notification")
+        
+        // TODO: Maybe add specific event for each type of openURL
+        let data = notification.userInfo?["data"] as? Dictionary<String, Any>
+        if data?["type"] as! String == "href" {
+            load(data!["value"] as! String)
+        }
     }
 
     func onAppear() {
@@ -209,6 +223,13 @@ public struct ContentView: View {
             web.onAppear()
         }.onDisappear {
             web.onDisappear()
+        }.onOpenURL { url in
+            
+            self.app.logger.trace("Did Receive Open URL: \(url.absoluteString)")
+            
+            let event : JLEventDidReceiveOpenURL = self.app.events.event(for: JLEventDidReceiveOpenURL.self) as! JLEventDidReceiveOpenURL
+            
+            event.trigger(with: url, andOptions: [:])
         }
     }
 }

@@ -57,6 +57,7 @@ static NSString *NAMESPACE = @"com.jasonelle.app.events";
 
     if (self) {
         self.name = name;
+        self.identifier = name;
         self.center = center;
         self.logger = logger;
         self.active = NO;
@@ -151,6 +152,10 @@ static NSString *NAMESPACE = @"com.jasonelle.app.events";
 
 + (NSString *)name {
     return [self namespaceForClass:[self class]];
+}
+
++ (NSNotificationName) notificationName {
+    return (NSNotificationName) [self name];
 }
 
 + (void)listenIn:(JLNotificationCenter *)center
