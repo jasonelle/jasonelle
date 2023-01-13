@@ -46,6 +46,38 @@ static JLApplication *_instance;
     return _version;
 }
 
+- (id) rootController {
+    
+    // Sometimes is needed a root controller to show alerts in webviews (using SwiftUI)
+    // so we use the first available controller
+    // before ios 13 something like this would be used
+    //
+    // UIViewController * controller = [UIApplication sharedApplication].keyWindow.rootViewController;
+    //
+    // but since it was deprecated we now have to iterate between scenes
+    // to find the key window controller
+    
+    if (!_rootController) {
+        
+        UIViewController * controller = nil;
+        
+        for (UIWindowScene * scene in [[UIApplication sharedApplication] connectedScenes]) {
+            
+            if (controller) break;
+            
+            for (UIWindow * window in scene.windows) {
+                if (window.isKeyWindow) {
+                    controller = window.rootViewController;
+                    break;
+                }
+            }
+        }
+        _rootController = controller;
+    }
+    
+    return _rootController;
+}
+
 // - (JLApplicationHTTP *)http {
 //    if (!_http) {
 //        _http = [JLApplicationHTTP new];

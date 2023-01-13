@@ -50,6 +50,8 @@ NS_SWIFT_NAME(App)
 
 @property (nonatomic, strong, nonnull) JLEnvironment * env;
 
+@property (nonatomic, strong, nullable) id rootController;
+
 // Maybe this property can be a simple adapter for the real http
 //@property (nonatomic, strong, nonnull) JLApplicationHTTP * http;
 

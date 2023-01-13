@@ -104,7 +104,6 @@
 //    jlog_logger_trace_join(logger, @"Message:", body.description);
 // }
 
-
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     // Don't evaluate if about:blank
     if ([webView.URL.absoluteString isEqualToString:@"about:blank"]) {
@@ -115,7 +114,7 @@
     NSString *identifier = self.identifier;
 
     jlog_trace_join(@"Injecting agent.js into context ", identifier);
-    NSString *agent = [self.app.utils.fs readJS:@"agent" for:self];
+    NSString *agent = [[JLApplication instance].utils.fs readJS:@"agent" for:self];
 
     NSString *addId = [NSString
                        stringWithFormat:@"__com_jasonelle_agent.id = '%@';\n",
@@ -132,7 +131,7 @@
 
     jlog_trace_join(@"Injecting webview.js into context ", identifier);
 
-    NSString *custom = [self.app.utils.fs readJS:@"_build/webview"];
+    NSString *custom = [[JLApplication instance].utils.fs readJS:@"_build/webview"];
 
     summon = [summon stringByAppendingString:custom];
 
@@ -152,5 +151,70 @@
                   jlog_trace(@"Injected agent.js and webview.js into context");
 
               }];
+}
+
+#pragma mark - JS Alert Prompts
+
+- (void) webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
+    
+    jlog_global_trace(@"Webview UI: JS Alert Panel Called");
+
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        completionHandler();
+    }]];
+    
+    UIViewController * controller = [JLApplication instance].rootController;
+    [controller presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL result))completionHandler
+{
+    jlog_global_trace(@"Webview UI: JS Confirm Panel Called");
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        completionHandler(NO);
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        completionHandler(YES);
+    }]];
+    
+    UIViewController * controller = [JLApplication instance].rootController;
+    [controller presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString *result))completionHandler
+{
+    
+    jlog_global_trace(@"Webview UI: JS Text Input Panel Called");
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:prompt
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = prompt;
+        textField.secureTextEntry = NO;
+        textField.text = defaultText;
+    }];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        completionHandler(nil);
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        completionHandler([alert.textFields.firstObject text]);
+    }]];
+    
+    UIViewController * controller = [JLApplication instance].rootController;
+    [controller presentViewController:alert animated:YES completion:nil];
 }
 @end

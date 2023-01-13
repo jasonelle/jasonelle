@@ -43,6 +43,7 @@
             const safari = (url) => {
                 $agent.call("safari", url);
             };
+            
         </script>
     </head>
     <body>
@@ -53,6 +54,15 @@
             <li><h3 onClick="badge.clear()">Clear App Badge</h3></li>
             <li><h3 onClick="hello()">Test Bridge From WebView to JSContext</h3></li>
             <li><h3 onClick="safari('https://google.com')">Test Opening Safari Link</h3></li>
+            <li>
+                <h3 onClick="alert('Hello')">Alert Example</h3>
+            </li>
+            <li>
+                <h3 onClick="confirm('Press a button!')">Confirm Example</h3>
+            </li>
+            <li>
+                <h3 onClick="prompt('Please enter your name', 'Ethan G.')">Prompt Example</h3>
+            </li>
             <li>
                 <h3>Example Image Picker</h3>
                 <input

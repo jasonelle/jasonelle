@@ -32,11 +32,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WKWebViewDelegate : NSObject<WKNavigationDelegate, WKScriptMessageHandlerWithReply>
+@interface WKWebViewDelegate : NSObject<WKNavigationDelegate, WKScriptMessageHandlerWithReply, WKUIDelegate>
 
 @property (nonatomic, strong, nonnull) id<JLLoggerProtocol> logger;
 @property (nonatomic, strong, nonnull) JLApplication * app;
 @property (nonatomic, strong, nonnull) NSString * identifier;
+@property (nonatomic, weak) UIViewController * controller;
 
 - (instancetype) initWithIdentifier: (NSString *) identifier;
 - (instancetype) initWithApp: (JLApplication *) app andIdentifier: (NSString *) identifier;

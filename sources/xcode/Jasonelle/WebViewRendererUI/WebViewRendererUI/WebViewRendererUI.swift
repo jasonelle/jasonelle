@@ -53,6 +53,7 @@ class WebViewModel: ObservableObject {
         // With this option it can be used as a Promise that returns something.
         // The delegate must implement WKScriptMessageHandlerWithReply protocol
         // Only supported in iOS >= 14.
+        
         webViewController.addScriptMessageHandler(delegate, contentWorld: WKContentWorld.page, name: WebViewModel.identifier)
 
         configuration.websiteDataStore = .nonPersistent()
@@ -60,6 +61,8 @@ class WebViewModel: ObservableObject {
         configuration.allowsInlineMediaPlayback = true
 
         webView = WKWebView(frame: .zero, configuration: configuration)
+        
+        webView.uiDelegate = delegate
 
         webView.publisher(for: \.isLoading).assign(to: &$isLoading)
 
