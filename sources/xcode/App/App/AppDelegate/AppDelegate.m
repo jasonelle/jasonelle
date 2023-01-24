@@ -41,11 +41,17 @@ didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
     // Add extensions
     JLExtensions * extensions = [[JLExtensions alloc] initWithApp:self.app];
     
+    // Setup ATTracking Manager
     [extensions add:JLATTrackingManager.class];
-    [extensions add:JLApplicationBadge.class];
     
     // Setup permissions in info.plist to access photos
     [extensions add:JLPhotoLibrary.class];
+    
+    // Add $badge extension
+    [extensions add:JLApplicationBadge.class];
+    
+    // Add $keychain extension
+    [extensions add:JLKeychain.class];
     
     ready = [extensions install] && [extensions application:application didFinishLaunchingWithOptions:launchOptions];
     

@@ -12,6 +12,9 @@
       location = "container:"
       name = "Extensions">
       <FileRef
+         location = "group:Extensions/JLKeychain/JLKeychain.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Extensions/JLExtensions/JLExtensions.xcodeproj">
       </FileRef>
       <FileRef

@@ -29,6 +29,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JLEventDidReceiveOpenURL : JLEvent
+- (void)triggerWithURL:(NSURL *)url;
 - (void)triggerWithURL:(NSURL *)url andOptions:(NSDictionary *)options;
 @end
 

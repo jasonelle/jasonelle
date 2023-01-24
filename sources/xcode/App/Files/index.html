@@ -53,7 +53,23 @@
             <li><h3 onClick="badge.set()">Increment App Badge</h3></li>
             <li><h3 onClick="badge.clear()">Clear App Badge</h3></li>
             <li><h3 onClick="hello()">Test Bridge From WebView to JSContext</h3></li>
-            <li><h3 onClick="safari('https://google.com')">Test Opening Safari Link</h3></li>
+            <li>
+                <h3 onClick="safari('https://google.com')">
+                    Test Opening Safari Link
+                </h3>
+            </li>
+            <li>
+                <h3 onClick="$keychain.set('number', 3)">Example $keychain.set</h3>
+            </li>
+            <li>
+                <h3 onClick="$keychain.get('number').then(num => alert(num))">Example $keychain.get</h3>
+            </li>
+            <li>
+                <h3 onClick="$keychain.remove('number')">Example $keychain.remove</h3>
+            </li>
+            <li>
+                <h3 onClick="$keychain.clear()">Example $keychain.clear</h3>
+            </li>
             <li>
                 <h3 onClick="alert('Hello')">Alert Example</h3>
             </li>

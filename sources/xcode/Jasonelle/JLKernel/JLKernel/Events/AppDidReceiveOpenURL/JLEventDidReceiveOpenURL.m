@@ -65,4 +65,8 @@
     [self triggerWithParams:params];
 }
 
+- (void)triggerWithURL:(NSURL *)url {
+    [self triggerWithURL:url andOptions:@{}];
+}
+
 @end

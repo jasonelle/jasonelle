@@ -81,6 +81,7 @@ didFailToRegisterForRemoteNotificationsWithError: (NSError *) error;
 
 - (NSArray<JLExtension *> *) add: (JLExtension *) ext;
 - (nullable JLExtension *) get: (Class) extclass;
+- (nullable NSArray<JLExtension *> *) all;
 
 - (void) install: (Class) extclass;
 

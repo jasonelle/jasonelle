@@ -48,7 +48,7 @@
     return NSStringFromClass(self.class);
 }
 
-- (void)handleWithOptions:(nonnull NSDictionary *)options {
+- (void)handleWithOptions:(nonnull JLJSMessageHandlerOptions *)options {
     jlog_trace_join(@"Handling ", self.class.key, @" with options: ", options.description);
 
     // Call reject or accept in child

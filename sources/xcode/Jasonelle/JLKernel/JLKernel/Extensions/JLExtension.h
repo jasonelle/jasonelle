@@ -26,6 +26,7 @@
 
 #import <Foundation/Foundation.h>
 #import <JLKernel/JLLoggerProtocol.h>
+@import WebKit;
 
 @class JLApplication;
 
@@ -50,6 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDictionary *handlers;
 - (nonnull NSDictionary *)installHandlers:(nonnull NSDictionary *)handlers;
 
+- (nonnull WKWebView *)appDidLoadWithWebView:(nonnull WKWebView *)webView;
 @end
 
 @interface JLExtension : NSObject<JLExtensionProtocol>

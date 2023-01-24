@@ -69,7 +69,8 @@
     NSDictionary *command = (body[@"com.jasonelle.agent.kernel"] ? body[@"com.jasonelle.agent.kernel"] : @{});
 
     NSString *name = command[@"name"];
-    NSDictionary *options = command[@"options"];
+    JLJSMessageHandlerOptions *options = [[JLJSMessageHandlerOptions alloc] initWithValue: command[@"options"]];
+    
     NSDictionary *handlers = self.handlers;
 
     id<JLJSMessageHandlerProtocol> handler = handlers[name];

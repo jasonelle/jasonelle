@@ -55,6 +55,10 @@
         self.registry = [dic copy];
     }
 
+    return [self all];
+}
+
+- (NSArray<JLExtension *> *) all {
     return [self.registry allValues];
 }
 

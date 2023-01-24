@@ -111,6 +111,7 @@
 
 #pragma mark - Lifecycle
 
+// TODO: Implement these methods in JLExtensionProtocol and JLExtension, so they can be called in extensions.
 - (BOOL)application: (UIApplication *) application
 didFinishLaunchingWithOptions:(NSDictionary *) launchOptions {
     // Use if needed in AppDelegate
@@ -153,9 +154,13 @@ didFailToRegisterForRemoteNotificationsWithError: (NSError *) error {
     jlog_trace(@"App Did Disappear");
 }
 
+// Enable extensions to install JS bridges in webView
 - (nonnull WKWebView *)appDidLoadWithWebView:(nonnull WKWebView *)webView {
     // Can override the config for the WebView
     jlog_trace(@"App Did Load With WebView");
+    for (id<JLExtensionProtocol> ext in self.app.ext.all) {
+        webView = [ext appDidLoadWithWebView:webView];
+    }
     return webView;
 }
 
@@ -173,7 +178,7 @@ didFailToRegisterForRemoteNotificationsWithError: (NSError *) error {
     NSDictionary * command = (body[@"com.jasonelle.agent.trigger"] ? body[@"com.jasonelle.agent.trigger"] : @{});
     
     NSString * name = command[@"name"];
-    NSDictionary * options = command[@"options"];
+    JLJSMessageHandlerOptions * options = [[JLJSMessageHandlerOptions alloc] initWithValue: command[@"options"]];
     
     id<JLJSMessageHandlerProtocol> handler = self.handlers[name];
     if (handler) {
@@ -193,7 +198,7 @@ didFailToRegisterForRemoteNotificationsWithError: (NSError *) error {
     command = (body[@"com.jasonelle.agent.action"] ? body[@"com.jasonelle.agent.action"] : @{});
     
     name = command[@"name"];
-    options = command[@"options"];
+    options = [[JLJSMessageHandlerOptions alloc] initWithValue: command[@"options"]];
     
     // Find the action in the App.js context
 //    params = Params(app: app, params: app.routes.load().params.get("/").get("component"))
@@ -209,7 +214,7 @@ didFailToRegisterForRemoteNotificationsWithError: (NSError *) error {
         
         jlog_trace_join(@"Calling Function ", name);
         
-        JLJSValue * result = [action.value secureCallWithArguments:@[command[@"options"]]];
+        JLJSValue * result = [action.value secureCallWithArguments:@[options.value]];
         
         // TODO: Figure out how to handle returning promises
         //if (result.exists) {

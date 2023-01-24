@@ -1,10 +1,8 @@
 //
-//  JLApplicationBadgeClearMessageHandler.m
-//  JLApplicationBadge
+//  JLKeychainGetMessageHandler.m
+//  JLKeychain
 //
-//  Created by clsource on 01-09-22
-//
-//  Copyright (c) 2022 Jasonelle.com
+//  Copyright (c) 2023 Jasonelle.com
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
 //  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
@@ -24,15 +22,33 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
+#import "JLKeychainGetMessageHandler.h"
+#import "JLKeychain.h"
 
-#import "JLApplicationBadgeClearMessageHandler.h"
-#import "JLApplicationBadge.h"
-
-@implementation JLApplicationBadgeClearMessageHandler
+@implementation JLKeychainGetMessageHandler
 
 - (void)handleWithOptions:(nonnull JLJSMessageHandlerOptions *)options {
-    [self.badge clear];
-    self.resolve(@YES);
+    
+    jlog_global_trace_join(options);
+    
+    JLJSParams * params = [options toParams];
+    NSString * key = [params string:@"key"];
+    
+    if (key) {
+        
+        id value = [self.keychain
+                    get:key
+                ];
+        
+        jlog_global_trace_fmt(@"Keychain: Got Key `%@` With Values %@", key, value);
+        
+        self.resolve(value);
+        return;
+    }
+    
+    jlog_trace_join(@"Keychain: Could Not Get with options", options);
+    
+    self.resolve(@NO);
 }
 
 @end

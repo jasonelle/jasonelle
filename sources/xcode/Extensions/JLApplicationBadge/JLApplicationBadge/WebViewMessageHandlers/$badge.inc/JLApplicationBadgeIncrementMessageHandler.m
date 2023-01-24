@@ -30,8 +30,8 @@
 
 @implementation JLApplicationBadgeIncrementMessageHandler
 
-- (void)handleWithOptions:(nonnull NSDictionary *)options {
-    NSNumber * number = (NSNumber*)options;
+- (void)handleWithOptions:(nonnull JLJSMessageHandlerOptions *)options {
+    NSNumber * number = [options toNumber];
     [self.badge set:number];
     self.resolve(number);
 }

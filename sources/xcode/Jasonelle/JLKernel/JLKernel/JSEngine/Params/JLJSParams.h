@@ -63,6 +63,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString *) string: (NSString *) key default: (nullable NSString *) def;
 - (nullable NSString *) string: (NSString *) key;
 
+- (nullable id) any: (NSString *) key default: (nullable id) def;
+- (nullable id) any: (NSString *) key;
+
 - (BOOL) boolean: (NSString *) key;
 
 - (JLJSValue *) value: (NSString *) key;

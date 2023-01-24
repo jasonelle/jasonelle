@@ -30,10 +30,10 @@
 
 @implementation JLJSLoggerMessageHandler
 
-- (void)handleWithOptions:(NSDictionary *)options {
+- (void)handleWithOptions:(JLJSMessageHandlerOptions *)options {
     [super handleWithOptions:options];
 
-    JLJSParams *params = [[JLJSParams alloc] initWithDictionary:options];
+    JLJSParams *params = [[JLJSParams alloc] initWithDictionary:[options toDictionary]];
 
     NSString *message = [params string:@"message"];
     JLJSParams *opts = [params get:@"options"];

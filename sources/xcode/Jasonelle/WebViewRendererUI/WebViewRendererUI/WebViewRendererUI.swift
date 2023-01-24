@@ -232,7 +232,7 @@ public struct ContentView: View {
             
             let event : JLEventDidReceiveOpenURL = self.app.events.event(for: JLEventDidReceiveOpenURL.self) as! JLEventDidReceiveOpenURL
             
-            event.trigger(with: url, andOptions: [:])
+            event.trigger(with: url)
         }
     }
 }

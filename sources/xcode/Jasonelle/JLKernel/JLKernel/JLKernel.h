@@ -88,6 +88,7 @@ FOUNDATION_EXPORT const unsigned char JLKernelVersionString[];
 
 // WebView Message Handlers
 #import <JLKernel/JLJSMessageHandler.h>
+#import <JLKernel/JLJSMessageHandlerOptions.h>
 #import <JLKernel/JLJSMessageHandlers.h>
 #import <JLKernel/JLWebViewMessageHandlerProtocol.h>
 

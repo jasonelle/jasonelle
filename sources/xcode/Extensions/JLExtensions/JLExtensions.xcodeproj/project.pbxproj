@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF2065E2297F4DE8001C27A6 /* JLKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2065E1297F4DE8001C27A6 /* JLKeychain.framework */; };
 		EF47FEDB2824F653006E2B9B /* JLExtensions.docc in Sources */ = {isa = PBXBuildFile; fileRef = EF47FEDA2824F653006E2B9B /* JLExtensions.docc */; };
 		EF47FEE12824F653006E2B9B /* JLExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF47FED62824F653006E2B9B /* JLExtensions.framework */; };
 		EF47FEE62824F653006E2B9B /* JLExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF47FEE52824F653006E2B9B /* JLExtensionsTests.m */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EF2065E1297F4DE8001C27A6 /* JLKeychain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKeychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF47FED62824F653006E2B9B /* JLExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JLExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF47FED92824F653006E2B9B /* JLExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLExtensions.h; sourceTree = "<group>"; };
 		EF47FEDA2824F653006E2B9B /* JLExtensions.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = JLExtensions.docc; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 			files = (
 				EFA6A1E6296F095600DA12D4 /* JLPhotoLibrary.framework in Frameworks */,
 				EF4A7C09282619A100EDA14C /* JLApplicationBadge.framework in Frameworks */,
+				EF2065E2297F4DE8001C27A6 /* JLKeychain.framework in Frameworks */,
 				EFC39C0C282508FE0037750A /* JLATTrackingManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -111,6 +114,7 @@
 		EF47FEF02824F666006E2B9B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EF2065E1297F4DE8001C27A6 /* JLKeychain.framework */,
 				EFA6A1E5296F095600DA12D4 /* JLPhotoLibrary.framework */,
 				EFA6A194296F07DE00DA12D4 /* JLPhotoLibrary.framework */,
 				EFBE6D6A296F06F300952B4A /* JLPhotoLibrary.framework */,

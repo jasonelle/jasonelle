@@ -55,6 +55,11 @@ static NSString *NAMESPACE = @"com.jasonelle.app.extensions";
     jlog_trace_join(@"Installing: ", self.name);
 }
 
+- (nonnull WKWebView *)appDidLoadWithWebView:(nonnull WKWebView *)webView {
+    jlog_trace_join(@"Installing WebView Bridge: ", self.name);
+    return webView;
+}
+
 #pragma mark - Instance Methods
 - (instancetype)initWithName:(NSString *)name
                       logger:(nonnull id<JLLoggerProtocol>)logger

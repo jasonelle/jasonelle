@@ -76,6 +76,8 @@
 		EFB31406281D956E003737B0 /* JLEventAppDidLoad.h in Headers */ = {isa = PBXBuildFile; fileRef = EFB31404281D956E003737B0 /* JLEventAppDidLoad.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFB31407281D956E003737B0 /* JLEventAppDidLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB31405281D956E003737B0 /* JLEventAppDidLoad.m */; };
 		EFB73D0F27AFF95A00A21457 /* JLRendererProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = EFB73D0E27AFF95A00A21457 /* JLRendererProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFC24261297F86230087AAA1 /* JLJSMessageHandlerOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = EFC2425F297F86230087AAA1 /* JLJSMessageHandlerOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFC24262297F86230087AAA1 /* JLJSMessageHandlerOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC24260297F86230087AAA1 /* JLJSMessageHandlerOptions.m */; };
 		EFD4ED3F2823F89B00153CA9 /* JLApplicationUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EFD4ED3D2823F89A00153CA9 /* JLApplicationUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFD4ED402823F89B00153CA9 /* JLApplicationUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD4ED3E2823F89B00153CA9 /* JLApplicationUtils.m */; };
 		EFD4ED442823F8EF00153CA9 /* JLUtilsBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = EFD4ED422823F8EF00153CA9 /* JLUtilsBase64.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -195,6 +197,8 @@
 		EFB31404281D956E003737B0 /* JLEventAppDidLoad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLEventAppDidLoad.h; sourceTree = "<group>"; };
 		EFB31405281D956E003737B0 /* JLEventAppDidLoad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLEventAppDidLoad.m; sourceTree = "<group>"; };
 		EFB73D0E27AFF95A00A21457 /* JLRendererProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLRendererProtocol.h; sourceTree = "<group>"; };
+		EFC2425F297F86230087AAA1 /* JLJSMessageHandlerOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSMessageHandlerOptions.h; sourceTree = "<group>"; };
+		EFC24260297F86230087AAA1 /* JLJSMessageHandlerOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSMessageHandlerOptions.m; sourceTree = "<group>"; };
 		EFD4ED3D2823F89A00153CA9 /* JLApplicationUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLApplicationUtils.h; sourceTree = "<group>"; };
 		EFD4ED3E2823F89B00153CA9 /* JLApplicationUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLApplicationUtils.m; sourceTree = "<group>"; };
 		EFD4ED422823F8EF00153CA9 /* JLUtilsBase64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLUtilsBase64.h; sourceTree = "<group>"; };
@@ -555,6 +559,8 @@
 		EF96865A283167B8006C623F /* MessageHandlers */ = {
 			isa = PBXGroup;
 			children = (
+				EFC2425F297F86230087AAA1 /* JLJSMessageHandlerOptions.h */,
+				EFC24260297F86230087AAA1 /* JLJSMessageHandlerOptions.m */,
 				EF96865B283167D6006C623F /* JLJSMessageHandler.h */,
 				EF96865C283167D6006C623F /* JLJSMessageHandler.m */,
 				EF96866428316B5E006C623F /* JLJSMessageHandlers.h */,
@@ -867,6 +873,7 @@
 				EF96865D283167D6006C623F /* JLJSMessageHandler.h in Headers */,
 				EF96866628316B5E006C623F /* JLJSMessageHandlers.h in Headers */,
 				EF47FEA32824E31F006E2B9B /* JLExtension.h in Headers */,
+				EFC24261297F86230087AAA1 /* JLJSMessageHandlerOptions.h in Headers */,
 				EF968669283186FE006C623F /* JLWebViewMessageHandlerProtocol.h in Headers */,
 				EF83739027A996C500485E03 /* JLKernel.h in Headers */,
 				EF96866C2831D5CA006C623F /* JLJSLoggerMessageHandler.h in Headers */,
@@ -1006,6 +1013,7 @@
 				EFB31402281D6BA2003737B0 /* JLJSBridgei18n.m in Sources */,
 				EFE607362808AD6900C8146A /* JLJSParams.m in Sources */,
 				EFE51B4B281ED05200DA0C53 /* JLJSBridgeOpenURL.m in Sources */,
+				EFC24262297F86230087AAA1 /* JLJSMessageHandlerOptions.m in Sources */,
 				EF61716027AAEA33007B929C /* JLStreamLogHandler.m in Sources */,
 				EF73C5D02816A39E006E3CFB /* JLEventAppDidEnterBackground.m in Sources */,
 				EF61715427AACC7D007B929C /* JLLogLevelFactory.m in Sources */,

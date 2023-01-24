@@ -32,6 +32,7 @@
 #import <JLATTrackingManager/JLATTrackingManager.h>
 #import <JLApplicationBadge/JLApplicationBadge.h>
 #import <JLPhotoLibrary/JLPhotoLibrary.h>
+#import <JLKeychain/JLKeychain.h>
 
 //! Project version number for JLExtensions.
 FOUNDATION_EXPORT double JLExtensionsVersionNumber;

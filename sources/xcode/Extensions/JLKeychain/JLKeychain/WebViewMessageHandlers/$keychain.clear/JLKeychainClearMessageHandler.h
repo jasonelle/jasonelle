@@ -1,10 +1,8 @@
 //
-//  JLApplicationBadgeClearMessageHandler.m
-//  JLApplicationBadge
+//  JLKeychainClearMessageHandler.h
+//  JLKeychain
 //
-//  Created by clsource on 01-09-22
-//
-//  Copyright (c) 2022 Jasonelle.com
+//  Copyright (c) 2023 Jasonelle.com
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
 //  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
@@ -24,15 +22,15 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
+#import <JLKernel/JLKernel.h>
+@class JLKeychain;
 
-#import "JLApplicationBadgeClearMessageHandler.h"
-#import "JLApplicationBadge.h"
+NS_ASSUME_NONNULL_BEGIN
 
-@implementation JLApplicationBadgeClearMessageHandler
+@interface JLKeychainClearMessageHandler : JLJSMessageHandler
 
-- (void)handleWithOptions:(nonnull JLJSMessageHandlerOptions *)options {
-    [self.badge clear];
-    self.resolve(@YES);
-}
+@property (nonatomic, nonnull) JLKeychain * keychain;
 
 @end
+
+NS_ASSUME_NONNULL_END

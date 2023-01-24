@@ -28,6 +28,8 @@
 #import <Foundation/Foundation.h>
 #import <JLKernel/JLKernel.h>
 
+#import <JLKernel/JLJSMessageHandlerOptions.h>
+
 @import WebKit;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -45,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) setReplyHandler:(void (^)(id _Nullable reply, NSString *_Nullable errorMessage))replyHandler;
 
-- (void) handleWithOptions: (NSDictionary *) options;
+- (void) handleWithOptions: (JLJSMessageHandlerOptions *) options;
 
 @end
 

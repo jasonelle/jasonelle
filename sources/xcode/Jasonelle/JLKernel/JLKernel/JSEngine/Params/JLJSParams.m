@@ -137,6 +137,18 @@
     return YES;
 }
 
+- (id) any: (NSString *) key default: (nullable id) def {
+    id outvar = self.dictionary[key];
+    if (!outvar || outvar == NULL || [outvar isKindOfClass:[NSNull class]]) {
+        return def;
+    }
+    return outvar;
+}
+
+- (id) any: (NSString *) key {
+    return [self any:key default:nil];
+}
+
 - (JLJSValue *) value: (NSString *) key {
     // We will fetch the value from the JSContext using JS Object Bracket Notation
     // The path to the object is defined by the parent value's path

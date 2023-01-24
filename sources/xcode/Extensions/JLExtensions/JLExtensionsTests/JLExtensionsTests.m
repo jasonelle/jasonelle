@@ -4,7 +4,7 @@
 //
 //  Created by clsource on 06-05-22
 //
-//  Copyright (c) 2022 ___ORGANIZATIONNAME___
+//  Copyright (c) 2022 Jasonelle.com
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
 //  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
