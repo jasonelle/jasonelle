@@ -53,6 +53,9 @@ didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
     // Add $keychain extension
     [extensions add:JLKeychain.class];
     
+    // Add $cookies extension
+    [extensions add:JLCookies.class];
+    
     ready = [extensions install] && [extensions application:application didFinishLaunchingWithOptions:launchOptions];
     
     return ready;

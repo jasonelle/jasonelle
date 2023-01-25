@@ -16,6 +16,7 @@
 		EF4A7C09282619A100EDA14C /* JLApplicationBadge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF4A7C08282619A100EDA14C /* JLApplicationBadge.framework */; };
 		EFA6A1E6296F095600DA12D4 /* JLPhotoLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA6A1E5296F095600DA12D4 /* JLPhotoLibrary.framework */; };
 		EFC39C0C282508FE0037750A /* JLATTrackingManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC39C0B282508FE0037750A /* JLATTrackingManager.framework */; };
+		EFFB94792980B3A2007BF935 /* JLCookies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFB94782980B3A2007BF935 /* JLCookies.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		EFC39C09282508350037750A /* JLATTrackingManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLATTrackingManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC39C0B282508FE0037750A /* JLATTrackingManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLATTrackingManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC39C11282509DA0037750A /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFFB94782980B3A2007BF935 /* JLCookies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLCookies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFFB94792980B3A2007BF935 /* JLCookies.framework in Frameworks */,
 				EFA6A1E6296F095600DA12D4 /* JLPhotoLibrary.framework in Frameworks */,
 				EF4A7C09282619A100EDA14C /* JLApplicationBadge.framework in Frameworks */,
 				EF2065E2297F4DE8001C27A6 /* JLKeychain.framework in Frameworks */,
@@ -114,6 +117,7 @@
 		EF47FEF02824F666006E2B9B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EFFB94782980B3A2007BF935 /* JLCookies.framework */,
 				EF2065E1297F4DE8001C27A6 /* JLKeychain.framework */,
 				EFA6A1E5296F095600DA12D4 /* JLPhotoLibrary.framework */,
 				EFA6A194296F07DE00DA12D4 /* JLPhotoLibrary.framework */,

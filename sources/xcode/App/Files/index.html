@@ -70,6 +70,26 @@
             <li>
                 <h3 onClick="$keychain.clear()">Example $keychain.clear</h3>
             </li>
+            
+            <!-- Sets the cookie and save it to keychain -->
+            <li>
+                <h3 onClick="$cookies.Cookies.set('name', 'Ethan'); $cookies.set().then(val => alert(val))">Example $cookies.set</h3>
+            </li>
+            
+            <!-- Gets the current cookie value from keychain -->
+            <li>
+                <h3 onClick="$cookies.get().then(val => alert(val))">Example $cookies.get</h3>
+            </li>
+            
+            <!-- Reads cookie from keychain and then writes to document.cookie -->
+            <li>
+                <h3 onClick="$cookies.write().then(val => alert(val))">Example $cookies.write</h3>
+            </li>
+            
+            <!-- Removes cookies from keychain -->
+            <li>
+                <h3 onClick="$cookies.Cookies.remove('name'); $cookies.remove().then(val => alert(val))">Example $cookies.remove</h3>
+            </li>
             <li>
                 <h3 onClick="alert('Hello')">Alert Example</h3>
             </li>

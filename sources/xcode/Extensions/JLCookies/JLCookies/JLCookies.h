@@ -1,8 +1,8 @@
 //
-//  JLKeychainTests.m
-//  JLKeychainTests
+//  JLCookies.h
+//  JLCookies
 //
-//  Created by clsource on 23-01-23
+//  Created by clsource on 24-01-23
 //
 //  Copyright (c) 2023 Jasonelle.com
 //
@@ -24,32 +24,17 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-#import <XCTest/XCTest.h>
+#import <Foundation/Foundation.h>
+#import <JLKernel/JLKernel.h>
 
-@interface JLKeychainTests : XCTestCase
+//! Project version number for JLCookies.
+FOUNDATION_EXPORT double JLCookiesVersionNumber;
 
-@end
+//! Project version string for JLCookies.
+FOUNDATION_EXPORT const unsigned char JLCookiesVersionString[];
 
-@implementation JLKeychainTests
+// In this header, you should import all the public headers of your framework using statements like #import <JLCookies/PublicHeader.h>
 
-- (void)setUp {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-}
-
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-}
-
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
-}
+@interface JLCookies : JLExtension
 
 @end

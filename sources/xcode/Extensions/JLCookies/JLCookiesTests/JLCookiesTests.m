@@ -1,8 +1,8 @@
 //
-//  JLKeychainTests.m
-//  JLKeychainTests
+//  JLCookiesTests.m
+//  JLCookiesTests
 //
-//  Created by clsource on 23-01-23
+//  Created by clsource on 24-01-23
 //
 //  Copyright (c) 2023 Jasonelle.com
 //
@@ -26,11 +26,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface JLKeychainTests : XCTestCase
+@interface JLCookiesTests : XCTestCase
 
 @end
 
-@implementation JLKeychainTests
+@implementation JLCookiesTests
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.

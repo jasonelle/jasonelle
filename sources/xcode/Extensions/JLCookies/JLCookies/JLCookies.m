@@ -1,8 +1,8 @@
 //
-//  JLKeychainTests.m
-//  JLKeychainTests
+//  JLCookies.m
+//  JLCookies
 //
-//  Created by clsource on 23-01-23
+//  Created by clsource on 24-01-23
 //
 //  Copyright (c) 2023 Jasonelle.com
 //
@@ -24,32 +24,36 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-#import <XCTest/XCTest.h>
+#import "JLCookies.h"
+#import <JLKeychain/JLKeychain.h>
 
-@interface JLKeychainTests : XCTestCase
+@implementation JLCookies
 
-@end
-
-@implementation JLKeychainTests
-
-- (void)setUp {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+- (void) install {
+    [super install];
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+- (nonnull WKWebView *)appDidLoadWithWebView:(nonnull WKWebView *)webView {
+    [super appDidLoadWithWebView:webView];
+    
+    // Install the wrappers inside the webview
+    
+    NSString * js = [self.app.utils.fs
+                     readJS:@"js.cookie.min"
+                     for:self];
+    
+    WKUserScript * script = [[WKUserScript alloc] initWithSource:js injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+    
+    [webView.configuration.userContentController addUserScript: [script copy]];
+    
+    js = [self.app.utils.fs
+                     readJS:NSStringFromClass(self.class)
+                     for:self];
+    
+    script = [[WKUserScript alloc] initWithSource:js injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+    
+    [webView.configuration.userContentController addUserScript: [script copy]];
+    
+    return webView;
 }
-
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
-}
-
 @end
