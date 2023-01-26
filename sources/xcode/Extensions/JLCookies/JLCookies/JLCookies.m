@@ -25,7 +25,6 @@
 //
 
 #import "JLCookies.h"
-#import <JLKeychain/JLKeychain.h>
 
 @implementation JLCookies
 
