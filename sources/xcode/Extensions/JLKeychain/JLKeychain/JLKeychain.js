@@ -1,6 +1,6 @@
 // Just a wrapper with functions to ease the keychain access
 (() => {
-    if (window.$keychain) {
+    if (window && window.$keychain) {
         return;
     }
     

@@ -12,6 +12,9 @@
       location = "container:"
       name = "Extensions">
       <FileRef
+         location = "group:Extensions/JLContacts/JLContacts.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Extensions/JLCookies/JLCookies.xcodeproj">
       </FileRef>
       <FileRef

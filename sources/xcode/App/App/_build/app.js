@@ -1828,6 +1828,9 @@
           log("Opening Safari " + url);
           openurl_default.app(url);
           return true;
+        },
+        res: function(resource) {
+          return;
         }
       });
       __publicField(this, "hooks", {

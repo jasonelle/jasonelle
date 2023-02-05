@@ -47,7 +47,7 @@
         </script>
     </head>
     <body>
-        <img src="https://jasonelle.com/assets/AppIcon.png" title="Jasonelle Icon">
+        <img src="AppIcon.png" title="Jasonelle Icon">
         <ul>
             <li><h3 onClick="log()">Test Native Logger</h3></li>
             <li><h3 onClick="badge.set()">Increment App Badge</h3></li>
@@ -116,6 +116,9 @@
                 accept="image/*"
                 capture="environment"
               />
+            </li>
+            <li>
+                <h3 onClick="$contacts.all().then(info => $logger.trace(JSON.stringify(info)))">Fetch Contacts</h3>
             </li>
         </ul>
     </body>

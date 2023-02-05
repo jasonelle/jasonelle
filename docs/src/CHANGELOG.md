@@ -18,6 +18,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - `$cookies` extension: `$cookies.set`, `$cookies.get`, `$cookies.remove` for usage within the WebView. This will help with storing cookies in the keychain. Requires `$keychain` extension to be enabled. Also you can use `$cookies.Cookies` to access [js-cookie](https://github.com/js-cookie/js-cookie) library.
 
+- `$contacts` extension: `$contacts.all` for usage within the WebView.
+
 ### Fixed
 
 - `WKWebView` triggered `appdidLoad` event more than once. Now it only triggers the event when loaded.

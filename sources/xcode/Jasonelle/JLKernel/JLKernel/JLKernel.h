@@ -99,6 +99,8 @@ FOUNDATION_EXPORT const unsigned char JLKernelVersionString[];
 #import <JLKernel/JLJSBridgei18n.h>
 #import <JLKernel/JLJSBridgeOpenURL.h>
 
+// TODO: Maybe should add a bridge to filesystem so webviews can work with that.
+
 // JS Polyfills
 #import <JLKernel/JLJSPolyfill.h>
 #import <JLKernel/JLJSPolyfillCrypto.h>

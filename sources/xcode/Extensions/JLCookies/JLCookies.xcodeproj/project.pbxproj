@@ -170,6 +170,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1320;
+				ORGANIZATIONNAME = Jasonelle.com;
 				TargetAttributes = {
 					EFFB94582980B370007BF935 = {
 						CreatedOnToolsVersion = 13.2.1;

@@ -56,6 +56,9 @@ didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
     // Add $cookies extension
     [extensions add:JLCookies.class];
     
+    // Add $contacts extension
+    [extensions add:JLContacts.class];
+    
     ready = [extensions install] && [extensions application:application didFinishLaunchingWithOptions:launchOptions];
     
     return ready;

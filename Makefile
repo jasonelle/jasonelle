@@ -7,5 +7,6 @@ docs d:
 	@cp ./sources/xcode/Extensions/JLCookies/JLCookies/JLCookies.docc/JLCookies.md ./docs/src/xcode
 	@cp ./sources/xcode/Extensions/JLKeychain/JLKeychain/JLKeychain.docc/JLKeychain.md ./docs/src/xcode
 	@cp ./sources/xcode/Extensions/JLPhotoLibrary/JLPhotoLibrary/JLPhotoLibrary.docc/JLPhotoLibrary.md ./docs/src/xcode
+	@cp ./sources/xcode/Extensions/JLContacts/JLContacts/JLContacts.docc/JLContacts.md ./docs/src/xcode
 
 	cd docs && mdbook build

@@ -63,6 +63,9 @@ class MainScreen extends Component {
             openURL.app(url);
             return true;
         },
+        res: function(resource) {
+            return;
+        },
     };
 
     // Hooks are events that are triggered when something happens

@@ -34,6 +34,7 @@
 #import <JLPhotoLibrary/JLPhotoLibrary.h>
 #import <JLKeychain/JLKeychain.h>
 #import <JLCookies/JLCookies.h>
+#import <JLContacts/JLContacts.h>
 
 //! Project version number for JLExtensions.
 FOUNDATION_EXPORT double JLExtensionsVersionNumber;
