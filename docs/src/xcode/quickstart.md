@@ -1,4 +1,4 @@
-# iOS Quick Start
+# iOS Version `3.0.1`
 
 This small guide will help you getting started.
 
