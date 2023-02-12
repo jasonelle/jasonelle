@@ -3,6 +3,8 @@
 docs d:
 # Copy the documentation of the iOS components
 	@cp README.md ./docs/src/about.md
+	@cp ./sources/xcode/CHANGELOG.md ./docs/src/xcode/changelog.md
+	@cp ./sources/xcode/README.md ./docs/src/xcode/quickstart.md
 	@cp ./sources/xcode/Extensions/JLApplicationBadge/JLApplicationBadge/JLApplicationBadge.docc/JLApplicationBadge.md ./docs/src/xcode
 	@cp ./sources/xcode/Extensions/JLATTrackingManager/JLATTrackingManager/JLATTrackingManager.docc/JLATTrackingManager.md ./docs/src/xcode
 	@cp ./sources/xcode/Extensions/JLCookies/JLCookies/JLCookies.docc/JLCookies.md ./docs/src/xcode

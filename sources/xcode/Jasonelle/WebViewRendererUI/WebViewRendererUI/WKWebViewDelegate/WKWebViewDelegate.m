@@ -115,11 +115,12 @@
     jlog_trace_join(@"Allowed List", allowed);
     
     // Be YES as default if no allowed list is present
-    BOOL isAllowed = YES;
+    BOOL isAllowed = allowed.count <= 0;
     
     for (NSString * url in allowed) {
-        isAllowed = NO;
+        jlog_trace_join(@"Does ", url, @" in ", current, @"?");
         if ([current hasSuffix:url] || [current hasPrefix:url] || [current containsString:url]) {
+            jlog_trace(@"YES");
             isAllowed = YES;
         }
     }

@@ -3,11 +3,13 @@
 # Introduction
 
 - [About](./about.md)
-- [Changelog](./CHANGELOG.md)
 
 ---
 
 # iOS
+
+- [Quick Start](./xcode/quickstart.md)
+- [Changelog](./xcode/changelog.md)
 
 # Extensions
 
