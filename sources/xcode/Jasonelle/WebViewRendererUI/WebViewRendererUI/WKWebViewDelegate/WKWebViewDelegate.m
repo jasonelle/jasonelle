@@ -104,11 +104,46 @@
 //    jlog_logger_trace_join(logger, @"Message:", body.description);
 // }
 
+- (void) webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    
+    NSString * current = navigationAction.request.URL.absoluteString;
+    
+    jlog_trace_join(@"Deciding Policy for URL ", current);
+    
+    NSArray * allowed = [[JLApplication instance].config.params array:@"allowed"];
+    
+    jlog_trace_join(@"Allowed List", allowed);
+    
+    // Be YES as default if no allowed list is present
+    BOOL isAllowed = YES;
+    
+    for (NSString * url in allowed) {
+        isAllowed = NO;
+        if ([current hasSuffix:url] || [current hasPrefix:url] || [current containsString:url]) {
+            isAllowed = YES;
+        }
+    }
+    
+    if (!isAllowed) {
+        
+        [[UIApplication sharedApplication] openURL:navigationAction.request.URL options:@{} completionHandler:^(BOOL success) {
+            jlog_trace_join(@"Opened External URL: ", navigationAction.request.URL.absoluteURL);
+        }];
+        
+        return decisionHandler(WKNavigationActionPolicyCancel);
+    }
+    
+    
+    return decisionHandler(WKNavigationActionPolicyAllow);
+}
+
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     // Don't evaluate if about:blank
     if ([webView.URL.absoluteString isEqualToString:@"about:blank"]) {
         return;
     }
+    
+    
 
     // Inject agent.js into agent context
     NSString *identifier = self.identifier;

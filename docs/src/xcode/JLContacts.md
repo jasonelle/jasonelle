@@ -15,8 +15,7 @@ An iOS app linked on or after iOS 10 needs to include in its `Info.plist` file t
 
 ### Schema
 
-```graphql
-{
+```txt
 "name": String,
 "lastname": String,
 "phone": String,
@@ -25,7 +24,6 @@ An iOS app linked on or after iOS 10 needs to include in its `Info.plist` file t
 "emails: Array,
 "address": String,
 "addresses": Array
-}
 ```
 
 ### Actions
@@ -95,10 +93,19 @@ Example Return:
 
 ### Examples
 
+**Alert**
 
 Join all the contacts by the first name in a single string.
 And present an alert.
 
 ```js
 $contacts.all().then(val => alert(val.reduce((acc, v) => acc + v.name + ' ', '')))
+```
+
+**Log**
+
+Logs the resulting object.
+
+```js
+$contacts.all().then(info => $logger.trace(JSON.stringify(info)))
 ```

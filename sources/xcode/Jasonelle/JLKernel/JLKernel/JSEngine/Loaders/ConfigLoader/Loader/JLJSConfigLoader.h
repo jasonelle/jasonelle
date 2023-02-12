@@ -36,6 +36,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nonnull) JLJSContext * context;
 @property (nonatomic, strong, nonnull) id<JLLoggerProtocol> logger;
 
+// loaded config with params on webview load
+@property (nonatomic, strong, nullable) JLJSParams * params;
+
 - (instancetype) initWithContext: (JLJSContext *) context;
 
 - (nonnull JLJSValue *) value;

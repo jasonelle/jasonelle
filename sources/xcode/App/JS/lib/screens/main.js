@@ -18,7 +18,7 @@ const log = (message) => {
 };
 
 class MainScreen extends Component {
-    url = "res://index.html";
+    url = "https://google.cl";
 
     // View components
     components = {

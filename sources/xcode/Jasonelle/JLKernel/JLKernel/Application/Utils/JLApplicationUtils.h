@@ -44,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype) initWithLogger: (id<JLLoggerProtocol>) logger;
 
+
 @end
 
 NS_ASSUME_NONNULL_END

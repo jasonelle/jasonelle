@@ -1607,7 +1607,8 @@
 
   // JS/config/dev.js
   var Config = {
-    env: "dev"
+    env: "dev",
+    allowed: ["index.html", "google.cl"]
   };
   var dev_default = Config;
 
@@ -1801,7 +1802,7 @@
   var MainScreen = class extends component_default {
     constructor() {
       super(...arguments);
-      __publicField(this, "url", "res://index.html");
+      __publicField(this, "url", "https://google.cl");
       __publicField(this, "components", {
         pull: {
           title: i18n_default("main.pull.title", "Pull to Refresh"),

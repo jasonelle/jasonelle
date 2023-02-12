@@ -150,6 +150,8 @@ class WebViewModel: ObservableObject {
         app?.ext.extensions.appDidLoad()
         webView = app?.ext.extensions.appDidLoad(with: webView) ?? webView
         
+        app?.config.params = loader?.config.params
+        
         app?.events.addListener(self, with: #selector(didReceiveHrefDeepLinkNotification(_:)), for: JLEventDidReceiveOpenURL.self)
     }
         

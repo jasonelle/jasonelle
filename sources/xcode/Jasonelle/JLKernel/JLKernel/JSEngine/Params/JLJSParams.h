@@ -57,6 +57,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSDictionary *) dictionary: (NSString *) key default: (nullable NSDictionary *) def;
 - (nullable NSDictionary *) dictionary: (NSString *) key;
 
+- (nullable NSArray *) array: (NSString *) key default: (nullable NSArray *) def;
+- (nullable NSArray *) array: (NSString *) key;
+
 - (nullable NSNumber *) number: (NSString *) key default: (nullable NSNumber *) def;
 - (nullable NSNumber *) number: (NSString *) key;
 

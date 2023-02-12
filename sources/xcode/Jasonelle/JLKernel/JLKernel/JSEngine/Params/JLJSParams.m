@@ -97,7 +97,19 @@
 }
 
 - (nullable NSDictionary *) dictionary: (NSString *) key {
-    return [self dictionary:key default:nil];
+    return [self dictionary:key default:@{}];
+}
+
+- (nullable NSArray *) array: (NSString *) key default: (nullable NSArray *) def {
+    NSArray * outvar = self.dictionary[key];
+    if (!outvar || outvar == NULL || [outvar isKindOfClass:[NSNull class]]) {
+        return def;
+    }
+    return outvar;
+}
+
+- (nullable NSArray *) array: (NSString *) key {
+    return [self array:key default:@[]];
 }
 
 - (nullable NSNumber *) number: (NSString *) key default: (nullable NSNumber *) def {
