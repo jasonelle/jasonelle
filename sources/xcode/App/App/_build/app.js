@@ -1607,7 +1607,8 @@
 
   // JS/config/dev.js
   var Config = {
-    env: "dev"
+    env: "dev",
+    allowed: ["file://", "google.cl"]
   };
   var dev_default = Config;
 

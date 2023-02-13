@@ -55,8 +55,13 @@ class WebViewModel: ObservableObject {
         // Only supported in iOS >= 14.
         
         webViewController.addScriptMessageHandler(delegate, contentWorld: WKContentWorld.page, name: WebViewModel.identifier)
-
-        configuration.websiteDataStore = .nonPersistent()
+        
+        // TODO: Maybe add non persistent (private mode)
+        // configuration later on
+        // configuration.websiteDataStore = .nonPersistent()
+        // Sharing the same process pool will share the cookies between multiple WKWebview Instances
+        configuration.processPool = WKProcessPool()
+        
         configuration.userContentController = webViewController
         configuration.allowsInlineMediaPlayback = true
 

@@ -104,6 +104,9 @@
 //    jlog_logger_trace_join(logger, @"Message:", body.description);
 // }
 
+#pragma mark - WKWebview Delegate
+//  Cool tips: https://github.com/ShingoFukuyama/WKWebViewTips
+/// Overwrite links. Decide if they are allowed to be navigated to or needs to use the native browser
 - (void) webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     
     NSString * current = navigationAction.request.URL.absoluteString;
@@ -125,27 +128,36 @@
         }
     }
     
+    // Special case of itunes links
+    // should always open the iTunes app
+    isAllowed = [current hasPrefix:@"https://itunes.apple.com"] ? NO : isAllowed;
+    
     if (!isAllowed) {
-        
-        [[UIApplication sharedApplication] openURL:navigationAction.request.URL options:@{} completionHandler:^(BOOL success) {
-            jlog_trace_join(@"Opened External URL: ", navigationAction.request.URL.absoluteURL);
-        }];
-        
+        [[JLApplication instance].utils openURL:current];
         return decisionHandler(WKNavigationActionPolicyCancel);
     }
     
-    
+    // TODO: Figure out how to detect WKNavigationActionPolicyDownload
     return decisionHandler(WKNavigationActionPolicyAllow);
 }
 
+/// Handles target=_blank links
+- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
+     
+    if (!navigationAction.targetFrame.isMainFrame) {
+        [webView loadRequest:navigationAction.request];
+    }
+    
+    return webView;
+}
+
+/// Injects JS files after the website is shown
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     // Don't evaluate if about:blank
     if ([webView.URL.absoluteString isEqualToString:@"about:blank"]) {
         return;
     }
     
-    
-
     // Inject agent.js into agent context
     NSString *identifier = self.identifier;
 

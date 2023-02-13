@@ -65,4 +65,17 @@
 
     return _fs;
 }
+
+- (BOOL) openURL: (NSString *) urlString {
+    NSURL * url = [[NSURL alloc] initWithString:urlString];
+    jlog_trace_join(@"Openning URL: ", url);
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+            jlog_trace_join(@"Was Open?: ", jlog_b2s(success));
+        }];
+        return YES;
+    }
+    jlog_trace(@"Could not open URL");
+    return NO;
+}
 @end

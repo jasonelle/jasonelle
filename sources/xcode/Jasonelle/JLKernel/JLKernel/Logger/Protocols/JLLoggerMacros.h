@@ -34,6 +34,9 @@
 #define jlog_fmt(fmt, ...) \
     [NSString stringWithFormat:fmt, __VA_ARGS__]
 
+/// Converts boolean to a YES or NO string
+#define jlog_b2s(boolean) (boolean ? @"YES" : @"NO")
+
 // Trace
 #define jlog_logger_trace(logger, message) \
     [logger trace:message file:@(__FILE__).lastPathComponent function:@(__PRETTY_FUNCTION__) line:@(__LINE__)]

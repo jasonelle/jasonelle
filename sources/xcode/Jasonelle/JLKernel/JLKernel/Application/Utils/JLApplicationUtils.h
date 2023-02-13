@@ -31,6 +31,8 @@
 #import <JLKernel/JLUtilsJSON.h>
 #import <JLKernel/JLUtilsFileSystem.h>
 
+@import UIKit;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JLApplicationUtils : NSObject
@@ -42,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nonnull, readonly) NSString * uuid;
 @property (nonatomic, strong, nonnull) JLUtilsFileSystem * fs;
 
+- (BOOL) openURL: (NSString *) urlString;
 - (instancetype) initWithLogger: (id<JLLoggerProtocol>) logger;
 
 
