@@ -34,4 +34,8 @@ class Style {
     init(_ params: JLJSParams) {
         self.params = params
     }
+    
+    func bounces() -> Bool {
+        return params.boolean("bounces")
+    }
 }

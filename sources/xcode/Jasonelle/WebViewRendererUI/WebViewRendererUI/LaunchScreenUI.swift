@@ -38,6 +38,9 @@ struct LaunchScreenUI: View {
         ZStack {
             Color.black
                 .ignoresSafeArea()
+            
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
         }
     }
 }

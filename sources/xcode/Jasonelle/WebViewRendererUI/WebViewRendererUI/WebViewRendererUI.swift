@@ -146,6 +146,9 @@ class WebViewModel: ObservableObject {
     private func setStyles(with config: WebViewRendererUILoader) {
         // TODO: Add more style options
 
+        
+        webView.scrollView.bounces = config.params.style().bounces()
+        
         if config.params.components().pull().params.hidden() || config.params.components().pull().options.hidden() {
             refreshControl.removeFromSuperview()
         }
@@ -236,15 +239,15 @@ public struct ContentView: View {
 
     public var body: some View {
         ZStack {
+            
             WebView(webView: web.webView)
+            
             if web.webView.isLoading {
-                // TODO: May LaunchScreen and ProgressView be selectable
+                // Show LaunchScreenUI until the website is fully loaded.
+                // TODO: Maybe sent an event to LaunchScreenUI to finish loading to allow smoother transitions
                 withAnimation {
                     LaunchScreenUI().transition(.opacity)
                 }
-                
-                // A simple progress View
-                //                ProgressView().progressViewStyle(CircularProgressViewStyle())
             }
         }.onAppear {
             // Only setup app once.

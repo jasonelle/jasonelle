@@ -1806,7 +1806,7 @@
       __publicField(this, "components", {
         pull: {
           title: i18n_default("main.pull.title", "Pull to Refresh"),
-          hidden: false,
+          hidden: true,
           style: {
             color: Paint("blue"),
             tint: Paint("orange")

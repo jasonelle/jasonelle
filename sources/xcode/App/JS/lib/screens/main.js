@@ -19,6 +19,9 @@ const log = (message) => {
 
 class MainScreen extends Component {
     url = "res://index.html";
+    style = {
+        bounces: true,
+    };
 
     // View components
     components = {
@@ -26,7 +29,7 @@ class MainScreen extends Component {
         // *
         pull: {
             title: _t("main.pull.title", "Pull to Refresh"),
-            hidden: false,
+            hidden: true,
             style: {
                 color: Paint("blue"),
                 tint: Paint("orange"),
