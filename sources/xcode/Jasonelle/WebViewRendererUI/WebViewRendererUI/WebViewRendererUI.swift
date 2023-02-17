@@ -239,7 +239,7 @@ public struct ContentView: View {
             WebView(webView: web.webView)
             if web.webView.isLoading {
                 // TODO: May LaunchScreen and ProgressView be selectable
-                withAnimation{
+                withAnimation {
                     LaunchScreenUI().transition(.opacity)
                 }
                 

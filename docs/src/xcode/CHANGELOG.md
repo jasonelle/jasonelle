@@ -22,6 +22,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Ability to have `allowed` list of urls in configuration. Not allowed urls will launch native browser.
 
+- Added LaunchScreen file (Both in SwiftUI and Storyboard file).
+
+- Added WebView.edgesIgnoringSafeArea(.all). Some websites need this, specially when using a navbar. Thanks to _@Mättu_ in Telegram for pointing this out.
+
 ### Fixed
 
 - `WKWebView` triggered `appdidLoad` event more than once. Now it only triggers the event when loaded.
