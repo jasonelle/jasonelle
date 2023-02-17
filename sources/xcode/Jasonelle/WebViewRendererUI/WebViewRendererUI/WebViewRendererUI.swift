@@ -146,10 +146,16 @@ class WebViewModel: ObservableObject {
     private func setStyles(with config: WebViewRendererUILoader) {
         // TODO: Add more style options
 
+        let showPullToRefresh = !(config.params.components().pull().params.hidden() || config.params.components().pull().options.hidden())
         
+        
+        // Bounce if requested
         webView.scrollView.bounces = config.params.style().bounces()
         
-        if config.params.components().pull().params.hidden() || config.params.components().pull().options.hidden() {
+        // Always bounce if pull to refresh is shown
+        if showPullToRefresh {
+            webView.scrollView.bounces = true
+        } else {
             refreshControl.removeFromSuperview()
         }
 

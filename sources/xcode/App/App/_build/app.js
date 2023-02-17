@@ -1803,6 +1803,9 @@
     constructor() {
       super(...arguments);
       __publicField(this, "url", "res://index.html");
+      __publicField(this, "style", {
+        bounces: true
+      });
       __publicField(this, "components", {
         pull: {
           title: i18n_default("main.pull.title", "Pull to Refresh"),
