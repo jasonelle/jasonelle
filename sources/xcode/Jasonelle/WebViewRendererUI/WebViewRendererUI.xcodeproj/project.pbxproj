@@ -12,6 +12,7 @@
 		EF5458A6280C7D2900B87600 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF5458A8280C7D2900B87600 /* Localizable.strings */; };
 		EF5458AD280C8F1D00B87600 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5458AC280C8F1D00B87600 /* Strings.swift */; };
 		EF5F6D1628D210230037F054 /* PullOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5F6D1528D210230037F054 /* PullOptions.swift */; };
+		EF9E5395299F224800516842 /* LaunchScreenUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9E5394299F224800516842 /* LaunchScreenUI.swift */; };
 		EFB73CF727AFF84700A21457 /* WebViewRendererUI.docc in Sources */ = {isa = PBXBuildFile; fileRef = EFB73CF627AFF84700A21457 /* WebViewRendererUI.docc */; };
 		EFB73CFD27AFF84700A21457 /* WebViewRendererUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB73CF227AFF84700A21457 /* WebViewRendererUI.framework */; };
 		EFB73D0227AFF84700A21457 /* WebViewRendererUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB73D0127AFF84700A21457 /* WebViewRendererUITests.swift */; };
@@ -49,6 +50,7 @@
 		EF5458AA280C825400B87600 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EF5458AC280C8F1D00B87600 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		EF5F6D1528D210230037F054 /* PullOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullOptions.swift; sourceTree = "<group>"; };
+		EF9E5394299F224800516842 /* LaunchScreenUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenUI.swift; sourceTree = "<group>"; };
 		EFB73CF227AFF84700A21457 /* WebViewRendererUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WebViewRendererUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFB73CF527AFF84700A21457 /* WebViewRendererUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewRendererUI.h; sourceTree = "<group>"; };
 		EFB73CF627AFF84700A21457 /* WebViewRendererUI.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = WebViewRendererUI.docc; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				EFB73CF527AFF84700A21457 /* WebViewRendererUI.h */,
 				EFB73CF627AFF84700A21457 /* WebViewRendererUI.docc */,
 				EFB73D0C27AFF89800A21457 /* WebViewRendererUI.swift */,
+				EF9E5394299F224800516842 /* LaunchScreenUI.swift */,
 				EF3F890228098FFE00777B7E /* WebViewRendererUILoader.swift */,
 				EF196EDA2828BD9C007B2AFB /* Actions.swift */,
 				EF5458AC280C8F1D00B87600 /* Strings.swift */,
@@ -312,6 +315,7 @@
 				EFD5654828158B9500FBA0E7 /* Hooks.swift in Sources */,
 				EFECF210282E709D009D0579 /* WKWebViewDelegate.m in Sources */,
 				EFD5654C2815A25A00FBA0E7 /* Params.swift in Sources */,
+				EF9E5395299F224800516842 /* LaunchScreenUI.swift in Sources */,
 				EF196EDB2828BD9C007B2AFB /* Actions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
