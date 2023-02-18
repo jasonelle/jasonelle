@@ -68,8 +68,7 @@
     // Install the wrappers inside the webview
     
     NSString * js = [self.app.utils.fs
-                     readJS:@"JLContacts"
-                     for:self];
+                     readJSFor:self];
     
     WKUserScript * script = [[WKUserScript alloc] initWithSource:js injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
     

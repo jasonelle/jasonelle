@@ -1,10 +1,9 @@
 //
-//  JLUtilsFileSystem.h
-//  JLKernel
+//  MyExtensionHandler.m
+//  MyExtension
 //
-//  Created by clsource on 13-05-22
-//
-//  Copyright (c) 2022 Jasonelle.com
+//  Created by clsource on 18-02-23.
+//  Copyright (c) 2023 Jasonelle.com
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
 //  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
@@ -24,30 +23,15 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
+#import "MyExtensionHandler.h"
+#import "MyExtension.h"
 
-#import <JLKernel/JLUtil.h>
+@implementation MyExtensionHandler
 
-NS_ASSUME_NONNULL_BEGIN
+- (void)handleWithOptions:(nonnull JLJSMessageHandlerOptions *)options {
+    MyExtension * ext = (MyExtension *) self.extension;
+    jlog_trace(ext.message);
+    self.resolve(ext.message);
+}
 
-@interface JLUtilsFileSystem : JLUtil
-
-- (NSString *)read:(nonnull NSString *)path;
-
-- (NSString *)read:(NSString *)name extension:(NSString *)ext inBundle:(NSBundle *)bundle;
-- (NSString *)read:(NSString *)name extension:(NSString *)ext for:(id)object;
-- (NSString *)read:(NSString *)name extension:(NSString *)ext;
-
-- (NSString *)readJS:(NSString *)name inBundle:(NSBundle *)bundle;
-- (NSString *)readJS:(NSString *)name for:(id)object;
-- (NSString *)readJS:(NSString *)name;
-- (NSString *)readJSFor:(id)object;
-
-- (BOOL)isResource:(NSString *)resource;
-- (NSString *)pathForResource:(NSString *)resource inBundle:(NSBundle *)bundle;
-- (NSString *)pathForResource:(NSString *)resource;
-- (NSURL *)fileURLForPath:(NSString *)path;
-- (nonnull NSURL *)resourceDirectoryURLInBundle:(NSBundle *)bundle;
-- (nonnull NSURL *)resourceDirectoryURL;
 @end
-
-NS_ASSUME_NONNULL_END

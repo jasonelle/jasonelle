@@ -46,8 +46,7 @@
     [webView.configuration.userContentController addUserScript: [script copy]];
     
     js = [self.app.utils.fs
-                     readJS:NSStringFromClass(self.class)
-                     for:self];
+                     readJSFor:self];
     
     script = [[WKUserScript alloc] initWithSource:js injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
     

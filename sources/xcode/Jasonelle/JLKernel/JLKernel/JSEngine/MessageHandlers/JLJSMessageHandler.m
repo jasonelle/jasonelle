@@ -44,6 +44,17 @@
     return self;
 }
 
+- (instancetype) initWithApplication:(JLApplication *)app andExtension:(JLExtension *)extension {
+    self = [super init];
+    if (self) {
+        self.app = app;
+        self.logger = app.logger;
+        self.extension = extension;
+    }
+
+    return self;
+}
+
 + (nonnull NSString *)key {
     return NSStringFromClass(self.class);
 }
@@ -67,6 +78,22 @@
     };
 
     self.reject = reject;
+}
+
+- (void) rejectEmpty {
+    self.reject(@"");
+}
+
+- (void) resolveEmpty {
+    self.resolve(@{});
+}
+
+- (void) resolveTrue {
+    self.resolve(@YES);
+}
+
+- (void) resolveFalse {
+    self.resolve(@NO);
 }
 
 @end

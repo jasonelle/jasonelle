@@ -1,10 +1,9 @@
 //
-//  JLUtilsFileSystem.h
-//  JLKernel
+//  MyExtension.m
+//  MyExtension
 //
-//  Created by clsource on 13-05-22
-//
-//  Copyright (c) 2022 Jasonelle.com
+//  Created by clsource on 18-02-23.
+//  Copyright (c) 2023 Jasonelle.com
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
 //  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
@@ -24,30 +23,42 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
+#import "MyExtension.h"
+#import "MyExtensionHandler.h"
 
-#import <JLKernel/JLUtil.h>
+@implementation MyExtension
 
-NS_ASSUME_NONNULL_BEGIN
+- (void) install {
+    [super install];
+    
+    MyExtensionHandler * handler = [[MyExtensionHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    // call using $agent.trigger("$myextension.run", {});
+    self.handlers = @{
+        @"$myextension.run" : handler
+    };
+}
 
-@interface JLUtilsFileSystem : JLUtil
+#pragma mark - Extension Public Methods
 
-- (NSString *)read:(nonnull NSString *)path;
+- (NSString *) message {
+    return @"A message from MyExtension";
+}
 
-- (NSString *)read:(NSString *)name extension:(NSString *)ext inBundle:(NSBundle *)bundle;
-- (NSString *)read:(NSString *)name extension:(NSString *)ext for:(id)object;
-- (NSString *)read:(NSString *)name extension:(NSString *)ext;
+#pragma mark - WebView Injection
+- (nonnull WKWebView *)appDidLoadWithWebView:(nonnull WKWebView *)webView {
+    [super appDidLoadWithWebView:webView];
+    
+    // Install the wrappers inside the webview
+    
+    NSString * js = [self.app.utils.fs
+                     readJSFor:self];
+    
+    WKUserScript * script = [[WKUserScript alloc] initWithSource:js injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+    
+    [webView.configuration.userContentController addUserScript: [script copy]];
+    
+    return webView;
+}
 
-- (NSString *)readJS:(NSString *)name inBundle:(NSBundle *)bundle;
-- (NSString *)readJS:(NSString *)name for:(id)object;
-- (NSString *)readJS:(NSString *)name;
-- (NSString *)readJSFor:(id)object;
-
-- (BOOL)isResource:(NSString *)resource;
-- (NSString *)pathForResource:(NSString *)resource inBundle:(NSBundle *)bundle;
-- (NSString *)pathForResource:(NSString *)resource;
-- (NSURL *)fileURLForPath:(NSString *)path;
-- (nonnull NSURL *)resourceDirectoryURLInBundle:(NSBundle *)bundle;
-- (nonnull NSURL *)resourceDirectoryURL;
 @end
-
-NS_ASSUME_NONNULL_END

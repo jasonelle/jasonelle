@@ -90,6 +90,10 @@
     return [self read:name extension:@"js"];
 }
 
+- (NSString *)readJSFor:(id)object {
+    return [self readJS:NSStringFromClass([object class]) for: object];
+}
+
 - (BOOL)isResource:(NSString *)resource {
     return [resource hasPrefix:@"res://"];
 }

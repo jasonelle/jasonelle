@@ -45,6 +45,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype) initWithApplication: (JLApplication *) app;
 
+- (instancetype) initWithApplication:(JLApplication *)app andExtension: (JLExtension *) extension;
+
 - (void) setReplyHandler:(void (^)(id _Nullable reply, NSString *_Nullable errorMessage))replyHandler;
 
 - (void) handleWithOptions: (JLJSMessageHandlerOptions *) options;
@@ -55,8 +57,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nonnull) JLApplication * app;
 @property (nonatomic, strong, nonnull) id<JLLoggerProtocol> logger;
+
+@property (nonatomic, strong, nonnull) id<JLExtensionProtocol> extension;
+
+// Return JS promises with resolve or reject results
 @property (nonatomic, copy, nonnull) void (^resolve)(id);
 @property (nonatomic, copy, nonnull) void (^reject)(NSString *);
+
+- (void) rejectEmpty;
+- (void) resolveEmpty;
+- (void) resolveTrue;
+- (void) resolveFalse;
 
 @end
 

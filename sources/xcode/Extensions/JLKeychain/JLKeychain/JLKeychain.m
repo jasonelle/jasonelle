@@ -91,7 +91,7 @@
     [super appDidLoadWithWebView:webView];
     
     // Install the wrappers inside the webview
-    NSString * js = [self.app.utils.fs readJS:@"JLKeychain" for:self];
+    NSString * js = [self.app.utils.fs readJSFor:self];
     
     WKUserScript * script = [[WKUserScript alloc] initWithSource:js injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
     
