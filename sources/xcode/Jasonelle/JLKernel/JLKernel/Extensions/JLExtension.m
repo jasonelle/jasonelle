@@ -90,6 +90,7 @@ static NSString *NAMESPACE = @"com.jasonelle.app.extensions";
 #pragma mark - App Delegate Methods
 
 /// Overwrite in Children if Needed
+/// Access renderer with app.renderer
 - (void)appDidAppear {}
 - (void)appDidDisappear {}
 - (void)appDidLoad {}

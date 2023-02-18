@@ -185,7 +185,9 @@ class WebViewModel: ObservableObject {
     func onLoad() {
         app?.logger.trace("Triggering App Did Load Hook")
         loader?.hooks.onAppDidLoad()
+        
         app?.ext.extensions.appDidLoad()
+        
         webView = app?.ext.extensions.appDidLoad(with: webView) ?? webView
         
         app?.config.params = loader?.config.params
