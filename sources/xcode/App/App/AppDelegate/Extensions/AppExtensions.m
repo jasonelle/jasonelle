@@ -25,6 +25,14 @@
 
 #import "AppExtensions.h"
 
+// Extensions
+#import <JLATTrackingManager/JLATTrackingManager.h>
+#import <JLApplicationBadge/JLApplicationBadge.h>
+#import <JLPhotoLibrary/JLPhotoLibrary.h>
+#import <JLKeychain/JLKeychain.h>
+#import <JLCookies/JLCookies.h>
+#import <JLContacts/JLContacts.h>
+
 @implementation AppExtensions
 
 - (instancetype) initWithApp: (JLApplication *) app {
@@ -59,6 +67,11 @@
     [self.extensions add:JLContacts.class];
     
     return [self.extensions install];
+}
+
+- (BOOL) application:(UIApplication *)application
+didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
+    return [self install] && [self.extensions application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
 // Example Getting an Extensions from App

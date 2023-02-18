@@ -33,8 +33,8 @@
     NSString * urlString = [url absoluteString];
     
     BOOL isOAuth = [urlString containsString:@"://oauth"];
-    BOOL isHref = [urlString containsString:@"://href?"];
-    BOOL isJSON = [urlString containsString:@"://json?"];
+    BOOL isHref = [urlString containsString:@"://href"];
+    BOOL isJSON = [urlString containsString:@"://json"];
 
     NSString *type = @"unknown";
 
@@ -42,21 +42,29 @@
         type = @"oauth";
     }
 
+    // example: "jasonelle://href?=https://ninjas.cl"
     if (isHref) {
         type = @"href";
     }
 
+    // example: "jasonelle://json?=%7B%22hello%22%3A%20%22world%22%7D"
     if (isJSON) {
         type = @"json";
     }
     
+    if ([type isEqualToString:@"unknown"]) {
+        jlog_warning_join(@"Unknown type for open url: ", urlString);
+    }
+    
     NSURLComponents * components = [[NSURLComponents alloc] initWithString:urlString];
-    NSString * param = components.queryItems.firstObject.value;
+    
+    NSString * value = components.queryItems.firstObject.value;
+    value = (value ? value : @"");
 
     NSDictionary *params = @{
         @"url": urlString,
         @"options": options,
-        @"value": param,
+        @"value": value,
         @"type": type
     };
 

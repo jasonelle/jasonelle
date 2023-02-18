@@ -41,14 +41,11 @@ didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
     // Add extensions
    self.extensions = [[AppExtensions alloc] initWithApp:self.app];
     
-    ready = [self.extensions install] && [self.extensions.extensions application:application didFinishLaunchingWithOptions:launchOptions];
-    
-    return ready;
+    return ready && [self.extensions application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {
-    [super application:app openURL:url options:options];
-    return [self.app.ext.extensions application:app openURL:url options:options];
+    return [super application:app openURL:url options:options];
 }
 
 // TODO: Create Push Extension

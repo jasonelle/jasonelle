@@ -26,14 +26,6 @@
 #import <Foundation/Foundation.h>
 #import <Jasonelle/Jasonelle.h>
 
-// Extensions
-#import <JLATTrackingManager/JLATTrackingManager.h>
-#import <JLApplicationBadge/JLApplicationBadge.h>
-#import <JLPhotoLibrary/JLPhotoLibrary.h>
-#import <JLKeychain/JLKeychain.h>
-#import <JLCookies/JLCookies.h>
-#import <JLContacts/JLContacts.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AppExtensions : NSObject
@@ -44,7 +36,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nonnull ) JLExtensions * extensions;
 
 - (instancetype) initWithApp: (JLApplication *) app;
-- (BOOL) install;
+
+#pragma mark - Lifecycle
+- (BOOL) application:(UIApplication *)application
+    didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions;
 
 @end
 

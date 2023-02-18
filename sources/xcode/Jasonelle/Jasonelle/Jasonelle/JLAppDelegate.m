@@ -190,7 +190,7 @@ static NSString *DNS = @"com.jasonelle";
     
     [event triggerWithURL:url andOptions:options];
 
-    return YES;
+    return [self.app.ext.extensions application:app openURL:url options:options];
 }
 
 // - (void) applicationDidBecomeActive: (UIApplication *) application

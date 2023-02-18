@@ -35,9 +35,6 @@ NS_SWIFT_NAME(AppDelegate)
 
 @property (nonatomic, nonnull, strong) AppExtensions * extensions;
 
-#pragma mark - Lifecycle
-- (BOOL) application:(UIApplication *)application
-    didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions;
 @end
 
 NS_ASSUME_NONNULL_END
