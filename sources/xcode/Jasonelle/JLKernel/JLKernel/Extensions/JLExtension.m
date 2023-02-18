@@ -50,6 +50,7 @@ static NSString *NAMESPACE = @"com.jasonelle.app.extensions";
     return _name;
 }
 
+#pragma mark - Extension Events
 - (void)install {
     // Override in child and call super
     jlog_trace_join(@"Installing: ", self.name);
@@ -86,12 +87,38 @@ static NSString *NAMESPACE = @"com.jasonelle.app.extensions";
     return [newHandlers copy];
 }
 
+#pragma mark - App Delegate Methods
+
+/// Overwrite in Children if Needed
+- (void)appDidAppear {}
+- (void)appDidDisappear {}
+- (void)appDidLoad {}
+
+- (void)application:(nonnull UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(nonnull NSError *)error {}
+
+
+- (BOOL)application:(nonnull UIApplication *)application didFinishLaunchingWithOptions:(nonnull NSDictionary *)launchOptions {
+    return YES;
+}
+
+
+- (void)application:(nonnull UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo {}
+
+
+- (void)application:(nonnull UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(nonnull NSData *)deviceToken {}
+
+
+- (BOOL)application:(nonnull UIApplication *)app openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    return YES;
+}
+
 #pragma mark - Class methods
 
 + (instancetype)instanceWithLogger:(id<JLLoggerProtocol>)logger
                             andApp:(JLApplication *)app {
     return [[[self class] alloc] initWithName:[self name] logger:logger andApp:app];
 }
+
 
 + (NSString *)namespaceForClass:(Class)class {
     return [NSString stringWithFormat:@"%@.%@", NAMESPACE, NSStringFromClass(class)];

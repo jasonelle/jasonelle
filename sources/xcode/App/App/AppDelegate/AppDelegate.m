@@ -50,20 +50,23 @@ didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
 
 // TODO: Create Push Extension
 // Uncomment if Push Notifications will be used
-//#pragma mark - Push Notifications Events
+
+#pragma mark - Push Notifications Events
+
 //- (void) application:(UIApplication *)application
 //didRegisterForRemoteNotificationsWithDeviceToken: (NSData *) deviceToken {
-//    [self.app.ext.extensions application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+//    [self.extensions.extensions application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 //}
-//
+
+
 // Deprecated. TODO: See if can be updated
 //- (void) application: (UIApplication *) application
 //didReceiveRemoteNotification:(NSDictionary *) userInfo {
-//    [self.app.ext.extensions application:application didReceiveRemoteNotification:userInfo];
+//    [self.extensions.extensions application:application didReceiveRemoteNotification:userInfo];
 //}
 //
 //- (void) application: (UIApplication *) application
 //didFailToRegisterForRemoteNotificationsWithError: (NSError *) error {
-//    [self.app.ext.extensions application:application didFailToRegisterForRemoteNotificationsWithError:error];
+//    [self.extensions.extensions application:application didFailToRegisterForRemoteNotificationsWithError:error];
 //}
 @end

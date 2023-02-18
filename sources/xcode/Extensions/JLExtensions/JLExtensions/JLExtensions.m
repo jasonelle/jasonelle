@@ -101,47 +101,67 @@
 
 #pragma mark - Lifecycle
 
-// TODO: Implement these methods in JLExtensionProtocol and JLExtension, so they can be called in extensions.
 - (BOOL)application: (UIApplication *) application
 didFinishLaunchingWithOptions:(NSDictionary *) launchOptions {
-    // Use if needed in AppDelegate
-    return YES;
+    BOOL result = YES;
+    for (id<JLExtensionProtocol> ext in self.app.ext.all) {
+        result = [ext application: application didFinishLaunchingWithOptions: launchOptions];
+    }
+    return result;
 }
 
 // OpenURL
-- (BOOL) application:(UIApplication *)app
+- (BOOL) application:(UIApplication *)application
              openURL:(NSURL *)url
              options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-    // Use if needed
-    return YES;
+    BOOL result = YES;
+    for (id<JLExtensionProtocol> ext in self.app.ext.all) {
+        result = [ext application: application openURL: url options: options];
+    }
+    return result;
 }
 
 // Push Notifications Events
 - (void) application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken: (NSData *) deviceToken {
-    // Use if needed
+    for (id<JLExtensionProtocol> ext in self.app.ext.all) {
+        [ext application: application didRegisterForRemoteNotificationsWithDeviceToken: deviceToken];
+    }
 }
 
 - (void) application: (UIApplication *) application
 didReceiveRemoteNotification:(NSDictionary *) userInfo {
-    // Use if needed
+    for (id<JLExtensionProtocol> ext in self.app.ext.all) {
+        [ext application: application didReceiveRemoteNotification:userInfo];
+    }
 }
 
 - (void) application: (UIApplication *) application
 didFailToRegisterForRemoteNotificationsWithError: (NSError *) error {
-    // Use if needed
+    for (id<JLExtensionProtocol> ext in self.app.ext.all) {
+        [ext application: application didFailToRegisterForRemoteNotificationsWithError:error];
+    }
 }
 
 - (void) appDidLoad {
     jlog_trace(@"App Did Load");
+    for (id<JLExtensionProtocol> ext in self.app.ext.all) {
+        [ext appDidLoad];
+    }
 }
 
 - (void) appDidAppear {
     jlog_trace(@"App Did Appear");
+    for (id<JLExtensionProtocol> ext in self.app.ext.all) {
+        [ext appDidAppear];
+    }
 }
 
 - (void) appDidDisappear {
     jlog_trace(@"App Did Disappear");
+    for (id<JLExtensionProtocol> ext in self.app.ext.all) {
+        [ext appDidDisappear];
+    }
 }
 
 // Enable extensions to install JS bridges in webView
@@ -154,6 +174,7 @@ didFailToRegisterForRemoteNotificationsWithError: (NSError *) error {
     return webView;
 }
 
+#pragma mark - Handling WebView Messages
 
 - (void)userContentController:(nonnull WKUserContentController *)userContentController didReceiveScriptMessage:(nonnull WKScriptMessage *)message replyHandler:(nonnull void (^)(id _Nullable, NSString * _Nullable))replyHandler {
     jlog_trace(@"WebView Message Received in Extensions");

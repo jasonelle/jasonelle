@@ -27,6 +27,9 @@ NS_SWIFT_NAME(JLAppDelegate)
 #pragma mark - Lifecycle
 - (BOOL) application:(UIApplication *)application
     didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions;
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options;
+
 @end
 
 NS_ASSUME_NONNULL_END

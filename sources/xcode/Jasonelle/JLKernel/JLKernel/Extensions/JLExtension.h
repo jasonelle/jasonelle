@@ -47,11 +47,38 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)instanceWithLogger:(id<JLLoggerProtocol>)logger
                             andApp:(JLApplication *)app;
 
+#pragma mark - Lifecycle
+/// Lifecycle
+- (BOOL)application: (UIApplication *) application
+didFinishLaunchingWithOptions:(NSDictionary *) launchOptions;
+
+// OpenURL
+- (BOOL) application:(UIApplication *)app
+             openURL:(NSURL *)url
+             options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options;
+
+// Push Notifications Events
+- (void) application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken: (NSData *) deviceToken;
+
+// TODO: Deprecated. See updated method in apple docs
+- (void) application: (UIApplication *) application
+didReceiveRemoteNotification:(NSDictionary *) userInfo;
+
+- (void) application: (UIApplication *) application
+didFailToRegisterForRemoteNotificationsWithError: (NSError *) error;
+
+// Called within the renderer
+- (void) appDidLoad;
+- (void) appDidAppear;
+- (void) appDidDisappear;
+
+// MARK: - WebView
+- (nonnull WKWebView *)appDidLoadWithWebView:(nonnull WKWebView *)webView;
+
 @optional
 @property (nonatomic, strong) NSDictionary *handlers;
 - (nonnull NSDictionary *)installHandlers:(nonnull NSDictionary *)handlers;
-
-- (nonnull WKWebView *)appDidLoadWithWebView:(nonnull WKWebView *)webView;
 @end
 
 @interface JLExtension : NSObject<JLExtensionProtocol>

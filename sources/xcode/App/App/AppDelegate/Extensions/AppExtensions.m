@@ -73,15 +73,4 @@
 didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
     return [self install] && [self.extensions application:application didFinishLaunchingWithOptions:launchOptions];
 }
-
-// Example Getting an Extensions from App
-//
-//- (JLATTrackingManager *) attracking {
-//    return (JLATTrackingManager *) [self.app.ext get:JLATTrackingManager.class];
-//}
-//
-//- (JLApplicationBadge *) badge {
-//    return (JLApplicationBadge *) [self.app.ext get:JLApplicationBadge.class];
-//}
-
 @end
