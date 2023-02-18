@@ -28,14 +28,6 @@
 #import <Foundation/Foundation.h>
 #import <JLKernel/JLKernel.h>
 
-// Extensions
-#import <JLATTrackingManager/JLATTrackingManager.h>
-#import <JLApplicationBadge/JLApplicationBadge.h>
-#import <JLPhotoLibrary/JLPhotoLibrary.h>
-#import <JLKeychain/JLKeychain.h>
-#import <JLCookies/JLCookies.h>
-#import <JLContacts/JLContacts.h>
-
 //! Project version number for JLExtensions.
 FOUNDATION_EXPORT double JLExtensionsVersionNumber;
 
@@ -62,10 +54,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 // Register Class in AppDelegate
 - (void) add:(Class)cls;
-
-// Add Extensions for Easier Access
-- (nullable JLATTrackingManager *) attracking;
-- (JLApplicationBadge *) badge;
 
 /// Call this method on app delegate to configure all extensions
 - (instancetype) initWithApp: (JLApplication *) app;

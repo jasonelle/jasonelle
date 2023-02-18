@@ -39,27 +39,9 @@ didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
     BOOL ready = [super application:application didFinishLaunchingWithOptions:launchOptions];
     
     // Add extensions
-    JLExtensions * extensions = [[JLExtensions alloc] initWithApp:self.app];
+   self.extensions = [[AppExtensions alloc] initWithApp:self.app];
     
-    // Setup ATTracking Manager
-    [extensions add:JLATTrackingManager.class];
-    
-    // Setup permissions in info.plist to access photos
-    [extensions add:JLPhotoLibrary.class];
-    
-    // Add $badge extension
-    [extensions add:JLApplicationBadge.class];
-    
-    // Add $keychain extension
-    [extensions add:JLKeychain.class];
-    
-    // Add $cookies extension
-    [extensions add:JLCookies.class];
-    
-    // Add $contacts extension
-    [extensions add:JLContacts.class];
-    
-    ready = [extensions install] && [extensions application:application didFinishLaunchingWithOptions:launchOptions];
+    ready = [self.extensions install] && [self.extensions.extensions application:application didFinishLaunchingWithOptions:launchOptions];
     
     return ready;
 }

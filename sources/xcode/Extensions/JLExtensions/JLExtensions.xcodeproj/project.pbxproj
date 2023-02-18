@@ -7,17 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EF2065E2297F4DE8001C27A6 /* JLKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2065E1297F4DE8001C27A6 /* JLKeychain.framework */; };
+		EF2B4D5929A0761000D99A98 /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2B4D5829A0761000D99A98 /* JLKernel.framework */; };
 		EF47FEDB2824F653006E2B9B /* JLExtensions.docc in Sources */ = {isa = PBXBuildFile; fileRef = EF47FEDA2824F653006E2B9B /* JLExtensions.docc */; };
 		EF47FEE12824F653006E2B9B /* JLExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF47FED62824F653006E2B9B /* JLExtensions.framework */; };
 		EF47FEE62824F653006E2B9B /* JLExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF47FEE52824F653006E2B9B /* JLExtensionsTests.m */; };
 		EF47FEE72824F653006E2B9B /* JLExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = EF47FED92824F653006E2B9B /* JLExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF4A7C07282614D500EDA14C /* JLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF4A7C06282614D500EDA14C /* JLExtensions.m */; };
-		EF4A7C09282619A100EDA14C /* JLApplicationBadge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF4A7C08282619A100EDA14C /* JLApplicationBadge.framework */; };
-		EF7D1A5629904FB2004E67E5 /* JLContacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF7D1A5529904FB2004E67E5 /* JLContacts.framework */; };
-		EFA6A1E6296F095600DA12D4 /* JLPhotoLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA6A1E5296F095600DA12D4 /* JLPhotoLibrary.framework */; };
-		EFC39C0C282508FE0037750A /* JLATTrackingManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC39C0B282508FE0037750A /* JLATTrackingManager.framework */; };
-		EFFB94792980B3A2007BF935 /* JLCookies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFB94782980B3A2007BF935 /* JLCookies.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		EF2065E1297F4DE8001C27A6 /* JLKeychain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKeychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF2B4D5829A0761000D99A98 /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF47FED62824F653006E2B9B /* JLExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JLExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF47FED92824F653006E2B9B /* JLExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLExtensions.h; sourceTree = "<group>"; };
 		EF47FEDA2824F653006E2B9B /* JLExtensions.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = JLExtensions.docc; sourceTree = "<group>"; };
@@ -60,12 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFFB94792980B3A2007BF935 /* JLCookies.framework in Frameworks */,
-				EFA6A1E6296F095600DA12D4 /* JLPhotoLibrary.framework in Frameworks */,
-				EF4A7C09282619A100EDA14C /* JLApplicationBadge.framework in Frameworks */,
-				EF2065E2297F4DE8001C27A6 /* JLKeychain.framework in Frameworks */,
-				EFC39C0C282508FE0037750A /* JLATTrackingManager.framework in Frameworks */,
-				EF7D1A5629904FB2004E67E5 /* JLContacts.framework in Frameworks */,
+				EF2B4D5929A0761000D99A98 /* JLKernel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +111,7 @@
 		EF47FEF02824F666006E2B9B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EF2B4D5829A0761000D99A98 /* JLKernel.framework */,
 				EF7D1A5529904FB2004E67E5 /* JLContacts.framework */,
 				EFFB94782980B3A2007BF935 /* JLCookies.framework */,
 				EF2065E1297F4DE8001C27A6 /* JLKeychain.framework */,

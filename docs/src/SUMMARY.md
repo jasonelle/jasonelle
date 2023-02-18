@@ -2,17 +2,17 @@
 
 # Introduction
 
-- [About](./about.md)
+- [About](./About.md)
 
 ---
 
 # iOS
 
-- [Quick Start](./xcode/quickstart.md)
-- [Changelog](./xcode/changelog.md)
+- [Quick Start](./xcode/Quickstart.md)
+- [Changelog](./xcode/Changelog.md)
 
 # Extensions
-
+- [Working With Extensions](./xcode/Extensions.md)
 - [JLATTrackingManager](./xcode/JLATTrackingManager.md)
 - [JLApplicationBadge](./xcode/JLApplicationBadge.md)
 - [JLCookies](./xcode/JLCookies.md)

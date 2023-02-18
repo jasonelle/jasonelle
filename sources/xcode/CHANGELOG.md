@@ -26,6 +26,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Added WebView.edgesIgnoringSafeArea(.all). Some websites need this, specially when using a navbar. Thanks to _@Mättu_ in Telegram for pointing this out.
 
+- Added meta viewport js fix for websites that do not have proper metatag. In webview.js.
+
 ### Fixed
 
 - `WKWebView` triggered `appdidLoad` event more than once. Now it only triggers the event when loaded.

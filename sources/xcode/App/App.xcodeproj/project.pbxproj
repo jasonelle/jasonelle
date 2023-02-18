@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EF2065E6297F4DFD001C27A6 /* JLKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2065E5297F4DFD001C27A6 /* JLKeychain.framework */; };
 		EF2065E7297F4DFD001C27A6 /* JLKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF2065E5297F4DFD001C27A6 /* JLKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EF2B4D5629A074C600D99A98 /* AppExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2B4D5529A074C600D99A98 /* AppExtensions.m */; };
 		EF4E850527A990AD00444A94 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4E850427A990AD00444A94 /* Main.swift */; };
 		EF4E850927A990B000444A94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF4E850827A990B000444A94 /* Assets.xcassets */; };
 		EF4E850C27A990B000444A94 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF4E850B27A990B000444A94 /* Preview Assets.xcassets */; };
@@ -85,6 +86,8 @@
 
 /* Begin PBXFileReference section */
 		EF2065E5297F4DFD001C27A6 /* JLKeychain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKeychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF2B4D5429A074C600D99A98 /* AppExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppExtensions.h; sourceTree = "<group>"; };
+		EF2B4D5529A074C600D99A98 /* AppExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppExtensions.m; sourceTree = "<group>"; };
 		EF47FEF32824F6EF006E2B9B /* JLExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4E850127A990AD00444A94 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4E850427A990AD00444A94 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
@@ -157,6 +160,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EF2B4D5729A074CD00D99A98 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EF2B4D5429A074C600D99A98 /* AppExtensions.h */,
+				EF2B4D5529A074C600D99A98 /* AppExtensions.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		EF4E84F827A990AD00444A94 = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +262,7 @@
 			children = (
 				EFAF61C92806DB3C001B265B /* AppDelegate.h */,
 				EFAF61CA2806DB3C001B265B /* AppDelegate.m */,
+				EF2B4D5729A074CD00D99A98 /* Extensions */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -415,6 +428,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF2B4D5629A074C600D99A98 /* AppExtensions.m in Sources */,
 				EFAF61CB2806DB3C001B265B /* AppDelegate.m in Sources */,
 				EF4E850527A990AD00444A94 /* Main.swift in Sources */,
 			);

@@ -27,10 +27,13 @@
 
 #import <Foundation/Foundation.h>
 #import <Jasonelle/Jasonelle.h>
+#import "AppExtensions.h"
 
 NS_ASSUME_NONNULL_BEGIN
 NS_SWIFT_NAME(AppDelegate)
 @interface AppDelegate : JLAppDelegate <UIApplicationDelegate>
+
+@property (nonatomic, nonnull, strong) AppExtensions * extensions;
 
 #pragma mark - Lifecycle
 - (BOOL) application:(UIApplication *)application

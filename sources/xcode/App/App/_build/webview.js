@@ -24,7 +24,7 @@
     window.jasonelle.ready = true;
     window.$agent = window.jasonelle.agent;
     window.$logger = window.jasonelle.logger;
-    appendViewPort(window, document, true);
+    appendViewPort(window, document, false);
     const event = new CustomEvent("com.jasonelle.events.ready", {
       detail: {
         ready: true,

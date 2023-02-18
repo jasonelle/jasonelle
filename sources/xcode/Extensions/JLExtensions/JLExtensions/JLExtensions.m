@@ -63,16 +63,6 @@
     return _handlers;
 }
 
-#pragma mark - Convenience Accessor Methods
-
-- (JLATTrackingManager *) attracking {
-    return (JLATTrackingManager *) [self.app.ext get:JLATTrackingManager.class];
-}
-
-- (JLApplicationBadge *) badge {
-    return (JLApplicationBadge *) [self.app.ext get:JLApplicationBadge.class];
-}
-
 #pragma mark - Install Methods
 
 - (BOOL) install: (Class) cls {
