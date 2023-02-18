@@ -28,6 +28,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Added meta viewport js fix for websites that do not have proper metatag. In webview.js.
 
+- Added example extension.
+
 ### Fixed
 
 - `WKWebView` triggered `appdidLoad` event more than once. Now it only triggers the event when loaded.

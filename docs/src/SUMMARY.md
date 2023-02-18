@@ -12,7 +12,7 @@
 - [Changelog](./xcode/Changelog.md)
 
 # Extensions
-- [Working With Extensions](./xcode/Extensions.md)
+- [Extensions](./xcode/Extensions.md)
 - [JLATTrackingManager](./xcode/JLATTrackingManager.md)
 - [JLApplicationBadge](./xcode/JLApplicationBadge.md)
 - [JLCookies](./xcode/JLCookies.md)
