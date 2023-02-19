@@ -615,6 +615,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "PLACEHOLDER. Explain why you need Camera Usage";
 				INFOPLIST_KEY_NSContactsUsageDescription = "PLACEHOLDER. Explain why you need to use the Contacts API.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "PLACEHOLDER. Explain why you need Photo Library Usage";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "PLACEHOLDER. Explain ATTracking usage";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -654,6 +655,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "PLACEHOLDER. Explain why you need Camera Usage";
 				INFOPLIST_KEY_NSContactsUsageDescription = "PLACEHOLDER. Explain why you need to use the Contacts API.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "PLACEHOLDER. Explain why you need Photo Library Usage";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "PLACEHOLDER. Explain ATTracking usage";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
