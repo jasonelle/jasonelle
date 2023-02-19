@@ -37,21 +37,8 @@
     
     // Install the wrappers inside the webview
     
-    NSString * js = [self.app.utils.fs
-                     readJS:@"js.cookie.min"
-                     for:self];
+    webView = [self.app.utils.webview inject:@"js.cookie.min" intoWebView:webView for:self];
     
-    WKUserScript * script = [[WKUserScript alloc] initWithSource:js injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
-    
-    [webView.configuration.userContentController addUserScript: [script copy]];
-    
-    js = [self.app.utils.fs
-                     readJSFor:self];
-    
-    script = [[WKUserScript alloc] initWithSource:js injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
-    
-    [webView.configuration.userContentController addUserScript: [script copy]];
-    
-    return webView;
+    return [self.app.utils.webview inject:self intoWebView:webView];
 }
 @end

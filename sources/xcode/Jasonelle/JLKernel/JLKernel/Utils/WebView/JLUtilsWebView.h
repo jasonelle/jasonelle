@@ -1,10 +1,9 @@
 //
-//  JLApplicationUtils.h
+//  JLUtilsWebView.h
 //  JLKernel
 //
-//  Created by clsource on 05-05-22
-//
-//  Copyright (c) 2022 Jasonelle.com
+//  Created by clsource on 19-02-23.
+//  Copyright © 2023 Jasonelle.com. All rights reserved.
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
 //  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
@@ -25,38 +24,31 @@
 //
 
 
-#import <Foundation/Foundation.h>
-#import <JLKernel/JLLoggerProtocol.h>
-#import <JLKernel/JLUtilsBase64.h>
-#import <JLKernel/JLUtilsJSON.h>
+#import <JLKernel/JLUtil.h>
 #import <JLKernel/JLUtilsFileSystem.h>
-#import <JLKernel/JLUtilsWebView.h>
 
-@import UIKit;
+@import WebKit;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JLApplicationUtils : NSObject
 
-#pragma mark - Properties
+@interface JLUtilsWebView : JLUtil
 
-@property (nonatomic, strong, nonnull) id<JLLoggerProtocol> logger;
-
-@property (nonatomic, strong, nonnull) JLUtilsBase64 * base64;
-@property (nonatomic, strong, nonnull) JLUtilsJSON * json;
-@property (nonatomic, strong, nonnull, readonly) NSString * uuid;
 @property (nonatomic, strong, nonnull) JLUtilsFileSystem * fs;
-@property (nonatomic, strong, nonnull) JLUtilsWebView * webview;
 
-#pragma mark - Init Methods
-- (instancetype) initWithLogger: (id<JLLoggerProtocol>) logger;
+- (instancetype) initWithLogger:(id<JLLoggerProtocol>)logger andFileSystem: (JLUtilsFileSystem *) fs;
 
-#pragma mark - Helper Methods
+/// Injects a string to the webview.
+- (WKWebView *) injectIntoWebView: (WKWebView *) webView source: (NSString *) source withInjectionTime: (WKUserScriptInjectionTime) injectionTime forMainFrameOnly: (BOOL) mainFrame;
 
-// If there are more than 1 helper method in the same context, is best to move it to a separate class and have a property here
-- (BOOL) openURL: (NSString *) urlString;
+/// Injects a string to the webview. Using Mainframe with Done injection time.
+- (WKWebView *) injectIntoWebView: (WKWebView *) webView source: (NSString *) source;
 
+/// Reads the file content inside the object's bundle and inject it to the webview. Using Mainframe with Done injection time.
+- (WKWebView *) inject: (NSString *) file intoWebView: (WKWebView *) webView for: (id) object;
 
+/// Reads the "(Object.class)".js file and inject it to the webview. Using Mainframe with Done injection time.
+- (WKWebView *) inject: (id) object intoWebView: (WKWebView *) webView;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -104,7 +104,16 @@ NSString * js = [self.app.utils.fs
                      readJSFor:self];
 ```
 
+### WebView Helper
 
+To help injecting scripts to webview you can use `app.utils.webview` helper.
+
+```objective-c
+webView = [self.app.utils.webview inject:@"js.cookie.min" intoWebView:webView for:self];
+
+// Reads the filename as Classname.js
+return [self.app.utils.webview inject:self intoWebView:webView];
+```
 
 ### Extension Service Locator
 

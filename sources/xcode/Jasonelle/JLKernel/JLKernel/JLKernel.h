@@ -55,6 +55,7 @@ FOUNDATION_EXPORT const unsigned char JLKernelVersionString[];
 #import <JLKernel/JLUtilsJSON.h>
 #import <JLKernel/JLUtilsPlist.h>
 #import <JLKernel/JLUtilsFileSystem.h>
+#import <JLKernel/JLUtilsWebView.h>
 
 // Environment
 #import <JLKernel/JLEnvironment.h>

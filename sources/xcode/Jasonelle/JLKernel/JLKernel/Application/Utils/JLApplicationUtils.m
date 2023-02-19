@@ -66,6 +66,13 @@
     return _fs;
 }
 
+- (JLUtilsWebView *) webview {
+    if (!_webview) {
+        _webview = [[JLUtilsWebView alloc] initWithLogger:self.logger andFileSystem:self.fs];
+    }
+    return _webview;
+}
+
 - (BOOL) openURL: (NSString *) urlString {
     NSURL * url = [[NSURL alloc] initWithString:urlString];
     jlog_trace_join(@"Openning URL: ", url);
@@ -78,4 +85,7 @@
     jlog_trace(@"Could not open URL");
     return NO;
 }
+
+
+
 @end

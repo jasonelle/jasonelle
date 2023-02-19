@@ -13,6 +13,7 @@
 		EF4A7BFA2826141B00EDA14C /* JLApplicationBadge.h in Headers */ = {isa = PBXBuildFile; fileRef = EF4A7BEC2826141B00EDA14C /* JLApplicationBadge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF4A7C052826142A00EDA14C /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF4A7C042826142A00EDA14C /* JLKernel.framework */; };
 		EF4A7C0B28261A4100EDA14C /* JLApplicationBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = EF4A7C0A28261A4100EDA14C /* JLApplicationBadge.m */; };
+		EFA09EDB29A24C7700E3C9A4 /* JLApplicationBadge.js in Resources */ = {isa = PBXBuildFile; fileRef = EFA09EDA29A24C7700E3C9A4 /* JLApplicationBadge.js */; };
 		EFB18F2128C1AC8100897C8D /* JLApplicationBadgeIncrementMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EFB18F1F28C1AC8100897C8D /* JLApplicationBadgeIncrementMessageHandler.h */; };
 		EFB18F2228C1AC8100897C8D /* JLApplicationBadgeIncrementMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB18F2028C1AC8100897C8D /* JLApplicationBadgeIncrementMessageHandler.m */; };
 		EFB18F2728C1ACBA00897C8D /* JLApplicationBadgeClearMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EFB18F2528C1ACBA00897C8D /* JLApplicationBadgeClearMessageHandler.h */; };
@@ -37,6 +38,7 @@
 		EF4A7BF82826141B00EDA14C /* JLApplicationBadgeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLApplicationBadgeTests.m; sourceTree = "<group>"; };
 		EF4A7C042826142A00EDA14C /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4A7C0A28261A4100EDA14C /* JLApplicationBadge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLApplicationBadge.m; sourceTree = "<group>"; };
+		EFA09EDA29A24C7700E3C9A4 /* JLApplicationBadge.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = JLApplicationBadge.js; sourceTree = "<group>"; };
 		EFB18F1F28C1AC8100897C8D /* JLApplicationBadgeIncrementMessageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLApplicationBadgeIncrementMessageHandler.h; sourceTree = "<group>"; };
 		EFB18F2028C1AC8100897C8D /* JLApplicationBadgeIncrementMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLApplicationBadgeIncrementMessageHandler.m; sourceTree = "<group>"; };
 		EFB18F2528C1ACBA00897C8D /* JLApplicationBadgeClearMessageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLApplicationBadgeClearMessageHandler.h; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				EF3ED91528C1594900640698 /* WebViewMessageHandlers */,
+				EFA09EDA29A24C7700E3C9A4 /* JLApplicationBadge.js */,
 				EF4A7BEC2826141B00EDA14C /* JLApplicationBadge.h */,
 				EF4A7C0A28261A4100EDA14C /* JLApplicationBadge.m */,
 				EF4A7BED2826141B00EDA14C /* JLApplicationBadge.docc */,
@@ -230,6 +233,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFA09EDB29A24C7700E3C9A4 /* JLApplicationBadge.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

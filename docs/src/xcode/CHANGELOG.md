@@ -30,6 +30,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Added example extension.
 
+- Added `app.utils.webview`.
+
 ### Fixed
 
 - `WKWebView` triggered `appdidLoad` event more than once. Now it only triggers the event when loaded.

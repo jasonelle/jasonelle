@@ -71,6 +71,8 @@
 		EF96866D2831D5CA006C623F /* JLJSLoggerMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF96866B2831D5CA006C623F /* JLJSLoggerMessageHandler.m */; };
 		EF9A8868280F0A5100778F0C /* JLNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9A8866280F0A5100778F0C /* JLNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF9A8869280F0A5100778F0C /* JLNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9A8867280F0A5100778F0C /* JLNotificationCenter.m */; };
+		EFA09ED729A2373700E3C9A4 /* JLUtilsWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = EFA09ED529A2373700E3C9A4 /* JLUtilsWebView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFA09ED829A2373700E3C9A4 /* JLUtilsWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA09ED629A2373700E3C9A4 /* JLUtilsWebView.m */; };
 		EFB31401281D6BA2003737B0 /* JLJSBridgei18n.h in Headers */ = {isa = PBXBuildFile; fileRef = EFB313FF281D6BA2003737B0 /* JLJSBridgei18n.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFB31402281D6BA2003737B0 /* JLJSBridgei18n.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB31400281D6BA2003737B0 /* JLJSBridgei18n.m */; };
 		EFB31406281D956E003737B0 /* JLEventAppDidLoad.h in Headers */ = {isa = PBXBuildFile; fileRef = EFB31404281D956E003737B0 /* JLEventAppDidLoad.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -192,6 +194,8 @@
 		EF96866B2831D5CA006C623F /* JLJSLoggerMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSLoggerMessageHandler.m; sourceTree = "<group>"; };
 		EF9A8866280F0A5100778F0C /* JLNotificationCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLNotificationCenter.h; sourceTree = "<group>"; };
 		EF9A8867280F0A5100778F0C /* JLNotificationCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLNotificationCenter.m; sourceTree = "<group>"; };
+		EFA09ED529A2373700E3C9A4 /* JLUtilsWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLUtilsWebView.h; sourceTree = "<group>"; };
+		EFA09ED629A2373700E3C9A4 /* JLUtilsWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLUtilsWebView.m; sourceTree = "<group>"; };
 		EFB313FF281D6BA2003737B0 /* JLJSBridgei18n.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSBridgei18n.h; sourceTree = "<group>"; };
 		EFB31400281D6BA2003737B0 /* JLJSBridgei18n.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSBridgei18n.m; sourceTree = "<group>"; };
 		EFB31404281D956E003737B0 /* JLEventAppDidLoad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLEventAppDidLoad.h; sourceTree = "<group>"; };
@@ -319,6 +323,7 @@
 				EFD4ED4B2823FAE700153CA9 /* JSON */,
 				EF47FEF92824FE32006E2B9B /* Plist */,
 				EFECF216282E744B009D0579 /* FileSystem */,
+				EFA09ED929A2373E00E3C9A4 /* WebView */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -590,6 +595,15 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
+		EFA09ED929A2373E00E3C9A4 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				EFA09ED529A2373700E3C9A4 /* JLUtilsWebView.h */,
+				EFA09ED629A2373700E3C9A4 /* JLUtilsWebView.m */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
 		EFB31403281D6BA7003737B0 /* i18n */ = {
 			isa = PBXGroup;
 			children = (
@@ -827,6 +841,7 @@
 				EF61714127AAC2DC007B929C /* JLLoggerProtocol.h in Headers */,
 				EF61714627AAC3C1007B929C /* JLLoggingSystem.h in Headers */,
 				EF61715927AADB5F007B929C /* JLLogger.h in Headers */,
+				EFA09ED729A2373700E3C9A4 /* JLUtilsWebView.h in Headers */,
 				EF61714B27AACC3D007B929C /* JLLogLevel.h in Headers */,
 				EF61715F27AAEA33007B929C /* JLStreamLogHandler.h in Headers */,
 				EF348F3127AC1F350095E0FB /* JLEnvironment.h in Headers */,
@@ -1004,6 +1019,7 @@
 				EFE51B41281ECB2E00DA0C53 /* JLEventViewDidAppear.m in Sources */,
 				EF61714C27AACC3D007B929C /* JLLogLevel.m in Sources */,
 				EF348F3727AC25C90095E0FB /* JLProcess.m in Sources */,
+				EFA09ED829A2373700E3C9A4 /* JLUtilsWebView.m in Sources */,
 				EF96866728316B5E006C623F /* JLJSMessageHandlers.m in Sources */,
 				EF3F88FF28098A7500777B7E /* JLJSConfig.m in Sources */,
 				EF945E952811A3DB0085380D /* JLJSPolyfillCrypto.m in Sources */,

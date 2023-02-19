@@ -52,6 +52,14 @@
     };
 }
 
+- (nonnull WKWebView *)appDidLoadWithWebView:(nonnull WKWebView *)webView {
+    [super appDidLoadWithWebView:webView];
+    
+    // Install the wrappers inside the webview
+    
+    return [self.app.utils.webview inject:self intoWebView:webView];
+}
+
 - (NSNumber *)number {
     if (!_number) {
         _number = @([UIApplication sharedApplication].applicationIconBadgeNumber);
