@@ -14,29 +14,32 @@ The project requires purchasing a license if you want to:
 
 With this small contribution you enable us to continue creating awesome tools for your web applications.
 
-By adquiring a License you agree with the following:
+By adquiring a **License Key** you agree with the following:
 
-- Use Jasonelle's technologies and licenses in an ethical way. 
-- Respect the license rules.
+- Use _Jasonelle_'s technologies and licenses in an ethical way.
+- Respect the artifacts license terms and conditions.
+- Must not share the license keys with third parties.
+- Must not create direct competitors to _Jasonelle_ by rebranding, customizing and reselling the framework and related technologies or services.
 
-Please select the *License Key* that better fits your project.
+Please select the **License Key** that better fits your project.
 
 | [Jasonelle Friend's Membership Subscription](https://jasonelle.gumroad.com/l/love) | [Thank you Key](https://jasonelle.gumroad.com/l/thanks)
 |---|---|
 | Monthly Payment Requirement | Single Payment
-| Jasonelle's Membership Keys can be used in any amount of projects, as long as the subscription is maintained. | The license is tied to a single project
+| Jasonelle's Membership Keys can be used in any amount of projects, as long as the subscription is maintained. | This license allows _Jasonelle framework_ to be used by you or one client, in a single commercial end product.
 | The license expires if the membership is terminated | Thank you key licenses do not expire. That's why they are a little more expensive than the subscription.
 | [Join Subscription](https://jasonelle.gumroad.com/l/love) | [Purchase Thank you Key](https://jasonelle.gumroad.com/l/thanks)
 
 
 Please go to [Jasonelle Store](https://jasonelle.gumroad.com/) to purchase a license
-and edit _Love.h_ to allow real device execution and _MPLv2_ licensed code.
+and edit [**Love.h**](https://github.com/jasonelle/jasonelle/blob/main/sources/xcode/Jasonelle/Jasonelle/Jasonelle/Love.h) to allow real device execution and **MPLv2** licensed code.
 
-If no license is purchased then the code is under _AGPLv3_. And will not execute
-using real devices.
+If no license is purchased then the code is under **AGPLv3**. And will **not execute using real devices**. Although you can activate the full mode if you want to test if _Jasonelle_ is good for your use case (some features like _GPS_ need real hardware for testing).
+
+Please *purchase a license key* if you want to use _Jasonelle_'s solutions in your project.
 
 Since we cannot enforce this. We rely on your good heart. We trust you
-are a kind person who will activate this mode ethically.
+are a kind person who will **activate this mode ethically**.
 
 
 ## Community
