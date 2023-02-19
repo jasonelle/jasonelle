@@ -25,13 +25,14 @@
 
 #import "AppExtensions.h"
 
-// Extensions
-#import <JLATTrackingManager/JLATTrackingManager.h>
-#import <JLApplicationBadge/JLApplicationBadge.h>
-#import <JLPhotoLibrary/JLPhotoLibrary.h>
-#import <JLKeychain/JLKeychain.h>
-#import <JLCookies/JLCookies.h>
-#import <JLContacts/JLContacts.h>
+// Add or uncomment the extensions used in the app.
+// See more at https://jasonelle.com/docs/xcode/Extensions.html
+//#import <JLATTrackingManager/JLATTrackingManager.h>
+//#import <JLApplicationBadge/JLApplicationBadge.h>
+//#import <JLPhotoLibrary/JLPhotoLibrary.h>
+//#import <JLKeychain/JLKeychain.h>
+//#import <JLCookies/JLCookies.h>
+//#import <JLContacts/JLContacts.h>
 
 @implementation AppExtensions
 
@@ -48,24 +49,25 @@
 #pragma mark - Configure Your Extensions
 
 - (BOOL) install {
-    // Setup ATTracking Manager
-    [self.extensions add:JLATTrackingManager.class];
+//    // Setup ATTracking Manager
+//    [self.extensions add:JLATTrackingManager.class];
+//
+//    // Setup permissions in info.plist to access photos
+//    [self.extensions add:JLPhotoLibrary.class];
+//
+//    // Add $badge extension
+//    [self.extensions add:JLApplicationBadge.class];
+//
+//    // Add $keychain extension
+//    [self.extensions add:JLKeychain.class];
+//
+//    // Add $cookies extension
+//    [self.extensions add:JLCookies.class];
+//
+//    // Add $contacts extension
+//    [self.extensions add:JLContacts.class];
     
-    // Setup permissions in info.plist to access photos
-    [self.extensions add:JLPhotoLibrary.class];
-    
-    // Add $badge extension
-    [self.extensions add:JLApplicationBadge.class];
-    
-    // Add $keychain extension
-    [self.extensions add:JLKeychain.class];
-    
-    // Add $cookies extension
-    [self.extensions add:JLCookies.class];
-    
-    // Add $contacts extension
-    [self.extensions add:JLContacts.class];
-    
+    // Install all the extensions
     return [self.extensions install];
 }
 

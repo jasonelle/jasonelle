@@ -1,0 +1,499 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EF2B4D5929A0761000D99A98 /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2B4D5829A0761000D99A98 /* JLKernel.framework */; };
+		EF47FEDB2824F653006E2B9B /* JLExtensions.docc in Sources */ = {isa = PBXBuildFile; fileRef = EF47FEDA2824F653006E2B9B /* JLExtensions.docc */; };
+		EF47FEE12824F653006E2B9B /* JLExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF47FED62824F653006E2B9B /* JLExtensions.framework */; };
+		EF47FEE62824F653006E2B9B /* JLExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF47FEE52824F653006E2B9B /* JLExtensionsTests.m */; };
+		EF47FEE72824F653006E2B9B /* JLExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = EF47FED92824F653006E2B9B /* JLExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF4A7C07282614D500EDA14C /* JLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF4A7C06282614D500EDA14C /* JLExtensions.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EF47FEE22824F653006E2B9B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EF47FECD2824F653006E2B9B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF47FED52824F653006E2B9B;
+			remoteInfo = JLExtensions;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EF2065E1297F4DE8001C27A6 /* JLKeychain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKeychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF2B4D5829A0761000D99A98 /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF47FED62824F653006E2B9B /* JLExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JLExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF47FED92824F653006E2B9B /* JLExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLExtensions.h; sourceTree = "<group>"; };
+		EF47FEDA2824F653006E2B9B /* JLExtensions.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = JLExtensions.docc; sourceTree = "<group>"; };
+		EF47FEE02824F653006E2B9B /* JLExtensionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JLExtensionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF47FEE52824F653006E2B9B /* JLExtensionsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLExtensionsTests.m; sourceTree = "<group>"; };
+		EF47FEF12824F666006E2B9B /* JLATTrackingManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLATTrackingManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF47FEFC2825067A006E2B9B /* JLATTrackingManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLATTrackingManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF47FF0228250746006E2B9B /* JLATTrackingManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLATTrackingManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF4A7C06282614D500EDA14C /* JLExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLExtensions.m; sourceTree = "<group>"; };
+		EF4A7C08282619A100EDA14C /* JLApplicationBadge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLApplicationBadge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF7D1A5529904FB2004E67E5 /* JLContacts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLContacts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFA6A194296F07DE00DA12D4 /* JLPhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFA6A1E5296F095600DA12D4 /* JLPhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFBE6D64296F04A900952B4A /* JLPhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFBE6D68296F05E300952B4A /* JLPhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFBE6D6A296F06F300952B4A /* JLPhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFC39C02282507CE0037750A /* JLATTrackingManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLATTrackingManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFC39C09282508350037750A /* JLATTrackingManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLATTrackingManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFC39C0B282508FE0037750A /* JLATTrackingManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLATTrackingManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFC39C11282509DA0037750A /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFFB94782980B3A2007BF935 /* JLCookies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLCookies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EF47FED32824F653006E2B9B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF2B4D5929A0761000D99A98 /* JLKernel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF47FEDD2824F653006E2B9B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF47FEE12824F653006E2B9B /* JLExtensions.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EF47FECC2824F653006E2B9B = {
+			isa = PBXGroup;
+			children = (
+				EF47FED82824F653006E2B9B /* JLExtensions */,
+				EF47FEE42824F653006E2B9B /* JLExtensionsTests */,
+				EF47FED72824F653006E2B9B /* Products */,
+				EF47FEF02824F666006E2B9B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EF47FED72824F653006E2B9B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EF47FED62824F653006E2B9B /* JLExtensions.framework */,
+				EF47FEE02824F653006E2B9B /* JLExtensionsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EF47FED82824F653006E2B9B /* JLExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				EF47FED92824F653006E2B9B /* JLExtensions.h */,
+				EF4A7C06282614D500EDA14C /* JLExtensions.m */,
+				EF47FEDA2824F653006E2B9B /* JLExtensions.docc */,
+			);
+			path = JLExtensions;
+			sourceTree = "<group>";
+		};
+		EF47FEE42824F653006E2B9B /* JLExtensionsTests */ = {
+			isa = PBXGroup;
+			children = (
+				EF47FEE52824F653006E2B9B /* JLExtensionsTests.m */,
+			);
+			path = JLExtensionsTests;
+			sourceTree = "<group>";
+		};
+		EF47FEF02824F666006E2B9B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF2B4D5829A0761000D99A98 /* JLKernel.framework */,
+				EF7D1A5529904FB2004E67E5 /* JLContacts.framework */,
+				EFFB94782980B3A2007BF935 /* JLCookies.framework */,
+				EF2065E1297F4DE8001C27A6 /* JLKeychain.framework */,
+				EFA6A1E5296F095600DA12D4 /* JLPhotoLibrary.framework */,
+				EFA6A194296F07DE00DA12D4 /* JLPhotoLibrary.framework */,
+				EFBE6D6A296F06F300952B4A /* JLPhotoLibrary.framework */,
+				EFBE6D68296F05E300952B4A /* JLPhotoLibrary.framework */,
+				EFBE6D64296F04A900952B4A /* JLPhotoLibrary.framework */,
+				EF4A7C08282619A100EDA14C /* JLApplicationBadge.framework */,
+				EFC39C11282509DA0037750A /* JLKernel.framework */,
+				EFC39C0B282508FE0037750A /* JLATTrackingManager.framework */,
+				EFC39C09282508350037750A /* JLATTrackingManager.framework */,
+				EFC39C02282507CE0037750A /* JLATTrackingManager.framework */,
+				EF47FF0228250746006E2B9B /* JLATTrackingManager.framework */,
+				EF47FEFC2825067A006E2B9B /* JLATTrackingManager.framework */,
+				EF47FEF12824F666006E2B9B /* JLATTrackingManager.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		EF47FED12824F653006E2B9B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF47FEE72824F653006E2B9B /* JLExtensions.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		EF47FED52824F653006E2B9B /* JLExtensions */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF47FEEA2824F653006E2B9B /* Build configuration list for PBXNativeTarget "JLExtensions" */;
+			buildPhases = (
+				EF47FED12824F653006E2B9B /* Headers */,
+				EF47FED22824F653006E2B9B /* Sources */,
+				EF47FED32824F653006E2B9B /* Frameworks */,
+				EF47FED42824F653006E2B9B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JLExtensions;
+			productName = JLExtensions;
+			productReference = EF47FED62824F653006E2B9B /* JLExtensions.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EF47FEDF2824F653006E2B9B /* JLExtensionsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF47FEED2824F653006E2B9B /* Build configuration list for PBXNativeTarget "JLExtensionsTests" */;
+			buildPhases = (
+				EF47FEDC2824F653006E2B9B /* Sources */,
+				EF47FEDD2824F653006E2B9B /* Frameworks */,
+				EF47FEDE2824F653006E2B9B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EF47FEE32824F653006E2B9B /* PBXTargetDependency */,
+			);
+			name = JLExtensionsTests;
+			productName = JLExtensionsTests;
+			productReference = EF47FEE02824F653006E2B9B /* JLExtensionsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EF47FECD2824F653006E2B9B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1320;
+				ORGANIZATIONNAME = Jasonelle.com;
+				TargetAttributes = {
+					EF47FED52824F653006E2B9B = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					EF47FEDF2824F653006E2B9B = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = EF47FED02824F653006E2B9B /* Build configuration list for PBXProject "Extensions" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EF47FECC2824F653006E2B9B;
+			productRefGroup = EF47FED72824F653006E2B9B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EF47FED52824F653006E2B9B /* JLExtensions */,
+				EF47FEDF2824F653006E2B9B /* JLExtensionsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EF47FED42824F653006E2B9B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF47FEDE2824F653006E2B9B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EF47FED22824F653006E2B9B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF47FEDB2824F653006E2B9B /* JLExtensions.docc in Sources */,
+				EF4A7C07282614D500EDA14C /* JLExtensions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF47FEDC2824F653006E2B9B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF47FEE62824F653006E2B9B /* JLExtensionsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EF47FEE32824F653006E2B9B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF47FED52824F653006E2B9B /* JLExtensions */;
+			targetProxy = EF47FEE22824F653006E2B9B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		EF47FEE82824F653006E2B9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EF47FEE92824F653006E2B9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EF47FEEB2824F653006E2B9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLExtensions;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EF47FEEC2824F653006E2B9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLExtensions;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EF47FEEE2824F653006E2B9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLExtensionsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EF47FEEF2824F653006E2B9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLExtensionsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EF47FED02824F653006E2B9B /* Build configuration list for PBXProject "Extensions" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF47FEE82824F653006E2B9B /* Debug */,
+				EF47FEE92824F653006E2B9B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF47FEEA2824F653006E2B9B /* Build configuration list for PBXNativeTarget "JLExtensions" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF47FEEB2824F653006E2B9B /* Debug */,
+				EF47FEEC2824F653006E2B9B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF47FEED2824F653006E2B9B /* Build configuration list for PBXNativeTarget "JLExtensionsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF47FEEE2824F653006E2B9B /* Debug */,
+				EF47FEEF2824F653006E2B9B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EF47FECD2824F653006E2B9B /* Project object */;
+}

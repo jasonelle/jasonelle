@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EF2065E6297F4DFD001C27A6 /* JLKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2065E5297F4DFD001C27A6 /* JLKeychain.framework */; };
-		EF2065E7297F4DFD001C27A6 /* JLKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF2065E5297F4DFD001C27A6 /* JLKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EF2B4D5629A074C600D99A98 /* AppExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2B4D5529A074C600D99A98 /* AppExtensions.m */; };
 		EF4E850527A990AD00444A94 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4E850427A990AD00444A94 /* Main.swift */; };
 		EF4E850927A990B000444A94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF4E850827A990B000444A94 /* Assets.xcassets */; };
@@ -25,22 +23,12 @@
 		EF77097328DF6CAB00D28B89 /* JLExtensions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFC39C07282508130037750A /* JLExtensions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EF77097428DF6CAC00D28B89 /* Jasonelle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8373CC27A9A06800485E03 /* Jasonelle.framework */; };
 		EF77097528DF6CAC00D28B89 /* Jasonelle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF8373CC27A9A06800485E03 /* Jasonelle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EF77097728DF6CDB00D28B89 /* JLApplicationBadge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF77097628DF6CDB00D28B89 /* JLApplicationBadge.framework */; };
-		EF77097828DF6CDB00D28B89 /* JLApplicationBadge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF77097628DF6CDB00D28B89 /* JLApplicationBadge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EF77097A28DF6CE300D28B89 /* JLATTrackingManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF77097928DF6CE300D28B89 /* JLATTrackingManager.framework */; };
-		EF77097B28DF6CE300D28B89 /* JLATTrackingManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF77097928DF6CE300D28B89 /* JLATTrackingManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EF77097C28DF6CF600D28B89 /* JasonelleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD373C227B06BC500D6F7CF /* JasonelleSwift.framework */; };
 		EF77097D28DF6CF600D28B89 /* JasonelleSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFD373C227B06BC500D6F7CF /* JasonelleSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EF7D1A5A29904FDE004E67E5 /* JLContacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF7D1A5929904FDE004E67E5 /* JLContacts.framework */; };
-		EF7D1A5B29904FDE004E67E5 /* JLContacts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF7D1A5929904FDE004E67E5 /* JLContacts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EF9E5397299F287400516842 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF9E5396299F287400516842 /* Launch Screen.storyboard */; };
-		EFA6A1EA296F099900DA12D4 /* JLPhotoLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA6A1E9296F099900DA12D4 /* JLPhotoLibrary.framework */; };
-		EFA6A1EB296F099900DA12D4 /* JLPhotoLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFA6A1E9296F099900DA12D4 /* JLPhotoLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EFAF61CB2806DB3C001B265B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAF61CA2806DB3C001B265B /* AppDelegate.m */; };
 		EFD65C5528C12966000350B1 /* Files in Resources */ = {isa = PBXBuildFile; fileRef = EFD65C5428C12966000350B1 /* Files */; };
 		EFE607392808B5D300C8146A /* _build in Resources */ = {isa = PBXBuildFile; fileRef = EFE607382808B5D300C8146A /* _build */; };
-		EFFB947D2980B3B2007BF935 /* JLCookies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFB947C2980B3B2007BF935 /* JLCookies.framework */; };
-		EFFB947E2980B3B2007BF935 /* JLCookies.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFFB947C2980B3B2007BF935 /* JLCookies.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,15 +55,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				EFFB947E2980B3B2007BF935 /* JLCookies.framework in Embed Frameworks */,
-				EF7D1A5B29904FDE004E67E5 /* JLContacts.framework in Embed Frameworks */,
 				EF77097528DF6CAC00D28B89 /* Jasonelle.framework in Embed Frameworks */,
-				EFA6A1EB296F099900DA12D4 /* JLPhotoLibrary.framework in Embed Frameworks */,
 				EF77096E28DF6CA800D28B89 /* WebViewRendererUI.framework in Embed Frameworks */,
-				EF77097B28DF6CE300D28B89 /* JLATTrackingManager.framework in Embed Frameworks */,
-				EF77097828DF6CDB00D28B89 /* JLApplicationBadge.framework in Embed Frameworks */,
 				EF77097328DF6CAB00D28B89 /* JLExtensions.framework in Embed Frameworks */,
-				EF2065E7297F4DFD001C27A6 /* JLKeychain.framework in Embed Frameworks */,
 				EF77097128DF6CAA00D28B89 /* JLKernel.framework in Embed Frameworks */,
 				EF77097D28DF6CF600D28B89 /* JasonelleSwift.framework in Embed Frameworks */,
 			);
@@ -130,15 +112,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFFB947D2980B3B2007BF935 /* JLCookies.framework in Frameworks */,
-				EF7D1A5A29904FDE004E67E5 /* JLContacts.framework in Frameworks */,
 				EF77097428DF6CAC00D28B89 /* Jasonelle.framework in Frameworks */,
-				EFA6A1EA296F099900DA12D4 /* JLPhotoLibrary.framework in Frameworks */,
 				EF77097228DF6CAB00D28B89 /* JLExtensions.framework in Frameworks */,
-				EF77097A28DF6CE300D28B89 /* JLATTrackingManager.framework in Frameworks */,
-				EF77097728DF6CDB00D28B89 /* JLApplicationBadge.framework in Frameworks */,
 				EF77096D28DF6CA800D28B89 /* WebViewRendererUI.framework in Frameworks */,
-				EF2065E6297F4DFD001C27A6 /* JLKeychain.framework in Frameworks */,
 				EF77097028DF6CAA00D28B89 /* JLKernel.framework in Frameworks */,
 				EF77097C28DF6CF600D28B89 /* JasonelleSwift.framework in Frameworks */,
 			);
@@ -612,10 +588,6 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "PLACEHOLDER. Explain why you need Camera Usage";
-				INFOPLIST_KEY_NSContactsUsageDescription = "PLACEHOLDER. Explain why you need to use the Contacts API.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "PLACEHOLDER. Explain why you need Photo Library Usage";
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "PLACEHOLDER. Explain ATTracking usage";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -652,10 +624,6 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "PLACEHOLDER. Explain why you need Camera Usage";
-				INFOPLIST_KEY_NSContactsUsageDescription = "PLACEHOLDER. Explain why you need to use the Contacts API.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "PLACEHOLDER. Explain why you need Photo Library Usage";
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "PLACEHOLDER. Explain ATTracking usage";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

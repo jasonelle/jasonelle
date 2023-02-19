@@ -11,6 +11,9 @@
          location = "group:Jasonelle/JLKernel/Kernel.xcodeproj">
       </FileRef>
       <FileRef
+         location = "group:/Users/clsource/Developer/jasonelle.com/jasonelle/sources/xcode/Jasonelle/JLExtensions/Extensions.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Jasonelle/JasonelleSwift/JasonelleSwift.xcodeproj">
       </FileRef>
       <FileRef
@@ -27,27 +30,6 @@
    <Group
       location = "container:"
       name = "Extensions">
-      <FileRef
-         location = "group:Extensions/JLContacts/JLContacts.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Extensions/JLCookies/JLCookies.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Extensions/JLKeychain/JLKeychain.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Extensions/JLExtensions/JLExtensions.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Extensions/JLPhotoLibrary/JLPhotoLibrary.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Extensions/JLApplicationBadge/JLApplicationBadge.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Extensions/JLATTrackingManager/JLATTrackingManager.xcodeproj">
-      </FileRef>
    </Group>
    <FileRef
       location = "container:App/App.xcodeproj">

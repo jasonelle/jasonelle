@@ -1,13 +1,22 @@
 # ``JLApplicationBadge``
 
-<!--@START_MENU_TOKEN@-->Summary<!--@END_MENU_TOKEN@-->
+Can manipulate [Application Icon Badge Number](https://developer.apple.com/documentation/uikit/uiapplication/1622918-applicationiconbadgenumber) 
 
 ## Overview
 
-<!--@START_MENU_TOKEN@-->Text<!--@END_MENU_TOKEN@-->
+The number currently set as the badge of the app icon on the Home screen.
 
 ## Topics
 
-### <!--@START_MENU_TOKEN@-->Group<!--@END_MENU_TOKEN@-->
+### Actions
 
-- <!--@START_MENU_TOKEN@-->``Symbol``<!--@END_MENU_TOKEN@-->
+- ``$badge.clear``: Cleans the badge number icon.
+- ``$badge.set``: Sets the badge number icon.
+
+
+### Example
+
+```js
+$badge.set(3);
+$badge.clear();
+```

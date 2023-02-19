@@ -45,6 +45,18 @@ Check the [Configuration File](https://github.com/jasonelle/jasonelle/blob/main/
 
 ![config file](https://user-images.githubusercontent.com/292738/218337885-a92fbeab-a210-4baa-9d75-e85aac6157cb.png)
 
+#### Example
+
+List the allowed urls.
+Otherwise it will launch native browser
+If not present will allow all urls
+
+Put the same URL from main.js here to allow it (just the domain)
+
+```js
+allowed: ["file://", "google.cl"]
+```
+
 
 ### 4 - Done
 
