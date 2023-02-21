@@ -11,6 +11,10 @@
 - [Quick Start](./xcode/Quickstart.md)
 - [Changelog](./xcode/Changelog.md)
 
+# Templates
+- [Templates](./xcode/Templates.md)
+
+
 # Extensions
 - [Extensions](./xcode/Extensions.md)
 - [JLATTrackingManager](./xcode/JLATTrackingManager.md)
