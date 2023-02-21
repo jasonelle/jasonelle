@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		EF2B4D5629A074C600D99A98 /* AppExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2B4D5529A074C600D99A98 /* AppExtensions.m */; };
+		EF35C42029A4FF190076DEB2 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = EF35C41F29A4FF190076DEB2 /* NotificationService.m */; };
+		EF35C42429A4FF190076DEB2 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EF35C41C29A4FF190076DEB2 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		EF35C42B29A5004A0076DEB2 /* OneSignal in Frameworks */ = {isa = PBXBuildFile; productRef = EF35C42A29A5004A0076DEB2 /* OneSignal */; };
+		EF35C42D29A5004A0076DEB2 /* OneSignalExtension in Frameworks */ = {isa = PBXBuildFile; productRef = EF35C42C29A5004A0076DEB2 /* OneSignalExtension */; };
 		EF4E850527A990AD00444A94 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4E850427A990AD00444A94 /* Main.swift */; };
 		EF4E850927A990B000444A94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF4E850827A990B000444A94 /* Assets.xcassets */; };
 		EF4E850C27A990B000444A94 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF4E850B27A990B000444A94 /* Preview Assets.xcassets */; };
@@ -32,6 +36,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		EF35C42229A4FF190076DEB2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EF4E84F927A990AD00444A94 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF35C41B29A4FF190076DEB2;
+			remoteInfo = OneSignalNotificationServiceExtension;
+		};
 		EF4E851227A990B000444A94 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EF4E84F927A990AD00444A94 /* Project object */;
@@ -49,6 +60,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		EF35C42529A4FF190076DEB2 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				EF35C42429A4FF190076DEB2 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EF77096F28DF6CA800D28B89 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -71,6 +93,10 @@
 		EF2065E5297F4DFD001C27A6 /* JLKeychain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKeychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF2B4D5429A074C600D99A98 /* AppExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppExtensions.h; sourceTree = "<group>"; };
 		EF2B4D5529A074C600D99A98 /* AppExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppExtensions.m; sourceTree = "<group>"; };
+		EF35C41C29A4FF190076DEB2 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF35C41E29A4FF190076DEB2 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
+		EF35C41F29A4FF190076DEB2 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
+		EF35C42129A4FF190076DEB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF47FEF32824F6EF006E2B9B /* JLExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4E850127A990AD00444A94 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4E850427A990AD00444A94 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
@@ -108,15 +134,24 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EF35C41929A4FF190076DEB2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EF4E84FE27A990AD00444A94 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF35C42D29A5004A0076DEB2 /* OneSignalExtension in Frameworks */,
 				EF77097428DF6CAC00D28B89 /* Jasonelle.framework in Frameworks */,
 				EF77097228DF6CAB00D28B89 /* JLExtensions.framework in Frameworks */,
 				EF77096D28DF6CA800D28B89 /* WebViewRendererUI.framework in Frameworks */,
 				EF77097028DF6CAA00D28B89 /* JLKernel.framework in Frameworks */,
 				EF77097C28DF6CF600D28B89 /* JasonelleSwift.framework in Frameworks */,
+				EF35C42B29A5004A0076DEB2 /* OneSignal in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +181,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		EF35C41D29A4FF190076DEB2 /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				EF35C41E29A4FF190076DEB2 /* NotificationService.h */,
+				EF35C41F29A4FF190076DEB2 /* NotificationService.m */,
+				EF35C42129A4FF190076DEB2 /* Info.plist */,
+			);
+			path = OneSignalNotificationServiceExtension;
+			sourceTree = "<group>";
+		};
 		EF4E84F827A990AD00444A94 = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +201,7 @@
 				EF4E850327A990AD00444A94 /* App */,
 				EF4E851427A990B000444A94 /* AppTests */,
 				EF4E851E27A990B000444A94 /* AppUITests */,
+				EF35C41D29A4FF190076DEB2 /* OneSignalNotificationServiceExtension */,
 				EF4E850227A990AD00444A94 /* Products */,
 				EF83737227A9939B00485E03 /* Frameworks */,
 			);
@@ -167,6 +213,7 @@
 				EF4E850127A990AD00444A94 /* App.app */,
 				EF4E851127A990B000444A94 /* AppTests.xctest */,
 				EF4E851B27A990B000444A94 /* AppUITests.xctest */,
+				EF35C41C29A4FF190076DEB2 /* OneSignalNotificationServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -248,6 +295,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		EF35C41B29A4FF190076DEB2 /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF35C42829A4FF190076DEB2 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
+			buildPhases = (
+				EF35C41829A4FF190076DEB2 /* Sources */,
+				EF35C41929A4FF190076DEB2 /* Frameworks */,
+				EF35C41A29A4FF190076DEB2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OneSignalNotificationServiceExtension;
+			productName = OneSignalNotificationServiceExtension;
+			productReference = EF35C41C29A4FF190076DEB2 /* OneSignalNotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		EF4E850027A990AD00444A94 /* App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EF4E852527A990B000444A94 /* Build configuration list for PBXNativeTarget "App" */;
@@ -257,12 +321,18 @@
 				EF4E84FE27A990AD00444A94 /* Frameworks */,
 				EF4E84FF27A990AD00444A94 /* Resources */,
 				EF77096F28DF6CA800D28B89 /* Embed Frameworks */,
+				EF35C42529A4FF190076DEB2 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				EF35C42329A4FF190076DEB2 /* PBXTargetDependency */,
 			);
 			name = App;
+			packageProductDependencies = (
+				EF35C42A29A5004A0076DEB2 /* OneSignal */,
+				EF35C42C29A5004A0076DEB2 /* OneSignalExtension */,
+			);
 			productName = App;
 			productReference = EF4E850127A990AD00444A94 /* App.app */;
 			productType = "com.apple.product-type.application";
@@ -313,6 +383,9 @@
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
+					EF35C41B29A4FF190076DEB2 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
 					EF4E850027A990AD00444A94 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
@@ -338,6 +411,9 @@
 				Base,
 			);
 			mainGroup = EF4E84F827A990AD00444A94;
+			packageReferences = (
+				EF35C42929A5004A0076DEB2 /* XCRemoteSwiftPackageReference "OneSignal-XCFramework" */,
+			);
 			productRefGroup = EF4E850227A990AD00444A94 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -345,11 +421,19 @@
 				EF4E850027A990AD00444A94 /* App */,
 				EF4E851027A990B000444A94 /* AppTests */,
 				EF4E851A27A990B000444A94 /* AppUITests */,
+				EF35C41B29A4FF190076DEB2 /* OneSignalNotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		EF35C41A29A4FF190076DEB2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EF4E84FF27A990AD00444A94 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -402,6 +486,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EF35C41829A4FF190076DEB2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF35C42029A4FF190076DEB2 /* NotificationService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EF4E84FD27A990AD00444A94 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -432,6 +524,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		EF35C42329A4FF190076DEB2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF35C41B29A4FF190076DEB2 /* OneSignalNotificationServiceExtension */;
+			targetProxy = EF35C42229A4FF190076DEB2 /* PBXContainerItemProxy */;
+		};
 		EF4E851327A990B000444A94 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EF4E850027A990AD00444A94 /* App */;
@@ -456,6 +553,58 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		EF35C42629A4FF190076DEB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.App.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EF35C42729A4FF190076DEB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.App.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		EF4E852327A990B000444A94 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -750,6 +899,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EF35C42829A4FF190076DEB2 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF35C42629A4FF190076DEB2 /* Debug */,
+				EF35C42729A4FF190076DEB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EF4E84FC27A990AD00444A94 /* Build configuration list for PBXProject "App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -787,6 +945,31 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EF35C42929A5004A0076DEB2 /* XCRemoteSwiftPackageReference "OneSignal-XCFramework" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OneSignal/OneSignal-XCFramework";
+			requirement = {
+				kind = versionRange;
+				maximumVersion = 4.0.0;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EF35C42A29A5004A0076DEB2 /* OneSignal */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF35C42929A5004A0076DEB2 /* XCRemoteSwiftPackageReference "OneSignal-XCFramework" */;
+			productName = OneSignal;
+		};
+		EF35C42C29A5004A0076DEB2 /* OneSignalExtension */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF35C42929A5004A0076DEB2 /* XCRemoteSwiftPackageReference "OneSignal-XCFramework" */;
+			productName = OneSignalExtension;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EF4E84F927A990AD00444A94 /* Project object */;
 }

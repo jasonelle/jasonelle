@@ -26,6 +26,7 @@
 
 
 #import "AppDelegate.h"
+#import <OneSignal/OneSignal.h>
 
 /// Use this file to configure your app's delegate
 @implementation AppDelegate
@@ -37,9 +38,25 @@ didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
     // after that you can access the app to override or use the available properties with
     // self.app
     BOOL ready = [super application:application didFinishLaunchingWithOptions:launchOptions];
-    
+
     // Add extensions
-   self.extensions = [[AppExtensions alloc] initWithApp:self.app];
+    self.extensions = [[AppExtensions alloc] initWithApp:self.app];
+    
+    // Remove this method to stop OneSignal Debugging
+    [OneSignal setLogLevel:ONE_S_LL_VERBOSE visualLevel:ONE_S_LL_NONE];
+
+    // OneSignal initialization
+    [OneSignal initWithLaunchOptions:launchOptions];
+    [OneSignal setAppId:@"YOUR_ONESIGNAL_APP_ID"];
+
+    // promptForPushNotifications will show the native iOS notification permission prompt.
+    // We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 8)
+    [OneSignal promptForPushNotificationsWithUserResponse:^(BOOL accepted) {
+        jlog_trace_fmt(@"User accepted notifications: %d", accepted);
+    }];
+
+    // Set your customer userId
+    // [OneSignal setExternalUserId:@"userId"];
     
     return ready && [self.extensions application:application didFinishLaunchingWithOptions:launchOptions];
 }
