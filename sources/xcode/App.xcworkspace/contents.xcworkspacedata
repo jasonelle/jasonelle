@@ -11,7 +11,7 @@
          location = "group:Jasonelle/JLKernel/Kernel.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:/Users/clsource/Developer/jasonelle.com/jasonelle/sources/xcode/Jasonelle/JLExtensions/Extensions.xcodeproj">
+         location = "group:Jasonelle/JLExtensions/Extensions.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:Jasonelle/JasonelleSwift/JasonelleSwift.xcodeproj">
