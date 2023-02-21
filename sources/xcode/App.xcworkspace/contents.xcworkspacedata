@@ -3,25 +3,6 @@
    version = "1.0">
    <Group
       location = "container:"
-      name = "Jasonelle">
-      <FileRef
-         location = "group:Jasonelle/index.js">
-      </FileRef>
-      <FileRef
-         location = "group:Jasonelle/JLKernel/Kernel.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:/Users/clsource/Developer/jasonelle.com/jasonelle/sources/xcode/Jasonelle/JLExtensions/Extensions.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Jasonelle/JasonelleSwift/JasonelleSwift.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Jasonelle/Jasonelle/Jasonelle.xcodeproj">
-      </FileRef>
-   </Group>
-   <Group
-      location = "container:"
       name = "Renderers">
       <FileRef
          location = "group:Jasonelle/WebViewRendererUI/WebViewRendererUI.xcodeproj">
@@ -29,9 +10,27 @@
    </Group>
    <Group
       location = "container:"
-      name = "Extensions">
+      name = "Jasonelle">
+      <FileRef
+         location = "group:Jasonelle/index.js">
+      </FileRef>
+      <FileRef
+         location = "group:Jasonelle/Jasonelle/Jasonelle.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Jasonelle/JasonelleSwift/JasonelleSwift.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Jasonelle/JLKernel/Kernel.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Jasonelle/JLExtensions/Extensions.xcodeproj">
+      </FileRef>
    </Group>
    <FileRef
-      location = "container:App/App.xcodeproj">
+      location = "group:App/Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:App/App.xcodeproj">
    </FileRef>
 </Workspace>
