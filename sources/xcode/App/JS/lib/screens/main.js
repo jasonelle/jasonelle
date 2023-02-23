@@ -76,9 +76,9 @@ class MainScreen extends Component {
     // TODO: Maybe add a way to call webview js functions from here
     hooks = {
         // Custom event from MyExtension
-        //        onExampleEvent(message) {
-        //            log(message);
-        //        },
+        //                onExampleEvent(message) {
+        //                    log(message);
+        //                },
 
         /*************************************************************
         *

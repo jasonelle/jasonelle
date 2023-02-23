@@ -11,10 +11,17 @@
     window.$myextension = {};
     window.$myextension.run = () => $agent.trigger("$myextension.run");
     
-    window.$myextension.events = {
-        names: {
-            example: "com.jasonelle.myextension.event.example"
+    // Define the events that would be called in Handlers
+    // To notify webview of certain workflows
+    const events = {
+        example: {
+            name: "$myextension.events.example"
         }
     };
-    window.$myextension.events.example = (detail) => document.dispatchEvent(new CustomEvent(window.$myextension.events.names.example, { detail, cancelable: true, bubbles: false }));
+    
+    // Dispatch a new custom event
+    // https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
+    events.example.dispatch = (detail) => document.dispatchEvent(new CustomEvent(events.example.name, { detail, cancelable: true, bubbles: false }));
+    
+    window.$myextension.events = events;
 })();

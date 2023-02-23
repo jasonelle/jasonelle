@@ -47,8 +47,9 @@
                 $agent.call("safari", url);
             };
             
+            // Event triggered by MyExtension.js
             document.addEventListener(
-              "com.jasonelle.myextension.event.example",
+              "$myextension.events.example",
               function(e) {
                 $logger.trace("Received Example Event: " + e.detail.message);
               }

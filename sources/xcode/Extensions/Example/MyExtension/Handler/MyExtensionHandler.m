@@ -34,15 +34,20 @@
     
     // Send an event to the hook if is present
     // this hook must be defined in main.js file
-    // in the hooks section
+    // in the hooks section:
+    // hooks = {
+    //    onExampleEvent(message) {
+    //        log(message);
+    //    },
+    // }
     // NOTE: main.js does not have webview access yet.
     JLJSParams * hook = [self.app.hooks get:@"onExampleEvent"];
     JLJSValue * func = hook.value;
     [func secureCallWith:ext.message];
     
-    // Trigger an event inside the webview
+    // Dispatch an event inside the webview
     [self.app.utils.webview
-     dispatch:@"window.$myextension.events.example"
+     dispatch:@"window.$myextension.events.example.dispatch"
      arguments: @{
         @"message": ext.message
      }

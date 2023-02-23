@@ -71,12 +71,14 @@ return [self injectIntoWebView:webView source:source withInjectionTime:WKUserScr
     
     // Injecting the document does not trigger at all. It must be injected before and then call the function here
     jlog_trace_join(@"Sending event: ", event, @" with args:", arguments);
-    [webView evaluateJavaScript:[NSString stringWithFormat:@"%@(%@)", event, [self.json encode:arguments]] completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+    // Ensure safety by using a function wrapper: (() => myfunc())();
+    [webView evaluateJavaScript:[NSString stringWithFormat:@"(() => %@(%@))();", event, [self.json encode:arguments]] completionHandler:^(id _Nullable result, NSError * _Nullable error) {
         result ? jlog_trace_join(@"Sent?: ", result) : nil;
         error ? jlog_warning(error.description) : nil;
     }];
     
     // TODO: For some reason this will not found the object
+    // maybe is too nested?
 //    [webView callAsyncJavaScript:event arguments:arguments inFrame:nil inContentWorld:[WKContentWorld defaultClientWorld] completionHandler:^(id _Nullable result, NSError * _Nullable error) {
 //    result ? jlog_trace_join(@"Sent?: ", result) : nil;
 //    error ? jlog_warning(error.description) : nil;
