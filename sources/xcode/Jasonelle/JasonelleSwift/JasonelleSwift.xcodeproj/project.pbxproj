@@ -14,7 +14,6 @@
 		EFD373B727B06AFA00D6F7CF /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD373B527B06AFA00D6F7CF /* Logger.swift */; };
 		EFD373B827B06AFA00D6F7CF /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD373B627B06AFA00D6F7CF /* Renderer.swift */; };
 		EFD373BD27B06B9500D6F7CF /* Jasonelle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD373BC27B06B9500D6F7CF /* Jasonelle.framework */; };
-		EFD373BE27B06B9500D6F7CF /* Jasonelle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFD373BC27B06B9500D6F7CF /* Jasonelle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,20 +25,6 @@
 			remoteInfo = JasonelleSwift;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		EFD373BF27B06B9500D6F7CF /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				EFD373BE27B06B9500D6F7CF /* Jasonelle.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		EFD3739B27B06AEE00D6F7CF /* JasonelleSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JasonelleSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,7 +125,6 @@
 				EFD3739727B06AEE00D6F7CF /* Sources */,
 				EFD3739827B06AEE00D6F7CF /* Frameworks */,
 				EFD3739927B06AEE00D6F7CF /* Resources */,
-				EFD373BF27B06B9500D6F7CF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
