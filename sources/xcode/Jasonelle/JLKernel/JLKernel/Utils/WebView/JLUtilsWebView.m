@@ -27,12 +27,15 @@
 
 @implementation JLUtilsWebView
 
-- (instancetype) initWithLogger:(id<JLLoggerProtocol>)logger andFileSystem: (JLUtilsFileSystem *) fs {
-self = [super initWithLogger:logger];
-if (self) {
-    self.fs = fs;
-}
-return self;
+- (instancetype) initWithLogger:(id<JLLoggerProtocol>)logger
+                           json:(nonnull JLUtilsJSON *)json
+                  andFileSystem: (JLUtilsFileSystem *) fs {
+    self = [super initWithLogger:logger];
+    if (self) {
+        self.json = json;
+        self.fs = fs;
+    }
+    return self;
 }
 
 - (WKWebView *) injectIntoWebView: (WKWebView *) webView source: (NSString *) source withInjectionTime: (WKUserScriptInjectionTime) injectionTime forMainFrameOnly: (BOOL) mainFrame {
@@ -62,6 +65,24 @@ return [self injectIntoWebView:webView source:source withInjectionTime:WKUserScr
 - (WKWebView *) inject: (id) object intoWebView: (WKWebView *) webView {
     NSString * js = [self.fs readJSFor:object];
     return [self injectIntoWebView:webView source:js];
+}
+
+- (WKWebView *) dispatch: (NSString *) event arguments: (NSDictionary<NSString*, id> *) arguments inWebView: (WKWebView *) webView {
+    
+    // Injecting the document does not trigger at all. It must be injected before and then call the function here
+    jlog_trace_join(@"Sending event: ", event, @" with args:", arguments);
+    [webView evaluateJavaScript:[NSString stringWithFormat:@"%@(%@)", event, [self.json encode:arguments]] completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        result ? jlog_trace_join(@"Sent?: ", result) : nil;
+        error ? jlog_warning(error.description) : nil;
+    }];
+    
+    // TODO: For some reason this will not found the object
+//    [webView callAsyncJavaScript:event arguments:arguments inFrame:nil inContentWorld:[WKContentWorld defaultClientWorld] completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+//    result ? jlog_trace_join(@"Sent?: ", result) : nil;
+//    error ? jlog_warning(error.description) : nil;
+//    }];
+    
+    return webView;
 }
 
 @end

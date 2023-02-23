@@ -9,5 +9,12 @@
     // });
     
     window.$myextension = {};
-    window.$myextension.run = () => $agent.trigger("$myextension.run", {});
+    window.$myextension.run = () => $agent.trigger("$myextension.run");
+    
+    window.$myextension.events = {
+        names: {
+            example: "com.jasonelle.myextension.event.example"
+        }
+    };
+    window.$myextension.events.example = (detail) => document.dispatchEvent(new CustomEvent(window.$myextension.events.names.example, { detail, cancelable: true, bubbles: false }));
 })();

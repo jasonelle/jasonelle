@@ -68,7 +68,7 @@
 
 - (JLUtilsWebView *) webview {
     if (!_webview) {
-        _webview = [[JLUtilsWebView alloc] initWithLogger:self.logger andFileSystem:self.fs];
+        _webview = [[JLUtilsWebView alloc] initWithLogger:self.logger json: self.json andFileSystem:self.fs];
     }
     return _webview;
 }

@@ -33,10 +33,13 @@ FOUNDATION_EXPORT const unsigned char MyExtensionVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <MyExtension/PublicHeader.h>
 #import <JLKernel/JLKernel.h>
+@import WebKit;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MyExtension : JLExtension
+
+@property (nonatomic, strong, nullable) WKWebView * webView;
 
 - (NSString *) message;
 

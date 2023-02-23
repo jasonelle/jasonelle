@@ -46,7 +46,7 @@ static JLApplication *_instance;
     return _version;
 }
 
-- (id) rootController {
+- (UIViewController *) rootController {
     
     // Sometimes is needed a root controller to show alerts in webviews (using SwiftUI)
     // so we use the first available controller

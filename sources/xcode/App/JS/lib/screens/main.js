@@ -73,7 +73,13 @@ class MainScreen extends Component {
 
     // Hooks are events that are triggered when something happens
     // in the app.
+    // TODO: Maybe add a way to call webview js functions from here
     hooks = {
+        // Custom event from MyExtension
+        //        onExampleEvent(message) {
+        //            log(message);
+        //        },
+
         /*************************************************************
         *
         ## Event Handlers Rule ver2.

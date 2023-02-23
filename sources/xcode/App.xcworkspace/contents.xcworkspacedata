@@ -30,6 +30,9 @@
    <Group
       location = "container:"
       name = "Extensions">
+      <FileRef
+         location = "group:Extensions/Example/MyExtension.xcodeproj">
+      </FileRef>
    </Group>
    <FileRef
       location = "container:App/App.xcodeproj">

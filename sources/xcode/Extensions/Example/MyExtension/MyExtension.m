@@ -50,15 +50,9 @@
     [super appDidLoadWithWebView:webView];
     
     // Install the wrappers inside the webview
+    self.webView = [self.app.utils.webview inject:self intoWebView:webView];
     
-    NSString * js = [self.app.utils.fs
-                     readJSFor:self];
-    
-    WKUserScript * script = [[WKUserScript alloc] initWithSource:js injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
-    
-    [webView.configuration.userContentController addUserScript: [script copy]];
-    
-    return webView;
+    return self.webView;
 }
 
 @end

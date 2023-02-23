@@ -9,6 +9,9 @@
         <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
         
         <script type="text/javascript">
+            window.traceFromMain = () => $logger.trace("I was called from Main.js!!!");
+        </script>
+        <script type="text/javascript">
             
             // Test Native Logger
             const log = () => {
@@ -43,6 +46,13 @@
             const safari = (url) => {
                 $agent.call("safari", url);
             };
+            
+            document.addEventListener(
+              "com.jasonelle.myextension.event.example",
+              function(e) {
+                $logger.trace("Received Example Event: " + e.detail.message);
+              }
+            );
             
         </script>
     </head>
@@ -128,6 +138,7 @@
                     <h3>Test Allowed URL (Open Browser)</h3>
                 </a>
             </li>
+            <li><h3 onClick="$myextension.run()">Test Example Extension</h3></li>
         </ul>
     </body>
 </html>

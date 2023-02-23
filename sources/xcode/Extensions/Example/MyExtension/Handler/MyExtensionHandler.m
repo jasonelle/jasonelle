@@ -31,6 +31,25 @@
 - (void)handleWithOptions:(nonnull JLJSMessageHandlerOptions *)options {
     MyExtension * ext = (MyExtension *) self.extension;
     jlog_trace(ext.message);
+    
+    // Send an event to the hook if is present
+    // this hook must be defined in main.js file
+    // in the hooks section
+    // NOTE: main.js does not have webview access yet.
+    JLJSParams * hook = [self.app.hooks get:@"onExampleEvent"];
+    JLJSValue * func = hook.value;
+    [func secureCallWith:ext.message];
+    
+    // Trigger an event inside the webview
+    [self.app.utils.webview
+     dispatch:@"window.$myextension.events.example"
+     arguments: @{
+        @"message": ext.message
+     }
+     inWebView:ext.webView
+    ];
+    
+    // Resolve the promise. Always must call self.resolve() or self.reject() at the end.
     self.resolve(ext.message);
 }
 

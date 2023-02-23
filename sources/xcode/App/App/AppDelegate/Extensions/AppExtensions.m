@@ -33,6 +33,7 @@
 //#import <JLKeychain/JLKeychain.h>
 //#import <JLCookies/JLCookies.h>
 //#import <JLContacts/JLContacts.h>
+#import <MyExtension/MyExtension.h>
 
 @implementation AppExtensions
 
@@ -66,6 +67,8 @@
 //
 //    // Add $contacts extension
 //    [self.extensions add:JLContacts.class];
+    
+    [self.extensions add:MyExtension.class];
     
     // Install all the extensions
     return [self.extensions install];

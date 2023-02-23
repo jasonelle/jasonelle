@@ -73,8 +73,8 @@ class Hooks {
         addAppDidEnterBackgroundHook()
         addAppWillEnterForegroundHook()
 
-        // TODO: Add a mechanism for user defined hooks
-        // that can be added by plugins
+        // Set the hooks in the app instance
+        App.instance.hooks = params
     }
 
     // MARK: - Public

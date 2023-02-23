@@ -39,10 +39,10 @@ FOUNDATION_EXPORT const unsigned char JasonelleVersionString[];
 // The Jasonelle Kernel semantic version number components.
 #define JASONELLE_VERSION_MAJOR 3
 #define JASONELLE_VERSION_MINOR 0
-#define JASONELLE_VERSION_PATCH 0
+#define JASONELLE_VERSION_PATCH 1
 
 // A human-friendly string representation of the version.
-#define JASONELLE_VERSION_STRING "3.0.0"
+#define JASONELLE_VERSION_STRING "3.0.1"
 
 // A monotonically increasing numeric representation of the version number. Use
 // this if you want to do range checks over versions.

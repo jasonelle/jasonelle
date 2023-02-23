@@ -37,6 +37,8 @@
 #import <JLKernel/JLApplicationUtils.h>
 #import <JLKernel/JLApplicationExtensions.h>
 
+@import UIKit;
+
 NS_ASSUME_NONNULL_BEGIN
 
 /// Main Application Container
@@ -48,9 +50,14 @@ NS_SWIFT_NAME(App)
 /// The rendering view created at app boot
 @property (nonatomic, strong, nonnull) id<JLRendererProtocol> renderer;
 
+/// The current environment
 @property (nonatomic, strong, nonnull) JLEnvironment * env;
 
-@property (nonatomic, strong, nullable) id rootController;
+/// The root view controller. Normally used for presenting other view controllers.
+@property (nonatomic, strong, nullable) UIViewController * rootController;
+
+/// Hooks used inside the webview's main.js. For usage in extensions
+@property (nonatomic, strong, nullable) JLJSParams * hooks;
 
 // Maybe this property can be a simple adapter for the real http
 //@property (nonatomic, strong, nonnull) JLApplicationHTTP * http;

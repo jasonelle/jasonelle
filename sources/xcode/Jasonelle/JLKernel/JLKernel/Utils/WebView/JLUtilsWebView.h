@@ -26,6 +26,7 @@
 
 #import <JLKernel/JLUtil.h>
 #import <JLKernel/JLUtilsFileSystem.h>
+#import <JLKernel/JLUtilsJSON.h>
 
 @import WebKit;
 
@@ -35,8 +36,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JLUtilsWebView : JLUtil
 
 @property (nonatomic, strong, nonnull) JLUtilsFileSystem * fs;
+@property (nonatomic, strong, nonnull) JLUtilsJSON * json;
 
-- (instancetype) initWithLogger:(id<JLLoggerProtocol>)logger andFileSystem: (JLUtilsFileSystem *) fs;
+- (instancetype) initWithLogger:(id<JLLoggerProtocol>)logger
+                           json: (JLUtilsJSON *) json
+                  andFileSystem: (JLUtilsFileSystem *) fs;
 
 /// Injects a string to the webview.
 - (WKWebView *) injectIntoWebView: (WKWebView *) webView source: (NSString *) source withInjectionTime: (WKUserScriptInjectionTime) injectionTime forMainFrameOnly: (BOOL) mainFrame;
@@ -49,6 +53,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Reads the "(Object.class)".js file and inject it to the webview. Using Mainframe with Done injection time.
 - (WKWebView *) inject: (id) object intoWebView: (WKWebView *) webView;
+
+/// Dispatch an event
+- (WKWebView *) dispatch: (NSString *) event arguments: (NSDictionary<NSString*, id> *) arguments inWebView: (WKWebView *) webView;
 @end
 
 NS_ASSUME_NONNULL_END

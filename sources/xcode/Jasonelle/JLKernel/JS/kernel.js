@@ -1,4 +1,4 @@
-// TODO: Add a wrapper to NSLocalizedString so it can be used in apps
+// TODO: Add http fetch or similar requests native bridge
 import App from "./app";
 import Logger from "./logger";
 
