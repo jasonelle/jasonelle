@@ -31,6 +31,24 @@
       location = "container:"
       name = "Extensions">
       <FileRef
+         location = "group:Extensions/JLATTrackingManager/JLATTrackingManager.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Extensions/JLApplicationBadge/JLApplicationBadge.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Extensions/JLPhotoLibrary/JLPhotoLibrary.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Extensions/JLKeychain/JLKeychain.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Extensions/JLCookies/JLCookies.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Extensions/JLContacts/JLContacts.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Extensions/Example/MyExtension.xcodeproj">
       </FileRef>
    </Group>

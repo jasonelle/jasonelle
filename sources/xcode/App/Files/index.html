@@ -111,6 +111,12 @@
                 <h3 onClick="prompt('Please enter your name', 'Ethan G.')">Prompt Example</h3>
             </li>
             <li>
+                <h3 onClick="$photolibrary.authorize().then(status => $logger.trace(status));">Request Photo Library Access</h3>
+            </li>
+            <li>
+                <h3 onClick="$photolibrary.granted().then(granted => alert(granted));">Check Photo Library Access</h3>
+            </li>
+            <li>
                 <h3>Example Image Picker</h3>
                 <input
                 id="imagePickerFileInput"

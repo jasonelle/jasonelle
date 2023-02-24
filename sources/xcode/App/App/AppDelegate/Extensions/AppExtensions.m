@@ -25,15 +25,17 @@
 
 #import "AppExtensions.h"
 
-// Add or uncomment the extensions used in the app.
+// First add the framework in the App.xcodeproj file then
+// Add or uncomment and configure the extensions here.
 // See more at https://jasonelle.com/docs/xcode/Extensions.html
+//
 //#import <JLATTrackingManager/JLATTrackingManager.h>
 //#import <JLApplicationBadge/JLApplicationBadge.h>
-//#import <JLPhotoLibrary/JLPhotoLibrary.h>
+#import <JLPhotoLibrary/JLPhotoLibrary.h>
 //#import <JLKeychain/JLKeychain.h>
 //#import <JLCookies/JLCookies.h>
 //#import <JLContacts/JLContacts.h>
-#import <MyExtension/MyExtension.h>
+//#import <MyExtension/MyExtension.h> // Example Extension
 
 @implementation AppExtensions
 
@@ -54,7 +56,7 @@
 //    [self.extensions add:JLATTrackingManager.class];
 //
 //    // Setup permissions in info.plist to access photos
-//    [self.extensions add:JLPhotoLibrary.class];
+    [self.extensions add:JLPhotoLibrary.class];
 //
 //    // Add $badge extension
 //    [self.extensions add:JLApplicationBadge.class];
@@ -67,8 +69,9 @@
 //
 //    // Add $contacts extension
 //    [self.extensions add:JLContacts.class];
-    
-    [self.extensions add:MyExtension.class];
+//
+//    // Add Example Extension
+//    [self.extensions add:MyExtension.class];
     
     // Install all the extensions
     return [self.extensions install];
