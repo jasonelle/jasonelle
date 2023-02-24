@@ -31,7 +31,7 @@
 //
 //#import <JLATTrackingManager/JLATTrackingManager.h>
 //#import <JLApplicationBadge/JLApplicationBadge.h>
-#import <JLPhotoLibrary/JLPhotoLibrary.h>
+//#import <JLPhotoLibrary/JLPhotoLibrary.h>
 //#import <JLKeychain/JLKeychain.h>
 //#import <JLCookies/JLCookies.h>
 //#import <JLContacts/JLContacts.h>
@@ -56,7 +56,7 @@
 //    [self.extensions add:JLATTrackingManager.class];
 //
 //    // Setup permissions in info.plist to access photos
-    [self.extensions add:JLPhotoLibrary.class];
+//    [self.extensions add:JLPhotoLibrary.class];
 //
 //    // Add $badge extension
 //    [self.extensions add:JLApplicationBadge.class];
