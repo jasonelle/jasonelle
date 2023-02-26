@@ -25,6 +25,7 @@
 //
 
 #import "JLExtension.h"
+#import "JLApplication.h"
 
 static NSString *NAMESPACE = @"com.jasonelle.app.extensions";
 
@@ -34,6 +35,7 @@ static NSString *NAMESPACE = @"com.jasonelle.app.extensions";
 @synthesize logger;
 @synthesize name = _name;
 @synthesize handlers = _handlers;
+@synthesize webview = _webview;
 
 - (NSDictionary *)handlers {
     if (!_handlers) {
@@ -58,6 +60,7 @@ static NSString *NAMESPACE = @"com.jasonelle.app.extensions";
 
 - (nonnull WKWebView *)appDidLoadWithWebView:(nonnull WKWebView *)webView {
     jlog_trace_join(@"Installing WebView Bridge: ", self.name);
+    self.webview = webView;
     return webView;
 }
 
@@ -85,6 +88,12 @@ static NSString *NAMESPACE = @"com.jasonelle.app.extensions";
     }
 
     return [newHandlers copy];
+}
+
+- (WKWebView *) injectJS {
+    // Install the wrappers inside the webview
+    self.webview = [self.app.utils.webview inject:self intoWebView:self.webview];
+    return self.webview;
 }
 
 #pragma mark - App Delegate Methods

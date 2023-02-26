@@ -2,6 +2,8 @@
 
 Provides methods to requesting [Photo Library](https://developer.apple.com/documentation/photokit/phphotolibrary) permissions
 
+- Since: `3.0.1`
+
 ## Overview
 
 It would be required if your app wants to access camera or photo library.

@@ -5,6 +5,7 @@ Request user authorization to access app-related data for tracking the user or t
 Ensure to configure the plist as well.
 If your app calls the App Tracking Transparency API, you must provide custom text, known as a usage-description string, which displays as a system-permission alert request. The usage-description string tells the user why the app is requesting permission to use data for tracking the user or the device.
 
+- Since: `3.0.1`
 
 ## Overview
 

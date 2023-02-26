@@ -2,6 +2,8 @@
 
 The Contacts extension provides APIs to access the user’s contact information. 
 
+- Since: `3.0.1`
+
 ## Overview
 
 An iOS app linked on or after iOS 10 needs to include in its `Info.plist` file the usage description keys for the types of data it needs to access or it crashes. To access Contacts data specifically, it needs to include `NSContactsUsageDescription`.

@@ -1,10 +1,10 @@
 # ``MyExtension``
 
-<!--@START_MENU_TOKEN@-->Summary<!--@END_MENU_TOKEN@-->
+An Example Extension
 
 ## Overview
 
-<!--@START_MENU_TOKEN@-->Text<!--@END_MENU_TOKEN@-->
+You can use this as a Template for your Own Extensions.
 
 ## Topics
 

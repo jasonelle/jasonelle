@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nonnull) NSString *name;
 @property (nonatomic, strong, nonnull) JLApplication *app;
 @property (nonatomic, strong, nonnull) id<JLLoggerProtocol> logger;
+@property (nonatomic, strong, nullable) WKWebView * webview;
 
 - (instancetype)initWithName:(NSString *)name
                       logger:(id<JLLoggerProtocol>)logger
@@ -81,6 +82,7 @@ didFailToRegisterForRemoteNotificationsWithError: (NSError *) error;
 - (nonnull NSDictionary *)installHandlers:(nonnull NSDictionary *)handlers;
 @end
 
+// TODO: Consider adding a configuration object to allow settings in AppDelegate's install lifecycle. Example : JLContactsConfig * contactsConfig = [JLContactsConfig new]; [self.extensions add:JLContacts.class with: contactsConfig];
 @interface JLExtension : NSObject<JLExtensionProtocol>
 
 /// Returns the namespace for the specific class name
@@ -88,6 +90,8 @@ didFailToRegisterForRemoteNotificationsWithError: (NSError *) error;
 
 /// Unique name with namespace added
 + (NSString *)name;
+
+- (WKWebView *) injectJS;
 
 @end
 

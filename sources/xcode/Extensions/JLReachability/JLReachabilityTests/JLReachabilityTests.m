@@ -1,9 +1,10 @@
 //
-//  MyExtension.h
-//  MyExtension
+//  JLReachabilityTests.m
+//  JLReachabilityTests
 //
-//  Created by clsource on 18-02-23.
-//  Copyright (c) 2023 Jasonelle.com
+//  Created by clsource on 26-02-23.
+//
+//  Copyright (c) Jasonelle.com
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
 //  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
@@ -23,24 +24,32 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-#import <Foundation/Foundation.h>
+#import <XCTest/XCTest.h>
 
-//! Project version number for MyExtension.
-FOUNDATION_EXPORT double MyExtensionVersionNumber;
-
-//! Project version string for MyExtension.
-FOUNDATION_EXPORT const unsigned char MyExtensionVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <MyExtension/PublicHeader.h>
-#import <JLKernel/JLKernel.h>
-@import WebKit;
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface MyExtension : JLExtension
-
-- (NSString *) message;
+@interface JLReachabilityTests : XCTestCase
 
 @end
 
-NS_ASSUME_NONNULL_END
+@implementation JLReachabilityTests
+
+- (void)setUp {
+    // Put setup code here. This method is called before the invocation of each test method in the class.
+}
+
+- (void)tearDown {
+    // Put teardown code here. This method is called after the invocation of each test method in the class.
+}
+
+- (void)testExample {
+    // This is an example of a functional test case.
+    // Use XCTAssert and related functions to verify your tests produce the correct results.
+}
+
+- (void)testPerformanceExample {
+    // This is an example of a performance test case.
+    [self measureBlock:^{
+        // Put the code you want to measure the time of here.
+    }];
+}
+
+@end

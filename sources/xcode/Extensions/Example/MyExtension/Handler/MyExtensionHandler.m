@@ -51,7 +51,7 @@
      arguments: @{
         @"message": ext.message
      }
-     inWebView:ext.webView
+     inWebView:ext.webview
     ];
     
     // Resolve the promise. Always must call self.resolve() or self.reject() at the end.

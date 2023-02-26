@@ -50,9 +50,7 @@
     [super appDidLoadWithWebView:webView];
     
     // Install the wrappers inside the webview
-    self.webView = [self.app.utils.webview inject:self intoWebView:webView];
-    
-    return self.webView;
+    return [self injectJS];
 }
 
 @end

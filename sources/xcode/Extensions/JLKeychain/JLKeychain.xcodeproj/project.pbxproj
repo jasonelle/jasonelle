@@ -98,8 +98,8 @@
 				EF2065DB297F4671001C27A6 /* WebViewMessageHandlers */,
 				EF2065C2297F016F001C27A6 /* JLKeychain.h */,
 				EF2065D9297F01BD001C27A6 /* JLKeychain.m */,
-				EF2065C3297F016F001C27A6 /* JLKeychain.docc */,
 				EFFB944129801EFD007BF935 /* JLKeychain.js */,
+				EF2065C3297F016F001C27A6 /* JLKeychain.docc */,
 			);
 			path = JLKeychain;
 			sourceTree = "<group>";

@@ -26,6 +26,10 @@
 		EF77097C28DF6CF600D28B89 /* JasonelleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD373C227B06BC500D6F7CF /* JasonelleSwift.framework */; };
 		EF77097D28DF6CF600D28B89 /* JasonelleSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFD373C227B06BC500D6F7CF /* JasonelleSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EF9E5397299F287400516842 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF9E5396299F287400516842 /* Launch Screen.storyboard */; };
+		EFA105D629ABB47E0005C2AC /* JLReachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA105D529ABB47E0005C2AC /* JLReachability.framework */; };
+		EFA105D729ABB47E0005C2AC /* JLReachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFA105D529ABB47E0005C2AC /* JLReachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EFA105D929ABB4D30005C2AC /* MyExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA105D829ABB4D30005C2AC /* MyExtension.framework */; };
+		EFA105DA29ABB4D30005C2AC /* MyExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFA105D829ABB4D30005C2AC /* MyExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EFAF61CB2806DB3C001B265B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAF61CA2806DB3C001B265B /* AppDelegate.m */; };
 		EFD65C5528C12966000350B1 /* Files in Resources */ = {isa = PBXBuildFile; fileRef = EFD65C5428C12966000350B1 /* Files */; };
 		EFE607392808B5D300C8146A /* _build in Resources */ = {isa = PBXBuildFile; fileRef = EFE607382808B5D300C8146A /* _build */; };
@@ -57,9 +61,11 @@
 			files = (
 				EF77097528DF6CAC00D28B89 /* Jasonelle.framework in Embed Frameworks */,
 				EF77096E28DF6CA800D28B89 /* WebViewRendererUI.framework in Embed Frameworks */,
+				EFA105DA29ABB4D30005C2AC /* MyExtension.framework in Embed Frameworks */,
 				EF77097328DF6CAB00D28B89 /* JLExtensions.framework in Embed Frameworks */,
 				EF77097128DF6CAA00D28B89 /* JLKernel.framework in Embed Frameworks */,
 				EF77097D28DF6CF600D28B89 /* JasonelleSwift.framework in Embed Frameworks */,
+				EFA105D729ABB47E0005C2AC /* JLReachability.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,6 +99,8 @@
 		EF83739D27A9973D00485E03 /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF8373CC27A9A06800485E03 /* Jasonelle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Jasonelle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF9E5396299F287400516842 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		EFA105D529ABB47E0005C2AC /* JLReachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLReachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFA105D829ABB4D30005C2AC /* MyExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MyExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFA6A1E9296F099900DA12D4 /* JLPhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFAF61C92806DB3C001B265B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EFAF61CA2806DB3C001B265B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -116,9 +124,11 @@
 			files = (
 				EF77097428DF6CAC00D28B89 /* Jasonelle.framework in Frameworks */,
 				EF77097228DF6CAB00D28B89 /* JLExtensions.framework in Frameworks */,
+				EFA105D929ABB4D30005C2AC /* MyExtension.framework in Frameworks */,
 				EF77096D28DF6CA800D28B89 /* WebViewRendererUI.framework in Frameworks */,
 				EF77097028DF6CAA00D28B89 /* JLKernel.framework in Frameworks */,
 				EF77097C28DF6CF600D28B89 /* JasonelleSwift.framework in Frameworks */,
+				EFA105D629ABB47E0005C2AC /* JLReachability.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +227,8 @@
 		EF83737227A9939B00485E03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EFA105D829ABB4D30005C2AC /* MyExtension.framework */,
+				EFA105D529ABB47E0005C2AC /* JLReachability.framework */,
 				EFC3F40B29A911ED00574259 /* JLPhotoLibrary.framework */,
 				EF5C51EE29A6FBF3005560B0 /* MyExtension.framework */,
 				EF0825BC29A12D4100C157FD /* MyExtension.framework */,

@@ -6,7 +6,7 @@
         
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         
-        <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+        <link rel="stylesheet" href="style.css" type="text/css">
         
         <script type="text/javascript">
             window.traceFromMain = () => $logger.trace("I was called from Main.js!!!");
@@ -54,6 +54,10 @@
                 $logger.trace("Received Example Event: " + e.detail.message);
               }
             );
+            
+            document.addEventListener("$reachability.events.changed", function(e) {
+                $logger.trace("Reachability Changed: " + JSON.stringify(e.detail));
+            })
             
         </script>
     </head>
@@ -146,6 +150,7 @@
                 </a>
             </li>
             <li><h3 onClick="$myextension.run()">Test Example Extension</h3></li>
+            <li><h3 onClick="$reachability.get().then(result => alert(result.label));">Check Reachability</h3>
         </ul>
     </body>
 </html>

@@ -1,9 +1,10 @@
 //
-//  MyExtension.h
-//  MyExtension
+//  JLReachability.h
+//  JLReachability
 //
-//  Created by clsource on 18-02-23.
-//  Copyright (c) 2023 Jasonelle.com
+//  Created by clsource on 26-02-23.
+//
+//  Copyright (c) Jasonelle.com
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
 //  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
@@ -24,23 +25,25 @@
 //
 
 #import <Foundation/Foundation.h>
-
-//! Project version number for MyExtension.
-FOUNDATION_EXPORT double MyExtensionVersionNumber;
-
-//! Project version string for MyExtension.
-FOUNDATION_EXPORT const unsigned char MyExtensionVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <MyExtension/PublicHeader.h>
 #import <JLKernel/JLKernel.h>
-@import WebKit;
+#import <JLReachability/TonyReachability.h>
 
-NS_ASSUME_NONNULL_BEGIN
+//! Project version number for JLReachability.
+FOUNDATION_EXPORT double JLReachabilityVersionNumber;
 
-@interface MyExtension : JLExtension
+//! Project version string for JLReachability.
+FOUNDATION_EXPORT const unsigned char JLReachabilityVersionString[];
 
-- (NSString *) message;
+// In this header, you should import all the public headers of your framework using statements like #import <JLReachability/PublicHeader.h>
 
+@interface JLReachability : JLExtension
+
+/// Returns the reachbility object
+@property (nonatomic, strong, nonnull) TonyReachability * reach;
+
+@property (nonatomic, strong, nonnull) NSString * label;
+@property (nonatomic, strong, nonnull) NSNumber * status;
+@property (nonatomic, strong, nonnull) NSNumber * reachable;
+
+// TODO: Maybe in the future allow other kinds of reachabilities. Like for a specific Hostname in the configuration.
 @end
-
-NS_ASSUME_NONNULL_END

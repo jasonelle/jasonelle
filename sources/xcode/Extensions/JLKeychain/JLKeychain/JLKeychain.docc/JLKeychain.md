@@ -2,6 +2,8 @@
 
 Keychain extension allows storing values inside [_iOS Keychain_](https://developer.apple.com/documentation/security/keychain_services?language=objc)
 
+- Since: `3.0.1`
+
 ## Overview
 
 Keychain is made as a key - value secure storage.

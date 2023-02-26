@@ -34,6 +34,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Added event triggering in webview for extensions.
 
+- Added _Reachability_ Events Extension.
+
 ### Fixed
 
 - `WKWebView` triggered `appdidLoad` event more than once. Now it only triggers the event when loaded.

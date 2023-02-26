@@ -1,9 +1,10 @@
 //
-//  MyExtension.h
-//  MyExtension
+//  JLReachabilityGetMessageHandler.m
+//  JLReachability
 //
-//  Created by clsource on 18-02-23.
-//  Copyright (c) 2023 Jasonelle.com
+//  Created by clsource on 26-02-23.
+//
+//  Copyright (c) Jasonelle.com
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
 //  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
@@ -23,24 +24,22 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-#import <Foundation/Foundation.h>
+#import "JLReachabilityGetMessageHandler.h"
+#import "JLReachability.h"
 
-//! Project version number for MyExtension.
-FOUNDATION_EXPORT double MyExtensionVersionNumber;
-
-//! Project version string for MyExtension.
-FOUNDATION_EXPORT const unsigned char MyExtensionVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <MyExtension/PublicHeader.h>
-#import <JLKernel/JLKernel.h>
-@import WebKit;
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface MyExtension : JLExtension
-
-- (NSString *) message;
-
+@implementation JLReachabilityGetMessageHandler
+- (void)handleWithOptions:(nonnull JLJSMessageHandlerOptions *)options {
+    
+    JLReachability * reachability = (JLReachability *) self.extension;
+    
+    NSDictionary * result = @{
+        @"status": reachability.status,
+        @"reachable": reachability.reachable,
+        @"label": reachability.label
+    };
+    
+    jlog_global_trace_join(@"$reachability.get", result);
+    
+    self.resolve(result);
+}
 @end
-
-NS_ASSUME_NONNULL_END

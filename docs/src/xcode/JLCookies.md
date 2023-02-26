@@ -2,6 +2,8 @@
 
 A helper to work with the `WebView` cookies.
 
+- Since: `3.0.1`
+
 ## Overview
 
 Requires [`$keychain`](JLKeychain.html) extension.
