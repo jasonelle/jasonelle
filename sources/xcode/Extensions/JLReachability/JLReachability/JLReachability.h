@@ -46,4 +46,7 @@ FOUNDATION_EXPORT const unsigned char JLReachabilityVersionString[];
 @property (nonatomic, strong, nonnull) NSNumber * reachable;
 
 // TODO: Maybe in the future allow other kinds of reachabilities. Like for a specific Hostname in the configuration.
+
+- (nonnull NSDictionary *) result;
+
 @end

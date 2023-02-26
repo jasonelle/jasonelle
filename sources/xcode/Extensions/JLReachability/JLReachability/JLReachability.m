@@ -51,26 +51,25 @@ NSString * const kJLReachabilityEvent = @"window.$reachability.events.changed.di
     {
         jlog_trace(@"Reachable?: YES");
         jlog_trace_join(@"Reachability Status: ", [reach currentReachabilityString]);
-                        
+         
+        self.status = @([reach currentReachabilityStatus]);
+        self.label = [reach currentReachabilityString];
+        self.reachable = @([reach isReachable]);
+        
         // Only triggers the dom events when webview is loaded
         if (!self.webview) {
             return;
         }
-        
-        self.status = @([reach currentReachabilityStatus]);
-        self.label = [reach currentReachabilityString];
-        self.reachable = @([reach isReachable]);
         
         // keep in mind this is called on a background thread
         // and if you are updating the UI it needs to happen
         // on the main thread, like this:
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.app.utils.webview dispatch:kJLReachabilityEvent arguments:@{
-                @"status": self.status,
-                @"reachable": self.reachable,
-                @"label": self.label
-            } inWebView:self.webview];
+            [self.app.utils.webview
+             dispatch:kJLReachabilityEvent
+             arguments:self.result
+             inWebView:self.webview];
         });
     };
 
@@ -88,11 +87,10 @@ NSString * const kJLReachabilityEvent = @"window.$reachability.events.changed.di
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.app.utils.webview dispatch:kJLReachabilityEvent arguments:@{
-                @"status" : self.status,
-                @"reachable": self.reachable,
-                @"label": self.label
-            } inWebView:self.webview];
+            [self.app.utils.webview
+             dispatch:kJLReachabilityEvent
+             arguments:self.result
+             inWebView:self.webview];
         });
     };
     
@@ -110,6 +108,14 @@ NSString * const kJLReachabilityEvent = @"window.$reachability.events.changed.di
     
     // Install the wrappers inside the webview
     return [self injectJS];
+}
+
+- (NSDictionary *) result {
+    return @{
+        @"status": self.status,
+        @"reachable": self.reachable,
+        @"label": self.label
+    };
 }
 
 @end

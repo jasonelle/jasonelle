@@ -32,12 +32,7 @@
     
     JLReachability * reachability = (JLReachability *) self.extension;
     
-    NSDictionary * result = @{
-        @"status": reachability.status,
-        @"reachable": reachability.reachable,
-        @"label": reachability.label
-    };
-    
+    NSDictionary * result = [reachability result];
     jlog_global_trace_join(@"$reachability.get", result);
     
     self.resolve(result);
