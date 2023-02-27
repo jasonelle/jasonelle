@@ -15,11 +15,11 @@
 		EFA105C429AB926B0005C2AC /* TonyReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = EFA105C229AB926B0005C2AC /* TonyReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFA105C529AB926B0005C2AC /* TonyReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA105C329AB926B0005C2AC /* TonyReachability.m */; };
 		EFA105CD29AB95560005C2AC /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA105CC29AB95560005C2AC /* JLKernel.framework */; };
-		EFA105CF29AB955C0005C2AC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA105C729AB94AC0005C2AC /* SystemConfiguration.framework */; };
-		EFA105D029AB955C0005C2AC /* SystemConfiguration.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFA105C729AB94AC0005C2AC /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		EFA105D429AB9A520005C2AC /* JLReachability.js in Resources */ = {isa = PBXBuildFile; fileRef = EFA105D329AB9A520005C2AC /* JLReachability.js */; };
 		EFA105DD29ABEECD0005C2AC /* JLReachabilityGetMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EFA105DB29ABEECD0005C2AC /* JLReachabilityGetMessageHandler.h */; };
 		EFA105DE29ABEECD0005C2AC /* JLReachabilityGetMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA105DC29ABEECD0005C2AC /* JLReachabilityGetMessageHandler.m */; };
+		EFF2728229ACE90100253E45 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF2727C29ACE86C00253E45 /* SystemConfiguration.framework */; };
+		EFF2728329ACE90100253E45 /* SystemConfiguration.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFF2727C29ACE86C00253E45 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,13 +33,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		EFA105D129AB955D0005C2AC /* Embed Frameworks */ = {
+		EFF2728429ACE90100253E45 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				EFA105D029AB955C0005C2AC /* SystemConfiguration.framework in Embed Frameworks */,
+				EFF2728329ACE90100253E45 /* SystemConfiguration.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,6 +60,7 @@
 		EFA105D329AB9A520005C2AC /* JLReachability.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = JLReachability.js; sourceTree = "<group>"; };
 		EFA105DB29ABEECD0005C2AC /* JLReachabilityGetMessageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLReachabilityGetMessageHandler.h; sourceTree = "<group>"; };
 		EFA105DC29ABEECD0005C2AC /* JLReachabilityGetMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLReachabilityGetMessageHandler.m; sourceTree = "<group>"; };
+		EFF2727C29ACE86C00253E45 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFA105CF29AB955C0005C2AC /* SystemConfiguration.framework in Frameworks */,
+				EFF2728229ACE90100253E45 /* SystemConfiguration.framework in Frameworks */,
 				EFA105CD29AB95560005C2AC /* JLKernel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -126,6 +127,7 @@
 		EFA105C629AB94AB0005C2AC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EFF2727C29ACE86C00253E45 /* SystemConfiguration.framework */,
 				EFA105CC29AB95560005C2AC /* JLKernel.framework */,
 				EFA105C729AB94AC0005C2AC /* SystemConfiguration.framework */,
 			);
@@ -174,7 +176,7 @@
 				EFA105A229AB91D30005C2AC /* Sources */,
 				EFA105A329AB91D30005C2AC /* Frameworks */,
 				EFA105A429AB91D30005C2AC /* Resources */,
-				EFA105D129AB955D0005C2AC /* Embed Frameworks */,
+				EFF2728429ACE90100253E45 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -427,6 +429,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLReachability;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -453,6 +456,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLReachability;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
