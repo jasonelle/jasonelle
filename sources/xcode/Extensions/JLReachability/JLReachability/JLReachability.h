@@ -47,6 +47,14 @@ FOUNDATION_EXPORT const unsigned char JLReachabilityVersionString[];
 
 // TODO: Maybe in the future allow other kinds of reachabilities. Like for a specific Hostname in the configuration.
 
+// NOTE: System Configuration is Available in iOS and Mac Catalyst
+// But, Mac Catalyst have the problem to be linked to the MacOS framework
+// This means that if the user have a newer MacOS then it will try to look
+// For the older MacOS Framework causing build problems.
+// Is best to leave SystemConfiguration.framework without Mac Catalyst for now
+// until a way to not depend on the MacOS version.
+// Otherwise it would require to manually add the SystemConfiguration framework for each user.
+
 - (nonnull NSDictionary *) result;
 
 @end
