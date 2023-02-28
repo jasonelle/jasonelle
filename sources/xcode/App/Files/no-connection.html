@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>No Connection</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        
+        <script type="text/javascript">
+            document.addEventListener("$reachability.events.changed", function(e) {
+                $logger.trace("Reachability Changed: " + JSON.stringify(e.detail));
+                if (e.detail.reachable) {
+                  history.back();
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <h1 style="text-align:center">No Connection</h1>
+    </body>
+</html>
