@@ -18,8 +18,6 @@
 		EFA105D429AB9A520005C2AC /* JLReachability.js in Resources */ = {isa = PBXBuildFile; fileRef = EFA105D329AB9A520005C2AC /* JLReachability.js */; };
 		EFA105DD29ABEECD0005C2AC /* JLReachabilityGetMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EFA105DB29ABEECD0005C2AC /* JLReachabilityGetMessageHandler.h */; };
 		EFA105DE29ABEECD0005C2AC /* JLReachabilityGetMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA105DC29ABEECD0005C2AC /* JLReachabilityGetMessageHandler.m */; };
-		EFF2728229ACE90100253E45 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF2727C29ACE86C00253E45 /* SystemConfiguration.framework */; };
-		EFF2728329ACE90100253E45 /* SystemConfiguration.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFF2727C29ACE86C00253E45 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,20 +29,6 @@
 			remoteInfo = JLReachability;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		EFF2728429ACE90100253E45 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				EFF2728329ACE90100253E45 /* SystemConfiguration.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		EFA105A629AB91D30005C2AC /* JLReachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JLReachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,7 +52,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFF2728229ACE90100253E45 /* SystemConfiguration.framework in Frameworks */,
 				EFA105CD29AB95560005C2AC /* JLKernel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,7 +159,6 @@
 				EFA105A229AB91D30005C2AC /* Sources */,
 				EFA105A329AB91D30005C2AC /* Frameworks */,
 				EFA105A429AB91D30005C2AC /* Resources */,
-				EFF2728429ACE90100253E45 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -429,7 +411,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLReachability;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -456,7 +438,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLReachability;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
