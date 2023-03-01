@@ -1,10 +1,9 @@
 //
-//  Parser.swift
-//  WebViewRendererUI
+//  JLEventReachabilityDidChange.h
+//  JLKernel
 //
-//  Created by clsource on 24-04-22
-//
-//  Copyright (c) 2022 Jasonelle.com
+//  Created by clsource on 01-03-23.
+//  Copyright © Jasonelle.com. All rights reserved.
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
 //  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
@@ -24,42 +23,22 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-import Foundation
-import Jasonelle
-import JLKernel
+#import <JLKernel/JLKernel.h>
 
-// Params for the Main Component
-class Params {
-    let params: JLJSParams
-    let app: Jasonelle.App
+NS_ASSUME_NONNULL_BEGIN
 
-    init(app: Jasonelle.App, params: JLJSParams) {
-        self.app = app
-        self.params = params
-    }
+@protocol JLReachabilityNotificationObject <NSObject>
 
-    func hooks() -> Hooks {
-        return Hooks(app.events, params: params.get("hooks"))
-    }
+- (NSUInteger) currentReachabilityStatus;
+- (NSString *) currentReachabilityString;
+- (BOOL) isReachable;
 
-    func actions(context: JSContext) -> Actions {
-        let contx = JLJSContext(context: context, andLogger: app.logger)
-        return Actions(context: contx, params: params.get("actions"))
-    }
+@end
 
-    func url() -> String {
-        return params.string("url", default: "about:blank")!
-    }
-    
-    func fallback() -> String {
-        return params.string("fallback", default: "res://no-connection.html")!
-    }
+@interface JLEventReachabilityDidChange : JLEvent
 
-    func components() -> Components {
-        return Components(app, params: params.get("components"))
-    }
+- (void) triggerNoConnectionEvent;
 
-    func style() -> Style {
-        return Style(params.get("style"))
-    }
-}
+@end
+
+NS_ASSUME_NONNULL_END

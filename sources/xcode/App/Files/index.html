@@ -55,12 +55,6 @@
               }
             );
             
-            // Event triggered by JLReachability Extension
-            document.addEventListener("$reachability.events.changed", function(e) {
-                $logger.trace("Reachability Changed: " + JSON.stringify(e.detail));
-                window.location.href = "no-connection.html";
-            });
-            
         </script>
     </head>
     <body>

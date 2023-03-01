@@ -151,6 +151,22 @@
     return webView;
 }
 
+- (void) webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    jlog_warning_join(@"Webview Did Fail Navigation: ", error.description);
+    
+    JLEventReachabilityDidChange * event = (JLEventReachabilityDidChange *)[self.app.events get:JLEventReachabilityDidChange.class];
+    
+    [event triggerNoConnectionEvent];
+}
+
+- (void) webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    
+    jlog_warning_join(@"Webview Did Fail Provisional Navigation: ", error.description);
+    JLEventReachabilityDidChange * event = (JLEventReachabilityDidChange *)[self.app.events get:JLEventReachabilityDidChange.class];
+    
+    [event triggerNoConnectionEvent];
+}
+
 /// Injects JS files after the website is shown
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     // Don't evaluate if about:blank

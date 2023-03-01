@@ -17,8 +17,12 @@ const log = (message) => {
     Logger.trace(message, { source: "main.js", console: true });
 };
 
+const HOME_URL = "res://index.html";
+
 class MainScreen extends Component {
-    url = "res://index.html";
+    url = HOME_URL;
+    fallback = "res://no-connection.html";
+
     style = {
         bounces: true,
     };
@@ -66,8 +70,9 @@ class MainScreen extends Component {
             openURL.app(url);
             return true;
         },
-        res: function(resource) {
-            return;
+        home: function() {
+            log("Returning " + HOME_URL);
+            return HOME_URL;
         },
     };
 

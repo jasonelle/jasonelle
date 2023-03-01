@@ -193,8 +193,19 @@ class WebViewModel: ObservableObject {
         app?.config.params = loader?.config.params
         
         app?.events.addListener(self, with: #selector(didReceiveHrefDeepLinkNotification(_:)), for: JLEventDidReceiveOpenURL.self)
+        
+        app?.events.addListener(self, with: #selector(didChangeReachability(_:)), for: JLEventReachabilityDidChange.self)
     }
         
+    
+    @objc
+    func didChangeReachability(_ notification: Notification) {
+        let data = notification.userInfo?["data"] as? Dictionary<String, Any>
+        if data?["reachable"] as! Bool == false {
+            load((loader?.params.fallback())!)
+        }
+    }
+    
     @objc
     func didReceiveHrefDeepLinkNotification(_ notification: Notification) {
         

@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray<JLEvent *> *) remove: (NSString *) name;
 - (NSArray<JLEvent *> *) removeEvent: (JLEvent *) event;
 - (nullable JLEvent *) eventFor: (Class) eventClass;
+- (nullable JLEvent *) get: (Class) eventClass;
 
 - (void) addListener: (id) object with: (SEL) target for: (Class) eventClass;
 

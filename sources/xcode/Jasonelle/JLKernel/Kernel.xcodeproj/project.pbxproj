@@ -73,6 +73,8 @@
 		EF9A8869280F0A5100778F0C /* JLNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9A8867280F0A5100778F0C /* JLNotificationCenter.m */; };
 		EFA09ED729A2373700E3C9A4 /* JLUtilsWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = EFA09ED529A2373700E3C9A4 /* JLUtilsWebView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFA09ED829A2373700E3C9A4 /* JLUtilsWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA09ED629A2373700E3C9A4 /* JLUtilsWebView.m */; };
+		EFADD27C29AF80BD00D19D4B /* JLEventReachabilityDidChange.h in Headers */ = {isa = PBXBuildFile; fileRef = EFADD27A29AF80BD00D19D4B /* JLEventReachabilityDidChange.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFADD27D29AF80BD00D19D4B /* JLEventReachabilityDidChange.m in Sources */ = {isa = PBXBuildFile; fileRef = EFADD27B29AF80BD00D19D4B /* JLEventReachabilityDidChange.m */; };
 		EFB31401281D6BA2003737B0 /* JLJSBridgei18n.h in Headers */ = {isa = PBXBuildFile; fileRef = EFB313FF281D6BA2003737B0 /* JLJSBridgei18n.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFB31402281D6BA2003737B0 /* JLJSBridgei18n.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB31400281D6BA2003737B0 /* JLJSBridgei18n.m */; };
 		EFB31406281D956E003737B0 /* JLEventAppDidLoad.h in Headers */ = {isa = PBXBuildFile; fileRef = EFB31404281D956E003737B0 /* JLEventAppDidLoad.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -196,6 +198,8 @@
 		EF9A8867280F0A5100778F0C /* JLNotificationCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLNotificationCenter.m; sourceTree = "<group>"; };
 		EFA09ED529A2373700E3C9A4 /* JLUtilsWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLUtilsWebView.h; sourceTree = "<group>"; };
 		EFA09ED629A2373700E3C9A4 /* JLUtilsWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLUtilsWebView.m; sourceTree = "<group>"; };
+		EFADD27A29AF80BD00D19D4B /* JLEventReachabilityDidChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLEventReachabilityDidChange.h; sourceTree = "<group>"; };
+		EFADD27B29AF80BD00D19D4B /* JLEventReachabilityDidChange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLEventReachabilityDidChange.m; sourceTree = "<group>"; };
 		EFB313FF281D6BA2003737B0 /* JLJSBridgei18n.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSBridgei18n.h; sourceTree = "<group>"; };
 		EFB31400281D6BA2003737B0 /* JLJSBridgei18n.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSBridgei18n.m; sourceTree = "<group>"; };
 		EFB31404281D956E003737B0 /* JLEventAppDidLoad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLEventAppDidLoad.h; sourceTree = "<group>"; };
@@ -452,6 +456,7 @@
 				EFE51B42281ECB3300DA0C53 /* ViewDidAppear */,
 				EFE51B47281ECB5900DA0C53 /* ViewDidDisappear */,
 				EFE51B51281F01F400DA0C53 /* AppDidReceiveOpenURL */,
+				EFADD27E29AF80C300D19D4B /* ReachabilityDidChange */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -602,6 +607,15 @@
 				EFA09ED629A2373700E3C9A4 /* JLUtilsWebView.m */,
 			);
 			path = WebView;
+			sourceTree = "<group>";
+		};
+		EFADD27E29AF80C300D19D4B /* ReachabilityDidChange */ = {
+			isa = PBXGroup;
+			children = (
+				EFADD27A29AF80BD00D19D4B /* JLEventReachabilityDidChange.h */,
+				EFADD27B29AF80BD00D19D4B /* JLEventReachabilityDidChange.m */,
+			);
+			path = ReachabilityDidChange;
 			sourceTree = "<group>";
 		};
 		EFB31403281D6BA7003737B0 /* i18n */ = {
@@ -889,6 +903,7 @@
 				EF96866628316B5E006C623F /* JLJSMessageHandlers.h in Headers */,
 				EF47FEA32824E31F006E2B9B /* JLExtension.h in Headers */,
 				EFC24261297F86230087AAA1 /* JLJSMessageHandlerOptions.h in Headers */,
+				EFADD27C29AF80BD00D19D4B /* JLEventReachabilityDidChange.h in Headers */,
 				EF968669283186FE006C623F /* JLWebViewMessageHandlerProtocol.h in Headers */,
 				EF83739027A996C500485E03 /* JLKernel.h in Headers */,
 				EF96866C2831D5CA006C623F /* JLJSLoggerMessageHandler.h in Headers */,
@@ -1020,6 +1035,7 @@
 				EF61714C27AACC3D007B929C /* JLLogLevel.m in Sources */,
 				EF348F3727AC25C90095E0FB /* JLProcess.m in Sources */,
 				EFA09ED829A2373700E3C9A4 /* JLUtilsWebView.m in Sources */,
+				EFADD27D29AF80BD00D19D4B /* JLEventReachabilityDidChange.m in Sources */,
 				EF96866728316B5E006C623F /* JLJSMessageHandlers.m in Sources */,
 				EF3F88FF28098A7500777B7E /* JLJSConfig.m in Sources */,
 				EF945E952811A3DB0085380D /* JLJSPolyfillCrypto.m in Sources */,

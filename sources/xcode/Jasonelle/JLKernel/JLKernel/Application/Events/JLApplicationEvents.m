@@ -63,8 +63,12 @@
     return [self.registry allValues];
 }
 
-// TODO: rename as 'get'
+// Deprecated, use get.
 - (JLEvent *)eventFor:(Class)eventClass {
+    return [self get:eventClass];
+}
+
+- (JLEvent *)get:(Class)eventClass {
     return self.registry[[JLEvent namespaceForClass:eventClass]];
 }
 

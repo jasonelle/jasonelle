@@ -36,6 +36,9 @@ NSString * const kJLReachabilityEvent = @"window.$reachability.events.changed.di
 - (void) install {
     [super install];
     
+    // Listen to Reachability Changes in NSNotificationCenter
+    [self.app.events add:[[JLEventReachabilityDidChange alloc] initWithCenter:self.app.notifications andLogger:self.logger]];
+    
     // See docs at https://github.com/tonymillion/Reachability
     // Allocate a reachability object
     TonyReachability * reach = [TonyReachability reachabilityForInternetConnection];
@@ -55,6 +58,8 @@ NSString * const kJLReachabilityEvent = @"window.$reachability.events.changed.di
         self.status = @([reach currentReachabilityStatus]);
         self.label = [reach currentReachabilityString];
         self.reachable = @([reach isReachable]);
+        
+        
         
         // Only triggers the dom events when webview is loaded
         if (!self.webview) {

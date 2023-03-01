@@ -75,6 +75,7 @@ FOUNDATION_EXPORT const unsigned char JLKernelVersionString[];
 #import <JLKernel/JLEventViewDidAppear.h>
 #import <JLKernel/JLEventViewDidDisappear.h>
 #import <JLKernel/JLEventDidReceiveOpenURL.h>
+#import <JLKernel/JLEventReachabilityDidChange.h>
 
 // Networking
 #import <JLKernel/JLHTTPAdapterProtocol.h>

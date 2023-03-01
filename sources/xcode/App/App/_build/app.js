@@ -1798,10 +1798,12 @@
   var log = (message) => {
     logger_default.trace(message, { source: "main.js", console: true });
   };
+  var HOME_URL = "res://index.html";
   var MainScreen = class extends component_default {
     constructor() {
       super(...arguments);
-      __publicField(this, "url", "res://index.html");
+      __publicField(this, "url", HOME_URL);
+      __publicField(this, "fallback", "res://no-connection.html");
       __publicField(this, "style", {
         bounces: true
       });
@@ -1832,8 +1834,9 @@
           openurl_default.app(url);
           return true;
         },
-        res: function(resource) {
-          return;
+        home: function() {
+          log("Returning " + HOME_URL);
+          return HOME_URL;
         }
       });
       __publicField(this, "hooks", {
