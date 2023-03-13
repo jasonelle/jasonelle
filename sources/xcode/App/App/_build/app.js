@@ -1807,7 +1807,23 @@
       __publicField(this, "style", {
         bounces: true
       });
-      __publicField(this, "components", {});
+      __publicField(this, "components", {
+        pull: {
+          title: i18n_default("main.pull.title", "Pull to Refresh"),
+          hidden: false,
+          style: {
+            color: Paint("blue"),
+            tint: Paint("orange")
+          },
+          options: {},
+          hooks: {
+            onPull(event) {
+              log(event);
+              log("Pulled Event");
+            }
+          }
+        }
+      });
       __publicField(this, "actions", {
         hello: function(params = {}) {
           log("Hello World Action " + JSON.stringify(params));

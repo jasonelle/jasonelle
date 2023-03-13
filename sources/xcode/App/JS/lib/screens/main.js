@@ -33,7 +33,7 @@ class MainScreen extends Component {
         /*
         pull: {
             title: _t("main.pull.title", "Pull to Refresh"),
-            hidden: true,
+            hidden: false,
             style: {
                 color: Paint("blue"),
                 tint: Paint("orange"),
@@ -49,7 +49,7 @@ class MainScreen extends Component {
                 },
             },
         },
-        /*/
+        // */
     };
 
     //    headers = {};
