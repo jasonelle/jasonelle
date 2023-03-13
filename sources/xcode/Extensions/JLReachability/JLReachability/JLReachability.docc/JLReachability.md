@@ -10,6 +10,10 @@ Sends a notification event inside the _WebView_ and _NSNotificationCenter_.
 
 ## Topics
 
+### Configuration
+
+Be sure to add [**SystemConfiguration.framework**](https://developer.apple.com/documentation/systemconfiguration?language=objc) in _Bundle Without Signing mode_.
+
 ### Status
 
 ```js

@@ -54,6 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
                       andLogger: (id<JLLoggerProtocol>) logger;
 - (void) install;
 - (void) uninstall;
+- (void) triggerWithObject: (nullable id) object;
 - (void) triggerWithParams: (nullable id) params;
 - (void) trigger;
 - (void) triggerOnce;

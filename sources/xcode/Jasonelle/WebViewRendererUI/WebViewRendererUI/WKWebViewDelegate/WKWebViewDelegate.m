@@ -154,6 +154,7 @@
 - (void) webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     jlog_warning_join(@"Webview Did Fail Navigation: ", error.description);
     
+    // TODO: Check error. Maybe some are not connection lost type errors.
     JLEventReachabilityDidChange * event = (JLEventReachabilityDidChange *)[self.app.events get:JLEventReachabilityDidChange.class];
     
     [event triggerNoConnectionEvent];
@@ -219,6 +220,9 @@
 
 #pragma mark - JS Alert Prompts
 
+// TODO: Allow for more type of alerts. For example an Alert to Go Settings or Rate the App.
+// This can be done by passing a json encoded string in the message.
+// Maybe add a method in $agent to trigger an alert with JSON object
 - (void) webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
     
     jlog_global_trace(@"Webview UI: JS Alert Panel Called");

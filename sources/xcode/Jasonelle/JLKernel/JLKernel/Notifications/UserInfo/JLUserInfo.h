@@ -41,6 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSDictionary *) withName: (NSString *) name;
 + (NSDictionary *) withName: (NSString *) name andData: (NSDictionary *) data;
++ (NSDictionary *) withName: (NSString *)name andParams: (NSDictionary *) params;
++ (NSDictionary *) withName: (NSString *)name andClass: (Class) klass;
 
 @end
 

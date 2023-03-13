@@ -59,4 +59,11 @@
     return [[[self alloc] initWithName:name] build];
 }
 
++ (NSDictionary *) withName: (NSString *)name andParams: (NSDictionary *) params {
+    return [self withName:name andData:@{@"data": params}];
+}
+
++ (NSDictionary *) withName: (NSString *)name andClass: (Class) klass {
+    return [self withName:name andParams:@{@"class": NSStringFromClass(klass)}];
+}
 @end

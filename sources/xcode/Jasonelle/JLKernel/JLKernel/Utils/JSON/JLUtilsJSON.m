@@ -74,4 +74,47 @@
     return json;
 }
 
+- (BOOL) isValid:(NSString *)string {
+    NSError *error;
+
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+
+    id json;
+
+    if (@available(iOS 15.0, *)) {
+        jlog_trace(@"JSON5 Allowed (iOS >= 15)");
+        json = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingJSON5Allowed | NSJSONReadingFragmentsAllowed) error:&error];
+    }
+    else {
+        jlog_trace(@"JSON5 Not Available");
+        json = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingFragmentsAllowed) error:&error];
+    }
+
+    if (!json || error) {
+        if (error) {
+            jlog_warning_join(@"Error Decoding to JSON ", error.description);
+        }
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (BOOL) isValidStict:(NSString *) string {
+    NSError *error;
+
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+
+    id json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+
+    if (!json || error) {
+        if (error) {
+            jlog_warning_join(@"Error Decoding to JSON ", error.description);
+        }
+        return NO;
+    }
+    
+    return YES;
+}
+
 @end

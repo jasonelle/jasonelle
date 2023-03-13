@@ -35,7 +35,7 @@
 //#import <JLKeychain/JLKeychain.h>
 //#import <JLCookies/JLCookies.h>
 //#import <JLContacts/JLContacts.h>
-#import <JLReachability/JLReachability.h>
+//#import <JLReachability/JLReachability.h>
 //#import <MyExtension/MyExtension.h> // Example Extension
 
 @implementation AppExtensions
@@ -71,7 +71,7 @@
 //    // Add $contacts extension
 //    [self.extensions add:JLContacts.class];
 //    // Add $reachability extension
-    [self.extensions add:JLReachability.class];
+//    [self.extensions add:JLReachability.class];
 //
 //    // Add Example Extension
 //    [self.extensions add:MyExtension.class];

@@ -88,6 +88,14 @@
     return params;
 }
 
+- (BOOL) exists: (NSString *) key {
+    NSDictionary * outvar = self.dictionary[key];
+    if (!outvar || outvar == NULL || [outvar isKindOfClass:[NSNull class]]) {
+        return NO;
+    }
+    return YES;
+}
+
 - (nullable NSDictionary *) dictionary: (NSString *) key default: (nullable NSDictionary *) def {
     NSDictionary * outvar = self.dictionary[key];
     if (!outvar || outvar == NULL || [outvar isKindOfClass:[NSNull class]]) {
@@ -136,17 +144,25 @@
     return [self string:key default:nil];
 }
 
-- (BOOL) boolean: (NSString *) key {
+- (BOOL) boolean: (NSString *) key default: (BOOL) boolean {
     NSNumber * outvar = self.dictionary[key];
+    
+    // IF the value is null then return false
     if (outvar == NULL || [outvar isKindOfClass:[NSNull class]]) {
         return NO;
     }
     
+    // If the value is a number then check the boolean result
     if([outvar isKindOfClass:[NSNumber class]]) {
         return [outvar boolValue];
     }
     
-    return YES;
+    // Any other value is the default given
+    return boolean;
+}
+
+- (BOOL) boolean: (NSString *) key {
+    return [self boolean:key default:YES];
 }
 
 - (id) any: (NSString *) key default: (nullable id) def {

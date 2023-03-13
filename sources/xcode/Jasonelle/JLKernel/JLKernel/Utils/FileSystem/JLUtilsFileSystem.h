@@ -42,12 +42,27 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)readJS:(NSString *)name;
 - (NSString *)readJSFor:(id)object;
 
+/// Determines if the string has a res:// prefix
 - (BOOL)isResource:(NSString *)resource;
+
 - (NSString *)pathForResource:(NSString *)resource inBundle:(NSBundle *)bundle;
 - (NSString *)pathForResource:(NSString *)resource;
 - (NSURL *)fileURLForPath:(NSString *)path;
 - (nonnull NSURL *)resourceDirectoryURLInBundle:(NSBundle *)bundle;
 - (nonnull NSURL *)resourceDirectoryURL;
+
+// Temporary Files
+/// Returns an unique file name
+- (NSString *) uniqueFilename;
+
+/// Returns the temporary directory path
+- (NSString *) temp;
+
+/// Returns a temporary file path with an specific extension
+- (NSString *) tempFileWithExtension: (NSString *) ext;
+
+/// Returns a temporary file path
+- (NSString *) tempFile;
 @end
 
 NS_ASSUME_NONNULL_END

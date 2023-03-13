@@ -31,7 +31,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JLUtilsJSON : JLUtil
 
+/// Validate allowing Fragments and JSON5 (if available)
+- (BOOL) isValid:(NSString *) string;
+
+/// Validate strict. No Fragments or JSON5
+- (BOOL) isValidStict:(NSString *) string;
+
+/// Returns an Object. Allows Fragments and JSON5 (if available)
 - (nullable id)decode:(NSString *)string;
+
+/// Encodes an Object. Must be String encodable.
 - (nullable NSString *)encode:(id)object;
 
 @end

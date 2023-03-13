@@ -38,7 +38,10 @@ class Components {
         self.params = params
     }
 
-    func pull() -> PullComponent {
-        return PullComponent(app, params: params.get("pull"))
+    func pull() -> PullComponent? {
+        if params.exists("pull") {
+            return PullComponent(app, params: params.get("pull"))
+        }
+        return nil
     }
 }

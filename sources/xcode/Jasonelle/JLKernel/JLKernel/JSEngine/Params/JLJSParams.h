@@ -54,6 +54,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// A dictionary converted to Params
 - (instancetype) get: (NSString *) key;
 
+/// Tells if the given key exists in the dictionary
+- (BOOL) exists: (NSString *) key;
+
 - (nullable NSDictionary *) dictionary: (NSString *) key default: (nullable NSDictionary *) def;
 - (nullable NSDictionary *) dictionary: (NSString *) key;
 
@@ -69,6 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable id) any: (NSString *) key default: (nullable id) def;
 - (nullable id) any: (NSString *) key;
 
+- (BOOL) boolean: (NSString *) key default: (BOOL) boolean;
 - (BOOL) boolean: (NSString *) key;
 
 - (JLJSValue *) value: (NSString *) key;

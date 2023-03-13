@@ -99,7 +99,7 @@ class WebViewModel: ObservableObject {
 
         // Add RefreshControl to WebView
         webView.scrollView.addSubview(refreshControl)
-        webView.scrollView.bounces = true
+        webView.scrollView.bounces = false
 
         setStyles()
     }
@@ -132,7 +132,7 @@ class WebViewModel: ObservableObject {
     @objc func pull(sender _: UIRefreshControl) {
         webView.reload()
         refreshControl.endRefreshing()
-        loader?.params.components().pull().hooks.onPull()
+        loader?.params.components().pull()?.hooks.onPull()
     }
 
     private func setStyles() {
@@ -142,25 +142,30 @@ class WebViewModel: ObservableObject {
         refreshControl.tintColor = UIColor.black
         refreshControl.setNeedsDisplay()
     }
+    
+    private func showPullToRefresh(_ config: WebViewRendererUILoader) -> Bool {
+        
+        let pullParamsIsNotHidden = config.params.components().pull()?.params.hidden() == false
+        let pullOptionsIsNotHidden = config.params.components().pull()?.options.hidden() == false
+        
+        return config.params.components().pull() != nil && (pullParamsIsNotHidden || pullOptionsIsNotHidden)
+    }
 
     private func setStyles(with config: WebViewRendererUILoader) {
         // TODO: Add more style options
-
-        let showPullToRefresh = !(config.params.components().pull().params.hidden() || config.params.components().pull().options.hidden())
-        
         
         // Bounce if requested
         webView.scrollView.bounces = config.params.style().bounces()
         
         // Always bounce if pull to refresh is shown
-        if showPullToRefresh {
+        if showPullToRefresh(config) {
             webView.scrollView.bounces = true
         } else {
             refreshControl.removeFromSuperview()
         }
 
-        refreshControl.attributedTitle = config.params.components().pull().style.title()
-        refreshControl.tintColor = config.params.components().pull().style.tint()
+        refreshControl.attributedTitle = config.params.components().pull()?.style.title()
+        refreshControl.tintColor = config.params.components().pull()?.style.tint()
         refreshControl.setNeedsDisplay()
     }
 

@@ -133,4 +133,22 @@
 - (NSURL *)resourceDirectoryURL {
     return [self resourceDirectoryURLInBundle:[NSBundle mainBundle]];
 }
+
+- (NSString *) uniqueFilename {
+    return [NSProcessInfo processInfo].globallyUniqueString;
+}
+
+- (NSString *) temp {
+    return NSTemporaryDirectory();
+}
+
+- (NSString *) tempFile {
+    return [[self temp] stringByAppendingPathComponent:[self uniqueFilename]];
+}
+
+- (NSString *) tempFileWithExtension: (NSString *) ext {
+    NSString * uid = [self uniqueFilename];
+    NSString * file = [NSString stringWithFormat:@"%@.%@", uid, ext];
+    return [[self temp] stringByAppendingPathComponent:file];
+}
 @end

@@ -30,7 +30,7 @@ class MainScreen extends Component {
     // View components
     components = {
         // Scissor comment to enable/disable the pull to refresh
-        // *
+        /*
         pull: {
             title: _t("main.pull.title", "Pull to Refresh"),
             hidden: true,
@@ -49,7 +49,7 @@ class MainScreen extends Component {
                 },
             },
         },
-        // */
+        /*/
     };
 
     //    headers = {};

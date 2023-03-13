@@ -107,6 +107,24 @@ static NSString *NAMESPACE = @"com.jasonelle.app.events";
     ];
 }
 
+- (void) triggerWithObject: (nullable id) object {
+    NSString *name = [[self class] name];
+
+    NSDate *now = [NSDate date];
+    NSTimeInterval ts = [now timeIntervalSince1970];
+
+    self.triggeredAt = @(ts);
+
+    [self.center
+     post:name
+     by:(object ? object : self)
+     with:[JLUserInfo
+           withName:name
+           andClass:[self class]
+     ]
+    ];
+}
+
 - (void)trigger {
     return [self triggerWithParams:@{}];
 }
