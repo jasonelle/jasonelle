@@ -5,6 +5,9 @@
 
 _Jasonelle_ is a nice native wrapper for your Web Application.
 
+[![Written-By-Human-Not-By-AI-Badge-white](https://user-images.githubusercontent.com/292738/225699293-9a0a90cd-1a93-49cb-b105-c3cd27882499.svg)
+](https://notbyai.fyi/)
+
 ## Price
 
 The project requires purchasing a license if you want to:
