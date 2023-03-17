@@ -52,27 +52,27 @@ MINIFY=""
 ESBUILD=${SRCROOT}/../Tools/esbuild/esbuild
 DPRINT=${SRCROOT}/../Tools/dprint/dprint
 
-echo "note: Using: $(${DPRINT} --version)"
-echo "note: Using: esbuild $(${ESBUILD} --version)"
+echo "note: Using: $("${DPRINT}" --version)"
+echo "note: Using: esbuild $("${ESBUILD}" --version)"
 
 if [ ${FORMAT} -eq 1 ]; then
   echo "----------------"
   echo "Begin Formatting"
   # Format files only inside the App directory
-  ${DPRINT} fmt --config ${CONFIG_DPRINT}
-  ${DPRINT} output-format-times --config ${CONFIG_DPRINT}
+  "${DPRINT}" fmt --config ${CONFIG_DPRINT}
+  "${DPRINT}" output-format-times --config ${CONFIG_DPRINT}
 fi
 
 echo "----------------"
 echo "Begin Bundling"
 BANNER_JS=/*--automatically-generated-by-esbuild--*/
 
-${ESBUILD} ${INPUT_APP} --outdir=${OUTPUT} --bundle ${MINIFY}  --target=safari11 --analyze --tsconfig=${CONFIG_ESBUILD} --banner:js=${BANNER_JS}
+"${ESBUILD}" "${INPUT_APP}" --outdir="${OUTPUT}" --bundle ${MINIFY}  --target=safari11 --analyze --tsconfig="${CONFIG_ESBUILD}" --banner:js=${BANNER_JS}
 
 # Stores the exit code from the previous command
 BUILD1=$?
 
-${ESBUILD} ${INPUT_WEBVIEW} --outdir=${OUTPUT} --bundle ${MINIFY}  --target=safari11 --analyze --tsconfig=${CONFIG_ESBUILD} --banner:js=${BANNER_JS}
+"${ESBUILD}" "${INPUT_WEBVIEW}" --outdir="${OUTPUT}" --bundle ${MINIFY}  --target=safari11 --analyze --tsconfig="${CONFIG_ESBUILD}" --banner:js=${BANNER_JS}
 
 BUILD2=$?
 

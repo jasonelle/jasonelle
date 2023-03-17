@@ -409,7 +409,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Executes our bundle script\n${SRCROOT}/Tools/build\n\n# $? captures the exit code of the last command\nSTATUS=$?\n\nif [ ${STATUS} -eq 0 ]; then\n    echo \"note: Bundled JS files\" \nfi\n\n# stop build if js bundling had problems\nexit ${STATUS}\n";
+			shellScript = "# Executes our bundle script\n\"${SRCROOT}/Tools/build\"\n\n# $? captures the exit code of the last command\nSTATUS=$?\n\nif [ ${STATUS} -eq 0 ]; then\n    echo \"note: Bundled JS files\" \nfi\n\n# stop build if js bundling had problems\nexit ${STATUS}\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
