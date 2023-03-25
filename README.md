@@ -61,11 +61,13 @@ The latest releases are available at:
 
 - [https://github.com/jasonelle/jasonelle/releases](https://github.com/jasonelle/jasonelle/releases)
 
-### Current Version
+### Downloads
 
 The current version is *v3*.
 
-- [Download](https://github.com/jasonelle/jasonelle/releases/latest)
+- [Bleeding Edge](https://github.com/jasonelle/jasonelle/archive/refs/heads/main.zip)
+- [Stable](https://github.com/jasonelle/jasonelle/archive/refs/heads/stable.zip)
+- [Latest Release](https://github.com/jasonelle/jasonelle/releases/latest/)
 
 ## Documentation
 

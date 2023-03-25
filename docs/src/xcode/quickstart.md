@@ -1,4 +1,4 @@
-# iOS Version `3.0.1`
+# iOS Version
 
 This small guide will help you getting started.
 
