@@ -48,6 +48,9 @@ if (typeof window != "undefined" && typeof document != "undefined") {
     window.$agent = window.jasonelle.agent;
     window.$logger = window.jasonelle.logger;
 
+    document.getElementById("jasonelle.version").innerHTML = "Jasonelle v" +
+        window.jasonelle.version.string;
+
     // Add the viewport fix if needed
     appendViewPort(window, document, false);
 

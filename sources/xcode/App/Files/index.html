@@ -8,6 +8,20 @@
         
         <link rel="stylesheet" href="style.css" type="text/css">
         
+        <style>
+            .header {
+                text-align: center;
+            }
+            
+            img.logo {
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+              width: 80%;
+              padding-bottom:2px;
+            }
+        </style>
+        
         <script type="text/javascript">
             window.traceFromMain = () => $logger.trace("I was called from Main.js!!!");
         </script>
@@ -58,7 +72,10 @@
         </script>
     </head>
     <body>
-        <img src="AppIcon.png" title="Jasonelle Icon">
+        <div class="header">
+            <img class="logo" src="AppIcon.png" title="Jasonelle Icon">
+            <span id="jasonelle.version"></span>
+        </div>
         <ul>
             <li><h3 onClick="log()">Test Native Logger</h3></li>
             <li><h3 onClick="badge.set()">Increment App Badge</h3></li>

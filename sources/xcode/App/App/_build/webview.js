@@ -24,6 +24,7 @@
     window.jasonelle.ready = true;
     window.$agent = window.jasonelle.agent;
     window.$logger = window.jasonelle.logger;
+    document.getElementById("jasonelle.version").innerHTML = "Jasonelle v" + window.jasonelle.version.string;
     appendViewPort(window, document, false);
     const event = new CustomEvent("com.jasonelle.events.ready", {
       detail: {
