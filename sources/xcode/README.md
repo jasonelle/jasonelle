@@ -11,7 +11,7 @@ This small guide will help you getting started.
 
 ### 1 - Download the project
 
-Download [Bleeding Edge](https://github.com/jasonelle/jasonelle/archive/refs/heads/main.zip) or [Stable version](https://github.com/jasonelle/jasonelle/archive/refs/tags/v3.0.0.zip). We recommend bleeding edge for the latest features and stable for the more battle tested.
+Download [Bleeding Edge](https://github.com/jasonelle/jasonelle/archive/refs/heads/main.zip) or [Stable version](https://github.com/jasonelle/jasonelle/releases/latest). We recommend bleeding edge for the latest features and stable for the more battle tested.
 
 Decompress and open `App.xcworkspace` file (White icon).
 

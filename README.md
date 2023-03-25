@@ -65,7 +65,7 @@ The latest releases are available at:
 
 The current version is *v3*.
 
-- [Download](https://github.com/jasonelle/jasonelle/releases/tag/v3.0.0)
+- [Download](https://github.com/jasonelle/jasonelle/releases/latest)
 
 ## Documentation
 

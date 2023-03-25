@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## v3.0.1 (next)
+## v3.0.2 (next)
+
+### Downloads
+
+- [iOS Main Branch](https://github.com/jasonelle/jasonelle/archive/refs/heads/main.zip)
+
+## v3.0.1 (March 2023)
 
 ### Added
 
@@ -40,9 +46,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - `WKWebView` triggered `appdidLoad` event more than once. Now it only triggers the event when loaded.
 
+- `build.sh` crashed when using paths with spaces.
+
 ### Downloads
 
-- [iOS Main Branch](https://github.com/jasonelle/jasonelle/archive/refs/heads/main.zip)
+- [Github Release](https://github.com/jasonelle/jasonelle/releases/tag/v3.0.1)
 
 ## v3.0.0 (September 2022)
 
