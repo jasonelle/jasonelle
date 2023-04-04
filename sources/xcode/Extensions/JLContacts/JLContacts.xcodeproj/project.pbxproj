@@ -16,6 +16,7 @@
 		EF7D1A5E299054CD004E67E5 /* JLContactsQueryAllMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF7D1A5C299054CD004E67E5 /* JLContactsQueryAllMessageHandler.h */; };
 		EF7D1A5F299054CD004E67E5 /* JLContactsQueryAllMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7D1A5D299054CD004E67E5 /* JLContactsQueryAllMessageHandler.m */; };
 		EF7D1A6229905789004E67E5 /* JLContacts.js in Resources */ = {isa = PBXBuildFile; fileRef = EF7D1A6129905789004E67E5 /* JLContacts.js */; };
+		EF82B8D329DB2D4500B5CD05 /* examples.html in Resources */ = {isa = PBXBuildFile; fileRef = EF82B8D229DB2D4500B5CD05 /* examples.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		EF7D1A5C299054CD004E67E5 /* JLContactsQueryAllMessageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLContactsQueryAllMessageHandler.h; sourceTree = "<group>"; };
 		EF7D1A5D299054CD004E67E5 /* JLContactsQueryAllMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLContactsQueryAllMessageHandler.m; sourceTree = "<group>"; };
 		EF7D1A6129905789004E67E5 /* JLContacts.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = JLContacts.js; sourceTree = "<group>"; };
+		EF82B8D229DB2D4500B5CD05 /* examples.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = examples.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 		EF7D1A362990435F004E67E5 /* JLContacts */ = {
 			isa = PBXGroup;
 			children = (
+				EF82B8D229DB2D4500B5CD05 /* examples.html */,
 				EF7D1A372990435F004E67E5 /* JLContacts.h */,
 				EF7D1A53299043ED004E67E5 /* JLContacts.m */,
 				EF7D1A6129905789004E67E5 /* JLContacts.js */,
@@ -140,6 +143,7 @@
 				EF7D1A302990435F004E67E5 /* Sources */,
 				EF7D1A312990435F004E67E5 /* Frameworks */,
 				EF7D1A322990435F004E67E5 /* Resources */,
+				EF82B8D429DBA2B700B5CD05 /* Add examples */,
 			);
 			buildRules = (
 			);
@@ -211,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF7D1A6229905789004E67E5 /* JLContacts.js in Resources */,
+				EF82B8D329DB2D4500B5CD05 /* examples.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +227,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EF82B8D429DBA2B700B5CD05 /* Add examples */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Add examples";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "NAME=\"JLContacts\"\nEXAMPLES_DIR=\"${PWD}/../../App/Files/Examples\"\nTEMPLATES_DIR=\"${EXAMPLES_DIR}/Templates\"\nSOURCES_DIR=\"${PWD}/${NAME}\"\n\n# Only copy the examples if the examples directory exists\nif [ -d \"${EXAMPLES_DIR}\" ] \nthen\n cat \"${SOURCES_DIR}/examples.html\" > \"${EXAMPLES_DIR}/${NAME}.example.html\"\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EF7D1A302990435F004E67E5 /* Sources */ = {

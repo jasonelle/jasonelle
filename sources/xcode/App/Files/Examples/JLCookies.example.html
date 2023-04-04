@@ -1,0 +1,47 @@
+<!-- Example: JLCookies -->
+<script type="text/javascript">
+    const setCookies = () => {
+        $cookies.Cookies.set('name', 'Ethan');
+        $cookies.set().then(val => alert(val));
+    };
+    
+    const getCookies = () => {
+        $cookies.get().then(val => alert(val));
+    };
+    
+    const writeCookies = () => {
+        $cookies.write().then(val => alert(val));
+    };
+    
+    const removeCookies = () => {
+        $cookies.Cookies.remove('name');
+        $cookies.remove().then(val => alert(val));
+    };
+    
+</script>
+
+<li class="item">
+    <h3 class="title">JLCookies Examples</h3>
+    <ul>
+        <!-- Sets the cookie and save it to keychain -->
+        <li>
+            <h4 onClick="setCookies()">Example $cookies.set</h4>
+        </li>
+        
+        <!-- Gets the current cookie value from keychain -->
+        <li>
+            <h4 onClick="getCookies()">Example $cookies.get</h4>
+        </li>
+        
+        <!-- Reads cookie from keychain and then writes to document.cookie -->
+        <li>
+            <h4 onClick="writeCookies()">Example $cookies.write</h4>
+        </li>
+        
+        <!-- Removes cookies from keychain -->
+        <li>
+            <h4 onClick="removeCookies()">Example $cookies.remove</h4>
+        </li>
+    </ul>
+</li>
+

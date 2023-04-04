@@ -12,6 +12,7 @@
 		EF47FEC02824F001006E2B9B /* JLATTrackingManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF47FEBF2824F001006E2B9B /* JLATTrackingManagerTests.m */; };
 		EF47FEC12824F001006E2B9B /* JLATTrackingManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EF47FEB32824F001006E2B9B /* JLATTrackingManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF47FECB2824F0FF006E2B9B /* JLATTrackingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF47FECA2824F0FF006E2B9B /* JLATTrackingManager.m */; };
+		EF82B8F529DBA94600B5CD05 /* examples.html in Resources */ = {isa = PBXBuildFile; fileRef = EF82B8F429DBA94600B5CD05 /* examples.html */; };
 		EFBF8C1728250DD800A3CC9E /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFBF8C1628250DD800A3CC9E /* JLKernel.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		EF47FEBA2824F001006E2B9B /* JLATTrackingManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JLATTrackingManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF47FEBF2824F001006E2B9B /* JLATTrackingManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLATTrackingManagerTests.m; sourceTree = "<group>"; };
 		EF47FECA2824F0FF006E2B9B /* JLATTrackingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLATTrackingManager.m; sourceTree = "<group>"; };
+		EF82B8F429DBA94600B5CD05 /* examples.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = examples.html; sourceTree = "<group>"; };
 		EFBF8C1228250B9A00A3CC9E /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFBF8C1428250D9600A3CC9E /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFBF8C1628250DD800A3CC9E /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +84,7 @@
 		EF47FEB22824F001006E2B9B /* JLATTrackingManager */ = {
 			isa = PBXGroup;
 			children = (
+				EF82B8F429DBA94600B5CD05 /* examples.html */,
 				EF47FEB32824F001006E2B9B /* JLATTrackingManager.h */,
 				EF47FECA2824F0FF006E2B9B /* JLATTrackingManager.m */,
 				EF47FEB42824F001006E2B9B /* JLATTrackingManager.docc */,
@@ -132,6 +135,7 @@
 				EF47FEAC2824F001006E2B9B /* Sources */,
 				EF47FEAD2824F001006E2B9B /* Frameworks */,
 				EF47FEAE2824F001006E2B9B /* Resources */,
+				EF82B8FA29DBA9F400B5CD05 /* Add examples */,
 			);
 			buildRules = (
 			);
@@ -202,6 +206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF82B8F529DBA94600B5CD05 /* examples.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +218,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EF82B8FA29DBA9F400B5CD05 /* Add examples */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Add examples";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "NAME=\"JLATTrackingManager\"\nEXAMPLES_DIR=\"${PWD}/../../App/Files/Examples\"\nTEMPLATES_DIR=\"${EXAMPLES_DIR}/Templates\"\nSOURCES_DIR=\"${PWD}/${NAME}\"\n\n# Only copy the examples if the examples directory exists\nif [ -d \"${EXAMPLES_DIR}\" ] \nthen\n cat \"${SOURCES_DIR}/examples.html\" > \"${EXAMPLES_DIR}/${NAME}.example.html\"\nfi\n\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EF47FEAC2824F001006E2B9B /* Sources */ = {

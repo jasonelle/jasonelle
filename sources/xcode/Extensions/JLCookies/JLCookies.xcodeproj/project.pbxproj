@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF82B8EB29DBA5F400B5CD05 /* examples.html in Resources */ = {isa = PBXBuildFile; fileRef = EF82B8EA29DBA5F400B5CD05 /* examples.html */; };
 		EFFB945E2980B370007BF935 /* JLCookies.docc in Sources */ = {isa = PBXBuildFile; fileRef = EFFB945D2980B370007BF935 /* JLCookies.docc */; };
 		EFFB94642980B370007BF935 /* JLCookies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFB94592980B370007BF935 /* JLCookies.framework */; };
 		EFFB94692980B370007BF935 /* JLCookiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFB94682980B370007BF935 /* JLCookiesTests.m */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EF82B8EA29DBA5F400B5CD05 /* examples.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = examples.html; sourceTree = "<group>"; };
 		EFFB94592980B370007BF935 /* JLCookies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JLCookies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFFB945C2980B370007BF935 /* JLCookies.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLCookies.h; sourceTree = "<group>"; };
 		EFFB945D2980B370007BF935 /* JLCookies.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = JLCookies.docc; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 		EFFB945B2980B370007BF935 /* JLCookies */ = {
 			isa = PBXGroup;
 			children = (
+				EF82B8EA29DBA5F400B5CD05 /* examples.html */,
 				EFFB948B2980B736007BF935 /* js.cookie.min.js */,
 				EFFB94812980B3D8007BF935 /* JLCookies.js */,
 				EFFB945C2980B370007BF935 /* JLCookies.h */,
@@ -134,6 +137,7 @@
 				EFFB94552980B370007BF935 /* Sources */,
 				EFFB94562980B370007BF935 /* Frameworks */,
 				EFFB94572980B370007BF935 /* Resources */,
+				EF82B8EC29DBA60D00B5CD05 /* Add examples */,
 			);
 			buildRules = (
 			);
@@ -204,6 +208,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF82B8EB29DBA5F400B5CD05 /* examples.html in Resources */,
 				EFFB94822980B3D8007BF935 /* JLCookies.js in Resources */,
 				EFFB948C2980B736007BF935 /* js.cookie.min.js in Resources */,
 			);
@@ -217,6 +222,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EF82B8EC29DBA60D00B5CD05 /* Add examples */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Add examples";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "NAME=\"JLCookies\"\nEXAMPLES_DIR=\"${PWD}/../../App/Files/Examples\"\nTEMPLATES_DIR=\"${EXAMPLES_DIR}/Templates\"\nSOURCES_DIR=\"${PWD}/${NAME}\"\n\n# Only copy the examples if the examples directory exists\nif [ -d \"${EXAMPLES_DIR}\" ] \nthen\n cat \"${SOURCES_DIR}/examples.html\" > \"${EXAMPLES_DIR}/${NAME}.example.html\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EFFB94552980B370007BF935 /* Sources */ = {

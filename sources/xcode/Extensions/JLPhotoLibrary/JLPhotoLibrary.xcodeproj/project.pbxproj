@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF82B8F129DBA91200B5CD05 /* examples.html in Resources */ = {isa = PBXBuildFile; fileRef = EF82B8F029DBA91200B5CD05 /* examples.html */; };
 		EFA6A1FE296F0C6E00DA12D4 /* JLPhotoLibrary.docc in Sources */ = {isa = PBXBuildFile; fileRef = EFA6A1FD296F0C6E00DA12D4 /* JLPhotoLibrary.docc */; };
 		EFA6A204296F0C6E00DA12D4 /* JLPhotoLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA6A1F9296F0C6E00DA12D4 /* JLPhotoLibrary.framework */; };
 		EFA6A209296F0C6E00DA12D4 /* JLPhotoLibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA6A208296F0C6E00DA12D4 /* JLPhotoLibraryTests.m */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EF82B8F029DBA91200B5CD05 /* examples.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = examples.html; sourceTree = "<group>"; };
 		EFA6A1F9296F0C6E00DA12D4 /* JLPhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JLPhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFA6A1FC296F0C6E00DA12D4 /* JLPhotoLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLPhotoLibrary.h; sourceTree = "<group>"; };
 		EFA6A1FD296F0C6E00DA12D4 /* JLPhotoLibrary.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = JLPhotoLibrary.docc; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 		EFA6A1FB296F0C6E00DA12D4 /* JLPhotoLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				EF82B8F029DBA91200B5CD05 /* examples.html */,
 				EFC3F3FE29A90B7600574259 /* JLPhotoLibrary.js */,
 				EFA6A1FC296F0C6E00DA12D4 /* JLPhotoLibrary.h */,
 				EFA6A218296F0CA100DA12D4 /* JLPhotoLibrary.m */,
@@ -178,6 +181,7 @@
 				EFA6A1F5296F0C6E00DA12D4 /* Sources */,
 				EFA6A1F6296F0C6E00DA12D4 /* Frameworks */,
 				EFA6A1F7296F0C6E00DA12D4 /* Resources */,
+				EF82B8F829DBA9C900B5CD05 /* Add examples */,
 			);
 			buildRules = (
 			);
@@ -249,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFC3F3FF29A90B7600574259 /* JLPhotoLibrary.js in Resources */,
+				EF82B8F129DBA91200B5CD05 /* examples.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +265,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EF82B8F829DBA9C900B5CD05 /* Add examples */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Add examples";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "NAME=\"JLPhotoLibrary\"\nEXAMPLES_DIR=\"${PWD}/../../App/Files/Examples\"\nTEMPLATES_DIR=\"${EXAMPLES_DIR}/Templates\"\nSOURCES_DIR=\"${PWD}/${NAME}\"\n\n# Only copy the examples if the examples directory exists\nif [ -d \"${EXAMPLES_DIR}\" ] \nthen\n cat \"${SOURCES_DIR}/examples.html\" > \"${EXAMPLES_DIR}/${NAME}.example.html\"\nfi\n\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EFA6A1F5296F0C6E00DA12D4 /* Sources */ = {

@@ -1,0 +1,15 @@
+<!-- Example: JLContacts -->
+<script type="text/javascript">
+    const fetchContacts = () => $contacts.all().then(info => $logger.trace(JSON.stringify(info)));
+</script>
+
+<li class="item">
+    <h3 class="title">JLContacts Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="fetchContacts()">
+                Fetch Contacts
+            </h4>
+        </li>
+    </ul>
+</li>

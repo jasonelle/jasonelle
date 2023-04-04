@@ -1,0 +1,25 @@
+<!-- Example: JLKeychain -->
+<script type="text/javascript">
+    const setKeychain = () => $keychain.set('number', 3);
+    const getKeychain = () => $keychain.get('number').then(num => alert(num));
+    const removeKeychain = () => $keychain.remove('number');
+    const clearKeychain = () => $keychain.clear();
+</script>
+
+<li class="item">
+    <h3 class="title">JLKeychain Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="setKeychain()">Example $keychain.set</h4>
+        </li>
+        <li>
+            <h4 onClick="getKeychain()">Example $keychain.get</h4>
+        </li>
+        <li>
+            <h4 onClick="removeKeychain()">Example $keychain.remove</h4>
+        </li>
+        <li>
+            <h4 onClick="clearKeychain()">Example $keychain.clear</h4>
+        </li>
+    </ul>
+</li>

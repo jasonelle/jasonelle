@@ -1,0 +1,19 @@
+<!-- Example: MyExtension -->
+<script type="text/javascript">
+    // Event triggered by MyExtension.js
+    document.addEventListener(
+      "$myextension.events.example",
+      function(e) {
+        $logger.trace("Received Example Event: " + e.detail.message);
+      }
+    );
+</script>
+
+<li class="item">
+    <h3 class="title">MyExtension Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="$myextension.run()" class="link">Test Example Extension</h4>
+        </li>
+    </ul>
+</li>

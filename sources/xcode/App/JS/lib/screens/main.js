@@ -17,7 +17,7 @@ const log = (message) => {
     Logger.trace(message, { source: "main.js", console: true });
 };
 
-const HOME_URL = "res://index.html";
+const HOME_URL = "res://examples.html";
 
 class MainScreen extends Component {
     url = HOME_URL;

@@ -39,6 +39,7 @@
 		EF0825BF29A14F2D00C157FD /* MyExtensionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyExtensionHandler.h; sourceTree = "<group>"; };
 		EF0825C029A14F2D00C157FD /* MyExtensionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyExtensionHandler.m; sourceTree = "<group>"; };
 		EF0825C429A16EB000C157FD /* MyExtension.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = MyExtension.js; sourceTree = "<group>"; };
+		EFB8C2F329D088F9000CAEE3 /* examples.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = examples.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +84,7 @@
 		EF08259D29A1277800C157FD /* MyExtension */ = {
 			isa = PBXGroup;
 			children = (
+				EFB8C2F329D088F9000CAEE3 /* examples.html */,
 				EF08259E29A1277800C157FD /* MyExtension.h */,
 				EF0825BA29A12CDA00C157FD /* MyExtension.m */,
 				EF0825C429A16EB000C157FD /* MyExtension.js */,
@@ -140,6 +142,7 @@
 				EF08259729A1277800C157FD /* Sources */,
 				EF08259829A1277800C157FD /* Frameworks */,
 				EF08259929A1277800C157FD /* Resources */,
+				EF115A9B29CFFC480068703C /* Add examples */,
 			);
 			buildRules = (
 			);
@@ -221,6 +224,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EF115A9B29CFFC480068703C /* Add examples */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Add examples";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "NAME=\"MyExtension\"\nEXAMPLES_DIR=\"${PWD}/../../App/Files/Examples\"\nTEMPLATES_DIR=\"${EXAMPLES_DIR}/Templates\"\nSOURCES_DIR=\"${PWD}/${NAME}\"\n\n# Only copy the examples if the examples directory exists\nif [ -d \"${EXAMPLES_DIR}\" ] \nthen\n cat \"${SOURCES_DIR}/examples.html\" > \"${EXAMPLES_DIR}/${NAME}.example.html\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EF08259729A1277800C157FD /* Sources */ = {

@@ -14,6 +14,7 @@
 		EF2065DA297F01BD001C27A6 /* JLKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2065D9297F01BD001C27A6 /* JLKeychain.m */; };
 		EF2065DE297F469B001C27A6 /* JLKeychainSetMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF2065DC297F469B001C27A6 /* JLKeychainSetMessageHandler.h */; };
 		EF2065DF297F469B001C27A6 /* JLKeychainSetMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2065DD297F469B001C27A6 /* JLKeychainSetMessageHandler.m */; };
+		EF82B8EE29DBA75000B5CD05 /* examples.html in Resources */ = {isa = PBXBuildFile; fileRef = EF82B8ED29DBA75000B5CD05 /* examples.html */; };
 		EFC2425C297F4F960087AAA1 /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC2425B297F4F960087AAA1 /* JLKernel.framework */; };
 		EFFB944229801EFD007BF935 /* JLKeychain.js in Resources */ = {isa = PBXBuildFile; fileRef = EFFB944129801EFD007BF935 /* JLKeychain.js */; };
 		EFFB944529802795007BF935 /* JLKeychainClearMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFB944329802795007BF935 /* JLKeychainClearMessageHandler.m */; };
@@ -43,6 +44,7 @@
 		EF2065D9297F01BD001C27A6 /* JLKeychain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLKeychain.m; sourceTree = "<group>"; };
 		EF2065DC297F469B001C27A6 /* JLKeychainSetMessageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLKeychainSetMessageHandler.h; sourceTree = "<group>"; };
 		EF2065DD297F469B001C27A6 /* JLKeychainSetMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLKeychainSetMessageHandler.m; sourceTree = "<group>"; };
+		EF82B8ED29DBA75000B5CD05 /* examples.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = examples.html; sourceTree = "<group>"; };
 		EFC2425B297F4F960087AAA1 /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFFB944129801EFD007BF935 /* JLKeychain.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = JLKeychain.js; sourceTree = "<group>"; };
 		EFFB944329802795007BF935 /* JLKeychainClearMessageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLKeychainClearMessageHandler.m; sourceTree = "<group>"; };
@@ -95,10 +97,11 @@
 		EF2065C1297F016F001C27A6 /* JLKeychain */ = {
 			isa = PBXGroup;
 			children = (
-				EF2065DB297F4671001C27A6 /* WebViewMessageHandlers */,
+				EF82B8ED29DBA75000B5CD05 /* examples.html */,
 				EF2065C2297F016F001C27A6 /* JLKeychain.h */,
 				EF2065D9297F01BD001C27A6 /* JLKeychain.m */,
 				EFFB944129801EFD007BF935 /* JLKeychain.js */,
+				EF2065DB297F4671001C27A6 /* WebViewMessageHandlers */,
 				EF2065C3297F016F001C27A6 /* JLKeychain.docc */,
 			);
 			path = JLKeychain;
@@ -193,6 +196,7 @@
 				EF2065BB297F016F001C27A6 /* Sources */,
 				EF2065BC297F016F001C27A6 /* Frameworks */,
 				EF2065BD297F016F001C27A6 /* Resources */,
+				EF82B8EF29DBA76500B5CD05 /* Add Examples */,
 			);
 			buildRules = (
 			);
@@ -264,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFFB944229801EFD007BF935 /* JLKeychain.js in Resources */,
+				EF82B8EE29DBA75000B5CD05 /* examples.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +280,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EF82B8EF29DBA76500B5CD05 /* Add Examples */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Add Examples";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "NAME=\"JLKeychain\"\nEXAMPLES_DIR=\"${PWD}/../../App/Files/Examples\"\nTEMPLATES_DIR=\"${EXAMPLES_DIR}/Templates\"\nSOURCES_DIR=\"${PWD}/${NAME}\"\n\n# Only copy the examples if the examples directory exists\nif [ -d \"${EXAMPLES_DIR}\" ] \nthen\n cat \"${SOURCES_DIR}/examples.html\" > \"${EXAMPLES_DIR}/${NAME}.example.html\"\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EF2065BB297F016F001C27A6 /* Sources */ = {

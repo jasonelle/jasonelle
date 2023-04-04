@@ -1,0 +1,37 @@
+<!-- Example: JLPhotoLibrary -->
+<script type="text/javascript">
+    const requestPhotoLibraryAccess = () => $photolibrary.authorize().then(status => $logger.trace(status));
+    
+    const checkPhotoLibraryAccess = () => $photolibrary.granted().then(granted => alert(granted));
+</script>
+
+<li class="item">
+    <h3 class="title">JLPhotoLibrary Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="requestPhotoLibraryAccess()">Request Photo Library Access</h4>
+        </li>
+        <li>
+            <h4 onClick="checkPhotoLibraryAccess()">Check Photo Library Access</h4>
+        </li>
+        <li>
+            <h4>Example Image Picker</h4>
+            <input
+            id="imagePickerFileInput"
+            type="file"
+            accept="image/*"
+          />
+        </li>
+        
+        <li>
+            <h4>Example Camera (Will crash in Simulator)</h4>
+            <input
+            id="cameraFileInput"
+            type="file"
+            accept="image/*"
+            capture="environment"
+          />
+        </li>
+    </ul>
+</li>
+

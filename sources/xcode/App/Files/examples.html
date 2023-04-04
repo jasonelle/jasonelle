@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Hello Jasonelle</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        
+        <link rel="stylesheet" href="style.css" type="text/css">
+        
+        <style>
+            .header {
+                text-align: center;
+            }
+            h3.title {
+                background-color: lightgray;
+                font-weight: bold;
+            }
+        </style>
+        
+        <script type="text/javascript">
+            window.traceFromMain = () => $logger.trace("I was called from Main.js!!!");
+        </script>
+        <script type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <img class="logo" src="AppIcon.png" title="Jasonelle Icon">
+            <span id="jasonelle.version"></span>
+        </div>
+        <ul>
+<!-- Example: JLATTrackingManager -->
+<script type="text/javascript">
+    // TODO: Add JS API
+</script>
+
+<!--<li class="item">-->
+<!--    <h3 class="title">JLATTrackingManager Examples</h3>-->
+<!--    <ul>-->
+<!--        -->
+<!--    </ul>-->
+<!--</li>-->
+
+
+<!-- Example: JLReachability -->
+<script type="text/javascript">
+    const checkReachability = () => $reachability.get().then(result => alert(result.label));
+</script>
+
+<li class="item">
+    <h3 class="title">JLReachability Examples</h3>
+    <ul>
+        <li><h4 onClick="checkReachability()">Check Reachability</h4>
+    </ul>
+</li>
+
+
+<!-- Example: JLContacts -->
+<script type="text/javascript">
+    const fetchContacts = () => $contacts.all().then(info => $logger.trace(JSON.stringify(info)));
+</script>
+
+<li class="item">
+    <h3 class="title">JLContacts Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="fetchContacts()">
+                Fetch Contacts
+            </h4>
+        </li>
+    </ul>
+</li>
+<!-- Example: JLApplicationBadge -->
+<script type="text/javascript">
+    // Test Badge Extension
+    // Native extension use $agent.trigger
+    // Native extensions can use Promises
+    const badge = {};
+    badge.set = async (number = 3) => {
+        const response = await $agent.trigger("$badge.set", number);
+        $logger.trace("Got Response " + response);
+    };
+    badge.clear = async () => $agent.trigger("$badge.clear");
+    
+</script>
+
+<li class="item">
+    <h3 class="title">JLApplicationBadge Examples</h3>
+    <ul>
+        <li><h4 onClick="badge.set()">Increment App Badge</h4></li>
+        <li><h4 onClick="badge.clear()">Clear App Badge</h4></li>
+    </ul>
+</li>
+
+
+<!-- Example: Core-->
+<script type="text/javascript">
+    // Test Native Logger
+    const log = () => {
+      // This call will be shown in Safari Debug Console Only
+      console.log("Calling Native Logger from WebView");
+      // This call will be shown in XCode Console
+      $logger.trace("Calling Native Logger from WebView");
+    };
+    
+    // Actions defined in main.js
+    // Test Hello Action
+    // JS Actions use $agent.call
+    // These actions cannot return a Promise (yet)
+    // Define these actions inside the main.js actions
+    const hello = (world = "world") => {
+      const result = $agent.call("hello", world);
+      $logger.trace(result);
+    };
+    
+    // Open app in safari
+    const safari = (url) => {
+        $agent.call("safari", url);
+    };
+</script>
+
+<li class="item">
+    <h3 class="title">Core Examples</h3>
+    <ul>
+            <li><h4 onClick="log()">Test Native Logger</h4></li>
+                    
+            <li><h4 onClick="hello()">Test Bridge From WebView to JSContext</h4></li>
+            <li>
+                <h4 onClick="safari('https://google.com')">
+                    Test Opening Safari Link
+                </h4>
+            </li>
+            
+            <li>
+                <h4 onClick="alert('Hello')">Alert Example</h4>
+            </li>
+            <li>
+                <h4 onClick="confirm('Press a button!')">Confirm Example</h4>
+            </li>
+            <li>
+                <h4 onClick="prompt('Please enter your name', 'Ethan G.')">Prompt Example</h4>
+            </li>
+            
+            
+            <li>
+                <!-- Modify config/dev or config/prod with
+                the allowed:["file://", "google.cl"] to load
+                this url inside the app -->
+                <h4>
+                <a href="https://google.cl">
+                    Test Allowed URL (Open Browser)
+                </a>
+                </h4>
+            </li>
+    </ul>
+</li>
+
+<!-- Example: JLPhotoLibrary -->
+<script type="text/javascript">
+    const requestPhotoLibraryAccess = () => $photolibrary.authorize().then(status => $logger.trace(status));
+    
+    const checkPhotoLibraryAccess = () => $photolibrary.granted().then(granted => alert(granted));
+</script>
+
+<li class="item">
+    <h3 class="title">JLPhotoLibrary Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="requestPhotoLibraryAccess()">Request Photo Library Access</h4>
+        </li>
+        <li>
+            <h4 onClick="checkPhotoLibraryAccess()">Check Photo Library Access</h4>
+        </li>
+        <li>
+            <h4>Example Image Picker</h4>
+            <input
+            id="imagePickerFileInput"
+            type="file"
+            accept="image/*"
+          />
+        </li>
+        
+        <li>
+            <h4>Example Camera (Will crash in Simulator)</h4>
+            <input
+            id="cameraFileInput"
+            type="file"
+            accept="image/*"
+            capture="environment"
+          />
+        </li>
+    </ul>
+</li>
+
+<!-- Example: MyExtension -->
+<script type="text/javascript">
+    // Event triggered by MyExtension.js
+    document.addEventListener(
+      "$myextension.events.example",
+      function(e) {
+        $logger.trace("Received Example Event: " + e.detail.message);
+      }
+    );
+</script>
+
+<li class="item">
+    <h3 class="title">MyExtension Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="$myextension.run()" class="link">Test Example Extension</h4>
+        </li>
+    </ul>
+</li>
+<!-- Example: JLKeychain -->
+<script type="text/javascript">
+    const setKeychain = () => $keychain.set('number', 3);
+    const getKeychain = () => $keychain.get('number').then(num => alert(num));
+    const removeKeychain = () => $keychain.remove('number');
+    const clearKeychain = () => $keychain.clear();
+</script>
+
+<li class="item">
+    <h3 class="title">JLKeychain Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="setKeychain()">Example $keychain.set</h4>
+        </li>
+        <li>
+            <h4 onClick="getKeychain()">Example $keychain.get</h4>
+        </li>
+        <li>
+            <h4 onClick="removeKeychain()">Example $keychain.remove</h4>
+        </li>
+        <li>
+            <h4 onClick="clearKeychain()">Example $keychain.clear</h4>
+        </li>
+    </ul>
+</li>
+<!-- Example: JLCookies -->
+<script type="text/javascript">
+    const setCookies = () => {
+        $cookies.Cookies.set('name', 'Ethan');
+        $cookies.set().then(val => alert(val));
+    };
+    
+    const getCookies = () => {
+        $cookies.get().then(val => alert(val));
+    };
+    
+    const writeCookies = () => {
+        $cookies.write().then(val => alert(val));
+    };
+    
+    const removeCookies = () => {
+        $cookies.Cookies.remove('name');
+        $cookies.remove().then(val => alert(val));
+    };
+    
+</script>
+
+<li class="item">
+    <h3 class="title">JLCookies Examples</h3>
+    <ul>
+        <!-- Sets the cookie and save it to keychain -->
+        <li>
+            <h4 onClick="setCookies()">Example $cookies.set</h4>
+        </li>
+        
+        <!-- Gets the current cookie value from keychain -->
+        <li>
+            <h4 onClick="getCookies()">Example $cookies.get</h4>
+        </li>
+        
+        <!-- Reads cookie from keychain and then writes to document.cookie -->
+        <li>
+            <h4 onClick="writeCookies()">Example $cookies.write</h4>
+        </li>
+        
+        <!-- Removes cookies from keychain -->
+        <li>
+            <h4 onClick="removeCookies()">Example $cookies.remove</h4>
+        </li>
+    </ul>
+</li>
+
+</ul>
+</body>
+</html>

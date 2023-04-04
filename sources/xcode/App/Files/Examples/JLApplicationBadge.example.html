@@ -1,0 +1,23 @@
+<!-- Example: JLApplicationBadge -->
+<script type="text/javascript">
+    // Test Badge Extension
+    // Native extension use $agent.trigger
+    // Native extensions can use Promises
+    const badge = {};
+    badge.set = async (number = 3) => {
+        const response = await $agent.trigger("$badge.set", number);
+        $logger.trace("Got Response " + response);
+    };
+    badge.clear = async () => $agent.trigger("$badge.clear");
+    
+</script>
+
+<li class="item">
+    <h3 class="title">JLApplicationBadge Examples</h3>
+    <ul>
+        <li><h4 onClick="badge.set()">Increment App Badge</h4></li>
+        <li><h4 onClick="badge.clear()">Clear App Badge</h4></li>
+    </ul>
+</li>
+
+

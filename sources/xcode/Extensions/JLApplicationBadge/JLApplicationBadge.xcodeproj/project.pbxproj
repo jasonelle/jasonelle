@@ -13,6 +13,7 @@
 		EF4A7BFA2826141B00EDA14C /* JLApplicationBadge.h in Headers */ = {isa = PBXBuildFile; fileRef = EF4A7BEC2826141B00EDA14C /* JLApplicationBadge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF4A7C052826142A00EDA14C /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF4A7C042826142A00EDA14C /* JLKernel.framework */; };
 		EF4A7C0B28261A4100EDA14C /* JLApplicationBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = EF4A7C0A28261A4100EDA14C /* JLApplicationBadge.m */; };
+		EF82B8F329DBA92500B5CD05 /* examples.html in Resources */ = {isa = PBXBuildFile; fileRef = EF82B8F229DBA92500B5CD05 /* examples.html */; };
 		EFA09EDB29A24C7700E3C9A4 /* JLApplicationBadge.js in Resources */ = {isa = PBXBuildFile; fileRef = EFA09EDA29A24C7700E3C9A4 /* JLApplicationBadge.js */; };
 		EFB18F2128C1AC8100897C8D /* JLApplicationBadgeIncrementMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EFB18F1F28C1AC8100897C8D /* JLApplicationBadgeIncrementMessageHandler.h */; };
 		EFB18F2228C1AC8100897C8D /* JLApplicationBadgeIncrementMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB18F2028C1AC8100897C8D /* JLApplicationBadgeIncrementMessageHandler.m */; };
@@ -38,6 +39,7 @@
 		EF4A7BF82826141B00EDA14C /* JLApplicationBadgeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLApplicationBadgeTests.m; sourceTree = "<group>"; };
 		EF4A7C042826142A00EDA14C /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4A7C0A28261A4100EDA14C /* JLApplicationBadge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLApplicationBadge.m; sourceTree = "<group>"; };
+		EF82B8F229DBA92500B5CD05 /* examples.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = examples.html; sourceTree = "<group>"; };
 		EFA09EDA29A24C7700E3C9A4 /* JLApplicationBadge.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = JLApplicationBadge.js; sourceTree = "<group>"; };
 		EFB18F1F28C1AC8100897C8D /* JLApplicationBadgeIncrementMessageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLApplicationBadgeIncrementMessageHandler.h; sourceTree = "<group>"; };
 		EFB18F2028C1AC8100897C8D /* JLApplicationBadgeIncrementMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLApplicationBadgeIncrementMessageHandler.m; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				EF3ED91528C1594900640698 /* WebViewMessageHandlers */,
+				EF82B8F229DBA92500B5CD05 /* examples.html */,
 				EFA09EDA29A24C7700E3C9A4 /* JLApplicationBadge.js */,
 				EF4A7BEC2826141B00EDA14C /* JLApplicationBadge.h */,
 				EF4A7C0A28261A4100EDA14C /* JLApplicationBadge.m */,
@@ -163,6 +166,7 @@
 				EF4A7BE52826141B00EDA14C /* Sources */,
 				EF4A7BE62826141B00EDA14C /* Frameworks */,
 				EF4A7BE72826141B00EDA14C /* Resources */,
+				EF82B8F929DBA9E000B5CD05 /* Add examples */,
 			);
 			buildRules = (
 			);
@@ -234,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFA09EDB29A24C7700E3C9A4 /* JLApplicationBadge.js in Resources */,
+				EF82B8F329DBA92500B5CD05 /* examples.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +250,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EF82B8F929DBA9E000B5CD05 /* Add examples */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Add examples";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "NAME=\"JLApplicationBadge\"\nEXAMPLES_DIR=\"${PWD}/../../App/Files/Examples\"\nTEMPLATES_DIR=\"${EXAMPLES_DIR}/Templates\"\nSOURCES_DIR=\"${PWD}/${NAME}\"\n\n# Only copy the examples if the examples directory exists\nif [ -d \"${EXAMPLES_DIR}\" ] \nthen\n cat \"${SOURCES_DIR}/examples.html\" > \"${EXAMPLES_DIR}/${NAME}.example.html\"\nfi\n\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EF4A7BE52826141B00EDA14C /* Sources */ = {

@@ -1798,7 +1798,7 @@
   var log = (message) => {
     logger_default.trace(message, { source: "main.js", console: true });
   };
-  var HOME_URL = "res://index.html";
+  var HOME_URL = "res://examples.html";
   var MainScreen = class extends component_default {
     constructor() {
       super(...arguments);

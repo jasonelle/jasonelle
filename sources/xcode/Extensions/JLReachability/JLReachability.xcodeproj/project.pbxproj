@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF82B8F729DBA95600B5CD05 /* examples.html in Resources */ = {isa = PBXBuildFile; fileRef = EF82B8F629DBA95600B5CD05 /* examples.html */; };
 		EFA105AB29AB91D30005C2AC /* JLReachability.docc in Sources */ = {isa = PBXBuildFile; fileRef = EFA105AA29AB91D30005C2AC /* JLReachability.docc */; };
 		EFA105B129AB91D30005C2AC /* JLReachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA105A629AB91D30005C2AC /* JLReachability.framework */; };
 		EFA105B629AB91D30005C2AC /* JLReachabilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA105B529AB91D30005C2AC /* JLReachabilityTests.m */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EF82B8F629DBA95600B5CD05 /* examples.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = examples.html; sourceTree = "<group>"; };
 		EFA105A629AB91D30005C2AC /* JLReachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JLReachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFA105A929AB91D30005C2AC /* JLReachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLReachability.h; sourceTree = "<group>"; };
 		EFA105AA29AB91D30005C2AC /* JLReachability.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = JLReachability.docc; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 		EFA105A829AB91D30005C2AC /* JLReachability */ = {
 			isa = PBXGroup;
 			children = (
+				EF82B8F629DBA95600B5CD05 /* examples.html */,
 				EFA105D329AB9A520005C2AC /* JLReachability.js */,
 				EFA105A929AB91D30005C2AC /* JLReachability.h */,
 				EFA105C029AB91E90005C2AC /* JLReachability.m */,
@@ -159,6 +162,7 @@
 				EFA105A229AB91D30005C2AC /* Sources */,
 				EFA105A329AB91D30005C2AC /* Frameworks */,
 				EFA105A429AB91D30005C2AC /* Resources */,
+				EF82B8FB29DBAA0B00B5CD05 /* Add examples */,
 			);
 			buildRules = (
 			);
@@ -229,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFA105D429AB9A520005C2AC /* JLReachability.js in Resources */,
+				EF82B8F729DBA95600B5CD05 /* examples.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +245,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EF82B8FB29DBAA0B00B5CD05 /* Add examples */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Add examples";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "NAME=\"JLReachability\"\nEXAMPLES_DIR=\"${PWD}/../../App/Files/Examples\"\nTEMPLATES_DIR=\"${EXAMPLES_DIR}/Templates\"\nSOURCES_DIR=\"${PWD}/${NAME}\"\n\n# Only copy the examples if the examples directory exists\nif [ -d \"${EXAMPLES_DIR}\" ] \nthen\n cat \"${SOURCES_DIR}/examples.html\" > \"${EXAMPLES_DIR}/${NAME}.example.html\"\nfi\n\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EFA105A229AB91D30005C2AC /* Sources */ = {
