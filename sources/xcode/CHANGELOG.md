@@ -6,6 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## v3.0.2 (next)
 
+### Changed
+
+- [Core] Improved the way the example html file is generated. Now extensions can add the examples on compilation time.
+
+Add a `example.html` file. Fill it with the examples for the extension.
+Add a Build Phase Script in the framework project.
+
+```bash
+NAME="MyExtension"
+EXAMPLES_DIR="${PWD}/../../App/Files/Examples"
+TEMPLATES_DIR="${EXAMPLES_DIR}/Templates"
+SOURCES_DIR="${PWD}/${NAME}"
+
+# Only copy the examples if the examples directory exists
+if [ -d "${EXAMPLES_DIR}" ] 
+then
+ cat "${SOURCES_DIR}/examples.html" > "${EXAMPLES_DIR}/${NAME}.example.html"
+fi
+```
+
 ### Downloads
 
 - [iOS Main Branch](https://github.com/jasonelle/jasonelle/archive/refs/heads/main.zip)
