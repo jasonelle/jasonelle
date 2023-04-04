@@ -92,6 +92,7 @@ Example Return:
 }]
 ```
 
+- ``$contacts.authorize()``: Starts the authorization flow. Returns an Promise. Resolves with object with the authorization status. Rejects with an error message. 
 
 ### Examples
 

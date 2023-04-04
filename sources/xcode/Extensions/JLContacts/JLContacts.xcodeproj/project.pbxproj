@@ -17,6 +17,8 @@
 		EF7D1A5F299054CD004E67E5 /* JLContactsQueryAllMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7D1A5D299054CD004E67E5 /* JLContactsQueryAllMessageHandler.m */; };
 		EF7D1A6229905789004E67E5 /* JLContacts.js in Resources */ = {isa = PBXBuildFile; fileRef = EF7D1A6129905789004E67E5 /* JLContacts.js */; };
 		EF82B8D329DB2D4500B5CD05 /* examples.html in Resources */ = {isa = PBXBuildFile; fileRef = EF82B8D229DB2D4500B5CD05 /* examples.html */; };
+		EFF8ECD129DC7788003BCB9F /* JLContactsAuthorizeMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EFF8ECCF29DC7788003BCB9F /* JLContactsAuthorizeMessageHandler.h */; };
+		EFF8ECD229DC7788003BCB9F /* JLContactsAuthorizeMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF8ECD029DC7788003BCB9F /* JLContactsAuthorizeMessageHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,8 @@
 		EF7D1A5D299054CD004E67E5 /* JLContactsQueryAllMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLContactsQueryAllMessageHandler.m; sourceTree = "<group>"; };
 		EF7D1A6129905789004E67E5 /* JLContacts.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = JLContacts.js; sourceTree = "<group>"; };
 		EF82B8D229DB2D4500B5CD05 /* examples.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = examples.html; sourceTree = "<group>"; };
+		EFF8ECCF29DC7788003BCB9F /* JLContactsAuthorizeMessageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLContactsAuthorizeMessageHandler.h; sourceTree = "<group>"; };
+		EFF8ECD029DC7788003BCB9F /* JLContactsAuthorizeMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLContactsAuthorizeMessageHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,7 @@
 				EF7D1A6129905789004E67E5 /* JLContacts.js */,
 				EF7D1A382990435F004E67E5 /* JLContacts.docc */,
 				EF7D1A60299054D3004E67E5 /* $contacts.all */,
+				EFF8ECD329DC778E003BCB9F /* $contacts.authorize */,
 			);
 			path = JLContacts;
 			sourceTree = "<group>";
@@ -120,6 +125,15 @@
 			path = $contacts.all;
 			sourceTree = "<group>";
 		};
+		EFF8ECD329DC778E003BCB9F /* $contacts.authorize */ = {
+			isa = PBXGroup;
+			children = (
+				EFF8ECCF29DC7788003BCB9F /* JLContactsAuthorizeMessageHandler.h */,
+				EFF8ECD029DC7788003BCB9F /* JLContactsAuthorizeMessageHandler.m */,
+			);
+			path = $contacts.authorize;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -128,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF7D1A452990435F004E67E5 /* JLContacts.h in Headers */,
+				EFF8ECD129DC7788003BCB9F /* JLContactsAuthorizeMessageHandler.h in Headers */,
 				EF7D1A5E299054CD004E67E5 /* JLContactsQueryAllMessageHandler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF7D1A5F299054CD004E67E5 /* JLContactsQueryAllMessageHandler.m in Sources */,
+				EFF8ECD229DC7788003BCB9F /* JLContactsAuthorizeMessageHandler.m in Sources */,
 				EF7D1A54299043ED004E67E5 /* JLContacts.m in Sources */,
 				EF7D1A392990435F004E67E5 /* JLContacts.docc in Sources */,
 			);

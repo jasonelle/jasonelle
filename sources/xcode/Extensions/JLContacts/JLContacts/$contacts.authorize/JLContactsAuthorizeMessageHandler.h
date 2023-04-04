@@ -1,9 +1,9 @@
 //
-//  JLContactsQueryAllMessageHandler.h
+//  JLContactsAuthorizeMessageHandler.h
 //  JLContacts
 //
-//  Created by clsource on 05-02-23.
-//  Copyright (c) 2023 Jasonelle.com
+//  Created by Camilo Castro on 04-04-23.
+//  Copyright © 2023 Jasonelle.com. All rights reserved.
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
 //  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
@@ -27,7 +27,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JLContactsQueryAllMessageHandler : JLJSMessageHandler
+@interface JLContactsAuthorizeMessageHandler : JLJSMessageHandler
 
 @end
 

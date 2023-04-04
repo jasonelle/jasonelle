@@ -28,9 +28,9 @@
 
 @implementation JLContactsQueryAllMessageHandler
 
-
 - (void)handleWithOptions:(nonnull JLJSMessageHandlerOptions *)options {
-    self.resolve([self.contacts all]);
+    JLContacts * ext = (JLContacts *) self.extension;
+    self.resolve([ext all]);
 }
 
 @end

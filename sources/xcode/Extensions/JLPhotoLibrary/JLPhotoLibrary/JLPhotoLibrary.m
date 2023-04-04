@@ -35,7 +35,6 @@
 
 - (void) install {
     [super install];
-    [self authorize];
     
     self.handlers = @{
         @"$photolibrary.granted": [[JLPhotoLibraryGrantedHandler alloc] initWithApplication:self.app andExtension:self],

@@ -45,6 +45,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) CNContactStore * contacts;
 
 - (void) authorize;
+- (CNAuthorizationStatus) authorizeWithCompletionHandler:(void (^)(BOOL granted, NSError *__nullable error, CNAuthorizationStatus status))completionHandler;
+
+- (NSString *) statusToString: (CNAuthorizationStatus) status;
+
 - (NSArray *) all;
 
 @end

@@ -1,9 +1,9 @@
 //
-//  JLContactsQueryAllMessageHandler.h
+//  JLContactsAuthorizeMessageHandler.m
 //  JLContacts
 //
-//  Created by clsource on 05-02-23.
-//  Copyright (c) 2023 Jasonelle.com
+//  Created by Camilo Castro on 04-04-23.
+//  Copyright © 2023 Jasonelle.com. All rights reserved.
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
 //  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
@@ -23,12 +23,23 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-#import <JLKernel/JLKernel.h>
+#import "JLContactsAuthorizeMessageHandler.h"
+#import "JLContacts.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface JLContactsQueryAllMessageHandler : JLJSMessageHandler
-
+@implementation JLContactsAuthorizeMessageHandler
+- (void)handleWithOptions:(nonnull JLJSMessageHandlerOptions *)options {
+    JLContacts * ext = (JLContacts *) self.extension;
+    [ext authorizeWithCompletionHandler:^(BOOL granted, NSError * _Nullable error, CNAuthorizationStatus status) {
+        if (error) {
+            return self.reject(error.description);
+        }
+        self.resolve(@{
+            @"granted": @(granted),
+            @"status": @{
+                @"id": @(status),
+                @"name": [ext statusToString:status]
+            }
+        });
+    }];
+}
 @end
-
-NS_ASSUME_NONNULL_END

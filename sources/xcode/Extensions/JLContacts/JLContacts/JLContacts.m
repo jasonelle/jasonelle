@@ -25,6 +25,7 @@
 
 #import "JLContacts.h"
 #import "JLContactsQueryAllMessageHandler.h"
+#import "JLContactsAuthorizeMessageHandler.h"
 
 @implementation JLContacts
 
@@ -40,13 +41,12 @@
 - (void) install {
     [super install];
     
-    [self authorize];
+    JLContactsQueryAllMessageHandler * allHandler = [[JLContactsQueryAllMessageHandler alloc] initWithApplication:self.app andExtension:self];
     
-    JLContactsQueryAllMessageHandler * allHandler = [[JLContactsQueryAllMessageHandler alloc] initWithApplication:self.app];
-    
-    allHandler.contacts = self;
+    JLContactsAuthorizeMessageHandler * authorizeHandler = [[JLContactsAuthorizeMessageHandler alloc] initWithApplication:self.app andExtension:self];
 
     self.handlers = @{
+        @"$contacts.authorize": authorizeHandler,
         @"$contacts.all": allHandler,
     };
 }
@@ -60,6 +60,19 @@
             jlog_warning_join(@"Error Registering for Contacts Usage", error.description);
         }
     }];
+}
+
+- (CNAuthorizationStatus) authorizeWithCompletionHandler:(void (^)(BOOL granted, NSError *__nullable error, CNAuthorizationStatus status))completionHandler {
+    [self.contacts requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        jlog_trace_join(@"User Contacts Authorization: ", (granted ? @"granted" : @"not granted"));
+
+        if (error) {
+            jlog_warning_join(@"Error Registering for Contacts Usage", error.description);
+        }
+        completionHandler(granted, error, [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts]);
+    }];
+    
+    return self.status;
 }
 
 - (nonnull WKWebView *)appDidLoadWithWebView:(nonnull WKWebView *)webView {
@@ -86,6 +99,25 @@
 
 - (CNAuthorizationStatus) status {
     return [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
+}
+
+- (NSString *) statusToString: (CNAuthorizationStatus) status {
+    switch(status) {
+        case CNAuthorizationStatusAuthorized:
+            return @"Authorized";
+            break;
+        case CNAuthorizationStatusRestricted:
+            return @"Restricted";
+            break;
+        case CNAuthorizationStatusDenied:
+            return @"Denied";
+            break;
+        case CNAuthorizationStatusNotDetermined:
+            return @"Not Determined";
+            break;
+        default:
+            return @"Unknown";
+    }
 }
 
 #pragma mark - Queries
