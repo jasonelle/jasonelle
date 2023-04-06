@@ -30,9 +30,13 @@ An iOS app linked on or after iOS 10 needs to include in its `Info.plist` file t
 
 ### Actions
 
-- ``$contacts.all()``: Returns a `promise` with all the contacts.
+#### ``$contacts.all()``
+Returns a `promise` with all the contacts.
 
-Example Return:
+- Since 3.0.1
+
+
+- Return
 
 ```json
 [{
@@ -92,7 +96,21 @@ Example Return:
 }]
 ```
 
-- ``$contacts.authorize()``: Starts the authorization flow. Returns an Promise. Resolves with object with the authorization status. Rejects with an error message. 
+#### ``$contacts.authorize()``
+Starts the authorization flow. Returns an Promise. Resolves with object with the authorization status. Rejects with an error message. 
+
+- Since 3.0.2
+- Schema
+
+```json
+"granted": "Bool",
+"status": {
+    "id": "CNAuthorizationStatus",
+    "name": "String"
+}
+```
+
+`status.id` referes to [CNAuthorizationStatus](https://developer.apple.com/documentation/contacts/cnauthorizationstatus?language=objc).
 
 ### Examples
 
@@ -111,4 +129,10 @@ Logs the resulting object.
 
 ```js
 $contacts.all().then(info => $logger.trace(JSON.stringify(info)))
+```
+
+**Authorize**
+
+```js
+const authorizeContacts = () => $contacts.authorize().then(res => alert(res.status.name));
 ```

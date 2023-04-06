@@ -21,6 +21,7 @@ By adquiring a **License Key** you agree with the following:
 
 - Use _Jasonelle_'s technologies and licenses in an ethical way.
 - Respect the artifacts license terms and conditions.
+- Must put a link to [_Jasonelle's Webpage_](https://jasonelle.com) (_jasonelle.com_) somewhere visible in your app.
 - Must not share the license keys with third parties.
 - Must not create direct competitors to _Jasonelle_ by rebranding, customizing and reselling the framework and related technologies or services.
 
@@ -29,7 +30,7 @@ Please select the **License Key** that better fits your project.
 | [Jasonelle Friend's Membership Subscription](https://jasonelle.gumroad.com/l/love) | [Thank you Key](https://jasonelle.gumroad.com/l/thanks)
 |---|---|
 | Monthly Payment Requirement | Single Payment
-| Jasonelle's Membership Keys can be used in any amount of projects, as long as the subscription is maintained. | This license allows _Jasonelle framework_ to be used by you or one client, in a single commercial end product.
+| Jasonelle's Membership Keys can be used up to 5 projects, as long as the subscription is maintained. | This license allows _Jasonelle framework_ to be used by you or one client, in a single commercial end product.
 | The license expires if the membership is terminated | Thank you key licenses do not expire. That's why they are a little more expensive than the subscription.
 | [Join Subscription](https://jasonelle.gumroad.com/l/love) | [Purchase Thank you Key](https://jasonelle.gumroad.com/l/thanks)
 
