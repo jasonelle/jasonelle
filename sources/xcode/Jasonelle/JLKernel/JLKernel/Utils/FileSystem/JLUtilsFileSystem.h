@@ -45,6 +45,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// Determines if the string has a res:// prefix
 - (BOOL)isResource:(NSString *)resource;
 
+- (NSString *) pathForFile: (NSString *) name extension: (NSString *) ext inBundle:(NSBundle *) bundle;
+
+- (NSString *) pathForFile: (NSString *) name extension: (NSString *) ext for:(id)object;
+
+- (NSURL *) fileURLForFile: (NSString *) name extension: (NSString *) ext inBundle:(NSBundle *) bundle;
+
+- (NSURL *) fileURLForFile: (NSString *) name extension: (NSString *) ext for:(id)object;
+
 - (NSString *)pathForResource:(NSString *)resource inBundle:(NSBundle *)bundle;
 - (NSString *)pathForResource:(NSString *)resource;
 - (NSURL *)fileURLForPath:(NSString *)path;

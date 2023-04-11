@@ -98,6 +98,22 @@
     return [resource hasPrefix:@"res://"];
 }
 
+- (NSString *) pathForFile: (NSString *) name extension: (NSString *) ext inBundle:(NSBundle *) bundle {
+    return [bundle pathForResource:name ofType:ext];
+}
+
+- (NSString *) pathForFile: (NSString *) name extension: (NSString *) ext for:(id)object {
+    return [self pathForFile:name extension:ext inBundle:[NSBundle bundleForClass:[object class]]];
+}
+
+- (NSURL *) fileURLForFile: (NSString *) name extension: (NSString *) ext inBundle:(NSBundle *) bundle {
+    return [NSURL fileURLWithPath:[self pathForFile:name extension:ext inBundle:bundle]];
+}
+
+- (NSURL *) fileURLForFile: (NSString *) name extension: (NSString *) ext for:(id)object {
+    return [self fileURLForFile:name extension:ext inBundle:[NSBundle bundleForClass:[object class]]];
+}
+
 - (NSString *)pathForResource:(NSString *)resource inBundle:(NSBundle *)bundle {
 
     // delete res:// constant

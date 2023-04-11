@@ -1,10 +1,12 @@
 <!-- Example: JLContacts -->
 <script type="text/javascript">
+    const authorizeContacts = () => $contacts.authorize().then(res => alert(res.status.name));
+    
     const fetchContacts = () => $contacts.all().then(data => {
         alert(data[0].name);
         $logger.trace(JSON.stringify(data));
     });
-    const authorizeContacts = () => $contacts.authorize().then(res => alert(res.status.name));
+    
 </script>
 
 <li class="item">

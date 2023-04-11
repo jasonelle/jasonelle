@@ -43,6 +43,41 @@
 <!--</li>-->
 
 
+<!-- Example: JLAudio -->
+<script type="text/javascript">
+    const audios = {};
+    const audioLoad = () => {
+      $logger.trace("Loading Audio Files");
+      
+      $audio.player.load("https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_100KB_MP3.mp3", {volume: 0.5});
+      
+      $audio.player.load("https://file-examples.com/storage/fe9278ad7f642dbd39ac5c9/2017/11/file_example_MP3_700KB.mp3", {volume: 0.5, channel: 1});
+    };
+    
+    const audioPlay = () => {
+        $logger.trace("Play Audio Files");
+        $audio.player.play();
+        $audio.player.play(1);
+    };
+    
+    const audioPause = () => {
+        $logger.trace("Pause Audio Files");
+        $audio.player.pause();
+        $audio.player.pause(1);
+    };
+</script>
+
+<li class="item">
+    <h3 class="title">JLAudio Examples</h3>
+    <ul>
+        <li><h4 onClick="audioLoad()">Load Audio</h4>
+            <li><h4 onClick="audioPlay()">Play Audio</h4>
+        <li><h4 onClick="audioPause()">Pause Audio</h4>
+    </ul>
+</li>
+
+
+
 <!-- Example: JLReachability -->
 <script type="text/javascript">
     const checkReachability = () => $reachability.get().then(result => alert(result.label));
@@ -58,11 +93,13 @@
 
 <!-- Example: JLContacts -->
 <script type="text/javascript">
+    const authorizeContacts = () => $contacts.authorize().then(res => alert(res.status.name));
+    
     const fetchContacts = () => $contacts.all().then(data => {
         alert(data[0].name);
         $logger.trace(JSON.stringify(data));
     });
-    const authorizeContacts = () => $contacts.authorize().then(res => alert(res.status.name));
+    
 </script>
 
 <li class="item">

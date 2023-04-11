@@ -36,6 +36,7 @@
 #import <JLCookies/JLCookies.h>
 #import <JLContacts/JLContacts.h>
 #import <JLReachability/JLReachability.h>
+#import <JLAudio/JLAudio.h>
 #import <MyExtension/MyExtension.h> // Example Extension
 
 @implementation AppExtensions
@@ -53,26 +54,30 @@
 #pragma mark - Configure Your Extensions
 
 - (BOOL) install {
-//    // Setup ATTracking Manager
+//     Setup ATTracking Manager
     [self.extensions add:JLATTrackingManager.class];
-//
-//    // Setup permissions in info.plist to access photos
+
+//     Setup permissions in info.plist to access photos
     [self.extensions add:JLPhotoLibrary.class];
-//
-//    // Add $badge extension
+
+//     Add $badge extension
     [self.extensions add:JLApplicationBadge.class];
-//
-//    // Add $keychain extension
+
+//     Add $keychain extension
     [self.extensions add:JLKeychain.class];
-//
-//    // Add $cookies extension
+
+//     Add $cookies extension
     [self.extensions add:JLCookies.class];
-//
-//    // Add $contacts extension
+
+//     Add $contacts extension
     [self.extensions add:JLContacts.class];
-//    // Add $reachability extension
+    
+//     Add $reachability extension
     [self.extensions add:JLReachability.class];
-//
+
+//    Add $audio extension
+    [self.extensions add:JLAudio.class];
+    
     // Add Example Extension
     [self.extensions add:MyExtension.class];
     

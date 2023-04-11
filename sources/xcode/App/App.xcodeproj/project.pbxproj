@@ -10,6 +10,8 @@
 		EF115A9D29CFFD040068703C /* MyExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF115A9C29CFFD040068703C /* MyExtension.framework */; };
 		EF115A9E29CFFD040068703C /* MyExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF115A9C29CFFD040068703C /* MyExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EF2B4D5629A074C600D99A98 /* AppExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2B4D5529A074C600D99A98 /* AppExtensions.m */; };
+		EF3AC8FD29E31FD200124484 /* JLAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3AC8FC29E31FD200124484 /* JLAudio.framework */; };
+		EF3AC8FE29E31FD200124484 /* JLAudio.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF3AC8FC29E31FD200124484 /* JLAudio.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EF4E850527A990AD00444A94 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4E850427A990AD00444A94 /* Main.swift */; };
 		EF4E850927A990B000444A94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF4E850827A990B000444A94 /* Assets.xcassets */; };
 		EF4E850C27A990B000444A94 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF4E850B27A990B000444A94 /* Preview Assets.xcassets */; };
@@ -80,6 +82,7 @@
 				EF77097128DF6CAA00D28B89 /* JLKernel.framework in Embed Frameworks */,
 				EF82B8D729DBA39400B5CD05 /* JLContacts.framework in Embed Frameworks */,
 				EF82B8E629DBA3BD00B5CD05 /* JLCookies.framework in Embed Frameworks */,
+				EF3AC8FE29E31FD200124484 /* JLAudio.framework in Embed Frameworks */,
 				EF82B8E329DBA3B300B5CD05 /* JLPhotoLibrary.framework in Embed Frameworks */,
 				EF77097D28DF6CF600D28B89 /* JasonelleSwift.framework in Embed Frameworks */,
 				EF82B8E929DBA3C400B5CD05 /* JLKeychain.framework in Embed Frameworks */,
@@ -96,6 +99,7 @@
 		EF2065E5297F4DFD001C27A6 /* JLKeychain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKeychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF2B4D5429A074C600D99A98 /* AppExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppExtensions.h; sourceTree = "<group>"; };
 		EF2B4D5529A074C600D99A98 /* AppExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppExtensions.m; sourceTree = "<group>"; };
+		EF3AC8FC29E31FD200124484 /* JLAudio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLAudio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF47FEF32824F6EF006E2B9B /* JLExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4E850127A990AD00444A94 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4E850427A990AD00444A94 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 				EF77097028DF6CAA00D28B89 /* JLKernel.framework in Frameworks */,
 				EF82B8D629DBA39400B5CD05 /* JLContacts.framework in Frameworks */,
 				EF82B8E529DBA3BD00B5CD05 /* JLCookies.framework in Frameworks */,
+				EF3AC8FD29E31FD200124484 /* JLAudio.framework in Frameworks */,
 				EF82B8E229DBA3B300B5CD05 /* JLPhotoLibrary.framework in Frameworks */,
 				EF77097C28DF6CF600D28B89 /* JasonelleSwift.framework in Frameworks */,
 				EF82B8E829DBA3C400B5CD05 /* JLKeychain.framework in Frameworks */,
@@ -259,6 +264,7 @@
 		EF83737227A9939B00485E03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EF3AC8FC29E31FD200124484 /* JLAudio.framework */,
 				EF82B8E729DBA3C400B5CD05 /* JLKeychain.framework */,
 				EF82B8E429DBA3BD00B5CD05 /* JLCookies.framework */,
 				EF82B8E129DBA3B300B5CD05 /* JLPhotoLibrary.framework */,
