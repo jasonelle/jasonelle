@@ -1,5 +1,5 @@
 //
-//  JLAudioPlayer.h
+//  JLAudioVibrateMessageHandler.h
 //  JLAudio
 //
 //  Copyright (c) Jasonelle.com
@@ -22,28 +22,11 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-#import <Foundation/Foundation.h>
-#import <AVFoundation/AVFoundation.h>
 #import <JLKernel/JLKernel.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JLAudioPlayer : NSObject
-
-@property (nonatomic, strong, nonnull) JLApplication * app;
-@property (nonatomic, strong, nonnull) id<JLLoggerProtocol> logger;
-@property (nonatomic, strong, nonnull) NSDictionary<NSNumber *, AVPlayer *> * channels;
-
-- (instancetype)initWithApplication:(JLApplication *)app;
-
-- (AVPlayer *) playerAtChannel: (int) channel;
-- (AVPlayer *) loadURL: (NSURL *) url withOptions: (JLJSParams *) options;
-- (AVPlayer *) pauseChannel: (int) channel;
-- (AVPlayer *) playChannel: (int) channel withOptions: (JLJSParams *) options;
-
-- (NSDictionary *) options: (JLJSParams *) options forPlayer: (AVPlayer *) player inChannel: (int) channel;
-
-- (void) vibrateWithOptions: (JLJSParams *) options;
+@interface JLAudioVibrateMessageHandler : JLJSMessageHandler
 
 @end
 

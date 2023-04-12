@@ -120,6 +120,14 @@
     return [playOpts copy];
 }
 
+- (void) vibrateWithOptions: (JLJSParams *) options {
+    // AudioServicesPlaySystemSound (1352) works for iPhones regardless of silent switch position
+    int vibrationId = 1352; // kSystemSoundID_Vibrate;
+    AudioServicesPlayAlertSoundWithCompletion(vibrationId, ^{
+        jlog_trace_join(@"Vibrated with sound id: ", @(vibrationId));
+    });
+}
+
 - (AVPlayer *) loadURL: (NSURL *) url withOptions: (JLJSParams *) options {
     
     jlog_trace_join(@"Loading File At URL: ", url, @" with options: ", options.description);

@@ -26,6 +26,7 @@
 #import "JLAudioPlayMessageHandler.h"
 #import "JLAudioPauseMessageHandler.h"
 #import "JLAudioLoadMessageHandler.h"
+#import "JLAudioVibrateMessageHandler.h"
 
 @implementation JLAudio
 
@@ -75,10 +76,13 @@
     
     JLAudioLoadMessageHandler * loadHandler = [[JLAudioLoadMessageHandler alloc] initWithApplication:self.app andExtension:self];
     
+    JLAudioVibrateMessageHandler * vibrateHandler = [[JLAudioVibrateMessageHandler alloc] initWithApplication:self.app andExtension:self];
+    
     self.handlers = @{
         @"$audio.play": playHandler,
         @"$audio.pause": pauseHandler,
-        @"$audio.load": loadHandler
+        @"$audio.load": loadHandler,
+        @"$audio.vibrate": vibrateHandler
     };
 }
 

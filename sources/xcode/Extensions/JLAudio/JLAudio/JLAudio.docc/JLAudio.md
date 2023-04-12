@@ -6,16 +6,24 @@ A simple wrapper to record and play audio files using the native device apis.
 
 ## Overview
 
+## Topics
+
+### Vibration
+
+#### `$audio.vibrate()`
+
+- Since `3.0.2`
+
+Sends the vibration alarm sound. Works for iPhones regardless of silent switch position.
+
+### Audio Player Actions
+
 This interacts directly with [`AVPlayer`](https://developer.apple.com/documentation/avfoundation/avplayer?language=objc).
 
 The current player support up to 16 channels. With channel 0 as the default.
 You can individually play each channel and set options such as volume.
 
-## Topics
-
-### Audio Player Actions
-
-#### ``$audio.player.load(url, options = {})``
+#### ``$audio.player.load(url, options = {channel = 0, volume = 1})``
 
 - Since: `3.0.2`
 
