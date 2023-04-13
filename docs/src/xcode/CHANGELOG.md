@@ -9,6 +9,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - [JLContacts] Added `$contacts.authorize()` function. Now the extension would not trigger authorization on install.
 
+- [JLAudio] Added `$audio` extension. It has `$audio.player`, `$audio.recorder` and `$audio.vibrate` functions.
+
 ### Changed
 
 - [Core] Improved the way the example html file is generated. Now extensions can add the examples on compilation time.
