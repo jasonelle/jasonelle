@@ -45,13 +45,12 @@
 
 <!-- Example: JLAudio -->
 <script type="text/javascript">
-    const audios = {};
     const audioLoad = () => {
       $logger.trace("Loading Audio Files");
       
       $audio.player.load("https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_100KB_MP3.mp3", {volume: 0.5});
       
-      $audio.player.load("https://file-examples.com/storage/fe9278ad7f642dbd39ac5c9/2017/11/file_example_MP3_700KB.mp3", {volume: 0.5, channel: 1});
+      $audio.player.load("https://file-examples.com/storage/fe9278ad7f642dbd39ac5c9/2017/11/file_example_MP3_700KB.mp3", {volume: 0.5, channel: 17});
     };
     
     const audioPlay = () => {
