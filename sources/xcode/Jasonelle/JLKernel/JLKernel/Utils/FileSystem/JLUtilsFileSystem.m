@@ -150,8 +150,17 @@
     return [self resourceDirectoryURLInBundle:[NSBundle mainBundle]];
 }
 
+- (NSURL *) documentDirectoryURL {
+    return [[NSFileManager.defaultManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] firstObject];
+}
+
 - (NSString *) uniqueFilename {
     return [NSProcessInfo processInfo].globallyUniqueString;
+}
+
+- (NSString *) uniqueFilenameWithExtension: (NSString *) ext {
+    NSString * uid = [self uniqueFilename];
+    return [NSString stringWithFormat:@"%@.%@", uid, ext];
 }
 
 - (NSString *) temp {
@@ -162,9 +171,22 @@
     return [[self temp] stringByAppendingPathComponent:[self uniqueFilename]];
 }
 
-- (NSString *) tempFileWithExtension: (NSString *) ext {
-    NSString * uid = [self uniqueFilename];
-    NSString * file = [NSString stringWithFormat:@"%@.%@", uid, ext];
-    return [[self temp] stringByAppendingPathComponent:file];
+- (NSString *) tempFilePathWithExtension: (NSString *) ext {
+    return [[self temp] stringByAppendingPathComponent:[self uniqueFilenameWithExtension:ext]];
+}
+
+- (NSURL *) uniqueFileInDocumentDirectoryWithExtension:(NSString *)ext {
+    return [self.documentDirectoryURL URLByAppendingPathComponent:[self uniqueFilenameWithExtension:ext]];
+}
+
+- (void) removeFileAtPath:(NSString *)path {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        NSError * error;
+        jlog_trace_join(@"Removing file at path %@", path);
+        [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+        if (error) {
+            jlog_warning(error.description);
+        }
+    }
 }
 @end

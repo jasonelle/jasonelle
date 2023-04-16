@@ -5,7 +5,7 @@
       
       $audio.player.load("https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_100KB_MP3.mp3", {volume: 0.5});
       
-      $audio.player.load("https://file-examples.com/storage/fe9278ad7f642dbd39ac5c9/2017/11/file_example_MP3_700KB.mp3", {volume: 0.5, channel: 17});
+      $audio.player.load("https://file-examples.com/storage/fe9278ad7f642dbd39ac5c9/2017/11/file_example_MP3_700KB.mp3", {volume: 0.5, channel: 1});
     };
     
     const audioPlay = () => {
@@ -19,6 +19,10 @@
         $audio.player.pause();
         $audio.player.pause(1);
     };
+    
+    const audioAuthorize = () => $audio.recorder.authorize().then(granted => $logger.trace(`Audio Recording is granted?: ${granted}`))
+        .catch(message => $logger.trace("Audio Recording Authorization Not Granted"));
+    
 </script>
 
 <li class="item">
@@ -37,8 +41,61 @@
             <h4 onClick="$audio.vibrate()">Vibrate Phone</h4>
         </li>
         
+        <li>
+            <h4 onClick="audioAuthorize()">Authorize Recording</h4>
+        </li>
+        
+        <li>
+            <h4 onClick="audioRecord()">Start Recording</h4>
+            <h5 id="audioinfo"></h5>
+        </li>
+        <li>
+            <h4 onClick="$audio.recorder.pause()">Pause Recording</h4>
+        </li>
+        <li>
+            <!-- Will pause/resume. Also can be $audio.recorder.resume() -->
+            <h4 onClick="$audio.recorder.pause()">Resume Recording</h4>
+        </li>
+        <li>
+            <h4 onClick="$audio.recorder.stop()">Stop Recording</h4>
+        </li>
+        
     </ul>
 </li>
+
+<script text="text/javascript">
+    // Need to be here to ensure audioinfo div is loaded
+    const audioRecord = () => {
+        
+        $audio.recorder.record();
+        
+        document.addEventListener($audio.events.recorder.status.event,
+            (event) => {
+                $logger.trace("Audio Recording Status Changed");
+                $logger.trace(event.detail.time.audio.formatted);
+                const info = document.getElementById("audioinfo");
+                info.innerHTML = event.detail.time.audio.formatted
+            }
+        );
+        
+        document.addEventListener($audio.events.recorder.finished.event,
+            (event) => {
+                $logger.trace("Audio Recording Ended");
+                $audio.player.load(event.detail.file.url).then(() => {
+                    $audio.player.play();
+                });
+                
+            }
+        );
+        
+        document.addEventListener($audio.events.recorder.error.event,
+            (event) => {
+                $logger.trace("Audio Recording Error");
+                $logger.trace(event.detail);
+            }
+        );
+    };
+</script>
 
 
 

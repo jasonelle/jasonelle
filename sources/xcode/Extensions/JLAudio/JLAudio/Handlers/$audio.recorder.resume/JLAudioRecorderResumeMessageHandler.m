@@ -1,10 +1,10 @@
 //
-//  JLUtilsBase64.h
-//  JLKernel
+//  JLAudioRecorderResumeMessageHandler.m
+//  JLAudio
 //
-//  Created by clsource on 05-05-22
+//  Created by clsource on 16-04-23.
 //
-//  Copyright (c) 2022 Jasonelle.com
+//  Copyright (c) Jasonelle.com
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
 //  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
@@ -24,17 +24,17 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-#import <Foundation/Foundation.h>
-#import <JLKernel/JLUtil.h>
+#import "JLAudioRecorderResumeMessageHandler.h"
+#import "JLAudio.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation JLAudioRecorderResumeMessageHandler
 
-@interface JLUtilsBase64 : JLUtil
-
-- (NSString *)encodeString:(NSString *)string;
-- (NSString *)encode:(NSData *)data;
-- (nullable NSString *)decode:(NSString *)encoded;
+- (void)handleWithOptions:(nonnull JLJSMessageHandlerOptions *)options {
+    JLAudio * ext = (JLAudio *) self.extension;
+    
+    [ext.recorder resume];
+    
+    self.resolve(@YES);
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

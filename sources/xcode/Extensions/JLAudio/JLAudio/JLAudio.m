@@ -23,10 +23,20 @@
 //
 
 #import "JLAudio.h"
+
+// Player
 #import "JLAudioPlayMessageHandler.h"
 #import "JLAudioPauseMessageHandler.h"
 #import "JLAudioLoadMessageHandler.h"
 #import "JLAudioVibrateMessageHandler.h"
+
+
+// Recorder
+#import "JLAudioRecorderAuthorizeMessageHandler.h"
+#import "JLAudioRecorderStopMessageHandler.h"
+#import "JLAudioRecorderPauseMessageHandler.h"
+#import "JLAudioRecorderResumeMessageHandler.h"
+#import "JLAudioRecorderStartMessageHandler.h"
 
 @implementation JLAudio
 
@@ -40,7 +50,7 @@
 
 - (JLAudioRecorder *) recorder {
     if (!_recorder) {
-        _recorder = [[JLAudioRecorder alloc] initWithApplication:self.app];
+        _recorder = [[JLAudioRecorder alloc] initWithApplication:self.app andExtension:self];
     }
     return _recorder;
 }
@@ -78,11 +88,28 @@
     
     JLAudioVibrateMessageHandler * vibrateHandler = [[JLAudioVibrateMessageHandler alloc] initWithApplication:self.app andExtension:self];
     
+    JLAudioRecorderAuthorizeMessageHandler * authorizeHandler = [[JLAudioRecorderAuthorizeMessageHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    JLAudioRecorderStartMessageHandler * startHandler = [[JLAudioRecorderStartMessageHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    JLAudioRecorderPauseMessageHandler * recorderPauseHandler = [[JLAudioRecorderPauseMessageHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    JLAudioRecorderStopMessageHandler * stopHandler = [[JLAudioRecorderStopMessageHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    JLAudioRecorderResumeMessageHandler * resumeHandler = [[JLAudioRecorderResumeMessageHandler alloc] initWithApplication:self.app andExtension:self];
+    
     self.handlers = @{
-        @"$audio.play": playHandler,
-        @"$audio.pause": pauseHandler,
-        @"$audio.load": loadHandler,
-        @"$audio.vibrate": vibrateHandler
+        @"$audio.player.play": playHandler,
+        @"$audio.player.pause": pauseHandler,
+        @"$audio.player.load": loadHandler,
+        
+        @"$audio.vibrate": vibrateHandler,
+        
+        @"$audio.recorder.authorize": authorizeHandler,
+        @"$audio.recorder.record": startHandler,
+        @"$audio.recorder.pause": recorderPauseHandler,
+        @"$audio.recorder.stop": stopHandler,
+        @"$audio.recorder.resume": resumeHandler
     };
 }
 

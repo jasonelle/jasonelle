@@ -22,10 +22,20 @@
 		EFA73C3C29E5C70400945417 /* JLAudioPauseMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA73C3A29E5C70400945417 /* JLAudioPauseMessageHandler.m */; };
 		EFA899B729E703050095CC7B /* JLAudioVibrateMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EFA899B529E703050095CC7B /* JLAudioVibrateMessageHandler.h */; };
 		EFA899B829E703050095CC7B /* JLAudioVibrateMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA899B629E703050095CC7B /* JLAudioVibrateMessageHandler.m */; };
+		EFB34DE329E9A46100E4FF55 /* JLAudioRecorderAuthorizeMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EFB34DE129E9A46100E4FF55 /* JLAudioRecorderAuthorizeMessageHandler.h */; };
+		EFB34DE429E9A46100E4FF55 /* JLAudioRecorderAuthorizeMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB34DE229E9A46100E4FF55 /* JLAudioRecorderAuthorizeMessageHandler.m */; };
 		EFCE8DBD29E395C6002744D0 /* JLAudioPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = EFCE8DBB29E395C6002744D0 /* JLAudioPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFCE8DBE29E395C6002744D0 /* JLAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCE8DBC29E395C6002744D0 /* JLAudioPlayer.m */; };
 		EFCE8DC129E395D5002744D0 /* JLAudioRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = EFCE8DBF29E395D5002744D0 /* JLAudioRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFCE8DC229E395D5002744D0 /* JLAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCE8DC029E395D5002744D0 /* JLAudioRecorder.m */; };
+		EFE8602929EC3C6200D07025 /* JLAudioRecorderStopMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE8602729EC3C6200D07025 /* JLAudioRecorderStopMessageHandler.h */; };
+		EFE8602A29EC3C6200D07025 /* JLAudioRecorderStopMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE8602829EC3C6200D07025 /* JLAudioRecorderStopMessageHandler.m */; };
+		EFE8602E29EC3C8A00D07025 /* JLAudioRecorderStartMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE8602C29EC3C8A00D07025 /* JLAudioRecorderStartMessageHandler.h */; };
+		EFE8602F29EC3C8A00D07025 /* JLAudioRecorderStartMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE8602D29EC3C8A00D07025 /* JLAudioRecorderStartMessageHandler.m */; };
+		EFE8603329EC3CAF00D07025 /* JLAudioRecorderPauseMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE8603129EC3CAF00D07025 /* JLAudioRecorderPauseMessageHandler.h */; };
+		EFE8603429EC3CAF00D07025 /* JLAudioRecorderPauseMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE8603229EC3CAF00D07025 /* JLAudioRecorderPauseMessageHandler.m */; };
+		EFE8603829EC42FD00D07025 /* JLAudioRecorderResumeMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE8603629EC42FD00D07025 /* JLAudioRecorderResumeMessageHandler.h */; };
+		EFE8603929EC42FD00D07025 /* JLAudioRecorderResumeMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE8603729EC42FD00D07025 /* JLAudioRecorderResumeMessageHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,10 +65,20 @@
 		EFA73C3A29E5C70400945417 /* JLAudioPauseMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLAudioPauseMessageHandler.m; sourceTree = "<group>"; };
 		EFA899B529E703050095CC7B /* JLAudioVibrateMessageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLAudioVibrateMessageHandler.h; sourceTree = "<group>"; };
 		EFA899B629E703050095CC7B /* JLAudioVibrateMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLAudioVibrateMessageHandler.m; sourceTree = "<group>"; };
+		EFB34DE129E9A46100E4FF55 /* JLAudioRecorderAuthorizeMessageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLAudioRecorderAuthorizeMessageHandler.h; sourceTree = "<group>"; };
+		EFB34DE229E9A46100E4FF55 /* JLAudioRecorderAuthorizeMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLAudioRecorderAuthorizeMessageHandler.m; sourceTree = "<group>"; };
 		EFCE8DBB29E395C6002744D0 /* JLAudioPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLAudioPlayer.h; sourceTree = "<group>"; };
 		EFCE8DBC29E395C6002744D0 /* JLAudioPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLAudioPlayer.m; sourceTree = "<group>"; };
 		EFCE8DBF29E395D5002744D0 /* JLAudioRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLAudioRecorder.h; sourceTree = "<group>"; };
 		EFCE8DC029E395D5002744D0 /* JLAudioRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLAudioRecorder.m; sourceTree = "<group>"; };
+		EFE8602729EC3C6200D07025 /* JLAudioRecorderStopMessageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLAudioRecorderStopMessageHandler.h; sourceTree = "<group>"; };
+		EFE8602829EC3C6200D07025 /* JLAudioRecorderStopMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLAudioRecorderStopMessageHandler.m; sourceTree = "<group>"; };
+		EFE8602C29EC3C8A00D07025 /* JLAudioRecorderStartMessageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLAudioRecorderStartMessageHandler.h; sourceTree = "<group>"; };
+		EFE8602D29EC3C8A00D07025 /* JLAudioRecorderStartMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLAudioRecorderStartMessageHandler.m; sourceTree = "<group>"; };
+		EFE8603129EC3CAF00D07025 /* JLAudioRecorderPauseMessageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLAudioRecorderPauseMessageHandler.h; sourceTree = "<group>"; };
+		EFE8603229EC3CAF00D07025 /* JLAudioRecorderPauseMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLAudioRecorderPauseMessageHandler.m; sourceTree = "<group>"; };
+		EFE8603629EC42FD00D07025 /* JLAudioRecorderResumeMessageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLAudioRecorderResumeMessageHandler.h; sourceTree = "<group>"; };
+		EFE8603729EC42FD00D07025 /* JLAudioRecorderResumeMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLAudioRecorderResumeMessageHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +148,11 @@
 				EFA73C3829E5C6E200945417 /* $audio.player.load */,
 				EFA73C3D29E5C70800945417 /* $audio.player.pause */,
 				EFA899B929E7030D0095CC7B /* $audio.vibrate */,
+				EFB34DE529E9A46500E4FF55 /* $audio.recorder.authorize */,
+				EFE8602B29EC3C6700D07025 /* $audio.recorder.stop */,
+				EFE8603029EC3C8E00D07025 /* $audio.recorder.record */,
+				EFE8603529EC3CB700D07025 /* $audio.recorder.pause */,
+				EFE8603A29EC430300D07025 /* $audio.recorder.resume */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -168,6 +193,15 @@
 			path = $audio.vibrate;
 			sourceTree = "<group>";
 		};
+		EFB34DE529E9A46500E4FF55 /* $audio.recorder.authorize */ = {
+			isa = PBXGroup;
+			children = (
+				EFB34DE129E9A46100E4FF55 /* JLAudioRecorderAuthorizeMessageHandler.h */,
+				EFB34DE229E9A46100E4FF55 /* JLAudioRecorderAuthorizeMessageHandler.m */,
+			);
+			path = $audio.recorder.authorize;
+			sourceTree = "<group>";
+		};
 		EFCE8DC329E395D9002744D0 /* Player */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +220,42 @@
 			path = Recorder;
 			sourceTree = "<group>";
 		};
+		EFE8602B29EC3C6700D07025 /* $audio.recorder.stop */ = {
+			isa = PBXGroup;
+			children = (
+				EFE8602729EC3C6200D07025 /* JLAudioRecorderStopMessageHandler.h */,
+				EFE8602829EC3C6200D07025 /* JLAudioRecorderStopMessageHandler.m */,
+			);
+			path = $audio.recorder.stop;
+			sourceTree = "<group>";
+		};
+		EFE8603029EC3C8E00D07025 /* $audio.recorder.record */ = {
+			isa = PBXGroup;
+			children = (
+				EFE8602C29EC3C8A00D07025 /* JLAudioRecorderStartMessageHandler.h */,
+				EFE8602D29EC3C8A00D07025 /* JLAudioRecorderStartMessageHandler.m */,
+			);
+			path = $audio.recorder.record;
+			sourceTree = "<group>";
+		};
+		EFE8603529EC3CB700D07025 /* $audio.recorder.pause */ = {
+			isa = PBXGroup;
+			children = (
+				EFE8603129EC3CAF00D07025 /* JLAudioRecorderPauseMessageHandler.h */,
+				EFE8603229EC3CAF00D07025 /* JLAudioRecorderPauseMessageHandler.m */,
+			);
+			path = $audio.recorder.pause;
+			sourceTree = "<group>";
+		};
+		EFE8603A29EC430300D07025 /* $audio.recorder.resume */ = {
+			isa = PBXGroup;
+			children = (
+				EFE8603629EC42FD00D07025 /* JLAudioRecorderResumeMessageHandler.h */,
+				EFE8603729EC42FD00D07025 /* JLAudioRecorderResumeMessageHandler.m */,
+			);
+			path = $audio.recorder.resume;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -194,11 +264,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF3AC8F829E31ABF00124484 /* JLAudioPlayMessageHandler.h in Headers */,
+				EFE8603829EC42FD00D07025 /* JLAudioRecorderResumeMessageHandler.h in Headers */,
+				EFE8603329EC3CAF00D07025 /* JLAudioRecorderPauseMessageHandler.h in Headers */,
+				EFB34DE329E9A46100E4FF55 /* JLAudioRecorderAuthorizeMessageHandler.h in Headers */,
 				EFA73C3B29E5C70400945417 /* JLAudioPauseMessageHandler.h in Headers */,
 				EFCE8DBD29E395C6002744D0 /* JLAudioPlayer.h in Headers */,
 				EFA73C3629E5C6CF00945417 /* JLAudioLoadMessageHandler.h in Headers */,
+				EFE8602E29EC3C8A00D07025 /* JLAudioRecorderStartMessageHandler.h in Headers */,
 				EFCE8DC129E395D5002744D0 /* JLAudioRecorder.h in Headers */,
 				EFA899B729E703050095CC7B /* JLAudioVibrateMessageHandler.h in Headers */,
+				EFE8602929EC3C6200D07025 /* JLAudioRecorderStopMessageHandler.h in Headers */,
 				EF3AC8E129E3091E00124484 /* JLAudio.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -324,14 +399,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFE8602A29EC3C6200D07025 /* JLAudioRecorderStopMessageHandler.m in Sources */,
 				EFCE8DC229E395D5002744D0 /* JLAudioRecorder.m in Sources */,
 				EFA899B829E703050095CC7B /* JLAudioVibrateMessageHandler.m in Sources */,
 				EFA73C3729E5C6CF00945417 /* JLAudioLoadMessageHandler.m in Sources */,
 				EFA73C3C29E5C70400945417 /* JLAudioPauseMessageHandler.m in Sources */,
 				EF3AC8EF29E3097000124484 /* JLAudio.m in Sources */,
+				EFE8603429EC3CAF00D07025 /* JLAudioRecorderPauseMessageHandler.m in Sources */,
 				EF3AC8D529E3091E00124484 /* JLAudio.docc in Sources */,
+				EFE8602F29EC3C8A00D07025 /* JLAudioRecorderStartMessageHandler.m in Sources */,
+				EFE8603929EC42FD00D07025 /* JLAudioRecorderResumeMessageHandler.m in Sources */,
 				EF3AC8F929E31ABF00124484 /* JLAudioPlayMessageHandler.m in Sources */,
 				EFCE8DBE29E395C6002744D0 /* JLAudioPlayer.m in Sources */,
+				EFB34DE429E9A46100E4FF55 /* JLAudioRecorderAuthorizeMessageHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

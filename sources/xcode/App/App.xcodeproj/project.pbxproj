@@ -670,6 +670,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_NSContactsUsageDescription = "Example Contacts Usage Description";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Example Microphone Access Usage Description";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Example Photo Library Usage Description";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Example ATTracking Usage Description";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -709,6 +710,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_NSContactsUsageDescription = "Example Contacts Usage Description";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Example Microphone Access Usage Description";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Example Photo Library Usage Description";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Example ATTracking Usage Description";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

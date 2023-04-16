@@ -28,11 +28,22 @@
 
 @implementation JLUtilsBase64
 
-- (NSString *)encode:(NSString *)string {
-    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *encoded = [data base64EncodedStringWithOptions:kNilOptions];
+- (NSString *)encode:(NSData *)data {
+    if (!data) {
+        jlog_notice(@"Base64 Encoding Data is Empty");
+    }
+    
+    NSString * base64 = [data base64EncodedStringWithOptions:kNilOptions];
+    if(!base64) {
+        jlog_notice(@"Base64 Data is Empty");
+        base64 = @"";
+    }
+    return base64;
+}
 
-    return encoded;
+- (NSString *)encodeString:(NSString *)string {
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+    return [self encode:data];
 }
 
 - (NSString *)decode:(NSString *)encoded {

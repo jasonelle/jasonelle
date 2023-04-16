@@ -28,11 +28,12 @@
 
 @implementation JLApplicationUtils
 
-- (instancetype)initWithLogger:(id<JLLoggerProtocol>)logger {
+- (instancetype)initWithLogger:(id<JLLoggerProtocol>)logger andRootController:(nonnull UIViewController *)rootController {
     self = [super init];
 
     if (self) {
         self.logger = logger;
+        self.rootController = rootController;
     }
 
     return self;
@@ -74,8 +75,8 @@
 }
 
 - (BOOL) openURL: (NSString *) urlString {
-    NSURL * url = [[NSURL alloc] initWithString:urlString];
-    jlog_trace_join(@"Openning URL: ", url);
+    NSURL * url = [NSURL URLWithString:urlString];
+    jlog_trace_join(@"Openning URL: ", url.absoluteString);
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
             jlog_trace_join(@"Was Open?: ", jlog_b2s(success));
@@ -86,6 +87,21 @@
     return NO;
 }
 
+- (NSURL *) settingsURL {
+    return [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+}
 
+- (void) openSettings {
+    [self openURL:UIApplicationOpenSettingsURLString];
+}
 
+- (void) present:(UIViewController *)controller completion:(void (^ __nullable)(void))completion {
+    // Since we must show something is required to do it in main thread
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.rootController
+         presentViewController:controller
+         animated:YES
+         completion:completion];
+    });
+}
 @end

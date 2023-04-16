@@ -69,6 +69,7 @@ return [self injectIntoWebView:webView source:source withInjectionTime:WKUserScr
 
 - (WKWebView *) dispatch: (NSString *) event arguments: (NSDictionary<NSString*, id> *) arguments inWebView: (WKWebView *) webView {
     
+    // TODO: Maybe put this in a main thread
     // Injecting the document does not trigger at all. It must be injected before and then call the function here
     jlog_trace_join(@"Sending event: ", event, @" with args:", arguments);
     // Ensure safety by using a function wrapper: (() => myfunc())();

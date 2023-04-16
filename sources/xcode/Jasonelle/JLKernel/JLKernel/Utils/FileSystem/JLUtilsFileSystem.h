@@ -58,19 +58,26 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSURL *)fileURLForPath:(NSString *)path;
 - (nonnull NSURL *)resourceDirectoryURLInBundle:(NSBundle *)bundle;
 - (nonnull NSURL *)resourceDirectoryURL;
+- (nonnull NSURL *) documentDirectoryURL;
 
 // Temporary Files
 /// Returns an unique file name
 - (NSString *) uniqueFilename;
+- (NSString *) uniqueFilenameWithExtension: (NSString *) ext;
 
 /// Returns the temporary directory path
 - (NSString *) temp;
 
 /// Returns a temporary file path with an specific extension
-- (NSString *) tempFileWithExtension: (NSString *) ext;
-
+- (NSString *) tempFilePathWithExtension: (NSString *) ext;
+ 
 /// Returns a temporary file path
 - (NSString *) tempFile;
+
+- (NSURL *) uniqueFileInDocumentDirectoryWithExtension:(NSString *)ext;
+
+- (void) removeFileAtPath: (NSString *) path;
+
 @end
 
 NS_ASSUME_NONNULL_END

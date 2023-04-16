@@ -1,6 +1,8 @@
 //
-//  JLAudioRecorder.h
+//  JLAudioRecorderResumeMessageHandler.h
 //  JLAudio
+//
+//  Created by clsource on 16-04-23.
 //
 //  Copyright (c) Jasonelle.com
 //
@@ -22,43 +24,11 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-#import <Foundation/Foundation.h>
-#import <AVFoundation/AVFoundation.h>
-#import <CoreAudio/CoreAudioTypes.h>
 #import <JLKernel/JLKernel.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, JLAudioState) {
-    JLAudioStateNone        = 1000,
-    JLAudioStateIdle        = 1001,
-    JLAudioStateRecording   = 1002,
-    JLAudioStatePaused      = 1003
-};
-
-@interface JLAudioRecorder : NSObject<AVAudioRecorderDelegate>
-
-@property (nonatomic, strong, nonnull) JLApplication * app;
-@property (nonatomic, strong, nonnull) id<JLLoggerProtocol> logger;
-@property (nonatomic, strong, nonnull) JLExtension * extension;
-
-@property (nonatomic, strong, nullable) AVAudioRecorder * recorder;
-@property (nonatomic, strong, nullable) NSTimer * timer;
-@property (nonatomic, strong, nullable) NSURL * file;
-@property (nonatomic) JLAudioState state;
-@property (nonatomic) NSTimeInterval duration;
-@property (nonatomic, strong, nonnull) NSDictionary * settings;
-
-@property (nonatomic) BOOL isRecordPermissionGranted;
-
-- (instancetype)initWithApplication:(JLApplication *)app andExtension:(nonnull JLExtension *)extension;
-
-- (BOOL) authorizeWithCompletionHandler:(void (^)(BOOL granted))completionHandler showAlert: (BOOL) showAlert;
-
-- (void) recordWithOptions: (JLJSParams *) options;
-- (void) stop;
-- (void) pause;
-- (void) resume;
+@interface JLAudioRecorderResumeMessageHandler : JLJSMessageHandler
 
 @end
 

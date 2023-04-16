@@ -47,15 +47,21 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nonnull, readonly) NSString * uuid;
 @property (nonatomic, strong, nonnull) JLUtilsFileSystem * fs;
 @property (nonatomic, strong, nonnull) JLUtilsWebView * webview;
+@property (nonatomic, strong, nonnull) UIViewController * rootController;
 
 #pragma mark - Init Methods
-- (instancetype) initWithLogger: (id<JLLoggerProtocol>) logger;
+- (instancetype) initWithLogger: (id<JLLoggerProtocol>) logger andRootController:(UIViewController *) rootController;
 
 #pragma mark - Helper Methods
 
 // If there are more than 1 helper method in the same context, is best to move it to a separate class and have a property here
 - (BOOL) openURL: (NSString *) urlString;
 
+/// UIApplicationOpenSettingsURLString
+- (NSURL *) settingsURL;
+- (void) openSettings;
+
+- (void) present: (UIViewController *) controller completion:(void (^ __nullable)(void))completion;
 
 @end
 

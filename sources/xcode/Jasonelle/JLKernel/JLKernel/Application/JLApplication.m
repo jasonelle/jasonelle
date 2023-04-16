@@ -130,7 +130,7 @@ static JLApplication *_instance;
 
 - (JLApplicationUtils *)utils {
     if (!_utils) {
-        _utils = [[JLApplicationUtils alloc] initWithLogger:self.logger];
+        _utils = [[JLApplicationUtils alloc] initWithLogger:self.logger andRootController:self.rootController];
     }
 
     return _utils;
