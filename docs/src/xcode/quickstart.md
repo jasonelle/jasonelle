@@ -11,7 +11,11 @@ This small guide will help you getting started.
 
 ### 1 - Download the project
 
-Download [Bleeding Edge](https://github.com/jasonelle/jasonelle/archive/refs/heads/main.zip) or [Stable version](https://github.com/jasonelle/jasonelle/releases/latest). We recommend bleeding edge for the latest features and stable for the more battle tested.
+Download [Bleeding Edge](https://github.com/jasonelle/jasonelle/archive/refs/heads/main.zip) or [Stable version](https://github.com/jasonelle/jasonelle/releases/latest).
+
+- [Bleeding Edge](https://github.com/jasonelle/jasonelle/archive/refs/heads/main.zip): Latest updates, features and bug fixes. Built-in extensions enabled by default.
+
+- [Stable version](https://github.com/jasonelle/jasonelle/releases/latest): Battle tested. Built-in extensions disabled by default.
 
 Decompress and open `App.xcworkspace` file (White icon).
 
@@ -63,3 +67,12 @@ allowed: ["file://", "google.cl"]
 You can now configure your project as a normal XCode iOS. Change your App Icon and other settings.
 
 Happy Coding!.
+
+## ARM Processors (M1, M2...)
+
+Ensure that you are running the `arm` binaries by appending `-arm` to the binaries names inside `build` file, as shown below.
+
+- ESBUILD=${SRCROOT}/../Tools/esbuild/esbuild-arm
+- DPRINT=${SRCROOT}/../Tools/dprint/dprint-arm
+
+![MacOS ARM](https://user-images.githubusercontent.com/292738/235188291-a198de0a-c508-4b58-a32a-c4b98209d62e.jpeg)
