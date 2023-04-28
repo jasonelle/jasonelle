@@ -23,7 +23,7 @@ of features and bug fixes the team can decide a new release should be made.
 
 ### Release Workflow
 
-- Prepare release (update docs, changelogs and other settings or before release tasks).
+- Prepare release (update docs, changelogs and other settings or before release tasks). Ensure that all the extensions are disabled by default on release build.
 - Commit and push to `main`.
 - Make _Merge (Pull) Request_ from `main` to `stable` (Squash commits).
 - Create a new release tag (from `stable` branch) in _Github_.
