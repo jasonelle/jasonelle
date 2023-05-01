@@ -52,7 +52,7 @@ MINIFY=""
 ESBUILD=${SRCROOT}/../Tools/esbuild/esbuild
 DPRINT=${SRCROOT}/../Tools/dprint/dprint
 
-# ARM processors (M1, M2 ...)
+# ARM Processors (M1, M2 ...)
 # Append -arm to the binaries's name
 if [[ $(uname -p) == 'arm' ]]; then
     ESBUILD=${SRCROOT}/../Tools/esbuild/esbuild-arm

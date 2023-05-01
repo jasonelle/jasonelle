@@ -297,7 +297,11 @@ public struct ContentView: View {
             let event : JLEventDidReceiveOpenURL = self.app.events.event(for: JLEventDidReceiveOpenURL.self) as! JLEventDidReceiveOpenURL
             
             event.trigger(with: url)
-        }.edgesIgnoringSafeArea(.all) // Some websites need this, specially when using a navbar. TODO: Maybe this can be configurable?
+        }
+        // TODO: Maybe this can be configurable?
+        // Some websites may need this, specially when using a navbar.
+        // If you need this, enable this option
+        // .edgesIgnoringSafeArea(.all)
     }
 }
 
