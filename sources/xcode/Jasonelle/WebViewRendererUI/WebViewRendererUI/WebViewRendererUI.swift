@@ -259,6 +259,7 @@ public struct ContentView: View {
         app.renderer = renderer
 
         app.logger.trace("WebViewRendererUI initialized")
+        
     }
 
     public var body: some View {
@@ -301,7 +302,7 @@ public struct ContentView: View {
         // TODO: Maybe this can be configurable?
         // Some websites may need this, specially when using a navbar.
         // If you need this, enable this option
-        // .edgesIgnoringSafeArea(.all)
+        // .ignoresSafeArea(edges: .all)
     }
 }
 
