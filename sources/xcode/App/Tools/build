@@ -44,14 +44,22 @@ CONFIG_DPRINT=${SRCROOT}/Tools/formatter.json
 MINIFY=""
 #MINIFY=--minify
 
+# BUILD TOOLS
 # Begin esbuild execution
 # Ensure that these binaries have execution rights!
-# Append -arm to the binaries name if you are using M1 processors
-# ESBUILD=${SRCROOT}/../Tools/esbuild/esbuild-arm
-# DPRINT=${SRCROOT}/../Tools/dprint/dprint-arm
+
+# Intel Processors (i386)
 ESBUILD=${SRCROOT}/../Tools/esbuild/esbuild
 DPRINT=${SRCROOT}/../Tools/dprint/dprint
 
+# ARM processors (M1, M2 ...)
+# Append -arm to the binaries's name
+if [[ $(uname -p) == 'arm' ]]; then
+    ESBUILD=${SRCROOT}/../Tools/esbuild/esbuild-arm
+    DPRINT=${SRCROOT}/../Tools/dprint/dprint-arm
+fi
+
+echo "note: Detected Architecture: $(uname -p)"
 echo "note: Using: $("${DPRINT}" --version)"
 echo "note: Using: esbuild $("${ESBUILD}" --version)"
 
