@@ -72,7 +72,10 @@ Happy Coding!.
 
 Ensure that you are running the `arm` binaries by appending `-arm` to the binaries names inside `build` file, as shown below.
 
+Note: Since `3.0.2` this is automatically detected.
+
 - ESBUILD=${SRCROOT}/../Tools/esbuild/esbuild-arm
 - DPRINT=${SRCROOT}/../Tools/dprint/dprint-arm
 
 ![MacOS ARM](https://user-images.githubusercontent.com/292738/235188291-a198de0a-c508-4b58-a32a-c4b98209d62e.jpeg)
+

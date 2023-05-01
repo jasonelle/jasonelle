@@ -1,12 +1,15 @@
 # [Jasonelle](https://github.com/jasonelle)
 
 
+[![jasonelle - jasonelle](https://img.shields.io/static/v1?label=jasonelle&message=jasonelle&color=blueviolet&logo=github)](https://github.com/jasonelle/jasonelle "Go to GitHub repo")
+[![stars - jasonelle](https://img.shields.io/github/stars/jasonelle/jasonelle?style=social)](https://github.com/jasonelle/jasonelle)
+[![forks - jasonelle](https://img.shields.io/github/forks/jasonelle/jasonelle?style=social)](https://github.com/jasonelle/jasonelle)
+
 <img src="https://jasonelle.com/docs/jasonelle.png" style="width:50%;height:auto" title="Jasonelle Icon">
 
 _Jasonelle_ is a nice native wrapper for your Web Application.
 
-[![Written-By-Human-Not-By-AI-Badge-white](https://user-images.githubusercontent.com/292738/225699293-9a0a90cd-1a93-49cb-b105-c3cd27882499.svg)
-](https://notbyai.fyi/)
+[![view - Documentation](https://img.shields.io/badge/view-Documentation-blueviolet?style=for-the-badge)](https://jasonelle.com/docs "Go to project documentation")
 
 ## Price
 
@@ -77,7 +80,7 @@ The projects documentation is inside the `jasonelle.github.io` repository. You c
 - [https://github.com/jasonelle/jasonelle.github.io](https://github.com/jasonelle/jasonelle.github.io)
 - [https://jasonelle.com/](https://jasonelle.com/)
 
-## Dual License
+## License
 
 Jasonelle Project is dual licensed. You can choose between _AGPLv3_ or _MPLv2_.
 _MPLv2_ is only valid if the software has a unique [Jasonelle Key](https://jasonelle.gumroad.com/) which was purchased in [official channels](https://jasonelle.gumroad.com/).
@@ -85,10 +88,8 @@ _MPLv2_ is only valid if the software has a unique [Jasonelle Key](https://jason
 [Read More](https://github.com/jasonelle/jasonelle/blob/main/LICENSE.adoc).
 
 ## 🤩 Credits
+[![Proudly Coded in - 🇨🇱 Chile](https://img.shields.io/badge/Proudly_Coded_in-🇨🇱_Chile-white?style=for-the-badge&logo=xcode&logoColor=white)](https://en.wikipedia.org/wiki/Chile)
+[![Made With ❤️ By - Ninjas.cl](https://img.shields.io/badge/Made_With_❤️_By-Ninjas.cl-2ea44f?style=for-the-badge)](https://ninjas.cl)
 
-<p>
-  Made with <i class="fa fa-heart">&#9829;</i> by
-  <a href="https://ninjas.cl">
-    Ninjas.cl
-  </a>.
-</p>
+[![Written-By-Human-Not-By-AI-Badge-white](https://user-images.githubusercontent.com/292738/225699293-9a0a90cd-1a93-49cb-b105-c3cd27882499.svg)
+](https://notbyai.fyi/)
