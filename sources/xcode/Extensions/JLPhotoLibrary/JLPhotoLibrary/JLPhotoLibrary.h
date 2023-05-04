@@ -41,26 +41,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JLPhotoLibrary : JLExtension
 
-/// Tells if the photo library access permission was granted
-@property (nonatomic) BOOL granted;
-
-/// Request authorization for Photo Library access
-/// Native Camera Support
-/// Add these permissions to info.plist
-///
-///    <key>NSPhotoLibraryUsageDescription</key>
-///    <string>If you want to use the photolibrary, you have to give permission.</string>
-///    <key>NSCameraUsageDescription</key>
-///    <string>If you want to use the camera, you have to give permission.</string>
-- (NSInteger) authorize;
-- (NSInteger) status;
-
-/// Show an alert to indicate go to settings to change the denied permissions
-/// Avoid calling alert() in JS after this alert is presented or it will crash the app
-/// Since the alerts are created without completionhandler.
-/// TODO: Maybe create the alert using the alert prompt in WKWebview but with JSON params?
-- (NSInteger) presentAlertWhenDenied;
-
 @end
 
 NS_ASSUME_NONNULL_END

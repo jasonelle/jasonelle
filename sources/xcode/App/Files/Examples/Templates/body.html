@@ -239,19 +239,30 @@
 
 <!-- Example: JLPhotoLibrary -->
 <script type="text/javascript">
-    const requestPhotoLibraryAccess = () => $photolibrary.authorize().then(status => $logger.trace(status));
+    const photoLibraryAuthorize = () => $photolibrary.authorize().then(status => $logger.trace(status));
     
-    const checkPhotoLibraryAccess = () => $photolibrary.granted().then(granted => alert(granted));
+    const photoLibraryGranted = () => $photolibrary.granted().then(granted => alert(granted));
+    
+    const photoLibraryCameraAuthorize = () => $photolibrary.camera.authorize().then(status => $logger.trace(status));
+    
+    const photolibraryCameraGranted = () => $photolibrary.camera.granted().then(granted => alert(granted));
+    
 </script>
 
 <li class="item">
     <h3 class="title">JLPhotoLibrary Examples</h3>
     <ul>
         <li>
-            <h4 onClick="requestPhotoLibraryAccess()">Request Photo Library Access</h4>
+            <h4 onClick="photoLibraryAuthorize()">Request Photo Library Access</h4>
         </li>
         <li>
-            <h4 onClick="checkPhotoLibraryAccess()">Check Photo Library Access</h4>
+            <h4 onClick="photoLibraryGranted()">Check Photo Library Access</h4>
+        </li>
+        <li>
+            <h4 onClick="photoLibraryCameraAuthorize()">Request Camera Access</h4>
+        </li>
+        <li>
+            <h4 onClick="photolibraryCameraGranted()">Check Camera Access</h4>
         </li>
         <li>
             <h4>Example Image Picker</h4>

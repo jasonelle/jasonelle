@@ -25,11 +25,84 @@
 #import "JLPhotoLibraryAuthorizeHandler.h"
 #import "JLPhotoLibrary.h"
 
+@import Photos;
+
 @implementation JLPhotoLibraryAuthorizeHandler
 
+/// Request authorization for Photo Library access
+/// Native Camera Support
+/// Add these permissions to info.plist
+///
+///    <key>NSPhotoLibraryUsageDescription</key>
+///    <string>If you want to use the photolibrary, you have to give permission.</string>
+///    <key>NSPhotoLibraryAddUsageDescription</key>
+///    <string>$(PRODUCT_NAME) photos add description.</string>
+/// More Info: https://swiftsenpai.com/development/photo-library-permission/
+
 - (void)handleWithOptions:(nonnull JLJSMessageHandlerOptions *)options {
-    JLPhotoLibrary * ext = (JLPhotoLibrary *) self.extension;
-    self.resolve(@([ext authorize]));
+
+    BOOL showAlert = [[options toParams] boolean:@"showAlert" default:YES];
+    
+    jlog_trace(@"Requesting Photo Library Access");
+    
+    if (PHPhotoLibrary.authorizationStatus == PHAuthorizationStatusAuthorized) {
+        return self.resolve(@(PHAuthorizationStatusAuthorized));
+    }
+    
+    if (PHPhotoLibrary.authorizationStatus == PHAuthorizationStatusDenied) {
+        if (showAlert) {
+            return [self presentAlertWhenDenied];
+        }
+        return self.resolve(@(PHAuthorizationStatusDenied));
+    }
+    
+    // TODO: Add Config for Access Level
+    [PHPhotoLibrary requestAuthorizationForAccessLevel:PHAccessLevelReadWrite handler:^(PHAuthorizationStatus status) {
+        switch (status) {
+            case PHAuthorizationStatusAuthorized:
+                jlog_trace_join(@"Photo Library Access Authorized");
+                break;
+            case PHAuthorizationStatusDenied:
+                jlog_trace_join(@"Photo Library Access Denied");
+                if (showAlert) {
+                    return [self presentAlertWhenDenied];
+                }
+                break;
+            case PHAuthorizationStatusNotDetermined:
+                jlog_trace_join(@"Photo Library Access Not Determined");
+                break;
+            case PHAuthorizationStatusRestricted:
+                jlog_trace_join(@"Photo Library Access Restricted");
+                break;
+            case PHAuthorizationStatusLimited:
+                jlog_trace_join(@"Photo Library Access Limited");
+                // TODO: PHAuthorizationStatusLimited API_AVAILABLE(ios(14)), // User has authorized this application for limited photo library access. Add PHPhotoLibraryPreventAutomaticLimitedAccessAlert = YES to the application's Info.plist to prevent the automatic alert to update the users limited library selection. Use -[PHPhotoLibrary(PhotosUISupport) presentLimitedLibraryPickerFromViewController:] from PhotosUI/PHPhotoLibrary+PhotosUISupport.h to manually present the limited library picker.
+                break;
+            default:
+                jlog_trace_join(@"Photo Library Access Unknown");
+                break;
+        }
+        
+        return self.resolve(@(status));
+    }];
+}
+
+- (void) presentAlertWhenDenied {
+    
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Photo Library Access", @"JLPhotoLibraryAlertTitle. Alert title when Photo Library Access is Denied") message:NSLocalizedString(@"This app requires access to your Photo Library.", @"JLPhotoLibraryAlertMessage. Alert message when Photo Library Access is Denied") preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        jlog_trace(@"Canceled Photo Library Alert.");
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Settings", @"Go to Settings Button") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self.app.utils openSettings];
+    }]];
+
+    [self.app.utils present:alert completion:^{
+        jlog_trace(@"Presented Photo Library Not Authorized Alert.");
+        self.resolve(@(PHPhotoLibrary.authorizationStatus));
+    }];
 }
 
 @end

@@ -1,19 +1,21 @@
 # ``JLPhotoLibrary``
 
-Provides methods to requesting [Photo Library](https://developer.apple.com/documentation/photokit/phphotolibrary) permissions
+Provides methods to requesting [Photo Library](https://developer.apple.com/documentation/photokit/phphotolibrary) and [Camera](https://developer.apple.com/documentation/avfoundation/capture_setup/requesting_authorization_to_capture_and_save_media?language=objc) permissions 
 
 - Since: `3.0.1`
 
 ## Overview
 
 It would be required if your app wants to access camera or photo library.
-Will trigger only in `install` event. Does not have webview actions yet.
 
 ## Topics
 
 ### Actions
 
 #### ``$photolibrary.granted()``
+
+- Since `3.0.1`
+
 Returns `Promise.resolve(Bool)` if the permission is granted.
 
 **Example**
@@ -22,7 +24,9 @@ Returns `Promise.resolve(Bool)` if the permission is granted.
 $photolibrary.granted().then(granted => alert(granted));
 ```
 
-#### ``$photolibrary.authorize(showAlert = false)``
+#### ``$photolibrary.authorize(showAlert = true)``
+
+- Since `3.0.1`
 
 Returns `Promise.resolve(Int)` with the Authorization Status.
 
@@ -30,26 +34,7 @@ If `showAlert = true` then it will prompt an alert requesting the user go _Setti
 
 The returned number corresponds to [`PHAuthorizationStatus`](https://developer.apple.com/documentation/photokit/phauthorizationstatus)
 
-- _PHAuthorizationStatusNotDetermined_ = 0
-User has not yet made a choice with regards to this application
-
-- _PHAuthorizationStatusRestricted_ = 1
-
-This application is not authorized to access photo data.
-The user cannot change this application’s status, possibly due to active restrictions
-such as parental controls being in place.
-
-- _PHAuthorizationStatusDenied_ = 2
-
-User has explicitly denied this application access to photos data.
-
-- _PHAuthorizationStatusAuthorized_ = 3
-
-User has authorized this application to access photos data.
-
-- _PHAuthorizationStatusLimited_ = 4
-
-User has authorized this application for limited photo library access. Add _PHPhotoLibraryPreventAutomaticLimitedAccessAlert_ = YES to the application's Info.plist to prevent the automatic alert to update the users limited library selection.
+By default will request access to all photos.
 
 **Example**
 
@@ -57,9 +42,44 @@ User has authorized this application for limited photo library access. Add _PHPh
 $photolibrary.authorize().then(status => $logger.trace(status));
 ```
 
+#### ``$photolibrary.camera.granted()``
+
+- Since `3.0.2`
+
+Returns `Promise.resolve(Bool)` if the camera permission is granted.
+
+**Example**
+
+```js
+$photolibrary.granted().then(granted => alert(granted));
+```
+
+#### ``$photolibrary.camera.authorize(showAlert = true)``
+
+- Since `3.0.2`
+
+Returns `Promise.resolve(Int)` with the Camera authorization status.
+
+If `showAlert = true` then it will prompt an alert requesting the user go _Settings_.
+
+The returned number corresponds to [`AVAuthorizationStatus`](https://developer.apple.com/documentation/avfoundation/avauthorizationstatus?language=objc)
+
+**Example**
+
+```js
+$photolibrary.camera.authorize().then(status => $logger.trace(status));
+```
+
 ### ``info.plist``
 
-Add [NSPhotoLibraryUsageDescription](https://developer.apple.com/documentation/bundleresources/information_property_list/nsphotolibraryusagedescription) and [NSCameraUsageDescription](https://developer.apple.com/documentation/bundleresources/information_property_list/nscamerausagedescription) permissions to info.plist
+Add the following permissions to `info.plist`:
+
+- [NSPhotoLibraryUsageDescription](https://developer.apple.com/documentation/bundleresources/information_property_list/nsphotolibraryusagedescription)
+- [NSCameraUsageDescription](https://developer.apple.com/documentation/bundleresources/information_property_list/nscamerausagedescription)
+
+- [PHPhotoLibraryPreventAutomaticLimitedAccessAlert](https://developer.apple.com/documentation/photokit/phphotolibrary?language=objc) Set to `YES`.
+
+- [NSPhotoLibraryAddUsageDescription](https://developer.apple.com/documentation/bundleresources/information_property_list/nsphotolibraryaddusagedescription?language=objc) Description.
 
 ```xml
 <key>NSPhotoLibraryUsageDescription</key>

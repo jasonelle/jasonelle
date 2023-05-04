@@ -14,13 +14,15 @@
 		EFA6A20A296F0C6E00DA12D4 /* JLPhotoLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = EFA6A1FC296F0C6E00DA12D4 /* JLPhotoLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFA6A215296F0C8A00DA12D4 /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA6A214296F0C8A00DA12D4 /* JLKernel.framework */; };
 		EFA6A219296F0CA100DA12D4 /* JLPhotoLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA6A218296F0CA100DA12D4 /* JLPhotoLibrary.m */; };
+		EFAF67122A03639A0038F908 /* JLPhotoLibraryCameraAuthorizeMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EFAF67102A03639A0038F908 /* JLPhotoLibraryCameraAuthorizeMessageHandler.h */; };
+		EFAF67132A03639A0038F908 /* JLPhotoLibraryCameraAuthorizeMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAF67112A03639A0038F908 /* JLPhotoLibraryCameraAuthorizeMessageHandler.m */; };
+		EFAF67172A0363C10038F908 /* JLPhotoLibraryCameraGrantedMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EFAF67152A0363C10038F908 /* JLPhotoLibraryCameraGrantedMessageHandler.h */; };
+		EFAF67182A0363C10038F908 /* JLPhotoLibraryCameraGrantedMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAF67162A0363C10038F908 /* JLPhotoLibraryCameraGrantedMessageHandler.m */; };
 		EFC3F3FF29A90B7600574259 /* JLPhotoLibrary.js in Resources */ = {isa = PBXBuildFile; fileRef = EFC3F3FE29A90B7600574259 /* JLPhotoLibrary.js */; };
 		EFC3F40229A90C8300574259 /* JLPhotoLibraryGrantedHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EFC3F40029A90C8300574259 /* JLPhotoLibraryGrantedHandler.h */; };
 		EFC3F40329A90C8300574259 /* JLPhotoLibraryGrantedHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC3F40129A90C8300574259 /* JLPhotoLibraryGrantedHandler.m */; };
 		EFC3F40629A90C9500574259 /* JLPhotoLibraryAuthorizeHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EFC3F40429A90C9500574259 /* JLPhotoLibraryAuthorizeHandler.h */; };
 		EFC3F40729A90C9500574259 /* JLPhotoLibraryAuthorizeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC3F40529A90C9500574259 /* JLPhotoLibraryAuthorizeHandler.m */; };
-		EFC3F41029A918A700574259 /* JLPhotoLibraryAlertHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EFC3F40E29A918A700574259 /* JLPhotoLibraryAlertHandler.h */; };
-		EFC3F41129A918A700574259 /* JLPhotoLibraryAlertHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC3F40F29A918A700574259 /* JLPhotoLibraryAlertHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,13 +44,15 @@
 		EFA6A208296F0C6E00DA12D4 /* JLPhotoLibraryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLPhotoLibraryTests.m; sourceTree = "<group>"; };
 		EFA6A214296F0C8A00DA12D4 /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFA6A218296F0CA100DA12D4 /* JLPhotoLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLPhotoLibrary.m; sourceTree = "<group>"; };
+		EFAF67102A03639A0038F908 /* JLPhotoLibraryCameraAuthorizeMessageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLPhotoLibraryCameraAuthorizeMessageHandler.h; sourceTree = "<group>"; };
+		EFAF67112A03639A0038F908 /* JLPhotoLibraryCameraAuthorizeMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLPhotoLibraryCameraAuthorizeMessageHandler.m; sourceTree = "<group>"; };
+		EFAF67152A0363C10038F908 /* JLPhotoLibraryCameraGrantedMessageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLPhotoLibraryCameraGrantedMessageHandler.h; sourceTree = "<group>"; };
+		EFAF67162A0363C10038F908 /* JLPhotoLibraryCameraGrantedMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLPhotoLibraryCameraGrantedMessageHandler.m; sourceTree = "<group>"; };
 		EFC3F3FE29A90B7600574259 /* JLPhotoLibrary.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = JLPhotoLibrary.js; sourceTree = "<group>"; };
 		EFC3F40029A90C8300574259 /* JLPhotoLibraryGrantedHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLPhotoLibraryGrantedHandler.h; sourceTree = "<group>"; };
 		EFC3F40129A90C8300574259 /* JLPhotoLibraryGrantedHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLPhotoLibraryGrantedHandler.m; sourceTree = "<group>"; };
 		EFC3F40429A90C9500574259 /* JLPhotoLibraryAuthorizeHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLPhotoLibraryAuthorizeHandler.h; sourceTree = "<group>"; };
 		EFC3F40529A90C9500574259 /* JLPhotoLibraryAuthorizeHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLPhotoLibraryAuthorizeHandler.m; sourceTree = "<group>"; };
-		EFC3F40E29A918A700574259 /* JLPhotoLibraryAlertHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLPhotoLibraryAlertHandler.h; sourceTree = "<group>"; };
-		EFC3F40F29A918A700574259 /* JLPhotoLibraryAlertHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLPhotoLibraryAlertHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,12 +123,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EFAF67142A03639F0038F908 /* $photolibrary.camera.authorize */ = {
+			isa = PBXGroup;
+			children = (
+				EFAF67102A03639A0038F908 /* JLPhotoLibraryCameraAuthorizeMessageHandler.h */,
+				EFAF67112A03639A0038F908 /* JLPhotoLibraryCameraAuthorizeMessageHandler.m */,
+			);
+			path = $photolibrary.camera.authorize;
+			sourceTree = "<group>";
+		};
+		EFAF67192A0363C50038F908 /* $photolibrary.camera.granted */ = {
+			isa = PBXGroup;
+			children = (
+				EFAF67152A0363C10038F908 /* JLPhotoLibraryCameraGrantedMessageHandler.h */,
+				EFAF67162A0363C10038F908 /* JLPhotoLibraryCameraGrantedMessageHandler.m */,
+			);
+			path = $photolibrary.camera.granted;
+			sourceTree = "<group>";
+		};
 		EFC3F40829A90C9900574259 /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
 				EFC3F40929A90CA100574259 /* $photolibrary.granted */,
 				EFC3F40A29A90CAB00574259 /* $photolibrary.authorize */,
-				EFC3F41229A918AC00574259 /* $photolibrary.alert */,
+				EFAF67142A03639F0038F908 /* $photolibrary.camera.authorize */,
+				EFAF67192A0363C50038F908 /* $photolibrary.camera.granted */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -147,15 +170,6 @@
 			path = $photolibrary.authorize;
 			sourceTree = "<group>";
 		};
-		EFC3F41229A918AC00574259 /* $photolibrary.alert */ = {
-			isa = PBXGroup;
-			children = (
-				EFC3F40E29A918A700574259 /* JLPhotoLibraryAlertHandler.h */,
-				EFC3F40F29A918A700574259 /* JLPhotoLibraryAlertHandler.m */,
-			);
-			path = $photolibrary.alert;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -164,7 +178,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFC3F40629A90C9500574259 /* JLPhotoLibraryAuthorizeHandler.h in Headers */,
-				EFC3F41029A918A700574259 /* JLPhotoLibraryAlertHandler.h in Headers */,
+				EFAF67122A03639A0038F908 /* JLPhotoLibraryCameraAuthorizeMessageHandler.h in Headers */,
+				EFAF67172A0363C10038F908 /* JLPhotoLibraryCameraGrantedMessageHandler.h in Headers */,
 				EFC3F40229A90C8300574259 /* JLPhotoLibraryGrantedHandler.h in Headers */,
 				EFA6A20A296F0C6E00DA12D4 /* JLPhotoLibrary.h in Headers */,
 			);
@@ -292,7 +307,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFC3F41129A918A700574259 /* JLPhotoLibraryAlertHandler.m in Sources */,
+				EFAF67132A03639A0038F908 /* JLPhotoLibraryCameraAuthorizeMessageHandler.m in Sources */,
+				EFAF67182A0363C10038F908 /* JLPhotoLibraryCameraGrantedMessageHandler.m in Sources */,
 				EFA6A219296F0CA100DA12D4 /* JLPhotoLibrary.m in Sources */,
 				EFC3F40329A90C8300574259 /* JLPhotoLibraryGrantedHandler.m in Sources */,
 				EFC3F40729A90C9500574259 /* JLPhotoLibraryAuthorizeHandler.m in Sources */,

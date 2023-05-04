@@ -1,9 +1,10 @@
 //
-//  JLPhotoLibraryGrantedHandler.m
+//  JLPhotoLibraryCameraGrantedMessageHandler.h
 //  JLPhotoLibrary
 //
-//  Created by clsource on 24-02-23.
-//  Copyright © 2023 Jasonelle.com. All rights reserved.
+//  Created by clsource on 03-05-23.
+//  Copyright (c) Jasonelle.com
+//
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
 //  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
 //  MPLv2 is only valid if the software has a unique Jasonelle Key which was purchased in official channels.
@@ -22,18 +23,12 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-#import "JLPhotoLibraryGrantedHandler.h"
-#import "JLPhotoLibrary.h"
+#import <JLKernel/JLKernel.h>
 
-@import Photos;
+NS_ASSUME_NONNULL_BEGIN
 
-@implementation JLPhotoLibraryGrantedHandler
-- (void)handleWithOptions:(nonnull JLJSMessageHandlerOptions *)options {
-    PHAuthorizationStatus status = PHPhotoLibrary.authorizationStatus;
-    
-    BOOL granted = (status == PHAuthorizationStatusAuthorized) || (status == PHAuthorizationStatusRestricted) || (status == PHAuthorizationStatusLimited);
-    
-    jlog_trace_join(@"Photo Library Access Granted? ", jlog_b2s(granted));
-    self.resolve(@(granted));
-}
+@interface JLPhotoLibraryCameraGrantedMessageHandler : JLJSMessageHandler
+
 @end
+
+NS_ASSUME_NONNULL_END
