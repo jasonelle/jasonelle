@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF744D442A05E3630088D30E /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF744D432A05E3630088D30E /* JLKernel.framework */; };
 		EFD373A027B06AEE00D6F7CF /* JasonelleSwift.docc in Sources */ = {isa = PBXBuildFile; fileRef = EFD3739F27B06AEE00D6F7CF /* JasonelleSwift.docc */; };
 		EFD373A627B06AEE00D6F7CF /* JasonelleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD3739B27B06AEE00D6F7CF /* JasonelleSwift.framework */; };
 		EFD373AB27B06AEE00D6F7CF /* JasonelleSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD373AA27B06AEE00D6F7CF /* JasonelleSwiftTests.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EF744D432A05E3630088D30E /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD3739B27B06AEE00D6F7CF /* JasonelleSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JasonelleSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD3739E27B06AEE00D6F7CF /* JasonelleSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JasonelleSwift.h; sourceTree = "<group>"; };
 		EFD3739F27B06AEE00D6F7CF /* JasonelleSwift.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = JasonelleSwift.docc; sourceTree = "<group>"; };
@@ -43,6 +45,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFD373BD27B06B9500D6F7CF /* Jasonelle.framework in Frameworks */,
+				EF744D442A05E3630088D30E /* JLKernel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +101,7 @@
 		EFD373BB27B06B9500D6F7CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EF744D432A05E3630088D30E /* JLKernel.framework */,
 				EFD373BC27B06B9500D6F7CF /* Jasonelle.framework */,
 			);
 			name = Frameworks;

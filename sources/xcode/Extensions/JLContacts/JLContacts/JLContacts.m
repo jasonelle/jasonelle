@@ -121,61 +121,68 @@
 }
 
 #pragma mark - Queries
-- (NSArray *) all {
+- (void) allWithCompletionHandler:(void (^)(NSArray * _Nonnull, NSError * _Nullable))completionHandler {
     
     jlog_trace(@"Fetching all Contacts");
     
     if(!self.granted) {
         jlog_warning_join(@"Error Fetching Contacts. Permissions not Granted.");
-        return @[];
+        completionHandler(@[], [NSError errorWithDomain:NSGlobalDomain code:1000 userInfo:@{@"message": @"Error Fetching Contacts. Permissions not Granted."}]);
+        return;
     }
-    
-    
-    NSPredicate * predicate = [CNContainer
-                               predicateForContainersWithIdentifiers: @[self.contacts.defaultContainerIdentifier]];
-    
-    NSError * error = nil;
-    
-    [self.contacts containersMatchingPredicate:predicate error:&error];
-    
-    NSArray * keysToFetch =
-        @[CNContactEmailAddressesKey,
-          CNContactPhoneNumbersKey,
-          CNContactFamilyNameKey,
-          CNContactGivenNameKey,
-          CNContactPostalAddressesKey];
-    
-    CNContactFetchRequest * request = [[CNContactFetchRequest alloc] initWithKeysToFetch:keysToFetch];
     
     NSMutableArray * items = [@[] mutableCopy];
     
-    CNPostalAddressFormatter * fmt = [CNPostalAddressFormatter new];
-    
-    [self.contacts enumerateContactsWithFetchRequest:request error:&error usingBlock:^(CNContact * __nonnull contact, BOOL * __nonnull stop){
-        
-            NSMutableArray * addresses = [@[] mutableCopy];
-        
-            for (CNPostalAddress * address in [contact.postalAddresses valueForKey:@"value"]) {
-                [addresses addObject:[fmt stringFromPostalAddress:address]];
-            }
-        
-            NSArray * phones = [[contact.phoneNumbers valueForKey:@"value"] valueForKey:@"digits"];
-        
-            NSArray * emails = [contact.emailAddresses valueForKey:@"value"];
-        
-            [items addObject: @{
-                @"name": contact.givenName,
-                @"lastname": contact.familyName,
-                @"phone": ([phones firstObject] ? [phones firstObject] : @""),
-                @"phones": [phones copy],
-                @"email": ([emails firstObject] ? [emails firstObject] : @""),
-                @"emails": [emails copy],
-                @"address": ([addresses firstObject] ? [addresses firstObject] : @""),
-                @"addresses": [addresses copy]
+    // NOTE: This method should not be called in main thread
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            NSPredicate * predicate = [CNContainer
+                                       predicateForContainersWithIdentifiers: @[self.contacts.defaultContainerIdentifier]];
+            
+            NSError * error = nil;
+            
+            [self.contacts containersMatchingPredicate:predicate error:&error];
+            
+            NSArray * keysToFetch =
+                @[CNContactEmailAddressesKey,
+                  CNContactPhoneNumbersKey,
+                  CNContactFamilyNameKey,
+                  CNContactGivenNameKey,
+                  CNContactPostalAddressesKey];
+            
+            CNContactFetchRequest * request = [[CNContactFetchRequest alloc] initWithKeysToFetch:keysToFetch];
+            
+            
+            CNPostalAddressFormatter * fmt = [CNPostalAddressFormatter new];
+            
+            [self.contacts enumerateContactsWithFetchRequest:request error:&error usingBlock:^(CNContact * __nonnull contact, BOOL * __nonnull stop){
+                
+                
+                    NSMutableArray * addresses = [@[] mutableCopy];
+                
+                    for (CNPostalAddress * address in [contact.postalAddresses valueForKey:@"value"]) {
+                        [addresses addObject:[fmt stringFromPostalAddress:address]];
+                    }
+                
+                    NSArray * phones = [[contact.phoneNumbers valueForKey:@"value"] valueForKey:@"digits"];
+                
+                    NSArray * emails = [contact.emailAddresses valueForKey:@"value"];
+                
+                    [items addObject: @{
+                        @"name": contact.givenName,
+                        @"lastname": contact.familyName,
+                        @"phone": ([phones firstObject] ? [phones firstObject] : @""),
+                        @"phones": [phones copy],
+                        @"email": ([emails firstObject] ? [emails firstObject] : @""),
+                        @"emails": [emails copy],
+                        @"address": ([addresses firstObject] ? [addresses firstObject] : @""),
+                        @"addresses": [addresses copy]
+                    }];
             }];
-    }];
-    
-    return [items copy];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            completionHandler(items, error);
+        });
+    });
 }
 
 #pragma mark - Commands

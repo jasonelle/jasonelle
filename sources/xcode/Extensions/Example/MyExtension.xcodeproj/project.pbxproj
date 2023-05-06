@@ -228,6 +228,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		EF115A9B29CFFC480068703C /* Add examples */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);

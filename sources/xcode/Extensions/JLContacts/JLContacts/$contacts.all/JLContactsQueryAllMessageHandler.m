@@ -30,7 +30,14 @@
 
 - (void)handleWithOptions:(nonnull JLJSMessageHandlerOptions *)options {
     JLContacts * ext = (JLContacts *) self.extension;
-    self.resolve([ext all]);
+    [ext allWithCompletionHandler:^(NSArray * _Nonnull contacts, NSError * _Nullable error) {
+        if(error) {
+            self.reject(error.description);
+            return;
+        }
+        
+        self.resolve(contacts);
+    }];
 }
 
 @end

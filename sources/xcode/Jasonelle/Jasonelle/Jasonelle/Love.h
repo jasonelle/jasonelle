@@ -50,7 +50,7 @@
 // Thank you for your constant support and love.
 
 // #define I_LOVE_JASONELLE YES
-#define I_LOVE_JASONELLE NO
+#define I_LOVE_JASONELLE YES
 
 // Copy your adquired key here
 #define JASONELLE_KEY ""

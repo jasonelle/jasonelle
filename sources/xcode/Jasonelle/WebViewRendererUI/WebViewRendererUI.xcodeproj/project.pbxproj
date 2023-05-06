@@ -12,6 +12,7 @@
 		EF5458A6280C7D2900B87600 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF5458A8280C7D2900B87600 /* Localizable.strings */; };
 		EF5458AD280C8F1D00B87600 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5458AC280C8F1D00B87600 /* Strings.swift */; };
 		EF5F6D1628D210230037F054 /* PullOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5F6D1528D210230037F054 /* PullOptions.swift */; };
+		EF744D402A05E3570088D30E /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF744D3F2A05E3570088D30E /* JLKernel.framework */; };
 		EF9E5395299F224800516842 /* LaunchScreenUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9E5394299F224800516842 /* LaunchScreenUI.swift */; };
 		EFB73CF727AFF84700A21457 /* WebViewRendererUI.docc in Sources */ = {isa = PBXBuildFile; fileRef = EFB73CF627AFF84700A21457 /* WebViewRendererUI.docc */; };
 		EFB73CFD27AFF84700A21457 /* WebViewRendererUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB73CF227AFF84700A21457 /* WebViewRendererUI.framework */; };
@@ -50,6 +51,7 @@
 		EF5458AA280C825400B87600 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EF5458AC280C8F1D00B87600 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		EF5F6D1528D210230037F054 /* PullOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullOptions.swift; sourceTree = "<group>"; };
+		EF744D3F2A05E3570088D30E /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF9E5394299F224800516842 /* LaunchScreenUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenUI.swift; sourceTree = "<group>"; };
 		EFB73CF227AFF84700A21457 /* WebViewRendererUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WebViewRendererUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFB73CF527AFF84700A21457 /* WebViewRendererUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewRendererUI.h; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFD373C527B06BED00D6F7CF /* JasonelleSwift.framework in Frameworks */,
+				EF744D402A05E3570088D30E /* JLKernel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +149,7 @@
 		EFD3738C27B0685300D6F7CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EF744D3F2A05E3570088D30E /* JLKernel.framework */,
 				EFD373C427B06BED00D6F7CF /* JasonelleSwift.framework */,
 				EFD373C027B06BAF00D6F7CF /* JasonelleSwift.framework */,
 				EFD373B927B06B1C00D6F7CF /* JasonelleSwift.framework */,

@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *) statusToString: (CNAuthorizationStatus) status;
 
-- (NSArray *) all;
+- (void) allWithCompletionHandler:(void (^)(NSArray * contacts, NSError *__nullable error))completionHandler;
 
 @end
 
