@@ -445,6 +445,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		EF115A9F29D001B30068703C /* Compile Examples */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -459,7 +460,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "FILES_DIR=\"${PWD}/Files\"\nEXAMPLES_DIR=\"${FILES_DIR}/Examples\"\nTEMPLATES_DIR=\"${EXAMPLES_DIR}/Templates\"\nOUT=\"${FILES_DIR}/examples.html\"\n\n# Only copy the examples if the examples directory exists\nif [ -d \"${EXAMPLES_DIR}\" ] \nthen\n\nrm -rf \"${OUT}\"\n\ncat \"${TEMPLATES_DIR}/header.html\" >> \"${OUT}\"\n\n# Merge Examples in a single file\nrm -rf  \"${TEMPLATES_DIR}/body.html\"\n\nfind . -type f -name '*.example.html' -exec cat {} + >> \"${TEMPLATES_DIR}/body.html\"\n\ncat \"${TEMPLATES_DIR}/body.html\" >> \"${OUT}\"\n\ncat \"${TEMPLATES_DIR}/footer.html\" >> \"${OUT}\"\nfi\n";
+			shellScript = "FILES_DIR=\"${PWD}/Files\"\nEXAMPLES_DIR=\"${FILES_DIR}/Examples\"\nTEMPLATES_DIR=\"${EXAMPLES_DIR}/Templates\"\nOUT=\"${FILES_DIR}/examples.html\"\n\n# Only copy the examples if the examples directory exists\nif [ -d \"${EXAMPLES_DIR}\" ] \nthen\n\n# If you remove an extension after is installed\n# The examples will remain.\n# We cannot remove the Examples directory by script\n# because this is the last script executed,\n# So the recommended approach is just delete the directory manually\n# and build again, to have the updated examples.\n# Anyway if you want to try this uncomment next lines:\n# rm -rf \"${EXAMPLES_DIR}\"\n# mkdir -p \"${EXAMPLES_DIR}\"\n\nrm -rf \"${OUT}\"\n\ncat \"${TEMPLATES_DIR}/header.html\" >> \"${OUT}\"\n\n# Merge Examples in a single file\nrm -rf  \"${TEMPLATES_DIR}/body.html\"\n\nfind . -type f -name '*.example.html' -exec cat {} + >> \"${TEMPLATES_DIR}/body.html\"\n\ncat \"${TEMPLATES_DIR}/body.html\" >> \"${OUT}\"\n\ncat \"${TEMPLATES_DIR}/footer.html\" >> \"${OUT}\"\nfi\n";
 		};
 		EFAF61D02806E0E8001B265B /* Bundle Javascript files */ = {
 			isa = PBXShellScriptBuildPhase;

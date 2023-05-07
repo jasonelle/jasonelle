@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,9 @@
 		EF8373D927A9A2E200485E03 /* JLAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = EF8373D727A9A2E200485E03 /* JLAppDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF8373DA27A9A2E200485E03 /* JLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8373D827A9A2E200485E03 /* JLAppDelegate.m */; };
 		EF8373DB27A9A2E200485E03 /* JLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8373D827A9A2E200485E03 /* JLAppDelegate.m */; };
+		EFA658512A080C9200A41D4C /* body.html in Resources */ = {isa = PBXBuildFile; fileRef = EFA6584E2A080C9200A41D4C /* body.html */; };
+		EFA658522A080C9200A41D4C /* footer.html in Resources */ = {isa = PBXBuildFile; fileRef = EFA6584F2A080C9200A41D4C /* footer.html */; };
+		EFA658532A080C9200A41D4C /* header.html in Resources */ = {isa = PBXBuildFile; fileRef = EFA658502A080C9200A41D4C /* header.html */; };
 		EFC39C1828250AD00037750A /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC39C1728250AD00037750A /* JLKernel.framework */; };
 		EFC39C1A28250AE20037750A /* JLExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC39C1928250AE20037750A /* JLExtensions.framework */; };
 		EFF0728F2807250500F2FEFF /* JS in Resources */ = {isa = PBXBuildFile; fileRef = EFF0728E2807250500F2FEFF /* JS */; };
@@ -42,6 +45,10 @@
 		EF8373CA27A9A05500485E03 /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF8373D727A9A2E200485E03 /* JLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLAppDelegate.h; sourceTree = "<group>"; };
 		EF8373D827A9A2E200485E03 /* JLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLAppDelegate.m; sourceTree = "<group>"; };
+		EFA658472A08061500A41D4C /* examples.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = examples.html; sourceTree = "<group>"; };
+		EFA6584E2A080C9200A41D4C /* body.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = body.html; sourceTree = "<group>"; };
+		EFA6584F2A080C9200A41D4C /* footer.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = footer.html; sourceTree = "<group>"; };
+		EFA658502A080C9200A41D4C /* header.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = header.html; sourceTree = "<group>"; };
 		EFC39C00282507BA0037750A /* JLExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC39C0D2825096C0037750A /* JLExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC39C1728250AD00037750A /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +101,8 @@
 		EF8373B127A9A04300485E03 /* Jasonelle */ = {
 			isa = PBXGroup;
 			children = (
+				EFA6584D2A080C9200A41D4C /* Templates */,
+				EFA658472A08061500A41D4C /* examples.html */,
 				EF8373B227A9A04300485E03 /* Jasonelle.h */,
 				EF132A2C28E22BFE002DE4C1 /* Love.h */,
 				EF8373B327A9A04300485E03 /* Jasonelle.docc */,
@@ -126,6 +135,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EFA6584D2A080C9200A41D4C /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				EFA6584E2A080C9200A41D4C /* body.html */,
+				EFA6584F2A080C9200A41D4C /* footer.html */,
+				EFA658502A080C9200A41D4C /* header.html */,
+			);
+			path = Templates;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -150,6 +169,7 @@
 				EF8373AB27A9A04300485E03 /* Sources */,
 				EF8373AC27A9A04300485E03 /* Frameworks */,
 				EF8373AD27A9A04300485E03 /* Resources */,
+				EFA658482A08063200A41D4C /* Add Examples */,
 			);
 			buildRules = (
 			);
@@ -222,7 +242,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFA658512A080C9200A41D4C /* body.html in Resources */,
 				EFF0728F2807250500F2FEFF /* JS in Resources */,
+				EFA658522A080C9200A41D4C /* footer.html in Resources */,
+				EFA658532A080C9200A41D4C /* header.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +257,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EFA658482A08063200A41D4C /* Add Examples */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Add Examples";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "NAME=\"Jasonelle\"\nEXAMPLES_DIR=\"${PWD}/../../App/Files/Examples\"\nTEMPLATES_DIR=\"${EXAMPLES_DIR}/Templates\"\nSOURCES_DIR=\"${PWD}/${NAME}\"\n\n# Only copy the examples if the examples directory exists\nif [ -d \"${EXAMPLES_DIR}\" ] \nthen\n \n cat \"${SOURCES_DIR}/examples.html\" > \"${EXAMPLES_DIR}/${NAME}.example.html\"\n \n  cp -R \"${SOURCES_DIR}/Templates\" \"${EXAMPLES_DIR}\"\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EF8373AB27A9A04300485E03 /* Sources */ = {

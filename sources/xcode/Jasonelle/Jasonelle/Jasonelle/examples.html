@@ -1,0 +1,62 @@
+<!-- Example: Core-->
+<script type="text/javascript">
+    // Test Native Logger
+    const log = () => {
+      // This call will be shown in Safari Debug Console Only
+      console.log("Calling Native Logger from WebView");
+      // This call will be shown in XCode Console
+      $logger.trace("Calling Native Logger from WebView");
+    };
+    
+    // Actions defined in main.js
+    // Test Hello Action
+    // JS Actions use $agent.call
+    // These actions cannot return a Promise (yet)
+    // Define these actions inside the main.js actions
+    const hello = (world = "world") => {
+      const result = $agent.call("hello", world);
+      $logger.trace(result);
+    };
+    
+    // Open app in safari
+    const safari = (url) => {
+        $agent.call("safari", url);
+    };
+</script>
+
+<li class="item">
+    <h3 class="title">Core Examples</h3>
+    <ul>
+            <li><h4 onClick="log()">Test Native Logger</h4></li>
+                    
+            <li><h4 onClick="hello()">Test Bridge From WebView to JSContext</h4></li>
+            <li>
+                <h4 onClick="safari('https://google.com')">
+                    Test Opening Safari Link
+                </h4>
+            </li>
+            
+            <li>
+                <h4 onClick="alert('Hello')">Alert Example</h4>
+            </li>
+            <li>
+                <h4 onClick="confirm('Press a button!')">Confirm Example</h4>
+            </li>
+            <li>
+                <h4 onClick="prompt('Please enter your name', 'Ethan G.')">Prompt Example</h4>
+            </li>
+            
+            
+            <li>
+                <!-- Modify config/dev or config/prod with
+                the allowed:["file://", "google.cl"] to load
+                this url inside the app -->
+                <h4>
+                <a href="https://google.cl">
+                    Test Allowed URL (Open Browser)
+                </a>
+                </h4>
+            </li>
+    </ul>
+</li>
+
