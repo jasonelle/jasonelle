@@ -27,6 +27,9 @@
 
 #import "WKWebViewDelegate.h"
 
+// TODO: Implement this as an self.app.utils method
+@import SafariServices;
+
 @implementation WKWebViewDelegate
 
 - (NSString *)identifier {
@@ -120,7 +123,8 @@
     // Be YES as default if no allowed list is present
     BOOL isAllowed = allowed.count <= 0;
     
-    for (NSString * url in allowed) {
+    
+    for(NSString * url in allowed) {
         jlog_trace_join(@"Does ", url, @" in ", current, @"?");
         if ([current hasSuffix:url] || [current hasPrefix:url] || [current containsString:url]) {
             jlog_trace(@"YES");
@@ -132,13 +136,44 @@
     // should always open the iTunes app
     isAllowed = [current hasPrefix:@"https://itunes.apple.com"] ? NO : isAllowed;
     
-    if (!isAllowed) {
-        [[JLApplication instance].utils openURL:current];
-        return decisionHandler(WKNavigationActionPolicyCancel);
+    if (isAllowed) {
+        return decisionHandler(WKNavigationActionPolicyAllow);
     }
     
-    // TODO: Figure out how to detect WKNavigationActionPolicyDownload
-    return decisionHandler(WKNavigationActionPolicyAllow);
+    jlog_trace_join(@"URL: ", current, @"is not in the allowed list");
+    [[JLApplication instance].utils openURL:current];
+    return decisionHandler(WKNavigationActionPolicyCancel);
+}
+
+// Handles Downloads
+// See https://dev.to/gualtierofr/download-files-in-a-wkwebview-boo
+- (void) webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
+    
+    NSString * mime = navigationResponse.response.MIMEType;
+    NSURL * url = navigationResponse.response.URL;
+    
+    jlog_trace_join(@"URL: ", url, @"Mime Type: ", mime);
+    
+    if ([mime isEqualToString:@"text/html"]) {
+        jlog_trace(@"Website detected.");
+        return decisionHandler(WKNavigationResponsePolicyAllow);
+    }
+    
+    // Handle other file formats in Safari
+    // For now opening a SafariViewController is enough.
+    // TODO: Move SFSafariViewController to app.utils
+    // TODO: Is this enough for supporting file downloads?
+    SFSafariViewControllerConfiguration * config = [SFSafariViewControllerConfiguration new];
+    
+    config.entersReaderIfAvailable = YES;
+    
+    SFSafariViewController * safari = [[SFSafariViewController alloc] initWithURL:url configuration:config];
+    
+    [self.app.utils present:safari completion:^{
+        jlog_trace_join(@"Presented Safari for URL: ", url.absoluteString);
+    }];
+    
+    return decisionHandler(WKNavigationResponsePolicyCancel);
 }
 
 /// Handles target=_blank links
@@ -154,7 +189,14 @@
 - (void) webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     jlog_warning_join(@"Webview Did Fail Navigation: ", error.description);
     
-    // TODO: Check error. Maybe some are not connection lost type errors.
+    // Error: Frame load interrupted
+    if (error.code == 102) {
+        // This error triggers when the request was canceled
+        // by WKNavigationResponsePolicyCancel or WKNavigationActionPolicyCancel
+        // So it must not throw a not connection event
+        return;
+    }
+    
     JLEventReachabilityDidChange * event = (JLEventReachabilityDidChange *)[self.app.events get:JLEventReachabilityDidChange.class];
     
     [event triggerNoConnectionEvent];
@@ -163,6 +205,15 @@
 - (void) webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     
     jlog_warning_join(@"Webview Did Fail Provisional Navigation: ", error.description);
+    
+    // Error: Frame load interrupted
+    if (error.code == 102) {
+        // This error triggers when the request was canceled
+        // by WKNavigationResponsePolicyCancel or WKNavigationActionPolicyCancel
+        // So it must not throw a not connection event
+        return;
+    }
+    
     JLEventReachabilityDidChange * event = (JLEventReachabilityDidChange *)[self.app.events get:JLEventReachabilityDidChange.class];
     
     [event triggerNoConnectionEvent];

@@ -207,6 +207,7 @@ class WebViewModel: ObservableObject {
     func didChangeReachability(_ notification: Notification) {
         let data = notification.userInfo?["data"] as? Dictionary<String, Any>
         if data?["reachable"] as! Bool == false {
+            // TODO: Instead of loading an URL is best to show a SwiftUI controller
             load((loader?.params.fallback())!)
         }
     }
