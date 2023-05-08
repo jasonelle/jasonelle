@@ -38,6 +38,7 @@ fi
 ### Fixed
 
 - [ARM Macs]. Automatically detects processor and selects the proper build tool.
+- [Core]. Fixed crash when clicking a non html link (now shows _SFSafariViewController_).
 
 ### Downloads
 
