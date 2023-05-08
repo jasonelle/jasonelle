@@ -87,7 +87,9 @@ class WebViewModel: ObservableObject {
         configuration.processPool = WKProcessPool()
         
         configuration.userContentController = webViewController
-        configuration.allowsInlineMediaPlayback = false
+        configuration.allowsInlineMediaPlayback = true
+        
+        configuration.dataDetectorTypes = [.all]
 
         webView = WKWebView(frame: .zero, configuration: configuration)
         
