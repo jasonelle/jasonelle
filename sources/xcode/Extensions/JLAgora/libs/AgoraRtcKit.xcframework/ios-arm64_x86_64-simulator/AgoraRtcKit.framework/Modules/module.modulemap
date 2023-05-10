@@ -1,0 +1,16 @@
+framework module AgoraRtcKit {
+  header "AgoraRtcKit.h"
+  header "AgoraRtcEngineKit.h"
+  header "AgoraRtcEngineKitEx.h"
+  header "AgoraBaseDelegate.h"
+  header "AgoraRtcAudioSpectrumDelegate.h"
+  header "AgoraMediaFilterEventDelegate.h"
+  header "AgoraConstants.h"
+  header "AgoraEnumerates.h"
+  header "AgoraObjects.h"
+  header "AgoraRtcEngineDelegate2.h"
+  header "AgoraRtcMediaPlayerProtocol.h"
+  header "AgoraSpatialAudioKit.h"
+  header "AgoraMusicContentCenter.h"
+  export *
+}

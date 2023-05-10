@@ -31,6 +31,9 @@
       location = "container:"
       name = "Extensions">
       <FileRef
+         location = "group:Extensions/JLAgora/JLAgora.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Extensions/JLAudio/JLAudio.xcodeproj">
       </FileRef>
       <FileRef

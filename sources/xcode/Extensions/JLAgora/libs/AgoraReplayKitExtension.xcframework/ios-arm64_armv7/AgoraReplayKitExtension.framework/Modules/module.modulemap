@@ -1,0 +1,6 @@
+framework module AgoraReplayKitExtension {
+  header "AgoraReplayKitExtension.h"
+  header "AgoraReplayKitExt.h"
+  header "AgoraReplayKitHandler.h"
+  export *
+}

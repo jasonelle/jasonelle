@@ -7,11 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EF115A9D29CFFD040068703C /* MyExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF115A9C29CFFD040068703C /* MyExtension.framework */; };
-		EF115A9E29CFFD040068703C /* MyExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF115A9C29CFFD040068703C /* MyExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EF2B4D5629A074C600D99A98 /* AppExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2B4D5529A074C600D99A98 /* AppExtensions.m */; };
-		EF3AC8FD29E31FD200124484 /* JLAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3AC8FC29E31FD200124484 /* JLAudio.framework */; };
-		EF3AC8FE29E31FD200124484 /* JLAudio.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF3AC8FC29E31FD200124484 /* JLAudio.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EF4E850527A990AD00444A94 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4E850427A990AD00444A94 /* Main.swift */; };
 		EF4E850927A990B000444A94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF4E850827A990B000444A94 /* Assets.xcassets */; };
 		EF4E850C27A990B000444A94 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF4E850B27A990B000444A94 /* Preview Assets.xcassets */; };
@@ -19,6 +15,9 @@
 		EF4E852027A990B000444A94 /* AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4E851F27A990B000444A94 /* AppUITests.swift */; };
 		EF4E852227A990B000444A94 /* AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4E852127A990B000444A94 /* AppUITestsLaunchTests.swift */; };
 		EF5458A0280C795400B87600 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF5458A2280C795400B87600 /* Localizable.strings */; };
+		EF5DC90F2A0C10F5007AC8A5 /* JLAgora.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5DC90E2A0C10F5007AC8A5 /* JLAgora.framework */; };
+		EF5DC9102A0C10F5007AC8A5 /* JLAgora.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF5DC90E2A0C10F5007AC8A5 /* JLAgora.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EF5DC96F2A0C30A4007AC8A5 /* AgoraUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = EF5DC96E2A0C30A4007AC8A5 /* AgoraUIKit */; };
 		EF77096D28DF6CA800D28B89 /* WebViewRendererUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB73D1227AFFE8500A21457 /* WebViewRendererUI.framework */; };
 		EF77096E28DF6CA800D28B89 /* WebViewRendererUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFB73D1227AFFE8500A21457 /* WebViewRendererUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EF77097028DF6CAA00D28B89 /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC39C1528250AB20037750A /* JLKernel.framework */; };
@@ -31,19 +30,9 @@
 		EF77097D28DF6CF600D28B89 /* JasonelleSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFD373C227B06BC500D6F7CF /* JasonelleSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EF82B8D629DBA39400B5CD05 /* JLContacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF82B8D529DBA39400B5CD05 /* JLContacts.framework */; };
 		EF82B8D729DBA39400B5CD05 /* JLContacts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF82B8D529DBA39400B5CD05 /* JLContacts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EF82B8D929DBA39B00B5CD05 /* JLApplicationBadge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF82B8D829DBA39B00B5CD05 /* JLApplicationBadge.framework */; };
-		EF82B8DA29DBA39B00B5CD05 /* JLApplicationBadge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF82B8D829DBA39B00B5CD05 /* JLApplicationBadge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EF82B8DC29DBA3A200B5CD05 /* JLATTrackingManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF82B8DB29DBA3A200B5CD05 /* JLATTrackingManager.framework */; };
-		EF82B8DD29DBA3A200B5CD05 /* JLATTrackingManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF82B8DB29DBA3A200B5CD05 /* JLATTrackingManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EF82B8E229DBA3B300B5CD05 /* JLPhotoLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF82B8E129DBA3B300B5CD05 /* JLPhotoLibrary.framework */; };
 		EF82B8E329DBA3B300B5CD05 /* JLPhotoLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF82B8E129DBA3B300B5CD05 /* JLPhotoLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EF82B8E529DBA3BD00B5CD05 /* JLCookies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF82B8E429DBA3BD00B5CD05 /* JLCookies.framework */; };
-		EF82B8E629DBA3BD00B5CD05 /* JLCookies.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF82B8E429DBA3BD00B5CD05 /* JLCookies.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EF82B8E829DBA3C400B5CD05 /* JLKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF82B8E729DBA3C400B5CD05 /* JLKeychain.framework */; };
-		EF82B8E929DBA3C400B5CD05 /* JLKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF82B8E729DBA3C400B5CD05 /* JLKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EF9E5397299F287400516842 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF9E5396299F287400516842 /* Launch Screen.storyboard */; };
-		EFA105D629ABB47E0005C2AC /* JLReachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA105D529ABB47E0005C2AC /* JLReachability.framework */; };
-		EFA105D729ABB47E0005C2AC /* JLReachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFA105D529ABB47E0005C2AC /* JLReachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EFAF61CB2806DB3C001B265B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAF61CA2806DB3C001B265B /* AppDelegate.m */; };
 		EFD65C5528C12966000350B1 /* Files in Resources */ = {isa = PBXBuildFile; fileRef = EFD65C5428C12966000350B1 /* Files */; };
 		EFE607392808B5D300C8146A /* _build in Resources */ = {isa = PBXBuildFile; fileRef = EFE607382808B5D300C8146A /* _build */; };
@@ -75,18 +64,12 @@
 			files = (
 				EF77097528DF6CAC00D28B89 /* Jasonelle.framework in Embed Frameworks */,
 				EF77096E28DF6CA800D28B89 /* WebViewRendererUI.framework in Embed Frameworks */,
-				EF115A9E29CFFD040068703C /* MyExtension.framework in Embed Frameworks */,
-				EF82B8DA29DBA39B00B5CD05 /* JLApplicationBadge.framework in Embed Frameworks */,
-				EF82B8DD29DBA3A200B5CD05 /* JLATTrackingManager.framework in Embed Frameworks */,
 				EF77097328DF6CAB00D28B89 /* JLExtensions.framework in Embed Frameworks */,
+				EF5DC9102A0C10F5007AC8A5 /* JLAgora.framework in Embed Frameworks */,
 				EF77097128DF6CAA00D28B89 /* JLKernel.framework in Embed Frameworks */,
 				EF82B8D729DBA39400B5CD05 /* JLContacts.framework in Embed Frameworks */,
-				EF82B8E629DBA3BD00B5CD05 /* JLCookies.framework in Embed Frameworks */,
-				EF3AC8FE29E31FD200124484 /* JLAudio.framework in Embed Frameworks */,
 				EF82B8E329DBA3B300B5CD05 /* JLPhotoLibrary.framework in Embed Frameworks */,
 				EF77097D28DF6CF600D28B89 /* JasonelleSwift.framework in Embed Frameworks */,
-				EF82B8E929DBA3C400B5CD05 /* JLKeychain.framework in Embed Frameworks */,
-				EFA105D729ABB47E0005C2AC /* JLReachability.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,6 +95,7 @@
 		EF4E852127A990B000444A94 /* AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		EF5458A1280C795400B87600 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EF5C51EE29A6FBF3005560B0 /* MyExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MyExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF5DC90E2A0C10F5007AC8A5 /* JLAgora.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLAgora.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF77097628DF6CDB00D28B89 /* JLApplicationBadge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLApplicationBadge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF77097928DF6CE300D28B89 /* JLATTrackingManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLATTrackingManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF7D1A5929904FDE004E67E5 /* JLContacts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLContacts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,18 +138,13 @@
 			files = (
 				EF77097428DF6CAC00D28B89 /* Jasonelle.framework in Frameworks */,
 				EF77097228DF6CAB00D28B89 /* JLExtensions.framework in Frameworks */,
-				EF115A9D29CFFD040068703C /* MyExtension.framework in Frameworks */,
-				EF82B8D929DBA39B00B5CD05 /* JLApplicationBadge.framework in Frameworks */,
-				EF82B8DC29DBA3A200B5CD05 /* JLATTrackingManager.framework in Frameworks */,
 				EF77096D28DF6CA800D28B89 /* WebViewRendererUI.framework in Frameworks */,
+				EF5DC90F2A0C10F5007AC8A5 /* JLAgora.framework in Frameworks */,
 				EF77097028DF6CAA00D28B89 /* JLKernel.framework in Frameworks */,
+				EF5DC96F2A0C30A4007AC8A5 /* AgoraUIKit in Frameworks */,
 				EF82B8D629DBA39400B5CD05 /* JLContacts.framework in Frameworks */,
-				EF82B8E529DBA3BD00B5CD05 /* JLCookies.framework in Frameworks */,
-				EF3AC8FD29E31FD200124484 /* JLAudio.framework in Frameworks */,
 				EF82B8E229DBA3B300B5CD05 /* JLPhotoLibrary.framework in Frameworks */,
 				EF77097C28DF6CF600D28B89 /* JasonelleSwift.framework in Frameworks */,
-				EF82B8E829DBA3C400B5CD05 /* JLKeychain.framework in Frameworks */,
-				EFA105D629ABB47E0005C2AC /* JLReachability.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +243,7 @@
 		EF83737227A9939B00485E03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EF5DC90E2A0C10F5007AC8A5 /* JLAgora.framework */,
 				EF3AC8FC29E31FD200124484 /* JLAudio.framework */,
 				EF82B8E729DBA3C400B5CD05 /* JLKeychain.framework */,
 				EF82B8E429DBA3BD00B5CD05 /* JLCookies.framework */,
@@ -326,6 +306,9 @@
 			dependencies = (
 			);
 			name = App;
+			packageProductDependencies = (
+				EF5DC96E2A0C30A4007AC8A5 /* AgoraUIKit */,
+			);
 			productName = App;
 			productReference = EF4E850127A990AD00444A94 /* App.app */;
 			productType = "com.apple.product-type.application";
@@ -401,6 +384,10 @@
 				Base,
 			);
 			mainGroup = EF4E84F827A990AD00444A94;
+			packageReferences = (
+				EF5DC96C2A0C308C007AC8A5 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS" */,
+				EF5DC96D2A0C30A4007AC8A5 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */,
+			);
 			productRefGroup = EF4E850227A990AD00444A94 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -574,6 +561,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -636,6 +624,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -666,7 +655,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"App/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = GLM6EK2ES9;
+				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -708,7 +698,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"App/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = GLM6EK2ES9;
+				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -881,6 +872,33 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EF5DC96C2A0C308C007AC8A5 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AgoraIO/AgoraRtcEngine_iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		EF5DC96D2A0C30A4007AC8A5 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AgoraIO-Community/VideoUIKit-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EF5DC96E2A0C30A4007AC8A5 /* AgoraUIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF5DC96D2A0C30A4007AC8A5 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */;
+			productName = AgoraUIKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EF4E84F927A990AD00444A94 /* Project object */;
 }

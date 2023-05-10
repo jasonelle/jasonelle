@@ -29,15 +29,16 @@
 // Add or uncomment and configure the extensions here.
 // See more at https://jasonelle.com/docs/xcode/Extensions.html
 //
-#import <JLATTrackingManager/JLATTrackingManager.h>
-#import <JLApplicationBadge/JLApplicationBadge.h>
+//#import <JLATTrackingManager/JLATTrackingManager.h>
+//#import <JLApplicationBadge/JLApplicationBadge.h>
 #import <JLPhotoLibrary/JLPhotoLibrary.h>
-#import <JLKeychain/JLKeychain.h>
-#import <JLCookies/JLCookies.h>
+//#import <JLKeychain/JLKeychain.h>
+//#import <JLCookies/JLCookies.h>
 #import <JLContacts/JLContacts.h>
-#import <JLReachability/JLReachability.h>
-#import <JLAudio/JLAudio.h>
-#import <MyExtension/MyExtension.h> // Example Extension
+//#import <JLReachability/JLReachability.h>
+//#import <JLAudio/JLAudio.h>
+#import <JLAgora/JLAgora.h>
+//#import <MyExtension/MyExtension.h> // Example Extension
 
 @implementation AppExtensions
 
@@ -55,31 +56,32 @@
 
 - (BOOL) install {
 //     Setup ATTracking Manager
-    [self.extensions add:JLATTrackingManager.class];
+//    [self.extensions add:JLATTrackingManager.class];
 
 //     Setup permissions in info.plist to access photos
     [self.extensions add:JLPhotoLibrary.class];
 
 //     Add $badge extension
-    [self.extensions add:JLApplicationBadge.class];
+//    [self.extensions add:JLApplicationBadge.class];
 
 //     Add $keychain extension
-    [self.extensions add:JLKeychain.class];
+//    [self.extensions add:JLKeychain.class];
 
 //     Add $cookies extension
-    [self.extensions add:JLCookies.class];
+//    [self.extensions add:JLCookies.class];
 
 //     Add $contacts extension
     [self.extensions add:JLContacts.class];
     
 //     Add $reachability extension
-    [self.extensions add:JLReachability.class];
+//    [self.extensions add:JLReachability.class];
 
 //    Add $audio extension
-    [self.extensions add:JLAudio.class];
+//    [self.extensions add:JLAudio.class];
     
     // Add Example Extension
-    [self.extensions add:MyExtension.class];
+//    [self.extensions add:MyExtension.class];
+    [self.extensions add:JLAgora.class];
     
     // Install all the extensions
     return [self.extensions install];

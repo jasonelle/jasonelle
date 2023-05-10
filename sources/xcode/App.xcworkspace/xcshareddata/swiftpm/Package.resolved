@@ -1,0 +1,34 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "AgoraRtcKit",
+        "repositoryURL": "https://github.com/AgoraIO/AgoraRtcEngine_iOS.git",
+        "state": {
+          "branch": null,
+          "revision": "13f007dff53e2c670ad645fae43e3fcea8f4df6c",
+          "version": "4.1.1"
+        }
+      },
+      {
+        "package": "AgoraRtmKit",
+        "repositoryURL": "https://github.com/AgoraIO/AgoraRtm_iOS",
+        "state": {
+          "branch": null,
+          "revision": "2e87ada22df8110cf85b9f18c2ac08083f4f63f4",
+          "version": "1.5.1"
+        }
+      },
+      {
+        "package": "AgoraUIKit_iOS",
+        "repositoryURL": "https://github.com/AgoraIO-Community/VideoUIKit-iOS.git",
+        "state": {
+          "branch": null,
+          "revision": "4f089ebe9b9ce61ef3b24f8362817edd64a3a3d3",
+          "version": "4.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
