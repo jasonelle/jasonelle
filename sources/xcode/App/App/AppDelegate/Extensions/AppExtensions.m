@@ -37,6 +37,8 @@
 #import <JLContacts/JLContacts.h>
 #import <JLReachability/JLReachability.h>
 #import <JLAudio/JLAudio.h>
+#import <JLDevice/JLDevice.h>
+
 #import <MyExtension/MyExtension.h> // Example Extension
 
 @implementation AppExtensions
@@ -77,6 +79,9 @@
 
 //    Add $audio extension
     [self.extensions add:JLAudio.class];
+    
+//    Add $device extension
+    [self.extensions add:JLDevice.class];
     
     // Add Example Extension
     [self.extensions add:MyExtension.class];

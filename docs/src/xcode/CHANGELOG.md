@@ -13,9 +13,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - [Core] Added a _Makefile_ command to fix "bad interpreter: Operation not permitted" errors. This error maybe caused by downloading bash files from untrusted sources. Execute `make permissions` inside `sources/xcode` directory to fix any compilation problems with that issue.
 
+- [JLPhotoLibrary] Added `$photolibrary.camera.authorize()` and `$photolibrary.camera.granted()` functions.
+
+- [JLDevice] Added `$device.info()` that returns the current device and environment information.
+
 ### Changed
 
-- [JLPhotoLibrary] Added `$photolibrary.camera.authorize()` and `$photolibrary.camera.granted()` functions. The extension no longer triggers authorization on install.
+- [JLPhotoLibrary] The extension no longer triggers authorization on install.
 
 - [Core] Improved the way the example html file is generated. Now extensions can add the examples on compilation time.
 
@@ -38,7 +42,7 @@ fi
 ### Fixed
 
 - [ARM Macs]. Automatically detects processor and selects the proper build tool.
-- [Core]. Fixed crash when clicking a non html link (now shows _SFSafariViewController_).
+- [Core]. Fixed crash when clicking a non html link (now shows _SFSafariViewController_), useful for example when need to show a download file screen.
 
 ### Downloads
 

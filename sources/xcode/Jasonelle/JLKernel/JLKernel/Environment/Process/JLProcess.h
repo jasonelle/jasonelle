@@ -51,6 +51,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// Unique identifiers
 @property (nonatomic, strong, nonnull, readonly) NSDictionary *identifiers;
 
+- (NSDictionary *) toDictionary;
+
 @end
 
 NS_ASSUME_NONNULL_END

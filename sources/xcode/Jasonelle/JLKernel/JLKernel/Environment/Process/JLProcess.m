@@ -90,4 +90,11 @@
     };
 }
 
+- (NSDictionary *) toDictionary {
+    return @{
+        @"device": self.device[@"device"],
+        @"identifiers": self.identifiers
+    };
+}
+
 @end

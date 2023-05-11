@@ -56,11 +56,27 @@
    #endif
 }
 
+- (NSString *) typeString {
+    if (self.type == JLEnvironmentTypeTesting) {
+        return @"testing";
+    }
+    
+    if (self.type == JLEnvironmentTypeDevelop) {
+        return @"develop";
+    }
+    
+    return @"production";
+}
+
 - (JLEnvironmentDevice)device {
     if (self.process.environment[@"SIMULATOR_DEVICE_NAME"] != nil) {
         return JLEnvironmentDeviceSimulator;
     }
     return JLEnvironmentDeviceHardware;
+}
+
+- (NSString *) deviceString {
+    return (self.device == JLEnvironmentDeviceSimulator ? @"simulator": @"hardware");
 }
 
 - (instancetype)initWithApplication:(UIApplication *)application andLaunchOptions:(nullable NSDictionary *)launchOptions {
@@ -69,6 +85,25 @@
     env.application = application;
     env.arguments = launchOptions;
     return env;
+}
+
+- (NSDictionary *) toDictionary {
+    return @{
+        @"license": @{
+            @"enabled": @(self.licensed)
+        },
+        @"process": [self.process toDictionary],
+        @"env": @{
+            @"type": @{
+                @"id": @(self.type),
+                @"name": self.typeString
+            },
+            @"hw": @{
+                @"id": @(self.device),
+                @"name": self.deviceString
+            }
+        }
+    };
 }
 
 @end

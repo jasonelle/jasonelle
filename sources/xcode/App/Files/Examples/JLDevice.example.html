@@ -1,0 +1,16 @@
+<!-- Example: JLDevice -->
+<script type="text/javascript">
+    const deviceInfo = () => $device.info().then(info => {
+        $logger.trace(info);
+        alert(info.env.hw.name);
+    });
+</script>
+
+<li class="item">
+    <h3 class="title">JLDevice Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="deviceInfo();" class="link">Get Device Hardware Type</h4>
+        </li>
+    </ul>
+</li>

@@ -26,3 +26,4 @@
 - [JLContacts](./xcode/JLContacts.md)
 - [JLReachability](./xcode/JLReachability.md)
 - [JLAudio](./xcode/JLAudio.md)
+- [JLDevice](./xcode/JLDevice.md)

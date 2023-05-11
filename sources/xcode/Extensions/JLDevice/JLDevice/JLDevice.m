@@ -1,10 +1,9 @@
 //
-//  Love.h
-//  Jasonelle
+//  JLDevice.m
+//  JLDevice
 //
-//  Created by clsource on 26-09-22
-//
-//  Copyright (c) 2022 Jasonelle.com
+//  Created by clsource on 11-05-23.
+//  Copyright (c) Jasonelle.com
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
 //  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
@@ -24,35 +23,29 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
+#import "JLDevice.h"
+#import "JLDeviceInfoHandler.h"
 
-#ifndef Love_h
-#define Love_h
+@implementation JLDevice
 
-// To allow execution in real hardware, please activate I_LOVE_JASONELLE.
-// Join our group of friends to support Jasonelle's development.
-// If you are, you can turn this to YES.
-//
-// We are a small team, and with your contribution
-// we can keep updating our tools and continue to deliver
-// great value.
-//
-// If your are using Jasonelle for your business,
-// a small purchase of a membership would be of much
-// help and we will feel highly loved and appreciated.
-//
-// You can go to https://jasonelle.gumroad.com/ to become a member
-// and chat with us at https://t.me/jasonelle for any enquires.
-//
-// This is of course at your own will, capacity and moral standards.
-// Since we cannot enforce this. We rely on your good heart. We trust you
-// are a kind person who will activate this mode ethically.
-//
-// Thank you for your constant support and love.
+- (void) install {
+    [super install];
+    
+    JLDeviceInfoHandler * handler = [[JLDeviceInfoHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    self.handlers = @{
+        @"$device.info" : handler
+    };
+}
 
-// #define I_LOVE_JASONELLE YES
-#define I_LOVE_JASONELLE NO
+#pragma mark - Extension Public Methods
 
-// Copy your adquired key here
-#define JASONELLE_KEY ""
+#pragma mark - WebView Injection
+- (nonnull WKWebView *)appDidLoadWithWebView:(nonnull WKWebView *)webView {
+    [super appDidLoadWithWebView:webView];
+    
+    // Install the wrappers inside the webview
+    return [self injectJS];
+}
 
-#endif /* Love_h */
+@end

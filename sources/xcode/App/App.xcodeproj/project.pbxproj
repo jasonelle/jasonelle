@@ -44,6 +44,8 @@
 		EF9E5397299F287400516842 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF9E5396299F287400516842 /* Launch Screen.storyboard */; };
 		EFA105D629ABB47E0005C2AC /* JLReachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA105D529ABB47E0005C2AC /* JLReachability.framework */; };
 		EFA105D729ABB47E0005C2AC /* JLReachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFA105D529ABB47E0005C2AC /* JLReachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EFA6D0622A0D74F400D02A41 /* JLDevice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA6D0612A0D74F400D02A41 /* JLDevice.framework */; };
+		EFA6D0632A0D74F400D02A41 /* JLDevice.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFA6D0612A0D74F400D02A41 /* JLDevice.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EFAF61CB2806DB3C001B265B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAF61CA2806DB3C001B265B /* AppDelegate.m */; };
 		EFD65C5528C12966000350B1 /* Files in Resources */ = {isa = PBXBuildFile; fileRef = EFD65C5428C12966000350B1 /* Files */; };
 		EFE607392808B5D300C8146A /* _build in Resources */ = {isa = PBXBuildFile; fileRef = EFE607382808B5D300C8146A /* _build */; };
@@ -75,6 +77,7 @@
 			files = (
 				EF77097528DF6CAC00D28B89 /* Jasonelle.framework in Embed Frameworks */,
 				EF77096E28DF6CA800D28B89 /* WebViewRendererUI.framework in Embed Frameworks */,
+				EFA6D0632A0D74F400D02A41 /* JLDevice.framework in Embed Frameworks */,
 				EF115A9E29CFFD040068703C /* MyExtension.framework in Embed Frameworks */,
 				EF82B8DA29DBA39B00B5CD05 /* JLApplicationBadge.framework in Embed Frameworks */,
 				EF82B8DD29DBA3A200B5CD05 /* JLATTrackingManager.framework in Embed Frameworks */,
@@ -132,6 +135,7 @@
 		EFA105D529ABB47E0005C2AC /* JLReachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLReachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFA105D829ABB4D30005C2AC /* MyExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MyExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFA6A1E9296F099900DA12D4 /* JLPhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFA6D0612A0D74F400D02A41 /* JLDevice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLDevice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFAF61C92806DB3C001B265B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EFAF61CA2806DB3C001B265B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		EFAF61DB2806F262001B265B /* JS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = JS; sourceTree = SOURCE_ROOT; };
@@ -154,6 +158,7 @@
 			files = (
 				EF77097428DF6CAC00D28B89 /* Jasonelle.framework in Frameworks */,
 				EF77097228DF6CAB00D28B89 /* JLExtensions.framework in Frameworks */,
+				EFA6D0622A0D74F400D02A41 /* JLDevice.framework in Frameworks */,
 				EF115A9D29CFFD040068703C /* MyExtension.framework in Frameworks */,
 				EF82B8D929DBA39B00B5CD05 /* JLApplicationBadge.framework in Frameworks */,
 				EF82B8DC29DBA3A200B5CD05 /* JLATTrackingManager.framework in Frameworks */,
@@ -264,6 +269,7 @@
 		EF83737227A9939B00485E03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EFA6D0612A0D74F400D02A41 /* JLDevice.framework */,
 				EF3AC8FC29E31FD200124484 /* JLAudio.framework */,
 				EF82B8E729DBA3C400B5CD05 /* JLKeychain.framework */,
 				EF82B8E429DBA3BD00B5CD05 /* JLCookies.framework */,
