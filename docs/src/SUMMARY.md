@@ -9,6 +9,7 @@
 # iOS
 
 - [Quick Start](./xcode/Quickstart.md)
+- [Architecture](./xcode/Architecture.md)
 - [Changelog](./xcode/Changelog.md)
 
 # Templates
