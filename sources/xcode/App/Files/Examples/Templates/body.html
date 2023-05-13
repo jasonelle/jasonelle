@@ -1,0 +1,173 @@
+<!-- Example: JLContacts -->
+<script type="text/javascript">
+    const authorizeContacts = () => $contacts.authorize().then(res => alert(res.status.name));
+    
+    const fetchContacts = () => $contacts.all().then(data => {
+        alert(data[0].name);
+        $logger.trace(JSON.stringify(data));
+    });
+    
+</script>
+
+<li class="item">
+    <h3 class="title">JLContacts Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="authorizeContacts()">
+                Authorize Contacts
+            </h4>
+        </li>
+        
+        <li>
+            <h4 onClick="fetchContacts()">
+                Fetch Contacts
+            </h4>
+        </li>
+    </ul>
+</li>
+<!-- Example: Core-->
+<script type="text/javascript">
+    // Test Native Logger
+    const log = () => {
+      // This call will be shown in Safari Debug Console Only
+      console.log("Calling Native Logger from WebView");
+      // This call will be shown in XCode Console
+      $logger.trace("Calling Native Logger from WebView");
+    };
+    
+    // Actions defined in main.js
+    // Test Hello Action
+    // JS Actions use $agent.call
+    // These actions cannot return a Promise (yet)
+    // Define these actions inside the main.js actions
+    const hello = (world = "world") => {
+      const result = $agent.call("hello", world);
+      $logger.trace(result);
+    };
+    
+    // Open app in safari
+    const safari = (url) => {
+        $agent.call("safari", url);
+    };
+</script>
+
+<li class="item">
+    <h3 class="title">Core Examples</h3>
+    <ul>
+            <li><h4 onClick="log()">Test Native Logger</h4></li>
+                    
+            <li><h4 onClick="hello()">Test Bridge From WebView to JSContext</h4></li>
+            <li>
+                <h4 onClick="safari('https://google.com')">
+                    Test Opening Safari Link
+                </h4>
+            </li>
+            
+            <li>
+                <h4 onClick="alert('Hello')">Alert Example</h4>
+            </li>
+            <li>
+                <h4 onClick="confirm('Press a button!')">Confirm Example</h4>
+            </li>
+            <li>
+                <h4 onClick="prompt('Please enter your name', 'Ethan G.')">Prompt Example</h4>
+            </li>
+            
+            
+            <li>
+                <!-- Modify config/dev or config/prod with
+                the allowed:["file://", "google.cl"] to load
+                this url inside the app -->
+                
+                <a href="https://google.cl">
+                    <h4>
+                    Test Allowed URL (Open Browser)
+                    </h4>
+                </a>
+                
+            </li>
+            
+            <li>
+                <a href="https://jasonelle.com/test/100kb.odt">
+                    <h4>
+                    Test Download a File
+                </h4>
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://jasonelle.com/test/100kb.pdf">
+                    <h4>
+                    Test Show a PDF
+                </h4>
+                </a>
+            </li>
+    </ul>
+</li>
+
+<!-- Example: JLPhotoLibrary -->
+<script type="text/javascript">
+    const photoLibraryAuthorize = () => $photolibrary.authorize().then(status => $logger.trace(status));
+    
+    const photoLibraryGranted = () => $photolibrary.granted().then(granted => alert(granted));
+    
+    const photoLibraryCameraAuthorize = () => $photolibrary.camera.authorize().then(status => $logger.trace(status));
+    
+    const photolibraryCameraGranted = () => $photolibrary.camera.granted().then(granted => alert(granted));
+    
+</script>
+
+<li class="item">
+    <h3 class="title">JLPhotoLibrary Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="photoLibraryAuthorize()">Request Photo Library Access</h4>
+        </li>
+        <li>
+            <h4 onClick="photoLibraryGranted()">Check Photo Library Access</h4>
+        </li>
+        <li>
+            <h4 onClick="photoLibraryCameraAuthorize()">Request Camera Access</h4>
+        </li>
+        <li>
+            <h4 onClick="photolibraryCameraGranted()">Check Camera Access</h4>
+        </li>
+        <li>
+            <h4>Example Image Picker</h4>
+            <input
+            id="imagePickerFileInput"
+            type="file"
+            accept="image/*"
+          />
+        </li>
+        
+        <li>
+            <h4>Example Camera (Will crash in Simulator)</h4>
+            <input
+            id="cameraFileInput"
+            type="file"
+            accept="image/*"
+            capture="environment"
+          />
+        </li>
+    </ul>
+</li>
+
+<!-- Example: JLAgora -->
+<script type="text/javascript">
+    const agoraStart = () => {
+      const appId = "";
+      const token = "";
+      const channel = "";
+      return $agora.start(appId, token, channel);
+    };
+</script>
+
+<li class="item">
+    <h3 class="title">JLAgora Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="agoraStart()">Start Video</h4>
+        </li>
+    </ul>
+</li>
