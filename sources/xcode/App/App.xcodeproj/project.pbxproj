@@ -48,6 +48,8 @@
 		EFA6D0632A0D74F400D02A41 /* JLDevice.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFA6D0612A0D74F400D02A41 /* JLDevice.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EFAF61CB2806DB3C001B265B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAF61CA2806DB3C001B265B /* AppDelegate.m */; };
 		EFD65C5528C12966000350B1 /* Files in Resources */ = {isa = PBXBuildFile; fileRef = EFD65C5428C12966000350B1 /* Files */; };
+		EFDDA3EA2A44A4EA00C87BE1 /* JLClipboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFDDA3E92A44A4EA00C87BE1 /* JLClipboard.framework */; };
+		EFDDA3EB2A44A4EA00C87BE1 /* JLClipboard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFDDA3E92A44A4EA00C87BE1 /* JLClipboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EFE607392808B5D300C8146A /* _build in Resources */ = {isa = PBXBuildFile; fileRef = EFE607382808B5D300C8146A /* _build */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +84,7 @@
 				EF82B8DA29DBA39B00B5CD05 /* JLApplicationBadge.framework in Embed Frameworks */,
 				EF82B8DD29DBA3A200B5CD05 /* JLATTrackingManager.framework in Embed Frameworks */,
 				EF77097328DF6CAB00D28B89 /* JLExtensions.framework in Embed Frameworks */,
+				EFDDA3EB2A44A4EA00C87BE1 /* JLClipboard.framework in Embed Frameworks */,
 				EF77097128DF6CAA00D28B89 /* JLKernel.framework in Embed Frameworks */,
 				EF82B8D729DBA39400B5CD05 /* JLContacts.framework in Embed Frameworks */,
 				EF82B8E629DBA3BD00B5CD05 /* JLCookies.framework in Embed Frameworks */,
@@ -147,6 +150,7 @@
 		EFC3F40B29A911ED00574259 /* JLPhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD373C227B06BC500D6F7CF /* JasonelleSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JasonelleSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD65C5428C12966000350B1 /* Files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Files; sourceTree = "<group>"; };
+		EFDDA3E92A44A4EA00C87BE1 /* JLClipboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLClipboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFE607382808B5D300C8146A /* _build */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _build; sourceTree = "<group>"; };
 		EFFB947C2980B3B2007BF935 /* JLCookies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLCookies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -163,6 +167,7 @@
 				EF82B8D929DBA39B00B5CD05 /* JLApplicationBadge.framework in Frameworks */,
 				EF82B8DC29DBA3A200B5CD05 /* JLATTrackingManager.framework in Frameworks */,
 				EF77096D28DF6CA800D28B89 /* WebViewRendererUI.framework in Frameworks */,
+				EFDDA3EA2A44A4EA00C87BE1 /* JLClipboard.framework in Frameworks */,
 				EF77097028DF6CAA00D28B89 /* JLKernel.framework in Frameworks */,
 				EF82B8D629DBA39400B5CD05 /* JLContacts.framework in Frameworks */,
 				EF82B8E529DBA3BD00B5CD05 /* JLCookies.framework in Frameworks */,
@@ -269,6 +274,7 @@
 		EF83737227A9939B00485E03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EFDDA3E92A44A4EA00C87BE1 /* JLClipboard.framework */,
 				EFA6D0612A0D74F400D02A41 /* JLDevice.framework */,
 				EF3AC8FC29E31FD200124484 /* JLAudio.framework */,
 				EF82B8E729DBA3C400B5CD05 /* JLKeychain.framework */,

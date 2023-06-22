@@ -31,6 +31,7 @@
 #import <JLKernel/JLUtilsJSON.h>
 #import <JLKernel/JLUtilsFileSystem.h>
 #import <JLKernel/JLUtilsWebView.h>
+#import <JLKernel/JLUtilsClipboard.h>
 
 @import UIKit;
 
@@ -47,6 +48,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nonnull, readonly) NSString * uuid;
 @property (nonatomic, strong, nonnull) JLUtilsFileSystem * fs;
 @property (nonatomic, strong, nonnull) JLUtilsWebView * webview;
+@property (nonatomic, strong, nonnull) JLUtilsClipboard * clipboard;
+
 @property (nonatomic, strong, nonnull) UIViewController * rootController;
 
 #pragma mark - Init Methods

@@ -94,6 +94,8 @@
 		EFDD98AA28123BE600DDE6D4 /* JLJSRoutesLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EFDD98A828123BE600DDE6D4 /* JLJSRoutesLoader.m */; };
 		EFDD98AF28123C2D00DDE6D4 /* JLJSRoutes.h in Headers */ = {isa = PBXBuildFile; fileRef = EFDD98AD28123C2D00DDE6D4 /* JLJSRoutes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFDD98B028123C2D00DDE6D4 /* JLJSRoutes.m in Sources */ = {isa = PBXBuildFile; fileRef = EFDD98AE28123C2D00DDE6D4 /* JLJSRoutes.m */; };
+		EFDDA3E02A449E3A00C87BE1 /* JLUtilsClipboard.h in Headers */ = {isa = PBXBuildFile; fileRef = EFDDA3DE2A449E3A00C87BE1 /* JLUtilsClipboard.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFDDA3E12A449E3A00C87BE1 /* JLUtilsClipboard.m in Sources */ = {isa = PBXBuildFile; fileRef = EFDDA3DF2A449E3A00C87BE1 /* JLUtilsClipboard.m */; };
 		EFE51B40281ECB2E00DA0C53 /* JLEventViewDidAppear.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE51B3E281ECB2E00DA0C53 /* JLEventViewDidAppear.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFE51B41281ECB2E00DA0C53 /* JLEventViewDidAppear.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE51B3F281ECB2E00DA0C53 /* JLEventViewDidAppear.m */; };
 		EFE51B45281ECB5600DA0C53 /* JLEventViewDidDisappear.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE51B43281ECB5600DA0C53 /* JLEventViewDidDisappear.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -219,6 +221,8 @@
 		EFDD98A828123BE600DDE6D4 /* JLJSRoutesLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSRoutesLoader.m; sourceTree = "<group>"; };
 		EFDD98AD28123C2D00DDE6D4 /* JLJSRoutes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSRoutes.h; sourceTree = "<group>"; };
 		EFDD98AE28123C2D00DDE6D4 /* JLJSRoutes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSRoutes.m; sourceTree = "<group>"; };
+		EFDDA3DE2A449E3A00C87BE1 /* JLUtilsClipboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLUtilsClipboard.h; sourceTree = "<group>"; };
+		EFDDA3DF2A449E3A00C87BE1 /* JLUtilsClipboard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLUtilsClipboard.m; sourceTree = "<group>"; };
 		EFE51B3E281ECB2E00DA0C53 /* JLEventViewDidAppear.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLEventViewDidAppear.h; sourceTree = "<group>"; };
 		EFE51B3F281ECB2E00DA0C53 /* JLEventViewDidAppear.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLEventViewDidAppear.m; sourceTree = "<group>"; };
 		EFE51B43281ECB5600DA0C53 /* JLEventViewDidDisappear.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLEventViewDidDisappear.h; sourceTree = "<group>"; };
@@ -328,6 +332,7 @@
 				EF47FEF92824FE32006E2B9B /* Plist */,
 				EFECF216282E744B009D0579 /* FileSystem */,
 				EFA09ED929A2373E00E3C9A4 /* WebView */,
+				EFDDA3E22A449E3E00C87BE1 /* Clipboard */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -716,6 +721,15 @@
 			path = Routes;
 			sourceTree = "<group>";
 		};
+		EFDDA3E22A449E3E00C87BE1 /* Clipboard */ = {
+			isa = PBXGroup;
+			children = (
+				EFDDA3DE2A449E3A00C87BE1 /* JLUtilsClipboard.h */,
+				EFDDA3DF2A449E3A00C87BE1 /* JLUtilsClipboard.m */,
+			);
+			path = Clipboard;
+			sourceTree = "<group>";
+		};
 		EFE51B42281ECB3300DA0C53 /* ViewDidAppear */ = {
 			isa = PBXGroup;
 			children = (
@@ -852,6 +866,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFDDA3E02A449E3A00C87BE1 /* JLUtilsClipboard.h in Headers */,
 				EF61714127AAC2DC007B929C /* JLLoggerProtocol.h in Headers */,
 				EF61714627AAC3C1007B929C /* JLLoggingSystem.h in Headers */,
 				EF61715927AADB5F007B929C /* JLLogger.h in Headers */,
@@ -1013,6 +1028,7 @@
 			files = (
 				EF945E9B2811A4550085380D /* JLJSPolyfill.m in Sources */,
 				EFDD98AA28123BE600DDE6D4 /* JLJSRoutesLoader.m in Sources */,
+				EFDDA3E12A449E3A00C87BE1 /* JLUtilsClipboard.m in Sources */,
 				EFEDE8F92808D2F20050EE13 /* JLJSBridgeLogger.m in Sources */,
 				EF73C5D52816A3BC006E3CFB /* JLEventAppWillEnterForeground.m in Sources */,
 				EFECF215282E7447009D0579 /* JLUtilsFileSystem.m in Sources */,

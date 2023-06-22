@@ -14,5 +14,6 @@ docs d:
 	@cp ./sources/xcode/Extensions/JLReachability/JLReachability/JLReachability.docc/JLReachability.md ./docs/src/xcode
 	@cp ./sources/xcode/Extensions/JLAudio/JLAudio/JLAudio.docc/JLAudio.md ./docs/src/xcode
 	@cp ./sources/xcode/Extensions/JLDevice/JLDevice/JLDevice.docc/JLDevice.md ./docs/src/xcode
+	@cp ./sources/xcode/Extensions/JLClipboard/JLClipboard/JLClipboard.docc/JLClipboard.md ./docs/src/xcode
 
 	cd docs && mdbook build

@@ -38,6 +38,7 @@
 #import <JLReachability/JLReachability.h>
 #import <JLAudio/JLAudio.h>
 #import <JLDevice/JLDevice.h>
+#import <JLClipboard/JLClipboard.h>
 
 #import <MyExtension/MyExtension.h> // Example Extension
 
@@ -83,10 +84,13 @@
 //    Add $device extension
     [self.extensions add:JLDevice.class];
     
-    // Add Example Extension
+//    Add $clipboard extension
+    [self.extensions add:JLClipboard.class];
+    
+//    Add Example Extension
     [self.extensions add:MyExtension.class];
     
-    // Install all the extensions
+//    Install all the extensions
     return [self.extensions install];
 }
 

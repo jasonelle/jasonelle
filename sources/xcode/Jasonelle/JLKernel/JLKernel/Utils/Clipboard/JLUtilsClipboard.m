@@ -1,9 +1,9 @@
 //
-//  JLDevice.h
-//  JLDevice
+//  JLUtilsClipboard.m
+//  JLKernel
 //
-//  Created by clsource on 11-05-23.
-//  Copyright (c) Jasonelle.com
+//  Created by clsource on 22-06-23.
+//  Copyright © Jasonelle.com. All rights reserved.
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
 //  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
@@ -23,22 +23,25 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-#import <Foundation/Foundation.h>
+#import <JLKernel/JLUtilsClipboard.h>
 
-//! Project version number for JLDevice.
-FOUNDATION_EXPORT double JLDeviceVersionNumber;
+@implementation JLUtilsClipboard
 
-//! Project version string for JLDevice.
-FOUNDATION_EXPORT const unsigned char JLDeviceVersionString[];
+- (UIPasteboard *) pasteboard {
+    if (!_pasteboard) {
+        _pasteboard = [UIPasteboard generalPasteboard];
+    }
+    return _pasteboard;
+}
 
-// In this header, you should import all the public headers of your framework using statements like #import <JLDevice/PublicHeader.h>
+- (NSString *) set: (NSString *) string {
+    jlog_trace_join(@"Copy to Clipboard: ", string);
+    self.pasteboard.string = string;
+    return string;
+}
 
-#import <JLKernel/JLKernel.h>
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface JLDevice : JLExtension
-
+- (nullable NSString *) get {
+    jlog_trace_join(@"String in Clipboard: ", self.pasteboard.string);
+    return self.pasteboard.string;
+}
 @end
-
-NS_ASSUME_NONNULL_END

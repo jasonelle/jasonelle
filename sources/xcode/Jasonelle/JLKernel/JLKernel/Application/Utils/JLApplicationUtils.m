@@ -74,6 +74,13 @@
     return _webview;
 }
 
+- (JLUtilsClipboard *) clipboard {
+    if (!_clipboard) {
+        _clipboard = [[JLUtilsClipboard alloc] initWithLogger:self.logger];
+    }
+    return _clipboard;
+}
+
 - (BOOL) openURL: (NSString *) urlString {
     NSURL * url = [NSURL URLWithString:urlString];
     jlog_trace_join(@"Openning URL: ", url.absoluteString);

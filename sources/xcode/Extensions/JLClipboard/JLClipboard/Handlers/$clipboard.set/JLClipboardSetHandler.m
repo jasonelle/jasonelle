@@ -1,8 +1,8 @@
 //
-//  JLDevice.h
-//  JLDevice
+//  JLClipboardSetHandler.m
+//  JLClipboard
 //
-//  Created by clsource on 11-05-23.
+//  Created by clsource on 22-06-23.
 //  Copyright (c) Jasonelle.com
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
@@ -23,22 +23,15 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-#import <Foundation/Foundation.h>
+#import "JLClipboardSetHandler.h"
 
-//! Project version number for JLDevice.
-FOUNDATION_EXPORT double JLDeviceVersionNumber;
+@implementation JLClipboardSetHandler
 
-//! Project version string for JLDevice.
-FOUNDATION_EXPORT const unsigned char JLDeviceVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <JLDevice/PublicHeader.h>
-
-#import <JLKernel/JLKernel.h>
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface JLDevice : JLExtension
+- (void)handleWithOptions:(nonnull JLJSMessageHandlerOptions *)options {
+    JLJSParams * params = [options toParams];
+    NSString * string = [params string:@"text" default:@""];
+    [self.app.utils.clipboard set:string];
+    self.resolve(string);
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

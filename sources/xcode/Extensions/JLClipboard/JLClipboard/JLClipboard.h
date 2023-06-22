@@ -1,8 +1,8 @@
 //
-//  JLDevice.h
-//  JLDevice
+//  JLClipboard.h
+//  JLClipboard
 //
-//  Created by clsource on 11-05-23.
+//  Created by clsource on 22-06-23.
 //  Copyright (c) Jasonelle.com
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
@@ -37,7 +37,7 @@ FOUNDATION_EXPORT const unsigned char JLDeviceVersionString[];
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JLDevice : JLExtension
+@interface JLClipboard : JLExtension
 
 @end
 

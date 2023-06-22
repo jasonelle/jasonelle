@@ -1,0 +1,22 @@
+<!-- Example: JLClipboard -->
+<script type="text/javascript">
+    const copyToClipboard = () => {
+        $clipboard.set("Hello");
+    };
+    
+    const getClipboard = () => {
+        $clipboard.get().then(text => alert(text));
+    };
+</script>
+
+<li class="item">
+    <h3 class="title">JLClipboard Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="copyToClipboard();" class="link">Copy to Clipboard</h4>
+        </li>
+        <li>
+            <h4 onClick="getClipboard();" class="link">Get Clipboard</h4>
+        </li>
+    </ul>
+</li>

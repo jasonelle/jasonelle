@@ -1,8 +1,8 @@
 //
-//  JLDevice.h
+//  JLDevice.m
 //  JLDevice
 //
-//  Created by clsource on 11-05-23.
+//  Created by clsource on 22-06-23.
 //  Copyright (c) Jasonelle.com
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
@@ -23,22 +23,33 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-#import <Foundation/Foundation.h>
+#import "JLClipboard.h"
+#import "JLClipboardSetHandler.h"
+#import "JLClipboardGetHandler.h"
 
-//! Project version number for JLDevice.
-FOUNDATION_EXPORT double JLDeviceVersionNumber;
+@implementation JLClipboard
 
-//! Project version string for JLDevice.
-FOUNDATION_EXPORT const unsigned char JLDeviceVersionString[];
+- (void) install {
+    [super install];
+    
+    JLClipboardSetHandler * handlerSet = [[JLClipboardSetHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    JLClipboardGetHandler * handlerGet = [[JLClipboardGetHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    self.handlers = @{
+        @"$clipboard.set" : handlerSet,
+        @"$clipboard.get" : handlerGet
+    };
+}
 
-// In this header, you should import all the public headers of your framework using statements like #import <JLDevice/PublicHeader.h>
+#pragma mark - Extension Public Methods
 
-#import <JLKernel/JLKernel.h>
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface JLDevice : JLExtension
+#pragma mark - WebView Injection
+- (nonnull WKWebView *)appDidLoadWithWebView:(nonnull WKWebView *)webView {
+    [super appDidLoadWithWebView:webView];
+    
+    // Install the wrappers inside the webview
+    return [self injectJS];
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

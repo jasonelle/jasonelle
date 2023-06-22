@@ -1,8 +1,8 @@
 //
-//  JLDevice.h
-//  JLDevice
+//  JLClipboardGetHandler.h
+//  JLClipboard
 //
-//  Created by clsource on 11-05-23.
+//  Created by clsource on 22-06-23.
 //  Copyright (c) Jasonelle.com
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
@@ -25,19 +25,11 @@
 
 #import <Foundation/Foundation.h>
 
-//! Project version number for JLDevice.
-FOUNDATION_EXPORT double JLDeviceVersionNumber;
-
-//! Project version string for JLDevice.
-FOUNDATION_EXPORT const unsigned char JLDeviceVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <JLDevice/PublicHeader.h>
-
 #import <JLKernel/JLKernel.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JLDevice : JLExtension
+@interface JLClipboardGetHandler : JLJSMessageHandler
 
 @end
 
