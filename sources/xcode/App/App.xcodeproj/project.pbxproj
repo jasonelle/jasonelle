@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		EF115A9D29CFFD040068703C /* MyExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF115A9C29CFFD040068703C /* MyExtension.framework */; };
 		EF115A9E29CFFD040068703C /* MyExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF115A9C29CFFD040068703C /* MyExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EF1DCE492A51CF7100C77D06 /* JLToast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1DCE482A51CF7100C77D06 /* JLToast.framework */; };
+		EF1DCE4A2A51CF7100C77D06 /* JLToast.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF1DCE482A51CF7100C77D06 /* JLToast.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EF2B4D5629A074C600D99A98 /* AppExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2B4D5529A074C600D99A98 /* AppExtensions.m */; };
 		EF3AC8FD29E31FD200124484 /* JLAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3AC8FC29E31FD200124484 /* JLAudio.framework */; };
 		EF3AC8FE29E31FD200124484 /* JLAudio.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF3AC8FC29E31FD200124484 /* JLAudio.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -78,6 +80,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				EF77097528DF6CAC00D28B89 /* Jasonelle.framework in Embed Frameworks */,
+				EF1DCE4A2A51CF7100C77D06 /* JLToast.framework in Embed Frameworks */,
 				EF77096E28DF6CA800D28B89 /* WebViewRendererUI.framework in Embed Frameworks */,
 				EFA6D0632A0D74F400D02A41 /* JLDevice.framework in Embed Frameworks */,
 				EF115A9E29CFFD040068703C /* MyExtension.framework in Embed Frameworks */,
@@ -102,6 +105,7 @@
 /* Begin PBXFileReference section */
 		EF0825BC29A12D4100C157FD /* MyExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MyExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF115A9C29CFFD040068703C /* MyExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MyExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF1DCE482A51CF7100C77D06 /* JLToast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLToast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF2065E5297F4DFD001C27A6 /* JLKeychain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKeychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF2B4D5429A074C600D99A98 /* AppExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppExtensions.h; sourceTree = "<group>"; };
 		EF2B4D5529A074C600D99A98 /* AppExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppExtensions.m; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF77097428DF6CAC00D28B89 /* Jasonelle.framework in Frameworks */,
+				EF1DCE492A51CF7100C77D06 /* JLToast.framework in Frameworks */,
 				EF77097228DF6CAB00D28B89 /* JLExtensions.framework in Frameworks */,
 				EFA6D0622A0D74F400D02A41 /* JLDevice.framework in Frameworks */,
 				EF115A9D29CFFD040068703C /* MyExtension.framework in Frameworks */,
@@ -274,6 +279,7 @@
 		EF83737227A9939B00485E03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EF1DCE482A51CF7100C77D06 /* JLToast.framework */,
 				EFDDA3E92A44A4EA00C87BE1 /* JLClipboard.framework */,
 				EFA6D0612A0D74F400D02A41 /* JLDevice.framework */,
 				EF3AC8FC29E31FD200124484 /* JLAudio.framework */,

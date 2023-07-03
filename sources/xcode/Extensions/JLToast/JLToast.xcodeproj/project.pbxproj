@@ -1,0 +1,683 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EF1DCE512A51CF9A00C77D06 /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1DCE502A51CF9A00C77D06 /* JLKernel.framework */; };
+		EF1DCE5A2A527A6700C77D06 /* JLToastLoadingShowHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1DCE552A527A6700C77D06 /* JLToastLoadingShowHandler.m */; };
+		EF1DCE5B2A527A6700C77D06 /* JLToastLoadingShowHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF1DCE562A527A6700C77D06 /* JLToastLoadingShowHandler.h */; };
+		EF1DCE5C2A527A6700C77D06 /* JLToastLoadingHideHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1DCE582A527A6700C77D06 /* JLToastLoadingHideHandler.m */; };
+		EF1DCE5D2A527A6700C77D06 /* JLToastLoadingHideHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF1DCE592A527A6700C77D06 /* JLToastLoadingHideHandler.h */; };
+		EF9FE0A12A506EF30042272C /* JLToast.docc in Sources */ = {isa = PBXBuildFile; fileRef = EF9FE0A02A506EF30042272C /* JLToast.docc */; };
+		EF9FE0A72A506EF30042272C /* JLToast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9FE09C2A506EF30042272C /* JLToast.framework */; };
+		EF9FE0AC2A506EF30042272C /* JLToastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9FE0AB2A506EF30042272C /* JLToastTests.m */; };
+		EF9FE0AD2A506EF30042272C /* JLToast.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9FE09F2A506EF30042272C /* JLToast.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF9FE0BD2A506FAF0042272C /* examples.html in Resources */ = {isa = PBXBuildFile; fileRef = EF9FE0B62A506FAE0042272C /* examples.html */; };
+		EF9FE0BE2A506FAF0042272C /* JLToast.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9FE0B72A506FAE0042272C /* JLToast.m */; };
+		EF9FE0BF2A506FAF0042272C /* JLToastShowHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9FE0BA2A506FAE0042272C /* JLToastShowHandler.h */; };
+		EF9FE0C02A506FAF0042272C /* JLToastShowHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9FE0BB2A506FAE0042272C /* JLToastShowHandler.m */; };
+		EF9FE0C12A506FAF0042272C /* JLToast.js in Resources */ = {isa = PBXBuildFile; fileRef = EF9FE0BC2A506FAF0042272C /* JLToast.js */; };
+		EF9FE0E32A5071A20042272C /* UIView+Toast.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9FE0C62A5071A20042272C /* UIView+Toast.h */; };
+		EF9FE0E52A5071A20042272C /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9FE0C82A5071A20042272C /* UIView+Toast.m */; };
+		EF9FE0E82A5071A20042272C /* JDStatusBarNotificationPresenterPrepareStyleBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9FE0CD2A5071A20042272C /* JDStatusBarNotificationPresenterPrepareStyleBlock.h */; };
+		EF9FE0E92A5071A20042272C /* JDStatusBarNotificationPresenter.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9FE0CE2A5071A20042272C /* JDStatusBarNotificationPresenter.h */; };
+		EF9FE0EA2A5071A20042272C /* JDStatusBarNotificationStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9FE0CF2A5071A20042272C /* JDStatusBarNotificationStyle.m */; };
+		EF9FE0EB2A5071A20042272C /* JDStatusBarNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9FE0D02A5071A20042272C /* JDStatusBarNotification.h */; };
+		EF9FE0EC2A5071A20042272C /* JDStatusBarNotificationStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9FE0D12A5071A20042272C /* JDStatusBarNotificationStyle.h */; };
+		EF9FE0ED2A5071A20042272C /* JDStatusBarNotificationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9FE0D22A5071A20042272C /* JDStatusBarNotificationPresenter.m */; };
+		EF9FE0EE2A5071A20042272C /* JDSBNotificationStyleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9FE0D42A5071A20042272C /* JDSBNotificationStyleCache.m */; };
+		EF9FE0EF2A5071A20042272C /* JDSBNotificationWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9FE0D52A5071A20042272C /* JDSBNotificationWindow.m */; };
+		EF9FE0F02A5071A20042272C /* UIApplication+JDSB_MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9FE0D62A5071A20042272C /* UIApplication+JDSB_MainWindow.m */; };
+		EF9FE0F12A5071A20042272C /* JDSBNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9FE0D72A5071A20042272C /* JDSBNotificationView.m */; };
+		EF9FE0F22A5071A20042272C /* JDSBNotificationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9FE0D82A5071A20042272C /* JDSBNotificationViewController.h */; };
+		EF9FE0F32A5071A20042272C /* JDSystemStatusBarHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9FE0D92A5071A20042272C /* JDSystemStatusBarHelpers.h */; };
+		EF9FE0F42A5071A20042272C /* JDSBNotificationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9FE0DA2A5071A20042272C /* JDSBNotificationAnimator.m */; };
+		EF9FE0F52A5071A20042272C /* UIApplication+JDSB_MainWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9FE0DB2A5071A20042272C /* UIApplication+JDSB_MainWindow.h */; };
+		EF9FE0F62A5071A20042272C /* JDSBNotificationWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9FE0DC2A5071A20042272C /* JDSBNotificationWindow.h */; };
+		EF9FE0F72A5071A20042272C /* JDSBNotificationStyleCache.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9FE0DD2A5071A20042272C /* JDSBNotificationStyleCache.h */; };
+		EF9FE0F82A5071A20042272C /* JDSBNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9FE0DE2A5071A20042272C /* JDSBNotificationViewController.m */; };
+		EF9FE0F92A5071A20042272C /* JDSBNotificationView.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9FE0DF2A5071A20042272C /* JDSBNotificationView.h */; };
+		EF9FE0FA2A5071A20042272C /* JDSBNotificationAnimator.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9FE0E02A5071A20042272C /* JDSBNotificationAnimator.h */; };
+		EF9FE0FB2A5071A20042272C /* JDSystemStatusBarHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9FE0E12A5071A20042272C /* JDSystemStatusBarHelpers.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EF9FE0A82A506EF30042272C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EF9FE0932A506EF20042272C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF9FE09B2A506EF30042272C;
+			remoteInfo = JLToast;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EF1DCE462A51CEFC00C77D06 /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF1DCE502A51CF9A00C77D06 /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF1DCE552A527A6700C77D06 /* JLToastLoadingShowHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLToastLoadingShowHandler.m; sourceTree = "<group>"; };
+		EF1DCE562A527A6700C77D06 /* JLToastLoadingShowHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLToastLoadingShowHandler.h; sourceTree = "<group>"; };
+		EF1DCE582A527A6700C77D06 /* JLToastLoadingHideHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLToastLoadingHideHandler.m; sourceTree = "<group>"; };
+		EF1DCE592A527A6700C77D06 /* JLToastLoadingHideHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLToastLoadingHideHandler.h; sourceTree = "<group>"; };
+		EF9FE09C2A506EF30042272C /* JLToast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JLToast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF9FE09F2A506EF30042272C /* JLToast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLToast.h; sourceTree = "<group>"; };
+		EF9FE0A02A506EF30042272C /* JLToast.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = JLToast.docc; sourceTree = "<group>"; };
+		EF9FE0A62A506EF30042272C /* JLToastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JLToastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF9FE0AB2A506EF30042272C /* JLToastTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLToastTests.m; sourceTree = "<group>"; };
+		EF9FE0B62A506FAE0042272C /* examples.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = examples.html; sourceTree = "<group>"; };
+		EF9FE0B72A506FAE0042272C /* JLToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLToast.m; sourceTree = "<group>"; };
+		EF9FE0BA2A506FAE0042272C /* JLToastShowHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLToastShowHandler.h; sourceTree = "<group>"; };
+		EF9FE0BB2A506FAE0042272C /* JLToastShowHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLToastShowHandler.m; sourceTree = "<group>"; };
+		EF9FE0BC2A506FAF0042272C /* JLToast.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = JLToast.js; sourceTree = "<group>"; };
+		EF9FE0C62A5071A20042272C /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		EF9FE0C82A5071A20042272C /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		EF9FE0CD2A5071A20042272C /* JDStatusBarNotificationPresenterPrepareStyleBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotificationPresenterPrepareStyleBlock.h; sourceTree = "<group>"; };
+		EF9FE0CE2A5071A20042272C /* JDStatusBarNotificationPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotificationPresenter.h; sourceTree = "<group>"; };
+		EF9FE0CF2A5071A20042272C /* JDStatusBarNotificationStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarNotificationStyle.m; sourceTree = "<group>"; };
+		EF9FE0D02A5071A20042272C /* JDStatusBarNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotification.h; sourceTree = "<group>"; };
+		EF9FE0D12A5071A20042272C /* JDStatusBarNotificationStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotificationStyle.h; sourceTree = "<group>"; };
+		EF9FE0D22A5071A20042272C /* JDStatusBarNotificationPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarNotificationPresenter.m; sourceTree = "<group>"; };
+		EF9FE0D42A5071A20042272C /* JDSBNotificationStyleCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDSBNotificationStyleCache.m; sourceTree = "<group>"; };
+		EF9FE0D52A5071A20042272C /* JDSBNotificationWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDSBNotificationWindow.m; sourceTree = "<group>"; };
+		EF9FE0D62A5071A20042272C /* UIApplication+JDSB_MainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+JDSB_MainWindow.m"; sourceTree = "<group>"; };
+		EF9FE0D72A5071A20042272C /* JDSBNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDSBNotificationView.m; sourceTree = "<group>"; };
+		EF9FE0D82A5071A20042272C /* JDSBNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDSBNotificationViewController.h; sourceTree = "<group>"; };
+		EF9FE0D92A5071A20042272C /* JDSystemStatusBarHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDSystemStatusBarHelpers.h; sourceTree = "<group>"; };
+		EF9FE0DA2A5071A20042272C /* JDSBNotificationAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDSBNotificationAnimator.m; sourceTree = "<group>"; };
+		EF9FE0DB2A5071A20042272C /* UIApplication+JDSB_MainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+JDSB_MainWindow.h"; sourceTree = "<group>"; };
+		EF9FE0DC2A5071A20042272C /* JDSBNotificationWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDSBNotificationWindow.h; sourceTree = "<group>"; };
+		EF9FE0DD2A5071A20042272C /* JDSBNotificationStyleCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDSBNotificationStyleCache.h; sourceTree = "<group>"; };
+		EF9FE0DE2A5071A20042272C /* JDSBNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDSBNotificationViewController.m; sourceTree = "<group>"; };
+		EF9FE0DF2A5071A20042272C /* JDSBNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDSBNotificationView.h; sourceTree = "<group>"; };
+		EF9FE0E02A5071A20042272C /* JDSBNotificationAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDSBNotificationAnimator.h; sourceTree = "<group>"; };
+		EF9FE0E12A5071A20042272C /* JDSystemStatusBarHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDSystemStatusBarHelpers.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EF9FE0992A506EF30042272C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF1DCE512A51CF9A00C77D06 /* JLKernel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF9FE0A32A506EF30042272C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF9FE0A72A506EF30042272C /* JLToast.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EF1DCE452A51CEFC00C77D06 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF1DCE502A51CF9A00C77D06 /* JLKernel.framework */,
+				EF1DCE462A51CEFC00C77D06 /* JLKernel.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EF1DCE542A527A6700C77D06 /* $toast.loading.show */ = {
+			isa = PBXGroup;
+			children = (
+				EF1DCE552A527A6700C77D06 /* JLToastLoadingShowHandler.m */,
+				EF1DCE562A527A6700C77D06 /* JLToastLoadingShowHandler.h */,
+			);
+			path = $toast.loading.show;
+			sourceTree = "<group>";
+		};
+		EF1DCE572A527A6700C77D06 /* $toast.loading.hide */ = {
+			isa = PBXGroup;
+			children = (
+				EF1DCE582A527A6700C77D06 /* JLToastLoadingHideHandler.m */,
+				EF1DCE592A527A6700C77D06 /* JLToastLoadingHideHandler.h */,
+			);
+			path = $toast.loading.hide;
+			sourceTree = "<group>";
+		};
+		EF9FE0922A506EF20042272C = {
+			isa = PBXGroup;
+			children = (
+				EF9FE09E2A506EF30042272C /* JLToast */,
+				EF9FE0AA2A506EF30042272C /* JLToastTests */,
+				EF9FE09D2A506EF30042272C /* Products */,
+				EF1DCE452A51CEFC00C77D06 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EF9FE09D2A506EF30042272C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EF9FE09C2A506EF30042272C /* JLToast.framework */,
+				EF9FE0A62A506EF30042272C /* JLToastTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EF9FE09E2A506EF30042272C /* JLToast */ = {
+			isa = PBXGroup;
+			children = (
+				EF9FE0B62A506FAE0042272C /* examples.html */,
+				EF9FE0C32A5071A20042272C /* Vendor */,
+				EF9FE0B82A506FAE0042272C /* Handlers */,
+				EF9FE0BC2A506FAF0042272C /* JLToast.js */,
+				EF9FE0B72A506FAE0042272C /* JLToast.m */,
+				EF9FE09F2A506EF30042272C /* JLToast.h */,
+				EF9FE0A02A506EF30042272C /* JLToast.docc */,
+			);
+			path = JLToast;
+			sourceTree = "<group>";
+		};
+		EF9FE0AA2A506EF30042272C /* JLToastTests */ = {
+			isa = PBXGroup;
+			children = (
+				EF9FE0AB2A506EF30042272C /* JLToastTests.m */,
+			);
+			path = JLToastTests;
+			sourceTree = "<group>";
+		};
+		EF9FE0B82A506FAE0042272C /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				EF1DCE572A527A6700C77D06 /* $toast.loading.hide */,
+				EF1DCE542A527A6700C77D06 /* $toast.loading.show */,
+				EF9FE0B92A506FAE0042272C /* $toast.show */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		EF9FE0B92A506FAE0042272C /* $toast.show */ = {
+			isa = PBXGroup;
+			children = (
+				EF9FE0BA2A506FAE0042272C /* JLToastShowHandler.h */,
+				EF9FE0BB2A506FAE0042272C /* JLToastShowHandler.m */,
+			);
+			path = $toast.show;
+			sourceTree = "<group>";
+		};
+		EF9FE0C32A5071A20042272C /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				EF9FE0C42A5071A20042272C /* Toast */,
+				EF9FE0C92A5071A20042272C /* JDStatusBarNotification */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		EF9FE0C42A5071A20042272C /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				EF9FE0C62A5071A20042272C /* UIView+Toast.h */,
+				EF9FE0C82A5071A20042272C /* UIView+Toast.m */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
+		EF9FE0C92A5071A20042272C /* JDStatusBarNotification */ = {
+			isa = PBXGroup;
+			children = (
+				EF9FE0CC2A5071A20042272C /* Public */,
+				EF9FE0D32A5071A20042272C /* Private */,
+			);
+			path = JDStatusBarNotification;
+			sourceTree = "<group>";
+		};
+		EF9FE0CC2A5071A20042272C /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				EF9FE0CD2A5071A20042272C /* JDStatusBarNotificationPresenterPrepareStyleBlock.h */,
+				EF9FE0CE2A5071A20042272C /* JDStatusBarNotificationPresenter.h */,
+				EF9FE0CF2A5071A20042272C /* JDStatusBarNotificationStyle.m */,
+				EF9FE0D02A5071A20042272C /* JDStatusBarNotification.h */,
+				EF9FE0D12A5071A20042272C /* JDStatusBarNotificationStyle.h */,
+				EF9FE0D22A5071A20042272C /* JDStatusBarNotificationPresenter.m */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		EF9FE0D32A5071A20042272C /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				EF9FE0D42A5071A20042272C /* JDSBNotificationStyleCache.m */,
+				EF9FE0D52A5071A20042272C /* JDSBNotificationWindow.m */,
+				EF9FE0D62A5071A20042272C /* UIApplication+JDSB_MainWindow.m */,
+				EF9FE0D72A5071A20042272C /* JDSBNotificationView.m */,
+				EF9FE0D82A5071A20042272C /* JDSBNotificationViewController.h */,
+				EF9FE0D92A5071A20042272C /* JDSystemStatusBarHelpers.h */,
+				EF9FE0DA2A5071A20042272C /* JDSBNotificationAnimator.m */,
+				EF9FE0DB2A5071A20042272C /* UIApplication+JDSB_MainWindow.h */,
+				EF9FE0DC2A5071A20042272C /* JDSBNotificationWindow.h */,
+				EF9FE0DD2A5071A20042272C /* JDSBNotificationStyleCache.h */,
+				EF9FE0DE2A5071A20042272C /* JDSBNotificationViewController.m */,
+				EF9FE0DF2A5071A20042272C /* JDSBNotificationView.h */,
+				EF9FE0E02A5071A20042272C /* JDSBNotificationAnimator.h */,
+				EF9FE0E12A5071A20042272C /* JDSystemStatusBarHelpers.m */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		EF9FE0972A506EF30042272C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF9FE0F62A5071A20042272C /* JDSBNotificationWindow.h in Headers */,
+				EF9FE0AD2A506EF30042272C /* JLToast.h in Headers */,
+				EF1DCE5B2A527A6700C77D06 /* JLToastLoadingShowHandler.h in Headers */,
+				EF9FE0EC2A5071A20042272C /* JDStatusBarNotificationStyle.h in Headers */,
+				EF9FE0EB2A5071A20042272C /* JDStatusBarNotification.h in Headers */,
+				EF9FE0BF2A506FAF0042272C /* JLToastShowHandler.h in Headers */,
+				EF9FE0E82A5071A20042272C /* JDStatusBarNotificationPresenterPrepareStyleBlock.h in Headers */,
+				EF9FE0F32A5071A20042272C /* JDSystemStatusBarHelpers.h in Headers */,
+				EF1DCE5D2A527A6700C77D06 /* JLToastLoadingHideHandler.h in Headers */,
+				EF9FE0E92A5071A20042272C /* JDStatusBarNotificationPresenter.h in Headers */,
+				EF9FE0F22A5071A20042272C /* JDSBNotificationViewController.h in Headers */,
+				EF9FE0FA2A5071A20042272C /* JDSBNotificationAnimator.h in Headers */,
+				EF9FE0F72A5071A20042272C /* JDSBNotificationStyleCache.h in Headers */,
+				EF9FE0E32A5071A20042272C /* UIView+Toast.h in Headers */,
+				EF9FE0F52A5071A20042272C /* UIApplication+JDSB_MainWindow.h in Headers */,
+				EF9FE0F92A5071A20042272C /* JDSBNotificationView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		EF9FE09B2A506EF30042272C /* JLToast */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF9FE0B02A506EF30042272C /* Build configuration list for PBXNativeTarget "JLToast" */;
+			buildPhases = (
+				EF9FE0972A506EF30042272C /* Headers */,
+				EF9FE0982A506EF30042272C /* Sources */,
+				EF9FE0992A506EF30042272C /* Frameworks */,
+				EF9FE09A2A506EF30042272C /* Resources */,
+				EF9FE0C22A506FC00042272C /* Add Examples */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JLToast;
+			productName = JLToast;
+			productReference = EF9FE09C2A506EF30042272C /* JLToast.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EF9FE0A52A506EF30042272C /* JLToastTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF9FE0B32A506EF30042272C /* Build configuration list for PBXNativeTarget "JLToastTests" */;
+			buildPhases = (
+				EF9FE0A22A506EF30042272C /* Sources */,
+				EF9FE0A32A506EF30042272C /* Frameworks */,
+				EF9FE0A42A506EF30042272C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EF9FE0A92A506EF30042272C /* PBXTargetDependency */,
+			);
+			name = JLToastTests;
+			productName = JLToastTests;
+			productReference = EF9FE0A62A506EF30042272C /* JLToastTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EF9FE0932A506EF20042272C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					EF9FE09B2A506EF30042272C = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					EF9FE0A52A506EF30042272C = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = EF9FE0962A506EF20042272C /* Build configuration list for PBXProject "JLToast" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EF9FE0922A506EF20042272C;
+			productRefGroup = EF9FE09D2A506EF30042272C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EF9FE09B2A506EF30042272C /* JLToast */,
+				EF9FE0A52A506EF30042272C /* JLToastTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EF9FE09A2A506EF30042272C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF9FE0C12A506FAF0042272C /* JLToast.js in Resources */,
+				EF9FE0BD2A506FAF0042272C /* examples.html in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF9FE0A42A506EF30042272C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EF9FE0C22A506FC00042272C /* Add Examples */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Add Examples";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "NAME=\"JLToast\"\nEXAMPLES_DIR=\"${PWD}/../../App/Files/Examples\"\nTEMPLATES_DIR=\"${EXAMPLES_DIR}/Templates\"\nSOURCES_DIR=\"${PWD}/${NAME}\"\n\n# Only copy the examples if the examples directory exists\nif [ -d \"${EXAMPLES_DIR}\" ] \nthen\n cat \"${SOURCES_DIR}/examples.html\" > \"${EXAMPLES_DIR}/${NAME}.example.html\"\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EF9FE0982A506EF30042272C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF9FE0F12A5071A20042272C /* JDSBNotificationView.m in Sources */,
+				EF9FE0E52A5071A20042272C /* UIView+Toast.m in Sources */,
+				EF9FE0C02A506FAF0042272C /* JLToastShowHandler.m in Sources */,
+				EF9FE0A12A506EF30042272C /* JLToast.docc in Sources */,
+				EF9FE0F82A5071A20042272C /* JDSBNotificationViewController.m in Sources */,
+				EF9FE0BE2A506FAF0042272C /* JLToast.m in Sources */,
+				EF1DCE5C2A527A6700C77D06 /* JLToastLoadingHideHandler.m in Sources */,
+				EF9FE0EA2A5071A20042272C /* JDStatusBarNotificationStyle.m in Sources */,
+				EF9FE0EF2A5071A20042272C /* JDSBNotificationWindow.m in Sources */,
+				EF9FE0ED2A5071A20042272C /* JDStatusBarNotificationPresenter.m in Sources */,
+				EF9FE0EE2A5071A20042272C /* JDSBNotificationStyleCache.m in Sources */,
+				EF1DCE5A2A527A6700C77D06 /* JLToastLoadingShowHandler.m in Sources */,
+				EF9FE0FB2A5071A20042272C /* JDSystemStatusBarHelpers.m in Sources */,
+				EF9FE0F02A5071A20042272C /* UIApplication+JDSB_MainWindow.m in Sources */,
+				EF9FE0F42A5071A20042272C /* JDSBNotificationAnimator.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF9FE0A22A506EF30042272C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF9FE0AC2A506EF30042272C /* JLToastTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EF9FE0A92A506EF30042272C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF9FE09B2A506EF30042272C /* JLToast */;
+			targetProxy = EF9FE0A82A506EF30042272C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		EF9FE0AE2A506EF30042272C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EF9FE0AF2A506EF30042272C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EF9FE0B12A506EF30042272C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLToast;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EF9FE0B22A506EF30042272C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLToast;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EF9FE0B42A506EF30042272C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLToastTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EF9FE0B52A506EF30042272C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLToastTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EF9FE0962A506EF20042272C /* Build configuration list for PBXProject "JLToast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF9FE0AE2A506EF30042272C /* Debug */,
+				EF9FE0AF2A506EF30042272C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF9FE0B02A506EF30042272C /* Build configuration list for PBXNativeTarget "JLToast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF9FE0B12A506EF30042272C /* Debug */,
+				EF9FE0B22A506EF30042272C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF9FE0B32A506EF30042272C /* Build configuration list for PBXNativeTarget "JLToastTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF9FE0B42A506EF30042272C /* Debug */,
+				EF9FE0B52A506EF30042272C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EF9FE0932A506EF20042272C /* Project object */;
+}

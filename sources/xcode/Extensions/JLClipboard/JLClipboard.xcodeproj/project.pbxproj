@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF1DCE4D2A51CF8400C77D06 /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1DCE4C2A51CF8400C77D06 /* JLKernel.framework */; };
 		EFDDA3BD2A4499F400C87BE1 /* JLClipboard.docc in Sources */ = {isa = PBXBuildFile; fileRef = EFDDA3BC2A4499F400C87BE1 /* JLClipboard.docc */; };
 		EFDDA3C32A4499F400C87BE1 /* JLClipboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFDDA3B82A4499F400C87BE1 /* JLClipboard.framework */; };
 		EFDDA3C82A4499F400C87BE1 /* JLClipboardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EFDDA3C72A4499F400C87BE1 /* JLClipboardTests.m */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EF1DCE4C2A51CF8400C77D06 /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFDDA3B82A4499F400C87BE1 /* JLClipboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JLClipboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFDDA3BB2A4499F400C87BE1 /* JLClipboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLClipboard.h; sourceTree = "<group>"; };
 		EFDDA3BC2A4499F400C87BE1 /* JLClipboard.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = JLClipboard.docc; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF1DCE4D2A51CF8400C77D06 /* JLKernel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,12 +67,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EF1DCE4B2A51CF8400C77D06 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF1DCE4C2A51CF8400C77D06 /* JLKernel.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EFDDA3AE2A4499F400C87BE1 = {
 			isa = PBXGroup;
 			children = (
 				EFDDA3BA2A4499F400C87BE1 /* JLClipboard */,
 				EFDDA3C62A4499F400C87BE1 /* JLClipboardTests */,
 				EFDDA3B92A4499F400C87BE1 /* Products */,
+				EF1DCE4B2A51CF8400C77D06 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -343,7 +355,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -399,7 +411,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

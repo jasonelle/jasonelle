@@ -1,0 +1,49 @@
+<!-- Example: JLToast -->
+<script type="text/javascript">
+    const toastHello = () => $toast.show("Hello Toast!");
+    
+    const toastDark = () => $toast.dark("Dark Toast!", {position: $toast.options.position.top, duration: 3.0});
+    
+    const toastError = () => $toast.error("Error Oopsy Toast!", {position: $toast.options.position.center});
+    
+    const toastSuccess = () => $toast.success("Success Toast!");
+    
+    const toastWarning = () => $toast.warning("Warning Toast!");
+    
+    const toastInfo = () => $toast.info("Info Toast!");
+    
+    const toastLoading = () => $toast.loading.show().then(r => {
+       setTimeout(() => {
+           return $toast.loading.hide();
+       }, 3000);
+    });
+    
+</script>
+
+<li class="item">
+    <h3 class="title">JLToast Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="toastHello();" class="link">Show Default Toast</h4>
+        </li>
+        <li>
+            <h4 onClick="toastDark();" class="link">Show Dark Toast</h4>
+        </li>
+        <li>
+            <h4 onClick="toastError();" class="link">Show Error Toast</h4>
+        </li>
+        <li>
+            <h4 onClick="toastSuccess();" class="link">Show Success Toast</h4>
+        </li>
+        <li>
+            <h4 onClick="toastWarning();" class="link">Show Warning Toast</h4>
+        </li>
+        <li>
+            <h4 onClick="toastInfo();" class="link">Show Info Toast</h4>
+        </li>
+        <li>
+            <h4 onClick="toastLoading();" class="link">Show Loading Toast</h4>
+        </li>
+        
+    </ul>
+</li>

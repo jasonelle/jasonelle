@@ -39,6 +39,7 @@
 #import <JLAudio/JLAudio.h>
 #import <JLDevice/JLDevice.h>
 #import <JLClipboard/JLClipboard.h>
+#import <JLToast/JLToast.h>
 
 #import <MyExtension/MyExtension.h> // Example Extension
 
@@ -86,6 +87,9 @@
     
 //    Add $clipboard extension
     [self.extensions add:JLClipboard.class];
+    
+//    Add $toast extension
+    [self.extensions add:JLToast.class];
     
 //    Add Example Extension
     [self.extensions add:MyExtension.class];
