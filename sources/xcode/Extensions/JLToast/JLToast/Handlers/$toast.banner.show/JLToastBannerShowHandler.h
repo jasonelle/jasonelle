@@ -1,5 +1,5 @@
 //
-//  JLToastLoadingHideHandler.m
+//  JLToastBannerShowHandler.h
 //  JLToast
 //
 //  Created by clsource on 01-07-23.
@@ -23,18 +23,14 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-#import "JLToastLoadingHideHandler.h"
-#import "UIView+Toast.h"
+#import <Foundation/Foundation.h>
 
-@implementation JLToastLoadingHideHandler
+#import <JLKernel/JLKernel.h>
 
-- (UIView *) toaster {
-    return self.app.rootController.view;
-}
+NS_ASSUME_NONNULL_BEGIN
 
-- (void)handleWithOptions:(nonnull JLJSMessageHandlerOptions *)options {
-    [self.toaster hideToastActivity];
-    self.resolve(@YES);
-}
+@interface JLToastBannerShowHandler : JLJSMessageHandler
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -209,6 +209,12 @@
 
 <!-- Example: JLToast -->
 <script type="text/javascript">
+    const toastLoading = () => $toast.loading.show().then(r => {
+       setTimeout(() => {
+           return $toast.loading.hide();
+       }, 3000);
+    });
+    
     const toastHello = () => $toast.show("Hello Toast!");
     
     const toastDark = () => $toast.dark("Dark Toast!", {position: $toast.options.position.top, duration: 3.0});
@@ -221,17 +227,27 @@
     
     const toastInfo = () => $toast.info("Info Toast!");
     
-    const toastLoading = () => $toast.loading.show().then(r => {
-       setTimeout(() => {
-           return $toast.loading.hide();
-       }, 3000);
-    });
+    const toastHelloBanner = () => $toast.banner.show("Hello Toast!");
+    
+    const toastDarkBanner = () => $toast.banner.dark("Dark Toast!");
+    
+    const toastErrorBanner = () => $toast.banner.error("Error Oopsy Toast!");
+    
+    const toastSuccessBanner = () => $toast.banner.success("Success Toast!");
+    
+    const toastWarningBanner = () => $toast.banner.warning("Warning Toast!");
+    
+    const toastInfoBanner = () => $toast.banner.info("Info Toast!");
     
 </script>
 
 <li class="item">
     <h3 class="title">JLToast Examples</h3>
     <ul>
+        <li>
+            <h4 onClick="toastLoading();" class="link">Show Loading Toast</h4>
+        </li>
+        
         <li>
             <h4 onClick="toastHello();" class="link">Show Default Toast</h4>
         </li>
@@ -250,10 +266,26 @@
         <li>
             <h4 onClick="toastInfo();" class="link">Show Info Toast</h4>
         </li>
-        <li>
-            <h4 onClick="toastLoading();" class="link">Show Loading Toast</h4>
-        </li>
         
+        
+        <li>
+            <h4 onClick="toastHelloBanner();" class="link">Show Default Banner</h4>
+        </li>
+        <li>
+            <h4 onClick="toastDarkBanner();" class="link">Show Dark Banner</h4>
+        </li>
+        <li>
+            <h4 onClick="toastErrorBanner();" class="link">Show Error Banner</h4>
+        </li>
+        <li>
+            <h4 onClick="toastSuccessBanner();" class="link">Show Success Banner</h4>
+        </li>
+        <li>
+            <h4 onClick="toastWarningBanner();" class="link">Show Warning Banner</h4>
+        </li>
+        <li>
+            <h4 onClick="toastInfoBanner();" class="link">Show Info Banner</h4>
+        </li>
     </ul>
 </li>
 <!-- Example: JLClipboard -->

@@ -43,6 +43,8 @@
 		EF9FE0F92A5071A20042272C /* JDSBNotificationView.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9FE0DF2A5071A20042272C /* JDSBNotificationView.h */; };
 		EF9FE0FA2A5071A20042272C /* JDSBNotificationAnimator.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9FE0E02A5071A20042272C /* JDSBNotificationAnimator.h */; };
 		EF9FE0FB2A5071A20042272C /* JDSystemStatusBarHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9FE0E12A5071A20042272C /* JDSystemStatusBarHelpers.m */; };
+		EFD00D452A5486A400B32732 /* JLToastBannerShowHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EFD00D432A5486A400B32732 /* JLToastBannerShowHandler.h */; };
+		EFD00D462A5486A400B32732 /* JLToastBannerShowHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD00D442A5486A400B32732 /* JLToastBannerShowHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,8 @@
 		EF9FE0DF2A5071A20042272C /* JDSBNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDSBNotificationView.h; sourceTree = "<group>"; };
 		EF9FE0E02A5071A20042272C /* JDSBNotificationAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDSBNotificationAnimator.h; sourceTree = "<group>"; };
 		EF9FE0E12A5071A20042272C /* JDSystemStatusBarHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDSystemStatusBarHelpers.m; sourceTree = "<group>"; };
+		EFD00D432A5486A400B32732 /* JLToastBannerShowHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLToastBannerShowHandler.h; sourceTree = "<group>"; };
+		EFD00D442A5486A400B32732 /* JLToastBannerShowHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLToastBannerShowHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +191,7 @@
 		EF9FE0B82A506FAE0042272C /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
+				EFD00D422A5486A400B32732 /* $toast.banner.show */,
 				EF1DCE572A527A6700C77D06 /* $toast.loading.hide */,
 				EF1DCE542A527A6700C77D06 /* $toast.loading.show */,
 				EF9FE0B92A506FAE0042272C /* $toast.show */,
@@ -264,6 +269,15 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
+		EFD00D422A5486A400B32732 /* $toast.banner.show */ = {
+			isa = PBXGroup;
+			children = (
+				EFD00D432A5486A400B32732 /* JLToastBannerShowHandler.h */,
+				EFD00D442A5486A400B32732 /* JLToastBannerShowHandler.m */,
+			);
+			path = $toast.banner.show;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -281,6 +295,7 @@
 				EF9FE0F32A5071A20042272C /* JDSystemStatusBarHelpers.h in Headers */,
 				EF1DCE5D2A527A6700C77D06 /* JLToastLoadingHideHandler.h in Headers */,
 				EF9FE0E92A5071A20042272C /* JDStatusBarNotificationPresenter.h in Headers */,
+				EFD00D452A5486A400B32732 /* JLToastBannerShowHandler.h in Headers */,
 				EF9FE0F22A5071A20042272C /* JDSBNotificationViewController.h in Headers */,
 				EF9FE0FA2A5071A20042272C /* JDSBNotificationAnimator.h in Headers */,
 				EF9FE0F72A5071A20042272C /* JDSBNotificationStyleCache.h in Headers */,
@@ -423,6 +438,7 @@
 				EF9FE0EF2A5071A20042272C /* JDSBNotificationWindow.m in Sources */,
 				EF9FE0ED2A5071A20042272C /* JDStatusBarNotificationPresenter.m in Sources */,
 				EF9FE0EE2A5071A20042272C /* JDSBNotificationStyleCache.m in Sources */,
+				EFD00D462A5486A400B32732 /* JLToastBannerShowHandler.m in Sources */,
 				EF1DCE5A2A527A6700C77D06 /* JLToastLoadingShowHandler.m in Sources */,
 				EF9FE0FB2A5071A20042272C /* JDSystemStatusBarHelpers.m in Sources */,
 				EF9FE0F02A5071A20042272C /* UIApplication+JDSB_MainWindow.m in Sources */,

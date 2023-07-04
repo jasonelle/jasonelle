@@ -1,5 +1,5 @@
 //
-//  JLToastShowHandler.m
+//  JLToastBannerShowHandler.m
 //  JLToast
 //
 //  Created by clsource on 01-07-23.
@@ -23,8 +23,8 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-#import "JLToastShowHandler.h"
-#import "UIView+Toast.h"
+#import "JLToastBannerShowHandler.h"
+#import "JDStatusBarNotification.h"
 
 typedef NS_ENUM(NSUInteger, JLToastTypes) {
     JLToastTypeDefault = 0,
@@ -35,35 +35,7 @@ typedef NS_ENUM(NSUInteger, JLToastTypes) {
     JLToastTypeInfo
 };
 
-typedef NS_ENUM(NSUInteger, JLToastPosition) {
-    JLToastPositionBottom = 0,
-    JLToastPositionCenter,
-    JLToastPositionTop
-};
-
-@implementation JLToastShowHandler
-
-- (UIView *) toaster {
-    return self.app.rootController.view;
-}
-
-- (NSString *) positionForOptions: (JLJSParams *) options {
-    
-    JLToastPosition position = [[options number:@"position" default:@(JLToastPositionBottom)] intValue];
-    
-    switch (position) {
-        case JLToastPositionCenter:
-            return (NSString *) CSToastPositionCenter;
-            break;
-        case JLToastPositionTop:
-            return (NSString *) CSToastPositionTop;
-            break;
-        case JLToastPositionBottom:
-        default:
-            return (NSString *) CSToastPositionBottom;
-            break;
-    }
-}
+@implementation JLToastBannerShowHandler
 
 - (NSTimeInterval) durationForOptions: (JLJSParams *) options {
     return [[options number:@"duration" default:@(3.0)] doubleValue];
@@ -78,7 +50,7 @@ typedef NS_ENUM(NSUInteger, JLToastPosition) {
     
     NSString * text = [params string:@"text" default:@""];
     
-    jlog_trace_join(@"Toast with Type: ", @(type), @" and Text: ", text);
+    jlog_trace_join(@"Toast Banner with Type: ", @(type), @" and Text: ", text);
     
     switch (type) {
         case JLToastTypeDark:
@@ -108,102 +80,34 @@ typedef NS_ENUM(NSUInteger, JLToastPosition) {
 #pragma mark - Toasts
 
 - (void) showToastDefaultWithText: (NSString *) text andOptions:(JLJSParams *) options {
-    jlog_trace(@"Show Toast");
-    [self.toaster hideAllToasts];
-    [self.toaster makeToast:text];
+    jlog_trace(@"Show Toast Banner");
+    [[JDStatusBarNotificationPresenter sharedPresenter] presentWithText:text dismissAfterDelay:[self durationForOptions:options] includedStyle:JDStatusBarNotificationIncludedStyleDefaultStyle];
 }
 
 - (void) showToastDarkWithText: (NSString *) text andOptions:(JLJSParams *) options {
-    
     jlog_trace(@"Show Toast Dark");
-    
-    [self.toaster hideAllToasts];
-    
-    CSToastStyle * style = [[CSToastStyle alloc] initWithDefaultStyle];
-    
-    style.backgroundColor = [UIColor colorWithRed:0.050 green:0.078 blue:0.120 alpha:1.000];
-    
-    style.messageColor = [UIColor colorWithWhite:0.95 alpha:1.0];
-    
-    [self.toaster
-     makeToast:text
-     duration:[self durationForOptions:options]
-     position:[self positionForOptions:options]
-     style:style];
+    [[JDStatusBarNotificationPresenter sharedPresenter] presentWithText:text dismissAfterDelay:[self durationForOptions:options] includedStyle:JDStatusBarNotificationIncludedStyleDark];
 }
 
 - (void) showToastErrorWithText: (NSString *) text andOptions:(JLJSParams *) options {
-    
     jlog_trace(@"Show Toast Error");
-    
-    [self.toaster hideAllToasts];
-    
-    CSToastStyle * style = [[CSToastStyle alloc] initWithDefaultStyle];
-    
-    style.backgroundColor = [UIColor colorWithRed:0.588 green:0.118 blue:0.000 alpha:1.000];
-    
-    style.messageColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
-    
-    [self.toaster
-     makeToast:text
-     duration:[self durationForOptions:options]
-     position:[self positionForOptions:options]
-     style:style];
+    [[JDStatusBarNotificationPresenter sharedPresenter] presentWithText:text dismissAfterDelay:[self durationForOptions:options] includedStyle:JDStatusBarNotificationIncludedStyleError];
 }
 
 - (void) showToastSuccessWithText: (NSString *) text andOptions:(JLJSParams *) options {
     
     jlog_trace(@"Show Toast Success");
     
-    [self.toaster hideAllToasts];
-    
-    CSToastStyle * style = [[CSToastStyle alloc] initWithDefaultStyle];
-    
-    style.backgroundColor = [UIColor colorWithRed:0.588 green:0.797 blue:0.000 alpha:1.000];
-    
-    style.messageColor = [UIColor whiteColor];
-    
-    [self.toaster
-     makeToast:text
-     duration:[self durationForOptions:options]
-     position:[self positionForOptions:options]
-     style:style];
+    [[JDStatusBarNotificationPresenter sharedPresenter] presentWithText:text dismissAfterDelay:[self durationForOptions:options] includedStyle:JDStatusBarNotificationIncludedStyleSuccess];
 }
 
 - (void) showToastWarningWithText: (NSString *) text andOptions:(JLJSParams *) options {
-    
     jlog_trace(@"Show Toast Warning");
-    
-    [self.toaster hideAllToasts];
-    
-    CSToastStyle * style = [[CSToastStyle alloc] initWithDefaultStyle];
-    
-    style.backgroundColor = [UIColor colorWithRed:0.900 green:0.734 blue:0.034 alpha:1.000];
-    
-    style.messageColor = [UIColor darkGrayColor];
-    
-    [self.toaster
-     makeToast:text
-     duration:[self durationForOptions:options]
-     position:[self positionForOptions:options]
-     style:style];
+    [[JDStatusBarNotificationPresenter sharedPresenter] presentWithText:text dismissAfterDelay:[self durationForOptions:options] includedStyle:JDStatusBarNotificationIncludedStyleWarning];
 }
 
 - (void) showToastInfoWithText: (NSString *) text andOptions:(JLJSParams *) options {
-    
-    jlog_trace(@"Show Toast Error");
-    
-    [self.toaster hideAllToasts];
-    
-    CSToastStyle * style = [[CSToastStyle alloc] initWithDefaultStyle];
-    
-    style.backgroundColor = [UIColor whiteColor];
-    style.messageColor = [UIColor darkGrayColor];
-    
-    [self.toaster
-     makeToast:text
-     duration:[self durationForOptions:options]
-     position:[self positionForOptions:options]
-     style:style];
+    jlog_trace(@"Show Toast Info");
+    [[JDStatusBarNotificationPresenter sharedPresenter] presentWithText:text dismissAfterDelay:[self durationForOptions:options] includedStyle:JDStatusBarNotificationIncludedStyleDefaultStyle];
 }
 @end

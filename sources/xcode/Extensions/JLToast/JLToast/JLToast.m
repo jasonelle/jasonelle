@@ -25,6 +25,7 @@
 
 #import "JLToast.h"
 #import "JLToastShowHandler.h"
+#import "JLToastBannerShowHandler.h"
 #import "JLToastLoadingShowHandler.h"
 #import "JLToastLoadingHideHandler.h"
 
@@ -35,13 +36,15 @@
     
     JLToastShowHandler * handlerToastShow = [[JLToastShowHandler alloc] initWithApplication:self.app andExtension:self];
     
+    JLToastBannerShowHandler * handlerToastBannerShow = [[JLToastBannerShowHandler alloc] initWithApplication:self.app andExtension:self];
+    
     JLToastLoadingShowHandler * handlerToastLoadingShow = [[JLToastLoadingShowHandler alloc] initWithApplication:self.app andExtension:self];
     
     JLToastLoadingHideHandler * handlerToastLoadingHide = [[JLToastLoadingHideHandler alloc] initWithApplication:self.app andExtension:self];
     
     self.handlers = @{
         @"$toast.show" : handlerToastShow,
-//        @"$toast.banner.show" : handlerGet,
+        @"$toast.banner.show" : handlerToastBannerShow,
         @"$toast.loading.show": handlerToastLoadingShow,
         @"$toast.loading.hide": handlerToastLoadingHide,
     };
