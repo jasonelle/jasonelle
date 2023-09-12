@@ -29,4 +29,4 @@
 - [JLDevice](./xcode/JLDevice.md)
 - [JLClipboard](./xcode/JLClipboard.md)
 - [JLToast](./xcode/JLToast.md)
-- [JLToast](./xcode/JLShare.md)
+- [JLShare](./xcode/JLShare.md)
