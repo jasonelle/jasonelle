@@ -40,6 +40,7 @@
 #import <JLDevice/JLDevice.h>
 #import <JLClipboard/JLClipboard.h>
 #import <JLToast/JLToast.h>
+#import <JLShare/JLShare.h>
 
 #import <MyExtension/MyExtension.h> // Example Extension
 
@@ -90,6 +91,9 @@
     
 //    Add $toast extension
     [self.extensions add:JLToast.class];
+    
+//    Add $share extension
+    [self.extensions add:JLShare.class];
     
 //    Add Example Extension
     [self.extensions add:MyExtension.class];

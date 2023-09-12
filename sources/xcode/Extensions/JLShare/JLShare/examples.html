@@ -1,0 +1,35 @@
+<!-- Example: JLShare -->
+<script type="text/javascript">
+    const shareText = () => {
+      $share.text("Hello World!");
+    };
+    
+    const shareURL = () => {
+      $share.url("https://jasonelle.com");
+    };
+    
+    // Must be a public link to an image
+    // So the Share controller can download it.
+    // The same can be applied to any other document
+    // like PDF, Audio, Video, etc.
+    const shareImage = () => {
+        return $share.url("https://jasonelle.com/docs/jasonelle.png");
+    };
+</script>
+
+<li class="item">
+    <h3 class="title">JLShare Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="shareText();" class="link">Share Text</h4>
+        </li>
+        
+        <li>
+            <h4 onClick="shareURL();" class="link">Share URL</h4>
+        </li>
+        
+        <li>
+            <h4 onClick="shareImage();" class="link">Share Image</h4>
+        </li>
+    </ul>
+</li>

@@ -49,6 +49,8 @@
 		EFA6D0622A0D74F400D02A41 /* JLDevice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA6D0612A0D74F400D02A41 /* JLDevice.framework */; };
 		EFA6D0632A0D74F400D02A41 /* JLDevice.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFA6D0612A0D74F400D02A41 /* JLDevice.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EFAF61CB2806DB3C001B265B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAF61CA2806DB3C001B265B /* AppDelegate.m */; };
+		EFC22B572AB0AC79000ABF7C /* JLShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC22B562AB0AC79000ABF7C /* JLShare.framework */; };
+		EFC22B582AB0AC79000ABF7C /* JLShare.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFC22B562AB0AC79000ABF7C /* JLShare.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EFD65C5528C12966000350B1 /* Files in Resources */ = {isa = PBXBuildFile; fileRef = EFD65C5428C12966000350B1 /* Files */; };
 		EFDDA3EA2A44A4EA00C87BE1 /* JLClipboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFDDA3E92A44A4EA00C87BE1 /* JLClipboard.framework */; };
 		EFDDA3EB2A44A4EA00C87BE1 /* JLClipboard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFDDA3E92A44A4EA00C87BE1 /* JLClipboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -89,6 +91,7 @@
 				EF77097328DF6CAB00D28B89 /* JLExtensions.framework in Embed Frameworks */,
 				EFDDA3EB2A44A4EA00C87BE1 /* JLClipboard.framework in Embed Frameworks */,
 				EF77097128DF6CAA00D28B89 /* JLKernel.framework in Embed Frameworks */,
+				EFC22B582AB0AC79000ABF7C /* JLShare.framework in Embed Frameworks */,
 				EF82B8D729DBA39400B5CD05 /* JLContacts.framework in Embed Frameworks */,
 				EF82B8E629DBA3BD00B5CD05 /* JLCookies.framework in Embed Frameworks */,
 				EF3AC8FE29E31FD200124484 /* JLAudio.framework in Embed Frameworks */,
@@ -149,6 +152,7 @@
 		EFB43AEC280B32FF002BF066 /* Tools */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tools; sourceTree = "<group>"; };
 		EFB73D1227AFFE8500A21457 /* WebViewRendererUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WebViewRendererUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFBE6D62296F045500952B4A /* JLPhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFC22B562AB0AC79000ABF7C /* JLShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC39C07282508130037750A /* JLExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC39C1528250AB20037750A /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC3F40B29A911ED00574259 /* JLPhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +178,7 @@
 				EF77096D28DF6CA800D28B89 /* WebViewRendererUI.framework in Frameworks */,
 				EFDDA3EA2A44A4EA00C87BE1 /* JLClipboard.framework in Frameworks */,
 				EF77097028DF6CAA00D28B89 /* JLKernel.framework in Frameworks */,
+				EFC22B572AB0AC79000ABF7C /* JLShare.framework in Frameworks */,
 				EF82B8D629DBA39400B5CD05 /* JLContacts.framework in Frameworks */,
 				EF82B8E529DBA3BD00B5CD05 /* JLCookies.framework in Frameworks */,
 				EF3AC8FD29E31FD200124484 /* JLAudio.framework in Frameworks */,
@@ -279,6 +284,7 @@
 		EF83737227A9939B00485E03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EFC22B562AB0AC79000ABF7C /* JLShare.framework */,
 				EF1DCE482A51CF7100C77D06 /* JLToast.framework */,
 				EFDDA3E92A44A4EA00C87BE1 /* JLClipboard.framework */,
 				EFA6D0612A0D74F400D02A41 /* JLDevice.framework */,

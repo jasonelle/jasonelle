@@ -1,0 +1,523 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EFC22B2F2AB097E6000ABF7C /* JLShare.docc in Sources */ = {isa = PBXBuildFile; fileRef = EFC22B2E2AB097E6000ABF7C /* JLShare.docc */; };
+		EFC22B352AB097E6000ABF7C /* JLShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC22B2A2AB097E6000ABF7C /* JLShare.framework */; };
+		EFC22B3A2AB097E6000ABF7C /* JLShareTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC22B392AB097E6000ABF7C /* JLShareTests.m */; };
+		EFC22B3B2AB097E6000ABF7C /* JLShare.h in Headers */ = {isa = PBXBuildFile; fileRef = EFC22B2D2AB097E6000ABF7C /* JLShare.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFC22B462AB097F2000ABF7C /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC22B452AB097F2000ABF7C /* JLKernel.framework */; };
+		EFC22B512AB098B2000ABF7C /* JLShareShowHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC22B4C2AB098B1000ABF7C /* JLShareShowHandler.m */; };
+		EFC22B522AB098B2000ABF7C /* JLShareShowHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EFC22B4D2AB098B1000ABF7C /* JLShareShowHandler.h */; };
+		EFC22B532AB098B2000ABF7C /* JLShare.js in Resources */ = {isa = PBXBuildFile; fileRef = EFC22B4E2AB098B1000ABF7C /* JLShare.js */; };
+		EFC22B542AB098B2000ABF7C /* JLShare.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC22B4F2AB098B2000ABF7C /* JLShare.m */; };
+		EFC22B552AB098B2000ABF7C /* examples.html in Resources */ = {isa = PBXBuildFile; fileRef = EFC22B502AB098B2000ABF7C /* examples.html */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EFC22B362AB097E6000ABF7C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EFC22B212AB097E6000ABF7C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EFC22B292AB097E6000ABF7C;
+			remoteInfo = JLShare;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EFC22B2A2AB097E6000ABF7C /* JLShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JLShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFC22B2D2AB097E6000ABF7C /* JLShare.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLShare.h; sourceTree = "<group>"; };
+		EFC22B2E2AB097E6000ABF7C /* JLShare.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = JLShare.docc; sourceTree = "<group>"; };
+		EFC22B342AB097E6000ABF7C /* JLShareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JLShareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFC22B392AB097E6000ABF7C /* JLShareTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLShareTests.m; sourceTree = "<group>"; };
+		EFC22B452AB097F2000ABF7C /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFC22B4C2AB098B1000ABF7C /* JLShareShowHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLShareShowHandler.m; sourceTree = "<group>"; };
+		EFC22B4D2AB098B1000ABF7C /* JLShareShowHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLShareShowHandler.h; sourceTree = "<group>"; };
+		EFC22B4E2AB098B1000ABF7C /* JLShare.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = JLShare.js; sourceTree = "<group>"; };
+		EFC22B4F2AB098B2000ABF7C /* JLShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLShare.m; sourceTree = "<group>"; };
+		EFC22B502AB098B2000ABF7C /* examples.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = examples.html; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EFC22B272AB097E6000ABF7C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFC22B462AB097F2000ABF7C /* JLKernel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFC22B312AB097E6000ABF7C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFC22B352AB097E6000ABF7C /* JLShare.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EFC22B202AB097E6000ABF7C = {
+			isa = PBXGroup;
+			children = (
+				EFC22B2C2AB097E6000ABF7C /* JLShare */,
+				EFC22B382AB097E6000ABF7C /* JLShareTests */,
+				EFC22B2B2AB097E6000ABF7C /* Products */,
+				EFC22B442AB097F2000ABF7C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EFC22B2B2AB097E6000ABF7C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EFC22B2A2AB097E6000ABF7C /* JLShare.framework */,
+				EFC22B342AB097E6000ABF7C /* JLShareTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EFC22B2C2AB097E6000ABF7C /* JLShare */ = {
+			isa = PBXGroup;
+			children = (
+				EFC22B502AB098B2000ABF7C /* examples.html */,
+				EFC22B4A2AB098B1000ABF7C /* Handlers */,
+				EFC22B4E2AB098B1000ABF7C /* JLShare.js */,
+				EFC22B4F2AB098B2000ABF7C /* JLShare.m */,
+				EFC22B2D2AB097E6000ABF7C /* JLShare.h */,
+				EFC22B2E2AB097E6000ABF7C /* JLShare.docc */,
+			);
+			path = JLShare;
+			sourceTree = "<group>";
+		};
+		EFC22B382AB097E6000ABF7C /* JLShareTests */ = {
+			isa = PBXGroup;
+			children = (
+				EFC22B392AB097E6000ABF7C /* JLShareTests.m */,
+			);
+			path = JLShareTests;
+			sourceTree = "<group>";
+		};
+		EFC22B442AB097F2000ABF7C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EFC22B452AB097F2000ABF7C /* JLKernel.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EFC22B4A2AB098B1000ABF7C /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				EFC22B4B2AB098B1000ABF7C /* $share.show */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		EFC22B4B2AB098B1000ABF7C /* $share.show */ = {
+			isa = PBXGroup;
+			children = (
+				EFC22B4D2AB098B1000ABF7C /* JLShareShowHandler.h */,
+				EFC22B4C2AB098B1000ABF7C /* JLShareShowHandler.m */,
+			);
+			path = $share.show;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		EFC22B252AB097E6000ABF7C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFC22B522AB098B2000ABF7C /* JLShareShowHandler.h in Headers */,
+				EFC22B3B2AB097E6000ABF7C /* JLShare.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		EFC22B292AB097E6000ABF7C /* JLShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFC22B3E2AB097E6000ABF7C /* Build configuration list for PBXNativeTarget "JLShare" */;
+			buildPhases = (
+				EFC22B252AB097E6000ABF7C /* Headers */,
+				EFC22B262AB097E6000ABF7C /* Sources */,
+				EFC22B272AB097E6000ABF7C /* Frameworks */,
+				EFC22B282AB097E6000ABF7C /* Resources */,
+				EFC22B492AB0981B000ABF7C /* Add Examples */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JLShare;
+			productName = JLShare;
+			productReference = EFC22B2A2AB097E6000ABF7C /* JLShare.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EFC22B332AB097E6000ABF7C /* JLShareTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFC22B412AB097E6000ABF7C /* Build configuration list for PBXNativeTarget "JLShareTests" */;
+			buildPhases = (
+				EFC22B302AB097E6000ABF7C /* Sources */,
+				EFC22B312AB097E6000ABF7C /* Frameworks */,
+				EFC22B322AB097E6000ABF7C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EFC22B372AB097E6000ABF7C /* PBXTargetDependency */,
+			);
+			name = JLShareTests;
+			productName = JLShareTests;
+			productReference = EFC22B342AB097E6000ABF7C /* JLShareTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EFC22B212AB097E6000ABF7C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					EFC22B292AB097E6000ABF7C = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					EFC22B332AB097E6000ABF7C = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = EFC22B242AB097E6000ABF7C /* Build configuration list for PBXProject "JLShare" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EFC22B202AB097E6000ABF7C;
+			productRefGroup = EFC22B2B2AB097E6000ABF7C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EFC22B292AB097E6000ABF7C /* JLShare */,
+				EFC22B332AB097E6000ABF7C /* JLShareTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EFC22B282AB097E6000ABF7C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFC22B532AB098B2000ABF7C /* JLShare.js in Resources */,
+				EFC22B552AB098B2000ABF7C /* examples.html in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFC22B322AB097E6000ABF7C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EFC22B492AB0981B000ABF7C /* Add Examples */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Add Examples";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "NAME=\"JLShare\"\nEXAMPLES_DIR=\"${PWD}/../../App/Files/Examples\"\nTEMPLATES_DIR=\"${EXAMPLES_DIR}/Templates\"\nSOURCES_DIR=\"${PWD}/${NAME}\"\n\n# Only copy the examples if the examples directory exists\nif [ -d \"${EXAMPLES_DIR}\" ] \nthen\n cat \"${SOURCES_DIR}/examples.html\" > \"${EXAMPLES_DIR}/${NAME}.example.html\"\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EFC22B262AB097E6000ABF7C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFC22B2F2AB097E6000ABF7C /* JLShare.docc in Sources */,
+				EFC22B512AB098B2000ABF7C /* JLShareShowHandler.m in Sources */,
+				EFC22B542AB098B2000ABF7C /* JLShare.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFC22B302AB097E6000ABF7C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFC22B3A2AB097E6000ABF7C /* JLShareTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EFC22B372AB097E6000ABF7C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EFC22B292AB097E6000ABF7C /* JLShare */;
+			targetProxy = EFC22B362AB097E6000ABF7C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		EFC22B3C2AB097E6000ABF7C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EFC22B3D2AB097E6000ABF7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EFC22B3F2AB097E6000ABF7C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLShare;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EFC22B402AB097E6000ABF7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLShare;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EFC22B422AB097E6000ABF7C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLShareTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EFC22B432AB097E6000ABF7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.JLShareTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EFC22B242AB097E6000ABF7C /* Build configuration list for PBXProject "JLShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFC22B3C2AB097E6000ABF7C /* Debug */,
+				EFC22B3D2AB097E6000ABF7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFC22B3E2AB097E6000ABF7C /* Build configuration list for PBXNativeTarget "JLShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFC22B3F2AB097E6000ABF7C /* Debug */,
+				EFC22B402AB097E6000ABF7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFC22B412AB097E6000ABF7C /* Build configuration list for PBXNativeTarget "JLShareTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFC22B422AB097E6000ABF7C /* Debug */,
+				EFC22B432AB097E6000ABF7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EFC22B212AB097E6000ABF7C /* Project object */;
+}
