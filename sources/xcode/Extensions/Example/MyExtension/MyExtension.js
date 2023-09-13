@@ -8,8 +8,9 @@
     //      $logger.trace(message);
     // });
     
-    window.$myextension = {};
-    window.$myextension.run = () => $agent.trigger("$myextension.run");
+    const myextension = {};
+    
+    myextension.run = () => $agent.trigger("$myextension.run");
     
     // Define the events that would be called in Handlers
     // To notify webview of certain workflows
@@ -23,5 +24,9 @@
     // https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
     events.example.dispatch = (detail) => document.dispatchEvent(new CustomEvent(events.example.name, { detail, cancelable: true, bubbles: false }));
     
-    window.$myextension.events = events;
+    myextension.events = events;
+    
+    // Export
+    window.$myextension = myextension;
+    window.$jasonelle.myextension = myextension;
 })();

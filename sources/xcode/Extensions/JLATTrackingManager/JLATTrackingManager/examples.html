@@ -1,13 +1,20 @@
 <!-- Example: JLATTrackingManager -->
 <script type="text/javascript">
-    // TODO: Add JS API
+    const getATTrackingStatus = () => {
+      $attracking.status().then(result => {
+          $logger.trace(result);
+          alert(result.description);
+      });
+    };
 </script>
 
-<!--<li class="item">-->
-<!--    <h3 class="title">JLATTrackingManager Examples</h3>-->
-<!--    <ul>-->
-<!--        -->
-<!--    </ul>-->
-<!--</li>-->
+<li class="item">
+    <h3 class="title">JLATTrackingManager Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="getATTrackingStatus()">Get ATTracking Status</h4>
+        </li>
+    </ul>
+</li>
 
 

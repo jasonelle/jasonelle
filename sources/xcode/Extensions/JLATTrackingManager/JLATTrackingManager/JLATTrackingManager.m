@@ -26,6 +26,7 @@
 
 #import <JLATTrackingManager/JLATTrackingManager.h>
 #import <AppTrackingTransparency/ATTrackingManager.h>
+#import "JLATTrackingManagerStatusHandler.h"
 
 @implementation JLATTrackingManager
 
@@ -38,15 +39,38 @@
 
 - (void) install {
     [super install];
+    
+    JLATTrackingManagerStatusHandler * handler = [[JLATTrackingManagerStatusHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    self.handlers = @{
+        @"$attracking.status": handler,
+    };
+    
+    [self startATTracking];
+}
+
+- (nonnull WKWebView *)appDidLoadWithWebView:(nonnull WKWebView *)webView {
+    [super appDidLoadWithWebView:webView];
+    
+    // Install the wrappers inside the webview
+    
+    return [self.app.utils.webview inject:self intoWebView:webView];
+}
+
+#pragma mark - Helpers
+- (void) startATTracking {
     // TODO: Check if plist is set and throw error or trace
     if (@available(iOS 14, *)) {
         [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
             self.status = @(status);
-            jlog_trace_join(@"ATTracking status ", (status == ATTrackingManagerAuthorizationStatusAuthorized ? @"authorized (" : @"denied ("), self.status, @")");
+            jlog_trace_join(@"ATTracking status: ", [self stringForStatus:status], @" - ", self.status.description);
         }];
     } else {
         jlog_trace(@"ATTracking Not Available");
     }
 }
 
+- (NSString *) stringForStatus: (NSInteger) status {
+    return (status == ATTrackingManagerAuthorizationStatusAuthorized ? @"Authorized" : @"Denied");
+}
 @end

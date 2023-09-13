@@ -3,8 +3,12 @@
         return;
     }
     
-    window.$clipboard = {};
-    window.$clipboard.set = (text = "") => $agent.trigger("$clipboard.set", {text});
+    const clipboard = {};
+    clipboard.set = (text = "") => $agent.trigger("$clipboard.set", {text});
     
-    window.$clipboard.get = () => $agent.trigger("$clipboard.get", {});
+    clipboard.get = () => $agent.trigger("$clipboard.get", {});
+    
+    // Export
+    window.$clipboard = clipboard;
+    window.$jasonelle.clipboard = clipboard;
 })();

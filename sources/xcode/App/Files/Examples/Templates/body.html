@@ -1,14 +1,21 @@
 <!-- Example: JLATTrackingManager -->
 <script type="text/javascript">
-    // TODO: Add JS API
+    const getATTrackingStatus = () => {
+      $attracking.status().then(result => {
+          $logger.trace(result);
+          alert(result.description);
+      });
+    };
 </script>
 
-<!--<li class="item">-->
-<!--    <h3 class="title">JLATTrackingManager Examples</h3>-->
-<!--    <ul>-->
-<!--        -->
-<!--    </ul>-->
-<!--</li>-->
+<li class="item">
+    <h3 class="title">JLATTrackingManager Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="getATTrackingStatus()">Get ATTracking Status</h4>
+        </li>
+    </ul>
+</li>
 
 
 <!-- Example: JLAudio -->
@@ -157,20 +164,16 @@
     // Test Badge Extension
     // Native extension use $agent.trigger
     // Native extensions can use Promises
-    const badge = {};
-    badge.set = async (number = 3) => {
-        const response = await $agent.trigger("$badge.set", number);
-        $logger.trace("Got Response " + response);
-    };
-    badge.clear = async () => $agent.trigger("$badge.clear");
+    const setBadge = () => $badge.set(3);
+    const clearBadge = () => $badge.clear();
     
 </script>
 
 <li class="item">
     <h3 class="title">JLApplicationBadge Examples</h3>
     <ul>
-        <li><h4 onClick="badge.set()">Increment App Badge</h4></li>
-        <li><h4 onClick="badge.clear()">Clear App Badge</h4></li>
+        <li><h4 onClick="setBadge()">Increment App Badge</h4></li>
+        <li><h4 onClick="clearBadge()">Clear App Badge</h4></li>
     </ul>
 </li>
 
@@ -524,7 +527,9 @@
     };
     
     // Must be a public link to an image
-    // So the Share controller can download it
+    // So the Share controller can download it.
+    // The same can be applied to any other document
+    // like PDF, Audio, Video, etc.
     const shareImage = () => {
         return $share.url("https://jasonelle.com/docs/jasonelle.png");
     };

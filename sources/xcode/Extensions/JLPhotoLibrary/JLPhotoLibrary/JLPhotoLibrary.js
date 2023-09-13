@@ -22,5 +22,7 @@
      
      photolibrary.camera.granted = () => $agent.trigger("$photolibrary.camera.granted");
      
+     // Export
      window.$photolibrary = photolibrary;
+     window.$jasonelle.photolibrary = photolibrary;
  })();

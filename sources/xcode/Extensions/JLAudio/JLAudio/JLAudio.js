@@ -57,7 +57,9 @@
      // Vibrate
      $audio.vibrate = () => $agent.trigger("$audio.vibrate", {});
      
-     // Export
      $audio.events = events;
+     
+     // Export
      window.$audio = $audio;
+     window.$jasonelle.audio = $audio;
  })();

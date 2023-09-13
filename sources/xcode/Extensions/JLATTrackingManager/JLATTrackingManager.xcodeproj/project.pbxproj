@@ -12,6 +12,9 @@
 		EF47FEC02824F001006E2B9B /* JLATTrackingManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF47FEBF2824F001006E2B9B /* JLATTrackingManagerTests.m */; };
 		EF47FEC12824F001006E2B9B /* JLATTrackingManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EF47FEB32824F001006E2B9B /* JLATTrackingManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF47FECB2824F0FF006E2B9B /* JLATTrackingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF47FECA2824F0FF006E2B9B /* JLATTrackingManager.m */; };
+		EF489E942AB1EFCF00E472EF /* JLATTrackingManager.js in Resources */ = {isa = PBXBuildFile; fileRef = EF489E932AB1EFCF00E472EF /* JLATTrackingManager.js */; };
+		EF489E972AB1F85100E472EF /* JLATTrackingManagerStatusHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF489E952AB1F85100E472EF /* JLATTrackingManagerStatusHandler.h */; };
+		EF489E982AB1F85100E472EF /* JLATTrackingManagerStatusHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF489E962AB1F85100E472EF /* JLATTrackingManagerStatusHandler.m */; };
 		EF82B8F529DBA94600B5CD05 /* examples.html in Resources */ = {isa = PBXBuildFile; fileRef = EF82B8F429DBA94600B5CD05 /* examples.html */; };
 		EFBF8C1728250DD800A3CC9E /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFBF8C1628250DD800A3CC9E /* JLKernel.framework */; };
 /* End PBXBuildFile section */
@@ -33,6 +36,9 @@
 		EF47FEBA2824F001006E2B9B /* JLATTrackingManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JLATTrackingManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF47FEBF2824F001006E2B9B /* JLATTrackingManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLATTrackingManagerTests.m; sourceTree = "<group>"; };
 		EF47FECA2824F0FF006E2B9B /* JLATTrackingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLATTrackingManager.m; sourceTree = "<group>"; };
+		EF489E932AB1EFCF00E472EF /* JLATTrackingManager.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = JLATTrackingManager.js; sourceTree = "<group>"; };
+		EF489E952AB1F85100E472EF /* JLATTrackingManagerStatusHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLATTrackingManagerStatusHandler.h; sourceTree = "<group>"; };
+		EF489E962AB1F85100E472EF /* JLATTrackingManagerStatusHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLATTrackingManagerStatusHandler.m; sourceTree = "<group>"; };
 		EF82B8F429DBA94600B5CD05 /* examples.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = examples.html; sourceTree = "<group>"; };
 		EFBF8C1228250B9A00A3CC9E /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFBF8C1428250D9600A3CC9E /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +94,8 @@
 				EF47FEB32824F001006E2B9B /* JLATTrackingManager.h */,
 				EF47FECA2824F0FF006E2B9B /* JLATTrackingManager.m */,
 				EF47FEB42824F001006E2B9B /* JLATTrackingManager.docc */,
+				EF489E932AB1EFCF00E472EF /* JLATTrackingManager.js */,
+				EF489E992AB1F85700E472EF /* Handlers */,
 			);
 			path = JLATTrackingManager;
 			sourceTree = "<group>";
@@ -98,6 +106,23 @@
 				EF47FEBF2824F001006E2B9B /* JLATTrackingManagerTests.m */,
 			);
 			path = JLATTrackingManagerTests;
+			sourceTree = "<group>";
+		};
+		EF489E992AB1F85700E472EF /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				EF489E9A2AB1F86300E472EF /* $attracking.status */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		EF489E9A2AB1F86300E472EF /* $attracking.status */ = {
+			isa = PBXGroup;
+			children = (
+				EF489E952AB1F85100E472EF /* JLATTrackingManagerStatusHandler.h */,
+				EF489E962AB1F85100E472EF /* JLATTrackingManagerStatusHandler.m */,
+			);
+			path = $attracking.status;
 			sourceTree = "<group>";
 		};
 		EFC39C04282507F40037750A /* Frameworks */ = {
@@ -121,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF47FEC12824F001006E2B9B /* JLATTrackingManager.h in Headers */,
+				EF489E972AB1F85100E472EF /* JLATTrackingManagerStatusHandler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +232,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF489E942AB1EFCF00E472EF /* JLATTrackingManager.js in Resources */,
 				EF82B8F529DBA94600B5CD05 /* examples.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,6 +275,7 @@
 			files = (
 				EF47FEB52824F001006E2B9B /* JLATTrackingManager.docc in Sources */,
 				EF47FECB2824F0FF006E2B9B /* JLATTrackingManager.m in Sources */,
+				EF489E982AB1F85100E472EF /* JLATTrackingManagerStatusHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

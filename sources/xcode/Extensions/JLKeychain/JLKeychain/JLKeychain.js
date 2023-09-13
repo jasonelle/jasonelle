@@ -4,21 +4,25 @@
         return;
     }
     
-    window.$keychain = {};
+    const keychain = {};
 
-    window.$keychain.set = (key, value) => {
+    keychain.set = (key, value) => {
         return $agent.trigger("$keychain.set", {key, value});
     }
 
-    window.$keychain.get = (key) => {
+    keychain.get = (key) => {
         return $agent.trigger("$keychain.get", {key});
     }
 
-    window.$keychain.remove = (key) => {
+    keychain.remove = (key) => {
         return $agent.trigger("$keychain.remove", {key});
     }
 
-    window.$keychain.clear = () => {
+    keychain.clear = () => {
         return $agent.trigger("$keychain.clear", {});
     }
+    
+    // Export
+    window.$keychain = keychain;
+    window.$jasonelle.keychain = keychain;
 })();

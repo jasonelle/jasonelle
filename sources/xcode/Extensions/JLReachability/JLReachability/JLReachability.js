@@ -64,5 +64,7 @@
      
      reachability.events = events;
 
+     // Export
      window.$reachability = reachability;
+     window.$jasonelle.reachability = reachability;
 })();

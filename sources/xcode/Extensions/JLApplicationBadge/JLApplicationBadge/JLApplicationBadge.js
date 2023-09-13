@@ -8,6 +8,8 @@
     
     badge.clear = async () => $agent.trigger("$badge.clear");
     
+    // Export
     window.$badge = badge;
+    window.$jasonelle.badge = badge;
 })();
 

@@ -26,3 +26,17 @@ Configure your `info.plist` and include the [`NSUserTrackingUsageDescription`](h
 
 #### status
 Returns the current [status](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanagerauthorizationstatus?language=objc) for the ATTracking.
+
+### Actions
+
+#### ``$attracking.status()``
+
+- Since `3.0.2`
+
+Returns the current status.
+
+```js
+$attracking.status().then(result => {
+    $logger.trace(result);
+});
+```

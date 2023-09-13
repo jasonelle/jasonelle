@@ -3,7 +3,15 @@
          return;
      }
      
-     window.$contacts = {};
-     window.$contacts.all = () => $agent.trigger("$contacts.all");
-     window.$contacts.authorize = () => $agent.trigger("$contacts.authorize");
+     
+     const contacts = {};
+     
+     contacts.all = () => $agent.trigger("$contacts.all");
+     
+     contacts.authorize = () => $agent.trigger("$contacts.authorize");
+     
+     // Export
+     window.$contacts = contacts;
+     window.$jasonelle.contacts = contacts;
+     
  })();
