@@ -313,6 +313,25 @@
         </li>
     </ul>
 </li>
+<!-- Example: JLOneSignal -->
+<script type="text/javascript">
+    
+    const getOneSignalPlayerId = () => {
+        return $onesignal.get().then(data => {
+            alert(data.userId);
+        });
+    };
+    
+</script>
+
+<li class="item">
+    <h3 class="title">JLOneSignal Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="getOneSignalPlayerId()" class="link">Get Player Id</h4>
+        </li>
+    </ul>
+</li>
 <!-- Example: Core-->
 <script type="text/javascript">
     // Test Native Logger
