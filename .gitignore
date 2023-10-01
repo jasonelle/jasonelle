@@ -173,3 +173,5 @@ Dependencies/
 
 # End of https://www.toptal.com/developers/gitignore/api/osx,swift,objective-c,xcode
 
+.idea
+com

@@ -1,0 +1,17 @@
+{
+  "$jason": {
+    "body": {
+      "background": {
+        "type": "html",
+        "url": "https://jasonelle.com",
+        "style": {
+          "background": "#ffffff",
+          "progress" : "rgba(0,0,0,0)"
+        },
+        "action": {
+          "type": "$default"
+        }
+      }
+    }
+  }
+}
