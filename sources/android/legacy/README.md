@@ -68,7 +68,7 @@ Jasonelle is a framework that helps creating Android apps, but does not automate
 **Check some videos**
 These are some related videos (not affiliated with Jasonelle).
 
-- [How to configure Android Studio]( https://www.youtube.com/watch?si=AbRVMfpAaR1HUQFW)
+- [How to configure Android Studio]( https://www.youtube.com/watch?v=mKO0TNYCVpQ)
 - [How to Publish an Android App](https://www.youtube.com/watch?v=DNXME6ANmR4)
 
 ## Importing the project
