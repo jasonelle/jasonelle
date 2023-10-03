@@ -11,13 +11,13 @@ repositories {
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 33
     // buildToolsVersion '30.0.0'
     defaultConfig {
         applicationId "com.jasonelle"
-        minSdkVersion 30
+        minSdkVersion 28
         // Check https://developer.android.com/google/play/requirements/target-sdk for the latest required version
-        targetSdkVersion 30
+        targetSdkVersion 33
         versionCode 3
         versionName "0.1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
