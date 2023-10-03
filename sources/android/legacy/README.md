@@ -49,7 +49,7 @@ required SDK version.
 
 Jasonelle should work fine from SDK 28 or up.
 
-Change: `compileSdkVersion`, `minSdkVersion` and `targetSdkVersion.
+Change: `compileSdkVersion`, `minSdkVersion` and `targetSdkVersion`.
 
 ## Important Settings
 
