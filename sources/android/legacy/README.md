@@ -70,3 +70,30 @@ These are some related videos (not affiliated with Jasonelle).
 
 - [How to configure Android Studio]( https://www.youtube.com/watch?si=AbRVMfpAaR1HUQFW)
 - [How to Publish an Android App](https://www.youtube.com/watch?v=DNXME6ANmR4)
+
+## Importing the project
+
+First download the latest version.
+
+![Download](https://github.com/jasonelle/jasonelle/assets/292738/cb7f2635-2462-4dd8-a93f-06cf32b8b143)
+
+Then Open the Project in Android Studio
+
+![Open in Android Studio](https://github.com/jasonelle/jasonelle/assets/292738/dd3ec0d8-968b-4ab2-a5e6-5b4e4f7cbb13)
+
+Select `sources/android/legacy` and Open It
+
+![Directory](https://github.com/jasonelle/jasonelle/assets/292738/9d4fefd4-fd8c-4301-922e-53c045879a5c)
+
+Wait until the Project is done loading.
+
+![Loading](https://github.com/jasonelle/jasonelle/assets/292738/76425be5-d059-456f-b8e8-6883ee5664e0)
+
+Now you can start configuring your project
+
+![Project](https://github.com/jasonelle/jasonelle/assets/292738/fa098a70-c4c1-462c-ae68-d0276e5c15eb)
+
+
+![strings.xml](https://github.com/jasonelle/jasonelle/assets/292738/779d2da8-0914-4062-9eab-5de050cf094c)
+
+![build.gradle](https://github.com/jasonelle/jasonelle/assets/292738/b4badd9d-800c-4607-b7b3-471874530bc0)
