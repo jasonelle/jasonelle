@@ -525,9 +525,10 @@ public class JasonAgentService {
                 settings.setDomStorageEnabled(true);
                 settings.setMediaPlaybackRequiresUserGesture(false);
                 settings.setJavaScriptCanOpenWindowsAutomatically(true);
-                settings.setAppCachePath(context.getCacheDir().getAbsolutePath());
+                // TODO(ABS) Commenting this to compile
+                // settings.setAppCachePath(context.getCacheDir().getAbsolutePath());
                 settings.setAllowFileAccess(true);
-                settings.setAppCacheEnabled(true);
+                // settings.setAppCacheEnabled(true);
                 settings.setCacheMode(WebSettings.LOAD_DEFAULT);
                 
                 // Check for special options in background webview
