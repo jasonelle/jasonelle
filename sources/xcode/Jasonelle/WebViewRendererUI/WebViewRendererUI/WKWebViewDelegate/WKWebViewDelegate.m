@@ -132,15 +132,26 @@
         }
     }
     
+    // Urls with the special schemas
+    // https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899
     // Special case of itunes links
     // should always open the iTunes app
-    isAllowed = [current hasPrefix:@"https://itunes.apple.com"] ? NO : isAllowed;
+    // Add more if needed.
+    if([current hasPrefix:@"sms:"] || [current hasPrefix:@"tel:"] || [current hasPrefix:@"mailto:"] || [current hasPrefix:@"message:"] || [current hasPrefix:@"facetime:"] || [current hasPrefix:@"facetime-audio:"] || [current containsString:@"maps.apple.com"] || [current containsString:@"phobos.apple.com"] || [current hasPrefix:@"https://itunes.apple.com"]) {
+        
+        jlog_trace_join(@"URL: ", current, @" is a special schema.");
+        isAllowed = NO;
+    }
     
     if (isAllowed) {
         return decisionHandler(WKNavigationActionPolicyAllow);
     }
+   
+    jlog_trace_join(@"URL: ", current, @"is not in the allowed list, or will open a special URL schema");
     
-    jlog_trace_join(@"URL: ", current, @"is not in the allowed list");
+    // If you want to add more special urls and schemas
+    // should also allow them in the plist.
+    // https://stackoverflow.com/a/68924481
     [[JLApplication instance].utils openURL:current];
     return decisionHandler(WKNavigationActionPolicyCancel);
 }

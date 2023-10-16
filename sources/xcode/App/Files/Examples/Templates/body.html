@@ -1,0 +1,579 @@
+<!-- Example: JLATTrackingManager -->
+<script type="text/javascript">
+    const getATTrackingStatus = () => {
+      $attracking.status().then(result => {
+          $logger.trace(result);
+          alert(result.description);
+      });
+    };
+</script>
+
+<li class="item">
+    <h3 class="title">JLATTrackingManager Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="getATTrackingStatus()">Get ATTracking Status</h4>
+        </li>
+    </ul>
+</li>
+
+
+<!-- Example: JLAudio -->
+<script type="text/javascript">
+    const audioLoad = () => {
+      $logger.trace("Loading Audio Files");
+      
+      $audio.player.load("https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_100KB_MP3.mp3", {volume: 0.5});
+      
+      $audio.player.load("https://file-examples.com/storage/fe9278ad7f642dbd39ac5c9/2017/11/file_example_MP3_700KB.mp3", {volume: 0.5, channel: 1});
+    };
+    
+    const audioPlay = () => {
+        $logger.trace("Play Audio Files");
+        $audio.player.play();
+        $audio.player.play(1);
+    };
+    
+    const audioPause = () => {
+        $logger.trace("Pause Audio Files");
+        $audio.player.pause();
+        $audio.player.pause(1);
+    };
+    
+    const audioAuthorize = () => $audio.recorder.authorize().then(granted => $logger.trace(`Audio Recording is granted?: ${granted}`))
+        .catch(message => $logger.trace("Audio Recording Authorization Not Granted"));
+    
+</script>
+
+<li class="item">
+    <h3 class="title">JLAudio Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="audioLoad()">Load Audio</h4>
+        </li>
+        <li>
+            <h4 onClick="audioPlay()">Play Audio</h4>
+        </li>
+        <li>
+            <h4 onClick="audioPause()">Pause Audio</h4>
+        </li>
+        <li>
+            <h4 onClick="$audio.vibrate()">Vibrate Phone</h4>
+        </li>
+        
+        <li>
+            <h4 onClick="audioAuthorize()">Authorize Recording</h4>
+        </li>
+        
+        <li>
+            <h4 onClick="audioRecord()">Start Recording</h4>
+            <h5 id="audioinfo"></h5>
+        </li>
+        <li>
+            <h4 onClick="$audio.recorder.pause()">Pause Recording</h4>
+        </li>
+        <li>
+            <!-- Will pause/resume. Also can be $audio.recorder.resume() -->
+            <h4 onClick="$audio.recorder.pause()">Resume Recording</h4>
+        </li>
+        <li>
+            <h4 onClick="$audio.recorder.stop()">Stop Recording</h4>
+        </li>
+        
+    </ul>
+</li>
+
+<script text="text/javascript">
+    // Need to be here to ensure audioinfo div is loaded
+    const audioRecord = () => {
+        
+        $audio.recorder.record();
+        
+        document.addEventListener($audio.events.recorder.status.event,
+            (event) => {
+                $logger.trace("Audio Recording Status Changed");
+                $logger.trace(event.detail.time.audio.formatted);
+                const info = document.getElementById("audioinfo");
+                info.innerHTML = event.detail.time.audio.formatted
+            }
+        );
+        
+        document.addEventListener($audio.events.recorder.finished.event,
+            (event) => {
+                $logger.trace("Audio Recording Ended");
+                $audio.player.load(event.detail.file.url).then(() => {
+                    $audio.player.play();
+                });
+                
+            }
+        );
+        
+        document.addEventListener($audio.events.recorder.error.event,
+            (event) => {
+                $logger.trace("Audio Recording Error");
+                $logger.trace(event.detail);
+            }
+        );
+    };
+</script>
+
+
+
+<!-- Example: JLReachability -->
+<script type="text/javascript">
+    const checkReachability = () => $reachability.get().then(result => alert(result.label));
+</script>
+
+<li class="item">
+    <h3 class="title">JLReachability Examples</h3>
+    <ul>
+        <li><h4 onClick="checkReachability()">Check Reachability</h4>
+    </ul>
+</li>
+
+
+<!-- Example: JLContacts -->
+<script type="text/javascript">
+    const authorizeContacts = () => $contacts.authorize().then(res => alert(res.status.name));
+    
+    const fetchContacts = () => $contacts.all().then(data => {
+        alert(data[0].name);
+        $logger.trace(JSON.stringify(data));
+    });
+    
+</script>
+
+<li class="item">
+    <h3 class="title">JLContacts Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="authorizeContacts()">
+                Authorize Contacts
+            </h4>
+        </li>
+        
+        <li>
+            <h4 onClick="fetchContacts()">
+                Fetch Contacts
+            </h4>
+        </li>
+    </ul>
+</li>
+<!-- Example: JLApplicationBadge -->
+<script type="text/javascript">
+    // Test Badge Extension
+    // Native extension use $agent.trigger
+    // Native extensions can use Promises
+    const setBadge = () => $badge.set(3);
+    const clearBadge = () => $badge.clear();
+    
+</script>
+
+<li class="item">
+    <h3 class="title">JLApplicationBadge Examples</h3>
+    <ul>
+        <li><h4 onClick="setBadge()">Increment App Badge</h4></li>
+        <li><h4 onClick="clearBadge()">Clear App Badge</h4></li>
+    </ul>
+</li>
+
+
+<!-- Example: JLToast -->
+<script type="text/javascript">
+    const toastLoading = () => $toast.loading.show().then(r => {
+       setTimeout(() => {
+           return $toast.loading.hide();
+       }, 3000);
+    });
+    
+    const toastHello = () => $toast.show("Hello Toast!");
+    
+    const toastDark = () => $toast.dark("Dark Toast!", {position: $toast.options.position.top, duration: 3.0});
+    
+    const toastError = () => $toast.error("Error Oopsy Toast!", {position: $toast.options.position.center});
+    
+    const toastSuccess = () => $toast.success("Success Toast!");
+    
+    const toastWarning = () => $toast.warning("Warning Toast!");
+    
+    const toastInfo = () => $toast.info("Info Toast!");
+    
+    const toastHelloBanner = () => $toast.banner.show("Hello Toast!");
+    
+    const toastDarkBanner = () => $toast.banner.dark("Dark Toast!");
+    
+    const toastErrorBanner = () => $toast.banner.error("Error Oopsy Toast!");
+    
+    const toastSuccessBanner = () => $toast.banner.success("Success Toast!");
+    
+    const toastWarningBanner = () => $toast.banner.warning("Warning Toast!");
+    
+    const toastInfoBanner = () => $toast.banner.info("Info Toast!");
+    
+</script>
+
+<li class="item">
+    <h3 class="title">JLToast Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="toastLoading();" class="link">Show Loading Toast</h4>
+        </li>
+        
+        <li>
+            <h4 onClick="toastHello();" class="link">Show Default Toast</h4>
+        </li>
+        <li>
+            <h4 onClick="toastDark();" class="link">Show Dark Toast</h4>
+        </li>
+        <li>
+            <h4 onClick="toastError();" class="link">Show Error Toast</h4>
+        </li>
+        <li>
+            <h4 onClick="toastSuccess();" class="link">Show Success Toast</h4>
+        </li>
+        <li>
+            <h4 onClick="toastWarning();" class="link">Show Warning Toast</h4>
+        </li>
+        <li>
+            <h4 onClick="toastInfo();" class="link">Show Info Toast</h4>
+        </li>
+        
+        
+        <li>
+            <h4 onClick="toastHelloBanner();" class="link">Show Default Banner</h4>
+        </li>
+        <li>
+            <h4 onClick="toastDarkBanner();" class="link">Show Dark Banner</h4>
+        </li>
+        <li>
+            <h4 onClick="toastErrorBanner();" class="link">Show Error Banner</h4>
+        </li>
+        <li>
+            <h4 onClick="toastSuccessBanner();" class="link">Show Success Banner</h4>
+        </li>
+        <li>
+            <h4 onClick="toastWarningBanner();" class="link">Show Warning Banner</h4>
+        </li>
+        <li>
+            <h4 onClick="toastInfoBanner();" class="link">Show Info Banner</h4>
+        </li>
+    </ul>
+</li>
+<!-- Example: JLClipboard -->
+<script type="text/javascript">
+    const copyToClipboard = () => {
+        $clipboard.set("Hello");
+    };
+    
+    const getClipboard = () => {
+        $clipboard.get().then(text => alert(text));
+    };
+</script>
+
+<li class="item">
+    <h3 class="title">JLClipboard Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="copyToClipboard();" class="link">Copy to Clipboard</h4>
+        </li>
+        <li>
+            <h4 onClick="getClipboard();" class="link">Get Clipboard</h4>
+        </li>
+    </ul>
+</li>
+<!-- Example: JLOneSignal -->
+<script type="text/javascript">
+    
+    const getOneSignalPlayerId = () => {
+        return $onesignal.get().then(data => {
+            alert(data.userId);
+        });
+    };
+    
+</script>
+
+<li class="item">
+    <h3 class="title">JLOneSignal Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="getOneSignalPlayerId()" class="link">Get Player Id</h4>
+        </li>
+    </ul>
+</li>
+<!-- Example: Core-->
+<script type="text/javascript">
+    // Test Native Logger
+    const log = () => {
+      // This call will be shown in Safari Debug Console Only
+      console.log("Calling Native Logger from WebView");
+      // This call will be shown in XCode Console
+      $logger.trace("Calling Native Logger from WebView");
+    };
+    
+    // Actions defined in main.js
+    // Test Hello Action
+    // JS Actions use $agent.call
+    // These actions cannot return a Promise (yet)
+    // Define these actions inside the main.js actions
+    const hello = (world = "world") => {
+      const result = $agent.call("hello", world);
+      $logger.trace(result);
+    };
+    
+    // Open app in safari
+    const safari = (url) => {
+        $agent.call("safari", url);
+    };
+</script>
+
+<li class="item">
+    <h3 class="title">Core Examples</h3>
+    <ul>
+            <li><h4 onClick="log()">Test Native Logger</h4></li>
+                    
+            <li><h4 onClick="hello()">Test Bridge From WebView to JSContext</h4></li>
+            <li>
+                <h4 onClick="safari('https://google.com')">
+                    Test Opening Safari Link
+                </h4>
+            </li>
+            
+            <li>
+                <h4 onClick="alert('Hello')">Alert Example</h4>
+            </li>
+            <li>
+                <h4 onClick="confirm('Press a button!')">Confirm Example</h4>
+            </li>
+            <li>
+                <h4 onClick="prompt('Please enter your name', 'Ethan G.')">Prompt Example</h4>
+            </li>
+            
+            
+            <li>
+                <!-- Modify config/dev or config/prod with
+                the allowed:["file://", "google.cl"] to load
+                this url inside the app -->
+                
+                <a href="https://google.cl">
+                    <h4>
+                    Test Allowed URL (Open Browser)
+                    </h4>
+                </a>
+                
+            </li>
+            
+            <li>
+                <a href="https://jasonelle.com/test/100kb.odt">
+                    <h4>
+                    Test Download a File
+                </h4>
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://jasonelle.com/test/100kb.pdf">
+                    <h4>
+                    Test Show a PDF
+                </h4>
+                </a>
+            </li>
+            <li>
+                <a href="sms:123456789">
+                    <h4>
+                    Open SMS
+                </h4>
+                </a>
+            </li>
+    </ul>
+</li>
+
+<!-- Example: JLPhotoLibrary -->
+<script type="text/javascript">
+    const photoLibraryAuthorize = () => $photolibrary.authorize().then(status => $logger.trace(status));
+    
+    const photoLibraryGranted = () => $photolibrary.granted().then(granted => alert(granted));
+    
+    const photoLibraryCameraAuthorize = () => $photolibrary.camera.authorize().then(status => $logger.trace(status));
+    
+    const photolibraryCameraGranted = () => $photolibrary.camera.granted().then(granted => alert(granted));
+    
+</script>
+
+<li class="item">
+    <h3 class="title">JLPhotoLibrary Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="photoLibraryAuthorize()">Request Photo Library Access</h4>
+        </li>
+        <li>
+            <h4 onClick="photoLibraryGranted()">Check Photo Library Access</h4>
+        </li>
+        <li>
+            <h4 onClick="photoLibraryCameraAuthorize()">Request Camera Access</h4>
+        </li>
+        <li>
+            <h4 onClick="photolibraryCameraGranted()">Check Camera Access</h4>
+        </li>
+        <li>
+            <h4>Example Image Picker</h4>
+            <input
+            id="imagePickerFileInput"
+            type="file"
+            accept="image/*"
+          />
+        </li>
+        
+        <li>
+            <h4>Example Camera (Will crash in Simulator)</h4>
+            <input
+            id="cameraFileInput"
+            type="file"
+            accept="image/*"
+            capture="environment"
+          />
+        </li>
+    </ul>
+</li>
+
+<!-- Example: MyExtension -->
+<script type="text/javascript">
+    // Event triggered by MyExtension.js
+    document.addEventListener(
+      "$myextension.events.example",
+      function(e) {
+        $logger.trace("Received Example Event: " + e.detail.message);
+      }
+    );
+</script>
+
+<li class="item">
+    <h3 class="title">MyExtension Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="$myextension.run()" class="link">Test Example Extension</h4>
+        </li>
+    </ul>
+</li>
+<!-- Example: JLKeychain -->
+<script type="text/javascript">
+    const setKeychain = () => $keychain.set('number', 3);
+    const getKeychain = () => $keychain.get('number').then(num => alert(num));
+    const removeKeychain = () => $keychain.remove('number');
+    const clearKeychain = () => $keychain.clear();
+</script>
+
+<li class="item">
+    <h3 class="title">JLKeychain Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="setKeychain()">Example $keychain.set</h4>
+        </li>
+        <li>
+            <h4 onClick="getKeychain()">Example $keychain.get</h4>
+        </li>
+        <li>
+            <h4 onClick="removeKeychain()">Example $keychain.remove</h4>
+        </li>
+        <li>
+            <h4 onClick="clearKeychain()">Example $keychain.clear</h4>
+        </li>
+    </ul>
+</li>
+<!-- Example: JLCookies -->
+<script type="text/javascript">
+    const setCookies = () => {
+        $cookies.Cookies.set('name', 'Ethan');
+        $cookies.set().then(val => alert(val));
+    };
+    
+    const getCookies = () => {
+        $cookies.get().then(val => alert(val));
+    };
+    
+    const writeCookies = () => {
+        $cookies.write().then(val => alert(val));
+    };
+    
+    const removeCookies = () => {
+        $cookies.Cookies.remove('name');
+        $cookies.remove().then(val => alert(val));
+    };
+    
+</script>
+
+<li class="item">
+    <h3 class="title">JLCookies Examples</h3>
+    <ul>
+        <!-- Sets the cookie and save it to keychain -->
+        <li>
+            <h4 onClick="setCookies()">Example $cookies.set</h4>
+        </li>
+        
+        <!-- Gets the current cookie value from keychain -->
+        <li>
+            <h4 onClick="getCookies()">Example $cookies.get</h4>
+        </li>
+        
+        <!-- Reads cookie from keychain and then writes to document.cookie -->
+        <li>
+            <h4 onClick="writeCookies()">Example $cookies.write</h4>
+        </li>
+        
+        <!-- Removes cookies from keychain -->
+        <li>
+            <h4 onClick="removeCookies()">Example $cookies.remove</h4>
+        </li>
+    </ul>
+</li>
+
+<!-- Example: JLDevice -->
+<script type="text/javascript">
+    const deviceInfo = () => $device.info().then(info => {
+        $logger.trace(info);
+        alert(info.env.hw.name);
+    });
+</script>
+
+<li class="item">
+    <h3 class="title">JLDevice Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="deviceInfo();" class="link">Get Device Hardware Type</h4>
+        </li>
+    </ul>
+</li>
+<!-- Example: JLShare -->
+<script type="text/javascript">
+    const shareText = () => {
+      $share.text("Hello World!");
+    };
+    
+    const shareURL = () => {
+      $share.url("https://jasonelle.com");
+    };
+    
+    // Must be a public link to an image
+    // So the Share controller can download it.
+    // The same can be applied to any other document
+    // like PDF, Audio, Video, etc.
+    const shareImage = () => {
+        return $share.url("https://jasonelle.com/docs/jasonelle.png");
+    };
+</script>
+
+<li class="item">
+    <h3 class="title">JLShare Examples</h3>
+    <ul>
+        <li>
+            <h4 onClick="shareText();" class="link">Share Text</h4>
+        </li>
+        
+        <li>
+            <h4 onClick="shareURL();" class="link">Share URL</h4>
+        </li>
+        
+        <li>
+            <h4 onClick="shareImage();" class="link">Share Image</h4>
+        </li>
+    </ul>
+</li>

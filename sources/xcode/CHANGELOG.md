@@ -43,6 +43,7 @@ fi
 
 - [ARM Macs]. Automatically detects processor and selects the proper build tool.
 - [Core]. Fixed crash when clicking a non html link (now shows _SFSafariViewController_).
+- [Special Schema Links]. The app wasn't handling the schemas `sms, tel, facetime` properly. Now it open the correct app.
 
 ### Downloads
 

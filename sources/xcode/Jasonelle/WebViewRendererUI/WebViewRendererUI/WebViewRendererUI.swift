@@ -308,7 +308,6 @@ public struct ContentView: View {
         // Some websites may need this, specially when using a navbar.
         // If you need this, enable this option
         // .ignoresSafeArea(edges: .all)
-        .ignoresSafeArea(edges: .)
     }
 }
 
