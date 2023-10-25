@@ -9,7 +9,7 @@
     
     // Export
     window.$attracking = attracking;
-    window.$jasonelle.attracking = attracking;
+    // window.$jasonelle.attracking = attracking;
 })();
 
 

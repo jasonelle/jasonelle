@@ -8,5 +8,5 @@
     
     // Export
     window.$device = device;
-    window.$jasonelle.device = device;
+    // window.$jasonelle.device = device;
 })();

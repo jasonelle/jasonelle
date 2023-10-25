@@ -36,5 +36,5 @@
      
      // Export
      window.$cookies = cookies;
-     window.$jasonelle.cookies = cookies;
+     // window.$jasonelle.cookies = cookies;
  })();

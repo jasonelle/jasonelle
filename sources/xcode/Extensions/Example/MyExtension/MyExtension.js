@@ -28,5 +28,5 @@
     
     // Export
     window.$myextension = myextension;
-    window.$jasonelle.myextension = myextension;
+    // window.$jasonelle.myextension = myextension;
 })();

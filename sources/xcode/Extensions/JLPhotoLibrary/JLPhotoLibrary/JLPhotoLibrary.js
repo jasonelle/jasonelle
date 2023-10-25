@@ -24,5 +24,5 @@
      
      // Export
      window.$photolibrary = photolibrary;
-     window.$jasonelle.photolibrary = photolibrary;
+     // window.$jasonelle.photolibrary = photolibrary;
  })();

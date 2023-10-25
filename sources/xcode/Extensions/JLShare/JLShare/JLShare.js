@@ -26,5 +26,5 @@
     
     // Export
     window.$share = share;
-    window.$jasonelle.share = share;
+    // window.$jasonelle.share = share;
 })();

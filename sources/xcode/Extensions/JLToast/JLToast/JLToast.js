@@ -85,5 +85,5 @@
     };
     
     window.$toast = toast;
-    window.$jasonelle.toast = toast;
+    // window.$jasonelle.toast = toast;
 })();

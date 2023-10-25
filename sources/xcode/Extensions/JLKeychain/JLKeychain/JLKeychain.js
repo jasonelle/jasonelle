@@ -24,5 +24,5 @@
     
     // Export
     window.$keychain = keychain;
-    window.$jasonelle.keychain = keychain;
+    // window.$jasonelle.keychain = keychain;
 })();

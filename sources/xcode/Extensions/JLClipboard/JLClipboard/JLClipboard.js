@@ -10,5 +10,5 @@
     
     // Export
     window.$clipboard = clipboard;
-    window.$jasonelle.clipboard = clipboard;
+    // window.$jasonelle.clipboard = clipboard;
 })();

@@ -10,6 +10,6 @@
     
     // Export
     window.$badge = badge;
-    window.$jasonelle.badge = badge;
+    // window.$jasonelle.badge = badge;
 })();
 
