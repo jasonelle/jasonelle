@@ -1,0 +1,1668 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5EE85B6C1DA45F8F0049EACE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EE85B6B1DA45F8F0049EACE /* MapKit.framework */; };
+		ACDAE25BCC06F4D2B1364277 /* Pods_Jasonette.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDE1A3D4D97BE5A73CB39B96 /* Pods_Jasonette.framework */; };
+		EF07303A22D28B2400973DE1 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF072F5F22D28B2400973DE1 /* settings.plist */; };
+		EF07303B22D28B2400973DE1 /* com.jasonelle.app.test.webview.json in Resources */ = {isa = PBXBuildFile; fileRef = EF072F6022D28B2400973DE1 /* com.jasonelle.app.test.webview.json */; };
+		EF07303C22D28B2400973DE1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF072F6222D28B2400973DE1 /* Media.xcassets */; };
+		EF07303D22D28B2400973DE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF072F6322D28B2400973DE1 /* LaunchScreen.storyboard */; };
+		EF07303E22D28B2400973DE1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EF072F6722D28B2400973DE1 /* main.m */; };
+		EF07303F22D28B2400973DE1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF072F6822D28B2400973DE1 /* AppDelegate.m */; };
+		EF07A1B722D6186100D0D3FF /* JasonLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A0E922D6186000D0D3FF /* JasonLogger.m */; };
+		EF07A1B822D6186100D0D3FF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = EF07A0EA22D6186000D0D3FF /* README.md */; };
+		EF07A1B922D6186100D0D3FF /* JasonMemory.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A0ED22D6186000D0D3FF /* JasonMemory.m */; };
+		EF07A1BA22D6186100D0D3FF /* JASONResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A0F122D6186000D0D3FF /* JASONResponseSerializer.m */; };
+		EF07A1BB22D6186100D0D3FF /* JasonNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A0F422D6186000D0D3FF /* JasonNetworking.m */; };
+		EF07A1BC22D6186100D0D3FF /* JasonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A0F722D6186000D0D3FF /* JasonParser.m */; };
+		EF07A1BD22D6186100D0D3FF /* JasonComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A0FA22D6186000D0D3FF /* JasonComponent.m */; };
+		EF07A1BE22D6186100D0D3FF /* UIView+JasonComponentPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A0FD22D6186000D0D3FF /* UIView+JasonComponentPayload.m */; };
+		EF07A1BF22D6186100D0D3FF /* JasonComponentFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A10222D6186000D0D3FF /* JasonComponentFactory.m */; };
+		EF07A1C022D6186100D0D3FF /* JasonAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A10622D6186000D0D3FF /* JasonAction.m */; };
+		EF07A1C122D6186100D0D3FF /* Jason.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A10922D6186000D0D3FF /* Jason.m */; };
+		EF07A1C222D6186100D0D3FF /* JasonAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A10D22D6186100D0D3FF /* JasonAppDelegate.m */; };
+		EF07A1C322D6186100D0D3FF /* JasonStack.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A11022D6186100D0D3FF /* JasonStack.m */; };
+		EF07A1C422D6186100D0D3FF /* JasonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A11222D6186100D0D3FF /* JasonViewController.m */; };
+		EF07A1C522D6186100D0D3FF /* UIBarButtonItem+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A11522D6186100D0D3FF /* UIBarButtonItem+Badge.m */; };
+		EF07A1C622D6186100D0D3FF /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF07A11922D6186100D0D3FF /* placeholder@2x.png */; };
+		EF07A1C722D6186100D0D3FF /* placeholderr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF07A11A22D6186100D0D3FF /* placeholderr@2x.png */; };
+		EF07A1C822D6186100D0D3FF /* icon-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF07A11B22D6186100D0D3FF /* icon-info@2x.png */; };
+		EF07A1C922D6186100D0D3FF /* icon-error.png in Resources */ = {isa = PBXBuildFile; fileRef = EF07A11C22D6186100D0D3FF /* icon-error.png */; };
+		EF07A1CA22D6186100D0D3FF /* icon-info.png in Resources */ = {isa = PBXBuildFile; fileRef = EF07A11D22D6186100D0D3FF /* icon-info.png */; };
+		EF07A1CB22D6186100D0D3FF /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF07A11E22D6186100D0D3FF /* more@2x.png */; };
+		EF07A1CC22D6186100D0D3FF /* Next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF07A11F22D6186100D0D3FF /* Next@2x.png */; };
+		EF07A1CD22D6186100D0D3FF /* icon-success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF07A12022D6186100D0D3FF /* icon-success@2x.png */; };
+		EF07A1CE22D6186100D0D3FF /* icon-error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF07A12122D6186100D0D3FF /* icon-error@2x.png */; };
+		EF07A1CF22D6186100D0D3FF /* icon-success.png in Resources */ = {isa = PBXBuildFile; fileRef = EF07A12222D6186100D0D3FF /* icon-success.png */; };
+		EF07A1D022D6186100D0D3FF /* st.js in Resources */ = {isa = PBXBuildFile; fileRef = EF07A12422D6186100D0D3FF /* st.js */; };
+		EF07A1D122D6186100D0D3FF /* rss.js in Resources */ = {isa = PBXBuildFile; fileRef = EF07A12522D6186100D0D3FF /* rss.js */; };
+		EF07A1D222D6186100D0D3FF /* xhtml.js in Resources */ = {isa = PBXBuildFile; fileRef = EF07A12622D6186100D0D3FF /* xhtml.js */; };
+		EF07A1D322D6186100D0D3FF /* csv.js in Resources */ = {isa = PBXBuildFile; fileRef = EF07A12722D6186100D0D3FF /* csv.js */; };
+		EF07A1D422D6186100D0D3FF /* agent.js in Resources */ = {isa = PBXBuildFile; fileRef = EF07A12822D6186100D0D3FF /* agent.js */; };
+		EF07A1D522D6186100D0D3FF /* error.json in Resources */ = {isa = PBXBuildFile; fileRef = EF07A12A22D6186100D0D3FF /* error.json */; };
+		EF07A1D622D6186100D0D3FF /* preload.json in Resources */ = {isa = PBXBuildFile; fileRef = EF07A12B22D6186100D0D3FF /* preload.json */; };
+		EF07A1D722D6186100D0D3FF /* JasonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A12F22D6186100D0D3FF /* JasonHelper.m */; };
+		EF07A1D822D6186100D0D3FF /* JasonNSClassFromString.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A13222D6186100D0D3FF /* JasonNSClassFromString.m */; };
+		EF07A1D922D6186100D0D3FF /* JasonOptionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A13522D6186100D0D3FF /* JasonOptionHelper.m */; };
+		EF07A1DA22D6186100D0D3FF /* NSObject+JSONPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A13622D6186100D0D3FF /* NSObject+JSONPayload.m */; };
+		EF07A1DB22D6186100D0D3FF /* JasonLabelComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A13A22D6186100D0D3FF /* JasonLabelComponent.m */; };
+		EF07A1DC22D6186100D0D3FF /* JasonTextfieldComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A13C22D6186100D0D3FF /* JasonTextfieldComponent.m */; };
+		EF07A1DD22D6186100D0D3FF /* JasonSliderComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A13F22D6186100D0D3FF /* JasonSliderComponent.m */; };
+		EF07A1DE22D6186100D0D3FF /* JasonHtmlComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A14222D6186100D0D3FF /* JasonHtmlComponent.m */; };
+		EF07A1DF22D6186100D0D3FF /* JasonImageComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A14622D6186100D0D3FF /* JasonImageComponent.m */; };
+		EF07A1E022D6186100D0D3FF /* JasonMapComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A14922D6186100D0D3FF /* JasonMapComponent.m */; };
+		EF07A1E122D6186100D0D3FF /* JasonTextareaComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A14B22D6186100D0D3FF /* JasonTextareaComponent.m */; };
+		EF07A1E222D6186100D0D3FF /* JasonButtonComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A14F22D6186100D0D3FF /* JasonButtonComponent.m */; };
+		EF07A1E322D6186100D0D3FF /* NoPaddingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A15022D6186100D0D3FF /* NoPaddingButton.m */; };
+		EF07A1E422D6186100D0D3FF /* JasonSwitchComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A15422D6186100D0D3FF /* JasonSwitchComponent.m */; };
+		EF07A1E522D6186100D0D3FF /* JasonSpaceComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A15622D6186100D0D3FF /* JasonSpaceComponent.m */; };
+		EF07A1E622D6186100D0D3FF /* JasonGeoAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A15A22D6186100D0D3FF /* JasonGeoAction.m */; };
+		EF07A1E722D6186100D0D3FF /* JasonGlobalAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A15E22D6186100D0D3FF /* JasonGlobalAction.m */; };
+		EF07A1E822D6186100D0D3FF /* JasonAudioAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A16122D6186100D0D3FF /* JasonAudioAction.m */; };
+		EF07A1E922D6186100D0D3FF /* JasonNetworkAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A16422D6186100D0D3FF /* JasonNetworkAction.m */; };
+		EF07A1EA22D6186100D0D3FF /* JasonPushAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A16722D6186100D0D3FF /* JasonPushAction.m */; };
+		EF07A1EB22D6186100D0D3FF /* JasonWebsocketAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A16922D6186100D0D3FF /* JasonWebsocketAction.m */; };
+		EF07A1EC22D6186100D0D3FF /* JasonPortraitPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A16D22D6186100D0D3FF /* JasonPortraitPicker.m */; };
+		EF07A1ED22D6186100D0D3FF /* JasonMediaAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A17022D6186100D0D3FF /* JasonMediaAction.m */; };
+		EF07A1EE22D6186100D0D3FF /* JasonUtilAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A17322D6186100D0D3FF /* JasonUtilAction.m */; };
+		EF07A1EF22D6186100D0D3FF /* JasonReturnAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A17522D6186100D0D3FF /* JasonReturnAction.m */; };
+		EF07A1F022D6186100D0D3FF /* JasonConvertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A17822D6186100D0D3FF /* JasonConvertAction.m */; };
+		EF07A1F122D6186100D0D3FF /* JasonSessionAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A17B22D6186100D0D3FF /* JasonSessionAction.m */; };
+		EF07A1F222D6186100D0D3FF /* JasonScriptAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A17E22D6186100D0D3FF /* JasonScriptAction.m */; };
+		EF07A1F322D6186100D0D3FF /* JasonVisionAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A18222D6186100D0D3FF /* JasonVisionAction.m */; };
+		EF07A1F422D6186100D0D3FF /* JasonCacheAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A18422D6186100D0D3FF /* JasonCacheAction.m */; };
+		EF07A1F522D6186100D0D3FF /* JasonOauthAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A18822D6186100D0D3FF /* JasonOauthAction.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		EF07A1F622D6186100D0D3FF /* JasonNotificationAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A18B22D6186100D0D3FF /* JasonNotificationAction.m */; };
+		EF07A1F722D6186100D0D3FF /* JasonTimerAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A18D22D6186100D0D3FF /* JasonTimerAction.m */; };
+		EF07A1F822D6186100D0D3FF /* JasonLogAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A19022D6186100D0D3FF /* JasonLogAction.m */; };
+		EF07A1F922D6186100D0D3FF /* JasonAgentAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A19422D6186100D0D3FF /* JasonAgentAction.m */; };
+		EF07A1FA22D6186100D0D3FF /* JasonHorizontalSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF07A19722D6186100D0D3FF /* JasonHorizontalSection.xib */; };
+		EF07A1FB22D6186100D0D3FF /* JasonHorizontalSection.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A19822D6186100D0D3FF /* JasonHorizontalSection.m */; };
+		EF07A1FC22D6186100D0D3FF /* JasonHorizontalSectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A19A22D6186100D0D3FF /* JasonHorizontalSectionItem.m */; };
+		EF07A1FD22D6186100D0D3FF /* JasonHorizontalSectionItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF07A19C22D6186100D0D3FF /* JasonHorizontalSectionItem.xib */; };
+		EF07A1FE22D6186100D0D3FF /* JasonLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A19F22D6186100D0D3FF /* JasonLayout.m */; };
+		EF07A1FF22D6186100D0D3FF /* JasonLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A1A222D6186100D0D3FF /* JasonLayer.m */; };
+		EF07A20022D6186100D0D3FF /* JasonVerticalSectionItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF07A1A722D6186100D0D3FF /* JasonVerticalSectionItem.xib */; };
+		EF07A20122D6186100D0D3FF /* JasonVerticalSectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A1A822D6186100D0D3FF /* JasonVerticalSectionItem.m */; };
+		EF07A20322D6186100D0D3FF /* JasonPushService.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A1AD22D6186100D0D3FF /* JasonPushService.m */; };
+		EF07A20422D6186100D0D3FF /* JasonWebsocketService.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A1B022D6186100D0D3FF /* JasonWebsocketService.m */; };
+		EF07A20522D6186100D0D3FF /* JasonVisionService.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A1B222D6186100D0D3FF /* JasonVisionService.m */; };
+		EF07A20622D6186100D0D3FF /* JasonAgentService.m in Sources */ = {isa = PBXBuildFile; fileRef = EF07A1B522D6186100D0D3FF /* JasonAgentService.m */; };
+		EF0D48762366307500CCC7AF /* hello.test.hjson in Resources */ = {isa = PBXBuildFile; fileRef = EF0D48752366307500CCC7AF /* hello.test.hjson */; };
+		EF0D487A2366626500CCC7AF /* hjson.js in Resources */ = {isa = PBXBuildFile; fileRef = EF0D48792366626500CCC7AF /* hjson.js */; };
+		EF342844267C382D00AE3920 /* JasonATTrackingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF342843267C382D00AE3920 /* JasonATTrackingManager.m */; };
+		EF4DEF39243D62140060AE4E /* custom.js in Resources */ = {isa = PBXBuildFile; fileRef = EF4DEF38243D62140060AE4E /* custom.js */; };
+		EF72736823465463005C5515 /* INTUAutoRemoveObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = EF72736623465463005C5515 /* INTUAutoRemoveObserver.m */; };
+		EF73FBE9283ADAB2003627DA /* JasonAppBadgeAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EF73FBE6283ADAB2003627DA /* JasonAppBadgeAction.m */; };
+		EF73FBEA283ADAB2003627DA /* jr.JasonAppBadgeAction.json in Resources */ = {isa = PBXBuildFile; fileRef = EF73FBE7283ADAB2003627DA /* jr.JasonAppBadgeAction.json */; };
+		EF82979B22D30A71003ED64B /* jr.sample.json in Resources */ = {isa = PBXBuildFile; fileRef = EF82979922D30A71003ED64B /* jr.sample.json */; };
+		EF9781C322D9A0810024FDAE /* hello.json in Resources */ = {isa = PBXBuildFile; fileRef = EF9781C222D9A0810024FDAE /* hello.json */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1BD8E8486EE7AF4E4934685E /* Pods-Jasonette.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jasonette.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jasonette/Pods-Jasonette.release.xcconfig"; sourceTree = "<group>"; };
+		5E3176591D1E400C00D87778 /* Jasonette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jasonette.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EE85B6B1DA45F8F0049EACE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		5EE85B7A1DA595A20049EACE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		BDE1A3D4D97BE5A73CB39B96 /* Pods_Jasonette.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jasonette.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEB1DF488FABA35A255BC8E4 /* Pods-Jasonette.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jasonette.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jasonette/Pods-Jasonette.debug.xcconfig"; sourceTree = "<group>"; };
+		EF072F5F22D28B2400973DE1 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
+		EF072F6022D28B2400973DE1 /* com.jasonelle.app.test.webview.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = com.jasonelle.app.test.webview.json; sourceTree = "<group>"; };
+		EF072F6222D28B2400973DE1 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		EF072F6322D28B2400973DE1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EF072F6422D28B2400973DE1 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		EF072F6622D28B2400973DE1 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EF072F6722D28B2400973DE1 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EF072F6822D28B2400973DE1 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EF07A0E922D6186000D0D3FF /* JasonLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonLogger.m; sourceTree = "<group>"; };
+		EF07A0EA22D6186000D0D3FF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EF07A0EB22D6186000D0D3FF /* JasonLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonLogger.h; sourceTree = "<group>"; };
+		EF07A0ED22D6186000D0D3FF /* JasonMemory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonMemory.m; sourceTree = "<group>"; };
+		EF07A0EE22D6186000D0D3FF /* JasonMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonMemory.h; sourceTree = "<group>"; };
+		EF07A0F122D6186000D0D3FF /* JASONResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASONResponseSerializer.m; sourceTree = "<group>"; };
+		EF07A0F222D6186000D0D3FF /* JASONResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JASONResponseSerializer.h; sourceTree = "<group>"; };
+		EF07A0F322D6186000D0D3FF /* JasonNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonNetworking.h; sourceTree = "<group>"; };
+		EF07A0F422D6186000D0D3FF /* JasonNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonNetworking.m; sourceTree = "<group>"; };
+		EF07A0F622D6186000D0D3FF /* JasonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonParser.h; sourceTree = "<group>"; };
+		EF07A0F722D6186000D0D3FF /* JasonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonParser.m; sourceTree = "<group>"; };
+		EF07A0FA22D6186000D0D3FF /* JasonComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonComponent.m; sourceTree = "<group>"; };
+		EF07A0FB22D6186000D0D3FF /* JasonComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonComponent.h; sourceTree = "<group>"; };
+		EF07A0FD22D6186000D0D3FF /* UIView+JasonComponentPayload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JasonComponentPayload.m"; sourceTree = "<group>"; };
+		EF07A0FE22D6186000D0D3FF /* UIView+JasonComponentPayload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JasonComponentPayload.h"; sourceTree = "<group>"; };
+		EF07A0FF22D6186000D0D3FF /* JasonComponentProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonComponentProtocol.h; sourceTree = "<group>"; };
+		EF07A10122D6186000D0D3FF /* JasonComponentFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonComponentFactory.h; sourceTree = "<group>"; };
+		EF07A10222D6186000D0D3FF /* JasonComponentFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonComponentFactory.m; sourceTree = "<group>"; };
+		EF07A10522D6186000D0D3FF /* JasonAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonAction.h; sourceTree = "<group>"; };
+		EF07A10622D6186000D0D3FF /* JasonAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonAction.m; sourceTree = "<group>"; };
+		EF07A10722D6186000D0D3FF /* JasonActionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonActionProtocol.h; sourceTree = "<group>"; };
+		EF07A10922D6186000D0D3FF /* Jason.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Jason.m; sourceTree = "<group>"; };
+		EF07A10A22D6186100D0D3FF /* Jason.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Jason.h; sourceTree = "<group>"; };
+		EF07A10C22D6186100D0D3FF /* JasonAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonAppDelegate.h; sourceTree = "<group>"; };
+		EF07A10D22D6186100D0D3FF /* JasonAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonAppDelegate.m; sourceTree = "<group>"; };
+		EF07A10F22D6186100D0D3FF /* JasonStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonStack.h; sourceTree = "<group>"; };
+		EF07A11022D6186100D0D3FF /* JasonStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonStack.m; sourceTree = "<group>"; };
+		EF07A11222D6186100D0D3FF /* JasonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonViewController.m; sourceTree = "<group>"; };
+		EF07A11322D6186100D0D3FF /* JasonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonViewController.h; sourceTree = "<group>"; };
+		EF07A11522D6186100D0D3FF /* UIBarButtonItem+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Badge.m"; sourceTree = "<group>"; };
+		EF07A11622D6186100D0D3FF /* UIBarButtonItem+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Badge.h"; sourceTree = "<group>"; };
+		EF07A11922D6186100D0D3FF /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
+		EF07A11A22D6186100D0D3FF /* placeholderr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholderr@2x.png"; sourceTree = "<group>"; };
+		EF07A11B22D6186100D0D3FF /* icon-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-info@2x.png"; sourceTree = "<group>"; };
+		EF07A11C22D6186100D0D3FF /* icon-error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-error.png"; sourceTree = "<group>"; };
+		EF07A11D22D6186100D0D3FF /* icon-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-info.png"; sourceTree = "<group>"; };
+		EF07A11E22D6186100D0D3FF /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
+		EF07A11F22D6186100D0D3FF /* Next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Next@2x.png"; sourceTree = "<group>"; };
+		EF07A12022D6186100D0D3FF /* icon-success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-success@2x.png"; sourceTree = "<group>"; };
+		EF07A12122D6186100D0D3FF /* icon-error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-error@2x.png"; sourceTree = "<group>"; };
+		EF07A12222D6186100D0D3FF /* icon-success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-success.png"; sourceTree = "<group>"; };
+		EF07A12422D6186100D0D3FF /* st.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = st.js; sourceTree = "<group>"; };
+		EF07A12522D6186100D0D3FF /* rss.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = rss.js; sourceTree = "<group>"; };
+		EF07A12622D6186100D0D3FF /* xhtml.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = xhtml.js; sourceTree = "<group>"; };
+		EF07A12722D6186100D0D3FF /* csv.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = csv.js; sourceTree = "<group>"; };
+		EF07A12822D6186100D0D3FF /* agent.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = agent.js; sourceTree = "<group>"; };
+		EF07A12A22D6186100D0D3FF /* error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = error.json; sourceTree = "<group>"; };
+		EF07A12B22D6186100D0D3FF /* preload.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = preload.json; sourceTree = "<group>"; };
+		EF07A12E22D6186100D0D3FF /* JasonHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonHelper.h; sourceTree = "<group>"; };
+		EF07A12F22D6186100D0D3FF /* JasonHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonHelper.m; sourceTree = "<group>"; };
+		EF07A13122D6186100D0D3FF /* JasonNSClassFromString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonNSClassFromString.h; sourceTree = "<group>"; };
+		EF07A13222D6186100D0D3FF /* JasonNSClassFromString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonNSClassFromString.m; sourceTree = "<group>"; };
+		EF07A13322D6186100D0D3FF /* JasonOptionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonOptionHelper.h; sourceTree = "<group>"; };
+		EF07A13422D6186100D0D3FF /* NSObject+JSONPayload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JSONPayload.h"; sourceTree = "<group>"; };
+		EF07A13522D6186100D0D3FF /* JasonOptionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonOptionHelper.m; sourceTree = "<group>"; };
+		EF07A13622D6186100D0D3FF /* NSObject+JSONPayload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JSONPayload.m"; sourceTree = "<group>"; };
+		EF07A13922D6186100D0D3FF /* JasonLabelComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonLabelComponent.h; sourceTree = "<group>"; };
+		EF07A13A22D6186100D0D3FF /* JasonLabelComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonLabelComponent.m; sourceTree = "<group>"; };
+		EF07A13C22D6186100D0D3FF /* JasonTextfieldComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonTextfieldComponent.m; sourceTree = "<group>"; };
+		EF07A13D22D6186100D0D3FF /* JasonTextfieldComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonTextfieldComponent.h; sourceTree = "<group>"; };
+		EF07A13F22D6186100D0D3FF /* JasonSliderComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonSliderComponent.m; sourceTree = "<group>"; };
+		EF07A14022D6186100D0D3FF /* JasonSliderComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonSliderComponent.h; sourceTree = "<group>"; };
+		EF07A14222D6186100D0D3FF /* JasonHtmlComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonHtmlComponent.m; sourceTree = "<group>"; };
+		EF07A14322D6186100D0D3FF /* JasonHtmlComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonHtmlComponent.h; sourceTree = "<group>"; };
+		EF07A14522D6186100D0D3FF /* JasonImageComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonImageComponent.h; sourceTree = "<group>"; };
+		EF07A14622D6186100D0D3FF /* JasonImageComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonImageComponent.m; sourceTree = "<group>"; };
+		EF07A14822D6186100D0D3FF /* JasonMapComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonMapComponent.h; sourceTree = "<group>"; };
+		EF07A14922D6186100D0D3FF /* JasonMapComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonMapComponent.m; sourceTree = "<group>"; };
+		EF07A14B22D6186100D0D3FF /* JasonTextareaComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonTextareaComponent.m; sourceTree = "<group>"; };
+		EF07A14C22D6186100D0D3FF /* JasonTextareaComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonTextareaComponent.h; sourceTree = "<group>"; };
+		EF07A14E22D6186100D0D3FF /* NoPaddingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPaddingButton.h; sourceTree = "<group>"; };
+		EF07A14F22D6186100D0D3FF /* JasonButtonComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonButtonComponent.m; sourceTree = "<group>"; };
+		EF07A15022D6186100D0D3FF /* NoPaddingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoPaddingButton.m; sourceTree = "<group>"; };
+		EF07A15122D6186100D0D3FF /* JasonButtonComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonButtonComponent.h; sourceTree = "<group>"; };
+		EF07A15322D6186100D0D3FF /* JasonSwitchComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonSwitchComponent.h; sourceTree = "<group>"; };
+		EF07A15422D6186100D0D3FF /* JasonSwitchComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonSwitchComponent.m; sourceTree = "<group>"; };
+		EF07A15622D6186100D0D3FF /* JasonSpaceComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonSpaceComponent.m; sourceTree = "<group>"; };
+		EF07A15722D6186100D0D3FF /* JasonSpaceComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonSpaceComponent.h; sourceTree = "<group>"; };
+		EF07A15A22D6186100D0D3FF /* JasonGeoAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonGeoAction.m; sourceTree = "<group>"; };
+		EF07A15B22D6186100D0D3FF /* JasonGeoAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonGeoAction.h; sourceTree = "<group>"; };
+		EF07A15D22D6186100D0D3FF /* JasonGlobalAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonGlobalAction.h; sourceTree = "<group>"; };
+		EF07A15E22D6186100D0D3FF /* JasonGlobalAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonGlobalAction.m; sourceTree = "<group>"; };
+		EF07A16022D6186100D0D3FF /* JasonAudioAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonAudioAction.h; sourceTree = "<group>"; };
+		EF07A16122D6186100D0D3FF /* JasonAudioAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonAudioAction.m; sourceTree = "<group>"; };
+		EF07A16322D6186100D0D3FF /* JasonNetworkAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonNetworkAction.h; sourceTree = "<group>"; };
+		EF07A16422D6186100D0D3FF /* JasonNetworkAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonNetworkAction.m; sourceTree = "<group>"; };
+		EF07A16622D6186100D0D3FF /* JasonPushAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonPushAction.h; sourceTree = "<group>"; };
+		EF07A16722D6186100D0D3FF /* JasonPushAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonPushAction.m; sourceTree = "<group>"; };
+		EF07A16922D6186100D0D3FF /* JasonWebsocketAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonWebsocketAction.m; sourceTree = "<group>"; };
+		EF07A16A22D6186100D0D3FF /* JasonWebsocketAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonWebsocketAction.h; sourceTree = "<group>"; };
+		EF07A16D22D6186100D0D3FF /* JasonPortraitPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonPortraitPicker.m; sourceTree = "<group>"; };
+		EF07A16E22D6186100D0D3FF /* JasonPortraitPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonPortraitPicker.h; sourceTree = "<group>"; };
+		EF07A16F22D6186100D0D3FF /* JasonMediaAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonMediaAction.h; sourceTree = "<group>"; };
+		EF07A17022D6186100D0D3FF /* JasonMediaAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonMediaAction.m; sourceTree = "<group>"; };
+		EF07A17222D6186100D0D3FF /* JasonUtilAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonUtilAction.h; sourceTree = "<group>"; };
+		EF07A17322D6186100D0D3FF /* JasonUtilAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonUtilAction.m; sourceTree = "<group>"; };
+		EF07A17522D6186100D0D3FF /* JasonReturnAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonReturnAction.m; sourceTree = "<group>"; };
+		EF07A17622D6186100D0D3FF /* JasonReturnAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonReturnAction.h; sourceTree = "<group>"; };
+		EF07A17822D6186100D0D3FF /* JasonConvertAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonConvertAction.m; sourceTree = "<group>"; };
+		EF07A17922D6186100D0D3FF /* JasonConvertAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonConvertAction.h; sourceTree = "<group>"; };
+		EF07A17B22D6186100D0D3FF /* JasonSessionAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonSessionAction.m; sourceTree = "<group>"; };
+		EF07A17C22D6186100D0D3FF /* JasonSessionAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonSessionAction.h; sourceTree = "<group>"; };
+		EF07A17E22D6186100D0D3FF /* JasonScriptAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonScriptAction.m; sourceTree = "<group>"; };
+		EF07A17F22D6186100D0D3FF /* JasonScriptAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonScriptAction.h; sourceTree = "<group>"; };
+		EF07A18122D6186100D0D3FF /* JasonVisionAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonVisionAction.h; sourceTree = "<group>"; };
+		EF07A18222D6186100D0D3FF /* JasonVisionAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonVisionAction.m; sourceTree = "<group>"; };
+		EF07A18422D6186100D0D3FF /* JasonCacheAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonCacheAction.m; sourceTree = "<group>"; };
+		EF07A18522D6186100D0D3FF /* JasonCacheAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonCacheAction.h; sourceTree = "<group>"; };
+		EF07A18722D6186100D0D3FF /* JasonOauthAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonOauthAction.h; sourceTree = "<group>"; };
+		EF07A18822D6186100D0D3FF /* JasonOauthAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonOauthAction.m; sourceTree = "<group>"; };
+		EF07A18A22D6186100D0D3FF /* JasonNotificationAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonNotificationAction.h; sourceTree = "<group>"; };
+		EF07A18B22D6186100D0D3FF /* JasonNotificationAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonNotificationAction.m; sourceTree = "<group>"; };
+		EF07A18D22D6186100D0D3FF /* JasonTimerAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonTimerAction.m; sourceTree = "<group>"; };
+		EF07A18E22D6186100D0D3FF /* JasonTimerAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonTimerAction.h; sourceTree = "<group>"; };
+		EF07A19022D6186100D0D3FF /* JasonLogAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonLogAction.m; sourceTree = "<group>"; };
+		EF07A19122D6186100D0D3FF /* JasonLogAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonLogAction.h; sourceTree = "<group>"; };
+		EF07A19322D6186100D0D3FF /* JasonAgentAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonAgentAction.h; sourceTree = "<group>"; };
+		EF07A19422D6186100D0D3FF /* JasonAgentAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonAgentAction.m; sourceTree = "<group>"; };
+		EF07A19722D6186100D0D3FF /* JasonHorizontalSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JasonHorizontalSection.xib; sourceTree = "<group>"; };
+		EF07A19822D6186100D0D3FF /* JasonHorizontalSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonHorizontalSection.m; sourceTree = "<group>"; };
+		EF07A19A22D6186100D0D3FF /* JasonHorizontalSectionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonHorizontalSectionItem.m; sourceTree = "<group>"; };
+		EF07A19B22D6186100D0D3FF /* JasonHorizontalSectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonHorizontalSectionItem.h; sourceTree = "<group>"; };
+		EF07A19C22D6186100D0D3FF /* JasonHorizontalSectionItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JasonHorizontalSectionItem.xib; sourceTree = "<group>"; };
+		EF07A19D22D6186100D0D3FF /* JasonHorizontalSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonHorizontalSection.h; sourceTree = "<group>"; };
+		EF07A19F22D6186100D0D3FF /* JasonLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonLayout.m; sourceTree = "<group>"; };
+		EF07A1A022D6186100D0D3FF /* JasonLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonLayout.h; sourceTree = "<group>"; };
+		EF07A1A222D6186100D0D3FF /* JasonLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonLayer.m; sourceTree = "<group>"; };
+		EF07A1A322D6186100D0D3FF /* JasonLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonLayer.h; sourceTree = "<group>"; };
+		EF07A1A622D6186100D0D3FF /* JasonVerticalSectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonVerticalSectionItem.h; sourceTree = "<group>"; };
+		EF07A1A722D6186100D0D3FF /* JasonVerticalSectionItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JasonVerticalSectionItem.xib; sourceTree = "<group>"; };
+		EF07A1A822D6186100D0D3FF /* JasonVerticalSectionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonVerticalSectionItem.m; sourceTree = "<group>"; };
+		EF07A1AC22D6186100D0D3FF /* JasonPushService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonPushService.h; sourceTree = "<group>"; };
+		EF07A1AD22D6186100D0D3FF /* JasonPushService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonPushService.m; sourceTree = "<group>"; };
+		EF07A1AF22D6186100D0D3FF /* JasonWebsocketService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonWebsocketService.h; sourceTree = "<group>"; };
+		EF07A1B022D6186100D0D3FF /* JasonWebsocketService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonWebsocketService.m; sourceTree = "<group>"; };
+		EF07A1B222D6186100D0D3FF /* JasonVisionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonVisionService.m; sourceTree = "<group>"; };
+		EF07A1B322D6186100D0D3FF /* JasonVisionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonVisionService.h; sourceTree = "<group>"; };
+		EF07A1B522D6186100D0D3FF /* JasonAgentService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonAgentService.m; sourceTree = "<group>"; };
+		EF07A1B622D6186100D0D3FF /* JasonAgentService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonAgentService.h; sourceTree = "<group>"; };
+		EF0D48752366307500CCC7AF /* hello.test.hjson */ = {isa = PBXFileReference; lastKnownFileType = text; path = hello.test.hjson; sourceTree = "<group>"; };
+		EF0D48792366626500CCC7AF /* hjson.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = hjson.js; sourceTree = "<group>"; };
+		EF342842267C382D00AE3920 /* JasonATTrackingManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JasonATTrackingManager.h; sourceTree = "<group>"; };
+		EF342843267C382D00AE3920 /* JasonATTrackingManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JasonATTrackingManager.m; sourceTree = "<group>"; };
+		EF4DEF38243D62140060AE4E /* custom.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = custom.js; sourceTree = "<group>"; };
+		EF72736623465463005C5515 /* INTUAutoRemoveObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INTUAutoRemoveObserver.m; sourceTree = "<group>"; };
+		EF72736723465463005C5515 /* INTUAutoRemoveObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INTUAutoRemoveObserver.h; sourceTree = "<group>"; };
+		EF73FBE6283ADAB2003627DA /* JasonAppBadgeAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JasonAppBadgeAction.m; sourceTree = "<group>"; };
+		EF73FBE7283ADAB2003627DA /* jr.JasonAppBadgeAction.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = jr.JasonAppBadgeAction.json; sourceTree = "<group>"; };
+		EF73FBE8283ADAB2003627DA /* JasonAppBadgeAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JasonAppBadgeAction.h; sourceTree = "<group>"; };
+		EF82979222D28D96003ED64B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Jasonette/Info.plist; sourceTree = SOURCE_ROOT; };
+		EF82979922D30A71003ED64B /* jr.sample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = jr.sample.json; sourceTree = "<group>"; };
+		EF9781C222D9A0810024FDAE /* hello.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = hello.json; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5E3176561D1E400C00D87778 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5EE85B6C1DA45F8F0049EACE /* MapKit.framework in Frameworks */,
+				ACDAE25BCC06F4D2B1364277 /* Pods_Jasonette.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		024EC1D04366A4267780A921 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BEB1DF488FABA35A255BC8E4 /* Pods-Jasonette.debug.xcconfig */,
+				1BD8E8486EE7AF4E4934685E /* Pods-Jasonette.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5E3176501D1E400C00D87778 = {
+			isa = PBXGroup;
+			children = (
+				EF072F5E22D28B2400973DE1 /* App */,
+				EF072F6122D28B2400973DE1 /* Config */,
+				EF82979822D30A71003ED64B /* Extensions */,
+				EF07A0E622D6186000D0D3FF /* Jasonette */,
+				5E31765A1D1E400C00D87778 /* Products */,
+				024EC1D04366A4267780A921 /* Pods */,
+				7CC63D0148253F040E828E0E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		5E31765A1D1E400C00D87778 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5E3176591D1E400C00D87778 /* Jasonette.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7CC63D0148253F040E828E0E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5EE85B7A1DA595A20049EACE /* UIKit.framework */,
+				5EE85B6B1DA45F8F0049EACE /* MapKit.framework */,
+				BDE1A3D4D97BE5A73CB39B96 /* Pods_Jasonette.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EF05C12222DA5FE000602800 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				EF05C12322DA600000602800 /* WKWebView */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		EF05C12322DA600000602800 /* WKWebView */ = {
+			isa = PBXGroup;
+			children = (
+				EF072F6022D28B2400973DE1 /* com.jasonelle.app.test.webview.json */,
+			);
+			path = WKWebView;
+			sourceTree = "<group>";
+		};
+		EF072F5E22D28B2400973DE1 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				EF4DEF38243D62140060AE4E /* custom.js */,
+				EF072F5F22D28B2400973DE1 /* settings.plist */,
+				EF9781C222D9A0810024FDAE /* hello.json */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		EF072F6122D28B2400973DE1 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				EF072F6522D28B2400973DE1 /* AppDelegate */,
+				EF82979222D28D96003ED64B /* Info.plist */,
+				EF072F6322D28B2400973DE1 /* LaunchScreen.storyboard */,
+				EF072F6722D28B2400973DE1 /* main.m */,
+				EF072F6422D28B2400973DE1 /* Constants.h */,
+				EF072F6222D28B2400973DE1 /* Media.xcassets */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		EF072F6522D28B2400973DE1 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				EF072F6622D28B2400973DE1 /* AppDelegate.h */,
+				EF072F6822D28B2400973DE1 /* AppDelegate.m */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		EF07A0E622D6186000D0D3FF /* Jasonette */ = {
+			isa = PBXGroup;
+			children = (
+				EF05C12222DA5FE000602800 /* Tests */,
+				EF07A0E722D6186000D0D3FF /* Core */,
+				EF07A13722D6186100D0D3FF /* Components */,
+				EF07A15822D6186100D0D3FF /* Actions */,
+				EF07A19522D6186100D0D3FF /* Views */,
+				EF07A1AA22D6186100D0D3FF /* Services */,
+			);
+			path = Jasonette;
+			sourceTree = "<group>";
+		};
+		EF07A0E722D6186000D0D3FF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A0E822D6186000D0D3FF /* Logger */,
+				EF07A0EC22D6186000D0D3FF /* Memory */,
+				EF07A0EF22D6186000D0D3FF /* Networking */,
+				EF07A0F522D6186000D0D3FF /* Parser */,
+				EF07A0F822D6186000D0D3FF /* Components */,
+				EF07A10322D6186000D0D3FF /* Actions */,
+				EF07A10822D6186000D0D3FF /* Jason */,
+				EF07A10B22D6186100D0D3FF /* AppDelegate */,
+				EF07A10E22D6186100D0D3FF /* Stack */,
+				EF07A11122D6186100D0D3FF /* Views */,
+				EF07A11722D6186100D0D3FF /* Assets */,
+				EF07A12C22D6186100D0D3FF /* Helpers */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		EF07A0E822D6186000D0D3FF /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A0E922D6186000D0D3FF /* JasonLogger.m */,
+				EF07A0EA22D6186000D0D3FF /* README.md */,
+				EF07A0EB22D6186000D0D3FF /* JasonLogger.h */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		EF07A0EC22D6186000D0D3FF /* Memory */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A0ED22D6186000D0D3FF /* JasonMemory.m */,
+				EF07A0EE22D6186000D0D3FF /* JasonMemory.h */,
+			);
+			path = Memory;
+			sourceTree = "<group>";
+		};
+		EF07A0EF22D6186000D0D3FF /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A0F022D6186000D0D3FF /* Serializer */,
+				EF07A0F322D6186000D0D3FF /* JasonNetworking.h */,
+				EF07A0F422D6186000D0D3FF /* JasonNetworking.m */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		EF07A0F022D6186000D0D3FF /* Serializer */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A0F122D6186000D0D3FF /* JASONResponseSerializer.m */,
+				EF07A0F222D6186000D0D3FF /* JASONResponseSerializer.h */,
+			);
+			path = Serializer;
+			sourceTree = "<group>";
+		};
+		EF07A0F522D6186000D0D3FF /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A0F622D6186000D0D3FF /* JasonParser.h */,
+				EF07A0F722D6186000D0D3FF /* JasonParser.m */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
+		EF07A0F822D6186000D0D3FF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A0F922D6186000D0D3FF /* JasonComponent */,
+				EF07A0FC22D6186000D0D3FF /* UIView+JasonPayload */,
+				EF07A0FF22D6186000D0D3FF /* JasonComponentProtocol.h */,
+				EF07A10022D6186000D0D3FF /* Factory */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		EF07A0F922D6186000D0D3FF /* JasonComponent */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A0FA22D6186000D0D3FF /* JasonComponent.m */,
+				EF07A0FB22D6186000D0D3FF /* JasonComponent.h */,
+			);
+			path = JasonComponent;
+			sourceTree = "<group>";
+		};
+		EF07A0FC22D6186000D0D3FF /* UIView+JasonPayload */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A0FD22D6186000D0D3FF /* UIView+JasonComponentPayload.m */,
+				EF07A0FE22D6186000D0D3FF /* UIView+JasonComponentPayload.h */,
+			);
+			path = "UIView+JasonPayload";
+			sourceTree = "<group>";
+		};
+		EF07A10022D6186000D0D3FF /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A10122D6186000D0D3FF /* JasonComponentFactory.h */,
+				EF07A10222D6186000D0D3FF /* JasonComponentFactory.m */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		EF07A10322D6186000D0D3FF /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A10422D6186000D0D3FF /* JasonAction */,
+				EF07A10722D6186000D0D3FF /* JasonActionProtocol.h */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
+		EF07A10422D6186000D0D3FF /* JasonAction */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A10522D6186000D0D3FF /* JasonAction.h */,
+				EF07A10622D6186000D0D3FF /* JasonAction.m */,
+			);
+			path = JasonAction;
+			sourceTree = "<group>";
+		};
+		EF07A10822D6186000D0D3FF /* Jason */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A10922D6186000D0D3FF /* Jason.m */,
+				EF07A10A22D6186100D0D3FF /* Jason.h */,
+			);
+			path = Jason;
+			sourceTree = "<group>";
+		};
+		EF07A10B22D6186100D0D3FF /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A10C22D6186100D0D3FF /* JasonAppDelegate.h */,
+				EF07A10D22D6186100D0D3FF /* JasonAppDelegate.m */,
+				EF342846267C383500AE3920 /* ATTrackingManager */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		EF07A10E22D6186100D0D3FF /* Stack */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A10F22D6186100D0D3FF /* JasonStack.h */,
+				EF07A11022D6186100D0D3FF /* JasonStack.m */,
+			);
+			path = Stack;
+			sourceTree = "<group>";
+		};
+		EF07A11122D6186100D0D3FF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A11222D6186100D0D3FF /* JasonViewController.m */,
+				EF07A11322D6186100D0D3FF /* JasonViewController.h */,
+				EF07A11422D6186100D0D3FF /* Badge */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EF07A11422D6186100D0D3FF /* Badge */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A11522D6186100D0D3FF /* UIBarButtonItem+Badge.m */,
+				EF07A11622D6186100D0D3FF /* UIBarButtonItem+Badge.h */,
+			);
+			path = Badge;
+			sourceTree = "<group>";
+		};
+		EF07A11722D6186100D0D3FF /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A11822D6186100D0D3FF /* images */,
+				EF07A12322D6186100D0D3FF /* js */,
+				EF07A12922D6186100D0D3FF /* json */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		EF07A11822D6186100D0D3FF /* images */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A11922D6186100D0D3FF /* placeholder@2x.png */,
+				EF07A11A22D6186100D0D3FF /* placeholderr@2x.png */,
+				EF07A11B22D6186100D0D3FF /* icon-info@2x.png */,
+				EF07A11C22D6186100D0D3FF /* icon-error.png */,
+				EF07A11D22D6186100D0D3FF /* icon-info.png */,
+				EF07A11E22D6186100D0D3FF /* more@2x.png */,
+				EF07A11F22D6186100D0D3FF /* Next@2x.png */,
+				EF07A12022D6186100D0D3FF /* icon-success@2x.png */,
+				EF07A12122D6186100D0D3FF /* icon-error@2x.png */,
+				EF07A12222D6186100D0D3FF /* icon-success.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		EF07A12322D6186100D0D3FF /* js */ = {
+			isa = PBXGroup;
+			children = (
+				EF0D487023662BCA00CCC7AF /* hjson */,
+				EF07A12422D6186100D0D3FF /* st.js */,
+				EF07A12522D6186100D0D3FF /* rss.js */,
+				EF07A12622D6186100D0D3FF /* xhtml.js */,
+				EF07A12722D6186100D0D3FF /* csv.js */,
+				EF07A12822D6186100D0D3FF /* agent.js */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		EF07A12922D6186100D0D3FF /* json */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A12A22D6186100D0D3FF /* error.json */,
+				EF07A12B22D6186100D0D3FF /* preload.json */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
+		EF07A12C22D6186100D0D3FF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				EF72736523465463005C5515 /* INTUAutoRemoveObserver */,
+				EF07A12D22D6186100D0D3FF /* JasonHelper */,
+				EF07A13022D6186100D0D3FF /* JasonNSClassFromString */,
+				EF07A13322D6186100D0D3FF /* JasonOptionHelper.h */,
+				EF07A13422D6186100D0D3FF /* NSObject+JSONPayload.h */,
+				EF07A13522D6186100D0D3FF /* JasonOptionHelper.m */,
+				EF07A13622D6186100D0D3FF /* NSObject+JSONPayload.m */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		EF07A12D22D6186100D0D3FF /* JasonHelper */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A12E22D6186100D0D3FF /* JasonHelper.h */,
+				EF07A12F22D6186100D0D3FF /* JasonHelper.m */,
+			);
+			path = JasonHelper;
+			sourceTree = "<group>";
+		};
+		EF07A13022D6186100D0D3FF /* JasonNSClassFromString */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A13122D6186100D0D3FF /* JasonNSClassFromString.h */,
+				EF07A13222D6186100D0D3FF /* JasonNSClassFromString.m */,
+			);
+			path = JasonNSClassFromString;
+			sourceTree = "<group>";
+		};
+		EF07A13722D6186100D0D3FF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A13822D6186100D0D3FF /* label */,
+				EF07A13B22D6186100D0D3FF /* textfield */,
+				EF07A13E22D6186100D0D3FF /* slider */,
+				EF07A14122D6186100D0D3FF /* html */,
+				EF07A14422D6186100D0D3FF /* image */,
+				EF07A14722D6186100D0D3FF /* map */,
+				EF07A14A22D6186100D0D3FF /* textarea */,
+				EF07A14D22D6186100D0D3FF /* button */,
+				EF07A15222D6186100D0D3FF /* switch */,
+				EF07A15522D6186100D0D3FF /* space */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		EF07A13822D6186100D0D3FF /* label */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A13922D6186100D0D3FF /* JasonLabelComponent.h */,
+				EF07A13A22D6186100D0D3FF /* JasonLabelComponent.m */,
+			);
+			path = label;
+			sourceTree = "<group>";
+		};
+		EF07A13B22D6186100D0D3FF /* textfield */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A13C22D6186100D0D3FF /* JasonTextfieldComponent.m */,
+				EF07A13D22D6186100D0D3FF /* JasonTextfieldComponent.h */,
+			);
+			path = textfield;
+			sourceTree = "<group>";
+		};
+		EF07A13E22D6186100D0D3FF /* slider */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A13F22D6186100D0D3FF /* JasonSliderComponent.m */,
+				EF07A14022D6186100D0D3FF /* JasonSliderComponent.h */,
+			);
+			path = slider;
+			sourceTree = "<group>";
+		};
+		EF07A14122D6186100D0D3FF /* html */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A14222D6186100D0D3FF /* JasonHtmlComponent.m */,
+				EF07A14322D6186100D0D3FF /* JasonHtmlComponent.h */,
+			);
+			path = html;
+			sourceTree = "<group>";
+		};
+		EF07A14422D6186100D0D3FF /* image */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A14522D6186100D0D3FF /* JasonImageComponent.h */,
+				EF07A14622D6186100D0D3FF /* JasonImageComponent.m */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
+		EF07A14722D6186100D0D3FF /* map */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A14822D6186100D0D3FF /* JasonMapComponent.h */,
+				EF07A14922D6186100D0D3FF /* JasonMapComponent.m */,
+			);
+			path = map;
+			sourceTree = "<group>";
+		};
+		EF07A14A22D6186100D0D3FF /* textarea */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A14B22D6186100D0D3FF /* JasonTextareaComponent.m */,
+				EF07A14C22D6186100D0D3FF /* JasonTextareaComponent.h */,
+			);
+			path = textarea;
+			sourceTree = "<group>";
+		};
+		EF07A14D22D6186100D0D3FF /* button */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A14E22D6186100D0D3FF /* NoPaddingButton.h */,
+				EF07A14F22D6186100D0D3FF /* JasonButtonComponent.m */,
+				EF07A15022D6186100D0D3FF /* NoPaddingButton.m */,
+				EF07A15122D6186100D0D3FF /* JasonButtonComponent.h */,
+			);
+			path = button;
+			sourceTree = "<group>";
+		};
+		EF07A15222D6186100D0D3FF /* switch */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A15322D6186100D0D3FF /* JasonSwitchComponent.h */,
+				EF07A15422D6186100D0D3FF /* JasonSwitchComponent.m */,
+			);
+			path = switch;
+			sourceTree = "<group>";
+		};
+		EF07A15522D6186100D0D3FF /* space */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A15622D6186100D0D3FF /* JasonSpaceComponent.m */,
+				EF07A15722D6186100D0D3FF /* JasonSpaceComponent.h */,
+			);
+			path = space;
+			sourceTree = "<group>";
+		};
+		EF07A15822D6186100D0D3FF /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A15922D6186100D0D3FF /* $geo */,
+				EF07A15C22D6186100D0D3FF /* $global */,
+				EF07A15F22D6186100D0D3FF /* $audio */,
+				EF07A16222D6186100D0D3FF /* $network */,
+				EF07A16522D6186100D0D3FF /* $push */,
+				EF07A16822D6186100D0D3FF /* $websocket */,
+				EF07A16B22D6186100D0D3FF /* $media */,
+				EF07A17122D6186100D0D3FF /* $util */,
+				EF07A17422D6186100D0D3FF /* $return */,
+				EF07A17722D6186100D0D3FF /* $convert */,
+				EF07A17A22D6186100D0D3FF /* $session */,
+				EF07A17D22D6186100D0D3FF /* $script */,
+				EF07A18022D6186100D0D3FF /* $vision */,
+				EF07A18322D6186100D0D3FF /* $cache */,
+				EF07A18622D6186100D0D3FF /* $oauth */,
+				EF07A18922D6186100D0D3FF /* $notification */,
+				EF07A18C22D6186100D0D3FF /* $timer */,
+				EF07A18F22D6186100D0D3FF /* $log */,
+				EF07A19222D6186100D0D3FF /* $agent */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
+		EF07A15922D6186100D0D3FF /* $geo */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A15A22D6186100D0D3FF /* JasonGeoAction.m */,
+				EF07A15B22D6186100D0D3FF /* JasonGeoAction.h */,
+			);
+			path = $geo;
+			sourceTree = "<group>";
+		};
+		EF07A15C22D6186100D0D3FF /* $global */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A15D22D6186100D0D3FF /* JasonGlobalAction.h */,
+				EF07A15E22D6186100D0D3FF /* JasonGlobalAction.m */,
+			);
+			path = $global;
+			sourceTree = "<group>";
+		};
+		EF07A15F22D6186100D0D3FF /* $audio */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A16022D6186100D0D3FF /* JasonAudioAction.h */,
+				EF07A16122D6186100D0D3FF /* JasonAudioAction.m */,
+			);
+			path = $audio;
+			sourceTree = "<group>";
+		};
+		EF07A16222D6186100D0D3FF /* $network */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A16322D6186100D0D3FF /* JasonNetworkAction.h */,
+				EF07A16422D6186100D0D3FF /* JasonNetworkAction.m */,
+			);
+			path = $network;
+			sourceTree = "<group>";
+		};
+		EF07A16522D6186100D0D3FF /* $push */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A16622D6186100D0D3FF /* JasonPushAction.h */,
+				EF07A16722D6186100D0D3FF /* JasonPushAction.m */,
+			);
+			path = $push;
+			sourceTree = "<group>";
+		};
+		EF07A16822D6186100D0D3FF /* $websocket */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A16922D6186100D0D3FF /* JasonWebsocketAction.m */,
+				EF07A16A22D6186100D0D3FF /* JasonWebsocketAction.h */,
+			);
+			path = $websocket;
+			sourceTree = "<group>";
+		};
+		EF07A16B22D6186100D0D3FF /* $media */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A16C22D6186100D0D3FF /* Picker */,
+				EF07A16F22D6186100D0D3FF /* JasonMediaAction.h */,
+				EF07A17022D6186100D0D3FF /* JasonMediaAction.m */,
+			);
+			path = $media;
+			sourceTree = "<group>";
+		};
+		EF07A16C22D6186100D0D3FF /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A16D22D6186100D0D3FF /* JasonPortraitPicker.m */,
+				EF07A16E22D6186100D0D3FF /* JasonPortraitPicker.h */,
+			);
+			path = Picker;
+			sourceTree = "<group>";
+		};
+		EF07A17122D6186100D0D3FF /* $util */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A17222D6186100D0D3FF /* JasonUtilAction.h */,
+				EF07A17322D6186100D0D3FF /* JasonUtilAction.m */,
+			);
+			path = $util;
+			sourceTree = "<group>";
+		};
+		EF07A17422D6186100D0D3FF /* $return */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A17522D6186100D0D3FF /* JasonReturnAction.m */,
+				EF07A17622D6186100D0D3FF /* JasonReturnAction.h */,
+			);
+			path = $return;
+			sourceTree = "<group>";
+		};
+		EF07A17722D6186100D0D3FF /* $convert */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A17822D6186100D0D3FF /* JasonConvertAction.m */,
+				EF07A17922D6186100D0D3FF /* JasonConvertAction.h */,
+			);
+			path = $convert;
+			sourceTree = "<group>";
+		};
+		EF07A17A22D6186100D0D3FF /* $session */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A17B22D6186100D0D3FF /* JasonSessionAction.m */,
+				EF07A17C22D6186100D0D3FF /* JasonSessionAction.h */,
+			);
+			path = $session;
+			sourceTree = "<group>";
+		};
+		EF07A17D22D6186100D0D3FF /* $script */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A17E22D6186100D0D3FF /* JasonScriptAction.m */,
+				EF07A17F22D6186100D0D3FF /* JasonScriptAction.h */,
+			);
+			path = $script;
+			sourceTree = "<group>";
+		};
+		EF07A18022D6186100D0D3FF /* $vision */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A18122D6186100D0D3FF /* JasonVisionAction.h */,
+				EF07A18222D6186100D0D3FF /* JasonVisionAction.m */,
+			);
+			path = $vision;
+			sourceTree = "<group>";
+		};
+		EF07A18322D6186100D0D3FF /* $cache */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A18422D6186100D0D3FF /* JasonCacheAction.m */,
+				EF07A18522D6186100D0D3FF /* JasonCacheAction.h */,
+			);
+			path = $cache;
+			sourceTree = "<group>";
+		};
+		EF07A18622D6186100D0D3FF /* $oauth */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A18722D6186100D0D3FF /* JasonOauthAction.h */,
+				EF07A18822D6186100D0D3FF /* JasonOauthAction.m */,
+			);
+			path = $oauth;
+			sourceTree = "<group>";
+		};
+		EF07A18922D6186100D0D3FF /* $notification */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A18A22D6186100D0D3FF /* JasonNotificationAction.h */,
+				EF07A18B22D6186100D0D3FF /* JasonNotificationAction.m */,
+			);
+			path = $notification;
+			sourceTree = "<group>";
+		};
+		EF07A18C22D6186100D0D3FF /* $timer */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A18D22D6186100D0D3FF /* JasonTimerAction.m */,
+				EF07A18E22D6186100D0D3FF /* JasonTimerAction.h */,
+			);
+			path = $timer;
+			sourceTree = "<group>";
+		};
+		EF07A18F22D6186100D0D3FF /* $log */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A19022D6186100D0D3FF /* JasonLogAction.m */,
+				EF07A19122D6186100D0D3FF /* JasonLogAction.h */,
+			);
+			path = $log;
+			sourceTree = "<group>";
+		};
+		EF07A19222D6186100D0D3FF /* $agent */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A19322D6186100D0D3FF /* JasonAgentAction.h */,
+				EF07A19422D6186100D0D3FF /* JasonAgentAction.m */,
+			);
+			path = $agent;
+			sourceTree = "<group>";
+		};
+		EF07A19522D6186100D0D3FF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A19622D6186100D0D3FF /* Horizontal */,
+				EF07A19E22D6186100D0D3FF /* Layout */,
+				EF07A1A122D6186100D0D3FF /* Layer */,
+				EF07A1A422D6186100D0D3FF /* Vertical */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EF07A19622D6186100D0D3FF /* Horizontal */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A19722D6186100D0D3FF /* JasonHorizontalSection.xib */,
+				EF07A19822D6186100D0D3FF /* JasonHorizontalSection.m */,
+				EF07A19922D6186100D0D3FF /* Item */,
+				EF07A19D22D6186100D0D3FF /* JasonHorizontalSection.h */,
+			);
+			path = Horizontal;
+			sourceTree = "<group>";
+		};
+		EF07A19922D6186100D0D3FF /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A19A22D6186100D0D3FF /* JasonHorizontalSectionItem.m */,
+				EF07A19B22D6186100D0D3FF /* JasonHorizontalSectionItem.h */,
+				EF07A19C22D6186100D0D3FF /* JasonHorizontalSectionItem.xib */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
+		EF07A19E22D6186100D0D3FF /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A19F22D6186100D0D3FF /* JasonLayout.m */,
+				EF07A1A022D6186100D0D3FF /* JasonLayout.h */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		EF07A1A122D6186100D0D3FF /* Layer */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A1A222D6186100D0D3FF /* JasonLayer.m */,
+				EF07A1A322D6186100D0D3FF /* JasonLayer.h */,
+			);
+			path = Layer;
+			sourceTree = "<group>";
+		};
+		EF07A1A422D6186100D0D3FF /* Vertical */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A1A522D6186100D0D3FF /* Item */,
+			);
+			path = Vertical;
+			sourceTree = "<group>";
+		};
+		EF07A1A522D6186100D0D3FF /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A1A622D6186100D0D3FF /* JasonVerticalSectionItem.h */,
+				EF07A1A722D6186100D0D3FF /* JasonVerticalSectionItem.xib */,
+				EF07A1A822D6186100D0D3FF /* JasonVerticalSectionItem.m */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
+		EF07A1AA22D6186100D0D3FF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A1AB22D6186100D0D3FF /* $push */,
+				EF07A1AE22D6186100D0D3FF /* $websocket */,
+				EF07A1B122D6186100D0D3FF /* $vision */,
+				EF07A1B422D6186100D0D3FF /* $agent */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		EF07A1AB22D6186100D0D3FF /* $push */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A1AC22D6186100D0D3FF /* JasonPushService.h */,
+				EF07A1AD22D6186100D0D3FF /* JasonPushService.m */,
+			);
+			path = $push;
+			sourceTree = "<group>";
+		};
+		EF07A1AE22D6186100D0D3FF /* $websocket */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A1AF22D6186100D0D3FF /* JasonWebsocketService.h */,
+				EF07A1B022D6186100D0D3FF /* JasonWebsocketService.m */,
+			);
+			path = $websocket;
+			sourceTree = "<group>";
+		};
+		EF07A1B122D6186100D0D3FF /* $vision */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A1B222D6186100D0D3FF /* JasonVisionService.m */,
+				EF07A1B322D6186100D0D3FF /* JasonVisionService.h */,
+			);
+			path = $vision;
+			sourceTree = "<group>";
+		};
+		EF07A1B422D6186100D0D3FF /* $agent */ = {
+			isa = PBXGroup;
+			children = (
+				EF07A1B522D6186100D0D3FF /* JasonAgentService.m */,
+				EF07A1B622D6186100D0D3FF /* JasonAgentService.h */,
+			);
+			path = $agent;
+			sourceTree = "<group>";
+		};
+		EF0D487023662BCA00CCC7AF /* hjson */ = {
+			isa = PBXGroup;
+			children = (
+				EF0D48792366626500CCC7AF /* hjson.js */,
+				EF0D48752366307500CCC7AF /* hello.test.hjson */,
+			);
+			path = hjson;
+			sourceTree = "<group>";
+		};
+		EF342846267C383500AE3920 /* ATTrackingManager */ = {
+			isa = PBXGroup;
+			children = (
+				EF342842267C382D00AE3920 /* JasonATTrackingManager.h */,
+				EF342843267C382D00AE3920 /* JasonATTrackingManager.m */,
+			);
+			path = ATTrackingManager;
+			sourceTree = "<group>";
+		};
+		EF72736523465463005C5515 /* INTUAutoRemoveObserver */ = {
+			isa = PBXGroup;
+			children = (
+				EF72736623465463005C5515 /* INTUAutoRemoveObserver.m */,
+				EF72736723465463005C5515 /* INTUAutoRemoveObserver.h */,
+			);
+			path = INTUAutoRemoveObserver;
+			sourceTree = "<group>";
+		};
+		EF73FBE5283ADAB2003627DA /* AppBadgeAction */ = {
+			isa = PBXGroup;
+			children = (
+				EF73FBE8283ADAB2003627DA /* JasonAppBadgeAction.h */,
+				EF73FBE6283ADAB2003627DA /* JasonAppBadgeAction.m */,
+				EF73FBE7283ADAB2003627DA /* jr.JasonAppBadgeAction.json */,
+			);
+			path = AppBadgeAction;
+			sourceTree = "<group>";
+		};
+		EF82979822D30A71003ED64B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EF73FBE5283ADAB2003627DA /* AppBadgeAction */,
+				EF82979922D30A71003ED64B /* jr.sample.json */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5E3176581D1E400C00D87778 /* Jasonette */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E3176701D1E400C00D87778 /* Build configuration list for PBXNativeTarget "Jasonette" */;
+			buildPhases = (
+				2358BCC5070D5513080379E3 /* [CP] Check Pods Manifest.lock */,
+				5E3176551D1E400C00D87778 /* Sources */,
+				5E3176561D1E400C00D87778 /* Frameworks */,
+				5E3176571D1E400C00D87778 /* Resources */,
+				730C0CB152BB7DA792FDB1F5 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Jasonette;
+			productName = Jasonette;
+			productReference = 5E3176591D1E400C00D87778 /* Jasonette.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5E3176511D1E400C00D87778 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1240;
+				ORGANIZATIONNAME = Jasonette;
+				TargetAttributes = {
+					5E3176581D1E400C00D87778 = {
+						CreatedOnToolsVersion = 7.3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 5E3176541D1E400C00D87778 /* Build configuration list for PBXProject "Jasonette" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5E3176501D1E400C00D87778;
+			productRefGroup = 5E31765A1D1E400C00D87778 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5E3176581D1E400C00D87778 /* Jasonette */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5E3176571D1E400C00D87778 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF07A1B822D6186100D0D3FF /* README.md in Resources */,
+				EF07A1CD22D6186100D0D3FF /* icon-success@2x.png in Resources */,
+				EF07A1D622D6186100D0D3FF /* preload.json in Resources */,
+				EF07A1CF22D6186100D0D3FF /* icon-success.png in Resources */,
+				EF07A1C622D6186100D0D3FF /* placeholder@2x.png in Resources */,
+				EF07303B22D28B2400973DE1 /* com.jasonelle.app.test.webview.json in Resources */,
+				EF07A1D322D6186100D0D3FF /* csv.js in Resources */,
+				EF07A1D022D6186100D0D3FF /* st.js in Resources */,
+				EF07A20022D6186100D0D3FF /* JasonVerticalSectionItem.xib in Resources */,
+				EF07A1CB22D6186100D0D3FF /* more@2x.png in Resources */,
+				EF07A1CA22D6186100D0D3FF /* icon-info.png in Resources */,
+				EF07A1C822D6186100D0D3FF /* icon-info@2x.png in Resources */,
+				EF07303D22D28B2400973DE1 /* LaunchScreen.storyboard in Resources */,
+				EF07303C22D28B2400973DE1 /* Media.xcassets in Resources */,
+				EF07A1D122D6186100D0D3FF /* rss.js in Resources */,
+				EF4DEF39243D62140060AE4E /* custom.js in Resources */,
+				EF0D48762366307500CCC7AF /* hello.test.hjson in Resources */,
+				EF07A1CC22D6186100D0D3FF /* Next@2x.png in Resources */,
+				EF0D487A2366626500CCC7AF /* hjson.js in Resources */,
+				EF07A1D422D6186100D0D3FF /* agent.js in Resources */,
+				EF9781C322D9A0810024FDAE /* hello.json in Resources */,
+				EF07A1C722D6186100D0D3FF /* placeholderr@2x.png in Resources */,
+				EF82979B22D30A71003ED64B /* jr.sample.json in Resources */,
+				EF07A1D222D6186100D0D3FF /* xhtml.js in Resources */,
+				EF07A1D522D6186100D0D3FF /* error.json in Resources */,
+				EF73FBEA283ADAB2003627DA /* jr.JasonAppBadgeAction.json in Resources */,
+				EF07303A22D28B2400973DE1 /* settings.plist in Resources */,
+				EF07A1FA22D6186100D0D3FF /* JasonHorizontalSection.xib in Resources */,
+				EF07A1FD22D6186100D0D3FF /* JasonHorizontalSectionItem.xib in Resources */,
+				EF07A1C922D6186100D0D3FF /* icon-error.png in Resources */,
+				EF07A1CE22D6186100D0D3FF /* icon-error@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2358BCC5070D5513080379E3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Jasonette-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		730C0CB152BB7DA792FDB1F5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Jasonette/Pods-Jasonette-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/AFOAuth2Manager/AFOAuth2Manager.framework",
+				"${BUILT_PRODUCTS_DIR}/AHKActionSheet/AHKActionSheet.framework",
+				"${BUILT_PRODUCTS_DIR}/APAddressBook/APAddressBook.framework",
+				"${BUILT_PRODUCTS_DIR}/BBBadgeBarButtonItem/BBBadgeBarButtonItem.framework",
+				"${BUILT_PRODUCTS_DIR}/DAKeyboardControl/DAKeyboardControl.framework",
+				"${BUILT_PRODUCTS_DIR}/DHSmartScreenshot/DHSmartScreenshot.framework",
+				"${BUILT_PRODUCTS_DIR}/DTCoreText/DTCoreText.framework",
+				"${BUILT_PRODUCTS_DIR}/DTFoundation/DTFoundation.framework",
+				"${BUILT_PRODUCTS_DIR}/FLEX/FLEX.framework",
+				"${BUILT_PRODUCTS_DIR}/FreeStreamer/FreeStreamer.framework",
+				"${BUILT_PRODUCTS_DIR}/HMSegmentedControl/HMSegmentedControl.framework",
+				"${BUILT_PRODUCTS_DIR}/INTULocationManager/INTULocationManager.framework",
+				"${BUILT_PRODUCTS_DIR}/IQAudioRecorderController/IQAudioRecorderController.framework",
+				"${BUILT_PRODUCTS_DIR}/JDStatusBarNotification/JDStatusBarNotification.framework",
+				"${BUILT_PRODUCTS_DIR}/JSCoreBom/JSCoreBom.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/NSGIF/NSGIF.framework",
+				"${BUILT_PRODUCTS_DIR}/NSHash/NSHash.framework",
+				"${BUILT_PRODUCTS_DIR}/OMGHTTPURLRQ/OMGHTTPURLRQ.framework",
+				"${BUILT_PRODUCTS_DIR}/PHFComposeBarView/PHFComposeBarView.framework",
+				"${BUILT_PRODUCTS_DIR}/PHFDelegateChain/PHFDelegateChain.framework",
+				"${BUILT_PRODUCTS_DIR}/REMenu/REMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/RMActionController/RMActionController.framework",
+				"${BUILT_PRODUCTS_DIR}/RMDateSelectionViewController/RMDateSelectionViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SBJson/SBJson.framework",
+				"${BUILT_PRODUCTS_DIR}/SCSiriWaveformView/SCSiriWaveformView.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SWFrameButton/SWFrameButton.framework",
+				"${BUILT_PRODUCTS_DIR}/SWTableViewCell/SWTableViewCell.framework",
+				"${BUILT_PRODUCTS_DIR}/SZTextView/SZTextView.framework",
+				"${BUILT_PRODUCTS_DIR}/SocketRocket/SocketRocket.framework",
+				"${BUILT_PRODUCTS_DIR}/TDOAuth/TDOAuth.framework",
+				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/TWMessageBarManager/TWMessageBarManager.framework",
+				"${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework",
+				"${BUILT_PRODUCTS_DIR}/libPhoneNumber-iOS/libPhoneNumber_iOS.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFOAuth2Manager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AHKActionSheet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/APAddressBook.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BBBadgeBarButtonItem.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DAKeyboardControl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DHSmartScreenshot.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTCoreText.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTFoundation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLEX.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FreeStreamer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HMSegmentedControl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/INTULocationManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQAudioRecorderController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JDStatusBarNotification.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSCoreBom.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSGIF.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSHash.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OMGHTTPURLRQ.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PHFComposeBarView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PHFDelegateChain.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/REMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RMActionController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RMDateSelectionViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SBJson.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSiriWaveformView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWFrameButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWTableViewCell.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SZTextView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketRocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TDOAuth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TWMessageBarManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICKeyChainStore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libPhoneNumber_iOS.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Jasonette/Pods-Jasonette-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5E3176551D1E400C00D87778 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF07A1BC22D6186100D0D3FF /* JasonParser.m in Sources */,
+				EF07A1BD22D6186100D0D3FF /* JasonComponent.m in Sources */,
+				EF07A1F322D6186100D0D3FF /* JasonVisionAction.m in Sources */,
+				EF07A1DE22D6186100D0D3FF /* JasonHtmlComponent.m in Sources */,
+				EF72736823465463005C5515 /* INTUAutoRemoveObserver.m in Sources */,
+				EF07A1FC22D6186100D0D3FF /* JasonHorizontalSectionItem.m in Sources */,
+				EF07A1C322D6186100D0D3FF /* JasonStack.m in Sources */,
+				EF07A1BE22D6186100D0D3FF /* UIView+JasonComponentPayload.m in Sources */,
+				EF07A1EA22D6186100D0D3FF /* JasonPushAction.m in Sources */,
+				EF07A1F922D6186100D0D3FF /* JasonAgentAction.m in Sources */,
+				EF07A1B922D6186100D0D3FF /* JasonMemory.m in Sources */,
+				EF07A1E022D6186100D0D3FF /* JasonMapComponent.m in Sources */,
+				EF07A1C022D6186100D0D3FF /* JasonAction.m in Sources */,
+				EF07A1BB22D6186100D0D3FF /* JasonNetworking.m in Sources */,
+				EF07A1EC22D6186100D0D3FF /* JasonPortraitPicker.m in Sources */,
+				EF07A1EE22D6186100D0D3FF /* JasonUtilAction.m in Sources */,
+				EF07A1E422D6186100D0D3FF /* JasonSwitchComponent.m in Sources */,
+				EF07A1F022D6186100D0D3FF /* JasonConvertAction.m in Sources */,
+				EF07A20622D6186100D0D3FF /* JasonAgentService.m in Sources */,
+				EF07A1DF22D6186100D0D3FF /* JasonImageComponent.m in Sources */,
+				EF07A1F522D6186100D0D3FF /* JasonOauthAction.m in Sources */,
+				EF342844267C382D00AE3920 /* JasonATTrackingManager.m in Sources */,
+				EF07A20422D6186100D0D3FF /* JasonWebsocketService.m in Sources */,
+				EF07A1F422D6186100D0D3FF /* JasonCacheAction.m in Sources */,
+				EF07A1E922D6186100D0D3FF /* JasonNetworkAction.m in Sources */,
+				EF07A1B722D6186100D0D3FF /* JasonLogger.m in Sources */,
+				EF07A1F822D6186100D0D3FF /* JasonLogAction.m in Sources */,
+				EF07A1D722D6186100D0D3FF /* JasonHelper.m in Sources */,
+				EF07A1DC22D6186100D0D3FF /* JasonTextfieldComponent.m in Sources */,
+				EF07A1BF22D6186100D0D3FF /* JasonComponentFactory.m in Sources */,
+				EF07A1C222D6186100D0D3FF /* JasonAppDelegate.m in Sources */,
+				EF07A1FE22D6186100D0D3FF /* JasonLayout.m in Sources */,
+				EF07A1F722D6186100D0D3FF /* JasonTimerAction.m in Sources */,
+				EF07A1E822D6186100D0D3FF /* JasonAudioAction.m in Sources */,
+				EF07A1E222D6186100D0D3FF /* JasonButtonComponent.m in Sources */,
+				EF07A1DD22D6186100D0D3FF /* JasonSliderComponent.m in Sources */,
+				EF07A20322D6186100D0D3FF /* JasonPushService.m in Sources */,
+				EF07A1BA22D6186100D0D3FF /* JASONResponseSerializer.m in Sources */,
+				EF07A1D922D6186100D0D3FF /* JasonOptionHelper.m in Sources */,
+				EF07A1D822D6186100D0D3FF /* JasonNSClassFromString.m in Sources */,
+				EF07A1FB22D6186100D0D3FF /* JasonHorizontalSection.m in Sources */,
+				EF07A1EB22D6186100D0D3FF /* JasonWebsocketAction.m in Sources */,
+				EF07A1E722D6186100D0D3FF /* JasonGlobalAction.m in Sources */,
+				EF07A20122D6186100D0D3FF /* JasonVerticalSectionItem.m in Sources */,
+				EF07A20522D6186100D0D3FF /* JasonVisionService.m in Sources */,
+				EF07A1C122D6186100D0D3FF /* Jason.m in Sources */,
+				EF07303F22D28B2400973DE1 /* AppDelegate.m in Sources */,
+				EF07A1E322D6186100D0D3FF /* NoPaddingButton.m in Sources */,
+				EF07A1E522D6186100D0D3FF /* JasonSpaceComponent.m in Sources */,
+				EF07A1F622D6186100D0D3FF /* JasonNotificationAction.m in Sources */,
+				EF07A1EF22D6186100D0D3FF /* JasonReturnAction.m in Sources */,
+				EF73FBE9283ADAB2003627DA /* JasonAppBadgeAction.m in Sources */,
+				EF07A1DA22D6186100D0D3FF /* NSObject+JSONPayload.m in Sources */,
+				EF07303E22D28B2400973DE1 /* main.m in Sources */,
+				EF07A1F222D6186100D0D3FF /* JasonScriptAction.m in Sources */,
+				EF07A1E122D6186100D0D3FF /* JasonTextareaComponent.m in Sources */,
+				EF07A1ED22D6186100D0D3FF /* JasonMediaAction.m in Sources */,
+				EF07A1C522D6186100D0D3FF /* UIBarButtonItem+Badge.m in Sources */,
+				EF07A1F122D6186100D0D3FF /* JasonSessionAction.m in Sources */,
+				EF07A1DB22D6186100D0D3FF /* JasonLabelComponent.m in Sources */,
+				EF07A1C422D6186100D0D3FF /* JasonViewController.m in Sources */,
+				EF07A1FF22D6186100D0D3FF /* JasonLayer.m in Sources */,
+				EF07A1E622D6186100D0D3FF /* JasonGeoAction.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		5E31766E1D1E400C00D87778 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-fdiagnostics-show-option";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5E31766F1D1E400C00D87778 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "-fdiagnostics-show-option";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5E3176711D1E400C00D87778 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BEB1DF488FABA35A255BC8E4 /* Pods-Jasonette.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Jasonette/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking/AFNetworking.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFOAuth2Manager/AFOAuth2Manager.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AHKActionSheet/AHKActionSheet.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/APAddressBook/APAddressBook.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/BBBadgeBarButtonItem/BBBadgeBarButtonItem.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/CYRTextView/CYRTextView.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DAKeyboardControl/DAKeyboardControl.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DHSmartScreenshot/DHSmartScreenshot.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DTCoreText/DTCoreText.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DTFoundation/DTFoundation.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FLEX/FLEX.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FreeStreamer/FreeStreamer.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/HMSegmentedControl/HMSegmentedControl.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/INTULocationManager/INTULocationManager.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/IQAudioRecorderController/IQAudioRecorderController.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/JDStatusBarNotification/JDStatusBarNotification.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/JSCoreBom/JSCoreBom.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MBProgressHUD/MBProgressHUD.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/NSGIF/NSGIF.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/NSHash/NSHash.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/OMGHTTPURLRQ/OMGHTTPURLRQ.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PHFComposeBarView/PHFComposeBarView.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PHFDelegateChain/PHFDelegateChain.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/REMenu/REMenu.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RMActionController/RMActionController.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RMDateSelectionViewController/RMDateSelectionViewController.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Reachability/Reachability.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SBJson/SBJson.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SCSiriWaveformView/SCSiriWaveformView.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/SDWebImage.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SWFrameButton/SWFrameButton.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SWTableViewCell/SWTableViewCell.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SZTextView/SZTextView.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SocketRocket/SocketRocket.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/TDOAuth/TDOAuth.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/TWMessageBarManager/TWMessageBarManager.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/UICKeyChainStore/UICKeyChainStore.framework/Headers\"",
+					"-iquote",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/libPhoneNumber-iOS/libPhoneNumber_iOS.framework/Headers\"",
+					"-ferror-limit=0",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonette.seed;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		5E3176721D1E400C00D87778 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1BD8E8486EE7AF4E4934685E /* Pods-Jasonette.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Jasonette/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasonette.seed;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5E3176541D1E400C00D87778 /* Build configuration list for PBXProject "Jasonette" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E31766E1D1E400C00D87778 /* Debug */,
+				5E31766F1D1E400C00D87778 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E3176701D1E400C00D87778 /* Build configuration list for PBXNativeTarget "Jasonette" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E3176711D1E400C00D87778 /* Debug */,
+				5E3176721D1E400C00D87778 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5E3176511D1E400C00D87778 /* Project object */;
+}

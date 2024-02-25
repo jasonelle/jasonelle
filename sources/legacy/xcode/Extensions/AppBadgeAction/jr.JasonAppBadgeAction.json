@@ -1,0 +1,13 @@
+{
+    "version": "1.0.0",
+    "name": "appbadge",
+    "classname": "JasonAppBadgeAction",
+    "type": "action",
+    "platform": "ios",
+    "language" : "objective-c",
+    "author" : "clsource",
+    "href" : "",
+    "license" : "MIT",
+    "description": ""
+}
+

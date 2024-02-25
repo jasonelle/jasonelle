@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>url</key>
+	<string>file://hello.json</string>
+	<key>tracking_enabled</key>
+	<false/>
+	<key>append_nonce_to_url</key>
+	<false/>
+	<key>client_id</key>
+	<string></string>
+	<key>client_secret</key>
+	<string></string>
+	<key>launch</key>
+	<string></string>
+	<key>debug</key>
+	<false/>
+	<key>loading</key>
+	<false/>
+</dict>
+</plist>

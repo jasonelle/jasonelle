@@ -1,0 +1,373 @@
+PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - AFOAuth2Manager (3.0.1):
+    - AFNetworking/NSURLSession (~> 4.0)
+  - AHKActionSheet (0.5.4)
+  - APAddressBook (0.3.2):
+    - APAddressBook/Core (= 0.3.2)
+  - APAddressBook/Core (0.3.2)
+  - BBBadgeBarButtonItem (1.2)
+  - CYRTextView (0.4.1)
+  - DAKeyboardControl (2.4.0)
+  - DHSmartScreenshot (1.3.1)
+  - DTCoreText (1.6.23):
+    - DTCoreText/Core (= 1.6.23)
+    - DTFoundation/Core (~> 1.7.5)
+    - DTFoundation/DTAnimatedGIF (~> 1.7.5)
+    - DTFoundation/DTHTMLParser (~> 1.7.5)
+    - DTFoundation/UIKit (~> 1.7.5)
+  - DTCoreText/Core (1.6.23):
+    - DTFoundation/Core (~> 1.7.5)
+    - DTFoundation/DTAnimatedGIF (~> 1.7.5)
+    - DTFoundation/DTHTMLParser (~> 1.7.5)
+    - DTFoundation/UIKit (~> 1.7.5)
+  - DTFoundation (1.7.14):
+    - DTFoundation/AppKit (= 1.7.14)
+    - DTFoundation/Core (= 1.7.14)
+    - DTFoundation/Debug (= 1.7.14)
+    - DTFoundation/DTAnimatedGIF (= 1.7.14)
+    - DTFoundation/DTASN1 (= 1.7.14)
+    - DTFoundation/DTAsyncFileDeleter (= 1.7.14)
+    - DTFoundation/DTAWS (= 1.7.14)
+    - DTFoundation/DTHTMLParser (= 1.7.14)
+    - DTFoundation/DTProgressHUD (= 1.7.14)
+    - DTFoundation/DTReachability (= 1.7.14)
+    - DTFoundation/DTScripting (= 1.7.14)
+    - DTFoundation/DTSidePanel (= 1.7.14)
+    - DTFoundation/DTSQLite (= 1.7.14)
+    - DTFoundation/DTUTI (= 1.7.14)
+    - DTFoundation/DTZipArchive (= 1.7.14)
+    - DTFoundation/Runtime (= 1.7.14)
+    - DTFoundation/UIKit (= 1.7.14)
+    - DTFoundation/UIKit_BlocksAdditions (= 1.7.14)
+  - DTFoundation/Core (1.7.14)
+  - DTFoundation/Debug (1.7.14):
+    - DTFoundation/Core
+    - DTFoundation/Runtime
+  - DTFoundation/DTAnimatedGIF (1.7.14)
+  - DTFoundation/DTASN1 (1.7.14):
+    - DTFoundation/Core
+  - DTFoundation/DTAsyncFileDeleter (1.7.14):
+    - DTFoundation/Core
+  - DTFoundation/DTAWS (1.7.14):
+    - DTFoundation/Core
+  - DTFoundation/DTHTMLParser (1.7.14):
+    - DTFoundation/Core
+  - DTFoundation/DTProgressHUD (1.7.14):
+    - DTFoundation/Core
+    - DTFoundation/UIKit
+  - DTFoundation/DTReachability (1.7.14):
+    - DTFoundation/Core
+  - DTFoundation/DTScripting (1.7.14):
+    - DTFoundation/Core
+  - DTFoundation/DTSidePanel (1.7.14):
+    - DTFoundation/UIKit
+  - DTFoundation/DTSQLite (1.7.14):
+    - DTFoundation/Core
+  - DTFoundation/DTUTI (1.7.14)
+  - DTFoundation/DTZipArchive (1.7.14):
+    - DTFoundation/DTZipArchive/Minizip (= 1.7.14)
+  - DTFoundation/DTZipArchive/Minizip (1.7.14)
+  - DTFoundation/Runtime (1.7.14)
+  - DTFoundation/UIKit (1.7.14):
+    - DTFoundation/Core
+  - DTFoundation/UIKit_BlocksAdditions (1.7.14):
+    - DTFoundation/Core
+  - FLEX (4.1.1)
+  - FreeStreamer (4.0.0):
+    - Reachability (~> 3.0)
+  - HMSegmentedControl (1.5.5)
+  - INTULocationManager (4.3.2)
+  - IQAudioRecorderController (1.2.3):
+    - SCSiriWaveformView
+  - JDStatusBarNotification (1.6.1)
+  - JSCoreBom (1.1.2)
+  - libPhoneNumber-iOS (0.9.15)
+  - MBProgressHUD (1.2.0)
+  - NSGIF (1.2.4)
+  - NSHash (1.2.0)
+  - OMGHTTPURLRQ (3.2.4):
+    - OMGHTTPURLRQ/RQ (= 3.2.4)
+  - OMGHTTPURLRQ/FormURLEncode (3.2.4)
+  - OMGHTTPURLRQ/RQ (3.2.4):
+    - OMGHTTPURLRQ/FormURLEncode
+    - OMGHTTPURLRQ/UserAgent
+  - OMGHTTPURLRQ/UserAgent (3.2.4)
+  - PHFComposeBarView (2.1.0):
+    - PHFDelegateChain (~> 1.0)
+  - PHFDelegateChain (1.0.1)
+  - Reachability (3.2)
+  - REMenu (1.10)
+  - RMActionController (1.3.1)
+  - RMDateSelectionViewController (2.3.1):
+    - RMActionController (~> 1.3.1)
+  - SBJson (5.0.0)
+  - SCSiriWaveformView (1.1.1)
+  - SDWebImage (3.8.3):
+    - SDWebImage/Core (= 3.8.3)
+  - SDWebImage/Core (3.8.3)
+  - SocketRocket (0.5.2)
+  - SWFrameButton (1.2.2)
+  - SWTableViewCell (0.3.7)
+  - SZTextView (1.3.0)
+  - TDOAuth (1.3.0):
+    - OMGHTTPURLRQ/UserAgent
+  - TTTAttributedLabel (2.0.0)
+  - TWMessageBarManager (1.8.1)
+  - UICKeyChainStore (2.1.2)
+
+DEPENDENCIES:
+  - AFNetworking (from `https://github.com/jasonelle/ios-pod-afnetworking.git`, branch `jasonelle`)
+  - AFOAuth2Manager (from `https://github.com/jasonelle/ios-pod-afoauth2manager.git`, branch `jasonelle`)
+  - AHKActionSheet
+  - APAddressBook (from `https://github.com/jasonelle/ios-pod-apaddressbook.git`, branch `jasonelle`)
+  - BBBadgeBarButtonItem
+  - CYRTextView (from `https://github.com/jasonelle/ios-pod-cyrtextview.git`, branch `jasonelle`)
+  - DAKeyboardControl
+  - DHSmartScreenshot
+  - DTCoreText (from `https://github.com/jasonelle/ios-pod-dtcoretext.git`, branch `jasonelle`)
+  - DTFoundation (from `https://github.com/jasonelle/ios-pod-dtfoundation.git`, branch `jasonelle`)
+  - FLEX (from `https://github.com/jasonelle/ios-pod-flex.git`)
+  - FreeStreamer (from `https://github.com/jasonelle/ios-pod-freestreamer.git`, branch `jasonelle`)
+  - HMSegmentedControl (from `https://github.com/jasonelle/ios-pod-hmsegmentedcontrol.git`, branch `jasonelle`)
+  - INTULocationManager
+  - IQAudioRecorderController
+  - JDStatusBarNotification (from `https://github.com/jasonelle/ios-pod-jdstatusbarnotification.git`)
+  - JSCoreBom (from `https://github.com/jasonelle/ios-pod-jscorebom.git`, branch `jasonelle`)
+  - libPhoneNumber-iOS (from `https://github.com/jasonelle/ios-pod-libphonenumber.git`, branch `jasonelle`)
+  - MBProgressHUD (~> 1.0)
+  - NSGIF (~> 1.0)
+  - NSHash (from `https://github.com/jasonelle/ios-pod-nshash.git`, branch `jasonelle`)
+  - OMGHTTPURLRQ (from `https://github.com/jasonelle/ios-pod-omghttpurlrq.git`, branch `jasonelle`)
+  - PHFComposeBarView
+  - Reachability (from `https://github.com/jasonelle/ios-pod-reachability.git`, branch `jasonelle`)
+  - REMenu (from `https://github.com/jasonelle/ios-pod-remenu.git`, branch `jasonelle`)
+  - RMDateSelectionViewController
+  - SBJson (from `https://github.com/jasonelle/ios-pod-sbjson.git`, branch `jasonelle`)
+  - SDWebImage (from `https://github.com/jasonelle/ios-pod-sdwebimage.git`, tag `3.8.3`)
+  - SocketRocket (from `https://github.com/jasonelle/ios-pod-socketrocket.git`, branch `jasonelle`)
+  - SWFrameButton
+  - SWTableViewCell (from `https://github.com/jasonelle/ios-pod-swtableviewcell.git`, branch `jasonelle`)
+  - SZTextView
+  - TDOAuth
+  - TTTAttributedLabel (from `https://github.com/jasonelle/ios-pod-tttattributedlabel.git`, branch `jasonelle`)
+  - TWMessageBarManager (from `https://github.com/jasonelle/ios-pod-twmessagebarmanager.git`, branch `jasonelle`)
+  - UICKeyChainStore (from `https://github.com/jasonelle/ios-pod-uickeychainstore.git`, branch `jasonelle`)
+
+SPEC REPOS:
+  trunk:
+    - AHKActionSheet
+    - BBBadgeBarButtonItem
+    - DAKeyboardControl
+    - DHSmartScreenshot
+    - INTULocationManager
+    - IQAudioRecorderController
+    - MBProgressHUD
+    - NSGIF
+    - PHFComposeBarView
+    - PHFDelegateChain
+    - RMActionController
+    - RMDateSelectionViewController
+    - SCSiriWaveformView
+    - SWFrameButton
+    - SZTextView
+    - TDOAuth
+
+EXTERNAL SOURCES:
+  AFNetworking:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-afnetworking.git
+  AFOAuth2Manager:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-afoauth2manager.git
+  APAddressBook:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-apaddressbook.git
+  CYRTextView:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-cyrtextview.git
+  DTCoreText:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-dtcoretext.git
+  DTFoundation:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-dtfoundation.git
+  FLEX:
+    :git: https://github.com/jasonelle/ios-pod-flex.git
+  FreeStreamer:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-freestreamer.git
+  HMSegmentedControl:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-hmsegmentedcontrol.git
+  JDStatusBarNotification:
+    :git: https://github.com/jasonelle/ios-pod-jdstatusbarnotification.git
+  JSCoreBom:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-jscorebom.git
+  libPhoneNumber-iOS:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-libphonenumber.git
+  NSHash:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-nshash.git
+  OMGHTTPURLRQ:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-omghttpurlrq.git
+  Reachability:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-reachability.git
+  REMenu:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-remenu.git
+  SBJson:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-sbjson.git
+  SDWebImage:
+    :git: https://github.com/jasonelle/ios-pod-sdwebimage.git
+    :tag: 3.8.3
+  SocketRocket:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-socketrocket.git
+  SWTableViewCell:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-swtableviewcell.git
+  TTTAttributedLabel:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-tttattributedlabel.git
+  TWMessageBarManager:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-twmessagebarmanager.git
+  UICKeyChainStore:
+    :branch: jasonelle
+    :git: https://github.com/jasonelle/ios-pod-uickeychainstore.git
+
+CHECKOUT OPTIONS:
+  AFNetworking:
+    :commit: 7bdce9a849da1e9a7cc29fd4c45a92115145f3d7
+    :git: https://github.com/jasonelle/ios-pod-afnetworking.git
+  AFOAuth2Manager:
+    :commit: eba4ec281a23e9a7b261f5d9e024cb70a8372c67
+    :git: https://github.com/jasonelle/ios-pod-afoauth2manager.git
+  APAddressBook:
+    :commit: 77888b7c4939550f84fed887945fbd22892a76c2
+    :git: https://github.com/jasonelle/ios-pod-apaddressbook.git
+  CYRTextView:
+    :commit: 684ba5707637cf2a15952fa8922f6fa944b164e2
+    :git: https://github.com/jasonelle/ios-pod-cyrtextview.git
+  DTCoreText:
+    :commit: 9fccb9b0de0b2eb40c6b33067b03f55f3803c153
+    :git: https://github.com/jasonelle/ios-pod-dtcoretext.git
+  DTFoundation:
+    :commit: ec0004b82ef2dbc16a93132f498e22f824eab0cb
+    :git: https://github.com/jasonelle/ios-pod-dtfoundation.git
+  FLEX:
+    :commit: 2a8cdbdb84c45a89ebd48f9caad9c0420609a348
+    :git: https://github.com/jasonelle/ios-pod-flex.git
+  FreeStreamer:
+    :commit: 43be718aaaafd5dec5ec31aa713cff36af4ee414
+    :git: https://github.com/jasonelle/ios-pod-freestreamer.git
+  HMSegmentedControl:
+    :commit: ade9a52141a7ba47f02cef9d785cf7384ec334a6
+    :git: https://github.com/jasonelle/ios-pod-hmsegmentedcontrol.git
+  JDStatusBarNotification:
+    :commit: 54598de580908a542b513a7d63519511f6dd42da
+    :git: https://github.com/jasonelle/ios-pod-jdstatusbarnotification.git
+  JSCoreBom:
+    :commit: 5c2143b133248f475c30f1661a83a227c07fe138
+    :git: https://github.com/jasonelle/ios-pod-jscorebom.git
+  libPhoneNumber-iOS:
+    :commit: e50f018bc64e0f44be26c9cdf4f07ebb2a0e44a5
+    :git: https://github.com/jasonelle/ios-pod-libphonenumber.git
+  NSHash:
+    :commit: 348fc5e152e8d9483190d3fbcbd9729581a085be
+    :git: https://github.com/jasonelle/ios-pod-nshash.git
+  OMGHTTPURLRQ:
+    :commit: e0e74c5bd23fd0ab3413e44ce9144534b5614160
+    :git: https://github.com/jasonelle/ios-pod-omghttpurlrq.git
+  Reachability:
+    :commit: 788111ebf98e86368cd03da17f884015d2fc1543
+    :git: https://github.com/jasonelle/ios-pod-reachability.git
+  REMenu:
+    :commit: 865872902b5ad0674cf2ecd191617d10a4dd075d
+    :git: https://github.com/jasonelle/ios-pod-remenu.git
+  SBJson:
+    :commit: e57e413b76840f2d3ac6e9dce255493a558e45d4
+    :git: https://github.com/jasonelle/ios-pod-sbjson.git
+  SDWebImage:
+    :git: https://github.com/jasonelle/ios-pod-sdwebimage.git
+    :tag: 3.8.3
+  SocketRocket:
+    :commit: 43d48b7a1d94a5ec8add07fc4ff892ed0ba7cc78
+    :git: https://github.com/jasonelle/ios-pod-socketrocket.git
+  SWTableViewCell:
+    :commit: 5cf396fe8f42dc199b157c96da29b64e9248c2e4
+    :git: https://github.com/jasonelle/ios-pod-swtableviewcell.git
+  TTTAttributedLabel:
+    :commit: b0f1f93d5d4368a7aaf52e848013a1b40b00dc3c
+    :git: https://github.com/jasonelle/ios-pod-tttattributedlabel.git
+  TWMessageBarManager:
+    :commit: e707b00e78ee980b1c9536406d78a154283935bf
+    :git: https://github.com/jasonelle/ios-pod-twmessagebarmanager.git
+  UICKeyChainStore:
+    :commit: 23cd5901c8dd1b6fcc5226df2231c5bd89674bf0
+    :git: https://github.com/jasonelle/ios-pod-uickeychainstore.git
+
+SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  AFOAuth2Manager: 3166f6214e646f0bb4bb77378775a45b2290f5c5
+  AHKActionSheet: f0b312b5c689f72924d231c39dae140ecd5c1d46
+  APAddressBook: e68ecaf95f2c323b625ae585a0d25fe505291286
+  BBBadgeBarButtonItem: c2fbca0bff18e21b70defc9438a8a5048008e7ca
+  CYRTextView: 39e84d19c9cdf3e69554745c22b8833c6b3c9d36
+  DAKeyboardControl: 9d9bca22a5cc3c1d3cc61e24fbd208c3e84a3d2d
+  DHSmartScreenshot: ee749048bd7126c4826748f98df3a4adc6ad6c78
+  DTCoreText: 67023bb51b26711d5f640c851f4845aea14c24c9
+  DTFoundation: 2a31900f674de139045f4935a5656497fedda701
+  FLEX: 81096107977a09836eb440173010ceeef01105d6
+  FreeStreamer: 7e9c976045701ac2f7e9c14c17245203c37bf2ea
+  HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
+  INTULocationManager: e5dc524611b0cd582f473bc56cc8c389adb2f338
+  IQAudioRecorderController: 69a67c2e0b87bd8746cbb4de175fd7a0bf820009
+  JDStatusBarNotification: 6052ca9a51ee0bb058f8dc09cf1d63554ef0f743
+  JSCoreBom: 787dc056d5b933617a1772ca10fb8437fed0d790
+  libPhoneNumber-iOS: 0a32a9525cf8744fe02c5206eb30d571e38f7d75
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  NSGIF: 442808fd1667ebac3d09046c3f6d4bdd6720cded
+  NSHash: 036c03781d372c288d332b512b203e7bb832e46e
+  OMGHTTPURLRQ: 9ac96bdf5c90a33f75836630729ea1adc312a9ed
+  PHFComposeBarView: 6382ab846e2f4d8634273c4a78d074bc5deed07f
+  PHFDelegateChain: 491f9cd8a3fb8761f390ff05f74a0e168d48d285
+  Reachability: 07e976fb63651163096e04b1528d4d29a4a212aa
+  REMenu: 30dad195930adf6c5eeb8041e3257aa60bf9fa49
+  RMActionController: 535715be9f3d9eb96a838485370dcccee0dda597
+  RMDateSelectionViewController: 1157d34245e6a1dda700e8a9c44417321d181951
+  SBJson: 72547475887af34b161b2b9dce8c20415d8b6c68
+  SCSiriWaveformView: 15b9dd6f94c7536e2032b34a35c6ff74d38c7411
+  SDWebImage: a72e880a8fe0f7fc31efe15aaed443c074d2a80c
+  SocketRocket: 3dad623634f938c3930a9481428960d7e9fdbbf1
+  SWFrameButton: cd3cc4a8961e8975f4800c0f6d1d3c54c213eb87
+  SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
+  SZTextView: 094dc6acc9beec537685c545d6e3e0d4975174e1
+  TDOAuth: 1334413592cff6947d243035810425ef79bc4ced
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
+  TWMessageBarManager: fd84e7948ba7968a2b5d9454859135761214ec56
+  UICKeyChainStore: 85db518bb1d294366d15ec9b92a416c4e670518f
+
+PODFILE CHECKSUM: 1fc4a3f74f5694a2d347d6d9e52bd7bdb6ce2282
+
+COCOAPODS: 1.9.1
