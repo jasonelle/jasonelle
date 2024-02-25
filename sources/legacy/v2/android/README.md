@@ -3,7 +3,7 @@
 This is an old version of Jasonelle. No new features will be added or provide much support.
 Only some small fixes so it will compile with more recent SDKs.
 
-This version would be totally deprecated when `v3` is launched in the future.
+This version is only available to those who need _JSON_ support.
 
 - [Legacy Docs](https://jasonelle-archive.github.io/docs/legacy/)
 - [Legacy Wiki](https://github.com/jasonelle-archive/jasonelle-v2/wiki)

@@ -33,7 +33,7 @@ Please select the **License Key** that better fits your project.
 | [Jasonelle Friend's Membership Subscription](https://jasonelle.gumroad.com/l/love) | [Thank you Key](https://jasonelle.gumroad.com/l/thanks)
 |---|---|
 | Monthly Payment Requirement | Single Payment
-| Jasonelle's Membership Keys can be used up to 5 projects, as long as the subscription is maintained. | This license allows _Jasonelle framework_ to be used by you or one client, in a single commercial end product.
+| Jasonelle's Membership Keys can be used up to 2 projects, as long as the subscription is maintained. | This license allows _Jasonelle framework_ to be used by you or one client, in a single commercial end product.
 | The license expires if the membership is terminated | Thank you key licenses do not expire. That's why they are a little more expensive than the subscription.
 | [Join Subscription](https://jasonelle.gumroad.com/l/love) | [Purchase Thank you Key](https://jasonelle.gumroad.com/l/thanks)
 
@@ -72,6 +72,14 @@ The current version is *v3*.
 - [Bleeding Edge](https://github.com/jasonelle/jasonelle/archive/refs/heads/main.zip)
 - [Stable](https://github.com/jasonelle/jasonelle/archive/refs/heads/stable.zip)
 - [Latest Release](https://github.com/jasonelle/jasonelle/releases/latest/)
+
+#### Legacy
+
+A legacy version can be found inside the legacy directory.
+This version supports _JSON_ and other features available in older version of _Jasonette/Jasonelle_ (2016 - 2021).
+This version would have no new features. Only minor updates to support compilation in newer SDKs.
+
+- [Legacy Version](https://github.com/jasonelle/jasonelle/tree/main/sources/legacy/)
 
 ## Documentation
 
