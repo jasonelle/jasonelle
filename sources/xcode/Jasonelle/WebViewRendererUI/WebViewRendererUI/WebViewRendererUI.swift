@@ -302,12 +302,7 @@ public struct ContentView: View {
             
             event.trigger(with: url)
         }
-        // TODO: Maybe this can be configurable?
-        .preferredColorScheme(.dark)
-        
-        // Some websites may need this, specially when using a navbar.
-        // If you need this, enable this option
-        // .ignoresSafeArea(edges: .all)
+        // Additional config maybe done in Main.swift
     }
 }
 

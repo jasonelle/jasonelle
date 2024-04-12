@@ -51,6 +51,17 @@ struct Main: SwiftUI.App {
         WindowGroup {
             // Display View Renderer's View
             WebViewRendererUI.ContentView()
+            
+            // Add here final UI corrections
+            // .none, .light or .dark
+            .preferredColorScheme(.dark)
+            
+            // Some websites may need this, specially when using a navbar.
+            // If you need this, enable this option
+            // .ignoresSafeArea(.container)
+            
+            // Add a little padding if needed
+            // .padding(.bottom, UIApplication.shared.windows.first!.safeAreaInsets.bottom / 10)
         }
     }
 }
