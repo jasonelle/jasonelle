@@ -1607,7 +1607,8 @@
 
   // JS/config/dev.js
   var Config = {
-    env: "dev"
+    env: "dev",
+    allowed: ["file://", "jasonelle.com"]
   };
   var dev_default = Config;
 
@@ -1869,7 +1870,7 @@
   ]);
 
   // ../Jasonelle/Jasonelle/JS/jasonelle.js
-  var Version = "3.0.2";
+  var Version = "3.0.3";
   var jasonelle_default = { Version };
 
   // ../Jasonelle/index.js

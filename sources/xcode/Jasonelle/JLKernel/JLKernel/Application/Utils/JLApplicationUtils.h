@@ -34,6 +34,7 @@
 #import <JLKernel/JLUtilsClipboard.h>
 
 @import UIKit;
+@import SafariServices;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -59,6 +60,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 // If there are more than 1 helper method in the same context, is best to move it to a separate class and have a property here
 - (BOOL) openURL: (NSString *) urlString;
+
+/// Opens the URL with Safari View Controller
+- (void) openSafariWithURL:( NSURL * __nonnull ) url delegate: (id<SFSafariViewControllerDelegate> __nullable) delegate configuration:(SFSafariViewControllerConfiguration * __nullable)configuration completion:(void (^ __nullable)(void))completion;
+
+- (void) openSafariWithURL:( NSURL * __nonnull ) url configuration:(SFSafariViewControllerConfiguration * __nullable)configuration;
+
+- (void) openSafariWithURL:( NSURL * __nonnull ) url;
 
 /// UIApplicationOpenSettingsURLString
 - (NSURL *) settingsURL;

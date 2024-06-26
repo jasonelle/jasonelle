@@ -4,7 +4,7 @@ const Config = {
     //     Otherwise it will launch native browser
     //     If not present will allow all urls
     //     Put the same URL from main.js here to allow it (just the domain)
-    //     allowed: ["file://", "google.cl"],
+    allowed: ["file://", "jasonelle.com"],
 };
 
 export default Config;

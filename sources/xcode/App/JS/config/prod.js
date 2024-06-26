@@ -1,6 +1,6 @@
 const Config = {
     env: "production",
-    // allowed: ["file://", "google.cl"],
+    // allowed: ["file://", "jasonelle.com"],
 };
 
 export default Config;

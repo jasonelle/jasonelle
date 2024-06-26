@@ -27,14 +27,11 @@
 
 #import "WKWebViewDelegate.h"
 
-// TODO: Implement this as an self.app.utils method
-@import SafariServices;
-
 @implementation WKWebViewDelegate
 
 - (NSString *)identifier {
     if (!_identifier) {
-        _identifier = self.app.utils.uuid;
+        _identifier = [JLApplication instance].utils.uuid;
     }
     return _identifier;
 }
@@ -114,6 +111,8 @@
     
     NSString * current = navigationAction.request.URL.absoluteString;
     
+    jlog_debug_join(navigationAction);
+    
     jlog_trace_join(@"Deciding Policy for URL ", current);
     
     NSArray * allowed = [[JLApplication instance].config.params array:@"allowed"];
@@ -129,6 +128,8 @@
         if ([current hasSuffix:url] || [current hasPrefix:url] || [current containsString:url]) {
             jlog_trace(@"YES");
             isAllowed = YES;
+        } else {
+            jlog_trace(@"NO");
         }
     }
     
@@ -152,6 +153,8 @@
     // If you want to add more special urls and schemas
     // should also allow them in the plist.
     // https://stackoverflow.com/a/68924481
+    
+    jlog_trace(@"Openning with System URL handler");
     [[JLApplication instance].utils openURL:current];
     return decisionHandler(WKNavigationActionPolicyCancel);
 }
@@ -172,29 +175,25 @@
     
     // Handle other file formats in Safari
     // For now opening a SafariViewController is enough.
-    // TODO: Move SFSafariViewController to app.utils
-    // TODO: Is this enough for supporting file downloads?
     SFSafariViewControllerConfiguration * config = [SFSafariViewControllerConfiguration new];
     
     config.entersReaderIfAvailable = YES;
-    
-    SFSafariViewController * safari = [[SFSafariViewController alloc] initWithURL:url configuration:config];
-    
-    [self.app.utils present:safari completion:^{
-        jlog_trace_join(@"Presented Safari for URL: ", url.absoluteString);
-    }];
+        
+    [[JLApplication instance].utils openSafariWithURL:url configuration:config];
     
     return decisionHandler(WKNavigationResponsePolicyCancel);
 }
 
 /// Handles target=_blank links
 - (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
-     
+    
     if (!navigationAction.targetFrame.isMainFrame) {
-        [webView loadRequest:navigationAction.request];
+        jlog_trace(@"target=_blank link detected");
+        [[JLApplication instance].utils openSafariWithURL:navigationAction.request.URL];
     }
     
-    return webView;
+    // Is important to return nil, otherwise it will crash if target=_blank is present
+    return nil;
 }
 
 - (void) webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
@@ -208,7 +207,7 @@
         return;
     }
     
-    JLEventReachabilityDidChange * event = (JLEventReachabilityDidChange *)[self.app.events get:JLEventReachabilityDidChange.class];
+    JLEventReachabilityDidChange * event = (JLEventReachabilityDidChange *)[[JLApplication instance].events get:JLEventReachabilityDidChange.class];
     
     [event triggerNoConnectionEvent];
 }
@@ -225,7 +224,7 @@
         return;
     }
     
-    JLEventReachabilityDidChange * event = (JLEventReachabilityDidChange *)[self.app.events get:JLEventReachabilityDidChange.class];
+    JLEventReachabilityDidChange * event = (JLEventReachabilityDidChange *)[[JLApplication instance].events get:JLEventReachabilityDidChange.class];
     
     [event triggerNoConnectionEvent];
 }

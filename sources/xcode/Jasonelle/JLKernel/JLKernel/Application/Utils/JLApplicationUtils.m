@@ -94,6 +94,40 @@
     return NO;
 }
 
+- (void) openSafariWithURL:( NSURL * __nonnull ) url
+                  delegate: (id<SFSafariViewControllerDelegate> __nullable) delegate
+             configuration:(SFSafariViewControllerConfiguration * __nullable)configuration
+                completion:(void (^ __nullable)(void))completion {
+    
+    jlog_trace(@"Creating Safari Controller");
+    
+    SFSafariViewController * safari = [[SFSafariViewController alloc] initWithURL:url];
+    
+    if(configuration) {
+        safari = [[SFSafariViewController alloc] initWithURL:url configuration:configuration];
+    }
+    
+    safari.delegate = delegate;
+    
+    jlog_trace_join(@"Presenting Safari Controller for URL", url.absoluteString);
+    
+    if(!completion) {
+        completion = ^{
+            jlog_trace_join(@"Presented Safari for URL: ", url.absoluteString);
+        };
+    }
+    
+    [self present:safari completion:completion];
+}
+
+- (void) openSafariWithURL:( NSURL * __nonnull ) url configuration:(SFSafariViewControllerConfiguration * __nullable)configuration {
+    return [self openSafariWithURL:url delegate:nil configuration:configuration completion:nil];
+}
+
+- (void) openSafariWithURL:( NSURL * __nonnull ) url {
+    return [self openSafariWithURL:url delegate:nil configuration:nil completion:nil];
+}
+
 - (NSURL *) settingsURL {
     return [NSURL URLWithString:UIApplicationOpenSettingsURLString];
 }

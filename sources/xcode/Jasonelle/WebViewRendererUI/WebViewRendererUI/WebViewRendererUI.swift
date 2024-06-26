@@ -242,7 +242,7 @@ class WebViewModel: ObservableObject {
 public struct ContentView: View {
     @StateObject private var web = WebViewModel()
 
-    var app = Jasonelle.App.instance
+    var app = App.instance
     var loader: WebViewRendererUILoader
     var renderer = JasonelleSwift.Renderer()
 
