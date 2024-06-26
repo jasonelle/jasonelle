@@ -122,16 +122,17 @@
     // Be YES as default if no allowed list is present
     BOOL isAllowed = allowed.count <= 0;
     
-    
     for(NSString * url in allowed) {
-        jlog_trace_join(@"Does ", url, @" in ", current, @"?");
         if ([current hasSuffix:url] || [current hasPrefix:url] || [current containsString:url]) {
-            jlog_trace(@"YES");
             isAllowed = YES;
-        } else {
-            jlog_trace(@"NO");
         }
+        
+        jlog_trace_join(@"Does ", url, @" in ", current, @"? ",
+                        jlog_bool([current hasSuffix:url] || [current hasPrefix:url] || [current containsString:url]));
     }
+    
+    jlog_trace_join(@"Is ", current, @" allowed? ", jlog_bool(isAllowed));
+    
     
     // Urls with the special schemas
     // https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899

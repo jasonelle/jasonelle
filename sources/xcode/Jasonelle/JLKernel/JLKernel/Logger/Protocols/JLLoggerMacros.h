@@ -36,6 +36,7 @@
 
 /// Converts boolean to a YES or NO string
 #define jlog_b2s(boolean) (boolean ? @"YES" : @"NO")
+#define jlog_bool(boolean) jlog_b2s(boolean)
 
 // Trace
 #define jlog_logger_trace(logger, message) \
