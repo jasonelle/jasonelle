@@ -1870,7 +1870,7 @@
   ]);
 
   // ../Jasonelle/Jasonelle/JS/jasonelle.js
-  var Version = "3.0.3";
+  var Version = "3.0.2";
   var jasonelle_default = { Version };
 
   // ../Jasonelle/index.js
