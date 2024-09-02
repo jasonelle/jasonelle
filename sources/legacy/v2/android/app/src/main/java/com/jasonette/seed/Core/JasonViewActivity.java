@@ -63,7 +63,7 @@ import com.jasonette.seed.Lib.JasonToolbar;
 import com.jasonette.seed.Lib.MaterialBadgeTextView;
 import com.jasonette.seed.R;
 import com.jasonette.seed.Section.ItemAdapter;
-import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
+import com.jasonette.seed.Vendor.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import org.json.JSONArray;
 import org.json.JSONException;
