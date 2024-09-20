@@ -11,6 +11,24 @@ console.log("Initializing OneSignal");
 const $onesignal = {};
 
 // OneSignal Helper
+/*
+Trigger actions defined in $jason.head.actions
+
+"head": {
+      "actions": {
+        "onesignal.login": {
+          "type": "$onesignal.login",
+          "options": {
+            "externalid": "{{$jason.data.externalid}}"
+          }
+        },
+        "onesignal.logout": {
+          "type": "$onesignal.logout",
+          "options": {}
+        }
+      }
+    }
+*/
 $onesignal.login = (external_id) => {
   $agent.trigger("onesignal.login", {externalid: external_id});
 };
