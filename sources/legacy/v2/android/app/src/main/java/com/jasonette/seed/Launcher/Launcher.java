@@ -34,9 +34,29 @@ import com.jasonette.seed.BuildConfig;
 import com.jasonette.seed.Service.agent.JasonAgentService;
 import com.jasonette.seed.Service.websocket.JasonWebsocketService;
 
+// OneSignal
+import com.onesignal.OneSignal;
+import com.onesignal.debug.LogLevel;
+import com.onesignal.Continue;
 
 public class Launcher extends Application {
-    private JSONObject handlers;
+
+  // NOTE: Replace the below with your own ONESIGNAL_APP_ID
+  private static final String ONESIGNAL_APP_ID = "########-####-####-####-############";
+
+  private void setupOneSignal() {
+    // Verbose Logging set to help debug issues, remove before releasing your app.
+    OneSignal.getDebug().setLogLevel(LogLevel.VERBOSE);
+
+    // OneSignal Initialization
+    OneSignal.initWithContext(this, ONESIGNAL_APP_ID);
+
+    // requestPermission will show the native Android notification permission prompt.
+    // NOTE: It's recommended to use a OneSignal In-App Message to prompt instead.
+    OneSignal.getNotifications().requestPermission(false, Continue.none());
+  }
+
+  private JSONObject handlers;
     private JSONObject global;
     private JSONObject env;
     private JSONObject models;
@@ -119,6 +139,9 @@ public class Launcher extends Application {
         super.onCreate();
 
         ViewTarget.setTagId(R.id.glide_request);
+
+        // OneSignal
+        this.setupOneSignal();
 
         // Look for all extensions and initialize them if they have initialize class methods
         try {

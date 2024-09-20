@@ -41,7 +41,7 @@ dependencies {
     androidTestImplementation('androidx.test.espresso:espresso-core:3.2.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'com.google.firebase:firebase-messaging:20.0.0'
+
     debugImplementation 'com.facebook.stetho:stetho:1.5.1'
     debugImplementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
     debugImplementation 'com.facebook.stetho:stetho-timber:1.5.1'
@@ -74,6 +74,14 @@ dependencies {
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
     implementation 'com.google.android.gms:play-services-vision:18.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
-
     implementation 'org.hjson:hjson:3.0.0'
+
+    implementation 'com.google.firebase:firebase-messaging:24.0.0'
+
+    // OneSignal
+    // Uncomment if you want OneSignal Setup
+    // check https://documentation.onesignal.com/docs/android-sdk-setup
+    // check https://github.com/jasonelle-archive/jasonelle-v2/wiki/Push-notifications-integration-with-OneSignal#3--extend-your-jasonette-app-to-receive-targeted-notifications
+
+    implementation 'com.onesignal:OneSignal:[5.0.0, 5.99.99]'
 }

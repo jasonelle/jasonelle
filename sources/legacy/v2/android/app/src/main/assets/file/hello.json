@@ -1,5 +1,19 @@
 {
   "$jason": {
+    "head": {
+      "actions": {
+        "onesignal.login": {
+          "type": "$onesignal.login",
+          "options": {
+            "externalid": "{{$jason.data.externalid}}"
+          }
+        },
+        "onesignal.logout": {
+          "type": "$onesignal.logout",
+          "options": {}
+        }
+      }
+    },
     "body": {
       "background": {
         "type": "html",
