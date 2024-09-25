@@ -36,3 +36,6 @@ $onesignal.login = (external_id) => {
 $onesignal.logout = () => {
   $agent.trigger("onesignal.logout");
 };
+
+// Ensure is saved in global window
+window.$onesignal = $onesignal;
