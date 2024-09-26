@@ -57,11 +57,12 @@ struct Main: SwiftUI.App {
             .preferredColorScheme(.dark)
             
             // Some websites may need this, specially when using a navbar.
-            // If you need this, enable this option
+            // If you need this, enable one of these options
             // .ignoresSafeArea(.container)
+            //.edgesIgnoringSafeArea(.bottom)
             
             // Add a little padding if needed
-            // .padding(.bottom, UIApplication.shared.windows.first!.safeAreaInsets.bottom / 10)
+            //.padding(.bottom, (UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0) / 10)
         }
     }
 }

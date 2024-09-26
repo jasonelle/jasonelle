@@ -29,6 +29,25 @@ import JavaScriptCore
 import SwiftUI
 import WebKit
 
+// Here you can customize the WKWebView used
+class JasonelleWebView: WKWebView {
+
+    override init(frame: CGRect,configuration : WKWebViewConfiguration) {
+       super.init(frame: frame, configuration:configuration)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // Hide the input accessory view or create your own
+    // Uncomment to keep the default
+    override var inputAccessoryView: UIView? {
+       return nil
+    }
+
+}
+
 struct WebView: UIViewRepresentable {
     typealias UIViewType = WKWebView
 
@@ -91,7 +110,7 @@ class WebViewModel: ObservableObject {
         
         configuration.dataDetectorTypes = [.all]
 
-        webView = WKWebView(frame: .zero, configuration: configuration)
+        webView = JasonelleWebView(frame: .zero, configuration: configuration)
         
         webView.uiDelegate = delegate
 
