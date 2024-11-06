@@ -27,7 +27,6 @@
 // That's shown when the website is loading
 // You can configure it with animations, images
 // or other good stuff.
-// TODO: Maybe add a config in js?
 // The first Launch Screen is inside the App.xcproject
 // That one is loaded before this one.
 

@@ -25,6 +25,7 @@ class MainScreen extends Component {
 
     style = {
         bounces: true,
+        loading: true, // Enables showing LaunchScreenUI.swift when webpage is loading
     };
 
     // View components

@@ -291,9 +291,12 @@ public struct ContentView: View {
             
             if web.webView.isLoading {
                 // Show LaunchScreenUI until the website is fully loaded.
+                // Only when property styles.loading is true
                 // TODO: Maybe sent an event to LaunchScreenUI to finish loading to allow smoother transitions
-                withAnimation {
-                    LaunchScreenUI().transition(.opacity)
+                if loader.style.loading() {
+                    withAnimation {
+                        LaunchScreenUI().transition(.opacity)
+                    }
                 }
             }
         }.onAppear {

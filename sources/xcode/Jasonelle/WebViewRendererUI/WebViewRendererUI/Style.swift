@@ -38,4 +38,8 @@ class Style {
     func bounces() -> Bool {
         return params.boolean("bounces")
     }
+    
+    func loading() -> Bool {
+        return params.boolean("loading")
+    }
 }

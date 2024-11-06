@@ -1806,7 +1806,8 @@
       __publicField(this, "url", HOME_URL);
       __publicField(this, "fallback", "res://no-connection.html");
       __publicField(this, "style", {
-        bounces: true
+        bounces: true,
+        loading: true
       });
       __publicField(this, "components", {});
       __publicField(this, "actions", {
