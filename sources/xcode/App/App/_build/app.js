@@ -1807,7 +1807,8 @@
       __publicField(this, "fallback", "res://no-connection.html");
       __publicField(this, "style", {
         bounces: true,
-        loading: true
+        loading: false,
+        progress: true
       });
       __publicField(this, "components", {});
       __publicField(this, "actions", {

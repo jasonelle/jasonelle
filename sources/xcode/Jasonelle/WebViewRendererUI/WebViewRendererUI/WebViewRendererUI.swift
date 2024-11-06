@@ -67,10 +67,14 @@ class WebViewModel: ObservableObject {
     let refreshControl: UIRefreshControl = .init()
     var delegate: WKWebViewDelegate = .init(identifier: WebViewModel.identifier)
     let webViewController: WKUserContentController = .init()
+    
+    // Current loading progress of the web view.
+    let progressView = UIProgressView(progressViewStyle: .default)
 
     @Published var app: Jasonelle.App? = nil
     @Published var loader: WebViewRendererUILoader? = nil
     @Published var isLoading: Bool = false
+    @Published var progress: Double = 0.0
 
     init() {
         let configuration = WKWebViewConfiguration()
@@ -109,12 +113,16 @@ class WebViewModel: ObservableObject {
         configuration.allowsInlineMediaPlayback = true
         
         configuration.dataDetectorTypes = [.all]
+        
+        configuration.preferences.javaScriptCanOpenWindowsAutomatically = true
 
         webView = JasonelleWebView(frame: .zero, configuration: configuration)
         
         webView.uiDelegate = delegate
 
+        // Bind to Published vars
         webView.publisher(for: \.isLoading).assign(to: &$isLoading)
+        webView.publisher(for: \.estimatedProgress).assign(to: &$progress)
 
         refreshControl.addTarget(self, action: #selector(pull), for: UIControl.Event.valueChanged)
 
@@ -222,7 +230,7 @@ class WebViewModel: ObservableObject {
         
         app?.events.addListener(self, with: #selector(didChangeReachability(_:)), for: JLEventReachabilityDidChange.self)
     }
-        
+    
     
     @objc
     func didChangeReachability(_ notification: Notification) {
@@ -286,9 +294,21 @@ public struct ContentView: View {
 
     public var body: some View {
         ZStack {
-            
-            WebView(webView: web.webView)
-            
+            VStack {
+                WebView(webView: web.webView)
+                
+                if web.webView.isLoading {
+                    // Enables a progressbar
+                    if loader.style.progress() {
+                        ProgressView(value: web.progress, total: 1.0)
+                            .progressViewStyle(LinearProgressViewStyle())
+                            .accentColor(.white) // TODO: Enable colors in config
+                            .scaleEffect(x: 1, y: 0.5, anchor: .trailing)
+                    }
+                }
+                
+            }
+                
             if web.webView.isLoading {
                 // Show LaunchScreenUI until the website is fully loaded.
                 // Only when property styles.loading is true
@@ -299,6 +319,7 @@ public struct ContentView: View {
                     }
                 }
             }
+                
         }.onAppear {
             // Only setup app once.
             // Since it will trigger every time the app will appear

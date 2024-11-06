@@ -42,4 +42,8 @@ class Style {
     func loading() -> Bool {
         return params.boolean("loading")
     }
+    
+    func progress() -> Bool {
+        return params.boolean("progress")
+    }
 }

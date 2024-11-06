@@ -25,7 +25,8 @@ class MainScreen extends Component {
 
     style = {
         bounces: true,
-        loading: true, // Enables showing LaunchScreenUI.swift when webpage is loading
+        loading: false, // Enables showing LaunchScreenUI.swift when webpage is loading
+        progress: true, // Enables a Progress Bar when webpage is loading
     };
 
     // View components
