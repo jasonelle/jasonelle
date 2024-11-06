@@ -21,6 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - [Core] Add a `example.html` file. Fill it with the examples for the extension.
 - [Core] Add a Build Phase Script in the framework project.
+- [WebViewRendererUI] Add progress bar and style option to show progress bar or launchui.
 
 ### Changed
 
