@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## v3.0.2 (next)
+## [v3.0.3](https://github.com/jasonelle/jasonelle/releases/tag/v3.0.3) (next)
+
+### Added
+
+- [WebViewRendererUI] Add progress bar and style option to show progress bar or launchui.
+
+## [v3.0.2](https://github.com/jasonelle/jasonelle/releases/tag/v3.0.2) (June 2024)
 
 ### Added
 - [JLClipboard] Added `$clipboard.set(text)` and `$clipboard.get()` functions. This will allow copy and access text in native clipboard.
@@ -49,7 +55,7 @@ fi
 
 - [iOS Main Branch](https://github.com/jasonelle/jasonelle/archive/refs/heads/main.zip)
 
-## v3.0.1 (March 2023)
+## [v3.0.1](https://github.com/jasonelle/jasonelle/releases/tag/v3.0.1) (March 2023)
 
 ### Added
 
