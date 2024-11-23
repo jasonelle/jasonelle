@@ -94,6 +94,8 @@
         case CNAuthorizationStatusNotDetermined:
                 return NO;
                 break;
+        default:
+            return NO;
     }
 }
 
