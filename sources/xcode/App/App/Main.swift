@@ -56,13 +56,19 @@ struct Main: SwiftUI.App {
             // .none, .light or .dark
             .preferredColorScheme(.dark)
             
-            // Some websites may need this, specially when using a navbar.
-            // If you need this, enable one of these options
+            // MARK: - Ignore Safe Area
+            // Some websites may need this, specially when using a navbar or 
+            // weird layouts issues occur that do not happen in Safari.
+            // If you need this, enable one of these options:
+            //
             // .ignoresSafeArea(.container)
-            //.edgesIgnoringSafeArea(.bottom)
-            
+            // .edgesIgnoringSafeArea(.bottom)
+            // .ignoresSafeArea(.keyboard)
+            // .ignoresSafeArea(.keyboard, edges: .bottom)
+            //
+            // See: https://stackoverflow.com/a/66410383
             // Add a little padding if needed
-            //.padding(.bottom, (UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0) / 10)
+            // .padding(.bottom, (UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0) / 10)
         }
     }
 }
