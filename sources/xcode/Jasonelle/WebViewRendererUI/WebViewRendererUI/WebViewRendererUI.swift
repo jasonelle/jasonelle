@@ -126,9 +126,17 @@ class WebViewModel: ObservableObject {
 
         refreshControl.addTarget(self, action: #selector(pull), for: UIControl.Event.valueChanged)
 
+        // Configure ScrollView
         // Add RefreshControl to WebView
         webView.scrollView.addSubview(refreshControl)
         webView.scrollView.bounces = false
+        
+        // Disable Scrolling
+        // Uncomment if you want to disable scrolling
+        // TODO: Maybe add to config?
+        // webView.scrollView.isScrollEnabled = false
+        // webView.scrollView.bounces = false
+        // webView.scrollView.panGestureRecognizer.isEnabled = false
 
         setStyles()
     }
