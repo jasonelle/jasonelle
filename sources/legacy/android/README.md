@@ -8,6 +8,16 @@ This version is only available to those who need _JSON_ support.
 - [Legacy Docs](https://jasonelle-archive.github.io/docs/legacy/)
 - [Legacy Wiki](https://github.com/jasonelle-archive/jasonelle-v2/wiki)
 
+## Tested on
+
+- Java 17 SDK
+- Gradle 7.4
+- Android API 35
+
+## OneSignal
+
+- [Check OneSignal Integration](ONESIGNAL.md)
+
 ## Embed your Website
 
 This version uses *JSON* instead of *Javascript* for configuration.
