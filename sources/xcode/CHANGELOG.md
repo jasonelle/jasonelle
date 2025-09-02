@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - [WebViewRendererUI] Add progress bar and style option to show progress bar or launchui.
 
+- [webview.js] Added `window.jasonelle.extensions` global variable to easily access available extension wrappers in JS contexts.
+
+- [webview.js] Added `window.jasonelle.oem` global variable to quickly determine if the system is `apple`, `google`, 'other'.
+
 ## [v3.0.2](https://github.com/jasonelle/jasonelle/releases/tag/v3.0.2) (June 2024)
 
 ### Added

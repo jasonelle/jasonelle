@@ -3,6 +3,10 @@
         return;
     }
     
+    if (!window.$extensions) {
+        window.$extensions = {};
+    }
+    
     const toast = {};
     toast.options = {
         type: {
@@ -85,5 +89,5 @@
     };
     
     window.$toast = toast;
-    // window.$jasonelle.toast = toast;
+    window.$extensions.toast = toast;
 })();

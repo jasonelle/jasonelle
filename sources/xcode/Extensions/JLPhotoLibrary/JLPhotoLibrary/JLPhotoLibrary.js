@@ -3,6 +3,10 @@
          return true;
      }
      
+     if (!window.$extensions) {
+         window.$extensions = {};
+     }
+     
      const photolibrary = {
          status: {
             notdetemined: 0,
@@ -24,5 +28,5 @@
      
      // Export
      window.$photolibrary = photolibrary;
-     // window.$jasonelle.photolibrary = photolibrary;
+     window.$extensions.photolibrary = photolibrary;
  })();

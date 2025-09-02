@@ -251,7 +251,7 @@
     NSString *addInterface = [NSString
                               stringWithFormat:
                               @"__com_jasonelle_agent.interface = window.webkit.messageHandlers[`%@`];\n" \
-                              @"window.jasonelle = {agent: __com_jasonelle_agent, ready: false, logger: __com_jasonelle_agent.logging.logger, version: {string: '%s', major: %d, minor: %d, patch: %d, number: %d}" \
+                              @"window.jasonelle = {agent: __com_jasonelle_agent, ready: false, oem:'apple', logger: __com_jasonelle_agent.logging.logger, extensions:window.$extensions, version: {string: '%s', major: %d, minor: %d, patch: %d, number: %d}" \
                               @"};\n"
                               , identifier, JASONELLE_VERSION_STRING, JASONELLE_VERSION_MAJOR, JASONELLE_VERSION_MINOR, JASONELLE_VERSION_PATCH, JASONELLE_VERSION_NUMBER];
 

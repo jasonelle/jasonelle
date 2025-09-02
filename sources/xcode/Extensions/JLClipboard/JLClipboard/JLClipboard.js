@@ -3,6 +3,10 @@
         return;
     }
     
+    if (!window.$extensions) {
+        window.$extensions = {};
+    }
+    
     const clipboard = {};
     clipboard.set = (text = "") => $agent.trigger("$clipboard.set", {text});
     
@@ -10,5 +14,5 @@
     
     // Export
     window.$clipboard = clipboard;
-    // window.$jasonelle.clipboard = clipboard;
+    window.$extensions.clipboard = clipboard;
 })();

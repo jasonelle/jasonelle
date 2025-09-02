@@ -3,6 +3,10 @@
         return;
     }
     
+    if (!window.$extensions) {
+        window.$extensions = {};
+    }
+    
     // Creates a Wrapper to Ease calling
     // $myextension.run().then(message => {
     //      $logger.trace(message);
@@ -28,5 +32,5 @@
     
     // Export
     window.$myextension = myextension;
-    // window.$jasonelle.myextension = myextension;
+    window.$extensions.myextension = myextension;
 })();

@@ -3,6 +3,10 @@
          return;
      }
      
+     if (!window.$extensions) {
+         window.$extensions = {};
+     }
+     
      const reachability = {
          // Apple NetworkStatus Compatible Names.
          status: {
@@ -66,5 +70,5 @@
 
      // Export
      window.$reachability = reachability;
-     // window.$jasonelle.reachability = reachability;
+     window.$extensions.reachability = reachability;
 })();

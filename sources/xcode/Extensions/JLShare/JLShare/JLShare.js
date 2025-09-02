@@ -3,6 +3,10 @@
         return;
     }
     
+    if (!window.$extensions) {
+        window.$extensions = {};
+    }
+    
     const share = {
         types: {
             text: 0,
@@ -26,5 +30,6 @@
     
     // Export
     window.$share = share;
-    // window.$jasonelle.share = share;
+    window.$extensions.share = share;
+    
 })();

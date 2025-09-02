@@ -3,6 +3,10 @@
          return;
      }
      
+     if (!window.$extensions) {
+         window.$extensions = {};
+     }
+     
      const key = "cookies";
      
      const cookies = {};
@@ -36,5 +40,5 @@
      
      // Export
      window.$cookies = cookies;
-     // window.$jasonelle.cookies = cookies;
+     window.$extensions.cookies = cookies;
  })();

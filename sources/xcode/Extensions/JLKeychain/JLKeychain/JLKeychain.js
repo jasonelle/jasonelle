@@ -4,6 +4,10 @@
         return;
     }
     
+    if (!window.$extensions) {
+        window.$extensions = {};
+    }
+    
     const keychain = {};
 
     keychain.set = (key, value) => {
@@ -24,5 +28,5 @@
     
     // Export
     window.$keychain = keychain;
-    // window.$jasonelle.keychain = keychain;
+    window.$extensions.keychain = keychain;
 })();

@@ -3,6 +3,10 @@
          return;
      }
      
+     if (!window.$extensions) {
+         window.$extensions = {};
+     }
+     
      // Init
      const $audio = {};
      const events = {
@@ -61,5 +65,5 @@
      
      // Export
      window.$audio = $audio;
-     // window.$jasonelle.audio = $audio;
+     window.$extensions.audio = $audio;
  })();
