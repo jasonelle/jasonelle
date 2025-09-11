@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [v3.0.3](https://github.com/jasonelle/jasonelle/releases/tag/v3.0.3) (next)
 
 ### Added
+- [JLSettings] Add a special extension to store API Keys and other configuration variables. It works by executing a python script that reads a json file, then generates a `JLSettings.h` file than can be imported in any extension or the main app. This python script is automatically executed in every build.
 
 - [WebViewRendererUI] Add progress bar and style option to show progress bar or launchui.
 

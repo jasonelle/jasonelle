@@ -41,6 +41,7 @@
 #import <JLClipboard/JLClipboard.h>
 #import <JLToast/JLToast.h>
 #import <JLShare/JLShare.h>
+#import <JLSettings/JLSettings.h>
 
 #import <MyExtension/MyExtension.h> // Example Extension
 
@@ -59,6 +60,8 @@
 #pragma mark - Configure Your Extensions
 
 - (BOOL) install {
+//     JLSettings Variable Example Usage
+    jlog_trace_join(@"JLSettings: ", @(JLSettingExampleAPIKey));
 //     Setup ATTracking Manager
     [self.extensions add:JLATTrackingManager.class];
 

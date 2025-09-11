@@ -31,6 +31,9 @@
       location = "container:"
       name = "Extensions">
       <FileRef
+         location = "group:Extensions/JLSettings/JLSettings.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Extensions/JLShare/JLShare.xcodeproj">
       </FileRef>
       <FileRef
