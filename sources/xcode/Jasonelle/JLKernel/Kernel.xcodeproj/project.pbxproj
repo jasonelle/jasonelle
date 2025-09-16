@@ -80,6 +80,8 @@
 		EFB31406281D956E003737B0 /* JLEventAppDidLoad.h in Headers */ = {isa = PBXBuildFile; fileRef = EFB31404281D956E003737B0 /* JLEventAppDidLoad.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFB31407281D956E003737B0 /* JLEventAppDidLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB31405281D956E003737B0 /* JLEventAppDidLoad.m */; };
 		EFB73D0F27AFF95A00A21457 /* JLRendererProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = EFB73D0E27AFF95A00A21457 /* JLRendererProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFBB86C82E79EED9004CCD1D /* JLApplicationSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = EFBB86C62E79EED9004CCD1D /* JLApplicationSettings.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFBB86C92E79EED9004CCD1D /* JLApplicationSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = EFBB86C72E79EED9004CCD1D /* JLApplicationSettings.m */; };
 		EFC24261297F86230087AAA1 /* JLJSMessageHandlerOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = EFC2425F297F86230087AAA1 /* JLJSMessageHandlerOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFC24262297F86230087AAA1 /* JLJSMessageHandlerOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC24260297F86230087AAA1 /* JLJSMessageHandlerOptions.m */; };
 		EFD4ED3F2823F89B00153CA9 /* JLApplicationUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EFD4ED3D2823F89A00153CA9 /* JLApplicationUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -207,6 +209,8 @@
 		EFB31404281D956E003737B0 /* JLEventAppDidLoad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLEventAppDidLoad.h; sourceTree = "<group>"; };
 		EFB31405281D956E003737B0 /* JLEventAppDidLoad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLEventAppDidLoad.m; sourceTree = "<group>"; };
 		EFB73D0E27AFF95A00A21457 /* JLRendererProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLRendererProtocol.h; sourceTree = "<group>"; };
+		EFBB86C62E79EED9004CCD1D /* JLApplicationSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLApplicationSettings.h; sourceTree = "<group>"; };
+		EFBB86C72E79EED9004CCD1D /* JLApplicationSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLApplicationSettings.m; sourceTree = "<group>"; };
 		EFC2425F297F86230087AAA1 /* JLJSMessageHandlerOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJSMessageHandlerOptions.h; sourceTree = "<group>"; };
 		EFC24260297F86230087AAA1 /* JLJSMessageHandlerOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJSMessageHandlerOptions.m; sourceTree = "<group>"; };
 		EFD4ED3D2823F89A00153CA9 /* JLApplicationUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLApplicationUtils.h; sourceTree = "<group>"; };
@@ -649,6 +653,15 @@
 			path = Renderers;
 			sourceTree = "<group>";
 		};
+		EFBB86CA2E79EEE0004CCD1D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				EFBB86C62E79EED9004CCD1D /* JLApplicationSettings.h */,
+				EFBB86C72E79EED9004CCD1D /* JLApplicationSettings.m */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		EFD4ED412823F89F00153CA9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -824,6 +837,7 @@
 				EF682C202823309E00870531 /* Version */,
 				EFD4ED412823F89F00153CA9 /* Utils */,
 				EF47FEA02824DFD3006E2B9B /* Extensions */,
+				EFBB86CA2E79EEE0004CCD1D /* Settings */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -919,6 +933,7 @@
 				EF47FEA32824E31F006E2B9B /* JLExtension.h in Headers */,
 				EFC24261297F86230087AAA1 /* JLJSMessageHandlerOptions.h in Headers */,
 				EFADD27C29AF80BD00D19D4B /* JLEventReachabilityDidChange.h in Headers */,
+				EFBB86C82E79EED9004CCD1D /* JLApplicationSettings.h in Headers */,
 				EF968669283186FE006C623F /* JLWebViewMessageHandlerProtocol.h in Headers */,
 				EF83739027A996C500485E03 /* JLKernel.h in Headers */,
 				EF96866C2831D5CA006C623F /* JLJSLoggerMessageHandler.h in Headers */,
@@ -972,7 +987,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				CLASSPREFIX = JL;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1420;
 				ORGANIZATIONNAME = Jasonelle.com;
 				TargetAttributes = {
 					EF83737E27A996C400485E03 = {
@@ -1075,6 +1090,7 @@
 				EFDD98B028123C2D00DDE6D4 /* JLJSRoutes.m in Sources */,
 				EF47FEF82824FE2D006E2B9B /* JLUtilsPlist.m in Sources */,
 				EF47FE9F2824DFCF006E2B9B /* JLApplicationExtensions.m in Sources */,
+				EFBB86C92E79EED9004CCD1D /* JLApplicationSettings.m in Sources */,
 				EF83738427A996C400485E03 /* JLKernel.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1223,7 +1239,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1254,7 +1270,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;

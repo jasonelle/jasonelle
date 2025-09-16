@@ -61,7 +61,8 @@
 
 - (BOOL) install {
 //     JLSettings Variable Example Usage
-    jlog_trace_join(@"JLSettings: ", @(JLSettingExampleAPIKey));
+    [self.extensions add:JLSettings.class];
+    
 //     Setup ATTracking Manager
     [self.extensions add:JLATTrackingManager.class];
 

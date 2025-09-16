@@ -46,6 +46,14 @@ static JLApplication *_instance;
     return _version;
 }
 
+- (JLApplicationSettings * )settings {
+    if (!_settings) {
+        _settings = [JLApplicationSettings new];
+    }
+
+    return _settings;
+}
+
 - (UIViewController *) rootController {
     
     // Sometimes is needed a root controller to show alerts in webviews (using SwiftUI)
@@ -144,4 +152,11 @@ static JLApplication *_instance;
     return _ext;
 }
 
+#pragma mark: - Public API
+
+- (instancetype) setGlobalSettings:(NSDictionary *) settings {
+    self.settings = [[JLApplicationSettings alloc] initWithSettings: settings];
+    jlog_debug_join(@"Set Global Settings:", self.settings);
+    return self;
+}
 @end

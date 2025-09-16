@@ -1,6 +1,8 @@
 {
-    "JLSettingExampleAPIKey": {
-        "type": "string",
-        "value": "JLSetting Example Value"
+    "global": {
+        "JLSettingExampleAPIKey": {
+            "type": "string",
+            "value": "JLSetting Example Value"
+        }
     }
 }

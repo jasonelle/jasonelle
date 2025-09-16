@@ -36,6 +36,8 @@
 #import <JLKernel/JLApplicationVersion.h>
 #import <JLKernel/JLApplicationUtils.h>
 #import <JLKernel/JLApplicationExtensions.h>
+#import <JLKernel/JLApplicationSettings.h>
+
 
 @import UIKit;
 
@@ -75,8 +77,14 @@ NS_SWIFT_NAME(App)
 
 @property (nonatomic, strong, nonnull) JLApplicationExtensions * ext;
 
+@property (nonatomic, strong, nonnull) JLApplicationSettings * settings;
+
 @property (class) JLApplication * instance;
 
+/// Global Settings are a bag that can be used to store any useful value
+/// and be accessed from extensions or other places.
+/// Check the JLSettings extension for an example usage.
+- (instancetype) setGlobalSettings:(NSDictionary *) settings;
 
 @end
 

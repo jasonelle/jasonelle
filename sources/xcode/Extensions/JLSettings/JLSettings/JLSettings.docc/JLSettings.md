@@ -22,7 +22,24 @@ and generate the settings needed.
 ## Example Usage
 
 ```objc
-#import <JLSettings/JLSettings.h>
 jlog_trace_join(@"JLSettings: ", @(JLSettingExampleAPIKey));
 // com.jasonelle: [TRACE] JLSettings: JLSetting Example Value | file: AppExtensions.m | function: -[AppExtensions install] | line: 64
+```
+
+Also in can be added in a global `self.app.settings.values` property that contains a dictionary of values. This property is installed when loading the extension inside AppDelegate.
+
+```objc
+#import <JLSettings/JLSettings.h>
+...
+[self.extensions add:JLSettings.class];
+```
+
+```objc
+// JLSettings.m
+[self.app setGlobalSettings:@{
+    @"com.jasonelle.settings.example": @(JLSettingExampleAPIKey)
+}];
+
+// Access values within the app databag
+jl_trace(self.app.settings.values);
 ```

@@ -8,17 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		EF04D0BE2E737D5800CAB10C /* JLSettings.docc in Sources */ = {isa = PBXBuildFile; fileRef = EF04D0BD2E737D5800CAB10C /* JLSettings.docc */; };
-		EF8134FD2E726F0A0019FD86 /* JLSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = EF8134FC2E726F090019FD86 /* JLSettings.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF8135052E7270190019FD86 /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8135042E7270190019FD86 /* JLKernel.framework */; };
+		EFBB86C42E79EA1A004CCD1D /* JLSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = EFBB86C22E79EA1A004CCD1D /* JLSettings.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFBB86C52E79EA1A004CCD1D /* JLSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = EFBB86C32E79EA1A004CCD1D /* JLSettings.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EF04D0BD2E737D5800CAB10C /* JLSettings.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = JLSettings.docc; sourceTree = "<group>"; };
 		EF8134F92E726F090019FD86 /* JLSettings.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JLSettings.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EF8134FC2E726F090019FD86 /* JLSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLSettings.h; sourceTree = "<group>"; };
 		EF8135042E7270190019FD86 /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF81350F2E72789B0019FD86 /* settings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = settings.json; sourceTree = SOURCE_ROOT; };
-		EF8135112E7279870019FD86 /* settings.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = settings.py; sourceTree = SOURCE_ROOT; };
+		EF8135112E7279870019FD86 /* gen.jlsettings.h.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = gen.jlsettings.h.py; sourceTree = SOURCE_ROOT; };
+		EFBB86C22E79EA1A004CCD1D /* JLSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLSettings.h; sourceTree = "<group>"; };
+		EFBB86C32E79EA1A004CCD1D /* JLSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLSettings.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,9 +55,10 @@
 		EF8134FB2E726F090019FD86 /* JLSettings */ = {
 			isa = PBXGroup;
 			children = (
-				EF8135112E7279870019FD86 /* settings.py */,
+				EFBB86C22E79EA1A004CCD1D /* JLSettings.h */,
+				EFBB86C32E79EA1A004CCD1D /* JLSettings.m */,
+				EF8135112E7279870019FD86 /* gen.jlsettings.h.py */,
 				EF81350F2E72789B0019FD86 /* settings.json */,
-				EF8134FC2E726F090019FD86 /* JLSettings.h */,
 				EF04D0BD2E737D5800CAB10C /* JLSettings.docc */,
 			);
 			path = JLSettings;
@@ -76,7 +79,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF8134FD2E726F0A0019FD86 /* JLSettings.h in Headers */,
+				EFBB86C42E79EA1A004CCD1D /* JLSettings.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,13 +150,14 @@
 /* Begin PBXShellScriptBuildPhase section */
 		EF81350A2E72707E0019FD86 /* Create JLSettings.h */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
 			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/settings.json",
+				"$(SRCROOT)/gen.jlsettings.h.py",
 			);
 			name = "Create JLSettings.h";
 			outputFileListPaths = (
@@ -163,7 +167,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "NAME=\"JLSettings\"\nSOURCES_DIR=\"${PWD}/${NAME}\"\nSOURCE_FILE=\"${SOURCES_DIR}/${NAME}.h\"\npython3 \"${PWD}/settings.py\" > \"${SOURCE_FILE}\" \n";
+			shellScript = "NAME=\"JLSettings\"\nSOURCES_DIR=\"${PWD}/${NAME}\"\nSOURCE_FILE=\"${SOURCES_DIR}/${NAME}.h\"\npython3 \"${PWD}/gen.jlsettings.h.py\" > \"${SOURCE_FILE}\" \n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -172,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFBB86C52E79EA1A004CCD1D /* JLSettings.m in Sources */,
 				EF04D0BE2E737D5800CAB10C /* JLSettings.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
