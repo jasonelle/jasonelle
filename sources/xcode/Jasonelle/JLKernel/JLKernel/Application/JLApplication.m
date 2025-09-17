@@ -156,7 +156,7 @@ static JLApplication *_instance;
 
 - (instancetype) setGlobalSettings:(NSDictionary *) settings {
     self.settings = [[JLApplicationSettings alloc] initWithSettings: settings];
-    jlog_debug_join(@"Set Global Settings:", self.settings);
+    jlog_trace_join(@"Set Global Settings: ",self.settings.debugDescription);
     return self;
 }
 @end

@@ -30,9 +30,15 @@
     [super install];
     
     // Manually specify which global variables will be available inside app.settings variable
-    [self.app setGlobalSettings:@{
-        @"JLSettingExampleAPIKey": @(JLSettingExampleAPIKey)
-    }];
+    NSDictionary * settings = @{};
+    
+    if([self.app.env detect] == JLEnvironmentTypeDevelop) {
+        settings = @{
+            @"JLSettingExampleAPIKey": @(JLSettingExampleAPIKey)
+        };
+    }
+    
+    [self.app setGlobalSettings:settings];
 }
 
 @end
