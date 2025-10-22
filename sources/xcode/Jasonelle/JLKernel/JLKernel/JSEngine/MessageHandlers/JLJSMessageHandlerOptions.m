@@ -24,11 +24,11 @@
 }
 
 - (NSNumber *) toNumber {
-    return (NSNumber *) self.value;
+    return [NSDecimalNumber decimalNumberWithString:self.description];
 }
 
 - (NSString *) toString {
-    return (NSString *) self.value;
+    return self.description;
 }
 
 - (NSDictionary *) toDictionary {

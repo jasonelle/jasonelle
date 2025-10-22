@@ -81,11 +81,6 @@ NS_SWIFT_NAME(App)
 
 @property (class) JLApplication * instance;
 
-/// Global Settings are a bag that can be used to store any useful value
-/// and be accessed from extensions or other places.
-/// Check the JLSettings extension for an example usage.
-- (instancetype) setGlobalSettings:(NSDictionary *) settings;
-
 @end
 
 NS_ASSUME_NONNULL_END

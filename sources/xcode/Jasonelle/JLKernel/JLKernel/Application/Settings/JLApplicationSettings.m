@@ -28,9 +28,9 @@
 
 @implementation JLApplicationSettings
 
-- (NSDictionary *) values {
+- (NSMutableDictionary *) values {
     if (!_values) {
-        _values = @{};
+        _values = [[[NSBundle mainBundle] infoDictionary] mutableCopy];
     }
     
     return _values;
@@ -41,13 +41,21 @@
     
     if (!self) return nil;
     
-    self.values = settings;
+    NSMutableDictionary * values = [self.values mutableCopy];
+    
+    [values addEntriesFromDictionary:settings];
+    
+    self.values = values;
     
     return self;
 }
 
 - (NSString *) description {
     return [self.values description];
+}
+
+- (nullable id) valueForKey:(NSString *)key {
+    return [self.values valueForKey:key];
 }
 
 @end

@@ -153,10 +153,4 @@ static JLApplication *_instance;
 }
 
 #pragma mark: - Public API
-
-- (instancetype) setGlobalSettings:(NSDictionary *) settings {
-    self.settings = [[JLApplicationSettings alloc] initWithSettings: settings];
-    jlog_trace_join(@"Set Global Settings: ",self.settings.debugDescription);
-    return self;
-}
 @end
