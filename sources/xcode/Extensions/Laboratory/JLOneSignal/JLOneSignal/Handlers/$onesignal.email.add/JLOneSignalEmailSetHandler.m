@@ -1,8 +1,8 @@
 //
-//  JLOneSignal.h
+//  JLOneSignalEmailSetHandler.m
 //  JLOneSignal
 //
-//  Created by clsource on 20-09-23.
+//  Created by clsource on 31-08-25.
 //  Copyright (c) Jasonelle.com
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
@@ -23,24 +23,19 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-#import <Foundation/Foundation.h>
-
-//! Project version number for JLOneSignal.
-FOUNDATION_EXPORT double JLOneSignalVersionNumber;
-
-//! Project version string for JLOneSignal.
-FOUNDATION_EXPORT const unsigned char JLOneSignalVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <JLOneSignal/PublicHeader.h>
-
-
-#import <JLKernel/JLKernel.h>
+#import "JLOneSignalEmailSetHandler.h"
 #import <OneSignalFramework/OneSignalFramework.h>
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation JLOneSignalEmailSetHandler
 
-@interface JLOneSignal : JLExtension<OSPushSubscriptionObserver, OSNotificationPermissionObserver>
-
+- (void)handleWithOptions:(nonnull JLJSMessageHandlerOptions *)options {
+    
+    JLJSParams * opts = [options toParams];
+    NSString * email = [[opts
+                         string:@"email"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    [OneSignal.User addEmail:email];
+    jlog_trace_join(@"OneSignal Add Email: ", email);
+    
+    self.resolve(@YES);
+}
 @end
-
-NS_ASSUME_NONNULL_END

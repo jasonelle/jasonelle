@@ -1,6 +1,6 @@
 //
-//  JLOneSignal.h
-//  JLOneSignal
+//  JLOneSignalGetInfoHandler.h
+//  JLOneSignalGetInfoHandler
 //
 //  Created by clsource on 20-09-23.
 //  Copyright (c) Jasonelle.com
@@ -22,24 +22,12 @@
 //
 //  <https://mozilla.org/MPL/2.0/>.
 //
-
 #import <Foundation/Foundation.h>
-
-//! Project version number for JLOneSignal.
-FOUNDATION_EXPORT double JLOneSignalVersionNumber;
-
-//! Project version string for JLOneSignal.
-FOUNDATION_EXPORT const unsigned char JLOneSignalVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <JLOneSignal/PublicHeader.h>
-
-
 #import <JLKernel/JLKernel.h>
-#import <OneSignalFramework/OneSignalFramework.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JLOneSignal : JLExtension<OSPushSubscriptionObserver, OSNotificationPermissionObserver>
+@interface JLOneSignalGetInfoHandler : JLJSMessageHandler
 
 @end
 

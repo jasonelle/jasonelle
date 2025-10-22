@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# get.app.json.py
+# gen.app.xcconfig.py
 # Created by clsource on 16-09-25.
 #
 # This file is part of Jasonelle Project <https://jasonelle.com>.

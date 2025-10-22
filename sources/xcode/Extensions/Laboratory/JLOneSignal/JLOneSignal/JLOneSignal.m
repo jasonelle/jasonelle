@@ -26,46 +26,156 @@
 
 #import "JLOneSignal.h"
 #import "JLOneSignalGetInfoHandler.h"
+#import "JLOneSignalLoginHandler.h"
+#import "JLOneSignalLogoutHandler.h"
+#import "JLOneSignalNotificationsOptOutHandler.h"
+#import "JLOneSignalPromptHandler.h"
+#import "JLOneSignalSMSSetHandler.h"
+#import "JLOneSignalSMSRemoveHandler.h"
+#import "JLOneSignalEmailSetHandler.h"
+#import "JLOneSignalEmailRemoveHandler.h"
+#import "JLOneSignalTagsGetHandler.h"
+#import "JLOneSignalTagsAddHandler.h"
+#import "JLOneSignalTagsRemoveHandler.h"
 
-#import <OneSignal/OneSignal.h>
+#import "JLOneSignalConfig.h"
 
-NSString * const kJLOneSignalAppID = @"YOUR_ONESIGNAL_APP_ID";
+NSString * const kJLOneSignalPushSubscriptionDidChangeEvent = @"window.$onesignal.events.notifications.subscription.changed.dispatch";
 
 @implementation JLOneSignal
 
 - (void) install {
     [super install];
     
-    JLOneSignalGetInfoHandler * handler = [[JLOneSignalGetInfoHandler alloc] initWithApplication:self.app andExtension:self];
+    JLOneSignalGetInfoHandler * infoHandler = [[JLOneSignalGetInfoHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    JLOneSignalLoginHandler * loginHandler = [[JLOneSignalLoginHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    JLOneSignalLogoutHandler * logoutHandler = [[JLOneSignalLogoutHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    JLOneSignalNotificationsOptOutHandler * optOutHandler = [[JLOneSignalNotificationsOptOutHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    // Shows the prompt to allow user notifications
+    JLOneSignalPromptHandler * promptHandler = [[JLOneSignalPromptHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    JLOneSignalEmailSetHandler * emailAddHandler = [[JLOneSignalEmailSetHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    JLOneSignalEmailRemoveHandler * emailRemoveHandler = [[JLOneSignalEmailRemoveHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    JLOneSignalSMSSetHandler * smsAddHandler = [[JLOneSignalSMSSetHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    JLOneSignalSMSRemoveHandler * smsRemoveHandler = [[JLOneSignalSMSRemoveHandler alloc] initWithApplication:self.app andExtension:self];
 
+    
+    // https://documentation.onesignal.com/docs/device-user-model-mobile-sdk-mapping#tags
+    
+    JLOneSignalTagsGetHandler * tagsGetHandler = [[JLOneSignalTagsGetHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    JLOneSignalTagsAddHandler * tagsAddHandler = [[JLOneSignalTagsAddHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    JLOneSignalTagsRemoveHandler * tagsRemoveHandler = [[JLOneSignalTagsRemoveHandler alloc] initWithApplication:self.app andExtension:self];
+    
+    // TODO: add optOut, optIn, optedIn handlers https://documentation.onesignal.com/docs/mobile-sdk-reference#optout-%2C-optin-%2C-optedin
+    // TODO: add setLanguage https://documentation.onesignal.com/docs/mobile-sdk-reference#setlanguage
+    
     self.handlers = @{
-        @"$onesignal.get" : handler
+        @"$onesignal.info" : infoHandler,
+        @"$onesignal.login" : loginHandler,
+        @"$onesignal.logout" : logoutHandler,
+        @"$onesignal.disable" : optOutHandler,
+        @"$onesignal.prompt" : promptHandler,
+        @"$onesignal.email.add" : emailAddHandler,
+        @"$onesignal.email.remove" : emailRemoveHandler,
+        @"$onesignal.sms.add" : smsAddHandler,
+        @"$onesignal.sms.remove" : smsRemoveHandler,
+        @"$onesignal.tags.get" : tagsGetHandler,
+        @"$onesignal.tags.add" : tagsAddHandler,
+        @"$onesignal.tags.remove" : tagsRemoveHandler,
     };
+}
+
+- (void) setupOneSignalDebug {
+    // Remove this method to stop OneSignal Debugging
+    // LogLevel: ONE_S_LL_NONE | ONE_S_LL_FATAL | ONE_S_LL_ERROR | ONE_S_LL_WARN | ONE_S_LL_INFO | ONE_S_LL_DEBUG | ONE_S_LL_VERBOSE
+    
+    [OneSignal.Debug setLogLevel:ONE_S_LL_VERBOSE];
+    
+    // Sets the logging level to show as alert dialogs in your app. Make sure to remove this before submitting to the app store.
+    // [OneSignal.Debug setAlertLevel:ONE_S_LL_NONE];
 }
 
 - (BOOL)application: (UIApplication *) application
 didFinishLaunchingWithOptions:(NSDictionary *) launchOptions {
     
-    // Remove this method to stop OneSignal Debugging
-    // LogLevel: ONE_S_LL_NONE | ONE_S_LL_FATAL | ONE_S_LL_ERROR | ONE_S_LL_WARN | ONE_S_LL_INFO | ONE_S_LL_DEBUG | ONE_S_LL_VERBOSE
-    [OneSignal setLogLevel:ONE_S_LL_VERBOSE visualLevel:ONE_S_LL_NONE];
-
-    // OneSignal initialization
-    [OneSignal initWithLaunchOptions:launchOptions];
-    [OneSignal setAppId:kJLOneSignalAppID];
-
+    [OneSignal.Debug setLogLevel:ONE_S_LL_FATAL];
+    if(self.app.env.type == JLEnvironmentTypeDevelop) {
+        [self setupOneSignalDebug];
+    }
     
-    // promptForPushNotifications will show the native iOS notification permission prompt.
-    // We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 8)
-    [OneSignal promptForPushNotificationsWithUserResponse:^(BOOL accepted) {
-        jlog_trace_fmt(@"User accepted notifications: %d", accepted);
-    }];
-
-    // Set your customer userId
-    // [OneSignal setExternalUserId:@"userId"];
+    [OneSignal initialize:kJLOneSignalAppID withLaunchOptions:launchOptions];
+    
+    // Get notifications about push subscription status
+    [OneSignal.User.pushSubscription addObserver:self];
+    [OneSignal.Notifications addPermissionObserver:self];
+    
+    // https://documentation.onesignal.com/docs/prompt-for-push-permissions
+    // https://documentation.onesignal.com/docs/mobile-sdk-reference#requestpermission-fallbacktosettings-push
+    
+    // We recommend removing this method after testing and instead use In-App Messages to prompt for notification permission.
+    // Passing true will fallback to setting prompt if the user denies push permissions
+    //    [OneSignal.Notifications requestPermission:^(BOOL accepted) {
+    //        jlog_trace_fmt(@"User accepted notifications: %d", accepted);
+    //    } fallbackToSettings:true];
     
     return YES;
     
+}
+
+#pragma mark - Push Subscription Change
+// https://documentation.onesignal.com/docs/mobile-sdk-reference#addobserver-push-subscription-changes
+- (void)onPushSubscriptionDidChangeWithState:(OSPushSubscriptionChangedState *)state {
+    
+    if(!self.webview) {
+        return;
+    }
+    
+    jlog_join(@"Push Subscription Did Change With State: ", state);
+    
+   // send event to js
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.app.utils.webview
+         dispatch:kJLOneSignalPushSubscriptionDidChangeEvent
+         arguments:@{
+            @"origin": @"OneSignal.User.pushSubscription",
+            @"state": state
+        }
+         inWebView:self.webview];
+    });
+}
+
+- (void)onNotificationPermissionDidChange:(BOOL)granted {
+    
+    jlog_join(@"Notification Permission changed: ", jlog_b2s(granted));
+    
+    if(!self.webview) {
+        return;
+    }
+    
+    // send event to js
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.app.utils.webview
+         dispatch:kJLOneSignalPushSubscriptionDidChangeEvent
+         arguments:@{
+            @"origin": @"OneSignal.Notifications",
+            @"state": @(granted)
+        }
+         inWebView:self.webview];
+    });
+}
+
+- (void) cleanup {
+    [OneSignal.User.pushSubscription removeObserver:self];
+    [OneSignal.Notifications removePermissionObserver: self];
 }
 
 #pragma mark - Extension Public Methods

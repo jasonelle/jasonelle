@@ -1,8 +1,8 @@
 //
-//  JLOneSignalGetInfoHandler.h
-//  JLOneSignalGetInfoHandler
+//  JLOneSignalEmailRemoveHandler.m
+//  JLOneSignal
 //
-//  Created by clsource on 20-09-23.
+//  Created by clsource on 31-08-25.
 //  Copyright (c) Jasonelle.com
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
@@ -22,14 +22,19 @@
 //
 //  <https://mozilla.org/MPL/2.0/>.
 //
-#import <Foundation/Foundation.h>
 
-#import <JLKernel/JLKernel.h>
+#import "JLOneSignalEmailRemoveHandler.h"
+#import <OneSignalFramework/OneSignalFramework.h>
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation JLOneSignalEmailRemoveHandler
 
-@interface JLOneSignalGetInfoHandler : JLJSMessageHandler
+- (void)handleWithOptions:(nonnull JLJSMessageHandlerOptions *)options {
+    JLJSParams * opts = [options toParams];
+    NSString * email = [[opts
+                         string:@"email"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    [OneSignal.User removeEmail:email];
+    jlog_trace_join(@"OneSignal Remove Email: ", email);
+    self.resolve(@YES);
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

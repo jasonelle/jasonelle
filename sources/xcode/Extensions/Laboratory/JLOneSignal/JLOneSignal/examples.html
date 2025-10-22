@@ -1,11 +1,31 @@
 <!-- Example: JLOneSignal -->
 <script type="text/javascript">
     
-    const getOneSignalPlayerId = () => {
-        return $onesignal.get().then(data => {
-            alert(data.userId);
+    const getOneSignalExternalId = () => {
+        return $onesignal.info().then(data => {
+            alert(data.externalId);
         });
     };
+    
+    const showPermissionPrompt = () => {
+        return $onesignal.prompt();
+    };
+    
+    const addEmail = () => {
+        return $onesignal.email.add("email" + String(Date.now()) + "@example.com")
+    };
+    
+    const removeEmail = () => {
+        const email = "email" + String(Date.now()) + "@example.com";
+        return $onesignal.email.add(email).then(() => {
+            return $onesignal.email.remove(email);
+        });
+    };
+    
+    // Subscribe to push notification changed status
+    document.addEventListener($onesignal.events.notifications.subscription.changed.name, function(e) {
+        $logger.trace("Push Notification Subscription Changed: " + JSON.stringify(e.detail));
+    });
     
 </script>
 
@@ -13,7 +33,16 @@
     <h3 class="title">JLOneSignal Examples</h3>
     <ul>
         <li>
-            <h4 onClick="getOneSignalPlayerId()" class="link">Get Player Id</h4>
+            <h4 onClick="showPermissionPrompt()" class="link">Show Permission Prompt</h4>
+        </li>
+        <li>
+            <h4 onClick="addEmail()" class="link">Add Email</h4>
+        </li>
+        <li>
+            <h4 onClick="removeEmail()" class="link">Remove Email</h4>
+        </li>
+        <li>
+            <h4 onClick="getOneSignalExternalId()" class="link">Get External Id</h4>
         </li>
     </ul>
 </li>

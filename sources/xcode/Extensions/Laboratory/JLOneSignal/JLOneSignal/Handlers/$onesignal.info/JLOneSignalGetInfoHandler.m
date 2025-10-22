@@ -24,7 +24,7 @@
 //
 
 #import "JLOneSignalGetInfoHandler.h"
-#import <OneSignal/OneSignal.h>
+#import <OneSignalFramework/OneSignalFramework.h>
 
 @implementation JLOneSignalGetInfoHandler
 
@@ -38,48 +38,47 @@
 
 - (NSDictionary *) getOneSignalState {
     
-    NSMutableDictionary * state = [[OneSignal getDeviceState].jsonRepresentation mutableCopy];
+    // https://documentation.onesignal.com/docs/device-user-model-mobile-sdk-mapping#mobile-sdk-mapping
     
-    id userId = [OneSignal getDeviceState].userId;
+    NSMutableDictionary * state = [@{} mutableCopy];
     
-    if (!userId) {
+    [state setObject:OneSignal.sdkSemanticVersion forKey:@"version"];
+    
+    NSString * pushId = OneSignal.User.pushSubscription.id;
+    [state setObject:[NSNull null] forKey:@"pushId"];
+    if (pushId) {
+        [state setObject:pushId forKey:@"pushId"];
+    } else {
         jlog_warning(@"OneSignal userId is null. Please check your OneSignal integration and configuration.");
-        userId = [NSNull null];
     }
     
-    [state setObject:userId forKey:@"userId"];
-    
-    id email = [OneSignal getDeviceState].emailAddress;
-    
-    if (!email) {
-        email = [NSNull null];
+    NSString * token = OneSignal.User.pushSubscription.token;
+    [state setObject:[NSNull null] forKey:@"token"];
+    if (token) {
+        [state setObject:token forKey:@"token"];
+    } else {
+        jlog_warning(@"Push notification token is null. Please check your OneSignal integration and configuration.");
     }
     
-    [state setObject:email forKey:@"email"];
     
-    id emailUserId = [OneSignal getDeviceState].emailUserId;
+    [state setObject:@([OneSignal.Notifications permissionNative]) forKey:@"status"];
+    [state setObject:@(OneSignal.User.pushSubscription.optedIn) forKey:@"optedIn"];
     
-    if (!emailUserId) {
-        emailUserId = [NSNull null];
+    NSString * onesignalId = OneSignal.User.onesignalId;
+    [state setObject:[NSNull null] forKey:@"onesignalId"];
+    if (onesignalId) {
+        [state setObject:onesignalId forKey:@"onesignalId"];
     }
     
-    [state setObject:emailUserId forKey:@"emailUserId"];
-    
-    id sms = [OneSignal getDeviceState].smsNumber;
-    
-    if (!sms) {
-        sms = [NSNull null];
+    NSString * externalId = OneSignal.User.externalId;
+    [state setObject:[NSNull null] forKey:@"externalId"];
+    if (externalId) {
+        [state setObject:externalId forKey:@"externalId"];
     }
     
-    [state setObject:sms forKey:@"sms"];
     
-    id smsUserId = [OneSignal getDeviceState].smsUserId;
     
-    if (!smsUserId) {
-        smsUserId = [NSNull null];
-    }
-    
-    [state setObject:smsUserId forKey:@"smsUserId"];
+    jlog_debug([state description]);
     
     return [state copy];
 }

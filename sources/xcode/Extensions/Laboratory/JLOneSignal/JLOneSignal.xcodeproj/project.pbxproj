@@ -7,12 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF16C1C92E64FEC0006F0B16 /* OneSignalExtension in Frameworks */ = {isa = PBXBuildFile; productRef = EF16C1C82E64FEC0006F0B16 /* OneSignalExtension */; };
+		EF16C1CB2E64FEC0006F0B16 /* OneSignalFramework in Frameworks */ = {isa = PBXBuildFile; productRef = EF16C1CA2E64FEC0006F0B16 /* OneSignalFramework */; };
+		EF16C1CD2E650078006F0B16 /* JLOneSignalConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = EF16C1CC2E650078006F0B16 /* JLOneSignalConfig.h */; };
+		EF16C1D32E651482006F0B16 /* JLOneSignalLoginHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF16C1D12E651482006F0B16 /* JLOneSignalLoginHandler.h */; };
+		EF16C1D42E651482006F0B16 /* JLOneSignalLoginHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF16C1D22E651482006F0B16 /* JLOneSignalLoginHandler.m */; };
+		EF16C1D72E651637006F0B16 /* JLOneSignalLogoutHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF16C1D52E651637006F0B16 /* JLOneSignalLogoutHandler.h */; };
+		EF16C1D82E651637006F0B16 /* JLOneSignalLogoutHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF16C1D62E651637006F0B16 /* JLOneSignalLogoutHandler.m */; };
+		EF16C1DC2E651B2D006F0B16 /* JLOneSignalNotificationsOptOutHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF16C1DA2E651B2D006F0B16 /* JLOneSignalNotificationsOptOutHandler.h */; };
+		EF16C1DD2E651B2D006F0B16 /* JLOneSignalNotificationsOptOutHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF16C1DB2E651B2D006F0B16 /* JLOneSignalNotificationsOptOutHandler.m */; };
+		EF16C1E12E651CAD006F0B16 /* JLOneSignalPromptHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF16C1DF2E651CAD006F0B16 /* JLOneSignalPromptHandler.h */; };
+		EF16C1E22E651CAD006F0B16 /* JLOneSignalPromptHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF16C1E02E651CAD006F0B16 /* JLOneSignalPromptHandler.m */; };
+		EF16C1E92E651E44006F0B16 /* JLOneSignalEmailSetHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF16C1E72E651E44006F0B16 /* JLOneSignalEmailSetHandler.h */; };
+		EF16C1EA2E651E44006F0B16 /* JLOneSignalEmailSetHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF16C1E82E651E44006F0B16 /* JLOneSignalEmailSetHandler.m */; };
+		EF16C1ED2E651E56006F0B16 /* JLOneSignalEmailRemoveHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF16C1EB2E651E56006F0B16 /* JLOneSignalEmailRemoveHandler.h */; };
+		EF16C1EE2E651E56006F0B16 /* JLOneSignalEmailRemoveHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF16C1EC2E651E56006F0B16 /* JLOneSignalEmailRemoveHandler.m */; };
+		EF16C1F12E651E68006F0B16 /* JLOneSignalSMSSetHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF16C1EF2E651E67006F0B16 /* JLOneSignalSMSSetHandler.h */; };
+		EF16C1F22E651E68006F0B16 /* JLOneSignalSMSSetHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF16C1F02E651E68006F0B16 /* JLOneSignalSMSSetHandler.m */; };
+		EF16C1F52E651E7A006F0B16 /* JLOneSignalSMSRemoveHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF16C1F32E651E7A006F0B16 /* JLOneSignalSMSRemoveHandler.h */; };
+		EF16C1F62E651E7A006F0B16 /* JLOneSignalSMSRemoveHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF16C1F42E651E7A006F0B16 /* JLOneSignalSMSRemoveHandler.m */; };
+		EF16C1FA2E653202006F0B16 /* JLOneSignalTagsAddHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF16C1F82E653202006F0B16 /* JLOneSignalTagsAddHandler.h */; };
+		EF16C1FB2E653202006F0B16 /* JLOneSignalTagsAddHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF16C1F92E653202006F0B16 /* JLOneSignalTagsAddHandler.m */; };
+		EF16C2002E65406E006F0B16 /* JLOneSignalTagsRemoveHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF16C1FE2E65406E006F0B16 /* JLOneSignalTagsRemoveHandler.h */; };
+		EF16C2012E65406E006F0B16 /* JLOneSignalTagsRemoveHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF16C1FF2E65406E006F0B16 /* JLOneSignalTagsRemoveHandler.m */; };
+		EF16C2042E654080006F0B16 /* JLOneSignalTagsGetHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF16C2022E654080006F0B16 /* JLOneSignalTagsGetHandler.h */; };
+		EF16C2052E654080006F0B16 /* JLOneSignalTagsGetHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF16C2032E654080006F0B16 /* JLOneSignalTagsGetHandler.m */; };
 		EF4D7C2D2ABB73F200D4CF81 /* JLOneSignal.docc in Sources */ = {isa = PBXBuildFile; fileRef = EF4D7C2C2ABB73F200D4CF81 /* JLOneSignal.docc */; };
 		EF4D7C332ABB73F200D4CF81 /* JLOneSignal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF4D7C282ABB73F200D4CF81 /* JLOneSignal.framework */; };
 		EF4D7C382ABB73F200D4CF81 /* JLOneSignalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF4D7C372ABB73F200D4CF81 /* JLOneSignalTests.m */; };
 		EF4D7C392ABB73F200D4CF81 /* JLOneSignal.h in Headers */ = {isa = PBXBuildFile; fileRef = EF4D7C2B2ABB73F200D4CF81 /* JLOneSignal.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EF4D7C442ABB740D00D4CF81 /* OneSignal in Frameworks */ = {isa = PBXBuildFile; productRef = EF4D7C432ABB740D00D4CF81 /* OneSignal */; };
-		EF4D7C462ABB740D00D4CF81 /* OneSignalExtension in Frameworks */ = {isa = PBXBuildFile; productRef = EF4D7C452ABB740D00D4CF81 /* OneSignalExtension */; };
 		EF4D7C492ABB744A00D4CF81 /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF4D7C482ABB744A00D4CF81 /* JLKernel.framework */; };
 		EF4D7C532ABB753700D4CF81 /* JLOneSignalGetInfoHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EF4D7C4E2ABB753700D4CF81 /* JLOneSignalGetInfoHandler.h */; };
 		EF4D7C542ABB753700D4CF81 /* JLOneSignalGetInfoHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF4D7C4F2ABB753700D4CF81 /* JLOneSignalGetInfoHandler.m */; };
@@ -32,6 +55,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EF16C1CC2E650078006F0B16 /* JLOneSignalConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLOneSignalConfig.h; sourceTree = "<group>"; };
+		EF16C1D12E651482006F0B16 /* JLOneSignalLoginHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLOneSignalLoginHandler.h; sourceTree = "<group>"; };
+		EF16C1D22E651482006F0B16 /* JLOneSignalLoginHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLOneSignalLoginHandler.m; sourceTree = "<group>"; };
+		EF16C1D52E651637006F0B16 /* JLOneSignalLogoutHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLOneSignalLogoutHandler.h; sourceTree = "<group>"; };
+		EF16C1D62E651637006F0B16 /* JLOneSignalLogoutHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLOneSignalLogoutHandler.m; sourceTree = "<group>"; };
+		EF16C1DA2E651B2D006F0B16 /* JLOneSignalNotificationsOptOutHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLOneSignalNotificationsOptOutHandler.h; sourceTree = "<group>"; };
+		EF16C1DB2E651B2D006F0B16 /* JLOneSignalNotificationsOptOutHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLOneSignalNotificationsOptOutHandler.m; sourceTree = "<group>"; };
+		EF16C1DF2E651CAD006F0B16 /* JLOneSignalPromptHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLOneSignalPromptHandler.h; sourceTree = "<group>"; };
+		EF16C1E02E651CAD006F0B16 /* JLOneSignalPromptHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLOneSignalPromptHandler.m; sourceTree = "<group>"; };
+		EF16C1E72E651E44006F0B16 /* JLOneSignalEmailSetHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLOneSignalEmailSetHandler.h; sourceTree = "<group>"; };
+		EF16C1E82E651E44006F0B16 /* JLOneSignalEmailSetHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLOneSignalEmailSetHandler.m; sourceTree = "<group>"; };
+		EF16C1EB2E651E56006F0B16 /* JLOneSignalEmailRemoveHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLOneSignalEmailRemoveHandler.h; sourceTree = "<group>"; };
+		EF16C1EC2E651E56006F0B16 /* JLOneSignalEmailRemoveHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLOneSignalEmailRemoveHandler.m; sourceTree = "<group>"; };
+		EF16C1EF2E651E67006F0B16 /* JLOneSignalSMSSetHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLOneSignalSMSSetHandler.h; sourceTree = "<group>"; };
+		EF16C1F02E651E68006F0B16 /* JLOneSignalSMSSetHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLOneSignalSMSSetHandler.m; sourceTree = "<group>"; };
+		EF16C1F32E651E7A006F0B16 /* JLOneSignalSMSRemoveHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLOneSignalSMSRemoveHandler.h; sourceTree = "<group>"; };
+		EF16C1F42E651E7A006F0B16 /* JLOneSignalSMSRemoveHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLOneSignalSMSRemoveHandler.m; sourceTree = "<group>"; };
+		EF16C1F82E653202006F0B16 /* JLOneSignalTagsAddHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLOneSignalTagsAddHandler.h; sourceTree = "<group>"; };
+		EF16C1F92E653202006F0B16 /* JLOneSignalTagsAddHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLOneSignalTagsAddHandler.m; sourceTree = "<group>"; };
+		EF16C1FE2E65406E006F0B16 /* JLOneSignalTagsRemoveHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLOneSignalTagsRemoveHandler.h; sourceTree = "<group>"; };
+		EF16C1FF2E65406E006F0B16 /* JLOneSignalTagsRemoveHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLOneSignalTagsRemoveHandler.m; sourceTree = "<group>"; };
+		EF16C2022E654080006F0B16 /* JLOneSignalTagsGetHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLOneSignalTagsGetHandler.h; sourceTree = "<group>"; };
+		EF16C2032E654080006F0B16 /* JLOneSignalTagsGetHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLOneSignalTagsGetHandler.m; sourceTree = "<group>"; };
 		EF4D7C282ABB73F200D4CF81 /* JLOneSignal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JLOneSignal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4D7C2B2ABB73F200D4CF81 /* JLOneSignal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLOneSignal.h; sourceTree = "<group>"; };
 		EF4D7C2C2ABB73F200D4CF81 /* JLOneSignal.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = JLOneSignal.docc; sourceTree = "<group>"; };
@@ -50,9 +96,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF4D7C442ABB740D00D4CF81 /* OneSignal in Frameworks */,
-				EF4D7C462ABB740D00D4CF81 /* OneSignalExtension in Frameworks */,
 				EF4D7C492ABB744A00D4CF81 /* JLKernel.framework in Frameworks */,
+				EF16C1CB2E64FEC0006F0B16 /* OneSignalFramework in Frameworks */,
+				EF16C1C92E64FEC0006F0B16 /* OneSignalExtension in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +113,114 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EF16C1CE2E650990006F0B16 /* $onesignal.info */ = {
+			isa = PBXGroup;
+			children = (
+				EF4D7C4E2ABB753700D4CF81 /* JLOneSignalGetInfoHandler.h */,
+				EF4D7C4F2ABB753700D4CF81 /* JLOneSignalGetInfoHandler.m */,
+			);
+			path = $onesignal.info;
+			sourceTree = "<group>";
+		};
+		EF16C1CF2E651404006F0B16 /* $onesignal.login */ = {
+			isa = PBXGroup;
+			children = (
+				EF16C1D12E651482006F0B16 /* JLOneSignalLoginHandler.h */,
+				EF16C1D22E651482006F0B16 /* JLOneSignalLoginHandler.m */,
+			);
+			path = $onesignal.login;
+			sourceTree = "<group>";
+		};
+		EF16C1D02E651443006F0B16 /* $onesignal.logout */ = {
+			isa = PBXGroup;
+			children = (
+				EF16C1D52E651637006F0B16 /* JLOneSignalLogoutHandler.h */,
+				EF16C1D62E651637006F0B16 /* JLOneSignalLogoutHandler.m */,
+			);
+			path = $onesignal.logout;
+			sourceTree = "<group>";
+		};
+		EF16C1D92E651AFD006F0B16 /* $onesignal.disable */ = {
+			isa = PBXGroup;
+			children = (
+				EF16C1DA2E651B2D006F0B16 /* JLOneSignalNotificationsOptOutHandler.h */,
+				EF16C1DB2E651B2D006F0B16 /* JLOneSignalNotificationsOptOutHandler.m */,
+			);
+			path = $onesignal.disable;
+			sourceTree = "<group>";
+		};
+		EF16C1DE2E651C31006F0B16 /* $onesignal.prompt */ = {
+			isa = PBXGroup;
+			children = (
+				EF16C1DF2E651CAD006F0B16 /* JLOneSignalPromptHandler.h */,
+				EF16C1E02E651CAD006F0B16 /* JLOneSignalPromptHandler.m */,
+			);
+			path = $onesignal.prompt;
+			sourceTree = "<group>";
+		};
+		EF16C1E32E651DDE006F0B16 /* $onesignal.email.add */ = {
+			isa = PBXGroup;
+			children = (
+				EF16C1E72E651E44006F0B16 /* JLOneSignalEmailSetHandler.h */,
+				EF16C1E82E651E44006F0B16 /* JLOneSignalEmailSetHandler.m */,
+			);
+			path = $onesignal.email.add;
+			sourceTree = "<group>";
+		};
+		EF16C1E42E651DEC006F0B16 /* $onesignal.email.remove */ = {
+			isa = PBXGroup;
+			children = (
+				EF16C1EB2E651E56006F0B16 /* JLOneSignalEmailRemoveHandler.h */,
+				EF16C1EC2E651E56006F0B16 /* JLOneSignalEmailRemoveHandler.m */,
+			);
+			path = $onesignal.email.remove;
+			sourceTree = "<group>";
+		};
+		EF16C1E52E651E0E006F0B16 /* $onesignal.sms.add */ = {
+			isa = PBXGroup;
+			children = (
+				EF16C1EF2E651E67006F0B16 /* JLOneSignalSMSSetHandler.h */,
+				EF16C1F02E651E68006F0B16 /* JLOneSignalSMSSetHandler.m */,
+			);
+			path = $onesignal.sms.add;
+			sourceTree = "<group>";
+		};
+		EF16C1E62E651E17006F0B16 /* $onesignal.sms.remove */ = {
+			isa = PBXGroup;
+			children = (
+				EF16C1F32E651E7A006F0B16 /* JLOneSignalSMSRemoveHandler.h */,
+				EF16C1F42E651E7A006F0B16 /* JLOneSignalSMSRemoveHandler.m */,
+			);
+			path = $onesignal.sms.remove;
+			sourceTree = "<group>";
+		};
+		EF16C1F72E652FAA006F0B16 /* $onesignal.tags.add */ = {
+			isa = PBXGroup;
+			children = (
+				EF16C1F82E653202006F0B16 /* JLOneSignalTagsAddHandler.h */,
+				EF16C1F92E653202006F0B16 /* JLOneSignalTagsAddHandler.m */,
+			);
+			path = $onesignal.tags.add;
+			sourceTree = "<group>";
+		};
+		EF16C1FC2E653E24006F0B16 /* $onesignal.tags.remove */ = {
+			isa = PBXGroup;
+			children = (
+				EF16C1FE2E65406E006F0B16 /* JLOneSignalTagsRemoveHandler.h */,
+				EF16C1FF2E65406E006F0B16 /* JLOneSignalTagsRemoveHandler.m */,
+			);
+			path = $onesignal.tags.remove;
+			sourceTree = "<group>";
+		};
+		EF16C1FD2E653E7A006F0B16 /* $onesignal.tags.get */ = {
+			isa = PBXGroup;
+			children = (
+				EF16C2022E654080006F0B16 /* JLOneSignalTagsGetHandler.h */,
+				EF16C2032E654080006F0B16 /* JLOneSignalTagsGetHandler.m */,
+			);
+			path = $onesignal.tags.get;
+			sourceTree = "<group>";
+		};
 		EF4D7C1E2ABB73F200D4CF81 = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +249,7 @@
 				EF4D7C522ABB753700D4CF81 /* JLOneSignal.m */,
 				EF4D7C2B2ABB73F200D4CF81 /* JLOneSignal.h */,
 				EF4D7C2C2ABB73F200D4CF81 /* JLOneSignal.docc */,
+				EF16C1CC2E650078006F0B16 /* JLOneSignalConfig.h */,
 			);
 			path = JLOneSignal;
 			sourceTree = "<group>";
@@ -118,8 +273,18 @@
 		EF4D7C4D2ABB753700D4CF81 /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
-				EF4D7C4E2ABB753700D4CF81 /* JLOneSignalGetInfoHandler.h */,
-				EF4D7C4F2ABB753700D4CF81 /* JLOneSignalGetInfoHandler.m */,
+				EF16C1FD2E653E7A006F0B16 /* $onesignal.tags.get */,
+				EF16C1FC2E653E24006F0B16 /* $onesignal.tags.remove */,
+				EF16C1F72E652FAA006F0B16 /* $onesignal.tags.add */,
+				EF16C1E62E651E17006F0B16 /* $onesignal.sms.remove */,
+				EF16C1E52E651E0E006F0B16 /* $onesignal.sms.add */,
+				EF16C1E42E651DEC006F0B16 /* $onesignal.email.remove */,
+				EF16C1E32E651DDE006F0B16 /* $onesignal.email.add */,
+				EF16C1DE2E651C31006F0B16 /* $onesignal.prompt */,
+				EF16C1D92E651AFD006F0B16 /* $onesignal.disable */,
+				EF16C1D02E651443006F0B16 /* $onesignal.logout */,
+				EF16C1CF2E651404006F0B16 /* $onesignal.login */,
+				EF16C1CE2E650990006F0B16 /* $onesignal.info */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -131,8 +296,20 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF16C1F52E651E7A006F0B16 /* JLOneSignalSMSRemoveHandler.h in Headers */,
+				EF16C1FA2E653202006F0B16 /* JLOneSignalTagsAddHandler.h in Headers */,
+				EF16C1D32E651482006F0B16 /* JLOneSignalLoginHandler.h in Headers */,
+				EF16C1ED2E651E56006F0B16 /* JLOneSignalEmailRemoveHandler.h in Headers */,
+				EF16C2002E65406E006F0B16 /* JLOneSignalTagsRemoveHandler.h in Headers */,
 				EF4D7C532ABB753700D4CF81 /* JLOneSignalGetInfoHandler.h in Headers */,
+				EF16C1F12E651E68006F0B16 /* JLOneSignalSMSSetHandler.h in Headers */,
+				EF16C1E92E651E44006F0B16 /* JLOneSignalEmailSetHandler.h in Headers */,
+				EF16C1D72E651637006F0B16 /* JLOneSignalLogoutHandler.h in Headers */,
 				EF4D7C392ABB73F200D4CF81 /* JLOneSignal.h in Headers */,
+				EF16C2042E654080006F0B16 /* JLOneSignalTagsGetHandler.h in Headers */,
+				EF16C1E12E651CAD006F0B16 /* JLOneSignalPromptHandler.h in Headers */,
+				EF16C1DC2E651B2D006F0B16 /* JLOneSignalNotificationsOptOutHandler.h in Headers */,
+				EF16C1CD2E650078006F0B16 /* JLOneSignalConfig.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,8 +332,8 @@
 			);
 			name = JLOneSignal;
 			packageProductDependencies = (
-				EF4D7C432ABB740D00D4CF81 /* OneSignal */,
-				EF4D7C452ABB740D00D4CF81 /* OneSignalExtension */,
+				EF16C1C82E64FEC0006F0B16 /* OneSignalExtension */,
+				EF16C1CA2E64FEC0006F0B16 /* OneSignalFramework */,
 			);
 			productName = JLOneSignal;
 			productReference = EF4D7C282ABB73F200D4CF81 /* JLOneSignal.framework */;
@@ -207,7 +384,7 @@
 			);
 			mainGroup = EF4D7C1E2ABB73F200D4CF81;
 			packageReferences = (
-				EF4D7C422ABB740D00D4CF81 /* XCRemoteSwiftPackageReference "OneSignal-XCFramework" */,
+				EF16C1C72E64FEC0006F0B16 /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */,
 			);
 			productRefGroup = EF4D7C292ABB73F200D4CF81 /* Products */;
 			projectDirPath = "";
@@ -266,8 +443,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF4D7C2D2ABB73F200D4CF81 /* JLOneSignal.docc in Sources */,
+				EF16C1E22E651CAD006F0B16 /* JLOneSignalPromptHandler.m in Sources */,
+				EF16C1F62E651E7A006F0B16 /* JLOneSignalSMSRemoveHandler.m in Sources */,
+				EF16C1DD2E651B2D006F0B16 /* JLOneSignalNotificationsOptOutHandler.m in Sources */,
+				EF16C2012E65406E006F0B16 /* JLOneSignalTagsRemoveHandler.m in Sources */,
+				EF16C1D42E651482006F0B16 /* JLOneSignalLoginHandler.m in Sources */,
+				EF16C1D82E651637006F0B16 /* JLOneSignalLogoutHandler.m in Sources */,
 				EF4D7C542ABB753700D4CF81 /* JLOneSignalGetInfoHandler.m in Sources */,
 				EF4D7C572ABB753700D4CF81 /* JLOneSignal.m in Sources */,
+				EF16C1EE2E651E56006F0B16 /* JLOneSignalEmailRemoveHandler.m in Sources */,
+				EF16C1F22E651E68006F0B16 /* JLOneSignalSMSSetHandler.m in Sources */,
+				EF16C1FB2E653202006F0B16 /* JLOneSignalTagsAddHandler.m in Sources */,
+				EF16C1EA2E651E44006F0B16 /* JLOneSignalEmailSetHandler.m in Sources */,
+				EF16C2052E654080006F0B16 /* JLOneSignalTagsGetHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,26 +709,26 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		EF4D7C422ABB740D00D4CF81 /* XCRemoteSwiftPackageReference "OneSignal-XCFramework" */ = {
+		EF16C1C72E64FEC0006F0B16 /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/OneSignal/OneSignal-XCFramework";
+			repositoryURL = "https://github.com/OneSignal/OneSignal-iOS-SDK";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		EF4D7C432ABB740D00D4CF81 /* OneSignal */ = {
+		EF16C1C82E64FEC0006F0B16 /* OneSignalExtension */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EF4D7C422ABB740D00D4CF81 /* XCRemoteSwiftPackageReference "OneSignal-XCFramework" */;
-			productName = OneSignal;
-		};
-		EF4D7C452ABB740D00D4CF81 /* OneSignalExtension */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EF4D7C422ABB740D00D4CF81 /* XCRemoteSwiftPackageReference "OneSignal-XCFramework" */;
+			package = EF16C1C72E64FEC0006F0B16 /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
 			productName = OneSignalExtension;
+		};
+		EF16C1CA2E64FEC0006F0B16 /* OneSignalFramework */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF16C1C72E64FEC0006F0B16 /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
+			productName = OneSignalFramework;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -1,8 +1,8 @@
 //
-//  JLOneSignal.h
+//  JLOneSignalConfig.h
 //  JLOneSignal
 //
-//  Created by clsource on 20-09-23.
+//  Created by clsource on 31-08-25.
 //  Copyright (c) Jasonelle.com
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
@@ -23,24 +23,10 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-#import <Foundation/Foundation.h>
+#ifndef JLOneSignalConfig_h
+#define JLOneSignalConfig_h
 
-//! Project version number for JLOneSignal.
-FOUNDATION_EXPORT double JLOneSignalVersionNumber;
+// https://documentation.onesignal.com/docs/mobile-sdk-reference
+NSString * const kJLOneSignalAppID = @"YOUR_ONESIGNAL_APP_ID";
 
-//! Project version string for JLOneSignal.
-FOUNDATION_EXPORT const unsigned char JLOneSignalVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <JLOneSignal/PublicHeader.h>
-
-
-#import <JLKernel/JLKernel.h>
-#import <OneSignalFramework/OneSignalFramework.h>
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface JLOneSignal : JLExtension<OSPushSubscriptionObserver, OSNotificationPermissionObserver>
-
-@end
-
-NS_ASSUME_NONNULL_END
+#endif /* JLOneSignalConfig_h */

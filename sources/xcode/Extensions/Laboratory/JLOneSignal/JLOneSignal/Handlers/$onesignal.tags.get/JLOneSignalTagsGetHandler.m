@@ -1,8 +1,8 @@
 //
-//  JLOneSignal.h
+//  JLOneSignalTagsGetHandler.m
 //  JLOneSignal
 //
-//  Created by clsource on 20-09-23.
+//  Created by clsource on 31-08-25.
 //  Copyright (c) Jasonelle.com
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
@@ -23,24 +23,18 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-#import <Foundation/Foundation.h>
-
-//! Project version number for JLOneSignal.
-FOUNDATION_EXPORT double JLOneSignalVersionNumber;
-
-//! Project version string for JLOneSignal.
-FOUNDATION_EXPORT const unsigned char JLOneSignalVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <JLOneSignal/PublicHeader.h>
-
-
-#import <JLKernel/JLKernel.h>
+#import "JLOneSignalTagsGetHandler.h"
 #import <OneSignalFramework/OneSignalFramework.h>
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation JLOneSignalTagsGetHandler
 
-@interface JLOneSignal : JLExtension<OSPushSubscriptionObserver, OSNotificationPermissionObserver>
+- (void)handleWithOptions:(nonnull JLJSMessageHandlerOptions *)options {
+    
+    NSDictionary * tags = [OneSignal.User getTags];
+    
+    jlog_trace_join(@"OneSignal Get Tags: ", tags);
+    
+    self.resolve(tags);
+}
 
 @end
-
-NS_ASSUME_NONNULL_END
