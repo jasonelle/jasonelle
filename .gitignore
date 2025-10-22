@@ -1,5 +1,6 @@
-# Jasonelle files to ignore
+# Jasonelle files to ignore futher changes
 sources/xcode/App/Scripts/app.json
+sources/xcode/App/App/App.xcconfig
 
 latest.zip
 *.uncrustify
