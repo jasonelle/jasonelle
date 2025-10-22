@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>App </key>
-	<string></string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -19,6 +17,8 @@
 			</array>
 		</dict>
 	</array>
+	<key>CURRENT_PROJECT_VERSION</key>
+	<string>${CURRENT_PROJECT_VERSION}</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>mailto</string>
@@ -28,6 +28,8 @@
 		<string>facetime</string>
 		<string>facetime-audio</string>
 	</array>
+	<key>MARKETING_VERSION</key>
+	<string>${MARKETING_VERSION}</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -35,6 +37,10 @@
 	</dict>
 	<key>PHPhotoLibraryPreventAutomaticLimitedAccessAlert</key>
 	<true/>
+	<key>PRODUCT_DISPLAY_NAME</key>
+	<string>${PRODUCT_DISPLAY_NAME}</string>
+	<key>PRODUCT_NAME</key>
+	<string>${PRODUCT_NAME}</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>

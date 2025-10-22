@@ -30,15 +30,21 @@
     [super install];
     
     // Manually specify which global variables will be available inside app.settings variable
-    NSDictionary * settings = @{};
+    NSMutableDictionary * settings = [[[NSBundle mainBundle] infoDictionary] mutableCopy];
     
+    // Example API Key not set in App.xcconfig
     if([self.app.env detect] == JLEnvironmentTypeDevelop) {
-        settings = @{
-            @"JLSettingExampleAPIKey": @(JLSettingExampleAPIKey)
-        };
+        [settings setObject:@(JLSettingExampleAPIKey) forKey:@"JLSettingExampleAPIKey"];
     }
     
-    [self.app setGlobalSettings:settings];
+    
+    jlog_trace([settings description]);
+    
+    [self.app setGlobalSettings:[settings copy]];
+}
+
+- (id) valueForKey:(NSString *)key {
+    return [self.app.settings valueForKey:key];
 }
 
 @end
