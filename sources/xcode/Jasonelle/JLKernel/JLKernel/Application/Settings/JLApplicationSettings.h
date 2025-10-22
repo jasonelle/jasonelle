@@ -28,11 +28,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Returns runtime settings defined in UIBundle.mainBundle.infoDictionary
+/// also can be used to store special configurations and settings in a common mutable dictionary
 @interface JLApplicationSettings : NSObject
 
-@property (nonatomic, strong) NSDictionary * values;
+@property (nonatomic, strong) NSMutableDictionary * values;
 
 - (JLApplicationSettings *) initWithSettings: (NSDictionary *) settings;
+
+/// Returns a value inside the values dictionary for a given key
+- (nullable id) valueForKey:(NSString *)key;
 
 @end
 

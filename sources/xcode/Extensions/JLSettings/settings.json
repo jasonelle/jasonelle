@@ -1,8 +1,0 @@
-{
-    "global": {
-        "JLSettingExampleAPIKey": {
-            "type": "string",
-            "value": "JLSetting Example Value"
-        }
-    }
-}

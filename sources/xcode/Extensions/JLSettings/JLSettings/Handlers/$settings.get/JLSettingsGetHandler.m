@@ -1,8 +1,9 @@
 //
-//  JLSettings.m
+//  JLSettingsGetHandler.m
 //  JLSettings
 //
-//  Created by clsource on 10-09-25.
+//  Created by clsource on 22-10-25.
+//  Copyright (c) Jasonelle.com
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
 //  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
@@ -22,36 +23,14 @@
 //  <https://mozilla.org/MPL/2.0/>.
 //
 
-#import "JLSettings.h"
 #import "JLSettingsGetHandler.h"
 
-@implementation JLSettings
+@implementation JLSettingsGetHandler
 
-- (void) install {
-    [super install];
-    jlog_trace([self.app.settings description]);
-
-    JLSettingsGetHandler * handler = [[JLSettingsGetHandler alloc] initWithApplication:self.app andExtension:self];
-
-    self.handlers = @{
-        @"$settings.get" : handler,
-    };
+- (void)handleWithOptions:(nonnull JLJSMessageHandlerOptions *)options {
+    
+    jlog_info(@"Triggered $settings.get");
+    
+    self.resolve(self.app.settings.values);
 }
-
-
-#pragma mark - WebView Injection
-- (nonnull WKWebView *)appDidLoadWithWebView:(nonnull WKWebView *)webView {
-    [super appDidLoadWithWebView:webView];
-
-    // Install the wrappers inside the webview
-    return [self injectJS];
-}
-
-
-#pragma mark - Extension Public Methods
-
-- (nullable id) valueForKey:(NSString *)key {
-    return [self.app.settings valueForKey:key];
-}
-
 @end

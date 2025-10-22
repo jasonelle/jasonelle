@@ -22,6 +22,10 @@
 # Reads and prints the app.json file in xcconfig format
 # app.json should not be saved in git since it would contain
 # api keys and other sensible information.
+# use git update-index --assume-unchanged sources/xcode/App/Scripts/app.json
+# and git update-index --assume-unchanged sources/xcode/App/App/App.xcconfig
+# to avoid registering changes to those files since they have secrets
+# update info.plist with those values in order to see them with jlsettings.
 
 import json
 import os
