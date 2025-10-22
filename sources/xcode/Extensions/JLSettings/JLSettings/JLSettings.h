@@ -35,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 #define JLSettingExampleAPIKey "JLSetting Example Value"
 
+- (id) valueForKey:(NSString *) key;
+
 NS_ASSUME_NONNULL_END
 @end
 

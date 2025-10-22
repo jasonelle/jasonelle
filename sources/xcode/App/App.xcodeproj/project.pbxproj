@@ -748,7 +748,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_DISPLAY_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "${PRODUCT_DISPLAY_NAME}";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Example Camera Usage Description";
 				INFOPLIST_KEY_NSContactsUsageDescription = "Example Contacts Usage Description";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Example Microphone Access Usage Description";
@@ -790,7 +790,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_DISPLAY_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "${PRODUCT_DISPLAY_NAME}";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Example Camera Usage Description";
 				INFOPLIST_KEY_NSContactsUsageDescription = "Example Contacts Usage Description";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Example Microphone Access Usage Description";

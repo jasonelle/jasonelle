@@ -1,14 +1,11 @@
-
-# Created by https://www.toptal.com/developers/gitignore/api/osx,swift,objective-c,xcode
-# Edit at https://www.toptal.com/developers/gitignore?templates=osx,swift,objective-c,xcode
+# Jasonelle files to ignore
+sources/xcode/App/Scripts/app.json
 
 latest.zip
 *.uncrustify
 
 ### Objective-C ###
 # Xcode
-#
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 ## User settings
 xcuserdata/
@@ -170,8 +167,5 @@ Dependencies/
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
-
-# End of https://www.toptal.com/developers/gitignore/api/osx,swift,objective-c,xcode
-
 .idea
 com

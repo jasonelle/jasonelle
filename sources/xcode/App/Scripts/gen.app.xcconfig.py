@@ -20,6 +20,9 @@
 # <https://mozilla.org/MPL/2.0/>.
 
 # Reads and prints the app.json file in xcconfig format
+# app.json should not be saved in git since it would contain
+# api keys and other sensible information.
+
 import json
 import os
 import time
