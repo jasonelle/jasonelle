@@ -7,9 +7,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [v3.0.3](https://github.com/jasonelle/jasonelle/releases/tag/v3.0.3) (next)
 
 ### Added
-- [App.xcconfig] Add a special configuration file `app.json` and python script to generate `App.xcconfig` file to programatically set bundle identifier, app name, version and build version. This is to simplify configuration.
+- [JLOnesignal] Implemented an optional extension to use [OneSignal service](https://onesignal.com/).
 
-- [JLSettings] Add a special extension to store global configuration variables. It works by executing a python script that reads a json file, then generates a `JLSettings.h` file than can be imported in any extension or the main app. This python script is automatically executed in every build.
+- [App.xcconfig] Add a special configuration file `app.json` and python script to generate `App.xcconfig` file to programatically set bundle identifier, app name, version and build version and other runtime settings. This is to simplify configuration. This python script is automatically executed in every build.
+
+- [JLSettings] Add an extension to be able to load `NSBundle.mainBundle.infoDictionary` values stored in `app.settings.value` singleton. 
 
 - [WebViewRendererUI] Add progress bar and style option to show progress bar or launchui.
 
