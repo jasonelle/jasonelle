@@ -263,7 +263,9 @@
 <!-- Example: JLSettings -->
 <script type="text/javascript">
     const settingsGet = () => {
+      // Returns UIBundle.mainBundle.infoDictionary values
       $settings.get().then(values => {
+          // see app.json, App.xcconfig and info.plist for values
           const version = values["CURRENT_PROJECT_VERSION"];         
           $toast.success("Build Version: " + version);
       });
