@@ -6,9 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [v3.0.4](https://github.com/jasonelle/jasonelle/releases/tag/v3.0.4) (Next)
 
+
 ### Added
 
 ### Changed
+
+- [iOS] Support upgraded to iOS 26+
 
 ### Fixed
 
@@ -17,6 +20,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - [iOS Main Branch](https://github.com/jasonelle/jasonelle/archive/refs/heads/main.zip)
 
 ## [v3.0.3](https://github.com/jasonelle/jasonelle/releases/tag/v3.0.3) (March 2026)
+
+Last version to support iOS 14.
 
 ### Added
 - [JLOnesignal] Implemented an optional extension to use [OneSignal service](https://onesignal.com/).
