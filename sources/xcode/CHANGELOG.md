@@ -4,7 +4,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [v3.0.3](https://github.com/jasonelle/jasonelle/releases/tag/v3.0.3) (next)
+## [v3.0.4](https://github.com/jasonelle/jasonelle/releases/tag/v3.0.4) (Next)
+
+### Added
+
+### Changed
+
+### Fixed
+
+### Downloads
+
+- [iOS Main Branch](https://github.com/jasonelle/jasonelle/archive/refs/heads/main.zip)
+
+## [v3.0.3](https://github.com/jasonelle/jasonelle/releases/tag/v3.0.3) (March 2026)
 
 ### Added
 - [JLOnesignal] Implemented an optional extension to use [OneSignal service](https://onesignal.com/).
@@ -18,6 +30,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - [webview.js] Added `window.jasonelle.extensions` (or `window.$extensions`) global variable to easily access available extension wrappers in JS contexts.
 
 - [webview.js] Added `window.jasonelle.oem` global variable to quickly determine if the system is `apple`, `google`, 'other'.
+
+### Downloads
+
+- [Github Release](https://github.com/jasonelle/jasonelle/releases/tag/v3.0.3)
 
 ## [v3.0.2](https://github.com/jasonelle/jasonelle/releases/tag/v3.0.2) (June 2024)
 
@@ -62,7 +78,7 @@ fi
 
 ### Downloads
 
-- [iOS Main Branch](https://github.com/jasonelle/jasonelle/archive/refs/heads/main.zip)
+- [Github Release](https://github.com/jasonelle/jasonelle/releases/tag/v3.0.2)
 
 ## [v3.0.1](https://github.com/jasonelle/jasonelle/releases/tag/v3.0.1) (March 2023)
 

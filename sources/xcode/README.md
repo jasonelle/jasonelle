@@ -1,11 +1,11 @@
-# iOS Version
+# SDK Versions
 
 This small guide will help you getting started.
 
 ## Requirements
 
-- XCode 13 or greater
-- iOS 14 or greater
+- XCode iOS 26+
+- Android API 35+
 
 ## Steps
 
