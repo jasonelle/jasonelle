@@ -67,3 +67,11 @@ tasks:
     desc: Serve the main website locally
     cmds:
       - python3 -m http.server --bind 0.0.0.0 --directory docs
+
+  lint.yaml:
+    aliases:
+      - ly
+    desc: Format and lint all YAML files with prettier and yamllint
+    cmds:
+      - "prettier --write $(git ls-files '*.yml' '*.yaml') 2>&1 || npx -y prettier@3.9.6 --write $(git ls-files '*.yml' '*.yaml')"
+      - "yamllint $(git ls-files '*.yml' '*.yaml') 2>&1 || pipx run yamllint $(git ls-files '*.yml' '*.yaml')"
