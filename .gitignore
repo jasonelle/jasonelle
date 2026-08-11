@@ -2,3 +2,5 @@
 .zed
 .vscode
 .idea
+# generated commit message
+.commit-message
