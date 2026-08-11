@@ -113,7 +113,6 @@ tasks:
       - gal
     desc: Push all the current changes to the branch in origin
     cmds:
-      - task git.add
       - task git.commit
       - task git.pull
       - task git.push
