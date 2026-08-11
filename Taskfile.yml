@@ -76,10 +76,19 @@ tasks:
       - "prettier --write $(git ls-files '*.yml' '*.yaml') 2>&1 || npx -y prettier@3.9.6 --write $(git ls-files '*.yml' '*.yaml')"
       - "yamllint $(git ls-files '*.yml' '*.yaml') 2>&1 || pipx run yamllint $(git ls-files '*.yml' '*.yaml')"
 
-  commit:
+  git.commit:
     aliases:
       - c
+      - gc
     desc: Commit staged changes using the message in .commit-message
     cmds:
       - test -f .commit-message && git commit -F .commit-message
       - rm -rf .commit-message
+
+  git.push:
+    aliases:
+      - p
+      - gp
+    desc: Push the current branch to origin
+    cmds:
+      - git push origin $(git branch --show-current)
