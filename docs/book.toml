@@ -1,7 +1,0 @@
-[book]
-authors = ["clsource"]
-language = "en"
-multilingual = false
-src = "src"
-title = "Jasonelle Documentation"
-description = "Documentation for the Jasonelle Framework."

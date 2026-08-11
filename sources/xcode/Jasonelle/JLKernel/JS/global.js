@@ -1,1 +1,0 @@
-export default __com_jasonelle_bridges_app_global;
