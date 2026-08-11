@@ -85,6 +85,14 @@ tasks:
       - test -f .commit-message && git commit -F .commit-message
       - rm -rf .commit-message
 
+  git.pull:
+    aliases:
+      - pl
+      - gpl
+    desc: Pull the current branch from origin
+    cmds:
+      - git pull origin $(git branch --show-current)
+
   git.push:
     aliases:
       - p
