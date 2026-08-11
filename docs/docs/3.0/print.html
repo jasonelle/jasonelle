@@ -1,0 +1,1375 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Jasonelle Documentation</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="Documentation for the Jasonelle Framework.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Introduction</li><li class="chapter-item expanded "><a href="About.html"><strong aria-hidden="true">1.</strong> About</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">iOS</li><li class="chapter-item expanded "><a href="xcode/Quickstart.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="xcode/Architecture.html"><strong aria-hidden="true">3.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="xcode/Changelog.html"><strong aria-hidden="true">4.</strong> Changelog</a></li><li class="chapter-item expanded affix "><li class="part-title">Templates</li><li class="chapter-item expanded "><a href="xcode/Templates.html"><strong aria-hidden="true">5.</strong> Templates</a></li><li class="chapter-item expanded affix "><li class="part-title">Extensions</li><li class="chapter-item expanded "><a href="xcode/Extensions.html"><strong aria-hidden="true">6.</strong> Extensions</a></li><li class="chapter-item expanded "><a href="xcode/JLATTrackingManager.html"><strong aria-hidden="true">7.</strong> JLATTrackingManager</a></li><li class="chapter-item expanded "><a href="xcode/JLApplicationBadge.html"><strong aria-hidden="true">8.</strong> JLApplicationBadge</a></li><li class="chapter-item expanded "><a href="xcode/JLCookies.html"><strong aria-hidden="true">9.</strong> JLCookies</a></li><li class="chapter-item expanded "><a href="xcode/JLKeychain.html"><strong aria-hidden="true">10.</strong> JLKeychain</a></li><li class="chapter-item expanded "><a href="xcode/JLPhotoLibrary.html"><strong aria-hidden="true">11.</strong> JLPhotoLibrary</a></li><li class="chapter-item expanded "><a href="xcode/JLContacts.html"><strong aria-hidden="true">12.</strong> JLContacts</a></li><li class="chapter-item expanded "><a href="xcode/JLReachability.html"><strong aria-hidden="true">13.</strong> JLReachability</a></li><li class="chapter-item expanded "><a href="xcode/JLAudio.html"><strong aria-hidden="true">14.</strong> JLAudio</a></li><li class="chapter-item expanded "><a href="xcode/JLDevice.html"><strong aria-hidden="true">15.</strong> JLDevice</a></li><li class="chapter-item expanded "><a href="xcode/JLClipboard.html"><strong aria-hidden="true">16.</strong> JLClipboard</a></li><li class="chapter-item expanded "><a href="xcode/JLToast.html"><strong aria-hidden="true">17.</strong> JLToast</a></li><li class="chapter-item expanded "><a href="xcode/JLShare.html"><strong aria-hidden="true">18.</strong> JLShare</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Jasonelle Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="jasonelle"><a class="header" href="#jasonelle"><a href="https://github.com/jasonelle">Jasonelle</a></a></h1>
+<p><a href="https://github.com/jasonelle/jasonelle" title="Go to GitHub repo"><img src="https://img.shields.io/static/v1?label=jasonelle&amp;message=jasonelle&amp;color=blueviolet&amp;logo=github" alt="jasonelle - jasonelle" /></a>
+<a href="https://github.com/jasonelle/jasonelle"><img src="https://img.shields.io/github/stars/jasonelle/jasonelle?style=social" alt="stars - jasonelle" /></a>
+<a href="https://github.com/jasonelle/jasonelle"><img src="https://img.shields.io/github/forks/jasonelle/jasonelle?style=social" alt="forks - jasonelle" /></a></p>
+<img src="https://jasonelle.com/docs/jasonelle.png" style="width:50%;height:auto" title="Jasonelle Icon">
+<p><em>Jasonelle</em> is a nice native wrapper for your Web Application.</p>
+<p><a href="https://jasonelle.com/docs" title="Go to project documentation"><img src="https://img.shields.io/badge/view-Documentation-blueviolet?style=for-the-badge" alt="view - Documentation" /></a></p>
+<h2 id="price"><a class="header" href="#price">Price</a></h2>
+<p>The project requires purchasing a license if you want to:</p>
+<ul>
+<li>Use MPLv2 code.</li>
+<li>Execute in real hardware.</li>
+</ul>
+<p>With this small contribution you enable us to continue creating awesome tools for your web applications.</p>
+<p>By adquiring a <strong>License Key</strong> you agree with the following:</p>
+<ul>
+<li>Use <em>Jasonelle</em>'s technologies and licenses in an ethical way.</li>
+<li>Respect the artifacts license terms and conditions.</li>
+<li>Must put a link to <a href="https://jasonelle.com"><em>Jasonelle's Webpage</em></a> (<em>jasonelle.com</em>) somewhere visible in your app.</li>
+<li>Must not share the license keys with third parties.</li>
+<li>Must not create direct competitors to <em>Jasonelle</em> by rebranding, customizing and reselling the framework and related technologies or services.</li>
+</ul>
+<p>Please select the <strong>License Key</strong> that better fits your project.</p>
+<div class="table-wrapper"><table><thead><tr><th><a href="https://jasonelle.gumroad.com/l/love">Jasonelle Friend's Membership Subscription</a></th><th><a href="https://jasonelle.gumroad.com/l/thanks">Thank you Key</a></th></tr></thead><tbody>
+<tr><td>Monthly Payment Requirement</td><td>Single Payment</td></tr>
+<tr><td>Jasonelle's Membership Keys can be used up to 5 projects, as long as the subscription is maintained.</td><td>This license allows <em>Jasonelle framework</em> to be used by you or one client, in a single commercial end product.</td></tr>
+<tr><td>The license expires if the membership is terminated</td><td>Thank you key licenses do not expire. That's why they are a little more expensive than the subscription.</td></tr>
+<tr><td><a href="https://jasonelle.gumroad.com/l/love">Join Subscription</a></td><td><a href="https://jasonelle.gumroad.com/l/thanks">Purchase Thank you Key</a></td></tr>
+</tbody></table>
+</div>
+<p>Please go to <a href="https://jasonelle.gumroad.com/">Jasonelle Store</a> to purchase a license
+and edit <a href="https://github.com/jasonelle/jasonelle/blob/main/sources/xcode/Jasonelle/Jasonelle/Jasonelle/Love.h"><strong>Love.h</strong></a> to allow real device execution and <strong>MPLv2</strong> licensed code.</p>
+<p>If no license is purchased then the code is under <strong>AGPLv3</strong>. And will <strong>not execute using real devices</strong>. Although you can activate the full mode if you want to test if <em>Jasonelle</em> is good for your use case (some features like <em>GPS</em> need real hardware for testing).</p>
+<p>Please <em>purchase a license key</em> if you want to use <em>Jasonelle</em>'s solutions in your project.</p>
+<p>Since we cannot enforce this. We rely on your good heart. We trust you
+are a kind person who will <strong>activate this mode ethically</strong>.</p>
+<h2 id="community"><a class="header" href="#community">Community</a></h2>
+<p>For help and general chat go to our <em>Telegram</em> group.</p>
+<ul>
+<li><a href="https://t.me/jasonelle">Telegram Chat</a>.</li>
+</ul>
+<p>The main repository is:</p>
+<ul>
+<li><a href="https://github.com/jasonelle">Jasonelle</a></li>
+</ul>
+<h2 id="releases"><a class="header" href="#releases">Releases</a></h2>
+<p>The latest releases are available at:</p>
+<ul>
+<li><a href="https://github.com/jasonelle/jasonelle/releases">https://github.com/jasonelle/jasonelle/releases</a></li>
+</ul>
+<h3 id="downloads"><a class="header" href="#downloads">Downloads</a></h3>
+<p>The current version is <em>v3</em>.</p>
+<ul>
+<li><a href="https://github.com/jasonelle/jasonelle/archive/refs/heads/main.zip">Bleeding Edge</a></li>
+<li><a href="https://github.com/jasonelle/jasonelle/archive/refs/heads/stable.zip">Stable</a></li>
+<li><a href="https://github.com/jasonelle/jasonelle/releases/latest/">Latest Release</a></li>
+</ul>
+<h2 id="documentation"><a class="header" href="#documentation">Documentation</a></h2>
+<p>The projects documentation is inside the <code>jasonelle.github.io</code> repository. You can access it online at:</p>
+<ul>
+<li><a href="https://github.com/jasonelle/jasonelle.github.io">https://github.com/jasonelle/jasonelle.github.io</a></li>
+<li><a href="https://jasonelle.com/">https://jasonelle.com/</a></li>
+</ul>
+<h2 id="license"><a class="header" href="#license">License</a></h2>
+<p>Jasonelle Project is dual licensed. You can choose between <em>AGPLv3</em> or <em>MPLv2</em>.
+<em>MPLv2</em> is only valid if the software has a unique <a href="https://jasonelle.gumroad.com/">Jasonelle Key</a> which was purchased in <a href="https://jasonelle.gumroad.com/">official channels</a>.</p>
+<p><a href="https://github.com/jasonelle/jasonelle/blob/main/LICENSE.adoc">Read More</a>.</p>
+<h2 id="-credits"><a class="header" href="#-credits">🤩 Credits</a></h2>
+<p><a href="https://en.wikipedia.org/wiki/Chile"><img src="https://img.shields.io/badge/Proudly_Coded_in-%F0%9F%87%A8%F0%9F%87%B1_Chile-white?style=for-the-badge&amp;logo=xcode&amp;logoColor=white" alt="Proudly Coded in - 🇨🇱 Chile" /></a>
+<a href="https://ninjas.cl"><img src="https://img.shields.io/badge/Made_With_%E2%9D%A4%EF%B8%8F_By-Ninjas.cl-2ea44f?style=for-the-badge" alt="Made With ❤️ By - Ninjas.cl" /></a></p>
+<p><a href="https://notbyai.fyi/"><img src="https://user-images.githubusercontent.com/292738/225699293-9a0a90cd-1a93-49cb-b105-c3cd27882499.svg" alt="Written-By-Human-Not-By-AI-Badge-white" />
+</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ios-version"><a class="header" href="#ios-version">iOS Version</a></h1>
+<p>This small guide will help you getting started.</p>
+<h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
+<ul>
+<li>XCode 13 or greater</li>
+<li>iOS 14 or greater</li>
+</ul>
+<h2 id="steps"><a class="header" href="#steps">Steps</a></h2>
+<h3 id="1---download-the-project"><a class="header" href="#1---download-the-project">1 - Download the project</a></h3>
+<p>Download <a href="https://github.com/jasonelle/jasonelle/archive/refs/heads/main.zip">Bleeding Edge</a> or <a href="https://github.com/jasonelle/jasonelle/releases/latest">Stable version</a>.</p>
+<ul>
+<li>
+<p><a href="https://github.com/jasonelle/jasonelle/archive/refs/heads/main.zip">Bleeding Edge</a>: Latest updates, features and bug fixes. Built-in extensions enabled by default.</p>
+</li>
+<li>
+<p><a href="https://github.com/jasonelle/jasonelle/releases/latest">Stable version</a>: Battle tested. Built-in extensions disabled by default.</p>
+</li>
+</ul>
+<p>Decompress and open <code>App.xcworkspace</code> file (White icon).</p>
+<p>Find <a href="https://github.com/jasonelle/jasonelle/blob/main/sources/xcode/App/JS/lib/screens/main.js"><code>sources/xcode/App/JS/lib/screens/main.js</code></a>.</p>
+<h3 id="2---configure-your-website"><a class="header" href="#2---configure-your-website">2 - Configure your website</a></h3>
+<p>Put your URL for your application. This can be an external url or an HTML file. </p>
+<p><img src="https://user-images.githubusercontent.com/292738/218337439-fd3db94b-0ae4-4b1f-adda-6df2e2eb50a8.png" alt="webconfig" /></p>
+<h3 id="local-files"><a class="header" href="#local-files">Local Files</a></h3>
+<p>If you use <code>res://</code> you can access local html files such as the example <code>index.html</code>.</p>
+<p>You can store local files in the <a href="https://github.com/jasonelle/jasonelle/tree/main/sources/xcode/App/Files"><code>Files</code></a> directory.</p>
+<h3 id="indexhtml"><a class="header" href="#indexhtml"><a href="https://github.com/jasonelle/jasonelle/blob/main/sources/xcode/App/Files/index.html">index.html</a></a></h3>
+<p>Is the example html file with code examples to test different <em>Jasonelle</em> features.</p>
+<h3 id="3---allowed-urls"><a class="header" href="#3---allowed-urls">3 - Allowed URLs</a></h3>
+<p>By default <em>Jasonelle</em> will open all urls. If you wish to limit this behaviour you can use an <code>allowed</code> urls property in the configuration file.</p>
+<p>Any url that is not present in the allowed list will force open using the native browser.</p>
+<p>Check the <a href="https://github.com/jasonelle/jasonelle/blob/main/sources/xcode/App/JS/config/dev.js">Configuration File</a></p>
+<p><img src="https://user-images.githubusercontent.com/292738/218337885-a92fbeab-a210-4baa-9d75-e85aac6157cb.png" alt="config file" /></p>
+<h4 id="example"><a class="header" href="#example">Example</a></h4>
+<p>List the allowed urls.
+Otherwise it will launch native browser
+If not present will allow all urls</p>
+<p>Put the same URL from main.js here to allow it (just the domain)</p>
+<pre><code class="language-js">allowed: [&quot;file://&quot;, &quot;google.cl&quot;]
+</code></pre>
+<h3 id="4---done"><a class="header" href="#4---done">4 - Done</a></h3>
+<p>You can now configure your project as a normal XCode iOS. Change your App Icon and other settings.</p>
+<p>Happy Coding!.</p>
+<h2 id="arm-processors-m1-m2"><a class="header" href="#arm-processors-m1-m2">ARM Processors (M1, M2...)</a></h2>
+<p>Ensure that you are running the <code>arm</code> binaries by appending <code>-arm</code> to the binaries names inside <code>build</code> file, as shown below.</p>
+<p>Note: Since <code>3.0.2</code> this is automatically detected.</p>
+<ul>
+<li>ESBUILD=${SRCROOT}/../Tools/esbuild/esbuild-arm</li>
+<li>DPRINT=${SRCROOT}/../Tools/dprint/dprint-arm</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/292738/235188291-a198de0a-c508-4b58-a32a-c4b98209d62e.jpeg" alt="MacOS ARM" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="architecture"><a class="header" href="#architecture">Architecture</a></h1>
+<p>Jasonelle's architecture is mainly composed of two different <a href="https://developer.apple.com/documentation/javascriptcore/jscontext">JavaScript Contexts</a>. One is in the <em>Kernel</em> and the other is in the <a href="https://developer.apple.com/documentation/webkit/wkwebview"><em>WKWebView</em></a> instance.</p>
+<h2 id="jlkernel"><a class="header" href="#jlkernel">JLKernel</a></h2>
+<p>The <em>JLKernel</em> is the main project for bootstrapping <em>Jasonelle</em>. It allows to
+communicate with the <em>WKWebView</em> and other tasks.</p>
+<h3 id="jsengine"><a class="header" href="#jsengine">JSEngine</a></h3>
+<p>It's main tasks are:</p>
+<ul>
+<li>Load configurations and other Javascript files, evaluate them and return the results.</li>
+<li>Inject Javascript code to a Kernel Javascript Context (separated from the WebView).</li>
+<li>Can use <a href="https://nodejs.org/docs/v0.4.1/api/modules.html">node_modules</a> to allow use of external dependencies (they must be web browser compatible).</li>
+</ul>
+<p>You can use the <em>JSEngine</em> by modifing the <a href="https://github.com/jasonelle/jasonelle/blob/main/sources/xcode/App/JS/lib/screens/main.js"><code>main.js.</code></a> file.</p>
+<h4 id="mainjs"><a class="header" href="#mainjs">main.js</a></h4>
+<p>The <code>main.js</code> file is capable of the following:</p>
+<ul>
+<li>Import code from <code>node_modules</code>.</li>
+<li>Define new <code>actions</code> than can be called from the webview using <code>$agent.call()</code>.</li>
+<li>Listen to native events in <code>hooks</code>.</li>
+<li>Configure native components (<code>$pull</code>).</li>
+</ul>
+<h4 id="built-in-js-functions"><a class="header" href="#built-in-js-functions">Built-in JS Functions</a></h4>
+<p>Some of the built-in functions are the following:</p>
+<ul>
+<li><code>i18n</code>: Enables using native translation strings functions. So you can translate using <a href="https://developer.apple.com/documentation/xcode/adding-support-for-languages-and-regions/">Localizable.strings</a> files.</li>
+<li><code>color</code>: Enables generating colors in native formats.</li>
+<li><code>uuid</code>: Enables generating <code>uuidv4</code> strings.</li>
+<li><code>log</code>: Enables logging with native logger.</li>
+<li><code>openURL</code>: Enables opening an URL like <code>sms://</code>, <code>tel://</code>, <code>mailto://</code>, <code>facetime://</code>.</li>
+</ul>
+<h2 id="webviewrenderer"><a class="header" href="#webviewrenderer">WebViewRenderer</a></h2>
+<p>Is the project that will render the <code>WKWebView</code>. You can inject Javascript code directly using the <a href="https://github.com/jasonelle/jasonelle/blob/main/sources/xcode/App/JS/webview.js"><code>webview.js</code></a> file.</p>
+<p><strong>Extensions</strong> will be mainly interacting with this component to inject new native functionality.</p>
+<p>This is the <code>Web Browser</code>, it will have access to all your Javascript files and DOM. You can use it to modify behaviours and pass special params.</p>
+<p>The following variables are injected to <code>window</code> by default:</p>
+<ul>
+<li><code>$agent</code>: Use this to call methods defined in <em>Extensions</em> and <code>main.js</code>.</li>
+<li><code>$logger</code>: Use this to call the native logger.</li>
+<li><code>jasonelle</code>: This variable contains info like <em>Jasonelle</em>'s version. Use this to detect if you are inside a <em>Jasonelle Web Wrapper</em> in your website.</li>
+</ul>
+<pre><code class="language-js">if (window.jasonelle &amp;&amp; window.jasonelle.ready) {
+  // Jasonelle Detected
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="changelog"><a class="header" href="#changelog">Changelog</a></h1>
+<p>All notable changes to this project will be documented in this file.</p>
+<p>The format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>.</p>
+<h2 id="v302-next"><a class="header" href="#v302-next">v3.0.2 (next)</a></h2>
+<h3 id="added"><a class="header" href="#added">Added</a></h3>
+<ul>
+<li>
+<p>[JLClipboard] Added <code>$clipboard.set(text)</code> and <code>$clipboard.get()</code> functions. This will allow copy and access text in native clipboard.</p>
+</li>
+<li>
+<p>[JLDevice] Added <code>$device.info()</code> function. To provide access to native device information.</p>
+</li>
+<li>
+<p>[JLContacts] Added <code>$contacts.authorize()</code> function. Now the extension would not trigger authorization on install.</p>
+</li>
+<li>
+<p>[JLAudio] Added <code>$audio</code> extension. It has <code>$audio.player</code>, <code>$audio.recorder</code> and <code>$audio.vibrate</code> functions.</p>
+</li>
+<li>
+<p>[JLPhotoLibrary] Added <code>$photolibrary.camera.authorize()</code> and <code>$photolibrary.camera.granted()</code> functions. The extension no longer triggers authorization on install.</p>
+</li>
+<li>
+<p>[Core] Added a <em>Makefile</em> command to fix &quot;bad interpreter: Operation not permitted&quot; errors. This error maybe caused by downloading bash files from untrusted sources. Execute <code>make permissions</code> inside <code>sources/xcode</code> directory to fix any compilation problems with that issue.</p>
+</li>
+<li>
+<p>[Core] Add a <code>example.html</code> file. Fill it with the examples for the extension.</p>
+</li>
+<li>
+<p>[Core] Add a Build Phase Script in the framework project.</p>
+</li>
+</ul>
+<h3 id="changed"><a class="header" href="#changed">Changed</a></h3>
+<ul>
+<li>[Core] Improved the way the example html file is generated. Now extensions can add the examples on compilation time.</li>
+</ul>
+<pre><code class="language-bash">NAME=&quot;MyExtension&quot;
+EXAMPLES_DIR=&quot;${PWD}/../../App/Files/Examples&quot;
+TEMPLATES_DIR=&quot;${EXAMPLES_DIR}/Templates&quot;
+SOURCES_DIR=&quot;${PWD}/${NAME}&quot;
+
+# Only copy the examples if the examples directory exists
+if [ -d &quot;${EXAMPLES_DIR}&quot; ]
+then
+ cat &quot;${SOURCES_DIR}/examples.html&quot; &gt; &quot;${EXAMPLES_DIR}/${NAME}.example.html&quot;
+fi
+</code></pre>
+<h3 id="fixed"><a class="header" href="#fixed">Fixed</a></h3>
+<ul>
+<li>[ARM Macs]. Automatically detects processor and selects the proper build tool.</li>
+<li>[Core]. Fixed crash when clicking a non html link (now shows <em>SFSafariViewController</em>).</li>
+</ul>
+<h3 id="downloads-1"><a class="header" href="#downloads-1">Downloads</a></h3>
+<ul>
+<li><a href="https://github.com/jasonelle/jasonelle/archive/refs/heads/main.zip">iOS Main Branch</a></li>
+</ul>
+<h2 id="v301-march-2023"><a class="header" href="#v301-march-2023">v3.0.1 (March 2023)</a></h2>
+<h3 id="added-1"><a class="header" href="#added-1">Added</a></h3>
+<ul>
+<li>
+<p>Ability for extensions to inject <em>Javascript</em> to the <em>WKWebView</em> instance.</p>
+</li>
+<li>
+<p>Ability for the <em>WKWebView</em> instance to load url by using <em>deep links</em> like: <code>jasonelle://href?=https://google.cl</code>.</p>
+</li>
+<li>
+<p>Added <code>JLPhotoLibrary</code> extension that helps requesting access to photo library.</p>
+</li>
+<li>
+<p><code>$keychain</code> extension: <code>$keychain.set</code>, <code>$keychain.get</code>, <code>$keychain.remove</code> for usage within the WebView. This will enable storing data securely in the iOS's keychain.</p>
+</li>
+<li>
+<p><code>$cookies</code> extension: <code>$cookies.set</code>, <code>$cookies.get</code>, <code>$cookies.remove</code> for usage within the WebView. This will help with storing cookies in the keychain. Requires <code>$keychain</code> extension to be enabled. Also you can use <code>$cookies.Cookies</code> to access <a href="https://github.com/js-cookie/js-cookie">js-cookie</a> library.</p>
+</li>
+<li>
+<p><code>$contacts</code> extension: <code>$contacts.all</code> for usage within the WebView.</p>
+</li>
+<li>
+<p>Ability to have <code>allowed</code> list of urls in configuration. Not allowed urls will launch native browser.</p>
+</li>
+<li>
+<p>Added LaunchScreen file (Both in SwiftUI and Storyboard file).</p>
+</li>
+<li>
+<p>Added WebView.edgesIgnoringSafeArea(.all). Some websites need this, specially when using a navbar. Thanks to <em>@Mättu</em> in Telegram for pointing this out.</p>
+</li>
+<li>
+<p>Added meta viewport js fix for websites that do not have proper metatag. In webview.js.</p>
+</li>
+<li>
+<p>Added example extension.</p>
+</li>
+<li>
+<p>Added hook triggering for extensions.</p>
+</li>
+<li>
+<p>Added event triggering in webview for extensions.</p>
+</li>
+<li>
+<p>Added <em>Reachability</em> Events Extension.</p>
+</li>
+</ul>
+<h3 id="fixed-1"><a class="header" href="#fixed-1">Fixed</a></h3>
+<ul>
+<li>
+<p><code>WKWebView</code> triggered <code>appdidLoad</code> event more than once. Now it only triggers the event when loaded.</p>
+</li>
+<li>
+<p><code>build.sh</code> crashed when using paths with spaces.</p>
+</li>
+</ul>
+<h3 id="downloads-2"><a class="header" href="#downloads-2">Downloads</a></h3>
+<ul>
+<li><a href="https://github.com/jasonelle/jasonelle/releases/tag/v3.0.1">Github Release</a></li>
+</ul>
+<h2 id="v300-september-2022"><a class="header" href="#v300-september-2022">v3.0.0 (September 2022)</a></h2>
+<p>This is a new engine created from scratch by <a href="https://github.com/clsource"><em>Camilo</em></a> in 2022. (AGPLv3 or MPLv2 Licenses). It was ditched the old <code>json</code> based approach to a <code>javascript</code> one. Consists of mainly a WebView engine, because there are lots of competition of &quot;native over the wire&quot; frameworks, and was better to focus on the Web App market such as Bubble users.</p>
+<ul>
+<li>New rewrite of the engine from scratch.</li>
+<li>Will only focus on webview workflow.</li>
+<li>No need for Cocoapods, Carthage or Swift PM.</li>
+<li>Native over the wire workflows delegated to other frameworks like <a href="https://native.live">Native Live</a>.</li>
+</ul>
+<h3 id="downloads-3"><a class="header" href="#downloads-3">Downloads</a></h3>
+<ul>
+<li><a href="https://github.com/jasonelle/jasonelle/releases/tag/v3.0.0">Github Release</a></li>
+</ul>
+<h2 id="legacy-versions-2016---2022"><a class="header" href="#legacy-versions-2016---2022">Legacy Versions (2016 - 2022)</a></h2>
+<p>These versions are not currently supported, but maybe something can be learned or be useful. These were using the old engine created originally by <a href="https://github.com/gliechtenstein"><em>Ethan</em></a>. (MIT License).</p>
+<h3 id="downloads-4"><a class="header" href="#downloads-4">Downloads</a></h3>
+<ul>
+<li>
+<p><a href="https://github.com/jasonelle-archive/jasonette-android/archive/refs/heads/develop.zip">Android v2</a></p>
+</li>
+<li>
+<p><a href="https://github.com/jasonelle-archive/jasonette-ios/archive/refs/heads/develop.zip">iOS v2</a></p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="templates"><a class="header" href="#templates">Templates</a></h1>
+<p>A template is a pre configured <em>App.xcworkspace</em> file that
+is tailored for a specific use case.</p>
+<p>They are meant to be used as an starting point for your application.</p>
+<p>You can easily update the core if needed, just by replacing the directories.</p>
+<h2 id="cocoapods-template"><a class="header" href="#cocoapods-template"><a href="https://github.com/jasonelle/jasonelle/tree/template/cocoapods">Cocoapods Template</a></a></h2>
+<p>If you want to use <a href="https://cocoapods.org/">Cocoapods</a> you can use this starter template.</p>
+<ul>
+<li><a href="https://github.com/jasonelle/jasonelle/archive/refs/heads/template/cocoapods.zip">Download</a></li>
+</ul>
+<h2 id="onesignal-template"><a class="header" href="#onesignal-template"><a href="https://github.com/jasonelle/jasonelle/tree/template/onesignal">OneSignal Template</a></a></h2>
+<p>If you want to use <a href="https://documentation.onesignal.com/docs/ios-sdk-setup">OneSignal SDK</a> you can use this starter template.</p>
+<p>It contains the pre configured project. But it needs the specific configurations, such as capabilities, groups and other user related settings.</p>
+<ul>
+<li><a href="https://github.com/jasonelle/jasonelle/archive/refs/heads/template/onesignal.zip">Download</a></li>
+</ul>
+<h2 id="agora-sdk-template"><a class="header" href="#agora-sdk-template"><a href="https://github.com/jasonelle/jasonelle/tree/template/agora">Agora SDK Template</a></a></h2>
+<p>This template uses the <a href="https://agora.io">Agora SDK</a> for realtime video application. It contains a bridge to show a view controller configured for <em>Agora</em>.</p>
+<ul>
+<li>Use: <code>$agora.start(appId, token, channel)</code> in your webview to show the controller.</li>
+<li>See <a href="https://github.com/jasonelle/jasonelle/blob/template/agora/sources/xcode/Extensions/JLAgora/JLAgora/examples.html">Examples</a>.</li>
+</ul>
+<p>You can use it as a base for your own projects. It needs proper configuration and setup for your Agora Keys.</p>
+<ul>
+<li><a href="https://github.com/jasonelle/jasonelle/archive/refs/heads/template/agora.zip">Download</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="extensions"><a class="header" href="#extensions">Extensions</a></h1>
+<p>Extensions are a great way to add new functionality and helpers
+to <em>Jasonelle</em>. They can be updated separately from the core and
+be added or removed at will.</p>
+<h2 id="adding-an-extension"><a class="header" href="#adding-an-extension">Adding an Extension</a></h2>
+<p>Extensions are a single <em>*.xcodeproj</em> (blue icon)
+that contains the project that can be added to the 
+<em>App.xcworkspace</em> (white icon) file.</p>
+<h3 id="step-1"><a class="header" href="#step-1">Step 1</a></h3>
+<p>Open <em>App.xcworkspace</em> with <em>Xcode</em> and
+look for the <em>*.xcodeproj</em> file in <em>Finder</em>.</p>
+<p><img src="https://user-images.githubusercontent.com/292738/219871592-c9f788d9-82b9-436e-b498-ec8c9de57d77.png" alt="xcodeproj" /></p>
+<h3 id="step-2"><a class="header" href="#step-2">Step 2</a></h3>
+<p>Draw it to the <em>Extensions</em> directory inside <em>Xcode</em>.</p>
+<p><img src="https://user-images.githubusercontent.com/292738/219871792-a2e6b3ab-76ac-4140-9b83-afaa166a3c2b.png" alt="extensions.1" /></p>
+<p><img src="https://user-images.githubusercontent.com/292738/219871905-4a884db2-58d7-45a1-aedd-8ab9a22f5ce2.png" alt="extensions.2" /></p>
+<h3 id="step-3"><a class="header" href="#step-3">Step 3</a></h3>
+<p>Add it to the frameworks in <em>App.xcproj</em> file.
+Be sure that <strong>Embed &amp; Sign</strong> option is selected.</p>
+<p><img src="https://user-images.githubusercontent.com/292738/219872025-bfa926e7-907e-4277-97e7-b96602889857.png" alt="added frameworks" /></p>
+<h3 id="step-4"><a class="header" href="#step-4">Step 4</a></h3>
+<p>import the extension in <strong>AppExtensions.m</strong>.</p>
+<p><img src="https://user-images.githubusercontent.com/292738/219872338-01e31f1e-3f16-4914-bf73-5b75f2ccd167.png" alt="add.extensions" /></p>
+<p>and add it to the extension registry in <code>install</code> method
+using the <code>class</code> attribute.</p>
+<p>Example: <code>[self.extensions add: JLContacts.class];</code></p>
+<p><img src="https://user-images.githubusercontent.com/292738/219872570-6e09e504-8ec2-4dec-bd53-27cd69f7800e.png" alt="install.extensions" /></p>
+<h3 id="done"><a class="header" href="#done">Done</a></h3>
+<p>If everything is ok then the extension was installed successfully, 
+maybe some other configurations would be needed depending on the extension itself.</p>
+<h2 id="removing-an-extension"><a class="header" href="#removing-an-extension">Removing an Extension</a></h2>
+<p>If you don't need an extension you can remove it from the workspace.</p>
+<h3 id="step-1-1"><a class="header" href="#step-1-1">Step 1</a></h3>
+<p>Remove (or comment) the setup code in <code>AppExtensions.m</code> file
+described in <code>Adding an Extension: Step 4</code>.</p>
+<p><img src="https://user-images.githubusercontent.com/292738/219872570-6e09e504-8ec2-4dec-bd53-27cd69f7800e.png" alt="install.extensions" /></p>
+<p><img src="https://user-images.githubusercontent.com/292738/219872338-01e31f1e-3f16-4914-bf73-5b75f2ccd167.png" alt="add.extensions" /></p>
+<h3 id="step-2-1"><a class="header" href="#step-2-1">Step 2</a></h3>
+<p>Remove the <code>framework</code> from the <em>App.xcproj</em> file.</p>
+<p><img src="https://user-images.githubusercontent.com/292738/219872025-bfa926e7-907e-4277-97e7-b96602889857.png" alt="added frameworks" /></p>
+<h3 id="step-3-1"><a class="header" href="#step-3-1">Step 3</a></h3>
+<p>Delete the <code>*.xcodeproj</code> file from the Workspace.
+It will pop up a confirmation dialog. We recommend <code>Remove Reference</code> option.</p>
+<p><img src="https://user-images.githubusercontent.com/292738/219873278-f4b6f7a2-e644-48d8-94e9-7702fb09935c.png" alt="remove reference" /></p>
+<h2 id="create-extensions"><a class="header" href="#create-extensions">Create Extensions</a></h2>
+<p>Creating extensions requires some knowledge of <code>Objective-C</code> and <code>JavaScript</code>. These instructions are for advanced users.</p>
+<h3 id="step-1-2"><a class="header" href="#step-1-2">Step 1</a></h3>
+<p>Create a new <em>xcodeproj</em> file.</p>
+<p><img src="https://user-images.githubusercontent.com/292738/219874044-bab47dc0-3d62-4e7a-b56c-73f5e9ad3e28.png" alt="new" /></p>
+<p>Select <code>Framework</code> as the template. Be sure that is in the <em>iOS</em> tab.</p>
+<p><img src="https://user-images.githubusercontent.com/292738/219874161-503cacaf-ae52-4328-bfdd-0fb856e9a4cb.png" alt="framework" /></p>
+<p>Add it to the <em>Extensions</em> directory inside the <em>App.xcworkspace</em>.</p>
+<p><img src="https://user-images.githubusercontent.com/292738/219874367-b104a4d3-7cc7-4f20-85ab-56274d19e694.png" alt="ext.1" /></p>
+<p><img src="https://user-images.githubusercontent.com/292738/219874405-f35b1b56-7703-46b3-8083-ce1408b49d5b.png" alt="ext.2" /></p>
+<h3 id="step-2-2"><a class="header" href="#step-2-2">Step 2</a></h3>
+<p>Configure the <em>iOS Deployment Target</em> to <code>14.0</code> (or the recommended version for your project).</p>
+<p><img src="https://user-images.githubusercontent.com/292738/219875281-2b219bee-3d8b-4c52-a21d-b4fd179a438e.png" alt="d.target" /></p>
+<p>Add the <code>JLKernel</code> framework. Select <strong>Do Not Embed</strong> as the option. Since all the frameworks will be embeded in <code>App.xcproj</code> later.</p>
+<p><img src="https://user-images.githubusercontent.com/292738/219875346-48555ad5-459c-4f0c-b104-69c702f3e3f1.png" alt="d.kernel" /></p>
+<h3 id="step-3-2"><a class="header" href="#step-3-2">Step 3</a></h3>
+<p>Create the <code>*.h</code> and <code>*.m</code> files that inherits from <em>JLExtension</em>.</p>
+<p><img src="https://user-images.githubusercontent.com/292738/219875533-f3e6bf76-9010-43c3-b244-daf2b3fd7fc5.png" alt="dialog.create.1" /></p>
+<p><img src="https://user-images.githubusercontent.com/292738/219875521-aae7a10d-4341-4a1a-b406-6c840fc6cf92.png" alt="dialog.create.2" /></p>
+<p><img src="https://user-images.githubusercontent.com/292738/219875586-f48a183b-bb76-4768-9ee0-08b1755ce417.png" alt="dialog.create.3" /></p>
+<h4 id="example-1"><a class="header" href="#example-1">Example</a></h4>
+<p><strong>MyExtension.h</strong></p>
+<pre><code class="language-objective-c">
+#import &lt;Foundation/Foundation.h&gt;
+
+//! Project version number for MyExtension.
+FOUNDATION_EXPORT double MyExtensionVersionNumber;
+
+//! Project version string for MyExtension.
+FOUNDATION_EXPORT const unsigned char MyExtensionVersionString[];
+
+#import &lt;JLKernel/JLKernel.h&gt;
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface MyExtension : JLExtension
+@end
+
+NS_ASSUME_NONNULL_END
+</code></pre>
+<p><strong>MyExtension.m</strong></p>
+<pre><code class="language-objective-c">#import &quot;MyExtension.h&quot;
+
+@implementation MyExtension
+
+@end
+</code></pre>
+<h3 id="done-1"><a class="header" href="#done-1">Done</a></h3>
+<p>Now you can install it as any other extension in your <em>App.xcodeproj</em> file.</p>
+<h2 id="extension-coding"><a class="header" href="#extension-coding">Extension Coding</a></h2>
+<p>When coding an extension you can access some events and properties
+that will enable to add new features to <em>Jasonelle</em>.</p>
+<h3 id="--void-install"><a class="header" href="#--void-install"><code>- (void) install</code></a></h3>
+<p>This method will be executed when installing the extension in <code>AppDelegate</code> lifecycle. This is before all the extensions are ready, 
+because a single extension is being installed at the time.</p>
+<p>Be sure to call the <code>[super install]</code> method.</p>
+<pre><code class="language-objective-c">- (void) install {
+    [super install];
+    // your code here
+}
+</code></pre>
+<h4 id="selfhandlers"><a class="header" href="#selfhandlers"><code>self.handlers</code></a></h4>
+<p>The handlers are the names of the native bridges that will be called when used inside the webview. Must be configured in the <code>install</code> method.</p>
+<p>See <a href="https://github.com/jasonelle/jasonelle/tree/main/sources/xcode/Extensions/JLKeychain">JLKeychain</a> extension as an example with using handlers.</p>
+<pre><code class="language-objective-c">- (void) install {
+  // ...
+  self.handlers = @{
+        @&quot;$keychain.set&quot;: setHandler,
+        @&quot;$keychain.get&quot;: getHandler,
+        @&quot;$keychain.remove&quot;: removeHandler,
+        @&quot;$keychain.clear&quot;: clearHandler
+    };
+}
+</code></pre>
+<h5 id="handlers"><a class="header" href="#handlers">Handlers</a></h5>
+<p>A handler is a native function that is called within the webview.</p>
+<p>Handlers will be called using <code>$agent.trigger()</code> inside the webview.</p>
+<ul>
+<li>Example: <code>$agent.trigger('$keychain.get')</code></li>
+</ul>
+<p>They will return a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>JS Promise</code></a>.</p>
+<p>A wrapper can be created to call directly.</p>
+<ul>
+<li>Example: <a href="https://github.com/jasonelle/jasonelle/blob/main/sources/xcode/Extensions/JLContacts/JLContacts/JLContacts.js"><strong>JLContacts.js</strong></a></li>
+</ul>
+<pre><code class="language-js"> (() =&gt; {
+     if (window &amp;&amp; window.$myextension) {
+         return;
+     }
+     
+     window.$myextension = {};
+     window.$myextension.run = () =&gt; $agent.trigger(&quot;$myextension.run&quot;, {});
+ })();
+</code></pre>
+<h3 id="--bool-applicationuiapplication-application-didfinishlaunchingwithoptionsnullable-nsdictionary-launchoptions"><a class="header" href="#--bool-applicationuiapplication-application-didfinishlaunchingwithoptionsnullable-nsdictionary-launchoptions"><code>- (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions</code></a></h3>
+<p>This method is called in <code>AppDelegate</code> after the setup and before loading the webview. Normally for post install logic. All the other extensions would be available at this point.</p>
+<h3 id="--nonnull-wkwebview-appdidloadwithwebviewnonnull-wkwebview-webview"><a class="header" href="#--nonnull-wkwebview-appdidloadwithwebviewnonnull-wkwebview-webview"><code>- (nonnull WKWebView *)appDidLoadWithWebView:(nonnull WKWebView *)webView</code></a></h3>
+<p>This method is called when the <code>WKWebView</code> is ready. You can use it to 
+inject <em>JavaScript</em> files or make additional configurations to the webview element.</p>
+<pre><code class="language-objective-c">- (nonnull WKWebView *)appDidLoadWithWebView:(nonnull WKWebView *)webView {
+    [super appDidLoadWithWebView:webView];
+    return webView;
+}
+</code></pre>
+<h4 id="examples"><a class="header" href="#examples">Examples</a></h4>
+<p>See <a href="https://github.com/jasonelle/jasonelle/tree/main/sources/xcode/Extensions/JLCookies">JLCookies</a> as an example extension that only loads a <em>JS</em> file.</p>
+<h3 id="more-methods"><a class="header" href="#more-methods">More methods</a></h3>
+<p>See which other methods are available in <a href="https://github.com/jasonelle/jasonelle/blob/main/sources/xcode/Jasonelle/JLKernel/JLKernel/Application/Extensions/JLApplicationExtensions.h">JLApplicationExtensions</a></p>
+<h3 id="filesystem-helper"><a class="header" href="#filesystem-helper">FileSystem Helper</a></h3>
+<p>You can access the filesystem by using the <code>app.utils.fs</code> helper.</p>
+<p><strong>Example</strong></p>
+<p>Reads a file named <em>JLContacts.js</em> inside the self bundle.</p>
+<pre><code class="language-objective-c">NSString * js = [self.app.utils.fs
+                     readJS:@&quot;JLContacts&quot;
+                     for:self];
+
+// If is named the same as the class then can be used like this
+NSString * js = [self.app.utils.fs
+                     readJSFor:self];
+</code></pre>
+<h3 id="webview-helper"><a class="header" href="#webview-helper">WebView Helper</a></h3>
+<p>To help injecting scripts to webview you can use <code>app.utils.webview</code> helper.</p>
+<pre><code class="language-objective-c">webView = [self.app.utils.webview inject:@&quot;js.cookie.min&quot; intoWebView:webView for:self];
+
+// Reads the filename as Classname.js
+return [self.app.utils.webview inject:self intoWebView:webView];
+</code></pre>
+<h3 id="extension-service-locator"><a class="header" href="#extension-service-locator">Extension Service Locator</a></h3>
+<p>You can fetch the extension instance by using the <code>app.ext</code> service locator.</p>
+<pre><code class="language-objective-c">return (JLATTrackingManager *) [self.app.ext get:JLATTrackingManager.class];
+
+return (JLApplicationBadge *) [self.app.ext get:JLApplicationBadge.class];
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jlattrackingmanager"><a class="header" href="#jlattrackingmanager"><code>JLATTrackingManager</code></a></h1>
+<p>Optionally install <a href="https://developer.apple.com/documentation/apptrackingtransparency">ATTracking Support</a>
+Request user authorization to access app-related data for tracking the user or the device.
+Ensure to configure the plist as well.
+If your app calls the App Tracking Transparency API, you must provide custom text, known as a usage-description string, which displays as a system-permission alert request. The usage-description string tells the user why the app is requesting permission to use data for tracking the user or the device.</p>
+<ul>
+<li>Since: <code>3.0.1</code></li>
+</ul>
+<h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
+<p>Request user authorization to access app-related data for tracking the user or the device.</p>
+<h2 id="topics"><a class="header" href="#topics">Topics</a></h2>
+<h3 id="installation"><a class="header" href="#installation">Installation</a></h3>
+<p>The <em>ATTracking</em> message will be triggered on <code>install</code>.</p>
+<h4 id="infoplist"><a class="header" href="#infoplist">info.plist</a></h4>
+<p>Configure your <code>info.plist</code> and include the <a href="https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription?language=objc"><code>NSUserTrackingUsageDescription</code></a> key and fill it with the description.</p>
+<h3 id="properties"><a class="header" href="#properties">Properties</a></h3>
+<h4 id="status"><a class="header" href="#status">status</a></h4>
+<p>Returns the current <a href="https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanagerauthorizationstatus?language=objc">status</a> for the ATTracking.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jlapplicationbadge"><a class="header" href="#jlapplicationbadge"><code>JLApplicationBadge</code></a></h1>
+<p>Can manipulate <a href="https://developer.apple.com/documentation/uikit/uiapplication/1622918-applicationiconbadgenumber">Application Icon Badge Number</a> </p>
+<ul>
+<li>Since: <code>3.0.1</code></li>
+</ul>
+<h2 id="overview-1"><a class="header" href="#overview-1">Overview</a></h2>
+<p>The number currently set as the badge of the app icon on the Home screen.</p>
+<h2 id="topics-1"><a class="header" href="#topics-1">Topics</a></h2>
+<h3 id="actions"><a class="header" href="#actions">Actions</a></h3>
+<ul>
+<li><code>$badge.clear</code>: Cleans the badge number icon.</li>
+<li><code>$badge.set</code>: Sets the badge number icon.</li>
+</ul>
+<h3 id="example-2"><a class="header" href="#example-2">Example</a></h3>
+<pre><code class="language-js">$badge.set(3);
+$badge.clear();
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jlcookies"><a class="header" href="#jlcookies"><code>JLCookies</code></a></h1>
+<p>A helper to work with the <code>WebView</code> cookies.</p>
+<ul>
+<li>Since: <code>3.0.1</code></li>
+</ul>
+<h2 id="overview-2"><a class="header" href="#overview-2">Overview</a></h2>
+<p>Requires <a href="xcode/JLKeychain.html"><code>$keychain</code></a> extension.</p>
+<h2 id="topics-2"><a class="header" href="#topics-2">Topics</a></h2>
+<h3 id="actions-1"><a class="header" href="#actions-1">Actions</a></h3>
+<ul>
+<li><code>$cookies.set</code>: Stores document.cookie in keychain.</li>
+<li><code>$cookies.get</code>: Gets cookie value stored in keychain.</li>
+<li><code>$cookies.remove</code>: Removes cookies value from keychain.</li>
+<li><code>$cookies.write</code>: Gets the cookie value stored in keychain and write it to document.cookie.</li>
+<li><code>$cookies.Cookies</code>: <a href="https://github.com/js-cookie/js-cookie">js-cookie</a> Helper.</li>
+</ul>
+<h3 id="examples-1"><a class="header" href="#examples-1">Examples</a></h3>
+<p><strong>Sets the cookie and save it to keychain</strong></p>
+<pre><code class="language-js">// Set a value inside document.cookies
+$cookies.Cookies.set('name', 'Ethan'); 
+
+// Save the document.cookies to keychain.
+$cookies.set().then(val =&gt; alert(val));
+</code></pre>
+<p><strong>Gets the current cookie value from keychain</strong></p>
+<pre><code class="language-js">$cookies.get().then(val =&gt; alert(val));
+</code></pre>
+<p><strong>Reads cookie from keychain and then writes to document.cookie</strong></p>
+<pre><code class="language-js">$cookies.write().then(val =&gt; alert(val));
+</code></pre>
+<p><strong>Removes cookies from keychain</strong></p>
+<pre><code class="language-js">$cookies.Cookies.remove('name'); 
+$cookies.remove().then(val =&gt; alert(val));
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jlkeychain"><a class="header" href="#jlkeychain"><code>JLKeychain</code></a></h1>
+<p>Keychain extension allows storing values inside <a href="https://developer.apple.com/documentation/security/keychain_services?language=objc"><em>iOS Keychain</em></a></p>
+<ul>
+<li>Since: <code>3.0.1</code></li>
+</ul>
+<h2 id="overview-3"><a class="header" href="#overview-3">Overview</a></h2>
+<p>Keychain is made as a key - value secure storage.</p>
+<h2 id="topics-3"><a class="header" href="#topics-3">Topics</a></h2>
+<h3 id="actions-2"><a class="header" href="#actions-2">Actions</a></h3>
+<ul>
+<li><code>$keychain.set</code>: Sets a key to store a value.</li>
+<li><code>$keychain.get</code>: Gets the value for a given key.</li>
+<li><code>$keychain.remove</code>: Removes a key from the keychain.</li>
+<li><code>$keychain.clear</code>: Removes all keys and values from the keychain.</li>
+</ul>
+<h3 id="example-3"><a class="header" href="#example-3">Example</a></h3>
+<pre><code class="language-js">// Stores the number 3 in keychain
+$keychain.set('number', 3);
+
+// Get the number 3 and show an alert with it
+$keychain.get('number').then(num =&gt; alert(num));
+
+// Removes the stored number
+$keychain.remove('number');
+
+// Clears the keychain
+$keychain.clear();
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jlphotolibrary"><a class="header" href="#jlphotolibrary"><code>JLPhotoLibrary</code></a></h1>
+<p>Provides methods to requesting <a href="https://developer.apple.com/documentation/photokit/phphotolibrary">Photo Library</a> and <a href="https://developer.apple.com/documentation/avfoundation/capture_setup/requesting_authorization_to_capture_and_save_media?language=objc">Camera</a> permissions </p>
+<ul>
+<li>Since: <code>3.0.1</code></li>
+</ul>
+<h2 id="overview-4"><a class="header" href="#overview-4">Overview</a></h2>
+<p>It would be required if your app wants to access camera or photo library.</p>
+<h2 id="topics-4"><a class="header" href="#topics-4">Topics</a></h2>
+<h3 id="actions-3"><a class="header" href="#actions-3">Actions</a></h3>
+<h4 id="photolibrarygranted"><a class="header" href="#photolibrarygranted"><code>$photolibrary.granted()</code></a></h4>
+<ul>
+<li>Since <code>3.0.1</code></li>
+</ul>
+<p>Returns <code>Promise.resolve(Bool)</code> if the permission is granted.</p>
+<p><strong>Example</strong></p>
+<pre><code class="language-js">$photolibrary.granted().then(granted =&gt; alert(granted));
+</code></pre>
+<h4 id="photolibraryauthorizeshowalert--true"><a class="header" href="#photolibraryauthorizeshowalert--true"><code>$photolibrary.authorize(showAlert = true)</code></a></h4>
+<ul>
+<li>Since <code>3.0.1</code></li>
+</ul>
+<p>Returns <code>Promise.resolve(Int)</code> with the Authorization Status.</p>
+<p>If <code>showAlert = true</code> then it will prompt an alert requesting the user go <em>Settings</em>.</p>
+<p>The returned number corresponds to <a href="https://developer.apple.com/documentation/photokit/phauthorizationstatus"><code>PHAuthorizationStatus</code></a></p>
+<p>By default will request access to all photos.</p>
+<p><strong>Example</strong></p>
+<pre><code class="language-js">$photolibrary.authorize().then(status =&gt; $logger.trace(status));
+</code></pre>
+<h4 id="photolibrarycameragranted"><a class="header" href="#photolibrarycameragranted"><code>$photolibrary.camera.granted()</code></a></h4>
+<ul>
+<li>Since <code>3.0.2</code></li>
+</ul>
+<p>Returns <code>Promise.resolve(Bool)</code> if the camera permission is granted.</p>
+<p><strong>Example</strong></p>
+<pre><code class="language-js">$photolibrary.granted().then(granted =&gt; alert(granted));
+</code></pre>
+<h4 id="photolibrarycameraauthorizeshowalert--true"><a class="header" href="#photolibrarycameraauthorizeshowalert--true"><code>$photolibrary.camera.authorize(showAlert = true)</code></a></h4>
+<ul>
+<li>Since <code>3.0.2</code></li>
+</ul>
+<p>Returns <code>Promise.resolve(Int)</code> with the Camera authorization status.</p>
+<p>If <code>showAlert = true</code> then it will prompt an alert requesting the user go <em>Settings</em>.</p>
+<p>The returned number corresponds to <a href="https://developer.apple.com/documentation/avfoundation/avauthorizationstatus?language=objc"><code>AVAuthorizationStatus</code></a></p>
+<p><strong>Example</strong></p>
+<pre><code class="language-js">$photolibrary.camera.authorize().then(status =&gt; $logger.trace(status));
+</code></pre>
+<h3 id="infoplist-1"><a class="header" href="#infoplist-1"><code>info.plist</code></a></h3>
+<p>Add the following permissions to <code>info.plist</code>:</p>
+<ul>
+<li>
+<p><a href="https://developer.apple.com/documentation/bundleresources/information_property_list/nsphotolibraryusagedescription">NSPhotoLibraryUsageDescription</a></p>
+</li>
+<li>
+<p><a href="https://developer.apple.com/documentation/bundleresources/information_property_list/nscamerausagedescription">NSCameraUsageDescription</a></p>
+</li>
+<li>
+<p><a href="https://developer.apple.com/documentation/photokit/phphotolibrary?language=objc">PHPhotoLibraryPreventAutomaticLimitedAccessAlert</a> Set to <code>YES</code>.</p>
+</li>
+<li>
+<p><a href="https://developer.apple.com/documentation/bundleresources/information_property_list/nsphotolibraryaddusagedescription?language=objc">NSPhotoLibraryAddUsageDescription</a> Description.</p>
+</li>
+</ul>
+<pre><code class="language-xml">&lt;key&gt;NSPhotoLibraryUsageDescription&lt;/key&gt;
+&lt;string&gt;If you want to use the photolibrary, you have to give permission.&lt;/string&gt;
+&lt;key&gt;NSCameraUsageDescription&lt;/key&gt;
+&lt;string&gt;If you want to use the camera, you have to give permission.&lt;/string&gt;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jlcontacts"><a class="header" href="#jlcontacts"><code>JLContacts</code></a></h1>
+<p>The Contacts extension provides APIs to access the user’s contact information. </p>
+<ul>
+<li>Since: <code>3.0.1</code></li>
+</ul>
+<h2 id="overview-5"><a class="header" href="#overview-5">Overview</a></h2>
+<p>An iOS app linked on or after iOS 10 needs to include in its <code>Info.plist</code> file the usage description keys for the types of data it needs to access or it crashes. To access Contacts data specifically, it needs to include <code>NSContactsUsageDescription</code>.</p>
+<h3 id="more-info"><a class="header" href="#more-info">More Info</a></h3>
+<ul>
+<li><a href="https://developer.apple.com/documentation/contacts?language=objc">Contacts Framework</a></li>
+<li><a href="https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW14">NSContactsUsageDescription</a></li>
+</ul>
+<h2 id="topics-5"><a class="header" href="#topics-5">Topics</a></h2>
+<h3 id="schema"><a class="header" href="#schema">Schema</a></h3>
+<pre><code class="language-txt">&quot;name&quot;: String,
+&quot;lastname&quot;: String,
+&quot;phone&quot;: String,
+&quot;phones&quot;: Array,
+&quot;email&quot;: String,
+&quot;emails: Array,
+&quot;address&quot;: String,
+&quot;addresses&quot;: Array
+</code></pre>
+<h3 id="actions-4"><a class="header" href="#actions-4">Actions</a></h3>
+<h4 id="contactsall"><a class="header" href="#contactsall"><code>$contacts.all()</code></a></h4>
+<p>Returns a <code>promise</code> with all the contacts.</p>
+<ul>
+<li>
+<p>Since 3.0.1</p>
+</li>
+<li>
+<p>Return</p>
+</li>
+</ul>
+<pre><code class="language-json">[{
+    &quot;phone&quot;: &quot;5555648583&quot;,
+    &quot;phones&quot;: [&quot;5555648583&quot;, &quot;4155553695&quot;],
+    &quot;emails&quot;: [&quot;kate-bell@mac.com&quot;],
+    &quot;address&quot;: &quot;165 Davis Street\nHillsborough CA 94010&quot;,
+    &quot;lastname&quot;: &quot;Bell&quot;,
+    &quot;addresses&quot;: [&quot;165 Davis Street\nHillsborough CA 94010&quot;],
+    &quot;email&quot;: &quot;kate-bell@mac.com&quot;,
+    &quot;name&quot;: &quot;Kate&quot;
+}, {
+    &quot;phone&quot;: &quot;5554787672&quot;,
+    &quot;phones&quot;: [&quot;5554787672&quot;, &quot;4085555270&quot;, &quot;4085553514&quot;],
+    &quot;emails&quot;: [&quot;d-higgins@mac.com&quot;],
+    &quot;address&quot;: &quot;332 Laguna Street\nCorte Madera CA 94925\nUSA&quot;,
+    &quot;lastname&quot;: &quot;Higgins&quot;,
+    &quot;addresses&quot;: [&quot;332 Laguna Street\nCorte Madera CA 94925\nUSA&quot;],
+    &quot;email&quot;: &quot;d-higgins@mac.com&quot;,
+    &quot;name&quot;: &quot;Daniel&quot;
+}, {
+    &quot;phone&quot;: &quot;8885555512&quot;,
+    &quot;phones&quot;: [&quot;8885555512&quot;, &quot;8885551212&quot;],
+    &quot;emails&quot;: [&quot;John-Appleseed@mac.com&quot;],
+    &quot;address&quot;: &quot;3494 Kuhl Avenue\nAtlanta GA 30303\nUSA&quot;,
+    &quot;lastname&quot;: &quot;Appleseed&quot;,
+    &quot;addresses&quot;: [&quot;3494 Kuhl Avenue\nAtlanta GA 30303\nUSA&quot;, &quot;1234 Laurel Street\nAtlanta GA 30303\nUSA&quot;],
+    &quot;email&quot;: &quot;John-Appleseed@mac.com&quot;,
+    &quot;name&quot;: &quot;John&quot;
+}, {
+    &quot;phone&quot;: &quot;5555228243&quot;,
+    &quot;phones&quot;: [&quot;5555228243&quot;],
+    &quot;emails&quot;: [&quot;anna-haro@mac.com&quot;],
+    &quot;address&quot;: &quot;1001  Leavenworth Street\nSausalito CA 94965\nUSA&quot;,
+    &quot;lastname&quot;: &quot;Haro&quot;,
+    &quot;addresses&quot;: [&quot;1001  Leavenworth Street\nSausalito CA 94965\nUSA&quot;],
+    &quot;email&quot;: &quot;anna-haro@mac.com&quot;,
+    &quot;name&quot;: &quot;Anna&quot;
+}, {
+    &quot;phone&quot;: &quot;5557664823&quot;,
+    &quot;phones&quot;: [&quot;5557664823&quot;, &quot;7075551854&quot;],
+    &quot;emails&quot;: [&quot;hank-zakroff@mac.com&quot;],
+    &quot;address&quot;: &quot;1741 Kearny Street\nSan Rafael CA 94901&quot;,
+    &quot;lastname&quot;: &quot;Zakroff&quot;,
+    &quot;addresses&quot;: [&quot;1741 Kearny Street\nSan Rafael CA 94901&quot;],
+    &quot;email&quot;: &quot;hank-zakroff@mac.com&quot;,
+    &quot;name&quot;: &quot;Hank&quot;
+}, {
+    &quot;phone&quot;: &quot;5556106679&quot;,
+    &quot;phones&quot;: [&quot;5556106679&quot;],
+    &quot;emails&quot;: [],
+    &quot;address&quot;: &quot;1747 Steuart Street\nTiburon CA 94920\nUSA&quot;,
+    &quot;lastname&quot;: &quot;Taylor&quot;,
+    &quot;addresses&quot;: [&quot;1747 Steuart Street\nTiburon CA 94920\nUSA&quot;],
+    &quot;email&quot;: &quot;&quot;,
+    &quot;name&quot;: &quot;David&quot;
+}]
+</code></pre>
+<h4 id="contactsauthorize"><a class="header" href="#contactsauthorize"><code>$contacts.authorize()</code></a></h4>
+<p>Starts the authorization flow. Returns an Promise. Resolves with object with the authorization status. Rejects with an error message. </p>
+<ul>
+<li>Since 3.0.2</li>
+<li>Schema</li>
+</ul>
+<pre><code class="language-json">&quot;granted&quot;: &quot;Bool&quot;,
+&quot;status&quot;: {
+    &quot;id&quot;: &quot;CNAuthorizationStatus&quot;,
+    &quot;name&quot;: &quot;String&quot;
+}
+</code></pre>
+<p><code>status.id</code> referes to <a href="https://developer.apple.com/documentation/contacts/cnauthorizationstatus?language=objc">CNAuthorizationStatus</a>.</p>
+<h3 id="examples-2"><a class="header" href="#examples-2">Examples</a></h3>
+<p><strong>Alert</strong></p>
+<p>Join all the contacts by the first name in a single string.
+And present an alert.</p>
+<pre><code class="language-js">$contacts.all().then(val =&gt; alert(val.reduce((acc, v) =&gt; acc + v.name + ' ', '')))
+</code></pre>
+<p><strong>Log</strong></p>
+<p>Logs the resulting object.</p>
+<pre><code class="language-js">$contacts.all().then(info =&gt; $logger.trace(JSON.stringify(info)))
+</code></pre>
+<p><strong>Authorize</strong></p>
+<pre><code class="language-js">const authorizeContacts = () =&gt; $contacts.authorize().then(res =&gt; alert(res.status.name));
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jlreachability"><a class="header" href="#jlreachability"><code>JLReachability</code></a></h1>
+<p>Helps to detect when access to internet was lost.</p>
+<ul>
+<li>Since: <code>3.0.1</code></li>
+</ul>
+<h2 id="overview-6"><a class="header" href="#overview-6">Overview</a></h2>
+<p>Sends a notification event inside the <em>WebView</em> and <em>NSNotificationCenter</em>.</p>
+<h2 id="topics-6"><a class="header" href="#topics-6">Topics</a></h2>
+<h3 id="configuration"><a class="header" href="#configuration">Configuration</a></h3>
+<p>Be sure to add <a href="https://developer.apple.com/documentation/systemconfiguration?language=objc"><strong>SystemConfiguration.framework</strong></a> in <em>Bundle Without Signing mode</em>.</p>
+<h3 id="status-1"><a class="header" href="#status-1">Status</a></h3>
+<pre><code class="language-js">const reachability = {
+    // Apple NetworkStatus Compatible Names.
+    status: {
+        not_reachable: 0,
+        wwan_reachable: 1,
+        cellular_reachable: 1, // the same as wwan, just to have ubiquotus language
+        wifi_reachable: 2
+    },
+    status_names: {
+       0: &quot;No Connection&quot;,
+       1: &quot;Cellular&quot;,
+       2: &quot;Wifi&quot;
+    }
+};
+</code></pre>
+<h3 id="actions-5"><a class="header" href="#actions-5">Actions</a></h3>
+<ul>
+<li><code>$reachability.get</code>: Returns the current reachability object.</li>
+</ul>
+<p><strong>Schema</strong></p>
+<pre><code class="language-js">{
+    &quot;status&quot;: Number, // Status of the Connection
+    &quot;reachable&quot;: Boolean, // true if is reachable
+    &quot;label&quot;: String // String with the current connection label
+}
+</code></pre>
+<p><strong>Example</strong></p>
+<pre><code class="language-js">$reachability.get().then(result =&gt; alert(result.label));
+</code></pre>
+<h3 id="events"><a class="header" href="#events">Events</a></h3>
+<ul>
+<li><code>$reachability.events.changed</code>: Triggered when a change in reachability is detected.</li>
+</ul>
+<p><strong>Example</strong></p>
+<pre><code class="language-js">document.addEventListener(&quot;$reachability.events.changed&quot;, function(e) {
+    $logger.trace(&quot;Reachability Changed: &quot; + JSON.stringify(e.detail));
+});
+</code></pre>
+<h3 id="notification"><a class="header" href="#notification">Notification</a></h3>
+<p>An <a href="https://developer.apple.com/documentation/foundation/nsnotification">NSNotification</a> is sent with the name <code>kReachabilityChangedNotification</code>.</p>
+<pre><code class="language-objc">// Here we set up a NSNotification observer. The Reachability that caused the notification
+// is passed in the object parameter
+[[NSNotificationCenter defaultCenter] addObserver:self
+                                         selector:@selector(reachabilityChanged:)
+                                             name:kReachabilityChangedNotification
+                                           object:nil];
+</code></pre>
+<p>See more details at <a href="https://github.com/tonymillion/Reachability">Tony Million's Reachability Docs</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jlaudio"><a class="header" href="#jlaudio"><code>JLAudio</code></a></h1>
+<p>A simple wrapper to record and play audio files using the native device apis.</p>
+<ul>
+<li>Since: <code>3.0.2</code></li>
+</ul>
+<h2 id="overview-7"><a class="header" href="#overview-7">Overview</a></h2>
+<h2 id="topics-7"><a class="header" href="#topics-7">Topics</a></h2>
+<h3 id="vibration"><a class="header" href="#vibration">Vibration</a></h3>
+<h4 id="audiovibrate"><a class="header" href="#audiovibrate"><code>$audio.vibrate()</code></a></h4>
+<ul>
+<li>Since <code>3.0.2</code></li>
+</ul>
+<p>Sends the vibration alarm sound. Works for iPhones regardless of silent switch position.</p>
+<h3 id="audio-player-actions"><a class="header" href="#audio-player-actions">Audio Player Actions</a></h3>
+<p>This interacts directly with <a href="https://developer.apple.com/documentation/avfoundation/avplayer?language=objc"><code>AVPlayer</code></a>.</p>
+<p>The current player support up to 16 channels. With channel 0 as the default.
+You can individually play each channel and set options such as volume.</p>
+<h4 id="audioplayerloadurl-options--channel--0-volume--1"><a class="header" href="#audioplayerloadurl-options--channel--0-volume--1"><code>$audio.player.load(url, options = {channel = 0, volume = 1})</code></a></h4>
+<ul>
+<li>Since: <code>3.0.2</code></li>
+</ul>
+<p>Loads an audio file from a remote url. </p>
+<h4 id="audioplayerplaychannel--0-options--"><a class="header" href="#audioplayerplaychannel--0-options--"><code>$audio.player.play(channel = 0, options = {})</code></a></h4>
+<ul>
+<li>Since: <code>3.0.2</code></li>
+</ul>
+<p>Plays the audio file at the given channel with options.
+Defaults to channel <code>0</code>.</p>
+<h4 id="audioplayerpausechannel--0-options--"><a class="header" href="#audioplayerpausechannel--0-options--"><code>$audio.player.pause(channel = 0, options = {})</code></a></h4>
+<ul>
+<li>Since: <code>3.0.2</code></li>
+</ul>
+<p>Pauses the audio file playing at given channel with options.
+Defaults to channel <code>0</code>.</p>
+<h3 id="audio-recording-actions"><a class="header" href="#audio-recording-actions">Audio Recording Actions</a></h3>
+<h4 id="audiorecorderauthorize"><a class="header" href="#audiorecorderauthorize"><code>$audio.recorder.authorize()</code></a></h4>
+<ul>
+<li>Since <code>3.0.2</code></li>
+</ul>
+<p>Authorizes audio recording capabilities. Must set <a href="https://developer.apple.com/documentation/bundleresources/information_property_list/nsmicrophoneusagedescription"><code>NSMicrophoneUsageDescription</code></a> in <code>info.plist</code>.</p>
+<p>Returns a <code>Promise</code>. Rejects it if access was not granted.</p>
+<p><strong>Example</strong></p>
+<pre><code class="language-js">$audio.recorder.authorize().then(granted =&gt; $logger.trace(`Audio Recording is granted?: ${granted}`))
+   .catch(message =&gt; $logger.trace(&quot;Audio Recording Authorization Not Granted&quot;));
+</code></pre>
+<h4 id="audiorecorderrecord"><a class="header" href="#audiorecorderrecord"><code>$audio.recorder.record()</code></a></h4>
+<ul>
+<li>Since <code>3.0.2</code></li>
+</ul>
+<p>Starts recording. Triggers <code>$audio.recorder.status.event</code> every <code>0.5</code> seconds.</p>
+<h4 id="audiorecorderstop"><a class="header" href="#audiorecorderstop"><code>$audio.recorder.stop()</code></a></h4>
+<ul>
+<li>Since <code>3.0.2</code></li>
+</ul>
+<p>Stops the current recording. Triggers <code>$audio.recorder.finished.event</code>.</p>
+<h4 id="audiorecorderpause"><a class="header" href="#audiorecorderpause"><code>$audio.recorder.pause()</code></a></h4>
+<ul>
+<li>Since <code>3.0.2</code></li>
+</ul>
+<p>Pauses/Resumes the current recording.</p>
+<h4 id="events-1"><a class="header" href="#events-1">Events</a></h4>
+<h5 id="audiorecorderstatusevent"><a class="header" href="#audiorecorderstatusevent"><code>$audio.recorder.status.event</code></a></h5>
+<ul>
+<li>Since <code>3.0.2</code></li>
+</ul>
+<p>Returns the current status for the recording and additional information.</p>
+<p><strong>event.detail</strong></p>
+<pre><code class="language-objc">{
+    &quot;file&quot;: {
+        &quot;url&quot;: self.file.absoluteString,
+        &quot;url_components&quot;: self.file.pathComponents
+    },
+    &quot;state&quot;: self.state,
+    &quot;settings&quot;: self.settings,
+    &quot;time&quot;: {
+        &quot;audio&quot;: {
+            &quot;formatted&quot;: [self timeStringForTimeInterval:self.recorder.currentTime],
+            &quot;current&quot;: self.recorder.currentTime,
+        },
+        &quot;device&quot;: {
+            &quot;formatted&quot;: [self timeStringForTimeInterval:self.recorder.deviceCurrentTime],
+            &quot;current&quot;: self.recorder.deviceCurrentTime
+        }
+    },
+}
+</code></pre>
+<h5 id="audiorecorderfinishedevent"><a class="header" href="#audiorecorderfinishedevent"><code>$audio.recorder.finished.event</code></a></h5>
+<ul>
+<li>Since <code>3.0.2</code></li>
+</ul>
+<p>The recording ended and returns the information for the file.
+Audio data is encoded in a <code>Base64</code> string so it can be easily send via http requests.</p>
+<p><strong>event.detail</strong></p>
+<pre><code class="language-objc">{
+    &quot;status&quot;: self.currentStatus,
+    &quot;file&quot;: {
+        &quot;url&quot;: self.file.absoluteString,
+        &quot;url_components&quot;: self.file.pathComponents,
+        &quot;data&quot;: self.base64Data,
+        &quot;uri&quot;: self.base64DataURI,
+        &quot;content_type&quot;: self.contentType,
+        &quot;time&quot;: {
+            &quot;formatted&quot;: self.duration,
+            &quot;total&quot;: self.seconds,
+        }
+    }
+    
+}
+</code></pre>
+<h5 id="audiorecordererrorevent"><a class="header" href="#audiorecordererrorevent"><code>$audio.recorder.error.event</code></a></h5>
+<ul>
+<li>Since <code>3.0.2</code></li>
+</ul>
+<p>Returns some information if there was an error recording. </p>
+<p><strong>event.detail</strong></p>
+<pre><code class="language-objc">{
+   &quot;message&quot;: error.localizedDescription,
+   &quot;code&quot;: error.code,
+   &quot;info&quot;: error.userInfo,
+   &quot;file&quot;: {
+        &quot;url&quot;: self.file.absoluteString,
+        &quot;url_components&quot;: self.file.pathComponents
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jldevice"><a class="header" href="#jldevice"><code>JLDevice</code></a></h1>
+<p>Enables access to device's info.</p>
+<h2 id="overview-8"><a class="header" href="#overview-8">Overview</a></h2>
+<p>Provides access to the current device model, size, system and vendor identifiers.</p>
+<h2 id="topics-8"><a class="header" href="#topics-8">Topics</a></h2>
+<h3 id="actions-6"><a class="header" href="#actions-6">Actions</a></h3>
+<ul>
+<li>
+<p><code>$device.info()</code></p>
+</li>
+<li>
+<p>Since: <code>3.0.2</code></p>
+</li>
+</ul>
+<p>Returns an object with current device info.</p>
+<p><strong>Example</strong></p>
+<pre><code class="language-js">const deviceInfo = () =&gt; $device.info().then(info =&gt; {
+    $logger.trace(info);
+    alert(info.env.hw.name);
+});
+</code></pre>
+<pre><code class="language-text">{
+    env =     {
+        hw =         {
+            id = 0;
+            name = simulator;
+        };
+        type =         {
+            id = 1;
+            name = develop;
+        };
+    };
+    license =     {
+        enabled = 1;
+    };
+    process =     {
+        device =         {
+            model =             {
+                localized = iPhone;
+                name = iPhone;
+            };
+            name = &quot;iPhone SE (2nd generation)&quot;;
+            orientation =             {
+                id = 1;
+                portrait = 1;
+            };
+            size =             {
+                height = 667;
+                width = 375;
+            };
+            system =             {
+                name = iOS;
+                simulator = 1;
+                version = &quot;14.0.1&quot;;
+            };
+        };
+        identifiers =         {
+            vendor = &quot;32DD46B4-323B-4396-B3CA-BE232104423&quot;;
+        };
+    };
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jlclipboard"><a class="header" href="#jlclipboard"><code>JLClipboard</code></a></h1>
+<p>Handles native Clipboard actions</p>
+<h2 id="overview-9"><a class="header" href="#overview-9">Overview</a></h2>
+<p>Provides access to native clipboard</p>
+<h2 id="topics-9"><a class="header" href="#topics-9">Topics</a></h2>
+<h3 id="actions-7"><a class="header" href="#actions-7">Actions</a></h3>
+<ul>
+<li><code>$clipboard.set(text)</code></li>
+<li>Since <code>3.0.2</code></li>
+</ul>
+<p>Copy text to the native clipboard.</p>
+<pre><code class="language-js">$clipboard.set(&quot;Hello&quot;)
+</code></pre>
+<ul>
+<li><code>$clipboard.get()</code></li>
+<li>Since <code>3.0.2</code></li>
+</ul>
+<p>Returns the current text in the native clipboard.</p>
+<pre><code class="language-js">$clipboard.get().then(text =&gt; alert(text));
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jltoast"><a class="header" href="#jltoast"><code>JLToast</code></a></h1>
+<p>Present different message <code>Toast</code> and banners that allow displaying quick information using native features.</p>
+<h2 id="overview-10"><a class="header" href="#overview-10">Overview</a></h2>
+<p>Useful if you want to present information to the user.</p>
+<h2 id="topics-10"><a class="header" href="#topics-10">Topics</a></h2>
+<h3 id="loading-indicator"><a class="header" href="#loading-indicator">Loading Indicator</a></h3>
+<p>The loading indicator can show a task is executing and will block any other interaction until the task is ready.</p>
+<h4 id="toastloadingshow"><a class="header" href="#toastloadingshow"><code>$toast.loading.show</code></a></h4>
+<ul>
+<li>Since: <code>3.0.2</code></li>
+</ul>
+<p>It will show a loading indicator (will block any other interaction).</p>
+<pre><code class="language-js">$toast.loading.show();
+</code></pre>
+<h4 id="toastloadinghide"><a class="header" href="#toastloadinghide"><code>$toast.loading.hide</code></a></h4>
+<ul>
+<li>Since: <code>3.0.2</code></li>
+</ul>
+<p>It will hide the loading indicator (if present).</p>
+<pre><code class="language-js">$toast.loading.hide();
+</code></pre>
+<h3 id="toast"><a class="header" href="#toast">Toast</a></h3>
+<p>The toast is a small message that can appear from top, center or bottom of the screen for a few seconds.</p>
+<h4 id="toastshowtext-options--type-position-duration"><a class="header" href="#toastshowtext-options--type-position-duration"><code>$toast.show(text, options = {type, position, duration})</code></a></h4>
+<ul>
+<li>Since: <code>3.0.2</code></li>
+</ul>
+<p>It will show a text for a given duration (defaults 3 seconds).</p>
+<pre><code class="language-js">$toast.show(&quot;Hello!&quot;);
+</code></pre>
+<h4 id="toastdarktext-options--"><a class="header" href="#toastdarktext-options--"><code>$toast.dark(text, options = {})</code></a></h4>
+<ul>
+<li>Since: <code>3.0.2</code></li>
+</ul>
+<p>It will show a text in dark background for a given duration (defaults 3 seconds).</p>
+<pre><code class="language-js">$toast.dark(&quot;Hello!&quot;);
+</code></pre>
+<h4 id="toasterrortext-options--"><a class="header" href="#toasterrortext-options--"><code>$toast.error(text, options = {})</code></a></h4>
+<ul>
+<li>Since: <code>3.0.2</code></li>
+</ul>
+<p>It will show a text in red background for a given duration (defaults 3 seconds).</p>
+<pre><code class="language-js">$toast.error(&quot;Hello!&quot;);
+</code></pre>
+<h4 id="toastsuccesstext-options--"><a class="header" href="#toastsuccesstext-options--"><code>$toast.success(text, options = {})</code></a></h4>
+<ul>
+<li>Since: <code>3.0.2</code></li>
+</ul>
+<p>It will show a text in green background for a given duration (defaults 3 seconds).</p>
+<pre><code class="language-js">$toast.success(&quot;Hello!&quot;);
+</code></pre>
+<h4 id="toastwarningtext-options--"><a class="header" href="#toastwarningtext-options--"><code>$toast.warning(text, options = {})</code></a></h4>
+<ul>
+<li>Since: <code>3.0.2</code></li>
+</ul>
+<p>It will show a text in yellow background for a given duration (defaults 3 seconds).</p>
+<pre><code class="language-js">$toast.warning(&quot;Hello!&quot;);
+</code></pre>
+<h4 id="toastinfotext-options--"><a class="header" href="#toastinfotext-options--"><code>$toast.info(text, options = {})</code></a></h4>
+<ul>
+<li>Since: <code>3.0.2</code></li>
+</ul>
+<p>It will show a text in white background for a given duration (defaults 3 seconds).</p>
+<pre><code class="language-js">$toast.info(&quot;Hello!&quot;);
+</code></pre>
+<h3 id="banner"><a class="header" href="#banner">Banner</a></h3>
+<p>The banner is an element that always appears from the upper part. Similar to a <em>Push Notification</em> UX.</p>
+<h4 id="toastbannershowtext-options--type-duration"><a class="header" href="#toastbannershowtext-options--type-duration"><code>$toast.banner.show(text, options = {type, duration})</code></a></h4>
+<ul>
+<li>Since: <code>3.0.2</code></li>
+</ul>
+<p>It will show a text for a given duration (defaults 3 seconds).</p>
+<pre><code class="language-js">$toast.banner.show(&quot;Hello!&quot;);
+</code></pre>
+<h4 id="toastbannerdarktext-options--"><a class="header" href="#toastbannerdarktext-options--"><code>$toast.banner.dark(text, options = {})</code></a></h4>
+<ul>
+<li>Since: <code>3.0.2</code></li>
+</ul>
+<p>It will show a text in dark background for a given duration (defaults 3 seconds).</p>
+<pre><code class="language-js">$toast.dark(&quot;Hello!&quot;);
+</code></pre>
+<h4 id="toastbannererrortext-options--"><a class="header" href="#toastbannererrortext-options--"><code>$toast.banner.error(text, options = {})</code></a></h4>
+<ul>
+<li>Since: <code>3.0.2</code></li>
+</ul>
+<p>It will show a text in red background for a given duration (defaults 3 seconds).</p>
+<pre><code class="language-js">$toast.error(&quot;Hello!&quot;);
+</code></pre>
+<h4 id="toastbannersuccesstext-options--"><a class="header" href="#toastbannersuccesstext-options--"><code>$toast.banner.success(text, options = {})</code></a></h4>
+<ul>
+<li>Since: <code>3.0.2</code></li>
+</ul>
+<p>It will show a text in green background for a given duration (defaults 3 seconds).</p>
+<pre><code class="language-js">$toast.success(&quot;Hello!&quot;);
+</code></pre>
+<h4 id="toastbannerwarningtext-options--"><a class="header" href="#toastbannerwarningtext-options--"><code>$toast.banner.warning(text, options = {})</code></a></h4>
+<ul>
+<li>Since: <code>3.0.2</code></li>
+</ul>
+<p>It will show a text in yellow background for a given duration (defaults 3 seconds).</p>
+<pre><code class="language-js">$toast.warning(&quot;Hello!&quot;);
+</code></pre>
+<h4 id="toastbannerinfotext-options--"><a class="header" href="#toastbannerinfotext-options--"><code>$toast.banner.info(text, options = {})</code></a></h4>
+<ul>
+<li>Since: <code>3.0.2</code></li>
+</ul>
+<p>It will show a text in white background for a given duration (defaults 3 seconds).</p>
+<pre><code class="language-js">$toast.info(&quot;Hello!&quot;);
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jlshare"><a class="header" href="#jlshare"><code>JLShare</code></a></h1>
+<p>Enables using <a href="https://developer.apple.com/documentation/uikit/uiactivityviewcontroller?language=objc">UIActivityViewController</a>.</p>
+<h2 id="overview-11"><a class="header" href="#overview-11">Overview</a></h2>
+<p>Useful if you want to share text, links and other content to other applications.</p>
+<h2 id="topics-11"><a class="header" href="#topics-11">Topics</a></h2>
+<h3 id="sharetextvalue"><a class="header" href="#sharetextvalue"><code>$share.text(value)</code></a></h3>
+<ul>
+<li>Since <code>3.0.2</code></li>
+</ul>
+<p>Will open share dialog with a text.</p>
+<pre><code class="language-js">const shareText = () =&gt; {
+  $share.text(&quot;Hello World!&quot;);
+};
+</code></pre>
+<h3 id="shareurlvalue"><a class="header" href="#shareurlvalue"><code>$share.url(value)</code></a></h3>
+<ul>
+<li>Since <code>3.0.2</code></li>
+</ul>
+<p>Will open share dialog with an url value. The url must be a valid url, otherwise
+it will be interpreted as a text.</p>
+<p>You can point to public files like images, pdf, audios and videos and they will be recognized as such and shared properly.</p>
+<pre><code class="language-js">const shareImage = () =&gt; {
+    return $share.url(&quot;https://jasonelle.com/docs/jasonelle.png&quot;);
+};
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </body>
+</html>
