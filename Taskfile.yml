@@ -76,6 +76,13 @@ tasks:
       - "prettier --write $(git ls-files '*.yml' '*.yaml') 2>&1 || npx -y prettier@3.9.6 --write $(git ls-files '*.yml' '*.yaml')"
       - "yamllint $(git ls-files '*.yml' '*.yaml') 2>&1 || pipx run yamllint $(git ls-files '*.yml' '*.yaml')"
 
+  git.add:
+    aliases:
+      - ga
+    desc: Add all the changes from the current directory
+    cmds:
+      - git add .
+
   git.commit:
     aliases:
       - c
@@ -100,3 +107,13 @@ tasks:
     desc: Push the current branch to origin
     cmds:
       - git push origin $(git branch --show-current)
+
+  git.all:
+    aliases:
+      - gal
+    desc: Push all the current changes to the branch in origin
+    cmds:
+      - task git.add
+      - task git.commit
+      - task git.pull
+      - task git.push
