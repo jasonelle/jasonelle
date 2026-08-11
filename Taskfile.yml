@@ -1,0 +1,69 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+# A Taskfile.yml as an alternative to Makefile
+version: "3.17"
+
+vars:
+  BUILD: docker
+  ANTORA_CONTAINER_LABEL: local/antora:jasonelle-docs
+
+tasks:
+  default:
+    cmds:
+      - task build.docs
+  install:
+    aliases:
+      - i
+    desc: Build the Antora Docker image
+    cmds:
+      - "{{.BUILD}} build -t {{.ANTORA_CONTAINER_LABEL}} antora/"
+
+  shell:
+    aliases:
+      - sh
+    desc: Open a shell inside the Antora container
+    cmds:
+      - "{{.BUILD}} run -it --entrypoint /bin/sh -v .:/antora:z -t {{.ANTORA_CONTAINER_LABEL}}"
+
+  build.docs:
+    aliases:
+      - bd
+      - docs
+    desc: Generate the Antora site
+    # Run the Antora container as root to remove the previous site, generate the
+    # new one. The chown transfers ownership of docs/ to the
+    # current user so the host (e.g. the CI runner) can write and commit it.
+    cmds:
+      - '{{.BUILD}} run -v .:/antora:z --rm --entrypoint /bin/sh {{.ANTORA_CONTAINER_LABEL}} -c "rm -rf /antora/docs/docs && antora antora-playbook.yml --stacktrace && chown -R $(id -u):$(id -g) /antora/docs"'
+
+  # Ideally there would be a build step in the future for the website, for now we just copy the contents
+  build.website:
+    desc: Copies the website/ files to docs/ directory using rsync
+    aliases:
+      - bw
+      - web
+    cmds:
+      - rsync -av website/ docs/
+
+  build.all:
+    aliases:
+      - b
+      - build
+    cmds:
+      - rm -rf docs
+      - task build.docs
+      - task build.website
+
+  serve.docs:
+    aliases:
+      - sd
+    desc: Serve the generated documentation locally
+    cmds:
+      - python3 -m http.server --bind 0.0.0.0 --directory docs/docs
+
+  serve.website:
+    aliases:
+      - s
+      - sw
+    desc: Serve the main website locally
+    cmds:
+      - python3 -m http.server --bind 0.0.0.0 --directory docs
