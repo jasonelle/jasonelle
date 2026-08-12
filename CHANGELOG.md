@@ -14,6 +14,7 @@ documentation and code. It breaks compatibility with previous versions.
 
 - Add changelog generation command
 - Add commit task to Taskfile
+- Adopt ADR documents for design decisions
 
 ### Changed
 
