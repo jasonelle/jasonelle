@@ -23,8 +23,8 @@ creates `0000001-use-antora.adoc`). If no name is given, ask the user for one.
    - Take the maximum number, increment it by 1, and zero-pad it to 7 digits.
    - If there are no existing ADRs, start at `0000000`.
 2. Create `antora/modules/decisions/pages/<number>-<name>.adoc` using the MADR
-   template below. Ask the user for the decision details and fill in the
-   placeholders.
+   template below, with `<number>` as the `id`. Ask the user for the decision
+   details and fill in the placeholders.
 3. Add `* xref:<number>-<name>.adoc[]` to `antora/modules/decisions/nav.adoc`
    below the `.Arquitecture Decision Records` heading. If the entry already
    exists, do not duplicate it.
@@ -33,6 +33,8 @@ creates `0000001-use-antora.adoc`). If no name is given, ask the user for one.
 
 ```adoc
 = <Title>
+
+- id: <number>
 
 == Status
 

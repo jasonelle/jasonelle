@@ -35,7 +35,19 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
 - `CHANGELOG.md`: Notable changes per version, following Keep a Changelog. Update with `/changelog`.
 - `Taskfile.yml`: Task runner config (go-task), alternative to a Makefile.
 - `.github/workflows/`: CI builds and publishes docs, creates SemVer pre-releases, and promotes them to releases.
-- `.opencode/command/`: Custom opencode commands (e.g., YAML lint/format and commit message helpers).
+- `.opencode/command/`: Custom opencode commands:
+  - `/adr`: Create a new Architecture Decision Record (MADR) page.
+  - `/adr-accept`: Update an ADR status to Accepted.
+  - `/adr-deprecate`: Update an ADR status to Deprecated.
+  - `/adr-supersed`: Update an ADR status to Superseded.
+  - `/changelog`: Update CHANGELOG.md from git commit messages.
+  - `/git-commit-message`: Generate a conventional commit message with a gitmoji
+    from the staged changes.
+  - `/update-agents`: Update AGENTS.md with the latest project changes.
+  - `/yaml`: Lint and format YAML files with yamllint and prettier.
+  - `/yaml-antora`: Lint and format `antora-playbook.yml` and `antora/antora.yml`.
+  - `/yaml-github`: Lint and format YAML files inside `.github/`.
+  - `/yaml-taskfile`: Lint and format `Taskfile.yml`.
 
 ## Conventions
 

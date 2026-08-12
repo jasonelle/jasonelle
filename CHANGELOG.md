@@ -24,12 +24,12 @@ documentation and code. It breaks compatibility with previous versions.
 - Add git.pull task
 - Add git.push task and rename commit to git.commit
 - Add lint.yaml task to format and lint YAML files
-- Create CNAME
 - Delete tags when pruning pre-releases
 - Drop git.add from git.all pipeline
 - Fixed
 - Removed old version code
 - Update AGENTS.md commands and directory layout
+- Update changelog for ADR documents
 - Updated website
 - Write commit message to .commit-message file
 

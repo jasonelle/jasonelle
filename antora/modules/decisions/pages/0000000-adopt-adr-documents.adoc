@@ -1,5 +1,7 @@
 = Adopt ADR documents
 
+- id: 0000000
+
 == Status
 
 - Accepted (2026-08-11) by: @clsource
