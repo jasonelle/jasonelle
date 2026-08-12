@@ -53,7 +53,7 @@ jobs:
           tag_name: v${{ env.NEW_VERSION }}
           name: Release v${{ env.NEW_VERSION }}
           body: |
-            Automated pre-release for commit ${{ github.sha }}.
+            Automated release for commit ${{ github.sha }}.
             Version components:
             - Manual Base: ${{ steps.versioning.outputs.manual_part }}
             - Patch (Unix Timestamp): ${{ env.NEW_VERSION }}
