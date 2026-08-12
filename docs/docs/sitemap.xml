@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://jasonelle.com/docs/decisions/0000000-adopt-adr-documents.html</loc>
+<lastmod>2026-08-12T02:32:23.181Z</lastmod>
+</url>
+<url>
 <loc>https://jasonelle.com/docs/index.html</loc>
-<lastmod>2026-08-11T21:21:05.848Z</lastmod>
+<lastmod>2026-08-12T02:32:23.181Z</lastmod>
 </url>
 </urlset>

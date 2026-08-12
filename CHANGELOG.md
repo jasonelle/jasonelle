@@ -12,20 +12,29 @@ documentation and code. It breaks compatibility with previous versions.
 
 ### Added
 
-- Antora-based documentation site with a Docker build pipeline.
-- Task runner (`go-task`) with `install`, `build`, `serve`, `lint` and
-  `commit` tasks.
-- GitHub Actions workflows: documentation build and publish, automated SemVer
-  pre-releases, and pre-release promotion.
-- Dual licensing: AGPL-3.0 by default, MPL-2.0 with a valid activation key.
-- `sources/` directory for Android and Xcode projects.
-- `tools/` directory for auxiliary binaries and Elixir scripts.
-- `VERSION` file and automated SemVer versioning (a `<major>.<minor>` base
-  with a timestamp patch).
+- Add changelog generation command
+- Add commit task to Taskfile
+
+### Changed
+
+- Add automated semver pre-releases
+- Add CNAME for jasonelle.com
+- Add git.add and git.all tasks
+- Add git.pull task
+- Add git.push task and rename commit to git.commit
+- Add lint.yaml task to format and lint YAML files
+- Create CNAME
+- Delete tags when pruning pre-releases
+- Drop git.add from git.all pipeline
+- Fixed
+- Removed old version code
+- Update AGENTS.md commands and directory layout
+- Updated website
+- Write commit message to .commit-message file
 
 ### Removed
 
-- Old v3 engine and legacy code.
+- Establish the overall project structure V4 is built from scratch with better documentation and code. It breaks compatibility with previous versions
 
 ## [3.0.4] - 2026-03-02
 

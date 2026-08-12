@@ -1,0 +1,2 @@
+.Arquitecture Decision Records
+* xref:0000000-adopt-adr-documents.adoc[]

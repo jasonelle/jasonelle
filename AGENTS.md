@@ -51,3 +51,7 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
   is not needed for pull requests that only change source content.
 - Antora JS dependencies are vendored in `antora/yarn.tar.gz` to avoid rot;
   update only with the process described in `antora/Dockerfile`.
+
+## Recommended tools
+
+- Use Context7 MCP if available for obtaining additional documentation and context for the task.
