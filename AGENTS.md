@@ -34,6 +34,7 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
 - `docs/`: Generated site committed for GitHub Pages. Do not edit by hand.
 - `CHANGELOG.md`: Notable changes per version, following Keep a Changelog. Update with `/changelog`.
 - `Taskfile.yml`: Task runner config (go-task), alternative to a Makefile.
+- `.agents/`: Agent rules. Contains `.agents/rules/` with behavioral guidelines for LLM coding agents (e.g. `karpathy.md`).
 - `.github/workflows/`: CI builds and publishes docs, creates SemVer pre-releases, and promotes them to releases.
 - `.opencode/command/`: Custom opencode commands:
   - `/adr`: Create a new Architecture Decision Record (MADR) page.
