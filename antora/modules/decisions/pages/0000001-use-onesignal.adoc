@@ -1,0 +1,37 @@
+= Use OneSignal for managing push notifications in iOS and Android
+
+- id: 0000001
+
+== Status
+
+- Accepted (2026-08-12) by: @clsource
+
+== Context and Problem Statement
+
+Jasonelle apps need to deliver push notifications to iOS and Android users.
+Implementing push natively means maintaining two separate integrations, APNs for
+iOS and FCM for Android, each with its own device token handling, certificate or
+key management, and messaging logic.
+
+== Considered Options
+
+* Use https://onesignal.com/[OneSignal] to manage push notifications for iOS and
+  Android
+* Implement APNs and FCM directly per platform
+* Do not add push notifications
+
+== Decision Outcome
+
+Chosen option: "Use OneSignal to manage push notifications for iOS and Android",
+because a single cross-platform SDK and dashboard handles token registration,
+audience segmentation, and message scheduling for both platforms. Positive
+consequences: one SDK and console to maintain, unified segmentation across
+platforms, and faster delivery of new messaging features. Negative consequences:
+reliance on a third-party service and an additional dependency in the mobile
+apps.
+
+OneSignal is the best option, because it avoids maintaining separate APNs and FCM
+integrations and duplicates of messaging logic per platform. If "Implement APNs
+and FCM directly" was chosen, we would own certificate and key rotation and
+build segmentation and scheduling ourselves. If "Do not add push notifications"
+was chosen, users would miss important app updates.

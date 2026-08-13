@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Adopt ADR documents :: Jasonelle Documentation</title>
-    <link rel="canonical" href="https://jasonelle.com/docs/decisions/0000000-adopt-adr-documents.html">
-    <link rel="prev" href="../index.html">
-    <link rel="next" href="0000001-use-onesignal.html">
+    <title>Use OneSignal for managing push notifications in iOS and Android :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/decisions/0000001-use-onesignal.html">
+    <link rel="prev" href="0000000-adopt-adr-documents.html">
+    <link rel="next" href="0000002-use-revenuecat-for-in-app-sales.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
@@ -41,10 +41,10 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Arquitecture Decision Records</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000000-adopt-adr-documents.html">Adopt ADR documents</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="0000001-use-onesignal.html">Use OneSignal for managing push notifications in iOS and Android</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -77,23 +77,23 @@
   <ul>
     <li><a href="../index.html">Jasonelle Documentation</a></li>
     <li>Arquitecture Decision Records</li>
-    <li><a href="0000000-adopt-adr-documents.html">Adopt ADR documents</a></li>
+    <li><a href="0000001-use-onesignal.html">Use OneSignal for managing push notifications in iOS and Android</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///antora/antora/modules/decisions/pages/0000000-adopt-adr-documents.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/decisions/pages/0000001-use-onesignal.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Content" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Adopt ADR documents</h1>
+<h1 class="page">Use OneSignal for managing push notifications in iOS and Android</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>id: 0000000</p>
+<p>id: 0000001</p>
 </li>
 </ul>
 </div>
@@ -105,19 +105,9 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Accepted (2026-08-11) by: @clsource</p>
+<p>Accepted (2026-08-12) by: @clsource</p>
 </li>
 </ul>
-</div>
-<div class="sect2">
-<h3 id="history"><a class="anchor" href="#history"></a>History</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Proposed (2026-08-11) by: @clsource</p>
-</li>
-</ul>
-</div>
 </div>
 </div>
 </div>
@@ -125,10 +115,10 @@
 <h2 id="context-and-problem-statement"><a class="anchor" href="#context-and-problem-statement"></a>Context and Problem Statement</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Jasonelle documents decisions implicitly across issues, changelogs, and source
-code, which makes it hard to know why a design choice was made. We want a
-lightweight, versioned way to record important decisions and their rationale so
-future contributors can understand the reasoning.</p>
+<p>Jasonelle apps need to deliver push notifications to iOS and Android users.
+Implementing push natively means maintaining two separate integrations, APNs for
+iOS and FCM for Android, each with its own device token handling, certificate or
+key management, and messaging logic.</p>
 </div>
 </div>
 </div>
@@ -138,13 +128,14 @@ future contributors can understand the reasoning.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Use Architecture Decision Records (ADRs) following the MADR format.</p>
+<p>Use <a href="https://onesignal.com/">OneSignal</a> to manage push notifications for iOS and
+Android</p>
 </li>
 <li>
-<p>Keep documenting decisions ad hoc in issue comments and pull requests.</p>
+<p>Implement APNs and FCM directly per platform</p>
 </li>
 <li>
-<p>Use a standalone wiki outside the repository.</p>
+<p>Do not add push notifications</p>
 </li>
 </ul>
 </div>
@@ -154,24 +145,26 @@ future contributors can understand the reasoning.</p>
 <h2 id="decision-outcome"><a class="anchor" href="#decision-outcome"></a>Decision Outcome</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Chosen option: "Use Architecture Decision Records (ADRs) following the MADR
-format", because ADRs are lightweight, versioned alongside the code in this
-repository, and published automatically with the Antora docs. Positive
-consequences: decisions are easy to find, reviewable in pull requests, and
-searchable in the published site. Negative consequences: a small authoring
-overhead is required to keep records up to date.</p>
+<p>Chosen option: "Use OneSignal to manage push notifications for iOS and Android",
+because a single cross-platform SDK and dashboard handles token registration,
+audience segmentation, and message scheduling for both platforms. Positive
+consequences: one SDK and console to maintain, unified segmentation across
+platforms, and faster delivery of new messaging features. Negative consequences:
+reliance on a third-party service and an additional dependency in the mobile
+apps.</p>
 </div>
 <div class="paragraph">
-<p>ADR is the best option, because the other options scatter knowledge outside the
-codebase or outside review. If "Keep documenting decisions ad hoc in issue
-comments" was chosen, decisions would remain hard to discover. If "Use a
-standalone wiki" was chosen, the wiki would drift out of sync with the code.</p>
+<p>OneSignal is the best option, because it avoids maintaining separate APNs and FCM
+integrations and duplicates of messaging logic per platform. If "Implement APNs
+and FCM directly" was chosen, we would own certificate and key rotation and
+build segmentation and scheduling ourselves. If "Do not add push notifications"
+was chosen, users would miss important app updates.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="../index.html">Jasonelle Documentation</a></span>
-  <span class="next"><a href="0000001-use-onesignal.html">Use OneSignal for managing push notifications in iOS and Android</a></span>
+  <span class="prev"><a href="0000000-adopt-adr-documents.html">Adopt ADR documents</a></span>
+  <span class="next"><a href="0000002-use-revenuecat-for-in-app-sales.html">Use RevenueCat for managing in-app sales</a></span>
 </nav>
 </article>
   </div>

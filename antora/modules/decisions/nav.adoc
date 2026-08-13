@@ -1,2 +1,4 @@
 .Arquitecture Decision Records
 * xref:0000000-adopt-adr-documents.adoc[]
+* xref:0000001-use-onesignal.adoc[]
+* xref:0000002-use-revenuecat-for-in-app-sales.adoc[]
