@@ -7,7 +7,7 @@ This directory stores the source projects used by Jasonelle.
 1. Download the source files from `https://jasonelle.com`.
 2. Configure `config.jsonc`, images and scripts inside the `lib/` directory.
 3. Generate the application project with the `/ios` or `/android` command
-   inside your LLM service.
+   inside your LLM service. This will create a `build/` directory.
 4. Configure the final generated project inside `build/`, compile and send to
    the App Store (iOS) or Play Store (Android). You can generate the AppIcon
    with `/icon`.

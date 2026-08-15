@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://jasonelle.com/docs/architecture.html</loc>
+<lastmod>2026-08-15T15:36:08.746Z</lastmod>
+</url>
+<url>
 <loc>https://jasonelle.com/docs/decisions/0000000-adopt-adr-documents.html</loc>
-<lastmod>2026-08-13T03:06:41.188Z</lastmod>
+<lastmod>2026-08-15T15:36:08.746Z</lastmod>
 </url>
 <url>
 <loc>https://jasonelle.com/docs/decisions/0000001-use-onesignal.html</loc>
-<lastmod>2026-08-13T03:06:41.188Z</lastmod>
+<lastmod>2026-08-15T15:36:08.746Z</lastmod>
 </url>
 <url>
 <loc>https://jasonelle.com/docs/decisions/0000002-use-revenuecat-for-in-app-sales.html</loc>
-<lastmod>2026-08-13T03:06:41.188Z</lastmod>
+<lastmod>2026-08-15T15:36:08.746Z</lastmod>
 </url>
 <url>
 <loc>https://jasonelle.com/docs/index.html</loc>
-<lastmod>2026-08-13T03:06:41.188Z</lastmod>
+<lastmod>2026-08-15T15:36:08.746Z</lastmod>
 </url>
 </urlset>

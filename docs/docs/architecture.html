@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Architecture :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/architecture.html">
+    <link rel="prev" href="index.html">
+    <link rel="next" href="decisions/0000000-adopt-adr-documents.html">
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="./_/css/site.css">
+    <link rel="stylesheet" href="./_/js/vendor/styles/monokai.css">  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://jasonelle.com/docs">Jasonelle Documentation</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search">
+        </div>
+      </div>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ROOT" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Jasonelle Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="architecture.html">Architecture</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Arquitecture Decision Records</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="decisions/0000000-adopt-adr-documents.html">Adopt ADR documents</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="decisions/0000001-use-onesignal.html">Use OneSignal for managing push notifications in iOS and Android</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="decisions/0000002-use-revenuecat-for-in-app-sales.html">Use RevenueCat for managing in-app sales</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Jasonelle Documentation</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Jasonelle Documentation</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Jasonelle Documentation</a></li>
+    <li><a href="architecture.html">Architecture</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/ROOT/pages/architecture.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Architecture</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This document outlines the architecture for the Jasonelle cross-platform web wrapper generator framework.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="architecture-overview"><a class="anchor" href="#architecture-overview"></a>Architecture Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The system is designed around a strictly separated directory structure, a modular CLI approach, and a cascading asset injection strategy.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>System Requirements</strong>: Xcode generation requires an Apple Silicon (ARM) Mac and targets iOS 26 or higher. Android generation is cross-platform.</p>
+</li>
+<li>
+<p><strong>Main Orchestrator (<code>gen</code>)</strong>: A Go-based CLI tool responsible for orchestrating the generation process. It merges cascading configurations from <code>lib/</code> and delegates tasks to platform-specific CLIs.</p>
+</li>
+<li>
+<p><strong>Platform CLIs</strong>: <code>android</code> (Go) for Android projects and <code>xcode</code> (Swift) for Xcode projects.</p>
+</li>
+<li>
+<p><strong>Cascading Configuration &amp; Assets</strong>: A layered asset injection system where <code>lib/common/</code> serves as a base, and platform directories (<code>lib/xcode/</code>, <code>lib/android/</code>) override or extend those assets.</p>
+</li>
+<li>
+<p><strong>Native File Overrides</strong>: Placing a file in <code>lib/&lt;platform&gt;/sources/</code> will automatically overwrite the base template from <code>sources/&lt;platform&gt;/</code> during the build.</p>
+</li>
+<li>
+<p><strong>Store Metadata Handling</strong>: A <code>config/store.jsonc</code> and <code>lib/common/.env</code> file manage store metadata and secrets. A dedicated <code>fastlane-gen</code> tool parses these to output Fastlane-ready files into <code>build/fastlane/</code>.</p>
+</li>
+<li>
+<p><strong>JavaScript Bundling</strong>: Uses <code>esbuild</code> to merge Javascript files from plugins, <code>lib/common</code>, and <code>lib/&lt;platform&gt;</code> into a single <code>webview.js</code> asset while preserving the cascading execution order via dynamically generated entry points.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="c4-architecture-diagram"><a class="anchor" href="#c4-architecture-diagram"></a>C4 Architecture Diagram</h2>
+<div class="sectionbody">
+<div class="imageblock kroki">
+<div class="content">
+<img src="_images/c4_architecture-589469609922ed2cbc81661c1fc901d3f53c7888.png" alt="c4_architecture">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="architecture-flow-diagram"><a class="anchor" href="#architecture-flow-diagram"></a>Architecture Flow Diagram</h2>
+<div class="sectionbody">
+<div class="imageblock kroki">
+<div class="content">
+<img src="_images/architecture_flow-bb2e43d041d30c5d30b44e2e5b1c3a50f6c4cf71.png" alt="architecture_flow">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="directory-structure"><a class="anchor" href="#directory-structure"></a>Directory Structure</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>.gitignore</code>: Excludes <code>.env</code> and <code>build/</code>.</p>
+</li>
+<li>
+<p><code>sources/</code>: Base project templates.</p>
+</li>
+<li>
+<p><code>lib/</code>: User workspace for configurations.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>lib/common/</code>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>.env</code>: Secret keys for tools and stores.</p>
+</li>
+<li>
+<p><code>config/config.jsonc</code>: Foundational configuration.</p>
+</li>
+<li>
+<p><code>config/store.jsonc</code>: Shared app store metadata.</p>
+</li>
+<li>
+<p><code>icon/1024x1024.png</code>: High-res base icon.</p>
+</li>
+<li>
+<p><code>resources/</code>: Raw files copied to the app bundle.</p>
+</li>
+<li>
+<p><code>scripts/main.js</code>: Base JavaScript bridge logic.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>lib/android/</code>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>config/config.jsonc</code>: Android configuration overrides.</p>
+</li>
+<li>
+<p><code>config/store.jsonc</code>: Play Store specific overrides.</p>
+</li>
+<li>
+<p><code>scripts/main.js</code>: Android JavaScript overrides.</p>
+</li>
+<li>
+<p><code>sources/</code>: Native file replacements (e.g., custom <code>MainActivity.kt</code>).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>lib/xcode/</code>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>config/config.jsonc</code>: Xcode configuration overrides.</p>
+</li>
+<li>
+<p><code>config/store.jsonc</code>: App Store specific overrides.</p>
+</li>
+<li>
+<p><code>scripts/main.js</code>: Xcode JavaScript overrides.</p>
+</li>
+<li>
+<p><code>sources/</code>: Native file replacements (e.g., custom <code>ContentView.swift</code>).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>lib/plugins/</code>: User-provided custom plugins.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>tools/</code>: CLI Tools.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>tools/gen/</code>: Main orchestrator CLI source code (Go).</p>
+</li>
+<li>
+<p><code>tools/android/</code>: Android configuration CLI source code (Go).</p>
+</li>
+<li>
+<p><code>tools/xcode/</code>: Xcode configuration CLI source code (Swift).</p>
+</li>
+<li>
+<p><code>tools/fastlane-gen/</code>: Generates Fastlane automation files (Go).</p>
+</li>
+<li>
+<p><code>tools/icon-gen/</code>: Utility for generating app icons (Go).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>build/</code>: The output destination.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>build/xcode/</code>: The generated Xcode project.</p>
+</li>
+<li>
+<p><code>build/android/</code>: The generated Android Studio project.</p>
+</li>
+<li>
+<p><code>build/fastlane/</code>: Ready-to-use Fastlane automation files.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="fastlane"><a class="anchor" href="#fastlane"></a>Fastlane</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>fastlane-gen</code> generates standard Ruby-based Fastlane files
+(a Fastfile, Appfile, and Deliverfile/Supplyfile). This way,
+developers familiar with Fastlane can easily inspect, debug, and run standard
+fastlane release commands,
+rather than relying on a giant,
+hard-to-read bash script with dozens of CLI arguments.</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="index.html">Jasonelle Documentation</a></span>
+  <span class="next"><a href="decisions/0000000-adopt-adr-documents.html">Adopt ADR documents</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="./_/js/site.js" data-ui-root-path="./_"></script>
+<script async src="./_/js/vendor/highlight.js"></script>
+<script src="./_/js/vendor/lunr.js"></script>
+<script src="./_/js/search-ui.js" id="search-ui-script" data-site-root-path="." data-snippet-length="100" data-stylesheet="./_/css/search.css"></script>
+<script async src="./search-index.js"></script>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      ignoreHtmlClass: 'nostem|no-mathjax'
+    }
+  };
+</script>
+<script id="MathJax-script" async src="./_/js/vendor/tex-chtml.js"></script>  </body>
+</html>
