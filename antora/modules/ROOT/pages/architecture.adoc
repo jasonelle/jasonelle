@@ -11,7 +11,7 @@ The system is designed around a strictly separated directory structure, a modula
 3. *Platform CLIs*: `android` (Go) for Android projects and `xcode` (Swift) for Xcode projects.
 4. *Cascading Configuration & Assets*: A layered asset injection system where `lib/common/` serves as a base, and platform directories (`lib/xcode/`, `lib/android/`) override or extend those assets.
 5. *Native File Overrides*: Placing a file in `lib/<platform>/sources/` will automatically overwrite the base template from `sources/<platform>/` during the build.
-6. *Store Metadata Handling*: A `config/store.jsonc` and `lib/common/.env` file manage store metadata and secrets. A dedicated `fastlane-gen` tool parses these to output Fastlane-ready files into `build/fastlane/`.
+6. *Store Metadata Handling*: A `store.jsonc` and `.env` file manage store metadata and secrets. A dedicated `fastlane` tool parses these to output Fastlane-ready files into `build/xcode` and `build/android`.
 7. *JavaScript Bundling*: Uses `esbuild` to merge Javascript files from plugins, `lib/common`, and `lib/<platform>` into a single `webview.js` asset while preserving the cascading execution order via dynamically generated entry points.
 
 == C4 Architecture Diagram
@@ -27,16 +27,16 @@ System_Boundary(jasonelle, "Jasonelle Framework") {
     Container(gen, "gen CLI", "Go", "Orchestrates the build process and merges configurations")
     Container(android_cli, "android CLI", "Go", "Handles Android project setup")
     Container(xcode_cli, "xcode CLI", "Swift", "Handles Xcode project setup")
-    Container(fastlane_gen, "fastlane-gen CLI", "Go", "Generates Fastlane automation scripts")
+    Container(fastlane_gen, "fastlane gen CLI", "Go", "Generates Fastlane automation scripts")
+
     Container(esbuild, "esbuild", "Go/JS", "Bundles cascading JavaScript files into webview.js")
-    
+
     ContainerDb(sources, "sources/", "File System", "Base templates for Xcode, Android, and core plugins")
     ContainerDb(lib, "lib/", "File System", "User customizations, config.jsonc, native overrides, store.jsonc, and .env")
 }
 
-System_Ext(build_xcode, "build/xcode/", "Generated Xcode Project")
-System_Ext(build_android, "build/android/", "Generated Android Studio Project")
-System_Ext(build_fastlane, "build/fastlane/", "Generated Fastlane Files")
+System_Ext(build_xcode, "build/xcode/", "Generated Xcode Project and Fastlane Files")
+System_Ext(build_android, "build/android/", "Generated Android Studio Project and Fastlane Files")
 
 Rel(developer, gen, "Runs generation command")
 Rel(developer, lib, "Configures app via JSONC, .env & overrides")
@@ -56,7 +56,8 @@ Rel(xcode_cli, build_xcode, "Configures Xcode project")
 Rel(android_cli, build_android, "Configures Android project")
 
 Rel(fastlane_gen, lib, "Reads store.jsonc & .env")
-Rel(fastlane_gen, build_fastlane, "Writes Fastfile/Appfile")
+Rel(fastlane_gen, build_xcode, "Writes Fastfile/Appfile")
+Rel(fastlane_gen, build_android, "Writes Fastfile/Appfile")
 
 @enduml
 ----
@@ -70,53 +71,74 @@ skinparam componentStyle rectangle
 
 package "Framework Inputs" {
   folder "sources/" as sources {
-    folder "sources/xcode/"
-    folder "sources/android/"
-    folder "sources/plugins/"
+    folder "sources/xcode/" as sources_xcode
+    folder "sources/android/" as sources_android
+    folder "sources/plugins/" as sources_plugins
   }
   
   folder "lib/" as lib {
-    folder "lib/common/config/"
-    folder "lib/common/icon/"
-    folder "lib/common/resources/"
-    folder "lib/common/scripts/"
+    folder "lib/common/config/" as lib_common_config
+    folder "lib/common/icon/" as lib_common_icon
+    folder "lib/common/resources/" as lib_common_resources
+    folder "lib/common/scripts/" as lib_common_scripts
     
-    folder "lib/xcode/config/"
-    folder "lib/xcode/scripts/"
-    folder "lib/xcode/sources/"
+    folder "lib/xcode/config/" as lib_xcode_config
+    folder "lib/xcode/scripts/" as lib_xcode_scripts
+    folder "lib/xcode/sources/" as lib_xcode_sources
     
-    folder "lib/android/config/"
-    folder "lib/android/scripts/"
-    folder "lib/android/sources/"
+    folder "lib/android/config/" as lib_android_config
+    folder "lib/android/scripts/" as lib_android_scripts
+    folder "lib/android/sources/" as lib_android_sources
     
-    folder "lib/plugins/"
+    folder "lib/plugins/" as lib_plugins
   }
 }
 
 package "CLI Tools (tools/)" {
   [gen (Go)] as gen
-  [xcode (Swift)] as cli_xcode
   [android (Go)] as cli_android
+  [xcode (Swift)] as cli_xcode
+  [fastlane gen (Go)] as fastlane_gen
   [esbuild (JS Bundler)] as esbuild
 }
 
 package "Build Output (build/)" {
-  folder "build/xcode/" as build_xcode
-  folder "build/android/" as build_android
+  folder "build/xcode/" as build_xcode {
+    file "Xcode Project"
+    file "Fastfile"
+    file "Appfile"
+  }
+
+  folder "build/android/" as build_android {
+    file "Android Studio Project"
+    file "Fastfile"
+    file "Appfile"
+  }
 }
 
-sources --> gen : Reads Base Templates
-lib --> gen : Reads Configurations, Assets & Overrides
+' Framework inputs
+sources --> gen : Reads base templates
+lib --> gen : Reads and merges configs & overrides
 
-gen --> esbuild : Delegates JS Bundling
-esbuild --> build_xcode : Outputs webview.js (Xcode)
-esbuild --> build_android : Outputs webview.js (Android)
+' Main generation orchestration
+gen --> esbuild : Triggers JS bundling
+gen --> cli_xcode : Triggers Xcode config
+gen --> cli_android : Triggers Android config
+gen --> fastlane_gen : Triggers Fastlane generation
 
-gen --> cli_xcode : Triggers Xcode generation
-gen --> cli_android : Triggers Android generation
+' JavaScript bundling
+esbuild --> build_xcode : Writes webview.js
+esbuild --> build_android : Writes webview.js
 
-cli_xcode --> build_xcode : Injects Swift/Plugins
-cli_android --> build_android : Injects Kotlin/Plugins
+' Native project generation
+cli_xcode --> build_xcode : Configures Xcode project
+cli_android --> build_android : Configures Android project
+
+' Fastlane generation
+fastlane_gen --> lib : Reads store.jsonc & .env
+fastlane_gen --> build_xcode : Writes Fastfile/Appfile
+fastlane_gen --> build_android : Writes Fastfile/Appfile
+
 @enduml
 ----
 
@@ -148,19 +170,17 @@ cli_android --> build_android : Injects Kotlin/Plugins
 ** `tools/gen/`: Main orchestrator CLI source code (Go).
 ** `tools/android/`: Android configuration CLI source code (Go).
 ** `tools/xcode/`: Xcode configuration CLI source code (Swift).
-** `tools/fastlane-gen/`: Generates Fastlane automation files (Go).
-** `tools/icon-gen/`: Utility for generating app icons (Go).
+** `tools/fastlane/`: Generates Fastlane automation files (Go).
+** `tools/icon/`: Utility for generating app icons (Go).
+** `tools/vendor/esbuild/`: Utility for bundling JavaScript (Vendored).
 
 * `build/`: The output destination.
-** `build/xcode/`: The generated Xcode project.
-** `build/android/`: The generated Android Studio project.
-** `build/fastlane/`: Ready-to-use Fastlane automation files.
+** `build/xcode/`: The generated Xcode project (with fastlane files).
+** `build/android/`: The generated Android Studio project (with fastlane files).
 
 == Fastlane
 
-`fastlane-gen` generates standard Ruby-based Fastlane files 
-(a Fastfile, Appfile, and Deliverfile/Supplyfile). This way, 
-developers familiar with Fastlane can easily inspect, debug, and run standard 
-fastlane release commands, 
-rather than relying on a giant, 
-hard-to-read bash script with dozens of CLI arguments.
+`fastlane` tool generates standard Ruby-based Fastlane files 
+(a Fastfile, Appfile, and Deliverfile/Supplyfile) to each build directory `build/xcode` and `build/android`. 
+This way,  developers familiar with Fastlane can easily inspect, debug, and run standard 
+fastlane release commands, rather than relying on a giant, hard-to-read bash script with dozens of CLI arguments.

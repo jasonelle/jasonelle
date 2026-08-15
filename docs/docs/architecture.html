@@ -125,7 +125,7 @@
 <p><strong>Native File Overrides</strong>: Placing a file in <code>lib/&lt;platform&gt;/sources/</code> will automatically overwrite the base template from <code>sources/&lt;platform&gt;/</code> during the build.</p>
 </li>
 <li>
-<p><strong>Store Metadata Handling</strong>: A <code>config/store.jsonc</code> and <code>lib/common/.env</code> file manage store metadata and secrets. A dedicated <code>fastlane-gen</code> tool parses these to output Fastlane-ready files into <code>build/fastlane/</code>.</p>
+<p><strong>Store Metadata Handling</strong>: A <code>store.jsonc</code> and <code>.env</code> file manage store metadata and secrets. A dedicated <code>fastlane</code> tool parses these to output Fastlane-ready files into <code>build/xcode</code> and <code>build/android</code>.</p>
 </li>
 <li>
 <p><strong>JavaScript Bundling</strong>: Uses <code>esbuild</code> to merge Javascript files from plugins, <code>lib/common</code>, and <code>lib/&lt;platform&gt;</code> into a single <code>webview.js</code> asset while preserving the cascading execution order via dynamically generated entry points.</p>
@@ -139,7 +139,7 @@
 <div class="sectionbody">
 <div class="imageblock kroki">
 <div class="content">
-<img src="_images/c4_architecture-589469609922ed2cbc81661c1fc901d3f53c7888.png" alt="c4_architecture">
+<img src="_images/c4_architecture-41d3a5b551c118bdd141b17dfd78a486558b6d70.png" alt="c4_architecture">
 </div>
 </div>
 </div>
@@ -149,7 +149,7 @@
 <div class="sectionbody">
 <div class="imageblock kroki">
 <div class="content">
-<img src="_images/architecture_flow-bb2e43d041d30c5d30b44e2e5b1c3a50f6c4cf71.png" alt="architecture_flow">
+<img src="_images/architecture_flow-faf6fd65bb37cb396ac83280fa7d198ff9b7c80c.png" alt="architecture_flow">
 </div>
 </div>
 </div>
@@ -252,10 +252,13 @@
 <p><code>tools/xcode/</code>: Xcode configuration CLI source code (Swift).</p>
 </li>
 <li>
-<p><code>tools/fastlane-gen/</code>: Generates Fastlane automation files (Go).</p>
+<p><code>tools/fastlane/</code>: Generates Fastlane automation files (Go).</p>
 </li>
 <li>
-<p><code>tools/icon-gen/</code>: Utility for generating app icons (Go).</p>
+<p><code>tools/icon/</code>: Utility for generating app icons (Go).</p>
+</li>
+<li>
+<p><code>tools/vendor/esbuild/</code>: Utility for bundling JavaScript (Vendored).</p>
 </li>
 </ul>
 </div>
@@ -265,13 +268,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>build/xcode/</code>: The generated Xcode project.</p>
+<p><code>build/xcode/</code>: The generated Xcode project (with fastlane files).</p>
 </li>
 <li>
-<p><code>build/android/</code>: The generated Android Studio project.</p>
-</li>
-<li>
-<p><code>build/fastlane/</code>: Ready-to-use Fastlane automation files.</p>
+<p><code>build/android/</code>: The generated Android Studio project (with fastlane files).</p>
 </li>
 </ul>
 </div>
@@ -284,12 +284,10 @@
 <h2 id="fastlane"><a class="anchor" href="#fastlane"></a>Fastlane</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>fastlane-gen</code> generates standard Ruby-based Fastlane files
-(a Fastfile, Appfile, and Deliverfile/Supplyfile). This way,
-developers familiar with Fastlane can easily inspect, debug, and run standard
-fastlane release commands,
-rather than relying on a giant,
-hard-to-read bash script with dozens of CLI arguments.</p>
+<p><code>fastlane</code> tool generates standard Ruby-based Fastlane files
+(a Fastfile, Appfile, and Deliverfile/Supplyfile) to each build directory <code>build/xcode</code> and <code>build/android</code>.
+This way,  developers familiar with Fastlane can easily inspect, debug, and run standard
+fastlane release commands, rather than relying on a giant, hard-to-read bash script with dozens of CLI arguments.</p>
 </div>
 </div>
 </div>
