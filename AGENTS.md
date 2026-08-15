@@ -68,3 +68,4 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
 ## How to find more documentation
 - Agent rules: [.agents/rules/](.agents/rules/).
 - Use Context7 MCP if available for obtaining additional documentation and context for the task.
+- Check for `*.docc` directories inside `sources/xcode/**` for markdown files for iOS components.

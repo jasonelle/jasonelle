@@ -4,3 +4,4 @@
 .idea
 # generated commit message
 .commit-message
+/build
