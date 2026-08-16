@@ -42,9 +42,11 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
   - `/adr-deprecate`: Update an ADR status to Deprecated.
   - `/adr-supersed`: Update an ADR status to Superseded.
   - `/changelog`: Update CHANGELOG.md from git commit messages.
+  - `/command-create`: Create a new opencode command inside `.opencode/command`.
   - `/git-commit-message`: Generate a conventional commit message with a gitmoji
     from the staged changes.
   - `/update-agents`: Update AGENTS.md with the latest project changes.
+  - `/version-bump`: Bump the version in a version file to the next version.
   - `/yaml`: Lint and format YAML files with yamllint and prettier.
   - `/yaml-antora`: Lint and format `antora-playbook.yml` and `antora/antora.yml`.
   - `/yaml-github`: Lint and format YAML files inside `.github/`.
