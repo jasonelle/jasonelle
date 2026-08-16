@@ -23,7 +23,7 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
 - `task git.pull` (aliases `pl`, `gpl`): Pull the current branch from origin.
 - `task git.push` (aliases `p`, `gp`): Push the current branch to origin.
 - `task git.all` (alias `gal`): Push all the current changes to the branch in origin.
-- `task icons` (alias `i`): Generate Android and Xcode app icons using the `tools/icon` binary.
+- `task icons` (alias `ic`): Generate Android and Xcode app icons using the `tools/icon` binary.
 - `task icons.build` (alias `ib`): Generate the `tools/icon` binary.
 - `task jsonc.xcode` (alias `jx`): Merge common and Xcode `config.jsonc`/`store.jsonc` into `build/xcode/`.
 - `task jsonc.android` (alias `ja`): Merge common and Android `config.jsonc`/`store.jsonc` into `build/android/`.
