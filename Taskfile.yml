@@ -116,3 +116,11 @@ tasks:
       - task git.commit
       - task git.pull
       - task git.push
+
+  # Tools
+  icons:
+    aliases:
+      - i
+    desc: Generate Android and Xcode app icons into lib/assets using the dist binary
+    cmds:
+      - 'tools/icon/dist/icon-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --source lib/common/assets/icon/1024x1024.png --out lib/'

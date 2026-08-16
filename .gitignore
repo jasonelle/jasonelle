@@ -2,6 +2,7 @@
 .zed
 .vscode
 .idea
+build/
+.env
 # generated commit message
 .commit-message
-/build

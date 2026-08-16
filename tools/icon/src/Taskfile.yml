@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+# A Taskfile.yml as an alternative to Makefile
+version: "3.17"
+
+tasks:
+  default:
+    cmds:
+      - task build
+  test:
+    aliases:
+      - t
+    desc: Test the current version of the icon tool
+    cmds:
+      - go test .
+  build:
+    aliases:
+      - b
+    desc: Build cross-platform binaries into ../dist
+    cmds:
+      - mkdir -p ../dist
+      - GOOS=darwin GOARCH=amd64 go build -o ../dist/icon-darwin-amd64 .
+      - GOOS=darwin GOARCH=arm64 go build -o ../dist/icon-darwin-arm64 .
+      - GOOS=linux GOARCH=amd64 go build -o ../dist/icon-linux-amd64 .
+      - GOOS=windows GOARCH=amd64 go build -o ../dist/icon-windows-amd64.exe .

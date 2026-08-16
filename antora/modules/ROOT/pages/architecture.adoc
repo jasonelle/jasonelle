@@ -6,7 +6,7 @@ This document outlines the architecture for the Jasonelle cross-platform web wra
 
 The system is designed around a strictly separated directory structure, a modular CLI approach, and a cascading asset injection strategy.
 
-1. *System Requirements*: Xcode generation requires an Apple Silicon (ARM) Mac and targets iOS 26 or higher. Android generation is cross-platform.
+1. *System Requirements*: Xcode generation requires an Apple Silicon (ARM) Mac and targets Xcode 26 or higher. Android generation is cross-platform with Android Studio Quail 2026.1 or higher.
 2. *Main Orchestrator (`gen`)*: A Go-based CLI tool responsible for orchestrating the generation process. It merges cascading configurations from `lib/` and delegates tasks to platform-specific CLIs.
 3. *Platform CLIs*: `android` (Go) for Android projects and `xcode` (Swift) for Xcode projects.
 4. *Cascading Configuration & Assets*: A layered asset injection system where `lib/common/` serves as a base, and platform directories (`lib/xcode/`, `lib/android/`) override or extend those assets.
@@ -151,7 +151,7 @@ fastlane_gen --> build_android : Writes Fastfile/Appfile
 *** `.env`: Secret keys for tools and stores.
 *** `config/config.jsonc`: Foundational configuration.
 *** `config/store.jsonc`: Shared app store metadata.
-*** `icon/1024x1024.png`: High-res base icon.
+*** `assets/1024x1024.png`: Common assets for stores (Playstore and AppStore), like High-res base icon.
 *** `resources/`: Raw files copied to the app bundle.
 *** `scripts/main.js`: Base JavaScript bridge logic.
 ** `lib/android/`:
@@ -159,11 +159,15 @@ fastlane_gen --> build_android : Writes Fastfile/Appfile
 *** `config/store.jsonc`: Play Store specific overrides.
 *** `scripts/main.js`: Android JavaScript overrides.
 *** `sources/`: Native file replacements (e.g., custom `MainActivity.kt`).
+*** `assets/`: Play Store specific assets.
+*** `resources/`: Raw files copied to the android app bundle.
 ** `lib/xcode/`:
 *** `config/config.jsonc`: Xcode configuration overrides.
 *** `config/store.jsonc`: App Store specific overrides.
 *** `scripts/main.js`: Xcode JavaScript overrides.
 *** `sources/`: Native file replacements (e.g., custom `ContentView.swift`).
+*** `assets/`: App Store specific assets.
+*** `resources/`: Raw files copied to the xcode app bundle.
 ** `lib/plugins/`: User-provided custom plugins.
 
 * `tools/`: CLI Tools.
@@ -177,10 +181,3 @@ fastlane_gen --> build_android : Writes Fastfile/Appfile
 * `build/`: The output destination.
 ** `build/xcode/`: The generated Xcode project (with fastlane files).
 ** `build/android/`: The generated Android Studio project (with fastlane files).
-
-== Fastlane
-
-`fastlane` tool generates standard Ruby-based Fastlane files 
-(a Fastfile, Appfile, and Deliverfile/Supplyfile) to each build directory `build/xcode` and `build/android`. 
-This way,  developers familiar with Fastlane can easily inspect, debug, and run standard 
-fastlane release commands, rather than relying on a giant, hard-to-read bash script with dozens of CLI arguments.

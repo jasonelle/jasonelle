@@ -57,6 +57,33 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="decisions/0000002-use-revenuecat-for-in-app-sales.html">Use RevenueCat for managing in-app sales</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="decisions/0000003-use-jsonc-for-configuration-and-settings.html">Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="decisions/0000004-use-taskfile-for-running-common-commands.html">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="decisions/0000005-use-fastlane-for-app-store-and-play-store-automation.html">Use Fastlane for App Store and Play Store automation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="decisions/0000006-use-esbuild-to-bundle-js-files-for-the-webview.html">Use esbuild to bundle JS files for the webview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="decisions/0000007-use-antora-for-technical-project-documentation.html">Use Antora for technical project documentation</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tools</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tools/icon.html">Icon Generator</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tools/fastlane.html">Fastlane Generator</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -110,7 +137,7 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>System Requirements</strong>: Xcode generation requires an Apple Silicon (ARM) Mac and targets iOS 26 or higher. Android generation is cross-platform.</p>
+<p><strong>System Requirements</strong>: Xcode generation requires an Apple Silicon (ARM) Mac and targets Xcode 26 or higher. Android generation is cross-platform with Android Studio Quail 2026.1 or higher.</p>
 </li>
 <li>
 <p><strong>Main Orchestrator (<code>gen</code>)</strong>: A Go-based CLI tool responsible for orchestrating the generation process. It merges cascading configurations from <code>lib/</code> and delegates tasks to platform-specific CLIs.</p>
@@ -183,7 +210,7 @@
 <p><code>config/store.jsonc</code>: Shared app store metadata.</p>
 </li>
 <li>
-<p><code>icon/1024x1024.png</code>: High-res base icon.</p>
+<p><code>assets/1024x1024.png</code>: Common assets for stores (Playstore and AppStore), like High-res base icon.</p>
 </li>
 <li>
 <p><code>resources/</code>: Raw files copied to the app bundle.</p>
@@ -210,6 +237,12 @@
 <li>
 <p><code>sources/</code>: Native file replacements (e.g., custom <code>MainActivity.kt</code>).</p>
 </li>
+<li>
+<p><code>assets/</code>: Play Store specific assets.</p>
+</li>
+<li>
+<p><code>resources/</code>: Raw files copied to the android app bundle.</p>
+</li>
 </ul>
 </div>
 </li>
@@ -228,6 +261,12 @@
 </li>
 <li>
 <p><code>sources/</code>: Native file replacements (e.g., custom <code>ContentView.swift</code>).</p>
+</li>
+<li>
+<p><code>assets/</code>: App Store specific assets.</p>
+</li>
+<li>
+<p><code>resources/</code>: Raw files copied to the xcode app bundle.</p>
 </li>
 </ul>
 </div>
@@ -277,17 +316,6 @@
 </div>
 </li>
 </ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="fastlane"><a class="anchor" href="#fastlane"></a>Fastlane</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><code>fastlane</code> tool generates standard Ruby-based Fastlane files
-(a Fastfile, Appfile, and Deliverfile/Supplyfile) to each build directory <code>build/xcode</code> and <code>build/android</code>.
-This way,  developers familiar with Fastlane can easily inspect, debug, and run standard
-fastlane release commands, rather than relying on a giant, hard-to-read bash script with dozens of CLI arguments.</p>
 </div>
 </div>
 </div>

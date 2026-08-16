@@ -4,3 +4,4 @@ title: Jasonelle Documentation
 nav:
   - modules/ROOT/nav.adoc
   - modules/decisions/nav.adoc
+  - modules/tools/nav.adoc

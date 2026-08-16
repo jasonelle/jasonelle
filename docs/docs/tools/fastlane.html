@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Adopt ADR documents :: Jasonelle Documentation</title>
-    <link rel="canonical" href="https://jasonelle.com/docs/decisions/0000000-adopt-adr-documents.html">
-    <link rel="prev" href="../architecture.html">
-    <link rel="next" href="0000001-use-onesignal.html">
+    <title>Fastlane Generator :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/tools/fastlane.html">
+    <link rel="prev" href="icon.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
@@ -48,29 +47,29 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Arquitecture Decision Records</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="0000000-adopt-adr-documents.html">Adopt ADR documents</a>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000000-adopt-adr-documents.html">Adopt ADR documents</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="0000001-use-onesignal.html">Use OneSignal for managing push notifications in iOS and Android</a>
+    <a class="nav-link" href="../decisions/0000001-use-onesignal.html">Use OneSignal for managing push notifications in iOS and Android</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="0000002-use-revenuecat-for-in-app-sales.html">Use RevenueCat for managing in-app sales</a>
+    <a class="nav-link" href="../decisions/0000002-use-revenuecat-for-in-app-sales.html">Use RevenueCat for managing in-app sales</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="0000003-use-jsonc-for-configuration-and-settings.html">Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files</a>
+    <a class="nav-link" href="../decisions/0000003-use-jsonc-for-configuration-and-settings.html">Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="0000004-use-taskfile-for-running-common-commands.html">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</a>
+    <a class="nav-link" href="../decisions/0000004-use-taskfile-for-running-common-commands.html">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="0000005-use-fastlane-for-app-store-and-play-store-automation.html">Use Fastlane for App Store and Play Store automation</a>
+    <a class="nav-link" href="../decisions/0000005-use-fastlane-for-app-store-and-play-store-automation.html">Use Fastlane for App Store and Play Store automation</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="0000006-use-esbuild-to-bundle-js-files-for-the-webview.html">Use esbuild to bundle JS files for the webview</a>
+    <a class="nav-link" href="../decisions/0000006-use-esbuild-to-bundle-js-files-for-the-webview.html">Use esbuild to bundle JS files for the webview</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="0000007-use-antora-for-technical-project-documentation.html">Use Antora for technical project documentation</a>
+    <a class="nav-link" href="../decisions/0000007-use-antora-for-technical-project-documentation.html">Use Antora for technical project documentation</a>
   </li>
 </ul>
   </li>
@@ -79,10 +78,10 @@
     <span class="nav-text">Tools</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../tools/icon.html">Icon Generator</a>
+    <a class="nav-link" href="icon.html">Icon Generator</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../tools/fastlane.html">Fastlane Generator</a>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="fastlane.html">Fastlane Generator</a>
   </li>
 </ul>
   </li>
@@ -110,102 +109,79 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Jasonelle Documentation</a></li>
-    <li>Arquitecture Decision Records</li>
-    <li><a href="0000000-adopt-adr-documents.html">Adopt ADR documents</a></li>
+    <li>Tools</li>
+    <li><a href="fastlane.html">Fastlane Generator</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///antora/antora/modules/decisions/pages/0000000-adopt-adr-documents.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/tools/pages/fastlane.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Adopt ADR documents</h1>
+<h1 class="page">Fastlane Generator</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>id: 0000000</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><code>fastlane-gen</code> tool generates standard Ruby-based Fastlane files
+(a Fastfile, Appfile, and Deliverfile/Supplyfile) to each build directory
+<code>build/xcode</code> and <code>build/android</code>. This way, developers familiar with Fastlane
+can easily inspect, debug, and run standard fastlane release commands, rather
+than relying on a giant, hard-to-read bash script with dozens of CLI arguments.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="status"><a class="anchor" href="#status"></a>Status</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Accepted (2026-08-11) by: @clsource</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="history"><a class="anchor" href="#history"></a>History</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Proposed (2026-08-11) by: @clsource</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="context-and-problem-statement"><a class="anchor" href="#context-and-problem-statement"></a>Context and Problem Statement</h2>
+<h2 id="what-is-fastlane"><a class="anchor" href="#what-is-fastlane"></a>What is Fastlane?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Jasonelle documents decisions implicitly across issues, changelogs, and source
-code, which makes it hard to know why a design choice was made. We want a
-lightweight, versioned way to record important decisions and their rationale so
-future contributors can understand the reasoning.</p>
+<p><a href="https://fastlane.tools/">Fastlane</a> is an open source platform aimed at
+simplifying Android and iOS deployment. It automates every aspect of the
+development and release workflow so a single command can run a lane. The most
+common use cases are:</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="considered-options"><a class="anchor" href="#considered-options"></a>Considered Options</h2>
-<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>Use Architecture Decision Records (ADRs) following the MADR format.</p>
+<p><strong>Automate screenshots</strong>: automatically capture localized screenshots for each
+language and device the app supports, configured once and stored so anyone on
+the team can regenerate them.</p>
 </li>
 <li>
-<p>Keep documenting decisions ad hoc in issue comments and pull requests.</p>
+<p><strong>Beta deployment</strong>: distribute beta builds to testers, automating incrementing
+the build version, code signing, building, uploading, and setting a
+changelog. Supports TestFlight, Play, and other beta services.</p>
 </li>
 <li>
-<p>Use a standalone wiki outside the repository.</p>
+<p><strong>App Store deployment</strong>: create a repeatable workflow to build, upload, and
+distribute new releases to the store, including app metadata, screenshots,
+and submitting new versions for review.</p>
+</li>
+<li>
+<p><strong>Code signing</strong>: store signing identities and profiles in an encrypted git
+repository so every developer can reproduce signed builds on any machine.</p>
+</li>
+<li>
+<p><strong>Continuous Integration</strong>: integrates with Jenkins, GitHub Actions, GitLab,
+CircleCI, Bitrise, and other CI services.</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="decision-outcome"><a class="anchor" href="#decision-outcome"></a>Decision Outcome</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Chosen option: "Use Architecture Decision Records (ADRs) following the MADR
-format", because ADRs are lightweight, versioned alongside the code in this
-repository, and published automatically with the Antora docs. Positive
-consequences: decisions are easy to find, reviewable in pull requests, and
-searchable in the published site. Negative consequences: a small authoring
-overhead is required to keep records up to date.</p>
+<p>Workflows are defined as <strong>lanes</strong> in a <code>Fastfile</code>. Each lane chains actions
+such as <code>increment_build_number</code>, <code>build_app</code>, <code>capture_screenshots</code>,
+<code>upload_to_testflight</code>, and <code>upload_to_app_store</code>, and can be extended with
+hundreds of community-built <a href="https://docs.fastlane.tools/actions/">actions</a> and
+<a href="https://docs.fastlane.tools/plugins/available-plugins/">plugins</a>.</p>
 </div>
 <div class="paragraph">
-<p>ADR is the best option, because the other options scatter knowledge outside the
-codebase or outside review. If "Keep documenting decisions ad hoc in issue
-comments" was chosen, decisions would remain hard to discover. If "Use a
-standalone wiki" was chosen, the wiki would drift out of sync with the code.</p>
+<p>See the <a href="https://docs.fastlane.tools/">Fastlane documentation</a> for details.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="../architecture.html">Architecture</a></span>
-  <span class="next"><a href="0000001-use-onesignal.html">Use OneSignal for managing push notifications in iOS and Android</a></span>
+  <span class="prev"><a href="icon.html">Icon Generator</a></span>
 </nav>
 </article>
   </div>

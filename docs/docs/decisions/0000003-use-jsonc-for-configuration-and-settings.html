@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Use RevenueCat for managing in-app sales :: Jasonelle Documentation</title>
-    <link rel="canonical" href="https://jasonelle.com/docs/decisions/0000002-use-revenuecat-for-in-app-sales.html">
-    <link rel="prev" href="0000001-use-onesignal.html">
-    <link rel="next" href="0000003-use-jsonc-for-configuration-and-settings.html">
+    <title>Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/decisions/0000003-use-jsonc-for-configuration-and-settings.html">
+    <link rel="prev" href="0000002-use-revenuecat-for-in-app-sales.html">
+    <link rel="next" href="0000004-use-taskfile-for-running-common-commands.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
@@ -54,10 +54,10 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000001-use-onesignal.html">Use OneSignal for managing push notifications in iOS and Android</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000002-use-revenuecat-for-in-app-sales.html">Use RevenueCat for managing in-app sales</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="0000003-use-jsonc-for-configuration-and-settings.html">Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -111,23 +111,23 @@
   <ul>
     <li><a href="../index.html">Jasonelle Documentation</a></li>
     <li>Arquitecture Decision Records</li>
-    <li><a href="0000002-use-revenuecat-for-in-app-sales.html">Use RevenueCat for managing in-app sales</a></li>
+    <li><a href="0000003-use-jsonc-for-configuration-and-settings.html">Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///antora/antora/modules/decisions/pages/0000002-use-revenuecat-for-in-app-sales.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/decisions/pages/0000003-use-jsonc-for-configuration-and-settings.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Use RevenueCat for managing in-app sales</h1>
+<h1 class="page">Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>id: 0000002</p>
+<p>id: 0000003</p>
 </li>
 </ul>
 </div>
@@ -139,9 +139,19 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Accepted (2026-08-12) by: @clsource</p>
+<p>Accepted (2026-08-15) by: @clsource</p>
 </li>
 </ul>
+</div>
+<div class="sect2">
+<h3 id="history"><a class="anchor" href="#history"></a>History</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Proposed (2026-08-15) by: @clsource</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -149,10 +159,11 @@
 <h2 id="context-and-problem-statement"><a class="anchor" href="#context-and-problem-statement"></a>Context and Problem Statement</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Jasonelle apps need to sell digital content through in-app purchases and
-subscriptions on both iOS and Android. Each store has its own purchase API,
-receipt validation, and subscription lifecycle, which means duplicating a lot of
-store-specific logic for every platform.</p>
+<p>Jasonelle needs a single way to store configuration and settings that works
+across iOS, Android, and the website. Plain JSON cannot hold comments, which
+makes it hard to document options and templates in place, while platform
+specific formats (e.g. plist, XML, .properties) split configuration logic and
+duplicate tooling. How should configuration and settings files be stored?</p>
 </div>
 </div>
 </div>
@@ -162,13 +173,13 @@ store-specific logic for every platform.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Use <a href="https://www.revenuecat.com/">RevenueCat</a> for managing in-app sales</p>
+<p>Use JSONC (JSON with comments) files</p>
 </li>
 <li>
-<p>Implement StoreKit and Google Play Billing directly per platform</p>
+<p>Use plain JSON files</p>
 </li>
 <li>
-<p>Sell digital content only through external websites</p>
+<p>Use platform specific configuration files (plist, XML, .properties)</p>
 </li>
 </ul>
 </div>
@@ -178,27 +189,26 @@ store-specific logic for every platform.</p>
 <h2 id="decision-outcome"><a class="anchor" href="#decision-outcome"></a>Decision Outcome</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Chosen option: "Use RevenueCat for managing in-app sales", because a single
-cross-platform SDK and dashboard handles purchases, subscriptions, receipt
-validation, and customer management for both stores. Positive consequences: one
-integration point for StoreKit and Google Play Billing, unified subscription and
-entitlement management, and less store-specific code to maintain. Negative
-consequences: reliance on a third-party service and an additional dependency in
-the mobile apps.</p>
+<p>Chosen option: "Use JSONC (JSON with comments) files", because it keeps a
+single standard format across platforms, supports comments for documenting
+options, and is parsed by common tooling by stripping comments before
+<code>JSON.parse</code>. Positive consequences: one source of truth for configuration,
+inline documentation for every setting, and reuse across platforms. Negative
+consequences: JSONC is not valid JSON, so consumers must strip comments before
+parsing.</p>
 </div>
 <div class="paragraph">
-<p>RevenueCat is the best option, because it avoids maintaining StoreKit and Google
-Play Billing integrations and subscription logic per platform. If "Implement
-StoreKit and Google Play Billing directly" was chosen, we would own receipt
-validation, renewal handling, and store-specific edge cases. If "Sell digital
-content only through external websites" was chosen, in-app purchases would be
-unavailable and the apps would not comply with store purchase requirements.</p>
+<p>JSONC is the best option, because it is a superset of JSON and still readable by
+standard parsers after a simple comment-stripping step. If "Use plain JSON
+files" was chosen, configuration would lose inline documentation and need
+external docs. If "Use platform specific configuration files" was chosen,
+configuration logic would be duplicated and tooling maintained per platform.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="0000001-use-onesignal.html">Use OneSignal for managing push notifications in iOS and Android</a></span>
-  <span class="next"><a href="0000003-use-jsonc-for-configuration-and-settings.html">Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files</a></span>
+  <span class="prev"><a href="0000002-use-revenuecat-for-in-app-sales.html">Use RevenueCat for managing in-app sales</a></span>
+  <span class="next"><a href="0000004-use-taskfile-for-running-common-commands.html">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</a></span>
 </nav>
 </article>
   </div>

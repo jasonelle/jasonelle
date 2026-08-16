@@ -2,3 +2,8 @@
 * xref:0000000-adopt-adr-documents.adoc[]
 * xref:0000001-use-onesignal.adoc[]
 * xref:0000002-use-revenuecat-for-in-app-sales.adoc[]
+* xref:0000003-use-jsonc-for-configuration-and-settings.adoc[]
+* xref:0000004-use-taskfile-for-running-common-commands.adoc[]
+* xref:0000005-use-fastlane-for-app-store-and-play-store-automation.adoc[]
+* xref:0000006-use-esbuild-to-bundle-js-files-for-the-webview.adoc[]
+* xref:0000007-use-antora-for-technical-project-documentation.adoc[]
