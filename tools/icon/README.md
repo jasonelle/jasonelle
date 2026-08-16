@@ -52,6 +52,10 @@ From `tools/icon/src`:
 `dist/` contains prebuilt binaries for each platform, named
 `icon-<os>-<arch>` (Windows uses `.exe`).
 
+## Version
+
+Edit `src/VERSION` for the current version of the tool using SemVer.
+
 ## More Info
 
 - Check `antora/modules/tools/icon.adoc`
