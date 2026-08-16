@@ -13,14 +13,14 @@ tasks:
     cmds:
       - rm -rf ../dist
       - mkdir -p ../dist
-      - GOOS=darwin GOARCH=amd64 go build -o ../dist/json-merger-darwin-amd64 .
-      - GOOS=darwin GOARCH=arm64 go build -o ../dist/json-merger-darwin-arm64 .
-      - GOOS=linux GOARCH=amd64 go build -o ../dist/json-merger-linux-amd64 .
-      - GOOS=windows GOARCH=amd64 go build -o ../dist/json-merger-windows-amd64.exe .
+      - GOOS=darwin GOARCH=amd64 go build -o ../dist/jsonc-darwin-amd64 .
+      - GOOS=darwin GOARCH=arm64 go build -o ../dist/jsonc-darwin-arm64 .
+      - GOOS=linux GOARCH=amd64 go build -o ../dist/jsonc-linux-amd64 .
+      - GOOS=windows GOARCH=amd64 go build -o ../dist/jsonc-windows-amd64.exe .
   test:
     aliases:
       - t
-    desc: Test the current version of the json-merger tool
+    desc: Test the current version of the jsonc tool
     cmds:
       - go test .
   version.major:

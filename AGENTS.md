@@ -23,6 +23,12 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
 - `task git.pull` (aliases `pl`, `gpl`): Pull the current branch from origin.
 - `task git.push` (aliases `p`, `gp`): Push the current branch to origin.
 - `task git.all` (alias `gal`): Push all the current changes to the branch in origin.
+- `task icons` (alias `i`): Generate Android and Xcode app icons using the `tools/icon` binary.
+- `task icons.build` (alias `ib`): Generate the `tools/icon` binary.
+- `task jsonc.xcode` (alias `jx`): Merge common and Xcode `config.jsonc`/`store.jsonc` into `build/xcode/`.
+- `task jsonc.android` (alias `ja`): Merge common and Android `config.jsonc`/`store.jsonc` into `build/android/`.
+- `task jsonc`: Runs `task jsonc.xcode` and `task jsonc.android`.
+- `task jsonc.build` (alias `jb`): Generate the `tools/jsonc` binary.
 
 ## Directory layout
 
@@ -45,6 +51,7 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
   - `/command-create`: Create a new opencode command inside `.opencode/command`.
   - `/git-commit-message`: Generate a conventional commit message with a gitmoji
     from the staged changes.
+  - `/rule-create`: Create a new rule inside `.agents/rules`.
   - `/update-agents`: Update AGENTS.md with the latest project changes.
   - `/version-bump`: Bump the version in a version file to the next version.
   - `/yaml`: Lint and format YAML files with yamllint and prettier.

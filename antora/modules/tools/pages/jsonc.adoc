@@ -1,4 +1,4 @@
-= JSON Merger
+= JSONC Merger
 
 A https://go.dev[Go] tool that merges multiple JSONC files into a single JSONC
 file. The first file is the base and each subsequent file overrides it,
@@ -12,15 +12,16 @@ cascading style.
 
 == Usage
 
-From `tools/json-merger/src`:
+From `tools/jsonc/src`:
 
 [source,sh]
 ----
 go run . --output out.jsonc base.jsonc override1.jsonc override2.jsonc
 ----
 
-The first input is the base file. Each following file is deep-merged over the
-previous one, so later files win on conflicts.
+`-output` and at least one input file are required. The first input is the base
+file. Each following file is deep-merged over the previous one, so later files
+win on conflicts.
 
 == Merge semantics
 
@@ -30,15 +31,53 @@ previous one, so later files win on conflicts.
   inputs and stripped during parsing. The output is plain JSON (which is valid
   JSONC) with 2-space indentation.
 
-See `references/merge.md` for details and examples.
+=== Example
+
+Base:
+
+[source, json]
+----
+{
+  "colors": { "bg": "red", "accent": "blue" },
+  "sizes": [1, 2],
+  "name": "base"
+}
+----
+
+Override:
+
+[source, json]
+----
+{
+  "colors": { "accent": "green", "fg": "white" },
+  "sizes": [9]
+}
+----
+
+Result:
+
+[source, json]
+----
+{
+  "colors": { "accent": "green", "bg": "red", "fg": "white" },
+  "sizes": [9],
+  "name": "base"
+}
+----
+
+`colors` merged recursively, `sizes` was replaced, and keys only present in the
+base (`name`) are preserved.
+
 
 == Tasks
 
 From the repository root:
 
-* `task json.merge.build` (`jmb`): build the `tools/json-merger` binary.
+* `task jsonc.build` (`jb`): build the `tools/jsonc` binary.
+* `task jsonc` (`j`): merge `lib/common/config/config.jsonc` (base) with
+  `lib/xcode/config/config.jsonc` (overrides) into `build/xcode/config.jsonc`.
 
-From `tools/json-merger/src`:
+From `tools/jsonc/src`:
 
 * `task build` (`b`): cross-compile binaries into `../dist/` for macOS
   (amd64/arm64), Linux (amd64) and Windows (amd64).
@@ -47,4 +86,4 @@ From `tools/json-merger/src`:
 == Release binaries
 
 `dist/` contains prebuilt binaries for each platform, named
-`json-merger-<os>-<arch>` (Windows uses `.exe`).
+`jsonc-<os>-<arch>` (Windows uses `.exe`).

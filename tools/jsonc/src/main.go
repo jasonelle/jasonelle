@@ -15,7 +15,7 @@ func main() {
 }
 
 func run(args []string) error {
-	fs := flag.NewFlagSet("json-merger", flag.ContinueOnError)
+	fs := flag.NewFlagSet("jsonc", flag.ContinueOnError)
 	output := fs.String("output", "", "output JSONC file path")
 	if err := fs.Parse(args); err != nil {
 		return err

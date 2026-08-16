@@ -120,7 +120,7 @@ tasks:
   # Tools
   icons:
     aliases:
-      - i
+      - ic
     desc: Generate Android and Xcode app icons using the tools/icon binary
     cmds:
       - 'tools/icon/dist/icon-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --source lib/common/assets/icon/1024x1024.png --xcode lib/xcode --android lib/android'
@@ -133,10 +133,32 @@ tasks:
     cmds:
       - task build
 
-  json.merge.build:
+  jsonc.xcode:
     aliases:
-      - jmb
-    dir: tools/json-merger/src
-    desc: Generate tools/json-merger binary
+      - jx
+    desc: Merge common and Xcode config.jsonc and store.jsonc into build/xcode/
+    cmds:
+      - "mkdir -p build/xcode"
+      - 'tools/jsonc/dist/jsonc-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --output build/xcode/config.jsonc lib/common/config/config.jsonc lib/xcode/config/config.jsonc'
+      - 'tools/jsonc/dist/jsonc-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --output build/xcode/store.jsonc lib/common/config/store.jsonc lib/xcode/config/store.jsonc'
+
+  jsonc.android:
+    aliases:
+      - ja
+    desc: Merge common and Android config.jsonc and store.jsonc into build/android/
+    cmds:
+      - "mkdir -p build/android"
+      - 'tools/jsonc/dist/jsonc-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --output build/android/config.jsonc lib/common/config/config.jsonc lib/android/config/config.jsonc'
+      - 'tools/jsonc/dist/jsonc-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --output build/android/store.jsonc lib/common/config/store.jsonc lib/android/config/store.jsonc'
+  jsonc:
+    desc: Runs tasks jsonc.xcode and jsonc.android
+    cmds:
+      - task jsonc.xcode
+      - task jsonc.android
+  jsonc.build:
+    aliases:
+      - jb
+    dir: tools/jsonc/src
+    desc: Generate tools/jsonc binary
     cmds:
       - task build
