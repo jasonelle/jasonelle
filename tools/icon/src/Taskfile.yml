@@ -23,3 +23,21 @@ tasks:
     desc: Test the current version of the icon tool
     cmds:
       - go test .
+  version.major:
+    aliases:
+      - v
+    desc: Bump VERSION to the next major version
+    cmds:
+      - awk -F. '{print ($1 + 1) ".0.0"}' VERSION > VERSION.tmp && mv VERSION.tmp VERSION
+  version.minor:
+    aliases:
+      - vm
+    desc: Bump VERSION to the next minor version
+    cmds:
+      - awk -F. '{print $1 "." ($2 + 1) ".0"}' VERSION > VERSION.tmp && mv VERSION.tmp VERSION
+  version.patch:
+    aliases:
+      - vp
+    desc: Bump VERSION to the next patch version
+    cmds:
+      - awk -F. '{print $1 "." $2 "." ($3 + 1)}' VERSION > VERSION.tmp && mv VERSION.tmp VERSION
