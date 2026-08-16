@@ -9,6 +9,8 @@ import (
 	"image/png"
 	"os"
 	"path/filepath"
+	"strconv"
+	"strings"
 
 	"golang.org/x/image/draw"
 )
@@ -24,22 +26,6 @@ var androidLauncher = []size{
 	{"xhdpi", 96},
 	{"xxhdpi", 144},
 	{"xxxhdpi", 192},
-}
-
-var xcodeIcons = []size{
-	{"20", 20},
-	{"29", 29},
-	{"40", 40},
-	{"58", 58},
-	{"60", 60},
-	{"76", 76},
-	{"80", 80},
-	{"87", 87},
-	{"120", 120},
-	{"152", 152},
-	{"167", 167},
-	{"180", 180},
-	{"1024", 1024},
 }
 
 type appIconImage struct {
@@ -140,8 +126,17 @@ func generateAndroid(src image.Image, dir string) error {
 
 func generateXcode(src image.Image, dir string) error {
 	dir = filepath.Join(dir, "AppIcon.appiconset")
-	for _, s := range xcodeIcons {
-		if err := writeIcon(src, filepath.Join(dir, "icon-"+s.name+".png"), s.px); err != nil {
+	seen := make(map[string]bool)
+	for _, img := range appIconImages {
+		if seen[img.Filename] {
+			continue
+		}
+		seen[img.Filename] = true
+		px, err := strconv.Atoi(strings.TrimSuffix(strings.TrimPrefix(img.Filename, "icon-"), ".png"))
+		if err != nil {
+			return err
+		}
+		if err := writeIcon(src, filepath.Join(dir, img.Filename), px); err != nil {
 			return err
 		}
 	}
