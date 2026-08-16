@@ -25,6 +25,7 @@ Taskfile.yml text
 # Binary files
 tools/icon/dist/*  binary
 tools/jsonc/dist/* binary
+tools/vendor/esbuild/dist/* binary
 *.png        binary
 *.jpg        binary
 *.jpeg       binary

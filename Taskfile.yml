@@ -162,3 +162,29 @@ tasks:
     desc: Generate tools/jsonc binary
     cmds:
       - task build
+  esbuild:
+    aliases:
+      - es
+    desc: Runs esbuild to compile a single webview.js for Xcode and Android
+    cmds:
+      - task esbuild.xcode
+      - task esbuild.android
+  esbuild.xcode:
+    aliases:
+      - esx
+    desc: Runs esbuild to compile a single webview.js for Xcode
+    cmds:
+      - echo "Xcode"
+  esbuild.android:
+    aliases:
+      - esa
+    desc: Runs esbuild to compile a single webview.js for Android
+    cmds:
+      - echo "Android"
+  esbuild.install:
+    aliases:
+      - esi
+    dir: tools/esbuild/src
+    desc: Install tools/esbuild binary
+    cmds:
+      - task install
