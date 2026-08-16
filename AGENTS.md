@@ -47,6 +47,7 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
   - `/adr-accept`: Update an ADR status to Accepted.
   - `/adr-deprecate`: Update an ADR status to Deprecated.
   - `/adr-supersed`: Update an ADR status to Superseded.
+  - `/append-license`: Append a license template as a comment to the first lines of a file or directory.
   - `/changelog`: Update CHANGELOG.md from git commit messages.
   - `/command-create`: Create a new opencode command inside `.opencode/command`.
   - `/git-commit-message`: Generate a conventional commit message with a gitmoji
