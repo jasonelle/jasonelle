@@ -132,3 +132,11 @@ tasks:
     desc: Generate tools/icon binary
     cmds:
       - task build
+
+  json.merge.build:
+    aliases:
+      - jmb
+    dir: tools/json-merger/src
+    desc: Generate tools/json-merger binary
+    cmds:
+      - task build

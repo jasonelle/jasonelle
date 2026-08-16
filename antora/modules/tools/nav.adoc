@@ -1,3 +1,4 @@
 .Tools
 * xref:icon.adoc[]
+* xref:json-merger.adoc[]
 * xref:fastlane.adoc[]

@@ -1,0 +1,55 @@
+# JSON Merger
+
+Go tool that merges multiple JSONC files into a single JSONC file. The first
+file is the base and each subsequent file overrides it, cascading style.
+
+## Requirements
+
+- [Go](https://go.dev) 1.26 or newer (only for compilation. `dist/` directory contains binaries).
+- [go-task](https://taskfile.dev) (optional, only for the tasks below).
+
+## Usage
+
+From `tools/json-merger/src`:
+
+```sh
+go run . --output out.jsonc base.jsonc override1.jsonc override2.jsonc
+```
+
+The first input is the base file. Each following file is deep-merged over the
+previous one, so later files win on conflicts.
+
+## Merge semantics
+
+- Nested objects merge recursively.
+- Arrays and scalar values are replaced wholesale by later files.
+- JSONC comments (`//` and `/* */`) and trailing commas are allowed in the
+  inputs and stripped during parsing. The output is plain JSON (which is valid
+  JSONC) with 2-space indentation.
+
+See `references/merge.md` for details and examples.
+
+## Tasks
+
+From the repository root:
+
+- `task json.merge.build` (`jmb`): build the `tools/json-merger` binary.
+
+From `tools/json-merger/src`:
+
+- `task build` (`b`): cross-compile binaries into `../dist/` for macOS
+  (amd64/arm64), Linux (amd64) and Windows (amd64).
+- `task test` (`t`): run the test suite.
+
+## Release binaries
+
+`dist/` contains prebuilt binaries for each platform, named
+`json-merger-<os>-<arch>` (Windows uses `.exe`).
+
+## Version
+
+Edit `src/VERSION` for the current version of the tool using SemVer.
+
+## More Info
+
+- Check `antora/modules/tools/pages/json-merger.adoc`

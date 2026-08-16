@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+# A Taskfile.yml as an alternative to Makefile
+version: "3.17"
+
+tasks:
+  default:
+    cmds:
+      - task build
+  build:
+    aliases:
+      - b
+    desc: Build cross-platform binaries into ../dist
+    cmds:
+      - rm -rf ../dist
+      - mkdir -p ../dist
+      - GOOS=darwin GOARCH=amd64 go build -o ../dist/json-merger-darwin-amd64 .
+      - GOOS=darwin GOARCH=arm64 go build -o ../dist/json-merger-darwin-arm64 .
+      - GOOS=linux GOARCH=amd64 go build -o ../dist/json-merger-linux-amd64 .
+      - GOOS=windows GOARCH=amd64 go build -o ../dist/json-merger-windows-amd64.exe .
+  test:
+    aliases:
+      - t
+    desc: Test the current version of the json-merger tool
+    cmds:
+      - go test .
+  version.major:
+    aliases:
+      - v
+    desc: Bump VERSION to the next major version
+    cmds:
+      - awk -F. '{print ($1 + 1) ".0.0"}' VERSION > VERSION.tmp && mv VERSION.tmp VERSION
+  version.minor:
+    aliases:
+      - vm
+    desc: Bump VERSION to the next minor version
+    cmds:
+      - awk -F. '{print $1 "." ($2 + 1) ".0"}' VERSION > VERSION.tmp && mv VERSION.tmp VERSION
+  version.patch:
+    aliases:
+      - vp
+    desc: Bump VERSION to the next patch version
+    cmds:
+      - awk -F. '{print $1 "." $2 "." ($3 + 1)}' VERSION > VERSION.tmp && mv VERSION.tmp VERSION
