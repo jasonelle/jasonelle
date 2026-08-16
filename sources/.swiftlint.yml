@@ -13,8 +13,8 @@ identifier_name:
   min_length:
     warning: 1
     error: 1
-  # Existing 40-char max stays as warning — keeps catching genuinely runaway
-  # names without escalating.
+# Existing 40-char max stays as warning — keeps catching genuinely runaway
+# names without escalating.
 
 cyclomatic_complexity:
   warning: 40

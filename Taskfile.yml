@@ -121,6 +121,14 @@ tasks:
   icons:
     aliases:
       - i
-    desc: Generate Android and Xcode app icons into lib/assets using the dist binary
+    desc: Generate Android and Xcode app icons using the tools/icon binary
     cmds:
-      - 'tools/icon/dist/icon-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --source lib/common/assets/icon/1024x1024.png --out lib/'
+      - 'tools/icon/dist/icon-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --source lib/common/assets/icon/1024x1024.png --xcode lib/xcode --android lib/android'
+
+  icons.build:
+    aliases:
+      - ib
+    dir: tools/icon/src
+    desc: Generate tools/icon binary
+    cmds:
+      - task build

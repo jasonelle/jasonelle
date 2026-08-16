@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"flag"
 	"fmt"
 	"image"
@@ -80,20 +81,39 @@ var appIconImages = []appIconImage{
 }
 
 func main() {
-	source := flag.String("source", filepath.Join("lib", "common", "assets", "icon", "1024x1024.png"), "base 1024x1024 PNG icon")
-	out := flag.String("out", "lib", "output root directory")
-	flag.Parse()
+	if err := run(os.Args[1:]); err != nil {
+		fatal(err)
+	}
+}
+
+func run(args []string) error {
+	fs := flag.NewFlagSet("icon", flag.ContinueOnError)
+	source := fs.String("source", filepath.Join("lib", "common", "assets", "icon", "1024x1024.png"), "base 1024x1024 PNG icon")
+	xcode := fs.String("xcode", "", "output root directory for Xcode assets")
+	android := fs.String("android", "", "output root directory for Android assets")
+	if err := fs.Parse(args); err != nil {
+		return err
+	}
+
+	if *xcode == "" && *android == "" {
+		return errors.New("at least one of -xcode or -android must be provided")
+	}
 
 	src, err := readPNG(*source)
 	if err != nil {
-		fatal(err)
+		return err
 	}
-	if err := generateAndroid(src, filepath.Join(*out, "assets", "android")); err != nil {
-		fatal(err)
+	if *android != "" {
+		if err := generateAndroid(src, filepath.Join(*android, "assets")); err != nil {
+			return err
+		}
 	}
-	if err := generateXcode(src, filepath.Join(*out, "assets", "xcode")); err != nil {
-		fatal(err)
+	if *xcode != "" {
+		if err := generateXcode(src, filepath.Join(*xcode, "assets")); err != nil {
+			return err
+		}
 	}
+	return nil
 }
 
 func readPNG(path string) (image.Image, error) {
@@ -107,7 +127,7 @@ func readPNG(path string) (image.Image, error) {
 
 func generateAndroid(src image.Image, dir string) error {
 	for _, d := range androidLauncher {
-		resDir := filepath.Join(dir, "res", "mipmap-"+d.name)
+		resDir := filepath.Join(dir, "icon", "res", "mipmap-"+d.name)
 		if err := writeIcon(src, filepath.Join(resDir, "ic_launcher.png"), d.px); err != nil {
 			return err
 		}
@@ -115,7 +135,7 @@ func generateAndroid(src image.Image, dir string) error {
 			return err
 		}
 	}
-	return writeIcon(src, filepath.Join(dir, "store", "icon-512.png"), 512)
+	return writeIcon(src, filepath.Join(dir, "icon", "store", "icon-512.png"), 512)
 }
 
 func generateXcode(src image.Image, dir string) error {
