@@ -23,6 +23,8 @@ Taskfile.yml text
 *.bat        text eol=crlf
 
 # Binary files
+tools/icon/dist/*  binary
+tools/jsonc/dist/* binary
 *.png        binary
 *.jpg        binary
 *.jpeg       binary
