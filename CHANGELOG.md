@@ -12,26 +12,40 @@ documentation and code. It breaks compatibility with previous versions.
 
 ### Added
 
+- Add agent rules and opencode plugins
 - Add changelog generation command
+- Add command-create and version-bump commands
 - Add commit task to Taskfile
+- Add Go tool to generate app icons
 - Add id field to ADR documents
+- Add iOS Application and Core sources
+- Add rule-create command
+- Add version bump tasks
+- Added architecture.adoc
 - Adopt ADR documents for design decisions
+- Generate per-platform icons with --xcode/--android
 
 ### Changed
 
+- Add ADRs for OneSignal and RevenueCat
 - Add automated semver pre-releases
 - Add CNAME for jasonelle.com
 - Add git.add and git.all tasks
 - Add git.pull task
 - Add git.push task and rename commit to git.commit
 - Add lint.yaml task to format and lint YAML files
+- Add VERSION file and document it
 - Create CNAME
 - Delete tags when pruning pre-releases
+- Derive Xcode icon sizes from appIconImages
+- Document icon generator and add tooling ADRs
 - Drop git.add from git.all pipeline
 - Fixed
+- Remove unused vendored highlight.js languages
 - Removed old version code
 - Update AGENTS.md commands and directory layout
 - Update changelog for ADR documents
+- Update flow and fastlane diagrams
 - Updated website
 - Write commit message to .commit-message file
 
