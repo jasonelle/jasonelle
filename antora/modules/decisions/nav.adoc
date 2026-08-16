@@ -7,3 +7,5 @@
 * xref:0000005-use-fastlane-for-app-store-and-play-store-automation.adoc[]
 * xref:0000006-use-esbuild-to-bundle-js-files-for-the-webview.adoc[]
 * xref:0000007-use-antora-for-technical-project-documentation.adoc[]
+* xref:0000008-use-golang-for-cross-platform-tools.adoc[]
+* xref:0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.adoc[]

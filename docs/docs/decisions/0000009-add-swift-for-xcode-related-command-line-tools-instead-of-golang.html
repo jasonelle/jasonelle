@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Use esbuild to bundle JS files for the webview :: Jasonelle Documentation</title>
-    <link rel="canonical" href="https://jasonelle.com/docs/decisions/0000006-use-esbuild-to-bundle-js-files-for-the-webview.html">
-    <link rel="prev" href="0000005-use-fastlane-for-app-store-and-play-store-automation.html">
-    <link rel="next" href="0000007-use-antora-for-technical-project-documentation.html">
+    <title>Add Swift for Xcode related command line tools instead of Go :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/decisions/0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.html">
+    <link rel="prev" href="0000008-use-golang-for-cross-platform-tools.html">
+    <link rel="next" href="../tools/icon.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
@@ -66,7 +66,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000005-use-fastlane-for-app-store-and-play-store-automation.html">Use Fastlane for App Store and Play Store automation</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000006-use-esbuild-to-bundle-js-files-for-the-webview.html">Use esbuild to bundle JS files for the webview</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -75,7 +75,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000008-use-golang-for-cross-platform-tools.html">Use Go for cross platform tools</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.html">Add Swift for Xcode related command line tools instead of Go</a>
   </li>
 </ul>
@@ -117,23 +117,23 @@
   <ul>
     <li><a href="../index.html">Jasonelle Documentation</a></li>
     <li>Arquitecture Decision Records</li>
-    <li><a href="0000006-use-esbuild-to-bundle-js-files-for-the-webview.html">Use esbuild to bundle JS files for the webview</a></li>
+    <li><a href="0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.html">Add Swift for Xcode related command line tools instead of Go</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///antora/antora/modules/decisions/pages/0000006-use-esbuild-to-bundle-js-files-for-the-webview.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/decisions/pages/0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Use esbuild to bundle JS files for the webview</h1>
+<h1 class="page">Add Swift for Xcode related command line tools instead of Go</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>id: 0000006</p>
+<p>id: 0000009</p>
 </li>
 </ul>
 </div>
@@ -145,7 +145,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Accepted (2026-08-15) by: @clsource</p>
+<p>Accepted (2026-08-16) by: @clsource</p>
 </li>
 </ul>
 </div>
@@ -155,11 +155,11 @@
 <h2 id="context-and-problem-statement"><a class="anchor" href="#context-and-problem-statement"></a>Context and Problem Statement</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Jasonelle injects JavaScript into the webview of the final Xcode and Android
-projects. The JS comes from multiple files that must be combined into a single
-file, but a naive concatenation does not handle modules, minification, or
-optimization. Which tool should bundle the JavaScript files into one file to be
-included in the native project and injected in the webview?</p>
+<p>Some helper tools must inspect or modify Xcode projects, such as reading the
+project structure, updating asset catalogs, or driving <code>xcodebuild</code>. While
+ADR-0000008 chose Go for cross platform tools, Go cannot reuse the iOS codebase
+and must reimplement Xcode-specific formats. Which language should be used for
+Xcode related command line tools?</p>
 </div>
 </div>
 </div>
@@ -169,13 +169,13 @@ included in the native project and injected in the webview?</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Use <a href="https://esbuild.github.io/">esbuild</a></p>
+<p>Use <a href="https://www.swift.org/">Swift</a></p>
 </li>
 <li>
-<p>Use <a href="https://rolldown.rs/">Rolldown</a></p>
+<p>Use Go (per ADR-0000008)</p>
 </li>
 <li>
-<p>Write a custom concatenation script</p>
+<p>Use Bash scripts</p>
 </li>
 </ul>
 </div>
@@ -185,26 +185,26 @@ included in the native project and injected in the webview?</p>
 <h2 id="decision-outcome"><a class="anchor" href="#decision-outcome"></a>Decision Outcome</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Chosen option: "Use esbuild", because it is fast, has zero configuration for
-simple bundling, and produces a single minified JS file that can be included in
-the Xcode and Android projects and injected into the webview. Positive
-consequences: fast bundling, minimal setup, and a well-established ecosystem.
-Negative consequences: an extra build dependency and a bundling step in the
-build pipeline.</p>
+<p>Chosen option: "Use Swift", because it shares the language and tooling of the
+iOS app, reads and writes Xcode project formats naturally, and compiles to a
+native macOS binary with the already installed Xcode toolchain. Positive
+consequences: Xcode-specific logic can be prototyped or shared with app code,
+and no extra toolchain is needed on macOS. Negative consequences: the resulting
+tools are macOS-only unless the cross platform Swift toolchain is also
+installed.</p>
 </div>
 <div class="paragraph">
-<p>esbuild is the best option for now, because it covers the current bundling
-needs with almost no configuration. If "Use Rolldown" was chosen, the project
-would adopt a newer, less mature tool before it is needed. If "Write a custom
-concatenation script" was chosen, module resolution and minification would be
-reimplemented by hand. Revisit whether Rolldown can replace esbuild when the
-Jasonelle project is more mature.</p>
+<p>Swift is the best option for Xcode related tooling, because it is the native
+language of Apple platforms and integrates directly with Xcode and
+<code>xcodebuild</code>. If Go was chosen, Xcode project formats would need to be
+reimplemented. If Bash scripts were used, the logic would be harder to test and
+maintain as it grows.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="0000005-use-fastlane-for-app-store-and-play-store-automation.html">Use Fastlane for App Store and Play Store automation</a></span>
-  <span class="next"><a href="0000007-use-antora-for-technical-project-documentation.html">Use Antora for technical project documentation</a></span>
+  <span class="prev"><a href="0000008-use-golang-for-cross-platform-tools.html">Use Go for cross platform tools</a></span>
+  <span class="next"><a href="../tools/icon.html">Icon Generator</a></span>
 </nav>
 </article>
   </div>
