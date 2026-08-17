@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Fastlane Generator :: Jasonelle Documentation</title>
-    <link rel="canonical" href="https://jasonelle.com/docs/tools/fastlane.html">
+    <title>JSONC Merger :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/tools/jsonc.html">
+    <link rel="prev" href="icon.html">
+    <link rel="next" href="esbuild.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
@@ -88,7 +90,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="icon.html">Icon Generator</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="jsonc.html">JSONC Merger</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -120,76 +122,169 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Jasonelle Documentation</a></li>
-    <li><a href="fastlane.html">Fastlane Generator</a></li>
+    <li>Tools</li>
+    <li><a href="jsonc.html">JSONC Merger</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///antora/antora/modules/tools/pages/fastlane.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/tools/pages/jsonc.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Fastlane Generator</h1>
+<h1 class="page">JSONC Merger</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>fastlane-gen</code> tool generates standard Ruby-based Fastlane files
-(a Fastfile, Appfile, and Deliverfile/Supplyfile) to each build directory
-<code>build/xcode</code> and <code>build/android</code>. This way, developers familiar with Fastlane
-can easily inspect, debug, and run standard fastlane release commands, rather
-than relying on a giant, hard-to-read bash script with dozens of CLI arguments.</p>
+<p>A <a href="https://go.dev">Go</a> tool that merges multiple JSONC files into a single JSONC
+file. The first file is the base and each subsequent file overrides it,
+cascading style.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="what-is-fastlane"><a class="anchor" href="#what-is-fastlane"></a>What is Fastlane?</h2>
+<h2 id="requirements"><a class="anchor" href="#requirements"></a>Requirements</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://go.dev">Go</a> 1.26 or newer (only for compilation. <code>dist/</code> directory
+contains binaries).</p>
+</li>
+<li>
+<p><a href="https://taskfile.dev">go-task</a> (optional, only for the tasks below).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage"><a class="anchor" href="#usage"></a>Usage</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://fastlane.tools/">Fastlane</a> is an open source platform aimed at
-simplifying Android and iOS deployment. It automates every aspect of the
-development and release workflow so a single command can run a lane. The most
-common use cases are:</p>
+<p>From <code>tools/jsonc/src</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">go run . --output out.jsonc base.jsonc override1.jsonc override2.jsonc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>-output</code> and at least one input file are required. The first input is the base
+file. Each following file is deep-merged over the previous one, so later files
+win on conflicts.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="merge-semantics"><a class="anchor" href="#merge-semantics"></a>Merge semantics</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Nested objects merge recursively.</p>
+</li>
+<li>
+<p>Arrays and scalar values are replaced wholesale by later files.</p>
+</li>
+<li>
+<p>JSONC comments (<code>//</code> and <code>/* */</code>) and trailing commas are allowed in the
+inputs and stripped during parsing. The output is plain JSON (which is valid
+JSONC) with 2-space indentation.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="example"><a class="anchor" href="#example"></a>Example</h3>
+<div class="paragraph">
+<p>Base:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "colors": { "bg": "red", "accent": "blue" },
+  "sizes": [1, 2],
+  "name": "base"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Override:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "colors": { "accent": "green", "fg": "white" },
+  "sizes": [9]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Result:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "colors": { "accent": "green", "bg": "red", "fg": "white" },
+  "sizes": [9],
+  "name": "base"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>colors</code> merged recursively, <code>sizes</code> was replaced, and keys only present in the
+base (<code>name</code>) are preserved.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="tasks"><a class="anchor" href="#tasks"></a>Tasks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>From the repository root:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Automate screenshots</strong>: automatically capture localized screenshots for each
-language and device the app supports, configured once and stored so anyone on
-the team can regenerate them.</p>
+<p><code>task jsonc.build</code> (<code>jb</code>): build the <code>tools/jsonc</code> binary.</p>
 </li>
 <li>
-<p><strong>Beta deployment</strong>: distribute beta builds to testers, automating incrementing
-the build version, code signing, building, uploading, and setting a
-changelog. Supports TestFlight, Play, and other beta services.</p>
-</li>
-<li>
-<p><strong>App Store deployment</strong>: create a repeatable workflow to build, upload, and
-distribute new releases to the store, including app metadata, screenshots,
-and submitting new versions for review.</p>
-</li>
-<li>
-<p><strong>Code signing</strong>: store signing identities and profiles in an encrypted git
-repository so every developer can reproduce signed builds on any machine.</p>
-</li>
-<li>
-<p><strong>Continuous Integration</strong>: integrates with Jenkins, GitHub Actions, GitLab,
-CircleCI, Bitrise, and other CI services.</p>
+<p><code>task jsonc</code> (<code>j</code>): merge <code>lib/common/config/config.jsonc</code> (base) with
+<code>lib/xcode/config/config.jsonc</code> (overrides) into <code>build/xcode/config.jsonc</code>.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Workflows are defined as <strong>lanes</strong> in a <code>Fastfile</code>. Each lane chains actions
-such as <code>increment_build_number</code>, <code>build_app</code>, <code>capture_screenshots</code>,
-<code>upload_to_testflight</code>, and <code>upload_to_app_store</code>, and can be extended with
-hundreds of community-built <a href="https://docs.fastlane.tools/actions/">actions</a> and
-<a href="https://docs.fastlane.tools/plugins/available-plugins/">plugins</a>.</p>
+<p>From <code>tools/jsonc/src</code>:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>task build</code> (<code>b</code>): cross-compile binaries into <code>../dist/</code> for macOS
+(amd64/arm64), Linux (amd64) and Windows (amd64).</p>
+</li>
+<li>
+<p><code>task test</code> (<code>t</code>): run the test suite.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="release-binaries"><a class="anchor" href="#release-binaries"></a>Release binaries</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>See the <a href="https://docs.fastlane.tools/">Fastlane documentation</a> for details.</p>
+<p><code>dist/</code> contains prebuilt binaries for each platform, named
+<code>jsonc-&lt;os&gt;-&lt;arch&gt;</code> (Windows uses <code>.exe</code>).</p>
 </div>
 </div>
 </div>
+<nav class="pagination">
+  <span class="prev"><a href="icon.html">Icon Generator</a></span>
+  <span class="next"><a href="esbuild.html">CLI esbuild</a></span>
+</nav>
 </article>
   </div>
 </main>

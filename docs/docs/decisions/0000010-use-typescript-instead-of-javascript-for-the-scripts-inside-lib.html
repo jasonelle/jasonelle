@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Use Antora for technical project documentation :: Jasonelle Documentation</title>
-    <link rel="canonical" href="https://jasonelle.com/docs/decisions/0000007-use-antora-for-technical-project-documentation.html">
-    <link rel="prev" href="0000006-use-esbuild-to-bundle-js-files-for-the-webview.html">
-    <link rel="next" href="0000008-use-golang-for-cross-platform-tools.html">
+    <title>Use TypeScript instead of JavaScript for the scripts inside lib :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/decisions/0000010-use-typescript-instead-of-javascript-for-the-scripts-inside-lib.html">
+    <link rel="prev" href="0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.html">
+    <link rel="next" href="../tools/icon.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
@@ -69,7 +69,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000006-use-esbuild-to-bundle-js-files-for-the-webview.html">Use esbuild to bundle JS files for the webview</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000007-use-antora-for-technical-project-documentation.html">Use Antora for technical project documentation</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -78,7 +78,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.html">Add Swift for Xcode related command line tools instead of Go</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="0000010-use-typescript-instead-of-javascript-for-the-scripts-inside-lib.html">Use TypeScript instead of JavaScript for the scripts inside lib</a>
   </li>
 </ul>
@@ -123,23 +123,23 @@
   <ul>
     <li><a href="../index.html">Jasonelle Documentation</a></li>
     <li>Arquitecture Decision Records</li>
-    <li><a href="0000007-use-antora-for-technical-project-documentation.html">Use Antora for technical project documentation</a></li>
+    <li><a href="0000010-use-typescript-instead-of-javascript-for-the-scripts-inside-lib.html">Use TypeScript instead of JavaScript for the scripts inside lib</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///antora/antora/modules/decisions/pages/0000007-use-antora-for-technical-project-documentation.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/decisions/pages/0000010-use-typescript-instead-of-javascript-for-the-scripts-inside-lib.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Use Antora for technical project documentation</h1>
+<h1 class="page">Use TypeScript instead of JavaScript for the scripts inside lib</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>id: 0000007</p>
+<p>id: 0000010</p>
 </li>
 </ul>
 </div>
@@ -151,7 +151,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Accepted (2026-08-15) by: @clsource</p>
+<p>Accepted (2026-08-16) by: @clsource</p>
 </li>
 </ul>
 </div>
@@ -161,11 +161,9 @@
 <h2 id="context-and-problem-statement"><a class="anchor" href="#context-and-problem-statement"></a>Context and Problem Statement</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Jasonelle needs structured technical documentation for its website, iOS, and
-Android components that can be authored in one place and published consistently.
-Multiple sources produce prose that lives next to the code, but publishing it as
-a browsable site currently needs manual assembly. Which tool should generate the
-project documentation?</p>
+<p>JavaScript files in <code>lib/*/scripts/</code> lack type safety and modern module
+syntax. Should the project migrate these scripts to TypeScript before they
+grow in complexity?</p>
 </div>
 </div>
 </div>
@@ -175,13 +173,10 @@ project documentation?</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Use <a href="https://docs.antora.org/antora/latest/">Antora</a></p>
+<p>Keep plain JavaScript</p>
 </li>
 <li>
-<p>Use a static site generator such as Hugo or Jekyll</p>
-</li>
-<li>
-<p>Write documentation as Markdown files with no generation step</p>
+<p>Migrate to TypeScript</p>
 </li>
 </ul>
 </div>
@@ -191,25 +186,17 @@ project documentation?</p>
 <h2 id="decision-outcome"><a class="anchor" href="#decision-outcome"></a>Decision Outcome</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Chosen option: "Use Antora", because it is built for multi-repository technical
-documentation, keeps content in AsciiDoc alongside the code, and generates a
-versioned site with a built-in navigation and UI. Positive consequences:
-documentation stays close to the sources, builds are repeatable via the playbook
-in CI, and it supports cross-component xrefs. Negative consequences: an extra
-build step and a containerized toolchain to maintain.</p>
-</div>
-<div class="paragraph">
-<p>Antora is the best option, because it is designed for exactly this use case and
-its <code>antora-playbook.yml</code> centralizes content, UI, and output configuration. If
-a generic static site generator was chosen, documentation structure and
-versioning would need custom configuration. If documentation was written with no
-generation step, a browsable site would not be produced automatically.</p>
+<p>Chosen option: "Migrate to TypeScript", because it adds type checking
+with zero runtime cost (esbuild strips types at bundle time). Positive
+consequences: better editor support, catches import/type errors early,
+enables modern <code>import</code>/<code>export</code> syntax. Negative consequences: requires
+a tsconfig for the bundler, minor tooling overhead.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="0000006-use-esbuild-to-bundle-js-files-for-the-webview.html">Use esbuild to bundle JS files for the webview</a></span>
-  <span class="next"><a href="0000008-use-golang-for-cross-platform-tools.html">Use Go for cross platform tools</a></span>
+  <span class="prev"><a href="0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.html">Add Swift for Xcode related command line tools instead of Go</a></span>
+  <span class="next"><a href="../tools/icon.html">Icon Generator</a></span>
 </nav>
 </article>
   </div>

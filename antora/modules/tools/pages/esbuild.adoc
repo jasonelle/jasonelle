@@ -1,0 +1,50 @@
+= CLI esbuild
+
+Vendored https://esbuild.github.io[esbuild] compiles TypeScript scripts into a
+single `webview.js` for each platform (Xcode and Android).
+
+Scripts live in `lib/*/scripts/`. The common scripts (`lib/common/scripts/`)
+are copied first, then platform-specific scripts (`lib/android/scripts/` or
+`lib/xcode/scripts/`) are copied on top, so platform files override common
+ones. esbuild bundles everything starting from `main.ts` into a single file.
+
+== Requirements
+
+* https://taskfile.dev[go-task] (for the tasks below).
+
+The esbuild binary is vendored in `tools/vendor/esbuild/dist/` and
+auto-selected per OS and architecture.
+
+== Script structure
+
+[source]
+----
+lib/common/scripts/       # shared TypeScript, included in both platforms
+lib/android/scripts/      # Android overrides (copied over common)
+lib/xcode/scripts/        # Xcode overrides (copied over common)
+----
+
+TypeScript config for the bundler: `lib/common/config/bundler.json`.
+
+== Output
+
+* Xcode: `build/xcode/webview.js`
+* Android: `build/android/webview.js`
+
+A banner comment is prepended to mark the file as auto-generated.
+
+== Tasks
+
+From the repository root:
+
+* `task esbuild` (`es`): bundle scripts for both Xcode and Android.
+* `task esbuild.xcode` (`esx`): bundle scripts for Xcode only.
+* `task esbuild.android` (`esa`): bundle scripts for Android only.
+* `task esbuild.install` (`esi`): re-download the vendored esbuild binary.
+
+== Bundle flags
+
+* `--bundle` -- resolves imports and produces a single output file.
+* `--target=safari11` -- output compatible with Safari 11+ (WKWebView).
+* `--analyze` -- prints a bundle size breakdown.
+* `--tsconfig` -- uses `lib/common/config/bundler.json` for module resolution.

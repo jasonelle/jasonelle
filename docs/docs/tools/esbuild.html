@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Fastlane Generator :: Jasonelle Documentation</title>
-    <link rel="canonical" href="https://jasonelle.com/docs/tools/fastlane.html">
+    <title>CLI esbuild :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/tools/esbuild.html">
+    <link rel="prev" href="jsonc.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
@@ -91,7 +92,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="jsonc.html">JSONC Merger</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="esbuild.html">CLI esbuild</a>
   </li>
 </ul>
@@ -120,76 +121,129 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Jasonelle Documentation</a></li>
-    <li><a href="fastlane.html">Fastlane Generator</a></li>
+    <li>Tools</li>
+    <li><a href="esbuild.html">CLI esbuild</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///antora/antora/modules/tools/pages/fastlane.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/tools/pages/esbuild.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Fastlane Generator</h1>
+<h1 class="page">CLI esbuild</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>fastlane-gen</code> tool generates standard Ruby-based Fastlane files
-(a Fastfile, Appfile, and Deliverfile/Supplyfile) to each build directory
-<code>build/xcode</code> and <code>build/android</code>. This way, developers familiar with Fastlane
-can easily inspect, debug, and run standard fastlane release commands, rather
-than relying on a giant, hard-to-read bash script with dozens of CLI arguments.</p>
+<p>Vendored <a href="https://esbuild.github.io">esbuild</a> compiles TypeScript scripts into a
+single <code>webview.js</code> for each platform (Xcode and Android).</p>
+</div>
+<div class="paragraph">
+<p>Scripts live in <code>lib/*/scripts/</code>. The common scripts (<code>lib/common/scripts/</code>)
+are copied first, then platform-specific scripts (<code>lib/android/scripts/</code> or
+<code>lib/xcode/scripts/</code>) are copied on top, so platform files override common
+ones. esbuild bundles everything starting from <code>main.ts</code> into a single file.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="what-is-fastlane"><a class="anchor" href="#what-is-fastlane"></a>What is Fastlane?</h2>
+<h2 id="requirements"><a class="anchor" href="#requirements"></a>Requirements</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p><a href="https://fastlane.tools/">Fastlane</a> is an open source platform aimed at
-simplifying Android and iOS deployment. It automates every aspect of the
-development and release workflow so a single command can run a lane. The most
-common use cases are:</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Automate screenshots</strong>: automatically capture localized screenshots for each
-language and device the app supports, configured once and stored so anyone on
-the team can regenerate them.</p>
-</li>
-<li>
-<p><strong>Beta deployment</strong>: distribute beta builds to testers, automating incrementing
-the build version, code signing, building, uploading, and setting a
-changelog. Supports TestFlight, Play, and other beta services.</p>
-</li>
-<li>
-<p><strong>App Store deployment</strong>: create a repeatable workflow to build, upload, and
-distribute new releases to the store, including app metadata, screenshots,
-and submitting new versions for review.</p>
-</li>
-<li>
-<p><strong>Code signing</strong>: store signing identities and profiles in an encrypted git
-repository so every developer can reproduce signed builds on any machine.</p>
-</li>
-<li>
-<p><strong>Continuous Integration</strong>: integrates with Jenkins, GitHub Actions, GitLab,
-CircleCI, Bitrise, and other CI services.</p>
+<p><a href="https://taskfile.dev">go-task</a> (for the tasks below).</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Workflows are defined as <strong>lanes</strong> in a <code>Fastfile</code>. Each lane chains actions
-such as <code>increment_build_number</code>, <code>build_app</code>, <code>capture_screenshots</code>,
-<code>upload_to_testflight</code>, and <code>upload_to_app_store</code>, and can be extended with
-hundreds of community-built <a href="https://docs.fastlane.tools/actions/">actions</a> and
-<a href="https://docs.fastlane.tools/plugins/available-plugins/">plugins</a>.</p>
+<p>The esbuild binary is vendored in <code>tools/vendor/esbuild/dist/</code> and
+auto-selected per OS and architecture.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="script-structure"><a class="anchor" href="#script-structure"></a>Script structure</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">lib/common/scripts/       # shared TypeScript, included in both platforms
+lib/android/scripts/      # Android overrides (copied over common)
+lib/xcode/scripts/        # Xcode overrides (copied over common)</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>See the <a href="https://docs.fastlane.tools/">Fastlane documentation</a> for details.</p>
+<p>TypeScript config for the bundler: <code>lib/common/config/bundler.json</code>.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="output"><a class="anchor" href="#output"></a>Output</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Xcode: <code>build/xcode/webview.js</code></p>
+</li>
+<li>
+<p>Android: <code>build/android/webview.js</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A banner comment is prepended to mark the file as auto-generated.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="tasks"><a class="anchor" href="#tasks"></a>Tasks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>From the repository root:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>task esbuild</code> (<code>es</code>): bundle scripts for both Xcode and Android.</p>
+</li>
+<li>
+<p><code>task esbuild.xcode</code> (<code>esx</code>): bundle scripts for Xcode only.</p>
+</li>
+<li>
+<p><code>task esbuild.android</code> (<code>esa</code>): bundle scripts for Android only.</p>
+</li>
+<li>
+<p><code>task esbuild.install</code> (<code>esi</code>): re-download the vendored esbuild binary.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="bundle-flags"><a class="anchor" href="#bundle-flags"></a>Bundle flags</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>--bundle</code>&#8201;&#8212;&#8201;resolves imports and produces a single output file.</p>
+</li>
+<li>
+<p><code>--target=safari11</code>&#8201;&#8212;&#8201;output compatible with Safari 11+ (WKWebView).</p>
+</li>
+<li>
+<p><code>--analyze</code>&#8201;&#8212;&#8201;prints a bundle size breakdown.</p>
+</li>
+<li>
+<p><code>--tsconfig</code>&#8201;&#8212;&#8201;uses <code>lib/common/config/bundler.json</code> for module resolution.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="jsonc.html">JSONC Merger</a></span>
+</nav>
 </article>
   </div>
 </main>
