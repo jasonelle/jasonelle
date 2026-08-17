@@ -1,7 +1,7 @@
-----
-desc: Creates a new rule inside .agents/rules directory
+---
+description: Creates a new rule inside .agents/rules directory
 agent: plan
-----
+---
 
 Create a new markdown file inside .agents/rules called $1 that outlines
 the coding standards and rules to follow for this project using the information
