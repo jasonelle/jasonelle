@@ -144,30 +144,34 @@
 <h2 id="architecture-overview"><a class="anchor" href="#architecture-overview"></a>Architecture Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The system is designed around a strictly separated directory structure, a modular CLI approach, and a cascading asset injection strategy.</p>
+<p>The system is designed around a cascading asset injection strategy, a modular
+CLI approach, and a strictly separated directory structure.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>System Requirements</strong>: Xcode generation requires an Apple Silicon (ARM) Mac and targets Xcode 26 or higher. Android generation is cross-platform with Android Studio Quail 2026.1 or higher.</p>
+<p><strong>Cascading Configuration &amp; Assets</strong>: <code>lib/common/</code> is the base layer. Platform
+directories (<code>lib/xcode/</code>, <code>lib/android/</code>) override or extend it — same path,
+platform wins.</p>
 </li>
 <li>
-<p><strong>Main Orchestrator (<code>gen</code>)</strong>: A Go-based CLI tool responsible for orchestrating the generation process. It merges cascading configurations from <code>lib/</code> and delegates tasks to platform-specific CLIs.</p>
+<p><strong>Native File Overrides</strong>: Placing a file in <code>lib/&lt;platform&gt;/sources/</code>
+automatically replaces the corresponding file from <code>sources/&lt;platform&gt;/</code>
+during the build.</p>
 </li>
 <li>
-<p><strong>Platform CLIs</strong>: <code>android</code> (Go) for Android projects and <code>xcode</code> (Swift) for Xcode projects.</p>
+<p><strong>Store Metadata</strong>: <code>config/store.jsonc</code> and <code>.env</code> manage store metadata and
+secrets. A Fastlane generator parses these into <code>build/xcode</code> and
+<code>build/android</code>.</p>
 </li>
 <li>
-<p><strong>Cascading Configuration &amp; Assets</strong>: A layered asset injection system where <code>lib/common/</code> serves as a base, and platform directories (<code>lib/xcode/</code>, <code>lib/android/</code>) override or extend those assets.</p>
+<p><strong>TypeScript Bundling</strong>: <code>esbuild</code> merges TypeScript files from <code>lib/common</code>
+and <code>lib/&lt;platform&gt;</code> into a single <code>webview.js</code>. Common scripts are copied
+first, platform scripts overlay on top.</p>
 </li>
 <li>
-<p><strong>Native File Overrides</strong>: Placing a file in <code>lib/&lt;platform&gt;/sources/</code> will automatically overwrite the base template from <code>sources/&lt;platform&gt;/</code> during the build.</p>
-</li>
-<li>
-<p><strong>Store Metadata Handling</strong>: A <code>store.jsonc</code> and <code>.env</code> file manage store metadata and secrets. A dedicated <code>fastlane</code> tool parses these to output Fastlane-ready files into <code>build/xcode</code> and <code>build/android</code>.</p>
-</li>
-<li>
-<p><strong>JavaScript Bundling</strong>: Uses <code>esbuild</code> to merge Javascript files from plugins, <code>lib/common</code>, and <code>lib/&lt;platform&gt;</code> into a single <code>webview.js</code> asset while preserving the cascading execution order via dynamically generated entry points.</p>
+<p><strong>Platform CLIs</strong>: <code>android</code> (Go) handles Android project setup, <code>xcode</code>
+(Swift) handles Xcode project setup. A <code>gen</code> orchestrator coordinates them.</p>
 </li>
 </ol>
 </div>
@@ -176,9 +180,14 @@
 <div class="sect1">
 <h2 id="c4-architecture-diagram"><a class="anchor" href="#c4-architecture-diagram"></a>C4 Architecture Diagram</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The diagram below shows the target architecture. Some components (e.g., <code>gen</code>,
+<code>android CLI</code>, <code>fastlane gen</code>) are planned but not yet implemented as standalone
+tools.</p>
+</div>
 <div class="imageblock kroki">
 <div class="content">
-<img src="_images/c4_architecture-41d3a5b551c118bdd141b17dfd78a486558b6d70.png" alt="c4_architecture">
+<img src="_images/c4_architecture-ad0b6be0d141f0ab9ec5481309fc55ac4bb4a99d.png" alt="c4_architecture">
 </div>
 </div>
 </div>
@@ -186,9 +195,12 @@
 <div class="sect1">
 <h2 id="architecture-flow-diagram"><a class="anchor" href="#architecture-flow-diagram"></a>Architecture Flow Diagram</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The diagram below shows the target data flow through the framework.</p>
+</div>
 <div class="imageblock kroki">
 <div class="content">
-<img src="_images/architecture_flow-faf6fd65bb37cb396ac83280fa7d198ff9b7c80c.png" alt="architecture_flow">
+<img src="_images/architecture_flow-75b449fa29d937a18937b1b7df3f6c50ea3f2a48.png" alt="architecture_flow">
 </div>
 </div>
 </div>
@@ -203,9 +215,16 @@
 </li>
 <li>
 <p><code>sources/</code>: Base project templates.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sources/xcode/</code>: Xcode project template (Swift, storyboards, workspace).</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><code>lib/</code>: User workspace for configurations.</p>
+<p><code>lib/</code>: User workspace for configurations and overrides.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -222,13 +241,16 @@
 <p><code>config/store.jsonc</code>: Shared app store metadata.</p>
 </li>
 <li>
-<p><code>assets/1024x1024.png</code>: Common assets for stores (Playstore and AppStore), like High-res base icon.</p>
+<p><code>config/bundler.json</code>: TypeScript config for esbuild.</p>
+</li>
+<li>
+<p><code>assets/icon/1024x1024.png</code>: Base icon for store listings.</p>
 </li>
 <li>
 <p><code>resources/</code>: Raw files copied to the app bundle.</p>
 </li>
 <li>
-<p><code>scripts/main.js</code>: Base JavaScript bridge logic.</p>
+<p><code>scripts/main.ts</code>: Base TypeScript entry point for the webview.</p>
 </li>
 </ul>
 </div>
@@ -244,7 +266,7 @@
 <p><code>config/store.jsonc</code>: Play Store specific overrides.</p>
 </li>
 <li>
-<p><code>scripts/main.js</code>: Android JavaScript overrides.</p>
+<p><code>scripts/main.ts</code>: Android TypeScript overrides.</p>
 </li>
 <li>
 <p><code>sources/</code>: Native file replacements (e.g., custom <code>MainActivity.kt</code>).</p>
@@ -253,7 +275,7 @@
 <p><code>assets/</code>: Play Store specific assets.</p>
 </li>
 <li>
-<p><code>resources/</code>: Raw files copied to the android app bundle.</p>
+<p><code>resources/</code>: Raw files copied to the Android app bundle.</p>
 </li>
 </ul>
 </div>
@@ -269,7 +291,7 @@
 <p><code>config/store.jsonc</code>: App Store specific overrides.</p>
 </li>
 <li>
-<p><code>scripts/main.js</code>: Xcode JavaScript overrides.</p>
+<p><code>scripts/main.ts</code>: Xcode TypeScript overrides.</p>
 </li>
 <li>
 <p><code>sources/</code>: Native file replacements (e.g., custom <code>ContentView.swift</code>).</p>
@@ -278,51 +300,42 @@
 <p><code>assets/</code>: App Store specific assets.</p>
 </li>
 <li>
-<p><code>resources/</code>: Raw files copied to the xcode app bundle.</p>
+<p><code>resources/</code>: Raw files copied to the Xcode app bundle.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>lib/plugins/</code>: User-provided custom plugins.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>tools/</code>: CLI Tools.</p>
+<p><code>tools/</code>: CLI tools and vendored binaries.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>tools/gen/</code>: Main orchestrator CLI source code (Go).</p>
+<p><code>tools/icon/</code>: Generates app icons from a single 1024x1024 PNG (Go).</p>
 </li>
 <li>
-<p><code>tools/android/</code>: Android configuration CLI source code (Go).</p>
+<p><code>tools/jsonc/</code>: Merges cascading JSONC config files (Go).</p>
 </li>
 <li>
-<p><code>tools/xcode/</code>: Xcode configuration CLI source code (Swift).</p>
+<p><code>tools/xcode/</code>: Xcode utility scripts (Swift).</p>
 </li>
 <li>
-<p><code>tools/fastlane/</code>: Generates Fastlane automation files (Go).</p>
-</li>
-<li>
-<p><code>tools/icon/</code>: Utility for generating app icons (Go).</p>
-</li>
-<li>
-<p><code>tools/vendor/esbuild/</code>: Utility for bundling JavaScript (Vendored).</p>
+<p><code>tools/vendor/esbuild/</code>: Vendored esbuild binary for TypeScript bundling.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>build/</code>: The output destination.</p>
+<p><code>build/</code>: Generated output (git-ignored).</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>build/xcode/</code>: The generated Xcode project (with fastlane files).</p>
+<p><code>build/xcode/</code>: Generated Xcode project and Fastlane files.</p>
 </li>
 <li>
-<p><code>build/android/</code>: The generated Android Studio project (with fastlane files).</p>
+<p><code>build/android/</code>: Generated Android Studio project and Fastlane files.</p>
 </li>
 </ul>
 </div>
