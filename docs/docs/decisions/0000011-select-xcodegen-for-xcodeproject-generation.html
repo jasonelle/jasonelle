@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Use Fastlane for App Store and Play Store automation :: Jasonelle Documentation</title>
-    <link rel="canonical" href="https://jasonelle.com/docs/decisions/0000005-use-fastlane-for-app-store-and-play-store-automation.html">
-    <link rel="prev" href="0000004-use-taskfile-for-running-common-commands.html">
-    <link rel="next" href="0000006-use-esbuild-to-bundle-js-files-for-the-webview.html">
+    <title>Select XcodeGen for Xcode Project Generation :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/decisions/0000011-select-xcodegen-for-xcodeproject-generation.html">
+    <link rel="prev" href="0000010-use-typescript-instead-of-javascript-for-the-scripts-inside-lib.html">
+    <link rel="next" href="../tools/icon.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
@@ -63,7 +63,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000004-use-taskfile-for-running-common-commands.html">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000005-use-fastlane-for-app-store-and-play-store-automation.html">Use Fastlane for App Store and Play Store automation</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -81,7 +81,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000010-use-typescript-instead-of-javascript-for-the-scripts-inside-lib.html">Use TypeScript instead of JavaScript for the scripts inside lib</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="0000011-select-xcodegen-for-xcodeproject-generation.html">Select XcodeGen for Xcode Project Generation</a>
   </li>
 </ul>
@@ -129,23 +129,23 @@
   <ul>
     <li><a href="../index.html">Jasonelle Documentation</a></li>
     <li>Arquitecture Decision Records</li>
-    <li><a href="0000005-use-fastlane-for-app-store-and-play-store-automation.html">Use Fastlane for App Store and Play Store automation</a></li>
+    <li><a href="0000011-select-xcodegen-for-xcodeproject-generation.html">Select XcodeGen for Xcode Project Generation</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///antora/antora/modules/decisions/pages/0000005-use-fastlane-for-app-store-and-play-store-automation.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/decisions/pages/0000011-select-xcodegen-for-xcodeproject-generation.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Use Fastlane for App Store and Play Store automation</h1>
+<h1 class="page">Select XcodeGen for Xcode Project Generation</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>id: 0000005</p>
+<p>id: 0000011</p>
 </li>
 </ul>
 </div>
@@ -157,19 +157,9 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Accepted (2026-08-15) by: @clsource</p>
+<p>Accepted (2026-08-17) by: @clsource</p>
 </li>
 </ul>
-</div>
-<div class="sect2">
-<h3 id="history"><a class="anchor" href="#history"></a>History</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Proposed (2026-08-15) by: @clsource</p>
-</li>
-</ul>
-</div>
 </div>
 </div>
 </div>
@@ -177,11 +167,7 @@
 <h2 id="context-and-problem-statement"><a class="anchor" href="#context-and-problem-statement"></a>Context and Problem Statement</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Jasonelle distributes iOS and Android apps through the App Store and Play
-Store, each with its own signing, metadata, screenshot, and release process.
-Releasing to both stores by hand means repetitive, error-prone steps repeated
-for every build. How should App Store and Play Store release automation be
-handled?</p>
+<p><a href="0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.html" class="xref page">ADR-0000009</a> chose Swift for Xcode related CLI tools. This ADR refines that decision by selecting XcodeGen for project generation. How should the project generation be handled?</p>
 </div>
 </div>
 </div>
@@ -191,13 +177,13 @@ handled?</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Use <a href="https://fastlane.tools/">Fastlane</a> for App Store and Play Store automation</p>
+<p><a href="https://github.com/yonaskolb/xcodegen">XcodeGen</a></p>
 </li>
 <li>
-<p>Build custom release scripts per platform</p>
+<p><a href="https://github.com/tuist/tuist">Tuist</a></p>
 </li>
 <li>
-<p>Release manually using Xcode and Android Studio</p>
+<p><a href="https://github.com/igor-makarov/xcake">Xcake</a></p>
 </li>
 </ul>
 </div>
@@ -207,26 +193,26 @@ handled?</p>
 <h2 id="decision-outcome"><a class="anchor" href="#decision-outcome"></a>Decision Outcome</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Chosen option: "Use Fastlane for App Store and Play Store automation", because
-a single tool abstracts the platform specific release flows: <code>Fastfile</code> lanes
-handle signing, building, screenshots, metadata upload, and submission for both
-the App Store (via deliver, gym, sigh, pilot) and the Play Store (via supply).
-Positive consequences: one definition of the release process, repeatable and
-reviewable lanes in CI, and reduced human error. Negative consequences:
-additional dependency and Fastlane configuration to learn and maintain.</p>
+<p>Chosen option: "XcodeGen", because it is mature, widely adopted, uses a simple YAML-based configuration (<code>Project.yml</code>), and integrates well with CLI-driven workflows. Positive consequences: declarative project definitions, reproducible builds, easy templating via plugins. Negative consequences: none significant.</p>
 </div>
 <div class="paragraph">
-<p>Fastlane is the best option, because it removes the per-store boilerplate while
-keeping the workflow declarative and testable in CI. If "Build custom release
-scripts" was chosen, each store&#8217;s signing and upload logic would be reimplemented
-and drift apart. If "Release manually" was chosen, every release would depend on
-a developer&#8217;s machine and take significant manual time.</p>
+<p>XcodeGen is the best fit for our needs. Tuist is powerful but heavier and introduces its own Swift DSL, adding complexity. Xcake is less maintained and has a smaller community.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="diagram"><a class="anchor" href="#diagram"></a>Diagram</h2>
+<div class="sectionbody">
+<div class="imageblock kroki">
+<div class="content">
+<img src="_images/diag-024b1b6731571176fb90d0811a4eef3b3a136789.svg" alt="Diagram">
+</div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="0000004-use-taskfile-for-running-common-commands.html">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</a></span>
-  <span class="next"><a href="0000006-use-esbuild-to-bundle-js-files-for-the-webview.html">Use esbuild to bundle JS files for the webview</a></span>
+  <span class="prev"><a href="0000010-use-typescript-instead-of-javascript-for-the-scripts-inside-lib.html">Use TypeScript instead of JavaScript for the scripts inside lib</a></span>
+  <span class="next"><a href="../tools/icon.html">Icon Generator</a></span>
 </nav>
 </article>
   </div>

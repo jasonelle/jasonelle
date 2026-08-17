@@ -4,20 +4,24 @@
 
 == Status
 
+- Superseded by xref:0000011-select-xcodegen-for-xcodeproject-generation.adoc[ADR-0000011] (2026-08-17) by: @clsource
+
+=== History
+
 - Accepted (2026-08-16) by: @clsource
 
 == Context and Problem Statement
 
 Some helper tools must inspect or modify Xcode projects, such as reading the
 project structure, updating asset catalogs, or driving `xcodebuild`. While
-ADR-0000008 chose Go for cross platform tools, Go cannot reuse the iOS codebase
+xref:0000008-use-golang-for-cross-platform-tools.adoc[ADR-0000008] chose Go for cross platform tools, Go cannot reuse the iOS codebase
 and must reimplement Xcode-specific formats. Which language should be used for
 Xcode related command line tools?
 
 == Considered Options
 
 * Use https://www.swift.org/[Swift]
-* Use Go (per ADR-0000008)
+* Use Go (per xref:0000008-use-golang-for-cross-platform-tools.adoc[ADR-0000008])
 * Use Bash scripts
 
 == Decision Outcome
@@ -35,3 +39,5 @@ language of Apple platforms and integrates directly with Xcode and
 `xcodebuild`. If Go was chosen, Xcode project formats would need to be
 reimplemented. If Bash scripts were used, the logic would be harder to test and
 maintain as it grows.
+
+NOTE: Consider using Swift directly only if XcodeGen (xref:0000011-select-xcodegen-for-xcodeproject-generation.adoc[ADR-0000011]) cannot handle the required project generation task.
