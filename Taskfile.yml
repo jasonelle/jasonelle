@@ -162,45 +162,31 @@ tasks:
     desc: Generate tools/jsonc binary
     cmds:
       - task build
-  esbuild:
+  bundler.build:
     aliases:
-      - es
-    desc: Runs esbuild to compile a single webview.js for Xcode and Android
+      - bb
+    dir: tools/bundler/src
+    desc: Build tools/bundler binary
     cmds:
-      - task esbuild.xcode
-      - task esbuild.android
-  esbuild.xcode:
+      - task build
+  bundler.xcode:
     aliases:
-      - esx
+      - bx
     desc: Runs esbuild to compile a single webview.js for Xcode
     cmds:
-      - rm -rf build/xcode/js
-      - rm -rf build/xcode/scripts
-      - mkdir -p build/xcode/js
-      - mkdir -p build/xcode/scripts
-      - cp -R lib/common/scripts/* build/xcode/scripts
-      - cp -R lib/xcode/scripts/* build/xcode/scripts
-      - tools/vendor/esbuild/dist/esbuild-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} "build/xcode/scripts/main.ts" --outdir="build/xcode/js" --bundle --target=safari11 --analyze --tsconfig="lib/common/config/bundler.json" --banner:js="/*--automatically-generated-by-esbuild-jasonelle--*/"
-      - mv build/xcode/js/main.js build/xcode/webview.js
-      - rm -rf build/xcode/js build/xcode/scripts
-      - mkdir -p build/xcode/scripts
-      - mv build/xcode/webview.js build/xcode/scripts/
-  esbuild.android:
+      - 'tools/bundler/dist/bundler-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --platform xcode --common lib/common/scripts --platform-dir lib/xcode/scripts --esbuild tools/vendor/esbuild/dist/esbuild-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --tsconfig lib/common/config/bundler.json --output build/xcode/scripts/webview.js'
+  bundler.android:
     aliases:
-      - esa
+      - ba
     desc: Runs esbuild to compile a single webview.js for Android
     cmds:
-      - rm -rf build/android/js
-      - rm -rf build/android/scripts
-      - mkdir -p build/android/js
-      - mkdir -p build/android/scripts
-      - cp -R lib/common/scripts/* build/android/scripts
-      - cp -R lib/android/scripts/* build/android/scripts
-      - tools/vendor/esbuild/dist/esbuild-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} "build/android/scripts/main.ts" --outdir="build/android/js" --bundle --target=safari11 --analyze --tsconfig="lib/common/config/bundler.json" --banner:js="/*--automatically-generated-by-esbuild-jasonelle--*/"
-      - mv build/android/js/main.js build/android/webview.js
-      - rm -rf build/android/js build/android/scripts
-      - mkdir -p build/android/scripts
-      - mv build/android/webview.js build/android/scripts/
+      - 'tools/bundler/dist/bundler-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --platform android --common lib/common/scripts --platform-dir lib/android/scripts --esbuild tools/vendor/esbuild/dist/esbuild-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --tsconfig lib/common/config/bundler.json --output build/android/scripts/webview.js'
+  bundler:
+    aliases:
+      - bn
+    cmds:
+      - task bundler.xcode
+      - task bundler.android
   esbuild.install:
     aliases:
       - esi
