@@ -68,6 +68,7 @@ tasks:
     cmds:
       - python3 -m http.server --bind 0.0.0.0 --directory docs
 
+  # Linters and Formatters
   lint.yaml:
     aliases:
       - ly
@@ -76,6 +77,7 @@ tasks:
       - "prettier --write $(git ls-files '*.yml' '*.yaml') 2>&1 || npx -y prettier@3.9.6 --write $(git ls-files '*.yml' '*.yaml')"
       - "yamllint $(git ls-files '*.yml' '*.yaml') 2>&1 || pipx run yamllint $(git ls-files '*.yml' '*.yaml')"
 
+  # Git
   git.add:
     aliases:
       - ga
@@ -117,7 +119,7 @@ tasks:
       - task git.pull
       - task git.push
 
-  # Tools
+  # Icon Tool
   icons:
     aliases:
       - ic
@@ -133,6 +135,7 @@ tasks:
     cmds:
       - task build
 
+  # JSONC tool
   jsonc.xcode:
     aliases:
       - jx
@@ -141,7 +144,6 @@ tasks:
       - "mkdir -p build/xcode/config"
       - 'tools/jsonc/dist/jsonc-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --output build/xcode/config/config.jsonc lib/common/config/config.jsonc lib/xcode/config/config.jsonc'
       - 'tools/jsonc/dist/jsonc-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --output build/xcode/config/store.jsonc lib/common/config/store.jsonc lib/xcode/config/store.jsonc'
-
   jsonc.android:
     aliases:
       - ja
@@ -152,6 +154,8 @@ tasks:
       - 'tools/jsonc/dist/jsonc-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --output build/android/config/store.jsonc lib/common/config/store.jsonc lib/android/config/store.jsonc'
   jsonc:
     desc: Runs tasks jsonc.xcode and jsonc.android
+    aliases:
+      - json
     cmds:
       - task jsonc.xcode
       - task jsonc.android
@@ -162,6 +166,8 @@ tasks:
     desc: Generate tools/jsonc binary
     cmds:
       - task build
+
+  # Bundler Tool
   bundler.build:
     aliases:
       - bb
@@ -174,13 +180,27 @@ tasks:
       - bx
     desc: Runs esbuild to compile a single webview.js for Xcode
     cmds:
-      - 'tools/bundler/dist/bundler-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --platform xcode --common lib/common/scripts --platform-dir lib/xcode/scripts --esbuild tools/vendor/esbuild/dist/esbuild-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --tsconfig lib/common/config/bundler.json --output build/xcode/scripts/webview.js'
+      - >-
+        tools/bundler/dist/bundler-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }}
+        --platform xcode
+        --common lib/common/scripts
+        --platform-dir lib/xcode/scripts
+        --esbuild tools/vendor/esbuild/dist/esbuild-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }}
+        --tsconfig lib/common/config/bundler.json
+        --output build/xcode/scripts/webview.js
   bundler.android:
     aliases:
       - ba
     desc: Runs esbuild to compile a single webview.js for Android
     cmds:
-      - 'tools/bundler/dist/bundler-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --platform android --common lib/common/scripts --platform-dir lib/android/scripts --esbuild tools/vendor/esbuild/dist/esbuild-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --tsconfig lib/common/config/bundler.json --output build/android/scripts/webview.js'
+      - >-
+        tools/bundler/dist/bundler-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }}
+        --platform android
+        --common lib/common/scripts
+        --platform-dir lib/android/scripts
+        --esbuild tools/vendor/esbuild/dist/esbuild-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }}
+        --tsconfig lib/common/config/bundler.json
+        --output build/android/scripts/webview.js
   bundler:
     aliases:
       - bn
