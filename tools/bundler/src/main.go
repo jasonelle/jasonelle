@@ -106,7 +106,6 @@ func run(args []string) error {
 	}
 
 	os.RemoveAll(jsDir)
-	os.RemoveAll(scriptsDir)
 
 	return nil
 }
