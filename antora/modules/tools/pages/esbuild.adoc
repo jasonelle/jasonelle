@@ -3,6 +3,10 @@
 Vendored https://esbuild.github.io[esbuild] compiles TypeScript scripts into a
 single `webview.js` for each platform (Xcode and Android).
 
+NOTE: The `bundler.xcode` and `bundler.android` tasks now use the
+xref:bundler.adoc[Bundler] tool internally. The bundler handles all file
+operations cross-platform.
+
 Scripts live in `lib/*/scripts/`. The common scripts (`lib/common/scripts/`)
 are copied first, then platform-specific scripts (`lib/android/scripts/` or
 `lib/xcode/scripts/`) are copied on top, so platform files override common
@@ -28,8 +32,8 @@ TypeScript config for the bundler: `lib/common/config/bundler.json`.
 
 == Output
 
-* Xcode: `build/xcode/webview.js`
-* Android: `build/android/webview.js`
+* Xcode: `build/xcode/scripts/webview.js`
+* Android: `build/android/scripts/webview.js`
 
 A banner comment is prepended to mark the file as auto-generated.
 
@@ -37,9 +41,9 @@ A banner comment is prepended to mark the file as auto-generated.
 
 From the repository root:
 
-* `task esbuild` (`es`): bundle scripts for both Xcode and Android.
-* `task esbuild.xcode` (`esx`): bundle scripts for Xcode only.
-* `task esbuild.android` (`esa`): bundle scripts for Android only.
+* `task bundler` (`bn`): bundle scripts for both Xcode and Android.
+* `task bundler.xcode` (`bx`): bundle scripts for Xcode only.
+* `task bundler.android` (`ba`): bundle scripts for Android only.
 * `task esbuild.install` (`esi`): re-download the vendored esbuild binary.
 
 == Bundle flags
