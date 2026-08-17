@@ -13,17 +13,25 @@ documentation and code. It breaks compatibility with previous versions.
 ### Added
 
 - Add agent rules and opencode plugins
+- Add ADR documents for design decisions
+- Add architecture.adoc
+- Add bundler tool
 - Add changelog generation command
 - Add command-create and version-bump commands
 - Add commit task to Taskfile
+- Add esbuild bundler for TypeScript scripts
 - Add Go tool to generate app icons
+- Add Go tool to merge JSONC files
 - Add id field to ADR documents
 - Add iOS Application and Core sources
 - Add rule-create command
+- Add TypeScript ADR and esbuild tool page
 - Add version bump tasks
-- Added architecture.adoc
-- Adopt ADR documents for design decisions
 - Generate per-platform icons with --xcode/--android
+- Implement esbuild bundler
+- Migrate to TypeScript
+- Scaffold bundler Go tool structure
+- Vendor esbuild for webview JS bundling
 
 ### Changed
 
@@ -34,20 +42,33 @@ documentation and code. It breaks compatibility with previous versions.
 - Add git.pull task
 - Add git.push task and rename commit to git.commit
 - Add lint.yaml task to format and lint YAML files
+- Add license headers to tools
 - Add VERSION file and document it
+- Break long bundler commands to fit yamllint line-length
 - Create CNAME
 - Delete tags when pruning pre-releases
 - Derive Xcode icon sizes from appIconImages
 - Document icon generator and add tooling ADRs
 - Drop git.add from git.all pipeline
-- Fixed
+- Improve overview, diagrams, and directory accuracy
+- Mark tools binaries as binary in .gitattributes
+- Remove old version code
 - Remove unused vendored highlight.js languages
-- Removed old version code
+- Rename json-merger to jsonc
 - Update AGENTS.md commands and directory layout
+- Update bundler tool documentation
 - Update changelog for ADR documents
 - Update flow and fastlane diagrams
-- Updated website
+- Update icons task alias in AGENTS.md
+- Update README to list actual tools and build instructions
+- Update website
+- Use bundler tool for esbuild tasks
 - Write commit message to .commit-message file
+
+### Fixed
+
+- Break long bundler commands to fit yamllint line-length
+- Remove stale jsDir only, preserve output in scriptsDir
 
 ### Removed
 

@@ -21,7 +21,13 @@ tasks:
       - t
     desc: Test the bundler tool
     cmds:
-      - go test .
+      - go test
+  format:
+    aliases:
+      - f
+    desc: Format the current project
+    cmds:
+      - go fmt
   version.major:
     aliases:
       - v

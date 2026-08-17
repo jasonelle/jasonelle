@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>CLI esbuild :: Jasonelle Documentation</title>
     <link rel="canonical" href="https://jasonelle.com/docs/tools/esbuild.html">
-    <link rel="prev" href="jsonc.html">
+    <link rel="prev" href="bundler.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
@@ -92,6 +92,9 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="jsonc.html">JSONC Merger</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="bundler.html">Bundler</a>
+  </li>
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="esbuild.html">CLI esbuild</a>
   </li>
@@ -136,63 +139,23 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Vendored <a href="https://esbuild.github.io">esbuild</a> compiles TypeScript scripts into a
-single <code>webview.js</code> for each platform (Xcode and Android).</p>
+<p>Vendored <a href="https://esbuild.github.io">esbuild</a> compiles TypeScript scripts to JavaScript files
+used inside WebView for Android and iOS.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Scripts live in <code>lib/*/scripts/</code>. The common scripts (<code>lib/common/scripts/</code>)
-are copied first, then platform-specific scripts (<code>lib/android/scripts/</code> or
-<code>lib/xcode/scripts/</code>) are copied on top, so platform files override common
-ones. esbuild bundles everything starting from <code>main.ts</code> into a single file.</p>
+<p>The bundler.xcode and bundler.android tasks use the Bundler tool internally.
+The bundler task handles all file operations cross-platform.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="requirements"><a class="anchor" href="#requirements"></a>Requirements</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://taskfile.dev">go-task</a> (for the tasks below).</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The esbuild binary is vendored in <code>tools/vendor/esbuild/dist/</code> and
-auto-selected per OS and architecture.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="script-structure"><a class="anchor" href="#script-structure"></a>Script structure</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">lib/common/scripts/       # shared TypeScript, included in both platforms
-lib/android/scripts/      # Android overrides (copied over common)
-lib/xcode/scripts/        # Xcode overrides (copied over common)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>TypeScript config for the bundler: <code>lib/common/config/bundler.json</code>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="output"><a class="anchor" href="#output"></a>Output</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Xcode: <code>build/xcode/webview.js</code></p>
-</li>
-<li>
-<p>Android: <code>build/android/webview.js</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>A banner comment is prepended to mark the file as auto-generated.</p>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -204,15 +167,6 @@ lib/xcode/scripts/        # Xcode overrides (copied over common)</code></pre>
 </div>
 <div class="ulist">
 <ul>
-<li>
-<p><code>task esbuild</code> (<code>es</code>): bundle scripts for both Xcode and Android.</p>
-</li>
-<li>
-<p><code>task esbuild.xcode</code> (<code>esx</code>): bundle scripts for Xcode only.</p>
-</li>
-<li>
-<p><code>task esbuild.android</code> (<code>esa</code>): bundle scripts for Android only.</p>
-</li>
 <li>
 <p><code>task esbuild.install</code> (<code>esi</code>): re-download the vendored esbuild binary.</p>
 </li>
@@ -242,7 +196,7 @@ lib/xcode/scripts/        # Xcode overrides (copied over common)</code></pre>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="jsonc.html">JSONC Merger</a></span>
+  <span class="prev"><a href="bundler.html">Bundler</a></span>
 </nav>
 </article>
   </div>

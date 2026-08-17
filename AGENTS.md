@@ -27,8 +27,13 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
 - `task icons.build` (alias `ib`): Generate the `tools/icon` binary.
 - `task jsonc.xcode` (alias `jx`): Merge common and Xcode `config.jsonc`/`store.jsonc` into `build/xcode/`.
 - `task jsonc.android` (alias `ja`): Merge common and Android `config.jsonc`/`store.jsonc` into `build/android/`.
-- `task jsonc`: Runs `task jsonc.xcode` and `task jsonc.android`.
+- `task jsonc` (alias `json`): Runs `task jsonc.xcode` and `task jsonc.android`.
 - `task jsonc.build` (alias `jb`): Generate the `tools/jsonc` binary.
+- `task bundler` (alias `bn`): Bundle scripts for both Xcode and Android.
+- `task bundler.build` (alias `bb`): Build the `tools/bundler` binary.
+- `task bundler.xcode` (alias `bx`): Bundle scripts for Xcode only.
+- `task bundler.android` (alias `ba`): Bundle scripts for Android only.
+- `task bundler.esbuild.install` (alias `bi`): Install the vendored esbuild binary (Unix only).
 
 ## Directory layout
 
@@ -53,6 +58,7 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
   - `/git-commit-message`: Generate a conventional commit message with a gitmoji
     from the staged changes.
   - `/rule-create`: Create a new rule inside `.agents/rules`.
+  - `/tool-create-go`: Create a new Go tool inside `tools/`.
   - `/update-agents`: Update AGENTS.md with the latest project changes.
   - `/version-bump`: Bump the version in a version file to the next version.
   - `/yaml`: Lint and format YAML files with yamllint and prettier.

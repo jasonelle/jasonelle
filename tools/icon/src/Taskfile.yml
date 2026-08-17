@@ -22,7 +22,13 @@ tasks:
       - t
     desc: Test the current version of the icon tool
     cmds:
-      - go test .
+      - go test
+  format:
+    aliases:
+      - f
+    desc: Format the current project
+    cmds:
+      - go fmt
   version.major:
     aliases:
       - v

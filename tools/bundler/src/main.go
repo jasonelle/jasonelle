@@ -1,6 +1,8 @@
 //  main.go
 //  tools/bundler
 //
+//  Created by clsource on 2026-08-16
+//
 //  Copyright (c) Jasonelle
 //
 //  This file is part of Jasonelle Project <https://jasonelle.com>.
@@ -67,24 +69,29 @@ func run(args []string) error {
 	jsDir := filepath.Join(buildDir, "js")
 	scriptsDir := filepath.Join(buildDir, "scripts")
 
+	// Clean build/ dirs for JS files
 	os.RemoveAll(jsDir)
 	os.RemoveAll(scriptsDir)
 
 	if err := os.MkdirAll(jsDir, 0755); err != nil {
 		return err
 	}
+
 	if err := os.MkdirAll(scriptsDir, 0755); err != nil {
 		return err
 	}
 
+	// Copy common files to scripts directory
 	if err := copyDir(*common, scriptsDir); err != nil {
 		return fmt.Errorf("copying common scripts: %w", err)
 	}
 
+	// Copy platform files to scripts directory
 	if err := copyDir(*platformDir, scriptsDir); err != nil {
 		return fmt.Errorf("copying platform scripts: %w", err)
 	}
 
+	// Prepare esbuild command
 	mainTS := filepath.Join(scriptsDir, "main.ts")
 	cmd := exec.Command(*esbuildBin, mainTS,
 		"--outdir="+jsDir,
@@ -100,11 +107,20 @@ func run(args []string) error {
 		return fmt.Errorf("esbuild failed: %w", err)
 	}
 
+	// Clean scripts dir
+	os.RemoveAll(scriptsDir)
+	if err := os.MkdirAll(scriptsDir, 0755); err != nil {
+		return err
+	}
+
+	// Copy the compiled main.js to scripts dir
+	// rename it to webview.js
 	mainJS := filepath.Join(jsDir, "main.js")
 	if err := os.Rename(mainJS, *output); err != nil {
 		return fmt.Errorf("moving output: %w", err)
 	}
 
+	// Clean js dir
 	os.RemoveAll(jsDir)
 
 	return nil

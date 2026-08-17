@@ -16,7 +16,6 @@ tasks:
     desc: Build the Antora Docker image
     cmds:
       - "{{.BUILD}} build -t {{.ANTORA_CONTAINER_LABEL}} antora/"
-
   shell:
     aliases:
       - sh
@@ -53,13 +52,13 @@ tasks:
       - task build.docs
       - task build.website
 
+  # Webserver
   serve.docs:
     aliases:
       - sd
     desc: Serve the generated documentation locally
     cmds:
       - python3 -m http.server --bind 0.0.0.0 --directory docs/docs
-
   serve.website:
     aliases:
       - s
@@ -84,7 +83,6 @@ tasks:
     desc: Add all the changes from the current directory
     cmds:
       - git add .
-
   git.commit:
     aliases:
       - c
@@ -93,7 +91,6 @@ tasks:
     cmds:
       - test -f .commit-message && git commit -F .commit-message
       - rm -rf .commit-message
-
   git.pull:
     aliases:
       - pl
@@ -101,7 +98,6 @@ tasks:
     desc: Pull the current branch from origin
     cmds:
       - git pull origin $(git branch --show-current)
-
   git.push:
     aliases:
       - p
@@ -109,7 +105,6 @@ tasks:
     desc: Push the current branch to origin
     cmds:
       - git push origin $(git branch --show-current)
-
   git.all:
     aliases:
       - gal
@@ -168,6 +163,12 @@ tasks:
       - task build
 
   # Bundler Tool
+  bundler:
+    aliases:
+      - bn
+    cmds:
+      - task bundler.xcode
+      - task bundler.android
   bundler.build:
     aliases:
       - bb
@@ -201,16 +202,10 @@ tasks:
         --esbuild tools/vendor/esbuild/dist/esbuild-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }}
         --tsconfig lib/common/config/bundler.json
         --output build/android/scripts/webview.js
-  bundler:
+  bundler.esbuild.install:
     aliases:
-      - bn
-    cmds:
-      - task bundler.xcode
-      - task bundler.android
-  esbuild.install:
-    aliases:
-      - esi
+      - bi
     dir: tools/esbuild/src
-    desc: Install tools/esbuild binary
+    desc: Install tools/esbuild binary (unix only)
     cmds:
       - task install

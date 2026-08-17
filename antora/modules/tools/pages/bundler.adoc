@@ -10,6 +10,7 @@ Windows.
 * https://go.dev[Go] 1.26 or newer (only for compilation. `dist` directory
   contains binaries).
 * https://taskfile.dev[go-task] (optional, only for the tasks below).
+* esbuild. (provided by `task esbuild.install`)
 
 == Usage
 
