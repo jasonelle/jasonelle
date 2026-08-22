@@ -6,3 +6,4 @@ build/
 .env
 # generated commit message
 .commit-message
+graphify-out
