@@ -1,12 +1,6 @@
 {
   "version": 1,
   "skills": {
-    "andrej-karpathy-skill": {
-      "source": "duolahypercho/andrej-karpathy-skills",
-      "sourceType": "github",
-      "skillPath": "skills/andrej-karpathy-skill/SKILL.md",
-      "computedHash": "edbeb9fdb3ba8eb2aec0113af112d459154da1e3867912c4ea4e275782ca630b"
-    },
     "ask-matt": {
       "source": "mattpocock/skills",
       "sourceType": "github",
