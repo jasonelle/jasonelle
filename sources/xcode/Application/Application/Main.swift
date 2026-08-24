@@ -23,6 +23,11 @@ struct Main: App {
   func viewDidAppear() {
     JLKernel.Kernel.logo()
     JLKernel.Logger.level = .debug
+    
     logger.debug("Init")
+    
+    for (name, plugin) in plugins {
+      logger.debug("\(name) js():\n\(plugin.js())")
+    }
   }
 }

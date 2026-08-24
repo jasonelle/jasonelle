@@ -103,49 +103,17 @@ public enum Ratlog {
     var result = ""
     
     if !tags.isEmpty {
-      result += "[" + tags.map(escapeTag).joined(separator: "|") + "] "
+      result += "[" + tags.joined(separator: "|") + "] "
     }
     
-    result += escapeMessage(message)
+    result += message
     
     if !fields.isEmpty {
       for key in fields.keys.sorted() {
-        result += " | " + escapeFieldKey(key) + ": " + escapeFieldValue(fields[key] ?? "")
+        result += " | " + key + ": " + (fields[key] ?? "")
       }
     }
     
     return result
-  }
-  
-  // MARK: - Escaping per spec
-  
-  static func escapeTag(_ tag: String) -> String {
-    tag
-      .replacingOccurrences(of: "\\", with: "\\\\")
-      .replacingOccurrences(of: "]", with: "\\]")
-      .replacingOccurrences(of: "|", with: "\\|")
-  }
-  
-  static func escapeMessage(_ msg: String) -> String {
-    msg
-      .replacingOccurrences(of: "\\", with: "\\\\")
-      .replacingOccurrences(of: "\n", with: "\\n")
-      .replacingOccurrences(of: "[", with: "\\[")
-      .replacingOccurrences(of: "|", with: "\\|")
-  }
-  
-  static func escapeFieldKey(_ key: String) -> String {
-    key
-      .replacingOccurrences(of: "\\", with: "\\\\")
-      .replacingOccurrences(of: "|", with: "\\|")
-      .replacingOccurrences(of: ":", with: "\\:")
-  }
-  
-  static func escapeFieldValue(_ value: String) -> String {
-    value
-      .replacingOccurrences(of: "\\", with: "\\\\")
-      .replacingOccurrences(of: "\n", with: "\\n")
-      .replacingOccurrences(of: "|", with: "\\|")
-      .replacingOccurrences(of: ":", with: "\\:")
   }
 }

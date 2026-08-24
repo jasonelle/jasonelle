@@ -8,7 +8,7 @@
 import Foundation
 import JLKernel
 
-public class Plugin {
+public final class Plugin: JLPlugin {
   public static func hello() {
     JLKernel.Kernel.logo()
   }
