@@ -5,15 +5,30 @@
 //  Created by Camilo on 19-08-26.
 //
 
+import Foundation
 import Testing
+import JLKernel
 @testable import JLPluginHello
 
 struct JLPluginHelloTests {
 
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
-        // Swift Testing Documentation
-        // https://developer.apple.com/documentation/testing
+    @Test func exposesReverseDomainName() async throws {
+        #expect(Plugin.name == "com.jasonelle.plugins.hello")
     }
 
+    @Test func callRespondsWithHandleScript() async throws {
+        let plugin = Plugin()
+        var response: String?
+
+        plugin.call(args: ["message": "Hello"], respond: { response = $0 })
+
+        #expect(response == "window.jasonelle.plugins.hello.handle({ status: 'ok' });")
+    }
+
+    @Test func bundlesJavaScriptRegisteringPlugin() async throws {
+        let js = Plugin().js()
+
+        #expect(!js.isEmpty)
+        #expect(js.contains("window.jasonelle.plugins.hello"))
+    }
 }
