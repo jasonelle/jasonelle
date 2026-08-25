@@ -7,13 +7,34 @@
 
 import Testing
 @testable import Application
+import JLKernel
+import JLPluginHello
 
 struct ApplicationTests {
 
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
-        // Swift Testing Documentation
-        // https://developer.apple.com/documentation/testing
+    @Test func pluginsNotEmpty() {
+        #expect(!plugins.isEmpty)
+    }
+
+    @Test func helloPluginRegisteredWithCorrectKey() {
+        let key = JLPluginHello.Plugin.name
+        #expect(plugins[key] != nil)
+    }
+
+    @Test func helloPluginNameMatchesKey() {
+        let key = JLPluginHello.Plugin.name
+        let plugin = plugins[key]
+        #expect(type(of: plugin!) == JLPluginHello.Plugin.self)
+    }
+
+    @Test func helloPluginRespondsToCall() async {
+        let plugin = plugins[JLPluginHello.Plugin.name]
+        let response = await withCheckedContinuation { continuation in
+            plugin?.call(args: nil) { result in
+                continuation.resume(returning: result)
+            }
+        }
+        #expect(!response.isEmpty)
     }
 
 }
