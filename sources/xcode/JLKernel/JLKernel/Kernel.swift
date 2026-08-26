@@ -8,11 +8,11 @@
 import Foundation
 
 public class Kernel {
-  
+
   public static func logo() {
     print("""
       █ █▀█ █▀▀ █▀█ █▀▄█ █▀▀ █   █   █▀▀
-     ░▓ █▀▓ ▀▀▓ █ ▓ █  ▓ ▓▀  ▓░  ▓░  ▓▀ 
+     ░▓ █▀▓ ▀▀▓ █ ▓ █  ▓ ▓▀  ▓░  ▓░  ▓▀
     ▀▀▀ ▀ ▀ ▀▀▀ ▀▀▀ ▀  ▀ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀
     \t\t\t\tv\(Version.semantic())
     \t\thttps://jasonelle.com/

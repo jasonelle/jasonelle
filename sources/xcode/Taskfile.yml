@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3.17"
+
+tasks:
+  default:
+    cmds:
+      - task lint
+  lint:
+    aliases:
+      - l
+    desc: Lint Swift sources with SwiftLint
+    cmds:
+      - swiftlint lint
+  fix:
+    aliases:
+      - f
+    desc: Auto-fix SwiftLint issues where possible
+    cmds:
+      - swiftlint lint --fix

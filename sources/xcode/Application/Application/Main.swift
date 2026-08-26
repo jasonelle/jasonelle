@@ -11,7 +11,7 @@ import JLKernel
 @main
 struct Main: App {
     private let logger: JLKernel.Logger = .init(from: Main.self)
-  
+
     init() {
         JLKernel.Kernel.logo()
         JLKernel.Logger.level = .debug
@@ -20,7 +20,7 @@ struct Main: App {
         JLKernel.License.verify(key: "PURCHASE_ME")
         logger.info("App Initiated")
     }
-  
+
     var body: some Scene {
         WindowGroup {
           ContentView().onAppear {

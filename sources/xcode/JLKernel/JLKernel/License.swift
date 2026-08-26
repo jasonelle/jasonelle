@@ -9,12 +9,12 @@ import Foundation
 import UIKit
 
 public class License {
-  
+
   private let logger: Logger = .init(from: License.self)
-  
+
   private var key: String?
   private let isInSimulator: () -> Bool
-  
+
   public init(
     key: String? = nil,
     isInSimulator: @escaping () -> Bool = {
@@ -28,11 +28,14 @@ public class License {
     self.key = key
     self.isInSimulator = isInSimulator
   }
-  
+
   private func isValid() -> Bool {
-    return !(self.key == nil || self.key?.isEmpty == true || self.key?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || self.key == "PURCHASE_ME")
+    let key = self.key
+    let isEmpty = key?.isEmpty == true
+    let isBlank = key?.trimmingCharacters(in: .whitespacesAndNewlines) == ""
+    return !(key == nil || isEmpty || isBlank || key == "PURCHASE_ME")
   }
-  
+
   public func abortIfIsInSimulator() {
     if self.isInSimulator() {
       if !self.isValid() {
@@ -44,7 +47,7 @@ public class License {
     self.logger.emergency(error)
     fatalError(error)
   }
-  
+
   public func check() {
     guard !self.isValid()  else {
       self.logger.info("License found. Thank you for supporting Jasonelle development ♥.")
@@ -52,10 +55,9 @@ public class License {
     }
     abortIfIsInSimulator()
   }
-  
+
   public static func verify(key: String? = "") {
     let license = License.init(key: key)
     license.check()
   }
 }
-

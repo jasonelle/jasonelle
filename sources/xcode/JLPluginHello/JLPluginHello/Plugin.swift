@@ -9,7 +9,7 @@ import Foundation
 import JLKernel
 
 public final class Plugin: JLKernel.Plugin {
-  override public class var name: String { "com.jasonelle.plugins.hello" }
+  override public static var name: String { "com.jasonelle.plugins.hello" }
 
   // Native handler called when JS invokes window.jasonelle.plugins.hello.call()
   public override func call(args: Any?, respond: @escaping (String) -> Void) {
