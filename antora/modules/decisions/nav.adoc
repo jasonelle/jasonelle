@@ -11,3 +11,4 @@
 * xref:0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.adoc[]
 * xref:0000010-use-typescript-instead-of-javascript-for-the-scripts-inside-lib.adoc[]
 * xref:0000011-select-xcodegen-for-xcodeproject-generation.adoc[]
+* xref:0000012-use-swiftlint-for-swift-formatting-and-code-standardization.adoc[]
