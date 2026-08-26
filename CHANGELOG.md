@@ -12,51 +12,59 @@ documentation and code. It breaks compatibility with previous versions.
 
 ### Added
 
-- Add agent rules and opencode plugins
-- Add ADR documents for design decisions
-- Add architecture.adoc
-- Add bundler tool
-- Add changelog generation command
-- Add command-create and version-bump commands
-- Add commit task to Taskfile
-- Add esbuild bundler for TypeScript scripts
+- Add license verification system
+- Add native-JS plugin bridge with WKWebView SwiftUI view
+- Add plugin system with JS injection
+- Add tool to merge JSONC files
 - Add Go tool to generate app icons
-- Add Go tool to merge JSONC files
-- Add id field to ADR documents
-- Add iOS Application and Core sources
-- Add rule-create command
-- Add TypeScript ADR and esbuild tool page
 - Add version bump tasks
-- Generate per-platform icons with --xcode/--android
+- Add command-create and version-bump commands
+- Add changelog generation command
+- Add commit task to Taskfile
+- Add rule-create command
+- Add agent rules and opencode plugins
+- Add id field to ADR documents
+- Adopt ADR documents for design decisions
+- Bootstrap Xcode projects and plugin system
+- Implement bundler tool
 - Implement esbuild bundler
-- Migrate to TypeScript
+- Migrate to TypeScript and implement esbuild bundler
+- Replace placeholder tests with plugin registration and call tests
 - Scaffold bundler Go tool structure
 - Vendor esbuild for webview JS bundling
+- Generate per-platform icons with --xcode/--android
+- Add iOS Application and Core sources
 
 ### Changed
 
+- Add ADR-0000011 for XcodeGen and supersede ADR-0000009
 - Add ADRs for OneSignal and RevenueCat
+- Add cross-compiled binaries
+- Add basic tests
+- Add bundler tool documentation
+- Add Go tool to merge JSONC files
+- Add license headers to tools
+- Add lint.yaml task to format and lint YAML files
+- Add opsx workflow commands and skills
+- Add VERSION file and document it
 - Add automated semver pre-releases
-- Add CNAME for jasonelle.com
 - Add git.add and git.all tasks
 - Add git.pull task
 - Add git.push task and rename commit to git.commit
-- Add lint.yaml task to format and lint YAML files
-- Add license headers to tools
-- Add VERSION file and document it
-- Break long bundler commands to fit yamllint line-length
-- Create CNAME
+- Create CNAME file for GitHub Pages
 - Delete tags when pruning pre-releases
 - Derive Xcode icon sizes from appIconImages
 - Document icon generator and add tooling ADRs
 - Drop git.add from git.all pipeline
 - Improve overview, diagrams, and directory accuracy
 - Mark tools binaries as binary in .gitattributes
-- Remove old version code
-- Remove unused vendored highlight.js languages
+- Remove vendored skills and consolidate opencode commands
+- Remove andrej-karpathy-skill
+- Remove xcuserdata files and track .gitignore
 - Rename json-merger to jsonc
 - Update AGENTS.md commands and directory layout
 - Update bundler tool documentation
+- Update changelog for v4.0
 - Update changelog for ADR documents
 - Update flow and fastlane diagrams
 - Update icons task alias in AGENTS.md
@@ -73,6 +81,8 @@ documentation and code. It breaks compatibility with previous versions.
 ### Removed
 
 - Establish the overall project structure V4 is built from scratch with better documentation and code. It breaks compatibility with previous versions
+- Old version code
+- Unused vendored highlight.js languages
 
 ## [3.0.4] - 2026-03-02
 

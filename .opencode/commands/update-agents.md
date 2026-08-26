@@ -3,6 +3,8 @@ description: Update AGENTS.md with the latest project changes.
 ---
 
 Update AGENTS.md to reflect the latest state of the project.
+see https://opencode.ai/docs/rules/ and https://agents.md/#examples for additional examples and use context7 mcp if available for any relevant additional 
+information needed.
 
 ## Sources of truth
 
@@ -10,6 +12,9 @@ Update AGENTS.md to reflect the latest state of the project.
 - `.opencode/command/` for custom opencode commands (Directory layout).
 - `.editorconfig`, `antora/Dockerfile`, `.github/workflows/` for Conventions
   and Build notes.
+- `sources/xcode` for sources used in xcode project.
+- `sources/android` for sources used in android project.
+- `tools` for tools
 
 ## Steps
 

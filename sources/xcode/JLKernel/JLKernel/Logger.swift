@@ -14,7 +14,7 @@ import os
 /// When the minimum level is set to a given value, only that level and above are printed.
 /// For example, `.info` passes `.info`, `.notice`, `.warning`, `.error`, `.critical`,
 /// `.alert`, and `.emergency` to handlers, but discards `.debug`.
-public enum JLLogLevel: Int, Comparable {
+public enum LogLevel: Int, Comparable {
     /// For debug-related messages.
     case debug = 0
     /// For information of any kind.
@@ -32,7 +32,7 @@ public enum JLLogLevel: Int, Comparable {
     /// When the system is unusable, panics.
     case emergency = 7
     
-    public static func < (lhs: JLLogLevel, rhs: JLLogLevel) -> Bool {
+    public static func < (lhs: LogLevel, rhs: LogLevel) -> Bool {
         lhs.rawValue < rhs.rawValue
     }
 }
@@ -41,7 +41,7 @@ public class Logger {
   public let subsystem: String
   public let logger: os.Logger
   
-  public static var level : JLLogLevel = .debug
+  public static var level : LogLevel = .debug
   
   /// Creates a logger with the default subsystem.
   public init() {
@@ -89,7 +89,7 @@ public class Logger {
     log(level: .emergency, tag: "emergency", message: message, tags: tags, fields: fields) { self.logger.fault("\($0)") }
   }
 
-  private func log(level: JLLogLevel, tag: String, message: String, tags: [String], fields: [String: String], emit: (String) -> Void) {
+  private func log(level: LogLevel, tag: String, message: String, tags: [String], fields: [String: String], emit: (String) -> Void) {
     guard Logger.level <= level else { return }
     emit(Ratlog.format(message: message, tags: [self.subsystem, tag] + tags, fields: fields))
   }

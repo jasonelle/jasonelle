@@ -11,7 +11,7 @@ import Testing
 
 @Suite(.serialized) struct JLKernelTests {
 
-    final class StubPlugin: JLPlugin {
+    final class StubPlugin: JLKernel.Plugin {
         var receivedArgs: Any?
 
         override public func call(args: Any?, respond: @escaping (String) -> Void) {
@@ -68,9 +68,9 @@ struct RatlogTests {
 struct LogLevelTests {
 
     @Test func comparesBySeverity() {
-        #expect(JLLogLevel.debug < JLLogLevel.info)
-        #expect(JLLogLevel.info < JLLogLevel.notice)
-        #expect(JLLogLevel.emergency > JLLogLevel.alert)
+        #expect(LogLevel.debug < LogLevel.info)
+        #expect(LogLevel.info < LogLevel.notice)
+        #expect(LogLevel.emergency > LogLevel.alert)
     }
 
 }
@@ -142,7 +142,7 @@ struct VersionTests {
 
 // MARK: - Plugin
 
-final class UnconfiguredPlugin: JLPlugin {}
+final class UnconfiguredPlugin: JLKernel.Plugin {}
 
 struct PluginTests {
 

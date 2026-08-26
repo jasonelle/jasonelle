@@ -8,7 +8,7 @@
 import Foundation
 import JLKernel
 
-public final class Plugin: JLPlugin {
+public final class Plugin: JLKernel.Plugin {
   override public class var name: String { "com.jasonelle.plugins.hello" }
 
   // Native handler called when JS invokes window.jasonelle.plugins.hello.call()

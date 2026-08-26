@@ -47,16 +47,17 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
 - `Taskfile.yml`: Task runner config (go-task), alternative to a Makefile.
 - `.agents/`: Agent rules. Contains `.agents/rules/` with behavioral guidelines for LLM coding agents (e.g. `karpathy.md`).
 - `.github/workflows/`: CI builds and publishes docs, creates SemVer pre-releases, and promotes them to releases.
-- `.opencode/command/`: Custom opencode commands:
+- `.opencode/commands/`: Custom opencode commands:
   - `/adr`: Create a new Architecture Decision Record (MADR) page.
   - `/adr-accept`: Update an ADR status to Accepted.
   - `/adr-deprecate`: Update an ADR status to Deprecated.
   - `/adr-supersed`: Update an ADR status to Superseded.
   - `/append-license`: Append a license template as a comment to the first lines of a file or directory.
   - `/changelog`: Update CHANGELOG.md from git commit messages.
-  - `/command-create`: Create a new opencode command inside `.opencode/command`.
-  - `/git-commit-message`: Generate a conventional commit message with a gitmoji
+  - `/command-create`: Create a new opencode command inside `.opencode/commands`.
+  - `/gitmoji`: Generate a conventional commit message with a gitmoji
     from the staged changes.
+  - `/grill`: Grill the user relentlessly about a plan, decision, or idea.
   - `/rule-create`: Create a new rule inside `.agents/rules`.
   - `/tool-create-go`: Create a new Go tool inside `tools/`.
   - `/update-agents`: Update AGENTS.md with the latest project changes.
@@ -69,7 +70,7 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
 ## Conventions
 
 - YAML: 2-space indentation. Lint with `yamllint` and format with `prettier`
-  (see `.opencode/command/yaml.md`). Line length max 220.
+  (see `.opencode/commands/yaml.md`). Line length max 220.
 - Markdown/AsciiDoc: trailing whitespace is allowed (see `.editorconfig`).
 - End of line: LF. UTF-8. Final newline required.
 

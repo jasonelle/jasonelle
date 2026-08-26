@@ -7,7 +7,7 @@
 import Foundation
 import WebKit
 
-open class JLPlugin {
+open class Plugin {
   /// Set (override) this class property in each subclass.
   /// The name must follow reverse domain notation com.jasonelle.plugins.*
   open class var name: String {
@@ -45,7 +45,7 @@ open class JLPlugin {
     webview.configuration.userContentController.addUserScript(script)
   }
   
-  public static func inject(with plugins: [String : JLPlugin], into webview: WKWebView) {
+  public static func inject(with plugins: [String : JLKernel.Plugin], into webview: WKWebView) {
     for (_, plugin) in plugins {
       plugin.inject(into: webview)
     }

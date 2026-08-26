@@ -80,9 +80,9 @@ public class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler
 
 public struct WebView: UIViewRepresentable {
   public let url: URL
-  let plugins: [String: JLPlugin]
+  let plugins: [String: JLKernel.Plugin]
 
-  public init(url: URL, plugins: [String: JLPlugin] = [:]) {
+  public init(url: URL, plugins: [String: JLKernel.Plugin] = [:]) {
     self.url = url
     self.plugins = plugins
   }
@@ -128,7 +128,7 @@ public struct WebView: UIViewRepresentable {
     }
 
     // Inject before first load so user scripts apply to the initial page
-    JLPlugin.inject(with: plugins, into: webView)
+    JLKernel.Plugin.inject(with: plugins, into: webView)
     
     // Store reference to webView in coordinator so we can call native -> JS later
     context.coordinator.webView = webView
