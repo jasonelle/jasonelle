@@ -75,6 +75,51 @@ struct LogLevelTests {
 
 }
 
+// MARK: - License
+
+struct LicenseTests {
+
+    private func makeLicense(
+        key: String? = "",
+        isSimulator: Bool
+    ) -> License {
+        License(key: key) { isSimulator }
+    }
+
+    @Test func checkWithValidKeyDoesNotCrash() {
+        makeLicense(key: "test-key", isSimulator: false).check()
+    }
+
+    @Test func checkWithEmptyKeyOnSimulatorDoesNotCrash() {
+        makeLicense(isSimulator: true).check()
+    }
+
+    @Test func abortReturnsOnSimulator() {
+        makeLicense(isSimulator: true).abortIfIsInSimulator()
+    }
+
+    @Test func checkWithNilKeyOnSimulatorDoesNotCrash() {
+        makeLicense(key: nil, isSimulator: true).check()
+    }
+
+    @Test func checkWithPurchaseMeKeyOnSimulatorDoesNotCrash() {
+        makeLicense(key: "PURCHASE_ME", isSimulator: true).check()
+    }
+
+    @Test func checkWithValidKeyOnSimulatorDoesNotCrash() {
+        makeLicense(key: "real-key", isSimulator: true).check()
+    }
+
+    @Test func verifyWithKeyDoesNotCrash() {
+        License.verify(key: "test-key")
+    }
+
+    @Test func verifyWithEmptyKeyOnSimulatorDoesNotCrash() {
+        License.verify(key: "")
+    }
+
+}
+
 // MARK: - Version
 
 struct VersionTests {

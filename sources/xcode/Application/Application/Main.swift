@@ -15,6 +15,9 @@ struct Main: App {
     init() {
         JLKernel.Kernel.logo()
         JLKernel.Logger.level = .debug
+        // Purchase a License in https://jasonelle.com
+        // to help development efforts.
+        JLKernel.License.verify(key: "PURCHASE_ME")
         logger.info("App Initiated")
     }
   
