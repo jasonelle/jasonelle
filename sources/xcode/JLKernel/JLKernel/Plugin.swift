@@ -22,13 +22,13 @@ open class Plugin {
 
   // Native handler invoked when JS calls this plugin through the bridge.
   // Call respond(script) to send an event back to the JS side.
-  open func call(args: Any?, respond: @escaping (String) -> Void) {
+  open func handle_call(args: Any?, respond: @escaping (String) -> Void) {
     self.logger.warning("Plugin \(Self.name) has no native handler implemented")
     respond("")
   }
 
   public func js() -> String {
-    guard let url = Bundle(for: type(of: self)).url(forResource: "plugin", withExtension: "js"),
+    guard let url = Bundle(for: type(of: self)).url(forResource: "Plugin", withExtension: "js"),
         let data = try? Data(contentsOf: url),
         let content = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines)
     else { return "" }

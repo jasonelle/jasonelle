@@ -1,5 +1,5 @@
 //
-//  plugin.js
+//  Plugin.js
 //  JLPluginHello
 //
 //  Created by Camilo on 19-08-26.
@@ -29,7 +29,7 @@
   const button = document.createElement("button");
   button.textContent = "Click Me";
   button.addEventListener("click", () => plugin.call("Hello", "World"));
-  document.body.prepend(button);
+  document.body.append(button);
   
   // Register JS functions globally
   window.jasonelle.plugins.hello = plugin;

@@ -30,7 +30,7 @@ struct ApplicationTests {
     @Test func helloPluginRespondsToCall() async {
         let plugin = plugins[JLPluginHello.Plugin.name]
         let response = await withCheckedContinuation { continuation in
-            plugin?.call(args: nil) { result in
+            plugin?.handle_call(args: nil) { result in
                 continuation.resume(returning: result)
             }
         }

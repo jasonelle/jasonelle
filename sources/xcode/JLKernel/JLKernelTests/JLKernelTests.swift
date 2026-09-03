@@ -14,7 +14,7 @@ import Testing
     final class StubPlugin: JLKernel.Plugin {
         var receivedArgs: Any?
 
-        override public func call(args: Any?, respond: @escaping (String) -> Void) {
+        override public func handle_call(args: Any?, respond: @escaping (String) -> Void) {
             self.receivedArgs = args
         }
     }
@@ -153,7 +153,7 @@ struct PluginTests {
     @Test func defaultCallRespondsEmptyString() {
         var response: String?
 
-        UnconfiguredPlugin().call(args: nil) { response = $0 }
+        UnconfiguredPlugin().handle_call(args: nil) { response = $0 }
 
         #expect(response == "")
     }
@@ -162,6 +162,54 @@ struct PluginTests {
         let source = UnconfiguredPlugin().js()
 
         #expect(source.contains("window.jasonelle.plugins.stub"))
+    }
+
+}
+
+// MARK: - ConfigurationLoader
+
+struct ConfigurationLoaderTests {
+
+    @Test func decodeReturnsURLFromValidJSON() throws {
+        let json = #"{"url": "https://example.com"}"#
+        let data = Data(json.utf8)
+
+        let config = try ConfigurationLoader.decode(data: data)
+
+        #expect(config.url == URL(string: "https://example.com"))
+    }
+
+    @Test func decodeStripsJSONCComments() throws {
+        let json = #"{/* comment */"url": "https://example.com"}"#
+        let data = Data(json.utf8)
+
+        let config = try ConfigurationLoader.decode(data: data)
+
+        #expect(config.url == URL(string: "https://example.com"))
+    }
+
+    @Test func decodeThrowsOnInvalidJSON() {
+        let data = Data("not json".utf8)
+
+        #expect(throws: ConfigurationError.self) {
+            try ConfigurationLoader.decode(data: data)
+        }
+    }
+
+    @Test func loadThrowsFileNotFoundWhenURLIsNil() {
+        #expect(throws: ConfigurationError.self) {
+            try ConfigurationLoader.load(from: nil)
+        }
+    }
+
+    @Test func loadReadsConfigFile() throws {
+        let configURL = URL(fileURLWithPath: #file)
+            .deletingLastPathComponent()
+            .appendingPathComponent("config.jsonc")
+
+        let config = try ConfigurationLoader.load(from: configURL)
+
+        #expect(config.url == URL(string: "https://jasonelle.com"))
     }
 
 }

@@ -11,7 +11,7 @@ import JLKernel
 struct ContentView: View {
     var body: some View {
       ZStack {
-        JLKernel.WebView(url: URL(string: "https://google.com")!, plugins: plugins)
+        JLKernel.WebView.fromConfiguration(plugins: plugins)
       }
     }
 }

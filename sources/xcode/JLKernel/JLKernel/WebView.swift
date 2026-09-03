@@ -41,7 +41,7 @@ public class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler
         // webview calls from js a native function
         // window.jasonelle.plugins.hello.call()
         // This reaches the native handler:
-        // JLPluginHello.Plugin.call(args:respond:)
+        // JLPluginHello.Plugin.handle_call(args:respond:)
         // The handler then calls respond(script:) which runs
         // respondToJS to send an event back to the JS side, e.g.
         // window.jasonelle.plugins.hello.handle(args)
@@ -52,7 +52,7 @@ public class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler
         }
 
         let args = bodyDict["args"]
-        plugin.call(args: args) { script in
+        plugin.handle_call(args: args) { script in
           self.respondToJS(script: script)
         }
       }
@@ -85,6 +85,16 @@ public struct WebView: UIViewRepresentable {
   public init(url: URL, plugins: [String: JLKernel.Plugin] = [:]) {
     self.url = url
     self.plugins = plugins
+  }
+
+  public static func fromConfiguration(plugins: [String: JLKernel.Plugin] = [:]) -> WebView {
+    do {
+      let config = try ConfigurationLoader.load()
+      return WebView(url: config.url, plugins: plugins)
+    } catch {
+      Logger(from: "WebView").error("Failed to load configuration: \(error), falling back to about:blank")
+      return WebView(url: URL(string: "about:blank")!, plugins: plugins)
+    }
   }
 
   // The name of the handler exposed to JavaScript

@@ -20,7 +20,7 @@ struct JLPluginHelloTests {
         let plugin = Plugin()
         var response: String?
 
-        plugin.call(args: ["message": "Hello"], respond: { response = $0 })
+        plugin.handle_call(args: ["message": "Hello"], respond: { response = $0 })
 
         #expect(response == "window.jasonelle.plugins.hello.handle({ status: 'ok' });")
     }

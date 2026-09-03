@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		9A57A4A93036467400C5F416 /* JLPluginHello.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A57A49D3036467400C5F416 /* JLPluginHello.framework */; };
 		9A57A4D6303646B600C5F416 /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A57A4D5303646B600C5F416 /* JLKernel.framework */; };
-		9A57A4D7303646B600C5F416 /* JLKernel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9A57A4D5303646B600C5F416 /* JLKernel.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9A57A4D7303646B600C5F416 /* JLKernel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9A57A4D5303646B600C5F416 /* JLKernel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -302,6 +302,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -361,6 +362,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -372,6 +374,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -408,6 +411,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DYLIB_COMPATIBILITY_VERSION = 1;
