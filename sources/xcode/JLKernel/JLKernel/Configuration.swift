@@ -3,7 +3,7 @@ import Foundation
 public struct AppConfiguration: Decodable {
     let url: URL // The url that will load as the main url for the app
     let inspectable: Bool? // Makes the webview inspectable in Safari web console
-    let allowed: [String]? // List of allowed URLS that will not trigger Safari Web Controller popup. If not present it will allow all.
+    let allowed: [String]? // List of allowed URLs that will not trigger SFSafariViewController. Empty or nil = all URLs load in webview. Non-empty = only listed URLs stay in webview, others open Safari sheet.
     // Add any other configuration properties you need here
   
   public init(url: URL, inspectable: Bool = true, allowed: [String] = []) {

@@ -5,6 +5,7 @@
 //  Created by Camilo on 23-08-26.
 //
 
+import SafariServices
 import SwiftUI
 import WebKit
 
@@ -77,6 +78,53 @@ public class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler
 
       // Example of native -> webview call on load finish
       // respondToJS(script: "console.log('Native says hello!');")
+    }
+
+    /// Decides whether a navigation should proceed in the webview or open in Safari.
+    /// If `allowed` is empty or nil, all URLs load in the webview. Otherwise URLs
+    /// whose host is in `allowed` load in the webview and any other URL opens in
+    /// a modal `SFSafariViewController`.
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+      guard let allowed = parent.config.allowed, !allowed.isEmpty,
+            let url = navigationAction.request.url else {
+        // Empty or nil list: allow all URLs in the webview
+        self.logger.info("Allow all URLs in the webview")
+        self.logger.debug("All URLs allowed, loading in webview")
+        self.logger.debug("Allowed hosts: \(parent.config.allowed ?? [])")
+        decisionHandler(.allow)
+        return
+      }
+
+      if let host = url.host, allowed.contains(host) {
+        decisionHandler(.allow)
+      } else {
+        self.logger.debug("URL \(url) not allowed, opening in Safari")
+        presentSafari(url: url, from: webView)
+        decisionHandler(.cancel)
+      }
+    }
+
+    /// Presents a modal `SFSafariViewController` for the given URL.
+    private func presentSafari(url: URL, from webView: WKWebView) {
+      guard let viewController = findViewController(from: webView) else {
+        self.logger.warning("No view controller to present Safari for \(url)")
+        return
+      }
+      self.logger.debug("Opening Safari for \(url)")
+      let safari = SFSafariViewController(url: url)
+      viewController.present(safari, animated: true)
+    }
+
+    /// Walks the responder chain from the webview to find the nearest `UIViewController`.
+    private func findViewController(from webView: WKWebView) -> UIViewController? {
+      var responder = webView.next
+      while let current = responder {
+        if let vc = current as? UIViewController {
+          return vc
+        }
+        responder = current.next
+      }
+      return nil
     }
 }
 
