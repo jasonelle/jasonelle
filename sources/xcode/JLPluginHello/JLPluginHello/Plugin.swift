@@ -14,6 +14,7 @@ public final class Plugin: JLKernel.Plugin {
   // Native handler called when JS invokes window.jasonelle.plugins.hello.call()
   public override func handle_call(args: Any?, respond: @escaping (String) -> Void) {
     self.logger.info("Handled in native code with args: \(String(describing: args))")
+    
     respond("window.jasonelle.plugins.hello.handle({ status: 'ok' });")
   }
 }

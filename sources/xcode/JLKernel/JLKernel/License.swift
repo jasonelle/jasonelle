@@ -43,13 +43,13 @@ public class License {
       }
       return
     }
-    let error: String = "License is not set. Can only use in simulator. Adquire an official license at https://jasonelle.com"
+    let error: String = "License is not set. Running in Device is not allowed without a license. Can only use in simulator. Adquire an official license at https://jasonelle.com"
     self.logger.emergency(error)
     fatalError(error)
   }
 
   public func check() {
-    guard !self.isValid()  else {
+    if self.isValid()  {
       self.logger.info("License found. Thank you for supporting Jasonelle development ♥.")
       return
     }

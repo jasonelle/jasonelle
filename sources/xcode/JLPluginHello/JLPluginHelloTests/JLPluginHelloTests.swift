@@ -13,11 +13,11 @@ import JLKernel
 struct JLPluginHelloTests {
 
     @Test func exposesReverseDomainName() async throws {
-        #expect(Plugin.name == "com.jasonelle.plugins.hello")
+      #expect(JLPluginHello.Plugin.name == "com.jasonelle.plugins.hello")
     }
 
     @Test func callRespondsWithHandleScript() async throws {
-        let plugin = Plugin()
+      let plugin = JLPluginHello.Plugin()
         var response: String?
 
         plugin.handle_call(args: ["message": "Hello"], respond: { response = $0 })
@@ -26,7 +26,7 @@ struct JLPluginHelloTests {
     }
 
     @Test func bundlesJavaScriptRegisteringPlugin() async throws {
-        let js = Plugin().js()
+      let js = JLPluginHello.Plugin().js()
 
         #expect(!js.isEmpty)
         #expect(js.contains("window.jasonelle.plugins.hello"))

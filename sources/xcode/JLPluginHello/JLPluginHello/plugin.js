@@ -14,9 +14,7 @@
   console.log("Hello World Plugin Jasonelle Init");
   
   // Demostrate calling a native function
-  plugin.call = (...args) => {
-    native.post(plugin.name, args);
-  };
+  plugin.call = (...args) => native.post(plugin.name, args);
   
   // Demostrate listening to an event
   plugin.handle = (args) => {

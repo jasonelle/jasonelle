@@ -24,7 +24,7 @@ open class Plugin {
   // Call respond(script) to send an event back to the JS side.
   open func handle_call(args: Any?, respond: @escaping (String) -> Void) {
     self.logger.warning("Plugin \(Self.name) has no native handler implemented")
-    respond("")
+    respond("console.log('jasonelle: no handler for \(Self.name)');")
   }
 
   public func js() -> String {

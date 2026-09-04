@@ -51,6 +51,7 @@ public class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler
           return
         }
 
+        // This is where the native part calls back to the js part
         let args = bodyDict["args"]
         plugin.handle_call(args: args) { script in
           self.respondToJS(script: script)
@@ -60,6 +61,7 @@ public class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler
 
     // MARK: Native -> Webview
     func respondToJS(script: String) {
+        self.logger.debug("Evaluating \(script)")
         webView?.evaluateJavaScript(script) { result, error in
             if let error = error {
               self.logger.warning("Error calling JS: \(error)")
@@ -80,20 +82,23 @@ public class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler
 
 public struct WebView: UIViewRepresentable {
   public let url: URL
-  let plugins: [String: JLKernel.Plugin]
-
-  public init(url: URL, plugins: [String: JLKernel.Plugin] = [:]) {
-    self.url = url
+  public let config: AppConfiguration
+  public let plugins: [String: JLKernel.Plugin]
+  let logger: Logger = Logger(from: type(of: WebView.self))
+  
+  public init(config: AppConfiguration, plugins: [String: JLKernel.Plugin] = [:]) {
+    self.config = config
+    self.url = config.url
     self.plugins = plugins
   }
 
   public static func fromConfiguration(plugins: [String: JLKernel.Plugin] = [:]) -> WebView {
     do {
       let config = try ConfigurationLoader.load()
-      return WebView(url: config.url, plugins: plugins)
+      return WebView(config: config, plugins: plugins)
     } catch {
-      Logger(from: "WebView").error("Failed to load configuration: \(error), falling back to about:blank")
-      return WebView(url: URL(string: "about:blank")!, plugins: plugins)
+      Logger(from: type(of: WebView.self)).error("Failed to load configuration: \(error), falling back to about:blank")
+      return WebView(config: AppConfiguration(url: URL(string: "about:blank")!), plugins: plugins)
     }
   }
 
@@ -132,9 +137,13 @@ public struct WebView: UIViewRepresentable {
     let webView = WKWebView(frame: .zero, configuration: configuration)
     webView.navigationDelegate = context.coordinator
 
-    // ponytail: check if this can be configured inside config.jsonc
     if #available(iOS 16.4, *) {
-        webView.isInspectable = true
+        if self.config.inspectable ?? false {
+          self.logger.debug("WebView inspection: enabled")
+          webView.isInspectable = true
+        } else {
+          self.logger.debug("WebView inspection: disabled")
+        }
     }
 
     // Inject before first load so user scripts apply to the initial page

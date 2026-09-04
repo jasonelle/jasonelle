@@ -1,8 +1,16 @@
 import Foundation
 
-struct AppConfiguration: Decodable {
-    let url: URL
+public struct AppConfiguration: Decodable {
+    let url: URL // The url that will load as the main url for the app
+    let inspectable: Bool? // Makes the webview inspectable in Safari web console
+    let allowed: [String]? // List of allowed URLS that will not trigger Safari Web Controller popup. If not present it will allow all.
     // Add any other configuration properties you need here
+  
+  public init(url: URL, inspectable: Bool = true, allowed: [String] = []) {
+      self.url = url
+      self.inspectable = inspectable
+      self.allowed = allowed
+    }
 }
 
 enum ConfigurationError: Error {
@@ -11,13 +19,19 @@ enum ConfigurationError: Error {
 }
 
 class ConfigurationLoader {
+  
+    private static let logger: Logger = Logger(from: type(of: ConfigurationLoader.self))
+  
     static func load(from url: URL? = Bundle.main.url(forResource: "config", withExtension: "jsonc")) throws -> AppConfiguration {
         // Look for config.jsonc in the main app bundle by default
         guard let url = url else {
             throw ConfigurationError.fileNotFound
         }
         let data = try Data(contentsOf: url)
-        return try decode(data: data)
+        let decoded = try decode(data: data)
+        logger.info("Successfully loaded configuration")
+        logger.debug("\(decoded)")
+        return decoded
     }
     
     // Extracted for unit testing
