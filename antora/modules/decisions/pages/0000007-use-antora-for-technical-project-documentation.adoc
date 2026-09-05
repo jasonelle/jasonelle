@@ -1,0 +1,36 @@
+= Use Antora for technical project documentation
+
+- id: 0000007
+
+== Status
+
+- Accepted (2026-08-15) by: @clsource
+
+== Context and Problem Statement
+
+Jasonelle needs structured technical documentation for its website, iOS, and
+Android components that can be authored in one place and published consistently.
+Multiple sources produce prose that lives next to the code, but publishing it as
+a browsable site currently needs manual assembly. Which tool should generate the
+project documentation?
+
+== Considered Options
+
+* Use https://docs.antora.org/antora/latest/[Antora]
+* Use a static site generator such as Hugo or Jekyll
+* Write documentation as Markdown files with no generation step
+
+== Decision Outcome
+
+Chosen option: "Use Antora", because it is built for multi-repository technical
+documentation, keeps content in AsciiDoc alongside the code, and generates a
+versioned site with a built-in navigation and UI. Positive consequences:
+documentation stays close to the sources, builds are repeatable via the playbook
+in CI, and it supports cross-component xrefs. Negative consequences: an extra
+build step and a containerized toolchain to maintain.
+
+Antora is the best option, because it is designed for exactly this use case and
+its `antora-playbook.yml` centralizes content, UI, and output configuration. If
+a generic static site generator was chosen, documentation structure and
+versioning would need custom configuration. If documentation was written with no
+generation step, a browsable site would not be produced automatically.

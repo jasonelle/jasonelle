@@ -1,0 +1,36 @@
+= Fastlane Generator
+
+`fastlane-gen` tool generates standard Ruby-based Fastlane files
+(a Fastfile, Appfile, and Deliverfile/Supplyfile) to each build directory
+`build/xcode` and `build/android`. This way, developers familiar with Fastlane
+can easily inspect, debug, and run standard fastlane release commands, rather
+than relying on a giant, hard-to-read bash script with dozens of CLI arguments.
+
+== What is Fastlane?
+
+https://fastlane.tools/[Fastlane] is an open source platform aimed at
+simplifying Android and iOS deployment. It automates every aspect of the
+development and release workflow so a single command can run a lane. The most
+common use cases are:
+
+* *Automate screenshots*: automatically capture localized screenshots for each
+  language and device the app supports, configured once and stored so anyone on
+  the team can regenerate them.
+* *Beta deployment*: distribute beta builds to testers, automating incrementing
+  the build version, code signing, building, uploading, and setting a
+  changelog. Supports TestFlight, Play, and other beta services.
+* *App Store deployment*: create a repeatable workflow to build, upload, and
+  distribute new releases to the store, including app metadata, screenshots,
+  and submitting new versions for review.
+* *Code signing*: store signing identities and profiles in an encrypted git
+  repository so every developer can reproduce signed builds on any machine.
+* *Continuous Integration*: integrates with Jenkins, GitHub Actions, GitLab,
+  CircleCI, Bitrise, and other CI services.
+
+Workflows are defined as *lanes* in a `Fastfile`. Each lane chains actions
+such as `increment_build_number`, `build_app`, `capture_screenshots`,
+`upload_to_testflight`, and `upload_to_app_store`, and can be extended with
+hundreds of community-built https://docs.fastlane.tools/actions/[actions] and
+https://docs.fastlane.tools/plugins/available-plugins/[plugins].
+
+See the https://docs.fastlane.tools/[Fastlane documentation] for details.

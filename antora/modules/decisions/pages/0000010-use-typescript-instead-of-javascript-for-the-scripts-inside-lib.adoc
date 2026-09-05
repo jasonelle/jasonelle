@@ -1,0 +1,26 @@
+= Use TypeScript instead of JavaScript for the scripts inside lib
+
+- id: 0000010
+
+== Status
+
+- Accepted (2026-08-16) by: @clsource
+
+== Context and Problem Statement
+
+JavaScript files in `lib/*/scripts/` lack type safety and modern module
+syntax. Should the project migrate these scripts to TypeScript before they
+grow in complexity?
+
+== Considered Options
+
+* Keep plain JavaScript
+* Migrate to TypeScript
+
+== Decision Outcome
+
+Chosen option: "Migrate to TypeScript", because it adds type checking
+with zero runtime cost (esbuild strips types at bundle time). Positive
+consequences: better editor support, catches import/type errors early,
+enables modern `import`/`export` syntax. Negative consequences: requires
+a tsconfig for the bundler, minor tooling overhead.

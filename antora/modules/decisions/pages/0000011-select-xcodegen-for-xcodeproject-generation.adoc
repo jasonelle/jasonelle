@@ -1,0 +1,77 @@
+= Select XcodeGen for Xcode Project Generation
+
+- id: 0000011
+
+== Status
+
+- Accepted (2026-08-17) by: @clsource
+
+== Context and Problem Statement
+
+xref:0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.adoc[ADR-0000009] chose Swift for Xcode related CLI tools. This ADR refines that decision by selecting XcodeGen for project generation. How should the project generation be handled?
+
+== Considered Options
+
+* https://github.com/yonaskolb/xcodegen[XcodeGen]
+* https://github.com/tuist/tuist[Tuist]
+* https://github.com/igor-makarov/xcake[Xcake]
+
+== Decision Outcome
+
+Chosen option: "XcodeGen", because it is mature, widely adopted, uses a simple YAML-based configuration (`Project.yml`), and integrates well with CLI-driven workflows. Positive consequences: declarative project definitions, reproducible builds, easy templating via plugins. Negative consequences: none significant.
+
+XcodeGen is the best fit for our needs. Tuist is powerful but heavier and introduces its own Swift DSL, adding complexity. Xcake is less maintained and has a smaller community.
+
+== Diagram
+
+[plantuml]
+....
+@startuml
+
+skinparam packageStyle rectangle
+skinparam defaultFontName "Helvetica"
+
+skinparam rectangle {
+  BackgroundColor<<input>> #E8F5E9
+  BorderColor<<input>> #388E3C
+  BackgroundColor<<core>> #E3F2FD
+  BorderColor<<core>> #1565C0
+  BackgroundColor<<output>> #FFF3E0
+  BorderColor<<output>> #EF6C00
+}
+
+title <b>Swift Project Generator Architecture</b>\n<i>XcodeGen-based pipeline</i>
+
+rectangle "**Golang CLI**" as CLI <<input>> {
+  rectangle "Template" as Template
+  rectangle "User Files" as UserFiles
+  rectangle "Plugins" as Plugins
+}
+
+rectangle "**Project.yml**" as ProjectYml <<input>>
+
+rectangle "**XcodeGen**" as XcodeGen <<core>>
+
+rectangle "**Output**" as Output <<output>> {
+  file ".xcodeproj" as XcodeProj
+  file ".xcworkspace" as XcodeWorkspace
+}
+
+note right of XcodeGen
+  <i>Chosen over:</i>
+  • [[https://github.com/tuist/tuist Tuist]] (heavier, Swift DSL)
+  • [[https://github.com/igor-makarov/xcake Xcake]] (less maintained)
+  <i>See also:</i>
+  [[https://github.com/yonaskolb/xcodegen XcodeGen]]
+end note
+
+Template -down-> ProjectYml : merges
+UserFiles -down-> ProjectYml : merges
+Plugins -down-> ProjectYml : extends
+
+ProjectYml -right-> XcodeGen : spec
+XcodeGen -down-> XcodeProj : generates
+XcodeGen -down-> XcodeWorkspace : generates
+
+@enduml
+....

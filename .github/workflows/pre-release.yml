@@ -1,0 +1,63 @@
+name: Create SemVer Pre-Release
+# yamllint disable-line rule:truthy
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "sources/**"
+      - "tools/**"
+      - ".github/workflows/**"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Generate Version String
+        id: versioning
+        run: |
+          MANUAL_PART=$(cat VERSION | tr -d '[:space:]')
+
+          if [[ ! "$MANUAL_PART" =~ ^[0-9]+\.[0-9]+$ ]]; then
+            echo "Error: VERSION file must be formatted as X.Y (e.g: 1.0)"
+            exit 1
+          fi
+
+          TIMESTAMP=$(date +%s)
+
+          FULL_VERSION="$MANUAL_PART.$TIMESTAMP"
+
+          echo "NEW_VERSION=$FULL_VERSION" >> $GITHUB_ENV
+          echo "manual_part=$MANUAL_PART" >> $GITHUB_OUTPUT
+          echo "VERSION: $FULL_VERSION"
+
+      - name: Prune old pre-releases
+        run: |
+          gh api repos/${{ github.repository }}/releases --paginate \
+            --jq '.[] | select(.prerelease == true) | [.id, .tag_name] | @tsv' \
+            | while IFS=$'\t' read -r id tag; do
+                [ -n "$id" ] && gh api -X DELETE repos/${{ github.repository }}/releases/$id
+                [ -n "$tag" ] && gh api -X DELETE repos/${{ github.repository }}/git/refs/tags/$tag || true
+              done
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Git Tag and GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.NEW_VERSION }}
+          name: Release v${{ env.NEW_VERSION }}
+          body: |
+            Automated release for commit ${{ github.sha }}.
+            Version components:
+            - Manual Base: ${{ steps.versioning.outputs.manual_part }}
+            - Patch (Unix Timestamp): ${{ env.NEW_VERSION }}
+          draft: false
+          prerelease: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

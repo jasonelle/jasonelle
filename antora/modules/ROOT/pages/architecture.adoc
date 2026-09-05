@@ -1,0 +1,192 @@
+= Architecture
+
+This document outlines the architecture for the Jasonelle cross-platform web wrapper generator framework.
+
+== Architecture Overview
+
+The system is designed around a cascading asset injection strategy, a modular
+CLI approach, and a strictly separated directory structure.
+
+1. *Cascading Configuration & Assets*: `lib/common/` is the base layer. Platform
+   directories (`lib/xcode/`, `lib/android/`) override or extend it — same path,
+   platform wins.
+2. *Native File Overrides*: Placing a file in `lib/<platform>/sources/`
+   automatically replaces the corresponding file from `sources/<platform>/`
+   during the build.
+3. *Store Metadata*: `config/store.jsonc` and `.env` manage store metadata and
+   secrets. A Fastlane generator parses these into `build/xcode` and
+   `build/android`.
+4. *TypeScript Bundling*: `esbuild` merges TypeScript files from `lib/common`
+   and `lib/<platform>` into a single `webview.js`. Common scripts are copied
+   first, platform scripts overlay on top.
+5. *Platform CLIs*: `android` (Go) handles Android project setup, `xcode`
+   (Swift) handles Xcode project setup. A `gen` orchestrator coordinates them.
+
+== C4 Architecture Diagram
+
+The diagram below shows the target architecture. Some components (e.g., `gen`,
+`android CLI`, `fastlane gen`) are planned but not yet implemented as standalone
+tools.
+
+[plantuml, c4_architecture, png]
+----
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(developer, "Developer", "Uses the CLI to generate native apps")
+
+System_Boundary(jasonelle, "Jasonelle Framework") {
+    Container(gen, "gen CLI", "Go", "Orchestrates the build process and merges configurations")
+    Container(android_cli, "android CLI", "Go", "Handles Android project setup")
+    Container(xcode_cli, "xcode CLI", "Swift", "Handles Xcode project setup")
+    Container(fastlane_gen, "fastlane gen CLI", "Go", "Generates Fastlane automation scripts")
+
+    Container(esbuild, "esbuild", "Go", "Bundles TypeScript files into webview.js")
+
+    ContainerDb(sources, "sources/", "File System", "Base Xcode project template")
+    ContainerDb(lib, "lib/", "File System", "User customizations: config, assets, scripts, and native overrides")
+}
+
+System_Ext(build_xcode, "build/xcode/", "Generated Xcode Project and Fastlane Files")
+System_Ext(build_android, "build/android/", "Generated Android Studio Project and Fastlane Files")
+
+Rel(developer, gen, "Runs generation command")
+Rel(developer, lib, "Configures app via JSONC, .env & overrides")
+
+Rel(gen, sources, "Reads base templates")
+Rel(gen, lib, "Reads and merges configs & overrides")
+
+Rel(gen, esbuild, "Triggers TS bundling")
+Rel(gen, android_cli, "Triggers Android config")
+Rel(gen, xcode_cli, "Triggers Xcode config")
+Rel(gen, fastlane_gen, "Triggers Fastlane generation")
+
+Rel(esbuild, build_xcode, "Writes webview.js")
+Rel(esbuild, build_android, "Writes webview.js")
+
+Rel(xcode_cli, build_xcode, "Configures Xcode project")
+Rel(android_cli, build_android, "Configures Android project")
+
+Rel(fastlane_gen, lib, "Reads store.jsonc & .env")
+Rel(fastlane_gen, build_xcode, "Writes Fastfile/Appfile")
+Rel(fastlane_gen, build_android, "Writes Fastfile/Appfile")
+
+@enduml
+----
+
+== Architecture Flow Diagram
+
+The diagram below shows the target data flow through the framework.
+
+[plantuml, architecture_flow, png]
+----
+@startuml
+skinparam componentStyle rectangle
+
+package "Framework Inputs" {
+  folder "sources/" as sources {
+    folder "sources/xcode/" as sources_xcode
+  }
+  
+  folder "lib/" as lib {
+    folder "lib/common/config/" as lib_common_config
+    folder "lib/common/assets/icon/" as lib_common_icon
+    folder "lib/common/resources/" as lib_common_resources
+    folder "lib/common/scripts/" as lib_common_scripts
+    
+    folder "lib/xcode/config/" as lib_xcode_config
+    folder "lib/xcode/scripts/" as lib_xcode_scripts
+    folder "lib/xcode/sources/" as lib_xcode_sources
+    
+    folder "lib/android/config/" as lib_android_config
+    folder "lib/android/scripts/" as lib_android_scripts
+    folder "lib/android/sources/" as lib_android_sources
+  }
+}
+
+package "CLI Tools (tools/)" {
+  [gen (Go)] as gen
+  [android (Go)] as cli_android
+  [xcode (Swift)] as cli_xcode
+  [fastlane gen (Go)] as fastlane_gen
+  [esbuild (TS Bundler)] as esbuild
+}
+
+package "Build Output (build/)" {
+  folder "build/xcode/" as build_xcode {
+    file "Xcode Project"
+    file "Fastfile"
+    file "Appfile"
+  }
+
+  folder "build/android/" as build_android {
+    file "Android Studio Project"
+    file "Fastfile"
+    file "Appfile"
+  }
+}
+
+' Framework inputs
+sources --> gen : Reads base templates
+lib --> gen : Reads and merges configs & overrides
+
+' Main generation orchestration
+gen --> esbuild : Triggers TS bundling
+gen --> cli_xcode : Triggers Xcode config
+gen --> cli_android : Triggers Android config
+gen --> fastlane_gen : Triggers Fastlane generation
+
+' TypeScript bundling
+esbuild --> build_xcode : Writes webview.js
+esbuild --> build_android : Writes webview.js
+
+' Native project generation
+cli_xcode --> build_xcode : Configures Xcode project
+cli_android --> build_android : Configures Android project
+
+' Fastlane generation
+fastlane_gen --> lib : Reads store.jsonc & .env
+fastlane_gen --> build_xcode : Writes Fastfile/Appfile
+fastlane_gen --> build_android : Writes Fastfile/Appfile
+
+@enduml
+----
+
+== Directory Structure
+
+* `.gitignore`: Excludes `.env` and `build/`.
+* `sources/`: Base project templates.
+** `sources/xcode/`: Xcode project template (Swift, storyboards, workspace).
+* `lib/`: User workspace for configurations and overrides.
+** `lib/common/`:
+*** `.env`: Secret keys for tools and stores.
+*** `config/config.jsonc`: Foundational configuration.
+*** `config/store.jsonc`: Shared app store metadata.
+*** `config/bundler.json`: TypeScript config for esbuild.
+*** `assets/icon/1024x1024.png`: Base icon for store listings.
+*** `resources/`: Raw files copied to the app bundle.
+*** `scripts/main.ts`: Base TypeScript entry point for the webview.
+** `lib/android/`:
+*** `config/config.jsonc`: Android configuration overrides.
+*** `config/store.jsonc`: Play Store specific overrides.
+*** `scripts/main.ts`: Android TypeScript overrides.
+*** `sources/`: Native file replacements (e.g., custom `MainActivity.kt`).
+*** `assets/`: Play Store specific assets.
+*** `resources/`: Raw files copied to the Android app bundle.
+** `lib/xcode/`:
+*** `config/config.jsonc`: Xcode configuration overrides.
+*** `config/store.jsonc`: App Store specific overrides.
+*** `scripts/main.ts`: Xcode TypeScript overrides.
+*** `sources/`: Native file replacements (e.g., custom `ContentView.swift`).
+*** `assets/`: App Store specific assets.
+*** `resources/`: Raw files copied to the Xcode app bundle.
+
+* `tools/`: CLI tools and vendored binaries.
+** `tools/icon/`: Generates app icons from a single 1024x1024 PNG (Go).
+** `tools/jsonc/`: Merges cascading JSONC config files (Go).
+** `tools/xcode/`: Xcode utility scripts (Swift).
+** `tools/vendor/esbuild/`: Vendored esbuild binary for TypeScript bundling.
+
+* `build/`: Generated output (git-ignored).
+** `build/xcode/`: Generated Xcode project and Fastlane files.
+** `build/android/`: Generated Android Studio project and Fastlane files.

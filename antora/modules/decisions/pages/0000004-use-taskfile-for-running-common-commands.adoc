@@ -1,0 +1,39 @@
+= Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts
+
+- id: 0000004
+
+== Status
+
+- Accepted (2026-08-15) by: @clsource
+
+== Context and Problem Statement
+
+Jasonelle needs to run common development commands (build docs, serve the site,
+lint, git chores) consistently across macOS, Linux, and CI. Makefiles are
+limited by `sh` semantics and tab-sensitive recipes that behave differently
+across platforms, while custom shell scripts split command logic and are hard
+to discover. How should common commands be defined and run?
+
+== Considered Options
+
+* Use https://taskfile.dev/[Task] with a `Taskfile.yml`
+* Use a Makefile
+* Use custom shell scripts
+
+== Decision Outcome
+
+Chosen option: "Use Task with a Taskfile.yml", because it is a single
+cross-platform binary with zero dependencies that runs the same Taskfile on
+Linux, macOS, and Windows, and its YAML syntax is readable and gives built-in
+features like task dependencies, command chaining, and caching based on file
+changes. Positive consequences: one declarative entry point for contributors,
+consistent behavior across platforms and CI, and easy discovery via `task
+--list`. Negative consequences: contributors must install the `task` binary
+(one download or package manager install).
+
+Task is the best option, because it is purpose-built for modern workflows and
+works uniformly on every developer machine and in CI. If "Use a Makefile" was
+chosen, recipes would depend on `sh` and shell quirks and tab indentation
+across platforms. If "Use custom shell scripts" was chosen, every script would
+need manual argument parsing, error handling, and duplication of common
+command logic.

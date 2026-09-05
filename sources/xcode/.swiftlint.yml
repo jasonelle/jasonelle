@@ -1,0 +1,44 @@
+# based on https://github.com/GenericJam/mob/blob/master/.swiftlint.yml
+included:
+  - JLKernel
+  - Application
+  - JLPluginHello
+
+# The "errors" SwiftLint flags
+# below are stylistic, not bugs; tuning them lets the actual signal through.
+
+identifier_name:
+  # Allow short idiomatic names (a/b for tuple components, n/i for indices,
+  # dx/dy/dt for deltas, op for operation, cb for callback, pt/r/g/h for
+  # geometry helpers, ms for milliseconds, t for time/temp). Min length lower
+  # than 3 catches genuinely opaque names like `_a` while letting these stay.
+  min_length:
+    warning: 1
+    error: 1
+# Existing 40-char max stays as warning — keeps catching genuinely runaway
+# names without escalating.
+
+cyclomatic_complexity:
+  warning: 40
+  error: 60
+
+file_length:
+  warning: 2000
+  error: 3000
+
+function_body_length:
+  warning: 100
+  error: 200
+
+force_cast: warning
+
+# SwiftUI initializers like Button(action:, label:) and modifiers like
+# onScrollGeometryChange(for:of:) take two closures by API design. Apple's
+# own examples use trailing-closure syntax. Suppress.
+disabled_rules:
+  - multiple_closures_with_trailing_closure
+
+# 130-char limit (default 120).
+line_length:
+  warning: 130
+  error: 200

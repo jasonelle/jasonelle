@@ -1,0 +1,41 @@
+name: Build Website and Documentation
+# yamllint disable-line rule:truthy
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "antora/**"
+      - "antora-playbook.yml"
+      - "website/**"
+      - "Taskfile.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install task
+        uses: go-task/setup-task@v2
+
+      - name: Install rsync
+        run: sudo apt-get install -y rsync
+
+      - name: Install (build Docker image)
+        run: task install
+
+      - name: Generate docs/ directory
+        run: task build
+
+      - name: Commit generated documentation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          git commit -m "📝 docs: build"
+          git push
