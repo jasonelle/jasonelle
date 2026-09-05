@@ -7,6 +7,7 @@
 
 import Foundation
 import Testing
+import WebKit
 @testable import JLKernel
 
 @Suite(.serialized) struct JLKernelTests {
@@ -21,7 +22,7 @@ import Testing
 
     @Test @MainActor func dispatchesToRegisteredPlugin() async throws {
         let plugin = StubPlugin()
-        let webview = JLKernel.WebView(url: URL(string: "https://jasonelle.com")!, plugins: ["stub": plugin])
+        let webview = JLKernel.WebView(config: AppConfiguration(url: URL(string: "https://jasonelle.com")!), plugins: ["stub": plugin])
         let coordinator = webview.makeCoordinator()
 
         coordinator.handleMessage(body: ["name": "stub", "args": ["value": 42]])
@@ -31,7 +32,7 @@ import Testing
 
     @Test @MainActor func ignoresUnknownPlugins() async throws {
         let plugin = StubPlugin()
-        let webview = JLKernel.WebView(url: URL(string: "https://jasonelle.com")!, plugins: ["stub": plugin])
+        let webview = JLKernel.WebView(config: AppConfiguration(url: URL(string: "https://jasonelle.com")!), plugins: ["stub": plugin])
         let coordinator = webview.makeCoordinator()
 
         coordinator.handleMessage(body: ["name": "missing", "args": [:]])
@@ -150,18 +151,57 @@ struct PluginTests {
         #expect(UnconfiguredPlugin.name == "UnconfiguredPlugin")
     }
 
-    @Test func defaultCallRespondsEmptyString() {
+    @Test func defaultCallRespondsWithWarningScript() {
         var response: String?
 
         UnconfiguredPlugin().handle_call(args: nil) { response = $0 }
 
-        #expect(response == "")
+        #expect(response == "console.log('jasonelle: no handler for UnconfiguredPlugin');")
     }
 
     @Test func jsLoadsBundledPluginJS() {
         let source = UnconfiguredPlugin().js()
 
         #expect(source.contains("window.jasonelle.plugins.stub"))
+    }
+
+}
+
+// MARK: - Navigation policy (allowed hosts)
+
+struct NavigationPolicyTests {
+
+    private let mainURL = URL(string: "https://jasonelle.com")!
+
+    @MainActor private func makeCoordinator() -> Coordinator {
+        JLKernel.WebView(config: AppConfiguration(url: mainURL)).makeCoordinator()
+    }
+
+    @Test @MainActor func allowsEveryURLWhenAllowedIsEmptyOrNil() async throws {
+        let coordinator = makeCoordinator()
+
+        #expect(coordinator.decidePolicy(url: URL(string: "https://anything.com"), allowed: [], mainURL: mainURL) == .allow)
+        #expect(coordinator.decidePolicy(url: URL(string: "https://anything.com"), allowed: nil, mainURL: mainURL) == .allow)
+        #expect(coordinator.decidePolicy(url: nil, allowed: nil, mainURL: mainURL) == .allow)
+    }
+
+    @Test @MainActor func allowsURLsWhoseHostIsInAllowedList() async throws {
+        let coordinator = makeCoordinator()
+
+        #expect(coordinator.decidePolicy(url: URL(string: "https://jasonelle.com/foo?bar=1"), allowed: ["jasonelle.com"], mainURL: mainURL) == .allow)
+    }
+
+    @Test @MainActor func cancelsURLsWhoseHostIsNotInAllowedList() async throws {
+        let coordinator = makeCoordinator()
+
+        #expect(coordinator.decidePolicy(url: URL(string: "https://evil.com"), allowed: ["jasonelle.com"], mainURL: mainURL) == .cancel)
+        #expect(coordinator.decidePolicy(url: URL(string: "file:///tmp/x"), allowed: ["jasonelle.com"], mainURL: mainURL) == .cancel)
+    }
+
+    @Test @MainActor func alwaysAllowsTheAppURL() async throws {
+        let coordinator = makeCoordinator()
+
+        #expect(coordinator.decidePolicy(url: mainURL, allowed: ["other.com"], mainURL: mainURL) == .allow)
     }
 
 }

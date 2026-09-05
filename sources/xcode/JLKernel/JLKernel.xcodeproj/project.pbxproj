@@ -25,22 +25,9 @@
 		9A57A4843036464E00C5F416 /* JLKernelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JLKernelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		9AAEC62B3049C4DC007BA015 /* Exceptions for "JLKernel" folder in "JLKernelTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Configuration.swift,
-			);
-			target = 9A57A4833036464E00C5F416 /* JLKernelTests */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		9A57A47B3036464D00C5F416 /* JLKernel */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				9AAEC62B3049C4DC007BA015 /* Exceptions for "JLKernel" folder in "JLKernelTests" target */,
-			);
 			path = JLKernel;
 			sourceTree = "<group>";
 		};
@@ -431,6 +418,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.core.JLKernelTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -449,6 +437,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jasonelle.core.JLKernelTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

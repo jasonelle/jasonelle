@@ -1,6 +1,6 @@
 {
   "url": "https://jasonelle.com",
   "inspectable": true,
-  // "allowed": []
+  // "allowed": ["github.com"], // If is empty or nil all urls will load in the main webview. Otherwise only the domains present will load inside the main webview.
 }
 

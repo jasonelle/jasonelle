@@ -26,7 +26,10 @@
   // Add buttons to HTML
   const button = document.createElement("button");
   button.textContent = "Click Me";
-  button.addEventListener("click", () => plugin.call("Hello", "World"));
+  button.addEventListener("click", () => {
+    window.location = "https://google.com";
+    plugin.call("Hello", "World")
+  });
   document.body.append(button);
   
   // Register JS functions globally

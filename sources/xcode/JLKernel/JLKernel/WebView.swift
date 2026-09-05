@@ -82,26 +82,48 @@ public class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler
 
     /// Decides whether a navigation should proceed in the webview or open in Safari.
     /// If `allowed` is empty or nil, all URLs load in the webview. Otherwise URLs
-    /// whose host is in `allowed` load in the webview and any other URL opens in
-    /// a modal `SFSafariViewController`.
+    /// whose host is in `allowed` load in the webview, plus the app's own `mainURL`,
+    /// and any other URL opens in a modal `SFSafariViewController`.
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-      guard let allowed = parent.config.allowed, !allowed.isEmpty,
-            let url = navigationAction.request.url else {
-        // Empty or nil list: allow all URLs in the webview
-        self.logger.info("Allow all URLs in the webview")
-        self.logger.debug("All URLs allowed, loading in webview")
-        self.logger.debug("Allowed hosts: \(parent.config.allowed ?? [])")
-        decisionHandler(.allow)
-        return
+      let url = navigationAction.request.url
+      let policy = decidePolicy(url: url, allowed: parent.config.allowed, mainURL: parent.config.url)
+
+      self.logger.debug("Loading URL \(String(describing: url)): \(policy)")
+      
+      if policy == .cancel {
+        self.logger.debug("URL \(String(describing: url)) not allowed, opening in Safari")
+        if let url {
+          presentSafari(url: url, from: webView)
+        }
       }
 
-      if let host = url.host, allowed.contains(host) {
-        decisionHandler(.allow)
-      } else {
-        self.logger.debug("URL \(url) not allowed, opening in Safari")
+      decisionHandler(policy)
+    }
+
+    /// Cancels main-frame responses the webview cannot render (downloads) and
+    /// hands them to Safari, which downloads them natively.
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+      if navigationResponse.isForMainFrame,
+         !navigationResponse.canShowMIMEType,
+         let url = navigationResponse.response.url {
+        self.logger.debug("URL \(url) is a download, opening in Safari")
         presentSafari(url: url, from: webView)
         decisionHandler(.cancel)
+        return
       }
+      decisionHandler(.allow)
+    }
+
+    // Extracted for unit testing, since WKNavigationAction cannot be mocked
+    func decidePolicy(url: URL?, allowed: [String]?, mainURL: URL?) -> WKNavigationActionPolicy {
+      guard let allowed = allowed, !allowed.isEmpty else {
+        // Empty or nil list: allow all URLs in the webview
+        return .allow
+      }
+      guard let host = url?.host, allowed.contains(host) || host == mainURL?.host else {
+        return .cancel
+      }
+      return .allow
     }
 
     /// Presents a modal `SFSafariViewController` for the given URL.
@@ -110,8 +132,10 @@ public class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler
         self.logger.warning("No view controller to present Safari for \(url)")
         return
       }
+      
       self.logger.debug("Opening Safari for \(url)")
       let safari = SFSafariViewController(url: url)
+      safari.modalPresentationStyle = .pageSheet
       viewController.present(safari, animated: true)
     }
 
