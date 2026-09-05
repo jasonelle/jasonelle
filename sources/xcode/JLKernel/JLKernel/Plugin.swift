@@ -27,6 +27,13 @@ open class Plugin {
     respond("console.log('jasonelle: no handler for \(Self.name)');")
   }
 
+  // Native handler invoked when a native event is triggered (e.g. viewDidLoad).
+  // Call respond(script) to send an event back to the JS side.
+  open func handle_event(name: String, args: Any? = [], respond: @escaping (String) -> Void) {
+    self.logger.warning("Plugin \(Self.name) has no native event handler implemented for \(name)")
+    respond("console.log('jasonelle: no event handler for \(Self.name)');")
+  }
+
   public func js() -> String {
     guard let url = Bundle(for: type(of: self)).url(forResource: "Plugin", withExtension: "js"),
         let data = try? Data(contentsOf: url),

@@ -25,6 +25,15 @@ struct JLPluginHelloTests {
         #expect(response == "window.jasonelle.plugins.hello.handle({ status: 'ok' });")
     }
 
+    @Test func eventRespondsWithHandleScript() async throws {
+      let plugin = JLPluginHello.Plugin()
+        var response: String?
+
+        plugin.handle_event(name: "viewDidLoad", args: nil) { response = $0 }
+
+        #expect(response == "window.jasonelle.plugins.hello.handle({ status: 'ok', name: 'viewDidLoad' });")
+    }
+
     @Test func bundlesJavaScriptRegisteringPlugin() async throws {
       let js = JLPluginHello.Plugin().js()
 

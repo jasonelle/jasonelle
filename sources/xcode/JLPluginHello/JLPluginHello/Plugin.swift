@@ -17,4 +17,11 @@ public final class Plugin: JLKernel.Plugin {
     
     respond("window.jasonelle.plugins.hello.handle({ status: 'ok' });")
   }
+
+  // Native handler called when a native event is triggered (e.g. viewDidLoad)
+  public override func handle_event(name: String, args: Any? = [], respond: @escaping (String) -> Void) {
+    self.logger.info("Handled event \(name) in native code with args: \(String(describing: args))")
+
+    respond("window.jasonelle.plugins.hello.handle({ status: 'ok', name: '\(name)' });")
+  }
 }

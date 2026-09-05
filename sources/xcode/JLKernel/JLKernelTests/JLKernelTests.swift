@@ -141,6 +141,43 @@ struct VersionTests {
 
 }
 
+// MARK: - Event
+
+final class EventStubPlugin: JLKernel.Plugin {
+    var receivedNames: [String] = []
+
+    override func handle_event(name: String, args: Any?, respond: @escaping (String) -> Void) {
+        receivedNames.append(name)
+        respond("")
+    }
+}
+
+struct EventTests {
+
+    @Test func onAppearSendDispatchesToRegisteredPlugins() {
+        let plugins: [String: JLKernel.Plugin] = [
+            "a": EventStubPlugin(),
+            "b": EventStubPlugin(),
+        ]
+        Events.plugins = plugins
+        defer { Events.plugins = [:] }
+
+        JLKernel.Events.sendOnAppear()
+
+        let names = plugins.values.compactMap { ($0 as? EventStubPlugin)?.receivedNames }.flatMap { $0 }
+        #expect(names.count == 2)
+        #expect(names.allSatisfy { $0 == Events.contentViewOnAppear.rawValue })
+    }
+
+    @Test func onAppearSendWithNoPluginsIsNoop() {
+        Events.plugins = [:]
+        defer { Events.plugins = [:] }
+
+        JLKernel.Events.sendOnAppear()
+    }
+
+}
+
 // MARK: - Plugin
 
 final class UnconfiguredPlugin: JLKernel.Plugin {}
@@ -157,6 +194,14 @@ struct PluginTests {
         UnconfiguredPlugin().handle_call(args: nil) { response = $0 }
 
         #expect(response == "console.log('jasonelle: no handler for UnconfiguredPlugin');")
+    }
+
+    @Test func defaultEventRespondsWithWarningScript() {
+        var response: String?
+
+        UnconfiguredPlugin().handle_event(name: "viewDidLoad", args: nil) { response = $0 }
+
+        #expect(response == "console.log('jasonelle: no event handler for UnconfiguredPlugin');")
     }
 
     @Test func jsLoadsBundledPluginJS() {

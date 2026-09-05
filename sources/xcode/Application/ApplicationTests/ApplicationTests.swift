@@ -37,4 +37,14 @@ struct ApplicationTests {
         #expect(!response.isEmpty)
     }
 
+    @Test func helloPluginRespondsToEvent() async {
+        let plugin = plugins[JLPluginHello.Plugin.name]
+        let response = await withCheckedContinuation { continuation in
+            plugin?.handle_event(name: "viewDidLoad", args: nil) { result in
+                continuation.resume(returning: result)
+            }
+        }
+        #expect(response.contains("window.jasonelle.plugins.hello.handle"))
+    }
+
 }

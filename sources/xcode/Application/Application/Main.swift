@@ -18,6 +18,7 @@ struct Main: App {
         // Purchase a License in https://jasonelle.com
         // to help development efforts.
         JLKernel.License.verify(key: "PURCHASE_ME")
+        JLKernel.Events.register(plugins: plugins)
         logger.info("App Initiated")
     }
 
@@ -25,6 +26,8 @@ struct Main: App {
         WindowGroup {
           ContentView().onAppear {
             logger.info("View did appear")
+
+            JLKernel.Events.sendOnAppear()
           }
         }
     }
