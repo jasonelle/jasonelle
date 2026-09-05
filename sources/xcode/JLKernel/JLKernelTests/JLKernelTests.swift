@@ -251,6 +251,33 @@ struct NavigationPolicyTests {
 
 }
 
+// MARK: - WebView user script injection (plugins + webview.js)
+
+struct WebViewScriptInjectionTests {
+
+    @Test @MainActor func injectsWebViewJSAfterPluginScripts() async throws {
+        let webview = JLKernel.WebView(
+            config: AppConfiguration(url: URL(string: "https://jasonelle.com")!),
+            plugins: ["stub": JLKernelTests.StubPlugin()]
+        )
+        let target = WKWebView()
+
+        // The bundle that contains the test fixtures (this mock webview.js)
+        let bundle = Bundle(for: JLKernelTests.StubPlugin.self)
+
+        webview.injectUserScripts(into: target, bundle: bundle)
+
+        let sources = target.configuration.userContentController.userScripts.map(\.source)
+
+        // The plugin script from the test bundle is injected first
+        #expect(sources.contains { $0.contains("window.jasonelle.plugins.stub") })
+        // The mocked webview.js is injected last, after the plugin scripts
+        #expect(sources.last?.contains("JLKernelTests webview.js") == true)
+        #expect(sources.dropLast().contains { $0.contains("window.jasonelle.plugins.stub") })
+    }
+
+}
+
 // MARK: - ConfigurationLoader
 
 struct ConfigurationLoaderTests {

@@ -219,12 +219,28 @@ public struct WebView: UIViewRepresentable {
     }
 
     // Inject before first load so user scripts apply to the initial page
-    JLKernel.Plugin.inject(with: plugins, into: webView)
+    injectUserScripts(into: webView)
 
     // Store reference to webView in coordinator so we can call native -> JS later
     context.coordinator.webView = webView
 
     return webView
+  }
+
+  /// Injects plugin scripts (Plugin.js) followed by the app's `webview.js`
+  /// so they apply to the initial page load. Extracted for unit testing,
+  /// since a SwiftUI `Context` cannot be fabricated in tests. The `bundle`
+  /// defaults to `Bundle.main` (the app bundle) and is overridable so tests
+  /// can point at their own fixture resources.
+  public func injectUserScripts(into webView: WKWebView, bundle: Bundle = .main) {
+    JLKernel.Plugin.inject(with: plugins, into: webView)
+
+    // Inject app scripts (webview.js) after plugin scripts
+    if let appScriptsURL = bundle.url(forResource: "webview", withExtension: "js"),
+       let appScripts = try? String(contentsOf: appScriptsURL, encoding: .utf8) {
+      let script = WKUserScript(source: appScripts, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+      webView.configuration.userContentController.addUserScript(script)
+    }
   }
 
   public func updateUIView(_ webView: WKWebView, context: Context) {
