@@ -1,0 +1,124 @@
+//
+//  JLPluginDevice.swift
+//  JLPluginDevice
+//
+//  Created by Camilo on 05-09-26.
+//
+
+import Foundation
+import JLKernel
+#if os(iOS)
+import UIKit
+#endif
+
+public final class Plugin: JLKernel.Plugin {
+  override public static var name: String { "com.jasonelle.plugins.device" }
+
+  public override func handle_call(args: Any?, respond: @escaping (String) -> Void) {
+    self.logger.info("Handling device info request")
+
+    let os = deviceOS()
+    let vendor = "apple"
+    let osVersion = ProcessInfo.processInfo.operatingSystemVersion
+    let version = "\(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)"
+    let deviceType = self.deviceType()
+    let orientation = self.orientation()
+    let screenSize = self.screenSize()
+
+    let args = """
+      os: {
+        name: '\(os)', 
+        version: '\(version)'
+      },
+      vendor: '\(vendor)',
+      type: '\(deviceType)',
+      orientation: '\(orientation)',
+      screen: {
+        width: \(screenSize.width), 
+        height: \(screenSize.height)
+      }
+    """
+    
+    self.logger.debug(args)
+    
+    let js = """
+    window.jasonelle.plugins.device.handle({
+      status: 'ok',
+      \(args)
+    });
+    """
+    
+    respond(js)
+  }
+
+  public override func handle_event(name: String, args: Any? = [], respond: @escaping (String) -> Void) {
+    self.logger.debug("Device plugin ignoring event \(name)")
+    respond("window.jasonelle.plugins.device.handle({ status: 'ok', name: '\(name)' });")
+  }
+
+  private func deviceOS() -> String {
+    #if os(iOS)
+    return "ios"
+    #elseif os(macOS)
+    return "macos"
+    #elseif os(tvOS)
+    return "tvos"
+    #elseif os(watchOS)
+    return "watchos"
+    #else
+    return "unknown"
+    #endif
+  }
+
+  private func deviceType() -> String {
+    #if os(iOS)
+    let idiom = UIDevice.current.userInterfaceIdiom
+    switch idiom {
+    case .pad: return "ipad"
+    default: return "iphone"
+    }
+    #elseif os(macOS)
+    return "macos"
+    #else
+    return "unknown"
+    #endif
+  }
+
+  private func orientation() -> String {
+    #if os(iOS)
+    self.logger.debug("device orientation: \(String(describing: UIDevice.current.orientation))")
+    switch UIDevice.current.orientation {
+      case .portrait: return "portrait"
+      case .portraitUpsideDown: return "portraitUpsideDown"
+      case .landscapeLeft: return "landscapeLeft"
+      case .landscapeRight: return "landscapeRight"
+      case .faceUp: return "faceUp"
+      case .faceDown: return "faceDown"
+      default: return "unknown"
+    }
+    #else
+    return "unknown"
+    #endif
+  }
+
+  private func screenSize() -> (width: CGFloat, height: CGFloat) {
+    #if os(iOS)
+    let bounds: CGRect
+    if #available(iOS 26.0, *) {
+      let screen = UIApplication.shared.connectedScenes
+        .compactMap { $0 as? UIWindowScene }
+        .filter { $0.activationState == .foregroundActive }
+        .first?.keyWindow?.screen
+      bounds = screen?.bounds ?? .zero
+    } else {
+      bounds = UIScreen.main.bounds
+    }
+    return (bounds.width, bounds.height)
+    #elseif os(macOS)
+    let frame = NSScreen.main?.frame ?? .zero
+    return (frame.width, frame.height)
+    #else
+    return (0, 0)
+    #endif
+  }
+}

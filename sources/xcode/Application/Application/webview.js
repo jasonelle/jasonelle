@@ -9,5 +9,5 @@
 // You can use it to customize the javascript
 // and page when rendering the website.
 (() => {
-  console.log("webview.js injected to DOM")
+  console.log("jasonelle: webview.js injected to DOM")
 })();

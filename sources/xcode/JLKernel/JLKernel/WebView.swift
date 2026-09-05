@@ -236,6 +236,7 @@ public struct WebView: UIViewRepresentable {
     JLKernel.Plugin.inject(with: plugins, into: webView)
 
     // Inject app scripts (webview.js) after plugin scripts
+    self.logger.debug("Injecting app scripts")
     if let appScriptsURL = bundle.url(forResource: "webview", withExtension: "js"),
        let appScripts = try? String(contentsOf: appScriptsURL, encoding: .utf8) {
       let script = WKUserScript(source: appScripts, injectionTime: .atDocumentEnd, forMainFrameOnly: true)

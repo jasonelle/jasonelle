@@ -9,9 +9,11 @@ import JLKernel
 
 // PLUGINS.IMPORT
 import JLPluginHello
+import JLPluginDevice
 
 // PLUGINS.INIT
 // Keys must match the plugin name registered in JS (window.jasonelle.plugins.<name>)
 public let plugins: [String: JLKernel.Plugin] = [
-  JLPluginHello.Plugin.name: JLPluginHello.Plugin()
+  JLPluginHello.Plugin.name: JLPluginHello.Plugin(),
+  JLPluginDevice.Plugin.name: JLPluginDevice.Plugin()
 ]

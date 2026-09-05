@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:JLPluginDevice/JLPluginDevice.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:JLPluginHello/JLPluginHello.xcodeproj">
    </FileRef>
    <FileRef

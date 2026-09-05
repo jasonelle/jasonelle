@@ -25,7 +25,7 @@ struct Main: App {
     var body: some Scene {
         WindowGroup {
           ContentView().onAppear {
-            logger.info("View did appear")
+            logger.debug("View did appear")
 
             JLKernel.Events.sendOnAppear()
           }

@@ -53,6 +53,7 @@ open class Plugin {
   }
 
   public static func inject(with plugins: [String: JLKernel.Plugin], into webview: WKWebView) {
+    Logger(from: Plugin.self).debug("Injecting \(plugins.count) plugins into webview")
     for (_, plugin) in plugins {
       plugin.inject(into: webview)
     }
