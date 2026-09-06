@@ -27,8 +27,8 @@ struct ContentView: View {
 
 1. The ``WebView`` injects a `window.jasonelle` JavaScript object at document start.
 2. JavaScript calls `window.jasonelle.plugins.<name>.call(args)`, which posts a message to the native side via `webkit.messageHandlers`.
-3. The ``Coordinator`` receives the message, looks up the ``Plugin`` by name, and invokes its ``Plugin/handle_call(args:respond:)`` method.
-4. The plugin calls `respond(script)` to execute JavaScript back in the web view.
+3. The ``Coordinator`` receives the message, looks up the ``Plugin`` by name, and invokes its ``Plugin/handle_call(args:callbackId:respond:)`` method.
+4. The plugin calls `respond(script)` to execute JavaScript back in the web view and resolve the promise returned by `window.jasonelle.post`. With `call().then(response => ...)` a JavaScript caller awaits the native response.
 
 ### Native Events
 

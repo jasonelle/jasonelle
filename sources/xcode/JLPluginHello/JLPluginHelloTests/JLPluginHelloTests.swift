@@ -20,9 +20,9 @@ struct JLPluginHelloTests {
       let plugin = JLPluginHello.Plugin()
         var response: String?
 
-        plugin.handle_call(args: ["message": "Hello"], respond: { response = $0 })
+        plugin.handle_call(args: ["message": "Hello"], callbackId: "call_1") { response = $0 }
 
-        #expect(response == "window.jasonelle.plugins.hello.handle({ status: 'ok' });")
+        #expect(response == "window.jasonelle.handle({ callbackId: 'call_1', status: 'ok' });")
     }
 
     @Test func eventRespondsWithHandleScript() async throws {

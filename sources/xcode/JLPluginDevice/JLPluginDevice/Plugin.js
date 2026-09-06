@@ -13,12 +13,9 @@
 
   console.log("Device Plugin Jasonelle Init");
 
+  // Call a native function. The response is passed to the callback
+  // Example: window.jasonelle.plugins.device.call().then(response => console.log(response))
   plugin.call = (...args) => native.post(plugin.name, args);
-
-  plugin.handle = (args) => {
-    console.log("Device info:", args);
-    return true;
-  };
 
   window.jasonelle.plugins.device = plugin;
 })();

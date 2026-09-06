@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9A57A4D1303646AA00C5F416 /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A57A4D0303646AA00C5F416 /* JLKernel.framework */; };
 		9A57A4D3303646AD00C5F416 /* JLPluginHello.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A57A4D2303646AD00C5F416 /* JLPluginHello.framework */; };
+		9A57A4D4303646AA00C5F416 /* JLPluginDevice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A57A4D5303646AA00C5F416 /* JLPluginDevice.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 		9A57A45C3036454700C5F416 /* ApplicationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApplicationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A57A4D0303646AA00C5F416 /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A57A4D2303646AD00C5F416 /* JLPluginHello.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPluginHello.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A57A4D5303646AA00C5F416 /* JLPluginDevice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPluginDevice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -61,6 +63,7 @@
 			files = (
 				9A57A4D3303646AD00C5F416 /* JLPluginHello.framework in Frameworks */,
 				9A57A4D1303646AA00C5F416 /* JLKernel.framework in Frameworks */,
+				9A57A4D4303646AA00C5F416 /* JLPluginDevice.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +110,7 @@
 			children = (
 				9A57A4D2303646AD00C5F416 /* JLPluginHello.framework */,
 				9A57A4D0303646AA00C5F416 /* JLKernel.framework */,
+				9A57A4D5303646AA00C5F416 /* JLPluginDevice.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

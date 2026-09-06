@@ -14,9 +14,11 @@ import WebKit
 
     final class StubPlugin: JLKernel.Plugin {
         var receivedArgs: Any?
+        var receivedCallbackId: String?
 
-        override public func handle_call(args: Any?, respond: @escaping (String) -> Void) {
+        override public func handle_call(args: Any?, callbackId: String, respond: @escaping (String) -> Void) {
             self.receivedArgs = args
+            self.receivedCallbackId = callbackId
         }
     }
 
@@ -25,9 +27,10 @@ import WebKit
         let webview = JLKernel.WebView(config: AppConfiguration(url: URL(string: "https://jasonelle.com")!), plugins: ["stub": plugin])
         let coordinator = webview.makeCoordinator()
 
-        coordinator.handleMessage(body: ["name": "stub", "args": ["value": 42]])
+        coordinator.handleMessage(body: ["name": "stub", "args": ["value": 42], "callbackId": "call_1"])
 
         #expect((plugin.receivedArgs as? [String: Any])?["value"] as? Int == 42)
+        #expect(plugin.receivedCallbackId == "call_1")
     }
 
     @Test @MainActor func ignoresUnknownPlugins() async throws {
@@ -191,9 +194,9 @@ struct PluginTests {
     @Test func defaultCallRespondsWithWarningScript() {
         var response: String?
 
-        UnconfiguredPlugin().handle_call(args: nil) { response = $0 }
+        UnconfiguredPlugin().handle_call(args: nil, callbackId: "call_1") { response = $0 }
 
-        #expect(response == "console.log('jasonelle: no handler for UnconfiguredPlugin');")
+        #expect(response == "window.jasonelle.handle({ callbackId: 'call_1' });")
     }
 
     @Test func defaultEventRespondsWithWarningScript() {
@@ -254,6 +257,14 @@ struct NavigationPolicyTests {
 // MARK: - WebView user script injection (plugins + webview.js)
 
 struct WebViewScriptInjectionTests {
+
+    @Test func bridgePostsReturnPromiseRoutedByCallbackId() {
+        let source = JLKernel.WebView.jsBridgeScript
+
+        #expect(source.contains("new Promise"))
+        #expect(source.contains("callbackId"))
+        #expect(source.contains("postMessage"))
+    }
 
     @Test @MainActor func injectsWebViewJSAfterPluginScripts() async throws {
         let webview = JLKernel.WebView(

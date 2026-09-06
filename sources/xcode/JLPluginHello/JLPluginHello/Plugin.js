@@ -13,22 +13,21 @@
   
   console.log("Hello World Plugin Jasonelle Init");
   
-  // Demostrate calling a native function
+  // Call a native function. The response is passed to the callback
   plugin.call = (...args) => native.post(plugin.name, args);
-  
-  // Demostrate listening to an event
+
+  // Listen for events from native code
   plugin.handle = (args) => {
     console.log("Handled in Webview with args:", args);
     return true
   };
-  
+
   // Demostrate HTML manipulation
   // Add buttons to HTML
   const button = document.createElement("button");
   button.textContent = "Click Me";
   button.addEventListener("click", () => {
-    window.location = "https://google.com";
-    plugin.call("Hello", "World")
+    plugin.call("Hello", "World").then(response => console.log("Response:", response));
   });
   document.body.append(button);
   

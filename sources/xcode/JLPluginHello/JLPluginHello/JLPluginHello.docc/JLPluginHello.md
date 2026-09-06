@@ -21,8 +21,8 @@ JLPluginHello is the simplest working plugin for Jasonelle. It shows how to:
 
 1. The plugin is injected into the web view at document end.
 2. `Plugin.js` creates a "Click Me" button and prepends it to the DOM.
-3. Clicking the button calls `window.jasonelle.plugins.hello.call("Hello", "World")`.
-4. The call is routed to `Plugin.swift` `call(args:respond:)`, which responds by executing a JavaScript handler in the web view.
+3. Clicking the button calls `window.jasonelle.plugins.hello.call("Hello", "World")`, which returns a promise.
+4. The call is routed to `Plugin.swift` `call(args:callbackId:respond:)`, which responds by resolving the promise in the web view with `{ status: 'ok' }`.
 
 ## Topics
 

@@ -35,17 +35,18 @@ public class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler
         self.logger.debug("Received dictionary: \(bodyDict)")
 
         // Plugin Handlers. The message is a dictionary
-        // { name: "<plugin name>", args: {...} } sent by the
-        // JS bridge (window.jasonelle.post(name, args)).
+        // { name: "<plugin name>", args: {...}, callbackId: "call_N" }
+        // sent by the JS bridge (window.jasonelle.post(name, args)).
         // Look up the plugin in the plugins dictionary and call
         // its native handler. Example:
         // webview calls from js a native function
         // window.jasonelle.plugins.hello.call()
         // This reaches the native handler:
-        // JLPluginHello.Plugin.handle_call(args:respond:)
+        // JLPluginHello.Plugin.handle_call(args:callbackId:respond:)
         // The handler then calls respond(script:) which runs
         // respondToJS to send an event back to the JS side, e.g.
-        // window.jasonelle.plugins.hello.handle(args)
+        // window.jasonelle.handle({ callbackId: 'call_N', ... })
+        // which resolves the promise that window.jasonelle.post returned.
         guard let name = bodyDict["name"] as? String,
               let plugin = parent.plugins[name] else {
           self.logger.warning("No plugin registered for message: \(body)")
@@ -54,7 +55,8 @@ public class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler
 
         // This is where the native part calls back to the js part
         let args = bodyDict["args"]
-        plugin.handle_call(args: args) { script in
+        let callbackId = bodyDict["callbackId"] as? String ?? ""
+        plugin.handle_call(args: args, callbackId: callbackId) { script in
           self.respondToJS(script: script)
         }
       }
@@ -177,6 +179,59 @@ public struct WebView: UIViewRepresentable {
   // The name of the handler exposed to JavaScript
   public static let messageHandlerName = "jasonelle"
 
+  /// JS injected at document start. `post` returns a Promise that resolves with
+  /// the native response, routed back through `handle` by `callbackId`.
+  public static let jsBridgeScript = """
+    const uuid = () => {
+      const bytes = crypto.getRandomValues(new Uint8Array(16));
+
+      bytes[6] = (bytes[6] & 0x0f) | 0x40; // version 4
+      bytes[8] = (bytes[8] & 0x3f) | 0x80; // variant
+
+      return [...bytes]
+        .map((b, i) => {
+          const hex = b.toString(16).padStart(2, '0');
+          return [4, 6, 8, 10].includes(i) ? `-${hex}` : hex;
+        })
+        .join('');
+    };
+    
+    window.jasonelle = {
+        _callbacks: {},
+        // Result of calling window.jasonelle.post
+        result: {
+          resolve: function(args) {
+            if (args && args.callbackId && window.jasonelle._callbacks[args.callbackId]) {
+                const [resolve, reject] = window.jasonelle._callbacks[args.callbackId];
+                delete window.jasonelle._callbacks[args.callbackId];
+                delete args.callbackId;
+                resolve(args);
+            }
+          },
+          reject: function(args) {
+            if (args && args.callbackId && window.jasonelle._callbacks[args.callbackId]) {
+                const [resolve, reject] = window.jasonelle._callbacks[args.callbackId];
+                delete window.jasonelle._callbacks[args.callbackId];
+                delete args.callbackId;
+                reject(args);
+            }
+          },
+        },
+        post: function(name, args) {
+            var callbackId = uuid();
+            return new Promise(function(resolve, reject) {
+                window.jasonelle._callbacks[callbackId] = [resolve, reject];
+                window.webkit.messageHandlers.jasonelle.postMessage({ name: name, args: args, callbackId: callbackId });
+            });
+        },
+        plugins: {},
+        handle: function(args) {
+          // Implement in plugin for handling native events
+          console.log("Jasonelle", "Handled event", args);
+        },
+    };
+    """
+
   public func makeCoordinator() -> Coordinator {
     Coordinator(self)
   }
@@ -191,18 +246,8 @@ public struct WebView: UIViewRepresentable {
     // 1. Setup JS Bridge: Webview -> Native
     configuration.userContentController.add(context.coordinator, name: WebView.messageHandlerName)
 
-    // Inject a JS helper to make calling the native bridge easier from web code
-    let jsBridgeScript = """
-    window.jasonelle = {
-        post: function(name, args) {
-            return window.webkit.messageHandlers.\(WebView.messageHandlerName).postMessage({ name: name, args: args });
-        },
-        plugins: {},
-        handle: function(args) {console.log("Jasonelle", "Handled event", args);}
-    };
-    """
-
-    let userScript = WKUserScript(source: jsBridgeScript, injectionTime: .atDocumentStart, forMainFrameOnly: false)
+    // Inject a JS helper to make calling the native bridge easier from web code.
+    let userScript = WKUserScript(source: WebView.jsBridgeScript, injectionTime: .atDocumentStart, forMainFrameOnly: false)
 
     configuration.userContentController.addUserScript(userScript)
 
@@ -216,6 +261,8 @@ public struct WebView: UIViewRepresentable {
         } else {
           self.logger.debug("WebView inspection: disabled")
         }
+    } else {
+      self.logger.debug("WebView inspection: enabled (iOS <= 16.4)")
     }
 
     // Inject before first load so user scripts apply to the initial page

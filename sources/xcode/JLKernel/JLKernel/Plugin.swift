@@ -21,10 +21,11 @@ open class Plugin {
   }
 
   // Native handler invoked when JS calls this plugin through the bridge.
-  // Call respond(script) to send an event back to the JS side.
-  open func handle_call(args: Any?, respond: @escaping (String) -> Void) {
+  // Call respond(script) to send the response back to the JS promise
+  // associated with callbackId.
+  open func handle_call(args: Any?, callbackId: String, respond: @escaping (String) -> Void) {
     self.logger.warning("Plugin \(Self.name) has no native handler implemented")
-    respond("console.log('jasonelle: no handler for \(Self.name)');")
+    respond("window.jasonelle.handle({ callbackId: '\(callbackId)' });")
   }
 
   // Native handler invoked when a native event is triggered (e.g. viewDidLoad).

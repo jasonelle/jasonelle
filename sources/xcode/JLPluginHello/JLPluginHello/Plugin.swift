@@ -12,10 +12,10 @@ public final class Plugin: JLKernel.Plugin {
   override public static var name: String { "com.jasonelle.plugins.hello" }
 
   // Native handler called when JS invokes window.jasonelle.plugins.hello.call()
-  public override func handle_call(args: Any?, respond: @escaping (String) -> Void) {
+  public override func handle_call(args: Any?, callbackId: String, respond: @escaping (String) -> Void) {
     self.logger.info("Handled in native code with args: \(String(describing: args))")
-    
-    respond("window.jasonelle.plugins.hello.handle({ status: 'ok' });")
+
+    respond("window.jasonelle.result.resolve({ callbackId: '\(callbackId)', status: 'ok' });")
   }
 
   // Native handler called when a native event is triggered (e.g. viewDidLoad)

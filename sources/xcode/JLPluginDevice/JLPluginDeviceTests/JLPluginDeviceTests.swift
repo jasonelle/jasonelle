@@ -20,9 +20,10 @@ struct JLPluginDeviceTests {
       let plugin = JLPluginDevice.Plugin()
         var response: String?
 
-        plugin.handle_call(args: nil, respond: { response = $0 })
+        plugin.handle_call(args: nil, callbackId: "call_1") { response = $0 }
 
-        #expect(response?.hasPrefix("window.jasonelle.plugins.device.handle({") == true)
+        #expect(response?.hasPrefix("window.jasonelle.handle({") == true)
+        #expect(response?.contains("callbackId: 'call_1'") == true)
         #expect(response?.contains("vendor: 'apple'") == true)
         #expect(response?.contains("os: {") == true)
         #expect(response?.contains("name: 'ios'") == true)

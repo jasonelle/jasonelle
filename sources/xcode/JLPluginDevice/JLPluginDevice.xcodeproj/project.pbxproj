@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9A1F127F304C9B16009FAF07 /* JLPluginDevice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1F1273304C9B16009FAF07 /* JLPluginDevice.framework */; };
+		9A1F128D304C9B16009FAF07 /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1F128E304C9B16009FAF07 /* JLKernel.framework */; };
+		9A1F128F304C9B16009FAF07 /* JLKernel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1F128E304C9B16009FAF07 /* JLKernel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -20,9 +22,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9A1F1290304C9B16009FAF07 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9A1F128F304C9B16009FAF07 /* JLKernel.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		9A1F1273304C9B16009FAF07 /* JLPluginDevice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JLPluginDevice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1F127E304C9B16009FAF07 /* JLPluginDeviceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JLPluginDeviceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A1F128E304C9B16009FAF07 /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -43,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A1F128D304C9B16009FAF07 /* JLKernel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +80,7 @@
 			children = (
 				9A1F1275304C9B16009FAF07 /* JLPluginDevice */,
 				9A1F1282304C9B16009FAF07 /* JLPluginDeviceTests */,
+				9A1F1291304C9B16009FAF07 /* Frameworks */,
 				9A1F1274304C9B16009FAF07 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,6 +92,14 @@
 				9A1F127E304C9B16009FAF07 /* JLPluginDeviceTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9A1F1291304C9B16009FAF07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A1F128E304C9B16009FAF07 /* JLKernel.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +123,7 @@
 				9A1F126F304C9B16009FAF07 /* Sources */,
 				9A1F1270304C9B16009FAF07 /* Frameworks */,
 				9A1F1271304C9B16009FAF07 /* Resources */,
+				9A1F1290304C9B16009FAF07 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -353,6 +381,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -388,6 +417,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
