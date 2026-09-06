@@ -14,6 +14,7 @@
   console.log("Hello World Plugin Jasonelle Init");
   
   // Call a native function. The response is passed to the callback
+  // Example: window.jasonelle.plugins.hello.call().then(response => console.log(response))
   plugin.call = (...args) => native.post(plugin.name, args);
 
   // Listen for events from native code
