@@ -8,14 +8,15 @@
 (() => {
   const native = window.jasonelle;
   const plugin = {
-    name: "com.jasonelle.plugins.hello"
+    name: "hello",
+    id: "com.jasonelle.plugins.hello"
   };
   
   console.log("Hello World Plugin Jasonelle Init");
   
   // Call a native function. The response is passed to the callback
   // Example: window.jasonelle.plugins.hello.call().then(response => console.log(response))
-  plugin.call = (...args) => native.post(plugin.name, args);
+  plugin.call = (...args) => native.post(plugin.id, args);
 
   // Listen for events from native code
   plugin.handle = (args) => {
@@ -28,7 +29,9 @@
   const button = document.createElement("button");
   button.textContent = "Click Me";
   button.addEventListener("click", () => {
-    plugin.call("Hello", "World").then(response => console.log("Response:", response));
+    plugin.call("Hello", "World").then(response => {
+      console.log("Response:", response);
+    });
   });
   document.body.append(button);
   

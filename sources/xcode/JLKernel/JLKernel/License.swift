@@ -49,7 +49,7 @@ public class License {
   }
 
   public func check() {
-    if self.isValid()  {
+    if self.isValid() {
       self.logger.info("License found. Thank you for supporting Jasonelle development ♥.")
       return
     }

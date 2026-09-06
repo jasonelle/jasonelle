@@ -5,7 +5,7 @@ public struct AppConfiguration: Decodable {
     let inspectable: Bool? // Makes the webview inspectable in Safari web console
     let allowed: [String]? // List of hosts allowed to load in the webview. Empty or nil = all URLs load in webview. Non-empty = only listed hosts load in webview, others open SFSafariViewController. The app URL (url) is always allowed.
     // Add any other configuration properties you need here
-  
+
   public init(url: URL, inspectable: Bool = true, allowed: [String] = []) {
       self.url = url
       self.inspectable = inspectable
@@ -19,9 +19,9 @@ enum ConfigurationError: Error {
 }
 
 class ConfigurationLoader {
-  
+
     private static let logger: Logger = Logger(from: type(of: ConfigurationLoader.self))
-  
+
     static func load(from url: URL? = Bundle.main.url(forResource: "config", withExtension: "jsonc")) throws -> AppConfiguration {
         // Look for config.jsonc in the main app bundle by default
         guard let url = url else {
@@ -33,7 +33,7 @@ class ConfigurationLoader {
         logger.debug("\(decoded)")
         return decoded
     }
-    
+
     // Extracted for unit testing
     static func decode(data: Data) throws -> AppConfiguration {
         let decoder = JSONDecoder()

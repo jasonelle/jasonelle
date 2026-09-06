@@ -160,7 +160,7 @@ struct EventTests {
     @Test func onAppearSendDispatchesToRegisteredPlugins() {
         let plugins: [String: JLKernel.Plugin] = [
             "a": EventStubPlugin(),
-            "b": EventStubPlugin(),
+            "b": EventStubPlugin()
         ]
         Events.plugins = plugins
         defer { Events.plugins = [:] }

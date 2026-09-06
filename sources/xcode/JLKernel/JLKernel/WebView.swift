@@ -54,11 +54,11 @@ public class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler
         }
 
         // This is where the native part calls back to the js part
-        let args = bodyDict["args"]
-        let callbackId = bodyDict["callbackId"] as? String ?? ""
-        plugin.handle_call(args: args, callbackId: callbackId) { script in
+        let args : [String : Any] = bodyDict["args"] as? [String : Any] ?? [:]
+        let callbackId : String = bodyDict["callbackId"] as! String
+        plugin.handle_call(callbackId: callbackId, args: args, respond: { script in
           self.respondToJS(script: script)
-        }
+        })
       }
     }
 
@@ -91,7 +91,7 @@ public class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler
       let policy = decidePolicy(url: url, allowed: parent.config.allowed, mainURL: parent.config.url)
 
       self.logger.debug("Loading URL \(String(describing: url)): \(policy)")
-      
+
       if policy == .cancel {
         self.logger.debug("URL \(String(describing: url)) not allowed, opening in Safari")
         if let url {
@@ -134,7 +134,7 @@ public class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler
         self.logger.warning("No view controller to present Safari for \(url)")
         return
       }
-      
+
       self.logger.debug("Opening Safari for \(url)")
       let safari = SFSafariViewController(url: url)
       safari.modalPresentationStyle = .pageSheet
@@ -159,7 +159,7 @@ public struct WebView: UIViewRepresentable {
   public let config: AppConfiguration
   public let plugins: [String: JLKernel.Plugin]
   let logger: Logger = Logger(from: type(of: WebView.self))
-  
+
   public init(config: AppConfiguration, plugins: [String: JLKernel.Plugin] = [:]) {
     self.config = config
     self.url = config.url
@@ -182,7 +182,7 @@ public struct WebView: UIViewRepresentable {
   /// JS injected at document start. `post` returns a Promise that resolves with
   /// the native response, routed back through `handle` by `callbackId`.
   public static let jsBridgeScript = """
-    const uuid = () => {
+    const ___jasonelle_uuid = () => {
       const bytes = crypto.getRandomValues(new Uint8Array(16));
 
       bytes[6] = (bytes[6] & 0x0f) | 0x40; // version 4
@@ -195,7 +195,7 @@ public struct WebView: UIViewRepresentable {
         })
         .join('');
     };
-    
+
     window.jasonelle = {
         _callbacks: {},
         // Result of calling window.jasonelle.post
@@ -218,7 +218,7 @@ public struct WebView: UIViewRepresentable {
           },
         },
         post: function(name, args) {
-            var callbackId = uuid();
+            var callbackId = ___jasonelle_uuid();
             return new Promise(function(resolve, reject) {
                 window.jasonelle._callbacks[callbackId] = [resolve, reject];
                 window.webkit.messageHandlers.jasonelle.postMessage({ name: name, args: args, callbackId: callbackId });

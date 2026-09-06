@@ -8,31 +8,90 @@ import Foundation
 import WebKit
 
 open class Plugin {
-  /// Set (override) this class property in each subclass.
-  /// The name must follow reverse domain notation com.jasonelle.plugins.*
+  /// The name is the key inside the plugin object in JS
   open class var name: String {
     String(describing: self)
+  }
+  
+  /// The id must follow reverse domain notation example: com.jasonelle.plugins.{{name}}
+  open class var id: String {
+    "com.jasonelle.plugins.\(Self.name)"
   }
 
   public let logger: Logger
 
   public init() {
-    self.logger = Logger(from: Self.name)
+    self.logger = Logger(from: "Plugin.\(Self.name)")
   }
 
   // Native handler invoked when JS calls this plugin through the bridge.
   // Call respond(script) to send the response back to the JS promise
   // associated with callbackId.
-  open func handle_call(args: Any?, callbackId: String, respond: @escaping (String) -> Void) {
-    self.logger.warning("Plugin \(Self.name) has no native handler implemented")
-    respond("window.jasonelle.handle({ callbackId: '\(callbackId)' });")
+  open func handle_call(callbackId: String, args: [String: Any]? = [:], respond: @escaping (String) -> Void) {
+    self.logger.notice("Plugin \(Self.name) has no native call handler implemented")
   }
-
+  
   // Native handler invoked when a native event is triggered (e.g. viewDidLoad).
   // Call respond(script) to send an event back to the JS side.
-  open func handle_event(name: String, args: Any? = [], respond: @escaping (String) -> Void) {
-    self.logger.warning("Plugin \(Self.name) has no native event handler implemented for \(name)")
-    respond("console.log('jasonelle: no event handler for \(Self.name)');")
+  open func handle_event(_ event: String, args: [String: Any]? = [:], respond: @escaping (String) -> Void) {
+    self.logger.notice("Plugin \(Self.name) has no native event handler implemented for \(event)")
+  }
+  
+  public func resolve(args: [String: Any], callbackId: String,  status : String = "ok", respond: @escaping (String) -> Void) {
+    do {
+        let response = ["status": status, "callbackId": callbackId].merging(args) { (_, new) in new }
+      
+        self.logger.debug("resolve: Sending response: \(response)")
+      
+        let data = try JSONSerialization.data(withJSONObject: response)
+        let json = String(data: data, encoding: .utf8)!
+
+        let js = """
+        window.jasonelle.result.resolve(\(json));
+        """
+        
+        respond(js)
+    } catch {
+      self.logger.notice("Failed to convert dictionary to JSON: \(error)")
+    }
+  }
+  
+  public func reject(args: [String: Any], callbackId: String, status : String = "ok", respond: @escaping (String) -> Void) {
+    do {
+        let response = ["status": status, "callbackId": callbackId].merging(args) { (_, new) in new }
+      
+        self.logger.debug("reject: Sending response: \(response)")
+      
+        let data = try JSONSerialization.data(withJSONObject: response)
+        let json = String(data: data, encoding: .utf8)!
+
+        let js = """
+        window.jasonelle.result.reject(\(json));
+        """
+      
+        respond(js)
+    } catch {
+      self.logger.notice("Failed to convert dictionary to JSON: \(error)")
+    }
+  }
+  
+  public func event(_ event: String, plugin: String, args: [String: Any], status : String = "ok", respond: @escaping (String) -> Void) {
+    do {
+        let response = ["status": status, "event": event, "plugin": plugin].merging(args) { (_, new) in new }
+      
+        self.logger.debug("Sending event: \(response)")
+      
+        let data = try JSONSerialization.data(withJSONObject: response)
+        let json = String(data: data, encoding: .utf8)!
+
+        let js = """
+             window.jasonelle.plugins.\(plugin).handle(\(json));
+        """
+      
+        respond(js)
+    } catch {
+      self.logger.notice("Failed to convert dictionary to JSON: \(error)")
+    }
   }
 
   public func js() -> String {

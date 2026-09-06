@@ -12,9 +12,10 @@ import UIKit
 #endif
 
 public final class Plugin: JLKernel.Plugin {
-  override public static var name: String { "com.jasonelle.plugins.device" }
+  override public static var name: String { "device" }
 
-  public override func handle_call(args: Any?, callbackId: String, respond: @escaping (String) -> Void) {
+  public override func handle_call(callbackId: String, args: [String: Any]? = [:], respond: @escaping (String) -> Void) {
+    
     self.logger.info("Handling device info request")
 
     let os = deviceOS()
@@ -25,35 +26,15 @@ public final class Plugin: JLKernel.Plugin {
     let orientation = self.orientation()
     let screenSize = self.screenSize()
 
-    let args = """
-      os: {
-        name: '\(os)', 
-        version: '\(version)'
-      },
-      vendor: '\(vendor)',
-      type: '\(deviceType)',
-      orientation: '\(orientation)',
-      screen: {
-        width: \(screenSize.width), 
-        height: \(screenSize.height)
-      }
-    """
-    
-    self.logger.debug(args)
-    
-    let js = """
-    window.jasonelle.result.resolve({
-      callbackId: '\(callbackId)',
-      status: 'ok',
-      \(args)
-    });
-    """
-    
-    respond(js)
-  }
-
-  public override func handle_event(name: String, args: Any? = [], respond: @escaping (String) -> Void) {
-    self.logger.debug("Device plugin ignoring event \(name)")
+    let result : [String : Any] = [
+      "os": ["name": os, "version": version],
+      "vendor": vendor,
+      "type": deviceType,
+      "orientation": orientation,
+      "screen": ["width": screenSize.width, "height": screenSize.height]
+    ]
+        
+    self.resolve(args: result, callbackId: callbackId, respond: respond)
   }
 
   private func deviceOS() -> String {
@@ -86,11 +67,11 @@ public final class Plugin: JLKernel.Plugin {
 
   private func orientation() -> String {
     #if os(iOS)
-    let scene = UIApplication.shared.connectedScenes
-      .compactMap { $0 as? UIWindowScene }
-      .first { $0.activationState == .foregroundActive }
     let raw: UIDeviceOrientation
     if #available(iOS 16.0, *) {
+      let scene = UIApplication.shared.connectedScenes
+        .compactMap { $0 as? UIWindowScene }
+        .first { $0.activationState == .foregroundActive }
       raw = scene.flatMap { UIDeviceOrientation(rawValue: $0.effectiveGeometry.interfaceOrientation.rawValue) } ?? UIDevice.current.orientation
     } else {
       raw = UIDevice.current.orientation

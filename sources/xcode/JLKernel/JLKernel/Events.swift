@@ -26,9 +26,9 @@ public enum Events: String {
   /// with the event name as raw value and no arguments.
   /// The app registers plugins in `Main.init()` via `register(plugins:)`.
   public static func sendOnAppear() {
-    Logger(from: Events.self).debug("Sending onAppear event to plugins")
+    Logger(from: Events.self).debug("Sending \(contentViewOnAppear) event to plugins")
     for (_, plugin) in plugins {
-      plugin.handle_event(name: Events.contentViewOnAppear.rawValue) { _ in }
+      plugin.handle_event(Events.contentViewOnAppear.rawValue) { _ in }
     }
   }
 }
