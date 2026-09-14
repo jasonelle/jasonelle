@@ -17,20 +17,20 @@ struct ApplicationTests {
     }
 
     @Test func helloPluginRegisteredWithCorrectKey() {
-        let key = JLPluginHello.Plugin.name
+        let key = JLPluginHello.Plugin.id
         #expect(plugins[key] != nil)
     }
 
     @Test func helloPluginNameMatchesKey() {
-        let key = JLPluginHello.Plugin.name
+        let key = JLPluginHello.Plugin.id
         let plugin = plugins[key]
         #expect(type(of: plugin!) == JLPluginHello.Plugin.self)
     }
 
     @Test func helloPluginRespondsToCall() async {
-        let plugin = plugins[JLPluginHello.Plugin.name]
+        let plugin = plugins[JLPluginHello.Plugin.id]
         let response = await withCheckedContinuation { continuation in
-            plugin?.handle_call(args: nil, callbackId: "call_1") { result in
+            plugin?.handle_call(callbackId: "call_1", args: nil) { result in
                 continuation.resume(returning: result)
             }
         }
@@ -38,9 +38,9 @@ struct ApplicationTests {
     }
 
     @Test func helloPluginRespondsToEvent() async {
-        let plugin = plugins[JLPluginHello.Plugin.name]
+        let plugin = plugins[JLPluginHello.Plugin.id]
         let response = await withCheckedContinuation { continuation in
-            plugin?.handle_event(name: "viewDidLoad", args: nil) { result in
+            plugin?.handle_event("viewDidLoad", args: nil) { result in
                 continuation.resume(returning: result)
             }
         }
