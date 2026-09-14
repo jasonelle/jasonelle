@@ -10,4 +10,7 @@
 // and page when rendering the website.
 (() => {
   console.log("jasonelle: webview.js injected to DOM")
+  
+  // Restore any saved cookie
+  window.jasonelle.plugins.cookies.restore()
 })();

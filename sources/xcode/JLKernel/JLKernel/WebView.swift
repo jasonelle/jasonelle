@@ -225,6 +225,18 @@ public struct WebView: UIViewRepresentable {
             });
         },
         plugins: {},
+        plugin: {
+            init: function(name, id) {
+              const plugin = {
+                name, 
+                id,
+                handle_call: function(){},
+                handle_event: function(){},
+              };
+              console.log(`${plugin.id}: Init`);
+              return plugin;
+          }
+        },
         handle: function(args) {
           // Implement in plugin for handling native events
           console.log("Jasonelle", "Handled event", args);

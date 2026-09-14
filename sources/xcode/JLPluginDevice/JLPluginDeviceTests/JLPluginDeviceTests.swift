@@ -12,41 +12,43 @@ import JLKernel
 
 struct JLPluginDeviceTests {
 
-    @Test func exposesReverseDomainName() async throws {
-      #expect(JLPluginDevice.Plugin.name == "com.jasonelle.plugins.device")
+    @Test func exposesNameAndId() async throws {
+      #expect(JLPluginDevice.Plugin.name == "device")
+      #expect(JLPluginDevice.Plugin.id == "com.jasonelle.plugins.device")
     }
 
     @Test func callRespondsWithDeviceInfoScript() async throws {
       let plugin = JLPluginDevice.Plugin()
-        var response: String?
+      var response: String?
 
-        plugin.handle_call(args: nil, callbackId: "call_1") { response = $0 }
+      plugin.handle_call(callbackId: "call_1", args: nil) { response = $0 }
 
-        #expect(response?.hasPrefix("window.jasonelle.handle({") == true)
-        #expect(response?.contains("callbackId: 'call_1'") == true)
-        #expect(response?.contains("vendor: 'apple'") == true)
-        #expect(response?.contains("os: {") == true)
-        #expect(response?.contains("name: 'ios'") == true)
-        #expect(response?.contains("type: '") == true)
-        #expect(response?.contains("orientation: '") == true)
-        #expect(response?.contains("screen: {") == true)
-        #expect(response?.contains("width:") == true)
-        #expect(response?.contains("height:") == true)
+      #expect(response?.hasPrefix("window.jasonelle.result.resolve({") == true)
+      #expect(response?.contains("\"status\":\"ok\"") == true)
+      #expect(response?.contains("\"callbackId\":\"call_1\"") == true)
+      #expect(response?.contains("\"vendor\":\"apple\"") == true)
+      #expect(response?.contains("\"os\":{") == true)
+      #expect(response?.contains("\"name\":\"ios\"") == true)
+      #expect(response?.contains("\"type\":\"") == true)
+      #expect(response?.contains("\"orientation\":\"") == true)
+      #expect(response?.contains("\"screen\":{") == true)
+      #expect(response?.contains("\"width\":") == true)
+      #expect(response?.contains("\"height\":") == true)
     }
 
-    @Test func eventRespondsWithHandleScript() async throws {
+    @Test func eventWithoutHandlerDoesNotRespond() async throws {
       let plugin = JLPluginDevice.Plugin()
-        var response: String?
+      var response: String?
 
-        plugin.handle_event(name: "viewDidLoad", args: nil) { response = $0 }
+      plugin.handle_event("onAppear", args: nil) { response = $0 }
 
-        #expect(response == "window.jasonelle.plugins.device.handle({ status: 'ok', name: 'viewDidLoad' });")
+      #expect(response == nil)
     }
 
     @Test func bundlesJavaScriptRegisteringPlugin() async throws {
       let js = JLPluginDevice.Plugin().js()
 
-        #expect(!js.isEmpty)
-        #expect(js.contains("window.jasonelle.plugins.device"))
+      #expect(!js.isEmpty)
+      #expect(js.contains("window.jasonelle.plugins.device"))
     }
 }

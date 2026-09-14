@@ -7,12 +7,11 @@
 
 (() => {
   const native = window.jasonelle;
-  const plugin = {
-    name: "hello",
-    id: "com.jasonelle.plugins.hello"
-  };
+  const plugin = native.plugin.init(
+    "hello",
+    "com.jasonelle.plugins.hello"
+  );
   
-  console.log("Hello World Plugin Jasonelle Init");
   
   // Call a native function. The response is passed to the callback
   // Example: window.jasonelle.plugins.hello.call().then(response => console.log(response))
@@ -22,6 +21,16 @@
   plugin.handle = (args) => {
     console.log("Handled in Webview with args:", args);
     return true
+  };
+
+  // Print "Hello" to the console
+  plugin.hello = () => {
+    return native.post(plugin.id, {action: "hello"});
+  };
+
+  // Print "World" with params to the console
+  plugin.world = (value = "Jasonelle") => {
+    return native.post(plugin.id, {action: "world", args: value});
   };
 
   // Demostrate HTML manipulation

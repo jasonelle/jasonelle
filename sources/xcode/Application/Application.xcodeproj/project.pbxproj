@@ -10,6 +10,7 @@
 		9A57A4D1303646AA00C5F416 /* JLKernel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A57A4D0303646AA00C5F416 /* JLKernel.framework */; };
 		9A57A4D3303646AD00C5F416 /* JLPluginHello.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A57A4D2303646AD00C5F416 /* JLPluginHello.framework */; };
 		9A57A4D4303646AA00C5F416 /* JLPluginDevice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A57A4D5303646AA00C5F416 /* JLPluginDevice.framework */; };
+		9AA2B162304F792D00AD74A8 /* JLPluginCookies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA2B161304F792D00AD74A8 /* JLPluginCookies.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		9A57A4D0303646AA00C5F416 /* JLKernel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLKernel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A57A4D2303646AD00C5F416 /* JLPluginHello.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPluginHello.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A57A4D5303646AA00C5F416 /* JLPluginDevice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPluginDevice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AA2B161304F792D00AD74A8 /* JLPluginCookies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JLPluginCookies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -61,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AA2B162304F792D00AD74A8 /* JLPluginCookies.framework in Frameworks */,
 				9A57A4D3303646AD00C5F416 /* JLPluginHello.framework in Frameworks */,
 				9A57A4D1303646AA00C5F416 /* JLKernel.framework in Frameworks */,
 				9A57A4D4303646AA00C5F416 /* JLPluginDevice.framework in Frameworks */,
@@ -108,6 +111,7 @@
 		9A57A4CF303646AA00C5F416 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AA2B161304F792D00AD74A8 /* JLPluginCookies.framework */,
 				9A57A4D2303646AD00C5F416 /* JLPluginHello.framework */,
 				9A57A4D0303646AA00C5F416 /* JLKernel.framework */,
 				9A57A4D5303646AA00C5F416 /* JLPluginDevice.framework */,

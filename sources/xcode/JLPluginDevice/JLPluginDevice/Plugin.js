@@ -7,16 +7,14 @@
 
 (() => {
   const native = window.jasonelle;
-  const plugin = {
-    name: "device",
-    id: "com.jasonelle.plugins.device"
-  };
-
-  console.log("Device Plugin Jasonelle Init");
+  const plugin = native.plugin.init(
+    "device",
+    "com.jasonelle.plugins.device"
+  );
 
   // Call a native function. The response is passed to the callback
-  // Example: window.jasonelle.plugins.device.call().then(response => console.log(response))
-  plugin.call = (...args) => native.post(plugin.id, args);
+  // Example: window.jasonelle.plugins.device.info().then(response => console.log(response))
+  plugin.info = (...args) => native.post(plugin.id, args);
 
   window.jasonelle.plugins.device = plugin;
 })();

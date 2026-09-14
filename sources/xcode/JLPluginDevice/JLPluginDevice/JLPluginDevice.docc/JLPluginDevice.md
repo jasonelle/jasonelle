@@ -16,7 +16,7 @@ JLPluginDevice exposes device details to JavaScript. Call it from the web view t
 ### How it works
 
 1. The plugin is injected into the web view at document end and registers itself on `window.jasonelle.plugins.device`.
-2. Call `window.jasonelle.plugins.device.call()` from JavaScript; it returns a promise.
+2. Call `window.jasonelle.plugins.device.info()` from JavaScript; it returns a promise.
 3. The call is routed to `Plugin.swift` `handle_call(args:callbackId:respond:)`, which resolves the promise with the device information.
 
 ### Response

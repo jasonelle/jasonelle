@@ -16,7 +16,7 @@ import WebKit
         var receivedArgs: Any?
         var receivedCallbackId: String?
 
-        override public func handle_call(args: Any?, callbackId: String, respond: @escaping (String) -> Void) {
+        override public func handle_call(callbackId: String, args: [String: Any]? = [:], respond: @escaping (String) -> Void) {
             self.receivedArgs = args
             self.receivedCallbackId = callbackId
         }
@@ -149,8 +149,8 @@ struct VersionTests {
 final class EventStubPlugin: JLKernel.Plugin {
     var receivedNames: [String] = []
 
-    override func handle_event(name: String, args: Any?, respond: @escaping (String) -> Void) {
-        receivedNames.append(name)
+    override func handle_event(_ event: String, args: [String: Any]? = [:], respond: @escaping (String) -> Void) {
+        receivedNames.append(event)
         respond("")
     }
 }
@@ -191,20 +191,20 @@ struct PluginTests {
         #expect(UnconfiguredPlugin.name == "UnconfiguredPlugin")
     }
 
-    @Test func defaultCallRespondsWithWarningScript() {
+    @Test func defaultCallDoesNotRespond() {
         var response: String?
 
-        UnconfiguredPlugin().handle_call(args: nil, callbackId: "call_1") { response = $0 }
+        UnconfiguredPlugin().handle_call(callbackId: "call_1", args: nil) { response = $0 }
 
-        #expect(response == "window.jasonelle.handle({ callbackId: 'call_1' });")
+        #expect(response == nil)
     }
 
-    @Test func defaultEventRespondsWithWarningScript() {
+    @Test func defaultEventDoesNotRespond() {
         var response: String?
 
-        UnconfiguredPlugin().handle_event(name: "viewDidLoad", args: nil) { response = $0 }
+        UnconfiguredPlugin().handle_event("viewDidLoad", args: nil) { response = $0 }
 
-        #expect(response == "console.log('jasonelle: no event handler for UnconfiguredPlugin');")
+        #expect(response == nil)
     }
 
     @Test func jsLoadsBundledPluginJS() {
