@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:JLPluginAppleSignIn/JLPluginAppleSignIn.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:JLPluginCookies/JLPluginCookies.xcodeproj">
    </FileRef>
    <FileRef

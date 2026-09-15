@@ -3,6 +3,9 @@ included:
   - JLKernel
   - Application
   - JLPluginHello
+  - JLPluginDevice
+  - JLPluginCookies
+  - JLPluginAppleSignIn
 
 # The "errors" SwiftLint flags
 # below are stylistic, not bugs; tuning them lets the actual signal through.
