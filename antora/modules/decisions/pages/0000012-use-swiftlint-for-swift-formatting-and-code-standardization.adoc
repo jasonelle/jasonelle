@@ -1,0 +1,28 @@
+= Use SwiftLint for Swift Formatting and Code Standardization
+
+- id: 0000012
+
+== Status
+
+- Accepted (2026-08-26) by: @clsource
+
+== Context and Problem Statement
+
+How should Swift code across the Xcode projects (JLKernel, Application, JLPluginHello) be formatted and checked for style consistency? A automated tool is needed to enforce rules like line length, naming conventions, and cyclomatic complexity without manual review overhead.
+
+== Considered Options
+
+* https://github.com/realm/SwiftLint[SwiftLint]
+* https://github.com/nicklockwood/SwiftFormat[SwiftFormat]
+* Manual code review only
+
+== Decision Outcome
+
+Chosen option: "SwiftLint", because it provides both linting and auto-fix capabilities via `swiftlint lint --fix`, integrates easily via `brew install swiftlint`, and supports custom configuration through `.swiftlint.yml`. Positive consequences: consistent style enforcement, automated detection of complexity and naming issues, configurable per-project rules. Negative consequences: none significant.
+
+SwiftLint is the best fit. SwiftFormat focuses only on formatting (no linting rules like cyclomatic complexity). Manual review is error-prone and doesn't scale.
+
+== References
+
+* `sources/xcode/.swiftlint.yml` — project configuration
+* `sources/xcode/Taskfile.yml` — `task lint` and `task fix` tasks

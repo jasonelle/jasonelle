@@ -1,0 +1,211 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+# A Taskfile.yml as an alternative to Makefile
+version: "3.17"
+
+vars:
+  BUILD: docker
+  ANTORA_CONTAINER_LABEL: local/antora:jasonelle-docs
+
+tasks:
+  default:
+    cmds:
+      - task build.docs
+  install:
+    aliases:
+      - i
+    desc: Build the Antora Docker image
+    cmds:
+      - "{{.BUILD}} build -t {{.ANTORA_CONTAINER_LABEL}} antora/"
+  shell:
+    aliases:
+      - sh
+    desc: Open a shell inside the Antora container
+    cmds:
+      - "{{.BUILD}} run -it --entrypoint /bin/sh -v .:/antora:z -t {{.ANTORA_CONTAINER_LABEL}}"
+
+  build.docs:
+    aliases:
+      - bd
+      - docs
+    desc: Generate the Antora site
+    # Run the Antora container as root to remove the previous site, generate the
+    # new one. The chown transfers ownership of docs/ to the
+    # current user so the host (e.g. the CI runner) can write and commit it.
+    cmds:
+      - '{{.BUILD}} run -v .:/antora:z --rm --entrypoint /bin/sh {{.ANTORA_CONTAINER_LABEL}} -c "rm -rf /antora/docs/docs && antora antora-playbook.yml --stacktrace && chown -R $(id -u):$(id -g) /antora/docs"'
+
+  # Ideally there would be a build step in the future for the website, for now we just copy the contents
+  build.website:
+    desc: Copies the website/ files to docs/ directory using rsync
+    aliases:
+      - bw
+      - web
+    cmds:
+      - rsync -av website/ docs/
+
+  build.all:
+    aliases:
+      - b
+      - build
+    cmds:
+      - rm -rf docs
+      - task build.docs
+      - task build.website
+
+  # Webserver
+  serve.docs:
+    aliases:
+      - sd
+    desc: Serve the generated documentation locally
+    cmds:
+      - python3 -m http.server --bind 0.0.0.0 --directory docs/docs
+  serve.website:
+    aliases:
+      - s
+      - sw
+    desc: Serve the main website locally
+    cmds:
+      - python3 -m http.server --bind 0.0.0.0 --directory docs
+
+  # Linters and Formatters
+  lint.yaml:
+    aliases:
+      - ly
+    desc: Format and lint all YAML files with prettier and yamllint
+    cmds:
+      - "prettier --write $(git ls-files '*.yml' '*.yaml') 2>&1 || npx -y prettier@3.9.6 --write $(git ls-files '*.yml' '*.yaml')"
+      - "yamllint $(git ls-files '*.yml' '*.yaml') 2>&1 || pipx run yamllint $(git ls-files '*.yml' '*.yaml')"
+
+  # Git
+  git.add:
+    aliases:
+      - ga
+    desc: Add all the changes from the current directory
+    cmds:
+      - git add .
+  git.commit:
+    aliases:
+      - c
+      - gc
+    desc: Commit staged changes using the message in .commit-message
+    cmds:
+      - test -f .commit-message && git commit -F .commit-message
+      - rm -rf .commit-message
+  git.pull:
+    aliases:
+      - pl
+      - gpl
+    desc: Pull the current branch from origin
+    cmds:
+      - git pull origin $(git branch --show-current)
+  git.push:
+    aliases:
+      - p
+      - gp
+    desc: Push the current branch to origin
+    cmds:
+      - git push origin $(git branch --show-current)
+  git.all:
+    aliases:
+      - gal
+    desc: Push all the current changes to the branch in origin
+    cmds:
+      - task git.commit
+      - task git.pull
+      - task git.push
+
+  # Icon Tool
+  icons:
+    aliases:
+      - ic
+    desc: Generate Android and Xcode app icons using the tools/icon binary
+    cmds:
+      - 'tools/icon/dist/icon-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --source lib/common/assets/icon/1024x1024.png --xcode lib/xcode --android lib/android'
+
+  icons.build:
+    aliases:
+      - ib
+    dir: tools/icon/src
+    desc: Generate tools/icon binary
+    cmds:
+      - task build
+
+  # JSONC tool
+  jsonc.xcode:
+    aliases:
+      - jx
+    desc: Merge common and Xcode config.jsonc and store.jsonc into build/xcode/
+    cmds:
+      - "mkdir -p build/xcode/config"
+      - 'tools/jsonc/dist/jsonc-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --output build/xcode/config/config.jsonc lib/common/config/config.jsonc lib/xcode/config/config.jsonc'
+      - 'tools/jsonc/dist/jsonc-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --output build/xcode/config/store.jsonc lib/common/config/store.jsonc lib/xcode/config/store.jsonc'
+  jsonc.android:
+    aliases:
+      - ja
+    desc: Merge common and Android config.jsonc and store.jsonc into build/android/
+    cmds:
+      - "mkdir -p build/android/config"
+      - 'tools/jsonc/dist/jsonc-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --output build/android/config/config.jsonc lib/common/config/config.jsonc lib/android/config/config.jsonc'
+      - 'tools/jsonc/dist/jsonc-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }} --output build/android/config/store.jsonc lib/common/config/store.jsonc lib/android/config/store.jsonc'
+  jsonc:
+    desc: Runs tasks jsonc.xcode and jsonc.android
+    aliases:
+      - json
+    cmds:
+      - task jsonc.xcode
+      - task jsonc.android
+  jsonc.build:
+    aliases:
+      - jb
+    dir: tools/jsonc/src
+    desc: Generate tools/jsonc binary
+    cmds:
+      - task build
+
+  # Bundler Tool
+  bundler:
+    aliases:
+      - bn
+    cmds:
+      - task bundler.xcode
+      - task bundler.android
+  bundler.build:
+    aliases:
+      - bb
+    dir: tools/bundler/src
+    desc: Build tools/bundler binary
+    cmds:
+      - task build
+  bundler.xcode:
+    aliases:
+      - bx
+    desc: Runs esbuild to compile a single webview.js for Xcode
+    cmds:
+      - >-
+        tools/bundler/dist/bundler-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }}
+        --platform xcode
+        --common lib/common/scripts
+        --platform-dir lib/xcode/scripts
+        --esbuild tools/vendor/esbuild/dist/esbuild-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }}
+        --tsconfig lib/common/config/bundler.json
+        --output build/xcode/scripts/webview.js
+  bundler.android:
+    aliases:
+      - ba
+    desc: Runs esbuild to compile a single webview.js for Android
+    cmds:
+      - >-
+        tools/bundler/dist/bundler-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }}
+        --platform android
+        --common lib/common/scripts
+        --platform-dir lib/android/scripts
+        --esbuild tools/vendor/esbuild/dist/esbuild-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }}
+        --tsconfig lib/common/config/bundler.json
+        --output build/android/scripts/webview.js
+  bundler.esbuild.install:
+    aliases:
+      - bi
+    dir: tools/esbuild/src
+    desc: Install tools/esbuild binary (unix only)
+    cmds:
+      - task install

@@ -1,0 +1,37 @@
+= Use esbuild to bundle JS files for the webview
+
+- id: 0000006
+
+== Status
+
+- Accepted (2026-08-15) by: @clsource
+
+== Context and Problem Statement
+
+Jasonelle injects JavaScript into the webview of the final Xcode and Android
+projects. The JS comes from multiple files that must be combined into a single
+file, but a naive concatenation does not handle modules, minification, or
+optimization. Which tool should bundle the JavaScript files into one file to be
+included in the native project and injected in the webview?
+
+== Considered Options
+
+* Use https://esbuild.github.io/[esbuild]
+* Use https://rolldown.rs/[Rolldown]
+* Write a custom concatenation script
+
+== Decision Outcome
+
+Chosen option: "Use esbuild", because it is fast, has zero configuration for
+simple bundling, and produces a single minified JS file that can be included in
+the Xcode and Android projects and injected into the webview. Positive
+consequences: fast bundling, minimal setup, and a well-established ecosystem.
+Negative consequences: an extra build dependency and a bundling step in the
+build pipeline.
+
+esbuild is the best option for now, because it covers the current bundling
+needs with almost no configuration. If "Use Rolldown" was chosen, the project
+would adopt a newer, less mature tool before it is needed. If "Write a custom
+concatenation script" was chosen, module resolution and minification would be
+reimplemented by hand. Revisit whether Rolldown can replace esbuild when the
+Jasonelle project is more mature.

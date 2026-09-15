@@ -1,0 +1,23 @@
+= CLI esbuild
+
+Vendored https://esbuild.github.io[esbuild] compiles TypeScript scripts to JavaScript files
+used inside WebView for Android and iOS.
+
+[NOTE]
+====
+The bundler.xcode and bundler.android tasks use the Bundler tool internally. 
+The bundler task handles all file operations cross-platform. 
+====
+
+== Tasks
+
+From the repository root:
+
+* `task esbuild.install` (`esi`): re-download the vendored esbuild binary.
+
+== Bundle flags
+
+* `--bundle` -- resolves imports and produces a single output file.
+* `--target=safari11` -- output compatible with Safari 11+ (WKWebView).
+* `--analyze` -- prints a bundle size breakdown.
+* `--tsconfig` -- uses `lib/common/config/bundler.json` for module resolution.

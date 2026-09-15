@@ -1,0 +1,163 @@
+= Icon Generator
+
+A https://go.dev[Go] tool that generates Android and Xcode app icons from a
+single `1024x1024` PNG source image.
+
+== Requirements
+
+* https://go.dev[Go] 1.26 or newer (only for compilation. `dist/` directory
+  contains binaries).
+* https://taskfile.dev[go-task] (optional, only for the tasks below).
+
+== Usage
+
+From `tools/icon/src`:
+
+[source,sh]
+----
+go run . --source <1024x1024.png> --xcode <xcode-root> --android <android-root>
+----
+
+Defaults to `--source lib/common/assets/icon/1024x1024.png`. At least one of
+`--xcode` or `--android` is required. The tool writes into `<root>/assets/`.
+
+== Output
+
+* Android: `assets/icon/res/mipmap-{mdpi,hdpi,xhdpi,xxhdpi,xxxhdpi}/`
+  `ic_launcher.png` and `ic_launcher_round.png`, plus a 512px store icon
+  under `assets/icon/store/`.
+* Xcode: `assets/AppIcon.appiconset/` with `icon-*.png` files and
+  `Contents.json`.
+
+This tool only generates the classic `AppIcon.appiconset` and not the newer
+https://developer.apple.com/documentation/Xcode/creating-your-app-icon-using-icon-composer[Icon Composer]
+`.icon` resource. Generating a compatible Icon Composer icon would need future
+improvements, but while Apple still supports `AppIcon` it is not mandatory.
+
+== Tasks
+
+From the repository root:
+
+* `task icons` (`i`): generate app icons into `lib/android` and `lib/xcode`
+  from `lib/common/assets/icon/1024x1024.png`, using the `tools/icon/dist`
+  binary.
+* `task icons.build` (`ib`): build the `tools/icon` binary.
+
+From `tools/icon/src`:
+
+* `task build` (`b`): cross-compile binaries into `../dist/` for macOS
+  (amd64/arm64), Linux (amd64) and Windows (amd64).
+* `task test` (`t`): run the test suite.
+
+== Release binaries
+
+`dist/` contains prebuilt binaries for each platform, named
+`icon-<os>-<arch>` (Windows uses `.exe`).
+
+== Platform requirements
+
+App icons are stored in platform-specific formats and must meet the
+requirements of each operating system.
+
+=== iOS (Xcode)
+
+Xcode represents an app icon as an *app icon set* inside an asset catalog
+(`Assets.xcassets`), named `AppIcon` by default. See
+https://developer.apple.com/documentation/xcode/configuring-your-app-icon[Configuring your app icon using an asset catalog]
+for details.
+
+==== Variations
+
+* iOS, iPadOS, tvOS, and watchOS apps can auto-generate all icon variations
+  from a single `1024x1024` pixel image. This is the default behavior for new
+  apps and new icon sets.
+* For a single-size icon, choose *Single Size* from the platform pop-up menu
+  in the asset catalog's Attributes inspector. Xcode generates the remaining
+  sizes at build time.
+* To customize variants (for example, to show more detail at a larger size),
+  choose *All Sizes* and provide individual assets for each icon variation.
+* macOS and tvOS require an asset for each size; visionOS requires a single
+  `1024x1024` asset.
+* The App Store icon is provided in the same set: for iOS, drag the icon image
+  to the iOS 1,024pt image well.
+
+==== Dark and tinted variants
+
+iOS and iPadOS support three stylistic variations for app icons: Light, Dark,
+and Tinted. To add them, select *Single Size* from the iOS pop-up menu and
+choose *Any*, *Dark*, or *Tinted* from the *Appearance* pop-up menu:
+
+* Provide the dark icon with a transparent background so the system-provided
+  background can show through.
+* Provide the tinted icon as a grayscale image.
+
+Alternatively, rely on the system's automatically generated treatment that is
+applied to all app icons, which preserves design intent and maintains a
+consistent visual experience across the Home Screen.
+
+==== Build settings
+
+* The target's *App Icons Source* build setting (General pane > App Icons and
+  Launch Screen) selects which app icon set is used for the build.
+* The *Primary App Icon Set Name* build setting can specialize the app icon
+  for the Debug and Release configurations.
+* The *Alternate App Icon Sets* build setting includes any icon sets the app
+  can select at runtime.
+
+==== Icon Composer
+
+The latest Xcode also supports
+https://developer.apple.com/documentation/Xcode/creating-your-app-icon-using-icon-composer[Icon Composer],
+a single multilayer `.icon` file (using the Liquid Glass material) that the
+system renders for all platforms, appearances, and sizes. Adding an Icon
+Composer file to a project replaces any existing `AppIcon` asset catalog, and
+Xcode generates legacy images at build time for earlier releases.
+
+The icon generator currently only supports the classic asset catalog
+(`AppIcon.appiconset`) format. See the
+xref:icon.adoc#_output[Output] section.
+
+For design guidance, see the
+https://developer.apple.com/design/human-interface-guidelines/app-icons[Human Interface Guidelines: App icons].
+
+=== Android
+
+Android identifies an app by a *launcher icon*, placed in density-specific
+`mipmap` folders. The
+https://developer.android.com/studio/write/create-app-icons[Android Studio documentation]
+describes how to create them.
+
+==== Launcher icons
+
+* Image Asset Studio generates a set of icons at the appropriate resolution
+  for each
+  https://developer.android.com/training/multiscreen/screendensities[pixel density]
+  the app supports and places them in `res/mipmap-<density>/` directories.
+* *Adaptive launcher icons* display as a variety of shapes (circle, squircle,
+  rounded square, and square) across different device models, and include
+  legacy, round, and Google Play Store previews.
+* *Legacy launcher icons* are used on devices running Android 7.1 (API level
+  25) or lower, which don't support adaptive icons.
+* A `512x512` pixel image appropriate for the Google Play store is also
+  generated.
+* The `AndroidManifest.xml` file must reference the launcher icon. Image
+  Asset Studio adds this automatically:
+
+[source,xml]
+----
+<application android:name="ApplicationTitle"
+          android:label="@string/app_label"
+          android:icon="@mipmap/ic_launcher" >
+----
+
+==== Notification icons
+
+Notification icons are placed in `res/drawable-<density>/` directories:
+
+* Android 3 (API level 11) and higher: `res/drawable-<density>-v11/`.
+* Android 2.3 to 2.3.7 (API level 9 to 10): `res/drawable-<density>-v9/`.
+* Android 2.2 (API level 8) and lower: `res/drawable-<density>/`.
+
+For more information, see
+https://developer.android.com/guide/practices/ui_guidelines/icon_design_adaptive[Adaptive Launcher Icons]
+and https://material.io/design/iconography/product-icons.html[Product Icons - Material Design].

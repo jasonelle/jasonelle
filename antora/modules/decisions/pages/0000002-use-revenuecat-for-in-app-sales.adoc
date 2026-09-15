@@ -1,0 +1,37 @@
+= Use RevenueCat for managing in-app sales
+
+- id: 0000002
+
+== Status
+
+- Accepted (2026-08-12) by: @clsource
+
+== Context and Problem Statement
+
+Jasonelle apps need to sell digital content through in-app purchases and
+subscriptions on both iOS and Android. Each store has its own purchase API,
+receipt validation, and subscription lifecycle, which means duplicating a lot of
+store-specific logic for every platform.
+
+== Considered Options
+
+* Use https://www.revenuecat.com/[RevenueCat] for managing in-app sales
+* Implement StoreKit and Google Play Billing directly per platform
+* Sell digital content only through external websites
+
+== Decision Outcome
+
+Chosen option: "Use RevenueCat for managing in-app sales", because a single
+cross-platform SDK and dashboard handles purchases, subscriptions, receipt
+validation, and customer management for both stores. Positive consequences: one
+integration point for StoreKit and Google Play Billing, unified subscription and
+entitlement management, and less store-specific code to maintain. Negative
+consequences: reliance on a third-party service and an additional dependency in
+the mobile apps.
+
+RevenueCat is the best option, because it avoids maintaining StoreKit and Google
+Play Billing integrations and subscription logic per platform. If "Implement
+StoreKit and Google Play Billing directly" was chosen, we would own receipt
+validation, renewal handling, and store-specific edge cases. If "Sell digital
+content only through external websites" was chosen, in-app purchases would be
+unavailable and the apps would not comply with store purchase requirements.
