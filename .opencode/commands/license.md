@@ -1,7 +1,31 @@
+---
+description: Fix license header in code files
+---
+
+Add license comment header to all source files with the following
+extensions:
+
+  - *.swift
+  - *.c
+  - *.h
+  - *.kt
+  - *.js
+  - *.m
+  - *.yml
+
+If the file has a license header, replace it filling the placeholders with actual information.
+
+Check inside `sources/xcode` and `sources/android` directories.
+
+Check $ARGUMENTS for any additional context or restrictions
+
+Use the following license template. Addapt it to the single comment of the programming language or file:
+
+```text
 //
-//  JLKernel/Version.swift
+//  {{directory}}/{{filename.extension}}
 //
-//  Created by [Camilo Castro (@clsource)](https://ninjas.cl) on 2026-08-26
+//  Created by [Camilo Castro (@clsource)](https://ninjas.cl) on {{date}}
 //  Made with love in Chile.
 //
 //  Copyright (c) Jasonelle.com
@@ -22,30 +46,4 @@
 //  with this file, You can obtain one at
 //
 //  <https://mozilla.org/MPL/2.0/>.
-
-import Foundation
-
-/// The framework's version information, read from the bundled VERSION resource.
-public struct Version {
-  private static let defaultVersion = "4.x.x"
-  public static var version: String?
-
-  /// The semantic version string (e.g. "4.0.0").
-  ///
-  /// Reads from the ``VERSION`` resource file bundled with JLKernel.
-  /// Returns `"4.x.x"` if the file is missing or unreadable.
-  ///
-  /// - Returns: A trimmed semantic version string.
-  public static func semantic() -> String {
-    if Version.version?.isEmpty == false { return Version.version! }
-
-    guard let url = Bundle(for: Kernel.self).url(forResource: "VERSION", withExtension: nil),
-      let data = try? Data(contentsOf: url),
-      let version = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines)
-    else {
-      return defaultVersion
-    }
-    Version.version = version
-    return version
-  }
-}
+```
