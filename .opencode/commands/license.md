@@ -1,28 +1,42 @@
 ---
-description: Fix license header in code files
+description: Append a license template as a comment to the first lines of a file or directory.
 ---
 
-Add license comment header to all source files with the following
-extensions:
+Append the license template to the file `$1` or directory `$2`. The license is
+added as a comment in the same programming language as each file, at the
+beginning (first lines) of the code. If `$1` or `$2` is missing, ask the user
+for it.
 
-  - *.swift
-  - *.c
-  - *.h
-  - *.kt
-  - *.js
-  - *.m
-  - *.yml
+For a directory, apply it to every code source file recursively, but ask for confirmation
+if the flag `-y` or word `force` or `all` is not present. Valid extensions:
+`.go`, `.js`, `.m`, `.h`, `.c`, `.css`, `.html`, `.swift`, `.kt`, `.yml`,
+`.yaml`. Ask for confirmation before modifying files.
 
-If the file has a license header, replace it filling the placeholders with actual information.
+Example: `/append-license /tools all`
 
-Check inside `sources/xcode` and `sources/android` directories.
+## Steps
 
-Check $ARGUMENTS for any additional context or restrictions
+1. If `$2` is a directory, list the source files inside it recursively.
+2. For each file, determine the comment syntax from its extension (`//` for
+   C-like/Swift/Kotlin, `#` for YAML/`*.yml`/shell/Python/Elixir,
+   `<!-- -->` for HTML).
+3. Read the first lines of the file. If a license header is already present,
+   replace it with the template below, filling the placeholders with actual
+   information. Otherwise insert the license as a comment block at the start
+   of the file, followed by a blank line.
+4. Preserve the original file encoding and end-of-line style.
 
-Use the following license template. Addapt it to the single comment of the programming language or file:
+## Template
 
-```text
-//
+Fill the template
+
+- `{{directory}}`: current directory where the file is located or the package context if available.
+- `{{filename.extension}}`: basename of the file to be modified with the license.
+- `{{date}}`: creation date of the file (birth time) in ISO 8601 format
+  (`YYYY-MM-DD`). On macOS read it with `stat -f '%SB' -t '%Y-%m-%d' <file>`.
+  A directory may yield files with different dates, so compute it per file.
+
+```c
 //  {{directory}}/{{filename.extension}}
 //
 //  Created by [Camilo Castro (@clsource)](https://ninjas.cl) on {{date}}
@@ -46,4 +60,9 @@ Use the following license template. Addapt it to the single comment of the progr
 //  with this file, You can obtain one at
 //
 //  <https://mozilla.org/MPL/2.0/>.
+//
 ```
+
+## Output
+
+- Report the list of files modified.
