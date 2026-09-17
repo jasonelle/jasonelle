@@ -1,6 +1,8 @@
 # Sources
 
-This directory stores the source projects used by Jasonelle.
+This directory stores the source projects (android, xcode) used by Jasonelle.
+This directory is for core Jasonelle developers.
+Only touch if a customization of the core engine is required in your project.
 
 ## Workflow
 
