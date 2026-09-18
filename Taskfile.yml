@@ -209,3 +209,37 @@ tasks:
     desc: Install tools/esbuild binary (unix only)
     cmds:
       - task install
+
+  # Plugins Tool
+  plugins:
+    aliases:
+      - pl
+    desc: Copy the plugins listed in the merged configs into build/<platform>/sources
+    cmds:
+      - >-
+        tools/plugins/dist/plugins-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }}
+        --xcode build/xcode/config/config.jsonc
+        --android build/android/config/config.jsonc
+  plugins.build:
+    aliases:
+      - pb
+    dir: tools/plugins/src
+    desc: Generate tools/plugins binary
+    cmds:
+      - task build
+
+  # Core Tool
+  core:
+    aliases:
+      - cr
+    desc: Assemble the app source tree into build/<platform>/sources, overlaying lib overrides
+    cmds:
+      - >-
+        tools/core/dist/core-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }}
+  core.build:
+    aliases:
+      - cb
+    dir: tools/core/src
+    desc: Generate tools/core binary
+    cmds:
+      - task build

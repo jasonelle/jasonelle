@@ -26,16 +26,16 @@
 package com.jasonelle.kernel
 
 object Kernel {
-    @JvmStatic
-    fun logo() {
-        println(
-            """
-              █ █▀█ █▀▀ █▀█ █▀▄█ █▀▀ █   █   █▀▀
-             ░▓ █▀▓ ▀▀▓ █ ▓ █  ▓ ▓▀  ▓░  ▓░  ▓▀
-            ▀▀▀ ▀ ▀ ▀▀▀ ▀▀▀ ▀  ▀ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀
-            				v${Version.semantic()}
-            		https://jasonelle.com/
-            """.trimIndent()
-        )
-    }
+  @JvmStatic
+  fun logo() {
+    println(
+      """
+        █ █▀█ █▀▀ █▀█ █▀▄█ █▀▀ █   █   █▀▀
+       ░▓ █▀▓ ▀▀▓ █ ▓ █  ▓ ▓▀  ▓░  ▓░  ▓▀
+      ▀▀▀ ▀ ▀ ▀▀▀ ▀▀▀ ▀  ▀ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀
+      				v${Version.semantic()}
+      		https://jasonelle.com/
+      """.trimIndent(),
+    )
+  }
 }

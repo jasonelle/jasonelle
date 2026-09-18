@@ -15,6 +15,15 @@ official Swift library and `xcprojformatter` CLI for the JSON-based
 `project.xcproj` format that Xcode 16+ uses. Should project generation move to
 this new, official format?
 
+[IMPORTANT]
+====
+This would be implemented later. For the first few releases of Jasonelle v4 it would 
+keep the traditional xcode project file to be compatible with older but still used Xcode
+versions. Since the new format is compatible with only Xcode 27+.
+Apple's current submission documentation says that starting April 2027, 
+the minimum will move to Xcode 27 / iOS 27 SDK https://developer.apple.com/app-store/submitting/
+====
+
 == Considered Options
 
 * https://github.com/apple/xcode-project-format[Apple `xcode-project-format`]
@@ -41,5 +50,10 @@ we would stay on the classic `project.pbxproj` format as Xcode shifts focus
 to `project.xcproj`. Hand-generating projects would be error-prone and
 ignores the tooling Apple already provides.
 
-NOTE: This ADR supersedes
+See https://developer.apple.com/documentation/xcode/updating-your-xcode-project-configuration-file-format
+
+[NOTE]
+====
+This ADR will supersede in the future
 xref:0000011-select-xcodegen-for-xcodeproject-generation.adoc[ADR-0000011].
+====

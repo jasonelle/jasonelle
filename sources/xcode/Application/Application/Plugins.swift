@@ -26,16 +26,22 @@
 import JLKernel
 
 // PLUGINS.IMPORT
-import JLPluginHello
+// PLUGIN:JLPluginDevice
 import JLPluginDevice
+// ENDPLUGIN
+// PLUGIN:JLPluginCookies
 import JLPluginCookies
-import JLPluginAppleSignIn
+// ENDPLUGIN
+// PLUGINS.IMPORT.EXTRA
 
 // PLUGINS.INIT
 // Keys must match the plugin name registered in JS (window.jasonelle.plugins.<name>)
 public let plugins: [String: JLKernel.Plugin] = [
-  JLPluginHello.Plugin.id: JLPluginHello.Plugin(),
+  // PLUGIN:JLPluginDevice
   JLPluginDevice.Plugin.id: JLPluginDevice.Plugin(),
+  // ENDPLUGIN
+  // PLUGIN:JLPluginCookies
   JLPluginCookies.Plugin.id: JLPluginCookies.Plugin(),
-  JLPluginAppleSignIn.Plugin.id: JLPluginAppleSignIn.Plugin()
+  // ENDPLUGIN
+  // PLUGINS.INIT.EXTRA
 ]

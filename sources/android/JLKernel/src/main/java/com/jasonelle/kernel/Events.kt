@@ -28,29 +28,32 @@ package com.jasonelle.kernel
 /**
  * Native events that plugins can listen to via handle_event(event, args, respond).
  */
-enum class Events(val rawValue: String) {
-    CONTENT_VIEW_ON_APPEAR("ContentView.onAppear");
+enum class Events(
+  val rawValue: String,
+) {
+  CONTENT_VIEW_ON_APPEAR("ContentView.onAppear"),
+  ;
 
-    companion object {
-        private val logger = Logger(Events::class.java)
+  companion object {
+    private val logger = Logger(Events::class.java)
 
-        @JvmStatic
-        var plugins: Map<String, Plugin> = emptyMap()
+    @JvmStatic
+    var plugins: Map<String, Plugin> = emptyMap()
 
-        @JvmStatic
-        fun register(plugins: Map<String, Plugin>) {
-            this.plugins = plugins
-        }
-
-        /**
-         * Sends the `ContentView.onAppear` event to every registered plugin.
-         */
-        @JvmStatic
-        fun sendOnAppear() {
-            logger.debug("Sending ${CONTENT_VIEW_ON_APPEAR.rawValue} event to plugins")
-            for ((_, plugin) in plugins) {
-                plugin.handle_event(CONTENT_VIEW_ON_APPEAR.rawValue, emptyMap()) {}
-            }
-        }
+    @JvmStatic
+    fun register(plugins: Map<String, Plugin>) {
+      this.plugins = plugins
     }
+
+    /**
+     * Sends the `ContentView.onAppear` event to every registered plugin.
+     */
+    @JvmStatic
+    fun sendOnAppear() {
+      logger.debug("Sending ${CONTENT_VIEW_ON_APPEAR.rawValue} event to plugins")
+      for ((_, plugin) in plugins) {
+        plugin.handle_event(CONTENT_VIEW_ON_APPEAR.rawValue, emptyMap()) {}
+      }
+    }
+  }
 }

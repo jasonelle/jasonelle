@@ -29,32 +29,32 @@ package com.jasonelle.kernel
  * The framework's version information, read from the bundled VERSION resource.
  */
 object Version {
-    private const val DEFAULT_VERSION = "4.x.x"
+  private const val DEFAULT_VERSION = "4.x.x"
 
-    @JvmStatic
-    var version: String? = null
+  @JvmStatic
+  var version: String? = null
 
-    /**
-     * The semantic version string (e.g. "4.0.0").
-     *
-     * Reads from the `VERSION` resource file bundled with JLKernel.
-     * Returns `"4.x.x"` if the file is missing or unreadable.
-     */
-    @JvmStatic
-    fun semantic(): String {
-        version?.takeIf { it.isNotEmpty() }?.let { return it }
+  /**
+   * The semantic version string (e.g. "4.0.0").
+   *
+   * Reads from the `VERSION` resource file bundled with JLKernel.
+   * Returns `"4.x.x"` if the file is missing or unreadable.
+   */
+  @JvmStatic
+  fun semantic(): String {
+    version?.takeIf { it.isNotEmpty() }?.let { return it }
 
-        return try {
-            val stream = Version::class.java.getResourceAsStream("/VERSION")
-            val content = stream?.bufferedReader()?.use { it.readText() }?.trim()
-            if (!content.isNullOrEmpty()) {
-                version = content
-                content
-            } else {
-                DEFAULT_VERSION
-            }
-        } catch (_: Exception) {
-            DEFAULT_VERSION
-        }
+    return try {
+      val stream = Version::class.java.getResourceAsStream("/VERSION")
+      val content = stream?.bufferedReader()?.use { it.readText() }?.trim()
+      if (!content.isNullOrEmpty()) {
+        version = content
+        content
+      } else {
+        DEFAULT_VERSION
+      }
+    } catch (_: Exception) {
+      DEFAULT_VERSION
     }
+  }
 }

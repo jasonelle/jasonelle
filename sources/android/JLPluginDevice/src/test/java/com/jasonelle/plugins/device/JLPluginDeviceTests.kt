@@ -32,61 +32,60 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class JLPluginDeviceTests {
+  @Test
+  fun exposesNameAndId() {
+    val plugin = Plugin()
 
-    @Test
-    fun exposesNameAndId() {
-        val plugin = Plugin()
+    assertEquals("device", plugin.name)
+    assertEquals("com.jasonelle.plugins.device", plugin.id)
+  }
 
-        assertEquals("device", plugin.name)
-        assertEquals("com.jasonelle.plugins.device", plugin.id)
-    }
+  @Test
+  fun callRespondsWithDeviceInfoScript() {
+    val plugin = Plugin()
+    var response: String? = null
 
-    @Test
-    fun callRespondsWithDeviceInfoScript() {
-        val plugin = Plugin()
-        var response: String? = null
+    plugin.handle_call("call_1", null) { response = it }
 
-        plugin.handle_call("call_1", null) { response = it }
+    val script = response ?: ""
+    assertTrue(script.startsWith("window.jasonelle.result.resolve({"))
+    assertTrue(script.contains("\"status\":\"ok\""))
+    assertTrue(script.contains("\"callbackId\":\"call_1\""))
+    assertTrue(script.contains("\"vendor\":\"google\""))
+    assertTrue(script.contains("\"os\":{"))
+    assertTrue(script.contains("\"name\":\"android\""))
+    assertTrue(script.contains("\"type\":\""))
+    assertTrue(script.contains("\"orientation\":\""))
+    assertTrue(script.contains("\"screen\":{"))
+    assertTrue(script.contains("\"width\":"))
+    assertTrue(script.contains("\"height\":"))
+  }
 
-        val script = response ?: ""
-        assertTrue(script.startsWith("window.jasonelle.result.resolve({"))
-        assertTrue(script.contains("\"status\":\"ok\""))
-        assertTrue(script.contains("\"callbackId\":\"call_1\""))
-        assertTrue(script.contains("\"vendor\":\"google\""))
-        assertTrue(script.contains("\"os\":{"))
-        assertTrue(script.contains("\"name\":\"android\""))
-        assertTrue(script.contains("\"type\":\""))
-        assertTrue(script.contains("\"orientation\":\""))
-        assertTrue(script.contains("\"screen\":{"))
-        assertTrue(script.contains("\"width\":"))
-        assertTrue(script.contains("\"height\":"))
-    }
+  @Test
+  fun deviceInfoRepresentsAndroidMetadata() {
+    val info = Plugin().deviceInfo()
 
-    @Test
-    fun deviceInfoRepresentsAndroidMetadata() {
-        val info = Plugin().deviceInfo()
+    assertEquals("android", (info["os"] as Map<*, *>)["name"])
+    assertEquals("google", info["vendor"])
+    assertNotNull(info["os"] as? Map<*, *>)
+    assertEquals("unknown", (info["os"] as Map<*, *>)["version"] ?: "unknown")
+  }
 
-        assertEquals("android", (info["os"] as Map<*, *>)["name"])
-        assertEquals("google", info["vendor"])
-        assertNotNull(info["os"] as? Map<*, *>)
-        assertEquals("unknown", (info["os"] as Map<*, *>)["version"] ?: "unknown")
-    }
+  @Test
+  fun eventWithoutHandlerDoesNotRespond() {
+    val plugin = Plugin()
+    var response: String? = null
 
-    @Test
-    fun eventWithoutHandlerDoesNotRespond() {
-        val plugin = Plugin()
-        var response: String? = null
+    plugin.handle_event("onAppear", null) { response = it }
 
-        plugin.handle_event("onAppear", null) { response = it }
+    assertNull(response)
+  }
 
-        assertNull(response)
-    }
+  @Test
+  fun bundlesJavaScriptRegisteringPlugin() {
+    val js = Plugin().js()
 
-    @Test
-    fun bundlesJavaScriptRegisteringPlugin() {
-        val js = Plugin().js()
-
-        assertTrue(js.isNotEmpty())
-        assertTrue(js.contains("window.jasonelle.plugins.device"))
-    }
+    assertTrue(js.isNotEmpty())
+    assertTrue(js.contains("window.jasonelle.plugins.device"))
+  }
 }

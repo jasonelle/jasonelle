@@ -31,13 +31,25 @@ import com.jasonelle.kernel.Plugin
 // PLUGINS.INIT
 // Keys must match the plugin id registered in JS (window.jasonelle.plugins.<name>)
 fun createPlugins(context: Context): Map<String, Plugin> {
-    val hello = com.jasonelle.plugins.hello.Plugin()
-    val device = com.jasonelle.plugins.device.Plugin()
-    val cookies = com.jasonelle.plugins.cookies.Plugin(context)
+  // PLUGIN:JLPluginDevice
+  val device =
+    com.jasonelle.plugins.device
+      .Plugin()
+  // ENDPLUGIN
+  // PLUGIN:JLPluginCookies
+  val cookies =
+    com.jasonelle.plugins.cookies
+      .Plugin(context)
+  // ENDPLUGIN
+  // PLUGINS.INIT.EXTRA.VARS
 
-    return mapOf(
-        hello.id to hello,
-        device.id to device,
-        cookies.id to cookies
-    )
+  return mapOf(
+    // PLUGIN:JLPluginDevice
+    device.id to device,
+    // ENDPLUGIN
+    // PLUGIN:JLPluginCookies
+    cookies.id to cookies,
+    // ENDPLUGIN
+    // PLUGINS.INIT.EXTRA.MAP
+  )
 }

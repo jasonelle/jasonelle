@@ -41,28 +41,29 @@ import com.jasonelle.kernel.JasonelleWebView
 import com.jasonelle.kernel.Logger
 
 @Composable
-fun ContentView() {
-    val context = LocalContext.current
-    val config = remember {
-        try {
-            ConfigurationLoader.load(context)
-        } catch (e: ConfigurationException) {
-            Logger(subsystem = "ContentView").error("Failed to load configuration: ${e.message}, falling back to about:blank")
-            AppConfiguration(urlString = "about:blank")
-        }
+fun contentView() {
+  val context = LocalContext.current
+  val config =
+    remember {
+      try {
+        ConfigurationLoader.load(context)
+      } catch (e: ConfigurationException) {
+        Logger(subsystem = "ContentView").error("Failed to load configuration: ${e.message}, falling back to about:blank")
+        AppConfiguration(urlString = "about:blank")
+      }
     }
 
-    LaunchedEffect(Unit) {
-        Events.sendOnAppear()
-    }
+  LaunchedEffect(Unit) {
+    Events.sendOnAppear()
+  }
 
-    MaterialTheme {
-        Surface(modifier = Modifier.fillMaxSize()) {
-            JasonelleWebView(
-                config = config,
-                plugins = Events.plugins,
-                modifier = Modifier.fillMaxSize()
-            )
-        }
+  MaterialTheme {
+    Surface(modifier = Modifier.fillMaxSize()) {
+      JasonelleWebView(
+        config = config,
+        plugins = Events.plugins,
+        modifier = Modifier.fillMaxSize(),
+      )
     }
+  }
 }

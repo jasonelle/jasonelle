@@ -30,66 +30,65 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class JLPluginCookiesTests {
+  @Test
+  fun exposesNameAndId() {
+    val plugin = Plugin()
 
-    @Test
-    fun exposesNameAndId() {
-        val plugin = Plugin()
+    assertEquals("cookies", plugin.name)
+    assertEquals("com.jasonelle.plugins.cookies", plugin.id)
+  }
 
-        assertEquals("cookies", plugin.name)
-        assertEquals("com.jasonelle.plugins.cookies", plugin.id)
-    }
+  @Test
+  fun saveRespondsWithOkScript() {
+    val plugin = Plugin()
+    var response: String? = null
 
-    @Test
-    fun saveRespondsWithOkScript() {
-        val plugin = Plugin()
-        var response: String? = null
+    plugin.handle_call("call_1", mapOf("action" to "save", "value" to "session=abc")) { response = it }
 
-        plugin.handle_call("call_1", mapOf("action" to "save", "value" to "session=abc")) { response = it }
+    assertTrue((response ?: "").startsWith("window.jasonelle.result.resolve({"))
+    assertTrue((response ?: "").contains("\"status\":\"ok\""))
+    assertTrue((response ?: "").contains("\"callbackId\":\"call_1\""))
+  }
 
-        assertTrue((response ?: "").startsWith("window.jasonelle.result.resolve({"))
-        assertTrue((response ?: "").contains("\"status\":\"ok\""))
-        assertTrue((response ?: "").contains("\"callbackId\":\"call_1\""))
-    }
+  @Test
+  fun restoreRespondsWithValueScript() {
+    val plugin = Plugin()
+    var response: String? = null
 
-    @Test
-    fun restoreRespondsWithValueScript() {
-        val plugin = Plugin()
-        var response: String? = null
+    plugin.handle_call("call_2", mapOf("action" to "restore")) { response = it }
 
-        plugin.handle_call("call_2", mapOf("action" to "restore")) { response = it }
+    assertTrue((response ?: "").startsWith("window.jasonelle.result.resolve({"))
+    assertTrue((response ?: "").contains("\"value\":\""))
+  }
 
-        assertTrue((response ?: "").startsWith("window.jasonelle.result.resolve({"))
-        assertTrue((response ?: "").contains("\"value\":\""))
-    }
+  @Test
+  fun saveWithoutValueRespondsWithRejectScript() {
+    val plugin = Plugin()
+    var response: String? = null
 
-    @Test
-    fun saveWithoutValueRespondsWithRejectScript() {
-        val plugin = Plugin()
-        var response: String? = null
+    plugin.handle_call("call_1", mapOf("action" to "save")) { response = it }
 
-        plugin.handle_call("call_1", mapOf("action" to "save")) { response = it }
+    assertTrue((response ?: "").startsWith("window.jasonelle.result.reject({"))
+    assertTrue((response ?: "").contains("\"status\":\"error\""))
+    assertTrue((response ?: "").contains("\"error\":\"Missing 'value'\""))
+  }
 
-        assertTrue((response ?: "").startsWith("window.jasonelle.result.reject({"))
-        assertTrue((response ?: "").contains("\"status\":\"error\""))
-        assertTrue((response ?: "").contains("\"error\":\"Missing 'value'\""))
-    }
+  @Test
+  fun unknownActionRespondsWithRejectScript() {
+    val plugin = Plugin()
+    var response: String? = null
 
-    @Test
-    fun unknownActionRespondsWithRejectScript() {
-        val plugin = Plugin()
-        var response: String? = null
+    plugin.handle_call("call_1", null) { response = it }
 
-        plugin.handle_call("call_1", null) { response = it }
+    assertTrue((response ?: "").startsWith("window.jasonelle.result.reject({"))
+    assertTrue((response ?: "").contains("\"status\":\"error\""))
+  }
 
-        assertTrue((response ?: "").startsWith("window.jasonelle.result.reject({"))
-        assertTrue((response ?: "").contains("\"status\":\"error\""))
-    }
+  @Test
+  fun bundlesJavaScriptRegisteringPlugin() {
+    val js = Plugin().js()
 
-    @Test
-    fun bundlesJavaScriptRegisteringPlugin() {
-        val js = Plugin().js()
-
-        assertTrue(js.isNotEmpty())
-        assertTrue(js.contains("window.jasonelle.plugins.cookies"))
-    }
+    assertTrue(js.isNotEmpty())
+    assertTrue(js.contains("window.jasonelle.plugins.cookies"))
+  }
 }

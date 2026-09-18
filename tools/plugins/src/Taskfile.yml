@@ -1,7 +1,7 @@
 #
-#  android/Taskfile.yml
+#  tools/plugins/Taskfile.yml
 #
-#  Created by [Camilo Castro (@clsource)](https://ninjas.cl) on 2026-09-15
+#  Created by [Camilo Castro (@clsource)](https://ninjas.cl) on 2026-09-17
 #  Made with love in Chile.
 #
 #  Copyright (c) Jasonelle.com
@@ -24,51 +24,51 @@
 #  <https://mozilla.org/MPL/2.0/>.
 
 # yaml-language-server: $schema=https://taskfile.dev/schema.json
+# A Taskfile.yml as an alternative to Makefile
 version: "3.17"
 
 tasks:
   default:
     cmds:
       - task build
-
   build:
     aliases:
       - b
-    desc: Build all Android modules
+    desc: Build cross-platform binaries into ../dist
     cmds:
-      - ./gradlew assembleDebug
-
+      - rm -rf ../dist
+      - mkdir -p ../dist
+      - GOOS=darwin GOARCH=amd64 go build -o ../dist/plugins-darwin-amd64 .
+      - GOOS=darwin GOARCH=arm64 go build -o ../dist/plugins-darwin-arm64 .
+      - GOOS=linux GOARCH=amd64 go build -o ../dist/plugins-linux-amd64 .
+      - GOOS=windows GOARCH=amd64 go build -o ../dist/plugins-windows-amd64.exe .
   test:
     aliases:
       - t
-    desc: Run unit tests across all Android modules
+    desc: Test the current version of the plugins tool
     cmds:
-      - ./gradlew test
-
-  assemble:
-    aliases:
-      - a
-    desc: Assemble debug APK
-    cmds:
-      - ./gradlew :Application:assembleDebug
-
-  lint:
-    aliases:
-      - l
-    desc: Run lint on Android sources
-    cmds:
-      - ./gradlew lint
-
+      - go test
   format:
     aliases:
       - f
-    desc: Format Kotlin sources with ktlint
+    desc: Format the current project
     cmds:
-      - ./gradlew ktlintFormat
-
-  clean:
+      - go fmt
+  version.major:
     aliases:
-      - c
-    desc: Clean build outputs
+      - v
+    desc: Bump VERSION to the next major version
     cmds:
-      - ./gradlew clean
+      - awk -F. '{print ($1 + 1) ".0.0"}' VERSION > VERSION.tmp && mv VERSION.tmp VERSION
+  version.minor:
+    aliases:
+      - vm
+    desc: Bump VERSION to the next minor version
+    cmds:
+      - awk -F. '{print $1 "." ($2 + 1) ".0"}' VERSION > VERSION.tmp && mv VERSION.tmp VERSION
+  version.patch:
+    aliases:
+      - vp
+    desc: Bump VERSION to the next patch version
+    cmds:
+      - awk -F. '{print $1 "." $2 "." ($3 + 1)}' VERSION > VERSION.tmp && mv VERSION.tmp VERSION

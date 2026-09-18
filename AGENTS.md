@@ -34,6 +34,8 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
 - `task bundler.xcode` (alias `bx`): Bundle scripts for Xcode only.
 - `task bundler.android` (alias `ba`): Bundle scripts for Android only.
 - `task bundler.esbuild.install` (alias `bi`): Install the vendored esbuild binary (Unix only).
+- `task core` (alias `cr`): Assemble the app source tree into `build/<platform>/sources`, overlaying `lib/` overrides.
+- `task core.build` (alias `cb`): Generate the `tools/core` binary.
 
 ## Directory layout
 

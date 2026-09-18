@@ -28,55 +28,65 @@ package com.jasonelle.plugins.hello
 import android.content.Context
 import com.jasonelle.kernel.Plugin as KernelPlugin
 
-class Plugin(context: Context? = null) : KernelPlugin(context) {
-    override val name: String get() = "hello"
+class Plugin(
+  context: Context? = null,
+) : KernelPlugin(context) {
+  override val name: String get() = "hello"
 
-    override val id: String get() = "com.jasonelle.plugins.hello"
+  override val id: String get() = "com.jasonelle.plugins.hello"
 
-    override fun handle_call(callbackId: String, args: Map<String, Any?>?, respond: (String) -> Unit) {
-        logger.info("Handled in native code with args: $args")
+  override fun handle_call(
+    callbackId: String,
+    args: Map<String, Any?>?,
+    respond: (String) -> Unit,
+  ) {
+    logger.info("Handled in native code with args: $args")
 
-        when (args?.get("action") as? String) {
-            "hello" -> {
-                logger.info("Resolved with hello response")
-                hello()
-                resolve(args = mapOf("status" to "ok"), callbackId = callbackId, respond = respond)
-            }
+    when (args?.get("action") as? String) {
+      "hello" -> {
+        logger.info("Resolved with hello response")
+        hello()
+        resolve(args = mapOf("status" to "ok"), callbackId = callbackId, respond = respond)
+      }
 
-            "world" -> {
-                logger.info("Resolved with world response")
-                val value = args["args"] as? String
-                if (value == null) {
-                    reject(
-                        args = mapOf("error" to "Missing 'value'"),
-                        callbackId = callbackId,
-                        status = "error",
-                        respond = respond
-                    )
-                    return
-                }
-                resolve(args = mapOf("value" to world(value)), callbackId = callbackId, respond = respond)
-            }
-
-            else -> {
-                logger.info("Resolved with default response")
-                resolve(args = args ?: emptyMap(), callbackId = callbackId, respond = respond)
-            }
+      "world" -> {
+        logger.info("Resolved with world response")
+        val value = args["args"] as? String
+        if (value == null) {
+          reject(
+            args = mapOf("error" to "Missing 'value'"),
+            callbackId = callbackId,
+            status = "error",
+            respond = respond,
+          )
+          return
         }
-    }
+        resolve(args = mapOf("value" to world(value)), callbackId = callbackId, respond = respond)
+      }
 
-    override fun handle_event(event: String, args: Map<String, Any?>?, respond: (String) -> Unit) {
-        logger.debug("Handled event $event in native code with args: $args")
-
-        event(event, plugin = name, args = args ?: emptyMap(), respond = respond)
+      else -> {
+        logger.info("Resolved with default response")
+        resolve(args = args ?: emptyMap(), callbackId = callbackId, respond = respond)
+      }
     }
+  }
 
-    private fun hello() {
-        logger.notice("Hello, world!")
-    }
+  override fun handle_event(
+    event: String,
+    args: Map<String, Any?>?,
+    respond: (String) -> Unit,
+  ) {
+    logger.debug("Handled event $event in native code with args: $args")
 
-    private fun world(value: String): String {
-        logger.notice("Hello, world! => $value")
-        return value
-    }
+    event(event, plugin = name, args = args ?: emptyMap(), respond = respond)
+  }
+
+  private fun hello() {
+    logger.notice("Hello, world!")
+  }
+
+  private fun world(value: String): String {
+    logger.notice("Hello, world! => $value")
+    return value
+  }
 }

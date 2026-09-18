@@ -28,57 +28,61 @@ package com.jasonelle.kernel
 import android.os.Build
 
 class License(
-    private val key: String? = null,
-    private val isInSimulator: () -> Boolean = { isRunningInEmulator() }
+  private val key: String? = null,
+  private val isInSimulator: () -> Boolean = { isRunningInEmulator() },
 ) {
-    private val logger = Logger(License::class.java)
+  private val logger = Logger(License::class.java)
 
-    companion object {
-        @JvmStatic
-        fun isRunningInEmulator(): Boolean {
-            return (Build.FINGERPRINT.startsWith("generic")
-                    || Build.FINGERPRINT.startsWith("unknown")
-                    || Build.MODEL.contains("google_sdk")
-                    || Build.MODEL.contains("Emulator")
-                    || Build.MODEL.contains("Android SDK built for x86")
-                    || Build.MANUFACTURER.contains("Genymotion")
-                    || Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic")
-                    || "google_sdk" == Build.PRODUCT
-                    || Build.HARDWARE.contains("goldfish")
-                    || Build.HARDWARE.contains("ranchu"))
-        }
+  companion object {
+    @JvmStatic
+    fun isRunningInEmulator(): Boolean =
+      (
+        Build.FINGERPRINT.startsWith("generic") ||
+          Build.FINGERPRINT.startsWith("unknown") ||
+          Build.MODEL.contains("google_sdk") ||
+          Build.MODEL.contains("Emulator") ||
+          Build.MODEL.contains("Android SDK built for x86") ||
+          Build.MANUFACTURER.contains("Genymotion") ||
+          Build.BRAND.startsWith("generic") &&
+          Build.DEVICE.startsWith("generic") ||
+          "google_sdk" == Build.PRODUCT ||
+          Build.HARDWARE.contains("goldfish") ||
+          Build.HARDWARE.contains("ranchu")
+      )
 
-        @JvmStatic
-        fun verify(key: String? = "") {
-            val license = License(key)
-            license.check()
-        }
+    @JvmStatic
+    fun verify(key: String? = "") {
+      val license = License(key)
+      license.check()
     }
+  }
 
-    private fun isValid(): Boolean {
-        val k = key
-        val isEmpty = k?.isEmpty() == true
-        val isBlank = k?.trim() == ""
-        return !(k == null || isEmpty || isBlank || k == "PURCHASE_ME")
-    }
+  private fun isValid(): Boolean {
+    val k = key
+    val isEmpty = k?.isEmpty() == true
+    val isBlank = k?.trim() == ""
+    return !(k == null || isEmpty || isBlank || k == "PURCHASE_ME")
+  }
 
-    fun abortIfIsInSimulator() {
-        if (isInSimulator()) {
-            if (!isValid()) {
-                logger.info("Running in simulator. Please consider purchasing a license at https://jasonelle.com")
-            }
-            return
-        }
-        val error = "License is not set. Running in Device is not allowed without a license. Can only use in simulator. Adquire an official license at https://jasonelle.com"
-        logger.emergency(error)
-        throw IllegalStateException(error)
+  fun abortIfIsInSimulator() {
+    if (isInSimulator()) {
+      if (!isValid()) {
+        logger.info("Running in simulator. Please consider purchasing a license at https://jasonelle.com")
+      }
+      return
     }
+    val error =
+      "License is not set. Running in Device is not allowed without a license. " +
+        "Can only use in simulator. Adquire an official license at https://jasonelle.com"
+    logger.emergency(error)
+    throw IllegalStateException(error)
+  }
 
-    fun check() {
-        if (isValid()) {
-            logger.info("License found. Thank you for supporting Jasonelle development ♥.")
-            return
-        }
-        abortIfIsInSimulator()
+  fun check() {
+    if (isValid()) {
+      logger.info("License found. Thank you for supporting Jasonelle development ♥.")
+      return
     }
+    abortIfIsInSimulator()
+  }
 }

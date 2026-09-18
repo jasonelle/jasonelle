@@ -1,6 +1,8 @@
 .Tools
 * xref:icon.adoc[]
 * xref:jsonc.adoc[]
+* xref:core.adoc[]
+* xref:plugins.adoc[]
 * xref:bundler.adoc[]
 * xref:esbuild.adoc[]
 //* xref:fastlane.adoc[]

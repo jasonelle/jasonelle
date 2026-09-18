@@ -30,51 +30,52 @@ import android.content.res.Configuration
 import android.os.Build
 import com.jasonelle.kernel.Plugin as KernelPlugin
 
-class Plugin(context: Context? = null) : KernelPlugin(context) {
-    override val name: String get() = "device"
+class Plugin(
+  context: Context? = null,
+) : KernelPlugin(context) {
+  override val name: String get() = "device"
 
-    override val id: String get() = "com.jasonelle.plugins.device"
+  override val id: String get() = "com.jasonelle.plugins.device"
 
-    override fun handle_call(callbackId: String, args: Map<String, Any?>?, respond: (String) -> Unit) {
-        logger.info("Handling device info request")
-        resolve(args = deviceInfo(), callbackId = callbackId, respond = respond)
+  override fun handle_call(
+    callbackId: String,
+    args: Map<String, Any?>?,
+    respond: (String) -> Unit,
+  ) {
+    logger.info("Handling device info request")
+    resolve(args = deviceInfo(), callbackId = callbackId, respond = respond)
+  }
+
+  internal fun deviceInfo(): Map<String, Any?> =
+    mapOf(
+      "os" to mapOf("name" to "android", "version" to osVersion()),
+      "vendor" to "google",
+      "type" to deviceType(),
+      "orientation" to orientation(),
+      "screen" to mapOf("width" to screenWidth(), "height" to screenHeight()),
+    )
+
+  private fun osVersion(): String {
+    // Build.VERSION fields are static, so this is safe to read in local JVM tests.
+    return Build.VERSION.RELEASE ?: "unknown"
+  }
+
+  private fun deviceType(): String {
+    val resources = context?.resources ?: return "phone"
+    val isTablet = resources.configuration.smallestScreenWidthDp >= 600
+    return if (isTablet) "tablet" else "phone"
+  }
+
+  private fun orientation(): String {
+    val resources = context?.resources ?: return "unknown"
+    return when (resources.configuration.orientation) {
+      Configuration.ORIENTATION_PORTRAIT -> "portrait"
+      Configuration.ORIENTATION_LANDSCAPE -> "landscape"
+      else -> "unknown"
     }
+  }
 
-    internal fun deviceInfo(): Map<String, Any?> {
-        return mapOf(
-            "os" to mapOf("name" to "android", "version" to osVersion()),
-            "vendor" to "google",
-            "type" to deviceType(),
-            "orientation" to orientation(),
-            "screen" to mapOf("width" to screenWidth(), "height" to screenHeight())
-        )
-    }
+  private fun screenWidth(): Int = context?.resources?.displayMetrics?.widthPixels ?: 0
 
-    private fun osVersion(): String {
-        // Build.VERSION fields are static, so this is safe to read in local JVM tests.
-        return Build.VERSION.RELEASE ?: "unknown"
-    }
-
-    private fun deviceType(): String {
-        val resources = context?.resources ?: return "phone"
-        val isTablet = resources.configuration.smallestScreenWidthDp >= 600
-        return if (isTablet) "tablet" else "phone"
-    }
-
-    private fun orientation(): String {
-        val resources = context?.resources ?: return "unknown"
-        return when (resources.configuration.orientation) {
-            Configuration.ORIENTATION_PORTRAIT -> "portrait"
-            Configuration.ORIENTATION_LANDSCAPE -> "landscape"
-            else -> "unknown"
-        }
-    }
-
-    private fun screenWidth(): Int {
-        return context?.resources?.displayMetrics?.widthPixels ?: 0
-    }
-
-    private fun screenHeight(): Int {
-        return context?.resources?.displayMetrics?.heightPixels ?: 0
-    }
+  private fun screenHeight(): Int = context?.resources?.displayMetrics?.heightPixels ?: 0
 }

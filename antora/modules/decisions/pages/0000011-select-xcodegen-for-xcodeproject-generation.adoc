@@ -4,7 +4,7 @@
 
 == Status
 
-- Superseded by xref:0000013-supersede-xcodegen-with-xcode-project-format.adoc[ADR-0000013] (2026-09-17) by: @clsource
+- Will be Superseded by xref:0000013-supersede-xcodegen-with-xcode-project-format.adoc[ADR-0000013] (2026-09-17) by: @clsource
 
 === History
 

@@ -1,5 +1,5 @@
 //
-//  Application/Main.kt
+//  Application/MainActivity.kt
 //
 //  Created by [Camilo Castro (@clsource)](https://ninjas.cl) on 2026-09-15
 //  Made with love in Chile.
@@ -35,21 +35,21 @@ import com.jasonelle.kernel.LogLevel
 import com.jasonelle.kernel.Logger
 
 class MainActivity : ComponentActivity() {
-    private val logger: Logger = Logger(MainActivity::class.java)
+  private val logger: Logger = Logger(MainActivity::class.java)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
 
-        Kernel.logo()
-        Logger.level = LogLevel.DEBUG
-        // Purchase a License in https://jasonelle.com
-        // to help development efforts.
-        License.verify("PURCHASE_ME")
-        Events.register(createPlugins(applicationContext))
-        logger.info("App Initiated")
+    Kernel.logo()
+    Logger.level = LogLevel.DEBUG
+    // Purchase a License in https://jasonelle.com
+    // to help development efforts.
+    License.verify("PURCHASE_ME")
+    Events.register(createPlugins(applicationContext))
+    logger.info("App Initiated")
 
-        setContent {
-            ContentView()
-        }
+    setContent {
+      contentView()
     }
+  }
 }

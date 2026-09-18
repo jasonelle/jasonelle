@@ -31,133 +31,147 @@ import org.json.JSONObject
 import java.io.InputStream
 
 data class AppConfiguration(
-    val urlString: String,
-    val inspectable: Boolean? = true,
-    val allowed: List<String>? = emptyList()
+  val urlString: String,
+  val inspectable: Boolean? = true,
+  val allowed: List<String>? = emptyList(),
 ) {
-    constructor(
-        url: Uri,
-        inspectable: Boolean? = true,
-        allowed: List<String>? = emptyList()
-    ) : this(url.toString(), inspectable, allowed)
+  constructor(
+    url: Uri,
+    inspectable: Boolean? = true,
+    allowed: List<String>? = emptyList(),
+  ) : this(url.toString(), inspectable, allowed)
 
-    val url: Uri get() = Uri.parse(urlString)
+  val url: Uri get() = Uri.parse(urlString)
 }
 
-sealed class ConfigurationException(message: String, cause: Throwable? = null) : Exception(message, cause) {
-    class FileNotFound(message: String = "Configuration file not found") : ConfigurationException(message)
-    class DecodingError(message: String, cause: Throwable? = null) : ConfigurationException(message, cause)
+sealed class ConfigurationException(
+  message: String,
+  cause: Throwable? = null,
+) : Exception(message, cause) {
+  class FileNotFound(
+    message: String = "Configuration file not found",
+  ) : ConfigurationException(message)
+
+  class DecodingError(
+    message: String,
+    cause: Throwable? = null,
+  ) : ConfigurationException(message, cause)
 }
 
 object ConfigurationLoader {
-    private val logger = Logger(ConfigurationLoader::class.java)
+  private val logger = Logger(ConfigurationLoader::class.java)
 
-    @JvmStatic
-    @Throws(ConfigurationException::class)
-    fun load(context: Context, fileName: String = "config.jsonc"): AppConfiguration {
-        val stream: InputStream = try {
-            context.assets.open(fileName)
-        } catch (e: Exception) {
-            throw ConfigurationException.FileNotFound("Asset file not found: $fileName")
+  @JvmStatic
+  @Throws(ConfigurationException::class)
+  fun load(
+    context: Context,
+    fileName: String = "config.jsonc",
+  ): AppConfiguration {
+    val stream: InputStream =
+      try {
+        context.assets.open(fileName)
+      } catch (e: Exception) {
+        throw ConfigurationException.FileNotFound("Asset file not found: $fileName")
+      }
+    return load(stream)
+  }
+
+  @JvmStatic
+  @Throws(ConfigurationException::class)
+  fun load(stream: InputStream?): AppConfiguration {
+    if (stream == null) {
+      throw ConfigurationException.FileNotFound()
+    }
+    val text = stream.bufferedReader().use { it.readText() }
+    val decoded = decode(text)
+    logger.info("Successfully loaded configuration")
+    logger.debug(decoded.toString())
+    return decoded
+  }
+
+  @JvmStatic
+  @Throws(ConfigurationException::class)
+  fun decode(text: String): AppConfiguration {
+    val cleanJson = stripJSONCComments(text)
+    try {
+      val json = JSONObject(cleanJson)
+      val urlString = json.getString("url")
+      val inspectable = if (json.has("inspectable")) json.optBoolean("inspectable", true) else null
+      val allowedList =
+        if (json.has("allowed") && !json.isNull("allowed")) {
+          val arr = json.getJSONArray("allowed")
+          val list = mutableListOf<String>()
+          for (i in 0 until arr.length()) {
+            list.add(arr.getString(i))
+          }
+          list
+        } else {
+          null
         }
-        return load(stream)
+      return AppConfiguration(
+        urlString = urlString,
+        inspectable = inspectable,
+        allowed = allowedList,
+      )
+    } catch (e: Exception) {
+      throw ConfigurationException.DecodingError("Failed to decode configuration: ${e.message}", e)
+    }
+  }
+
+  /**
+   * Strips single-line (//) and multi-line (/* */) comments outside quoted strings.
+   */
+  @JvmStatic
+  fun stripJSONCComments(text: String): String {
+    val result = StringBuilder()
+    var i = 0
+    var inString = false
+    var escaped = false
+    val len = text.length
+
+    while (i < len) {
+      val c = text[i]
+
+      if (escaped) {
+        escaped = false
+        result.append(c)
+        i++
+        continue
+      }
+
+      if (c == '\\' && inString) {
+        escaped = true
+        result.append(c)
+        i++
+        continue
+      }
+
+      if (c == '"') {
+        inString = !inString
+        result.append(c)
+        i++
+        continue
+      }
+
+      if (!inString && c == '/') {
+        val next = if (i + 1 < len) text[i + 1] else ' '
+        if (next == '/') {
+          // Line comment: skip until newline or EOF
+          val newlineIdx = text.indexOf('\n', i)
+          i = if (newlineIdx != -1) newlineIdx else len
+          continue
+        } else if (next == '*') {
+          // Block comment: skip until */
+          val endIdx = text.indexOf("*/", i + 2)
+          i = if (endIdx != -1) endIdx + 2 else len
+          continue
+        }
+      }
+
+      result.append(c)
+      i++
     }
 
-    @JvmStatic
-    @Throws(ConfigurationException::class)
-    fun load(stream: InputStream?): AppConfiguration {
-        if (stream == null) {
-            throw ConfigurationException.FileNotFound()
-        }
-        val text = stream.bufferedReader().use { it.readText() }
-        val decoded = decode(text)
-        logger.info("Successfully loaded configuration")
-        logger.debug(decoded.toString())
-        return decoded
-    }
-
-    @JvmStatic
-    @Throws(ConfigurationException::class)
-    fun decode(text: String): AppConfiguration {
-        val cleanJson = stripJSONCComments(text)
-        try {
-            val json = JSONObject(cleanJson)
-            val urlString = json.getString("url")
-            val inspectable = if (json.has("inspectable")) json.optBoolean("inspectable", true) else null
-            val allowedList = if (json.has("allowed") && !json.isNull("allowed")) {
-                val arr = json.getJSONArray("allowed")
-                val list = mutableListOf<String>()
-                for (i in 0 until arr.length()) {
-                    list.add(arr.getString(i))
-                }
-                list
-            } else {
-                null
-            }
-            return AppConfiguration(
-                urlString = urlString,
-                inspectable = inspectable,
-                allowed = allowedList
-            )
-        } catch (e: Exception) {
-            throw ConfigurationException.DecodingError("Failed to decode configuration: ${e.message}", e)
-        }
-    }
-
-    /**
-     * Strips single-line (//) and multi-line (/* */) comments outside quoted strings.
-     */
-    @JvmStatic
-    fun stripJSONCComments(text: String): String {
-        val result = StringBuilder()
-        var i = 0
-        var inString = false
-        var escaped = false
-        val len = text.length
-
-        while (i < len) {
-            val c = text[i]
-
-            if (escaped) {
-                escaped = false
-                result.append(c)
-                i++
-                continue
-            }
-
-            if (c == '\\' && inString) {
-                escaped = true
-                result.append(c)
-                i++
-                continue
-            }
-
-            if (c == '"') {
-                inString = !inString
-                result.append(c)
-                i++
-                continue
-            }
-
-            if (!inString && c == '/') {
-                val next = if (i + 1 < len) text[i + 1] else ' '
-                if (next == '/') {
-                    // Line comment: skip until newline or EOF
-                    val newlineIdx = text.indexOf('\n', i)
-                    i = if (newlineIdx != -1) newlineIdx else len
-                    continue
-                } else if (next == '*') {
-                    // Block comment: skip until */
-                    val endIdx = text.indexOf("*/", i + 2)
-                    i = if (endIdx != -1) endIdx + 2 else len
-                    continue
-                }
-            }
-
-            result.append(c)
-            i++
-        }
-
-        return result.toString()
-    }
+    return result.toString()
+  }
 }
