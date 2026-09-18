@@ -1,0 +1,42 @@
+# JLPluginDevice
+
+A Jasonelle plugin that reports information about the device running the app.
+
+## Overview
+
+JLPluginDevice exposes device details to JavaScript. Call it from the web view to learn the operating system, vendor, device type, orientation, and screen size.
+
+### Structure
+
+| File | Role |
+|------|------|
+| `Plugin.kt` | Native side – collects device information and responds to calls from JavaScript. |
+| `Plugin.js` | JavaScript side – registers the plugin on `window.jasonelle.plugins.device`. |
+
+### How it works
+
+1. The plugin is injected into the web view on page load and registers itself on `window.jasonelle.plugins.device`.
+2. Call `window.jasonelle.plugins.device.info()` from JavaScript; it returns a promise.
+3. The call is routed to `Plugin.kt` `handle_call(callbackId:args:respond:)`, which resolves the promise with the device information.
+
+### Response
+
+The promise resolves with an object like:
+
+```json
+{
+  "status": "ok",
+  "os": { "name": "android", "version": "14" },
+  "vendor": "google",
+  "type": "phone",
+  "orientation": "portrait",
+  "screen": { "width": 1080, "height": 2400 }
+}
+```
+
+`os.name` is always `android`. `type` is `phone` or `tablet`. `orientation` is `portrait`, `landscape`, or `unknown`.
+
+## Reference
+
+- `com.jasonelle.kernel.Plugin` – the base class this plugin extends.
+- `Plugin.js` in `src/main/assets/plugins/device/` – the JavaScript client, byte-identical to the Xcode plugin.

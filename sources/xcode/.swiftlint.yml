@@ -1,0 +1,72 @@
+#
+#  xcode/.swiftlint.yml
+#
+#  Created by [Camilo Castro (@clsource)](https://ninjas.cl) on 2026-08-11
+#  Made with love in Chile.
+#
+#  Copyright (c) Jasonelle.com
+#
+#  This file is part of Jasonelle Project <https://jasonelle.com>.
+#  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
+#  MPLv2 is only valid if the software has a unique Jasonelle Key which was purchased in official channels at https://jasonelle.com.
+#
+#  == AGPLv3
+#  Jasonelle is free software: you can redistribute it and/or modify it under the terms of the Affero GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+#  Jasonelle is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the Affero GNU General Public License for more details.
+#  You should have received a copy of the Affero GNU General Public License along with Jasonelle. If not, see <https://www.gnu.org/licenses/agpl-3.0.txt>.
+#
+#  == MPLv2 (Only valid if purchased a Jasonelle Key)
+#  This Source Code Form is subject to the terms
+#  of the Mozilla Public License, v. 2.0.
+#  If a copy of the MPL was not distributed
+#  with this file, You can obtain one at
+#
+#  <https://mozilla.org/MPL/2.0/>.
+
+# based on https://github.com/GenericJam/mob/blob/master/.swiftlint.yml
+included:
+  - JLKernel
+  - Application
+  - JLPluginHello
+  - JLPluginDevice
+  - JLPluginCookies
+  - JLPluginAppleSignIn
+
+# The "errors" SwiftLint flags
+# below are stylistic, not bugs; tuning them lets the actual signal through.
+
+identifier_name:
+  # Allow short idiomatic names (a/b for tuple components, n/i for indices,
+  # dx/dy/dt for deltas, op for operation, cb for callback, pt/r/g/h for
+  # geometry helpers, ms for milliseconds, t for time/temp). Min length lower
+  # than 3 catches genuinely opaque names like `_a` while letting these stay.
+  min_length:
+    warning: 1
+    error: 1
+# Existing 40-char max stays as warning — keeps catching genuinely runaway
+# names without escalating.
+
+cyclomatic_complexity:
+  warning: 40
+  error: 60
+
+file_length:
+  warning: 2000
+  error: 3000
+
+function_body_length:
+  warning: 100
+  error: 200
+
+force_cast: warning
+
+# SwiftUI initializers like Button(action:, label:) and modifiers like
+# onScrollGeometryChange(for:of:) take two closures by API design. Apple's
+# own examples use trailing-closure syntax. Suppress.
+disabled_rules:
+  - multiple_closures_with_trailing_closure
+
+# 130-char limit (default 120).
+line_length:
+  warning: 130
+  error: 200

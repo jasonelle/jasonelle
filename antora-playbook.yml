@@ -1,0 +1,40 @@
+site:
+  title: Jasonelle Documentation
+  url: https://jasonelle.com/docs
+  start_page: "ROOT::index.adoc"
+
+content:
+  sources:
+    - url: .
+      branches: HEAD
+      start_path: antora/
+
+antora:
+  extensions:
+    - require: "@antora/lunr-extension"
+
+asciidoc:
+  extensions:
+    - asciidoctor-emoji
+    - asciidoctor-kroki
+    - "@djencks/asciidoctor-mathjax"
+  attributes:
+    stem: mathjax
+    kroki-fetch-diagram: true
+    experimental: ""
+    idprefix: ""
+    idseparator: "-"
+    page-pagination: ""
+    highlightjs-theme: monokai
+    # highlightjs-languages: js, elixir, sql, yaml, html, css, c, python, ada, objective-c, swift, java, kotlin
+
+ui:
+  bundle:
+    # https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    url: antora/ui-bundle.zip
+    snapshot: true
+  # https://gitlab.com/antora/antora-ui-default/-/tree/master/src/partials
+  supplemental_files: antora/supplemental-ui/
+
+output:
+  dir: docs/docs/

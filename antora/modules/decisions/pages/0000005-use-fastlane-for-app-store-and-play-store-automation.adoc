@@ -1,0 +1,41 @@
+= Use Fastlane for App Store and Play Store automation
+
+- id: 0000005
+
+== Status
+
+- Accepted (2026-08-15) by: @clsource
+
+=== History
+
+- Proposed (2026-08-15) by: @clsource
+
+== Context and Problem Statement
+
+Jasonelle distributes iOS and Android apps through the App Store and Play
+Store, each with its own signing, metadata, screenshot, and release process.
+Releasing to both stores by hand means repetitive, error-prone steps repeated
+for every build. How should App Store and Play Store release automation be
+handled?
+
+== Considered Options
+
+* Use https://fastlane.tools/[Fastlane] for App Store and Play Store automation
+* Build custom release scripts per platform
+* Release manually using Xcode and Android Studio
+
+== Decision Outcome
+
+Chosen option: "Use Fastlane for App Store and Play Store automation", because
+a single tool abstracts the platform specific release flows: `Fastfile` lanes
+handle signing, building, screenshots, metadata upload, and submission for both
+the App Store (via deliver, gym, sigh, pilot) and the Play Store (via supply).
+Positive consequences: one definition of the release process, repeatable and
+reviewable lanes in CI, and reduced human error. Negative consequences:
+additional dependency and Fastlane configuration to learn and maintain.
+
+Fastlane is the best option, because it removes the per-store boilerplate while
+keeping the workflow declarative and testable in CI. If "Build custom release
+scripts" was chosen, each store's signing and upload logic would be reimplemented
+and drift apart. If "Release manually" was chosen, every release would depend on
+a developer's machine and take significant manual time.

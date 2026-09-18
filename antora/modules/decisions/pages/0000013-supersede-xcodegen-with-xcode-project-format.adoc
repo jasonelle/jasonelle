@@ -1,0 +1,59 @@
+= Supersede XcodeGen with Xcode Project Format from Apple
+
+- id: 0000013
+
+== Status
+
+- Accepted (2026-09-17) by: @clsource
+
+== Context and Problem Statement
+
+xref:0000011-select-xcodegen-for-xcodeproject-generation.adoc[ADR-0000011]
+selected XcodeGen for Xcode project generation. Apple has since open-sourced
+https://github.com/apple/xcode-project-format[`xcode-project-format`], an
+official Swift library and `xcprojformatter` CLI for the JSON-based
+`project.xcproj` format that Xcode 16+ uses. Should project generation move to
+this new, official format?
+
+[IMPORTANT]
+====
+This would be implemented later. For the first few releases of Jasonelle v4 it would 
+keep the traditional xcode project file to be compatible with older but still used Xcode
+versions. Since the new format is compatible with only Xcode 27+.
+Apple's current submission documentation says that starting April 2027, 
+the minimum will move to Xcode 27 / iOS 27 SDK https://developer.apple.com/app-store/submitting/
+====
+
+== Considered Options
+
+* https://github.com/apple/xcode-project-format[Apple `xcode-project-format`]
+* Continue using https://github.com/yonaskolb/xcodegen[XcodeGen]
+* Generate Xcode projects by hand (no tool)
+
+== Decision Outcome
+
+Chosen option: "Apple `xcode-project-format`", because it is the official
+format moving forward: Xcode 16+ embraces the JSON-based `project.xcproj`,
+and Apple provides `xcprojformatter` plus the typed `XCSchema` Swift model
+to read and write it. It aligns with
+xref:0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.adoc[ADR-0000009],
+which chose Swift for Xcode-related tooling. Positive consequences: an
+official, Apache-2.0 licensed format instead of the reverse-engineered
+`project.pbxproj`; Swift-native tooling that can be maintained alongside the
+app code. Negative consequences: the package is young (`0.1.x`) and the
+format is still evolving, so tooling and ecosystem support are thinner than
+XcodeGen's.
+
+Apple `xcode-project-format` is the best fit because it follows the platform
+owner and removes the reverse-engineering burden. If XcodeGen were kept,
+we would stay on the classic `project.pbxproj` format as Xcode shifts focus
+to `project.xcproj`. Hand-generating projects would be error-prone and
+ignores the tooling Apple already provides.
+
+See https://developer.apple.com/documentation/xcode/updating-your-xcode-project-configuration-file-format
+
+[NOTE]
+====
+This ADR will supersede in the future
+xref:0000011-select-xcodegen-for-xcodeproject-generation.adoc[ADR-0000011].
+====

@@ -1,0 +1,74 @@
+#
+#  tools/plugins/Taskfile.yml
+#
+#  Created by [Camilo Castro (@clsource)](https://ninjas.cl) on 2026-09-17
+#  Made with love in Chile.
+#
+#  Copyright (c) Jasonelle.com
+#
+#  This file is part of Jasonelle Project <https://jasonelle.com>.
+#  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
+#  MPLv2 is only valid if the software has a unique Jasonelle Key which was purchased in official channels at https://jasonelle.com.
+#
+#  == AGPLv3
+#  Jasonelle is free software: you can redistribute it and/or modify it under the terms of the Affero GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+#  Jasonelle is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the Affero GNU General Public License for more details.
+#  You should have received a copy of the Affero GNU General Public License along with Jasonelle. If not, see <https://www.gnu.org/licenses/agpl-3.0.txt>.
+#
+#  == MPLv2 (Only valid if purchased a Jasonelle Key)
+#  This Source Code Form is subject to the terms
+#  of the Mozilla Public License, v. 2.0.
+#  If a copy of the MPL was not distributed
+#  with this file, You can obtain one at
+#
+#  <https://mozilla.org/MPL/2.0/>.
+
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+# A Taskfile.yml as an alternative to Makefile
+version: "3.17"
+
+tasks:
+  default:
+    cmds:
+      - task build
+  build:
+    aliases:
+      - b
+    desc: Build cross-platform binaries into ../dist
+    cmds:
+      - rm -rf ../dist
+      - mkdir -p ../dist
+      - GOOS=darwin GOARCH=amd64 go build -o ../dist/plugins-darwin-amd64 .
+      - GOOS=darwin GOARCH=arm64 go build -o ../dist/plugins-darwin-arm64 .
+      - GOOS=linux GOARCH=amd64 go build -o ../dist/plugins-linux-amd64 .
+      - GOOS=windows GOARCH=amd64 go build -o ../dist/plugins-windows-amd64.exe .
+  test:
+    aliases:
+      - t
+    desc: Test the current version of the plugins tool
+    cmds:
+      - go test
+  format:
+    aliases:
+      - f
+    desc: Format the current project
+    cmds:
+      - go fmt
+  version.major:
+    aliases:
+      - v
+    desc: Bump VERSION to the next major version
+    cmds:
+      - awk -F. '{print ($1 + 1) ".0.0"}' VERSION > VERSION.tmp && mv VERSION.tmp VERSION
+  version.minor:
+    aliases:
+      - vm
+    desc: Bump VERSION to the next minor version
+    cmds:
+      - awk -F. '{print $1 "." ($2 + 1) ".0"}' VERSION > VERSION.tmp && mv VERSION.tmp VERSION
+  version.patch:
+    aliases:
+      - vp
+    desc: Bump VERSION to the next patch version
+    cmds:
+      - awk -F. '{print $1 "." $2 "." ($3 + 1)}' VERSION > VERSION.tmp && mv VERSION.tmp VERSION
