@@ -1,0 +1,90 @@
+= Link
+
+A https://go.dev[Go] tool that links the plugins present in the assembled
+source trees into the native projects. It scans
+`build/<platform>/sources/` for the `JLPlugin*` directories the plugins tool
+copied — plugins in the config are on disk and get linked, plugins removed
+from the config leave no directory and get unlinked. Anything that is not a
+linked plugin (`Application`, `JLKernel`, non-`JLPlugin` projects) is left
+untouched.
+
+Run it after `task plugins` and `task core`, before `task appid`:
+
+```
+task jsonc
+task bundler
+task plugins
+task core
+task link
+task appid
+```
+
+== Requirements
+
+* https://go.dev[Go] 1.26 or newer (only for compilation. `dist/` directory
+  contains binaries).
+* https://taskfile.dev[go-task] (optional, only for the tasks below).
+* The assembled source trees, produced by `task plugins` and `task core`.
+
+== Usage
+
+From `tools/link/src`:
+
+[source,sh]
+----
+go run . --xcode-sources build/xcode/sources --android-sources build/android/sources
+----
+
+Both flags default to those paths. A rerun is a no-op: every edit is
+byte-stable.
+
+=== Flags
+
+[cols="1,1,3"]
+|===
+|Flag |Required |Description
+
+|`--xcode-sources`
+|No
+|Path to the assembled Xcode source tree
+(`build/xcode/sources/`).
+
+|`--android-sources`
+|No
+|Path to the assembled Android source tree
+(`build/android/sources/`).
+|===
+
+== Xcode
+
+* `Jasonelle.xcworkspace/contents.xcworkspacedata` — adds a FileRef
+  (`group:<Plugin>/<Plugin>.xcodeproj`) per plugin and removes the stale ones.
+* `Application/Application.xcodeproj/project.pbxproj` — adds a
+  `PBXBuildFile`/`PBXFileReference` pair per plugin with deterministic
+  24-hex object IDs, plus the Frameworks build phase entry and the Frameworks
+  group child, and removes the corresponding stale entries. The framework
+  product is assumed to be `<Plugin>.framework`.
+
+== Android
+
+* `settings.gradle.kts` — the `include(":Plugin")` lines.
+* `Application/build.gradle.kts` — the `implementation(project(":Plugin"))`
+  lines inside the `dependencies` block.
+
+== Tasks
+
+From the repository root:
+
+* `task link` (`l`): link the plugins for both Xcode and Android.
+* `task link.build` (`lb`): build the `tools/link` binary.
+
+From `tools/link/src`:
+
+* `task build` (`b`): cross-compile binaries into `../dist/` for macOS
+  (amd64/arm64), Linux (amd64) and Windows (amd64).
+* `task test` (`t`): run the test suite.
+
+== Release binaries
+
+`dist/` contains prebuilt binaries for each platform, named
+`link-<os>-<arch>` (Windows uses `.exe`).

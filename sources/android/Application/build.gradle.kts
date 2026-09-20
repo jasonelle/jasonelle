@@ -10,7 +10,7 @@ android {
   compileSdk = 34
 
   defaultConfig {
-    applicationId = "com.jasonelle.application"
+    applicationId = "com.example.application"
     minSdk = 30
     targetSdk = 34
     versionCode = 1

@@ -243,3 +243,33 @@ tasks:
     desc: Generate tools/core binary
     cmds:
       - task build
+
+  # Appid Tool
+  appid:
+    aliases:
+      - aid
+    desc: Set the Xcode bundle identifiers and Android applicationId from the app_id in the merged configs
+    cmds:
+      - 'tools/appid/dist/appid-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }}'
+  appid.build:
+    aliases:
+      - aib
+    dir: tools/appid/src
+    desc: Generate tools/appid binary
+    cmds:
+      - task build
+
+  # Link Tool
+  link:
+    aliases:
+      - l
+    desc: Link the plugins present in build/<platform>/sources into the Xcode workspace and the Android projects
+    cmds:
+      - 'tools/link/dist/link-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }}'
+  link.build:
+    aliases:
+      - lb
+    dir: tools/link/src
+    desc: Generate tools/link binary
+    cmds:
+      - task build

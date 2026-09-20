@@ -1,0 +1,94 @@
+= Appid
+
+A https://go.dev[Go] tool that sets the application identifiers of the
+assembled projects to the `app_id` in the merged per-platform configs. Run
+after `task core`, against `build/`.
+
+The Xcode project file is rewritten in place:
+`PRODUCT_BUNDLE_IDENTIFIER` of the Application (`app_id`), ApplicationTests
+(`app_id.Tests`) and ApplicationUITests (`app_id.UITests`) targets, in both
+Debug and Release configs. The Android `applicationId` is rewritten to
+`app_id`; the `namespace` is left untouched.
+
+Values are written literally, so the default wildcard `app_id`
+(`com.example.*`) is not translated. Re-running is a no-op.
+
+== Requirements
+
+* https://go.dev[Go] 1.26 or newer (only for compilation. `dist/` directory
+  contains binaries).
+* https://taskfile.dev[go-task] (optional, only for the tasks below).
+* The assembled projects and merged config files, produced by `task core` and
+  `task jsonc`.
+
+== Usage
+
+From the repository root:
+
+[source,sh]
+----
+tools/appid/dist/appid-{{os}}-{{arch}}
+----
+
+=== Flags
+
+All flags have defaults that point to the standard `build/` tree.
+
+[cols="1,1,3"]
+|===
+|Flag |Required |Description
+
+|`--xcode-config`
+|No
+|Path to the merged Xcode config file. Default:
+`build/xcode/config/config.jsonc`.
+
+|`--xcode-project`
+|No
+|Path to the assembled Xcode project. Default:
+`build/xcode/sources/Application/Application.xcodeproj/project.pbxproj`.
+
+|`--android-config`
+|No
+|Path to the merged Android config file. Default:
+`build/android/config/config.jsonc`.
+
+|`--android-project`
+|No
+|Path to the assembled Android Application module. Default:
+`build/android/sources/Application/build.gradle.kts`.
+|===
+
+== How it works
+
+1. Reads `app_id` from the Xcode config. A missing or empty `app_id` is an
+   error.
+2. Rewrites the three `PRODUCT_BUNDLE_IDENTIFIER` markers in the pbxproj.
+   Each marker must appear exactly twice (Debug + Release) or, when the file
+   was already patched, the new value must appear twice. Any other count means
+   the file was customized and the tool fails rather than guess. Matches are
+   case-sensitive, so the Application id never collides with the test ids.
+3. Reads `app_id` from the Android config.
+4. Rewrites the single `applicationId = "..."` line in the
+   `build.gradle.kts`. The line must appear exactly once; when its value
+   already equals `app_id` it is left unchanged.
+
+Files are only written when they changed.
+
+== Tasks
+
+From the repository root:
+
+* `task appid` (`aid`): set the app identifiers for both Xcode and Android.
+* `task appid.build` (`aib`): build the `tools/appid` binary.
+
+From `tools/appid/src`:
+
+* `task build` (`b`): cross-compile binaries into `../dist/` for macOS
+  (amd64/arm64), Linux (amd64) and Windows (amd64).
+* `task test` (`t`): run the test suite.
+
+== Release binaries
+
+`dist/` contains prebuilt binaries for each platform, named
+`appid-<os>-<arch>` (Windows uses `.exe`).

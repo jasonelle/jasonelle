@@ -1,10 +1,13 @@
 // Main common configuration
 {
-    "url": "https://developer.apple.com",
+    "url": "https://jasonelle.com",
+    "app_id": "com.example.application", // bundle identifier for xcode and application identifier for android
+    "inspectable": true, // allows debugging information to be inspected by safari (xcode)
+    "allowed": ["github.com"], // If is empty or nil all urls will load in the main webview. Otherwise only the domains present will load inside the main webview.
     "plugins": {
       // JLPluginHello is an example custom plugin inside lib/common/sources/plugins. Can be @lib/xcode or @lib/android for just a specific platform.
       // e.g @lib/xcode/JLPluginHello will translate to lib/common/sources/plugins/JLPluginHello/xcode
-      "JLPluginHello": "@lib/JLPluginHello",
+      //"JLPluginHello": "@lib/JLPluginHello",
       // Example Optional Xcode core only plugin @jasonelle/xcode. For android would be @jasonelle/android
       // e.g @jasonelle/xcode/JLPluginHello will translate to sources/xcode/JLPluginHello
       "JLPluginAppleSignIn": "@jasonelle/xcode/JLPluginAppleSignIn",

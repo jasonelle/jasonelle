@@ -36,6 +36,8 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
 - `task bundler.esbuild.install` (alias `bi`): Install the vendored esbuild binary (Unix only).
 - `task core` (alias `cr`): Assemble the app source tree into `build/<platform>/sources`, overlaying `lib/` overrides.
 - `task core.build` (alias `cb`): Generate the `tools/core` binary.
+- `task appid` (alias `aid`): Set the Xcode bundle identifiers and Android `applicationId` from the `app_id` in the merged configs.
+- `task appid.build` (alias `aib`): Generate the `tools/appid` binary.
 
 ## Directory layout
 
@@ -85,6 +87,7 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
   update only with the process described in `antora/Dockerfile`.
 
 ## How to find more documentation
+
 - Agent rules: [.agents/rules/](.agents/rules/).
 - Use Context7 MCP if available for obtaining additional documentation and context for the task.
 - Check for `*.docc` directories inside `sources/xcode/**` for markdown files for iOS components.
