@@ -1,15 +1,15 @@
-# Design: `tools/xcode` — First task: bundle identifier
+# Design: `tools/bundleid` — First task: bundle identifier
 
 **Date:** 2026-09-20
 **Status:** Accepted
 
 ## Problem
 
-A new Go tool `tools/xcode` will handle Xcode project configuration and
-tailoring. It runs after the `core` tool (which assembles the source tree into
-`build/xcode/sources/`). Its first task: read the `app_id` property from the
-merged config and rewrite `PRODUCT_BUNDLE_IDENTIFIER` in the assembled Xcode
-project to match it.
+A new Go tool `tools/bundleid` sets the Xcode bundle identifiers to match the
+configured `app_id`. It runs after the `core` tool (which assembles the source
+tree into `build/xcode/sources/`). Its first task: read the `app_id` property
+from the merged config and rewrite `PRODUCT_BUNDLE_IDENTIFIER` in the assembled
+Xcode project to match it.
 
 The merged config lives at `build/xcode/config/config.jsonc` (produced by the
 `jsonc` tool; plain JSON). The project file lives at
@@ -78,16 +78,16 @@ stock and new lines coincide and the target is effectively a no-op.
 
 ## Files
 
-- `tools/xcode/src/main.go`
-- `tools/xcode/src/main_test.go`
-- `tools/xcode/src/go.mod` (module `jasonelle.com/jasonelle/tools/xcode`)
-- `tools/xcode/src/VERSION` (`1.0.0`)
-- `tools/xcode/src/Taskfile.yml` (build/test/format/version-bump, cross-compiles
+- `tools/bundleid/src/main.go`
+- `tools/bundleid/src/main_test.go`
+- `tools/bundleid/src/go.mod` (module `jasonelle.com/jasonelle/tools/bundleid`)
+- `tools/bundleid/src/VERSION` (`1.0.0`)
+- `tools/bundleid/src/Taskfile.yml` (build/test/format/version-bump, cross-compiles
   to darwin-amd64/arm64, linux-amd64, windows-amd64)
-- `tools/xcode/src/.gitignore`
-- `tools/xcode/dist/` (git-tracked binaries)
-- `tools/xcode/README.md`
-- Root `Taskfile.yml`: `xcode` (`xu`) and `xcode.build` (`xb`) tasks
+- `tools/bundleid/src/.gitignore`
+- `tools/bundleid/dist/` (git-tracked binaries)
+- `tools/bundleid/README.md`
+- Root `Taskfile.yml`: `bundleid` (`bid`) and `bundleid.build` (`bib`) tasks
 - `AGENTS.md`: document the new tasks
 
 ## Testing
