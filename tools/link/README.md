@@ -38,6 +38,25 @@ non-`JLPlugin` projects — is left untouched.
 - `Application/build.gradle.kts` — the `implementation(project(":Plugin"))`
   lines inside the `dependencies` block.
 
+## App artifacts
+
+After linking, the tool copies the freshly built app files into the assembled
+Application tree, replacing the stock placeholders the core tool copied:
+
+- Xcode: `build/xcode/config/config.jsonc` →
+  `build/xcode/sources/Application/Application/config.jsonc`, and
+  `build/xcode/scripts/webview.js` →
+  `build/xcode/sources/Application/Application/webview.js`.
+- Android: `build/android/config/config.jsonc` →
+  `build/android/sources/Application/src/main/assets/config.jsonc`, and
+  `build/android/scripts/webview.js` →
+  `build/android/sources/Application/src/main/assets/webview.js`.
+
+The inputs are derived from the `--<platform>-sources` flags as siblings
+`config/` and `scripts/` under the same `build/<platform>/` root. A missing
+input fails the run. Files whose destination already matches are left
+untouched, so reruns stay byte-stable no-ops.
+
 ## Usage
 
 From `tools/link/src`:

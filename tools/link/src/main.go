@@ -55,7 +55,22 @@ func run(args []string) error {
 	if err := linkXcode(*xcodeSources); err != nil {
 		return err
 	}
-	return linkAndroid(*androidSources)
+	if err := copyAppArtifacts(*xcodeSources, map[string]string{
+		"config/config.jsonc": filepath.Join("Application", "Application", "config.jsonc"),
+		"scripts/webview.js":  filepath.Join("Application", "Application", "webview.js"),
+	}); err != nil {
+		return err
+	}
+	if err := linkAndroid(*androidSources); err != nil {
+		return err
+	}
+	if err := copyAppArtifacts(*androidSources, map[string]string{
+		"config/config.jsonc": filepath.Join("Application", "src", "main", "assets", "config.jsonc"),
+		"scripts/webview.js":  filepath.Join("Application", "src", "main", "assets", "webview.js"),
+	}); err != nil {
+		return err
+	}
+	return nil
 }
 
 // linkXcode syncs the plugin project references in the workspace and the
@@ -112,6 +127,38 @@ func rewriteFile(path string, edit func(string) (string, error)) error {
 		return nil
 	}
 	return os.WriteFile(path, []byte(out), 0644)
+}
+
+// copyAppArtifacts copies the built config and bundled scripts from the
+// build/<platform>/ dir into the assembled Application tree, replacing the
+// stock placeholders the core tool copied. The inputs are derived as siblings
+// of sources (build/<platform>/config and build/<platform>/scripts).
+func copyAppArtifacts(sources string, dests map[string]string) error {
+	for _, artifact := range []string{"config/config.jsonc", "scripts/webview.js"} {
+		if err := copyArtifact(sources, artifact, dests[artifact]); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// copyArtifact copies the built file at <build>/<input> into
+// <sources>/<dest>, failing when the input is missing and skipping the write
+// when the destination already matches, so reruns are byte-stable no-ops.
+func copyArtifact(sources, input, dest string) error {
+	src := filepath.Join(filepath.Dir(sources), input)
+	data, err := os.ReadFile(src)
+	if err != nil {
+		return err
+	}
+	dst := filepath.Join(sources, dest)
+	if cur, err := os.ReadFile(dst); err == nil && string(cur) == string(data) {
+		return nil
+	}
+	if err := os.MkdirAll(filepath.Dir(dst), 0755); err != nil {
+		return err
+	}
+	return os.WriteFile(dst, data, 0644)
 }
 
 // scanPlugins returns the sorted names of the plugin directories at the top

@@ -93,7 +93,6 @@ tasks:
       - rm -rf .commit-message
   git.pull:
     aliases:
-      - pl
       - gpl
     desc: Pull the current branch from origin
     cmds:

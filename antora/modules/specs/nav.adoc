@@ -1,0 +1,2 @@
+.Specs
+* xref:2026-09-20-link-copy-artifacts-design.adoc[]

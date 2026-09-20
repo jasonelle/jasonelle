@@ -15,8 +15,9 @@ CLI tools and vendored binaries used by the build pipeline.
 - `plugins/` — Copies the plugins listed in the merged configs into
   `build/<platform>/sources/` (Go). Prebuilt binaries in `dist/`.
 - `link/` — Links the plugins present in `build/<platform>/sources/` into the
-  Xcode workspace, the Xcode Application project frameworks and the Android
-  Gradle files (Go). Prebuilt binaries in `dist/`.
+  Xcode workspace, the Xcode Application project frameworks, the Android
+  Gradle files, and copies the built `config.jsonc`/`webview.js` into the
+  assembled Application tree (Go). Prebuilt binaries in `dist/`.
 - `vendor/esbuild/` — Vendored esbuild binary for TypeScript bundling.
   Selected per OS and architecture automatically.
 

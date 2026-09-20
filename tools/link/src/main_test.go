@@ -312,13 +312,14 @@ func TestIDS(t *testing.T) {
 }
 
 func TestRunIntegration(t *testing.T) {
-	xcode := t.TempDir()
+	base := t.TempDir()
+	xcode := filepath.Join(base, "xcode", "sources")
 	mkdir(t, filepath.Join(xcode, "JLPluginHello/JLPluginHello.xcodeproj"))
 	mkdir(t, filepath.Join(xcode, "JLPluginDevice/JLPluginDevice.xcodeproj"))
 	mkfile(t, filepath.Join(xcode, "Jasonelle.xcworkspace", "contents.xcworkspacedata"), workspaceFixture)
 	mkfile(t, filepath.Join(xcode, "Application", "Application.xcodeproj", "project.pbxproj"), pbxFixture)
 
-	android := t.TempDir()
+	android := filepath.Join(base, "android", "sources")
 	mkdir(t, filepath.Join(android, "JLPluginHello"))
 	mkdir(t, filepath.Join(android, "JLPluginAppleSignIn"))
 	mkfile(t, filepath.Join(android, "settings.gradle.kts"), `rootProject.name = "Jasonelle"
@@ -332,6 +333,15 @@ include(":JLPluginDevice")
   implementation(project(":JLPluginDevice"))
 }
 `)
+
+	const xcodeConfig = `{"url": "https://jasonelle.com"}`
+	const xcodeWebview = `console.log("xcode")`
+	const androidConfig = `{"url": "https://jasonelle.com", "plugins": {}}`
+	const androidWebview = `console.log("android")`
+	mkfile(t, filepath.Join(base, "xcode", "config", "config.jsonc"), xcodeConfig)
+	mkfile(t, filepath.Join(base, "xcode", "scripts", "webview.js"), xcodeWebview)
+	mkfile(t, filepath.Join(base, "android", "config", "config.jsonc"), androidConfig)
+	mkfile(t, filepath.Join(base, "android", "scripts", "webview.js"), androidWebview)
 
 	if err := run([]string{"--xcode-sources", xcode, "--android-sources", android}); err != nil {
 		t.Fatal(err)
@@ -365,8 +375,21 @@ include(":JLPluginDevice")
 		t.Errorf("Application not synced:\n%s", app)
 	}
 
+	copied := []string{
+		read(t, filepath.Join(xcode, "Application", "Application", "config.jsonc")),
+		read(t, filepath.Join(xcode, "Application", "Application", "webview.js")),
+		read(t, filepath.Join(android, "Application", "src", "main", "assets", "config.jsonc")),
+		read(t, filepath.Join(android, "Application", "src", "main", "assets", "webview.js")),
+	}
+	for i, want := range []string{xcodeConfig, xcodeWebview, androidConfig, androidWebview} {
+		if copied[i] != want {
+			t.Errorf("app artifact %d mismatch: got %q want %q", i, copied[i], want)
+		}
+	}
+
 	// A second run must leave every file unchanged
 	snapshot := []string{ws, pbx, settings, app}
+	snapshot = append(snapshot, copied...)
 	if err := run([]string{"--xcode-sources", xcode, "--android-sources", android}); err != nil {
 		t.Fatal(err)
 	}
@@ -375,11 +398,42 @@ include(":JLPluginDevice")
 		read(t, filepath.Join(xcode, "Application", "Application.xcodeproj", "project.pbxproj")),
 		read(t, filepath.Join(android, "settings.gradle.kts")),
 		read(t, filepath.Join(android, "Application", "build.gradle.kts")),
+		read(t, filepath.Join(xcode, "Application", "Application", "config.jsonc")),
+		read(t, filepath.Join(xcode, "Application", "Application", "webview.js")),
+		read(t, filepath.Join(android, "Application", "src", "main", "assets", "config.jsonc")),
+		read(t, filepath.Join(android, "Application", "src", "main", "assets", "webview.js")),
 	}
 	for i := range snapshot {
 		if snapshot[i] != current[i] {
 			t.Errorf("rerun changed output #%d", i)
 		}
+	}
+}
+
+func TestCopyArtifact(t *testing.T) {
+	base := filepath.Join(t.TempDir(), "xcode")
+	mkfile(t, filepath.Join(base, "config", "config.jsonc"), `{"a":1}`)
+	mkfile(t, filepath.Join(base, "scripts", "webview.js"), `console.log("hi")`)
+
+	xcode := filepath.Join(base, "sources")
+	mkdir(t, xcode)
+	if err := copyAppArtifacts(xcode, map[string]string{
+		"config/config.jsonc": filepath.Join("Application", "Application", "config.jsonc"),
+		"scripts/webview.js":  filepath.Join("Application", "Application", "webview.js"),
+	}); err != nil {
+		t.Fatal(err)
+	}
+	want := filepath.Join(xcode, "Application", "Application")
+	if got := read(t, filepath.Join(want, "config.jsonc")); got != `{"a":1}` {
+		t.Errorf("config not copied: %q", got)
+	}
+	if got := read(t, filepath.Join(want, "webview.js")); got != `console.log("hi")` {
+		t.Errorf("webview not copied: %q", got)
+	}
+
+	// Missing input fails loudly
+	if err := copyArtifact(xcode, "config/missing.jsonc", filepath.Join("Application", "missing.jsonc")); err == nil {
+		t.Error("got nil, want missing input error")
 	}
 }
 

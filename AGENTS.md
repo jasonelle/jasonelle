@@ -34,10 +34,14 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
 - `task bundler.xcode` (alias `bx`): Bundle scripts for Xcode only.
 - `task bundler.android` (alias `ba`): Bundle scripts for Android only.
 - `task bundler.esbuild.install` (alias `bi`): Install the vendored esbuild binary (Unix only).
+- `task plugins` (alias `pl`): Copy the plugins listed in the merged configs into `build/<platform>/sources`.
+- `task plugins.build` (alias `pb`): Generate the `tools/plugins` binary.
 - `task core` (alias `cr`): Assemble the app source tree into `build/<platform>/sources`, overlaying `lib/` overrides.
 - `task core.build` (alias `cb`): Generate the `tools/core` binary.
 - `task appid` (alias `aid`): Set the Xcode bundle identifiers and Android `applicationId` from the `app_id` in the merged configs.
 - `task appid.build` (alias `aib`): Generate the `tools/appid` binary.
+- `task link` (alias `l`): Link the plugins present in `build/<platform>/sources` into the Xcode workspace and the Android projects.
+- `task link.build` (alias `lb`): Generate the `tools/link` binary.
 
 ## Directory layout
 
@@ -49,27 +53,21 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
 - `docs/`: Generated site committed for GitHub Pages. Do not edit by hand.
 - `CHANGELOG.md`: Notable changes per version, following Keep a Changelog. Update with `/changelog`.
 - `Taskfile.yml`: Task runner config (go-task), alternative to a Makefile.
-- `.agents/`: Agent rules. Contains `.agents/rules/` with behavioral guidelines for LLM coding agents (e.g. `karpathy.md`).
+- `.agents/`: Agent rules. Contains `.agents/rules/` with behavioral guidelines for LLM coding agents (e.g. `adhd.md`, `karpathy.md`, `specs.md`).
 - `.github/workflows/`: CI builds and publishes docs, creates SemVer pre-releases, and promotes them to releases.
 - `.opencode/commands/`: Custom opencode commands:
   - `/adr`: Create a new Architecture Decision Record (MADR) page.
-  - `/adr-accept`: Update an ADR status to Accepted.
-  - `/adr-deprecate`: Update an ADR status to Deprecated.
-  - `/adr-supersed`: Update an ADR status to Superseded.
-  - `/append-license`: Append a license template as a comment to the first lines of a file or directory.
   - `/changelog`: Update CHANGELOG.md from git commit messages.
   - `/command-create`: Create a new opencode command inside `.opencode/commands`.
   - `/gitmoji`: Generate a conventional commit message with a gitmoji
     from the staged changes.
   - `/grill`: Grill the user relentlessly about a plan, decision, or idea.
+  - `/license`: Append a license template as a comment to the first lines of a file or directory.
   - `/rule-create`: Create a new rule inside `.agents/rules`.
   - `/tool-create-go`: Create a new Go tool inside `tools/`.
   - `/update-agents`: Update AGENTS.md with the latest project changes.
   - `/version-bump`: Bump the version in a version file to the next version.
   - `/yaml`: Lint and format YAML files with yamllint and prettier.
-  - `/yaml-antora`: Lint and format `antora-playbook.yml` and `antora/antora.yml`.
-  - `/yaml-github`: Lint and format YAML files inside `.github/`.
-  - `/yaml-taskfile`: Lint and format `Taskfile.yml`.
 
 ## Conventions
 
