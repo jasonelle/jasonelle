@@ -17,7 +17,8 @@ The merged config lives at `build/xcode/config/config.jsonc` (produced by the
 
 ## Requirements
 
-- Read `app_id` from `build/xcode/config/config.jsonc`.
+- Read `app_id` from `build/xcode/config/config.jsonc`. Missing or empty
+  `app_id` is an error.
 - In
   `build/xcode/sources/Application/Application.xcodeproj/project.pbxproj`,
   set the bundle identifiers of all three targets (Application,
