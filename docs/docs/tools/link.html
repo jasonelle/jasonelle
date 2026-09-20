@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>CLI esbuild :: Jasonelle Documentation</title>
-    <link rel="canonical" href="https://jasonelle.com/docs/tools/esbuild.html">
-    <link rel="prev" href="bundler.html">
-    <link rel="next" href="../specs/2026-09-20-link-copy-artifacts-design.html">
+    <title>Link :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/tools/link.html">
+    <link rel="prev" href="plugins.html">
+    <link rel="next" href="bundler.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
@@ -120,13 +120,13 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugins.html">Plugins</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="link.html">Link</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="bundler.html">Bundler</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="esbuild.html">CLI esbuild</a>
   </li>
 </ul>
@@ -165,37 +165,176 @@
   <ul>
     <li><a href="../index.html">Jasonelle Documentation</a></li>
     <li>Tools</li>
-    <li><a href="esbuild.html">CLI esbuild</a></li>
+    <li><a href="link.html">Link</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///antora/antora/modules/tools/pages/esbuild.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/tools/pages/link.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">CLI esbuild</h1>
+<h1 class="page">Link</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Vendored <a href="https://esbuild.github.io">esbuild</a> compiles TypeScript scripts to JavaScript files
-used inside WebView for Android and iOS.</p>
+<p>A <a href="https://go.dev">Go</a> tool that links the plugins present in the assembled
+source trees into the native projects. It scans
+<code>build/&lt;platform&gt;/sources/</code> for the <code>JLPlugin*</code> directories the plugins tool
+copied — plugins in the config are on disk and get linked, plugins removed
+from the config leave no directory and get unlinked. Anything that is not a
+linked plugin (<code>JLKernel</code>, non-<code>JLPlugin</code> projects) is left untouched;
+<code>Application</code> itself is only touched by the
+<a href="../specs/2026-09-20-link-copy-artifacts-design.html" class="xref page">app artifact copy</a>
+below.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
 <div class="paragraph">
-<p>The bundler.xcode and bundler.android tasks use the Bundler tool internally.
-The bundler task handles all file operations cross-platform.</p>
+<p>Run it after <code>task plugins</code> and <code>task core</code>, before <code>task appid</code>:</p>
 </div>
-</td>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">task jsonc
+task bundler
+task plugins
+task core
+task link
+task appid</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="requirements"><a class="anchor" href="#requirements"></a>Requirements</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://go.dev">Go</a> 1.26 or newer (only for compilation. <code>dist/</code> directory
+contains binaries).</p>
+</li>
+<li>
+<p><a href="https://taskfile.dev">go-task</a> (optional, only for the tasks below).</p>
+</li>
+<li>
+<p>The assembled source trees, produced by <code>task plugins</code> and <code>task core</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage"><a class="anchor" href="#usage"></a>Usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>From <code>tools/link/src</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">go run . --xcode-sources build/xcode/sources --android-sources build/android/sources</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Both flags default to those paths. A rerun is a no-op: every edit is
+byte-stable.</p>
+</div>
+<div class="sect2">
+<h3 id="flags"><a class="anchor" href="#flags"></a>Flags</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Flag</th>
+<th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Description</th>
 </tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--xcode-sources</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the assembled Xcode source tree
+(<code>build/xcode/sources/</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--android-sources</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the assembled Android source tree
+(<code>build/android/sources/</code>).</p></td>
+</tr>
+</tbody>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="xcode"><a class="anchor" href="#xcode"></a>Xcode</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>Jasonelle.xcworkspace/contents.xcworkspacedata</code> — adds a FileRef
+(<code>group:&lt;Plugin&gt;/&lt;Plugin&gt;.xcodeproj</code>) per plugin and removes the stale ones.</p>
+</li>
+<li>
+<p><code>Application/Application.xcodeproj/project.pbxproj</code> — adds a
+<code>PBXBuildFile</code>/<code>PBXFileReference</code> pair per plugin with deterministic
+24-hex object IDs, plus the Frameworks build phase entry and the Frameworks
+group child, and removes the corresponding stale entries. The framework
+product is assumed to be <code>&lt;Plugin&gt;.framework</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="android"><a class="anchor" href="#android"></a>Android</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>settings.gradle.kts</code> — the <code>include(":Plugin")</code> lines.</p>
+</li>
+<li>
+<p><code>Application/build.gradle.kts</code> — the <code>implementation(project(":Plugin"))</code>
+lines inside the <code>dependencies</code> block.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="app-artifacts"><a class="anchor" href="#app-artifacts"></a>App artifacts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After linking, the tool copies the freshly built app files into the assembled
+Application tree, replacing the stock placeholders the core tool copied:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Xcode: <code>build/xcode/config/config.jsonc</code> →
+<code>build/xcode/sources/Application/Application/config.jsonc</code>, and
+<code>build/xcode/scripts/webview.js</code> →
+<code>build/xcode/sources/Application/Application/webview.js</code>.</p>
+</li>
+<li>
+<p>Android: <code>build/android/config/config.jsonc</code> →
+<code>build/android/sources/Application/src/main/assets/config.jsonc</code>, and
+<code>build/android/scripts/webview.js</code> →
+<code>build/android/sources/Application/src/main/assets/webview.js</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The inputs are derived from the <code>--&lt;platform&gt;-sources</code> flags as siblings
+<code>config/</code> and <code>scripts/</code> under the same <code>build/&lt;platform&gt;/</code> root. A missing
+input fails the run. Files whose destination already matches are left
+untouched, so reruns stay byte-stable no-ops.</p>
 </div>
 </div>
 </div>
@@ -208,36 +347,41 @@ The bundler task handles all file operations cross-platform.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>task esbuild.install</code> (<code>esi</code>): re-download the vendored esbuild binary.</p>
+<p><code>task link</code> (<code>l</code>): link the plugins for both Xcode and Android.</p>
+</li>
+<li>
+<p><code>task link.build</code> (<code>lb</code>): build the <code>tools/link</code> binary.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>From <code>tools/link/src</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>task build</code> (<code>b</code>): cross-compile binaries into <code>../dist/</code> for macOS
+(amd64/arm64), Linux (amd64) and Windows (amd64).</p>
+</li>
+<li>
+<p><code>task test</code> (<code>t</code>): run the test suite.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="bundle-flags"><a class="anchor" href="#bundle-flags"></a>Bundle flags</h2>
+<h2 id="release-binaries"><a class="anchor" href="#release-binaries"></a>Release binaries</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><code>--bundle</code>&#8201;&#8212;&#8201;resolves imports and produces a single output file.</p>
-</li>
-<li>
-<p><code>--target=safari11</code>&#8201;&#8212;&#8201;output compatible with Safari 11+ (WKWebView).</p>
-</li>
-<li>
-<p><code>--analyze</code>&#8201;&#8212;&#8201;prints a bundle size breakdown.</p>
-</li>
-<li>
-<p><code>--tsconfig</code>&#8201;&#8212;&#8201;uses <code>lib/common/config/bundler.json</code> for module resolution.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><code>dist/</code> contains prebuilt binaries for each platform, named
+<code>link-&lt;os&gt;-&lt;arch&gt;</code> (Windows uses <code>.exe</code>).</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="bundler.html">Bundler</a></span>
-  <span class="next"><a href="../specs/2026-09-20-link-copy-artifacts-design.html">Link Tool Copies App Artifacts into the Assembled Tree</a></span>
+  <span class="prev"><a href="plugins.html">Plugins</a></span>
+  <span class="next"><a href="bundler.html">Bundler</a></span>
 </nav>
 </article>
   </div>

@@ -4,6 +4,10 @@
 
 == Status
 
+- Superseded by xref:0000016-use-golang-script-to-parse-and-modify-xcode-and-android-projects.adoc[ADR-0000016] (2026-09-20) by: @clsource
+
+=== History
+
 - Accepted (2026-09-17) by: @clsource
 
 == Context and Problem Statement
@@ -56,4 +60,12 @@ See https://developer.apple.com/documentation/xcode/updating-your-xcode-project-
 ====
 This ADR will supersede in the future
 xref:0000011-select-xcodegen-for-xcodeproject-generation.adoc[ADR-0000011].
+====
+
+[NOTE]
+====
+This ADR is superseded by
+xref:0000016-use-golang-script-to-parse-and-modify-xcode-and-android-projects.adoc[ADR-0000016],
+which chooses a Golang script over the existing tools. If the Golang scripts are not
+good enough, reconsider implementing this decision in the future.
 ====

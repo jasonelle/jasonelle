@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts :: Jasonelle Documentation</title>
-    <link rel="canonical" href="https://jasonelle.com/docs/decisions/0000004-use-taskfile-for-running-common-commands.html">
-    <link rel="prev" href="0000003-use-jsonc-for-configuration-and-settings.html">
-    <link rel="next" href="0000005-use-fastlane-for-app-store-and-play-store-automation.html">
+    <title>Use a Golang Script to Parse and Modify Xcode and Android Projects :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/decisions/0000016-use-golang-script-to-parse-and-modify-xcode-and-android-projects.html">
+    <link rel="prev" href="0000015-add-opencode-for-agentic-programming-using-the-plugins-superpowers-ponytail-and-mcp-context7-for-harnesses.html">
+    <link rel="next" href="../tools/icon.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
@@ -60,7 +60,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000003-use-jsonc-for-configuration-and-settings.html">Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000004-use-taskfile-for-running-common-commands.html">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -96,7 +96,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000015-add-opencode-for-agentic-programming-using-the-plugins-superpowers-ponytail-and-mcp-context7-for-harnesses.html">Add OpenCode for Agentic Programming Using the Plugins Superpowers, Ponytail and MCP Context7 for Harnesses</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="0000016-use-golang-script-to-parse-and-modify-xcode-and-android-projects.html">Use a Golang Script to Parse and Modify Xcode and Android Projects</a>
   </li>
 </ul>
@@ -165,23 +165,23 @@
   <ul>
     <li><a href="../index.html">Jasonelle Documentation</a></li>
     <li>Arquitecture Decision Records</li>
-    <li><a href="0000004-use-taskfile-for-running-common-commands.html">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</a></li>
+    <li><a href="0000016-use-golang-script-to-parse-and-modify-xcode-and-android-projects.html">Use a Golang Script to Parse and Modify Xcode and Android Projects</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///antora/antora/modules/decisions/pages/0000004-use-taskfile-for-running-common-commands.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/decisions/pages/0000016-use-golang-script-to-parse-and-modify-xcode-and-android-projects.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</h1>
+<h1 class="page">Use a Golang Script to Parse and Modify Xcode and Android Projects</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>id: 0000004</p>
+<p>id: 0000016</p>
 </li>
 </ul>
 </div>
@@ -193,7 +193,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Accepted (2026-08-15) by: @clsource</p>
+<p>Accepted (2026-09-20) by: @clsource</p>
 </li>
 </ul>
 </div>
@@ -203,11 +203,16 @@
 <h2 id="context-and-problem-statement"><a class="anchor" href="#context-and-problem-statement"></a>Context and Problem Statement</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Jasonelle needs to run common development commands (build docs, serve the site,
-lint, git chores) consistently across macOS, Linux, and CI. Makefiles are
-limited by <code>sh</code> semantics and tab-sensitive recipes that behave differently
-across platforms, while custom shell scripts split command logic and are hard
-to discover. How should common commands be defined and run?</p>
+<p><a href="0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.html" class="xref page">ADR-0000009</a>
+chose Swift for Xcode CLI tools,
+<a href="0000011-select-xcodegen-for-xcodeproject-generation.html" class="xref page">ADR-0000011</a>
+chose XcodeGen, and
+<a href="0000013-supersede-xcodegen-with-xcode-project-format.html" class="xref page">ADR-0000013</a>
+chose Apple&#8217;s <code>xcode-project-format</code> for project generation. This fragments
+the toolchain across languages, third-party generators, and a young evolving
+format. The actual need is narrower: parse the Xcode and Android projects and
+apply changes through the existing Go tools (<code>core</code>, <code>plugins</code>, <code>link</code>,
+<code>appid</code>). Should the decision be reverted to a single Golang script?</p>
 </div>
 </div>
 </div>
@@ -217,13 +222,13 @@ to discover. How should common commands be defined and run?</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Use <a href="https://taskfile.dev/">Task</a> with a <code>Taskfile.yml</code></p>
+<p>One Golang script on top of the existing Go tools (<code>core</code>, <code>plugins</code>, <code>link</code>, <code>appid</code>)</p>
 </li>
 <li>
-<p>Use a Makefile</p>
+<p>Keep Swift and Apple <code>xcode-project-format</code> (ADR-0000009, ADR-0000013)</p>
 </li>
 <li>
-<p>Use custom shell scripts</p>
+<p>Keep XcodeGen (ADR-0000011)</p>
 </li>
 </ul>
 </div>
@@ -233,28 +238,41 @@ to discover. How should common commands be defined and run?</p>
 <h2 id="decision-outcome"><a class="anchor" href="#decision-outcome"></a>Decision Outcome</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Chosen option: "Use Task with a Taskfile.yml", because it is a single
-cross-platform binary with zero dependencies that runs the same Taskfile on
-Linux, macOS, and Windows, and its YAML syntax is readable and gives built-in
-features like task dependencies, command chaining, and caching based on file
-changes. Positive consequences: one declarative entry point for contributors,
-consistent behavior across platforms and CI, and easy discovery via <code>task
---list</code>. Negative consequences: contributors must install the <code>task</code> binary
-(one download or package manager install).</p>
+<p>Chosen option: "One Golang script", because it follows
+<a href="0000008-use-golang-for-cross-platform-tools.html" class="xref page">ADR-0000008</a> (Go for all
+cross platform tools), drops the Swift toolchain and third-party generators,
+and lets a single script parse both the Xcode and Android projects and drive
+the <code>core</code>, <code>plugins</code>, <code>link</code>, and <code>appid</code> tools. Positive consequences: one
+toolchain, fewer moving parts, and simpler to build, test, and distribute in
+CI. Negative consequences: the Xcode project formats must be parsed in-house
+in Go, which is less mature than the official Swift tooling.</p>
 </div>
 <div class="paragraph">
-<p>Task is the best option, because it is purpose-built for modern workflows and
-works uniformly on every developer machine and in CI. If "Use a Makefile" was
-chosen, recipes would depend on <code>sh</code> and shell quirks and tab indentation
-across platforms. If "Use custom shell scripts" was chosen, every script would
-need manual argument parsing, error handling, and duplication of common
-command logic.</p>
+<p>The Golang script is the best option because it simplifies tool usage. If
+XcodeGen or <code>xcode-project-format</code> were kept, project generation would demand
+extra dependencies and a second language.</p>
+</div>
+<div class="paragraph">
+<p>This ADR supersedes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.html" class="xref page">ADR-0000009</a> (Swift for Xcode related command line tools)</p>
+</li>
+<li>
+<p><a href="0000011-select-xcodegen-for-xcodeproject-generation.html" class="xref page">ADR-0000011</a> (XcodeGen for project generation)</p>
+</li>
+<li>
+<p><a href="0000013-supersede-xcodegen-with-xcode-project-format.html" class="xref page">ADR-0000013</a> (Apple <code>xcode-project-format</code>)</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="0000003-use-jsonc-for-configuration-and-settings.html">Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files</a></span>
-  <span class="next"><a href="0000005-use-fastlane-for-app-store-and-play-store-automation.html">Use Fastlane for App Store and Play Store automation</a></span>
+  <span class="prev"><a href="0000015-add-opencode-for-agentic-programming-using-the-plugins-superpowers-ponytail-and-mcp-context7-for-harnesses.html">Add OpenCode for Agentic Programming Using the Plugins Superpowers, Ponytail and MCP Context7 for Harnesses</a></span>
+  <span class="next"><a href="../tools/icon.html">Icon Generator</a></span>
 </nav>
 </article>
   </div>

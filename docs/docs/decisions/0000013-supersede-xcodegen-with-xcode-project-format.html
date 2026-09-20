@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts :: Jasonelle Documentation</title>
-    <link rel="canonical" href="https://jasonelle.com/docs/decisions/0000004-use-taskfile-for-running-common-commands.html">
-    <link rel="prev" href="0000003-use-jsonc-for-configuration-and-settings.html">
-    <link rel="next" href="0000005-use-fastlane-for-app-store-and-play-store-automation.html">
+    <title>Supersede XcodeGen with Xcode Project Format from Apple :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/decisions/0000013-supersede-xcodegen-with-xcode-project-format.html">
+    <link rel="prev" href="0000012-use-swiftlint-for-swift-formatting-and-code-standardization.html">
+    <link rel="next" href="0000014-add-adoption-of-spec-driven-development-using-superpowers-plugin.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
@@ -60,7 +60,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000003-use-jsonc-for-configuration-and-settings.html">Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000004-use-taskfile-for-running-common-commands.html">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -87,7 +87,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000012-use-swiftlint-for-swift-formatting-and-code-standardization.html">Use SwiftLint for Swift Formatting and Code Standardization</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="0000013-supersede-xcodegen-with-xcode-project-format.html">Supersede XcodeGen with Xcode Project Format from Apple</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -165,23 +165,23 @@
   <ul>
     <li><a href="../index.html">Jasonelle Documentation</a></li>
     <li>Arquitecture Decision Records</li>
-    <li><a href="0000004-use-taskfile-for-running-common-commands.html">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</a></li>
+    <li><a href="0000013-supersede-xcodegen-with-xcode-project-format.html">Supersede XcodeGen with Xcode Project Format from Apple</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///antora/antora/modules/decisions/pages/0000004-use-taskfile-for-running-common-commands.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/decisions/pages/0000013-supersede-xcodegen-with-xcode-project-format.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</h1>
+<h1 class="page">Supersede XcodeGen with Xcode Project Format from Apple</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>id: 0000004</p>
+<p>id: 0000013</p>
 </li>
 </ul>
 </div>
@@ -193,9 +193,19 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Accepted (2026-08-15) by: @clsource</p>
+<p>Superseded by <a href="0000016-use-golang-script-to-parse-and-modify-xcode-and-android-projects.html" class="xref page">ADR-0000016</a> (2026-09-20) by: @clsource</p>
 </li>
 </ul>
+</div>
+<div class="sect2">
+<h3 id="history"><a class="anchor" href="#history"></a>History</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Accepted (2026-09-17) by: @clsource</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -203,11 +213,30 @@
 <h2 id="context-and-problem-statement"><a class="anchor" href="#context-and-problem-statement"></a>Context and Problem Statement</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Jasonelle needs to run common development commands (build docs, serve the site,
-lint, git chores) consistently across macOS, Linux, and CI. Makefiles are
-limited by <code>sh</code> semantics and tab-sensitive recipes that behave differently
-across platforms, while custom shell scripts split command logic and are hard
-to discover. How should common commands be defined and run?</p>
+<p><a href="0000011-select-xcodegen-for-xcodeproject-generation.html" class="xref page">ADR-0000011</a>
+selected XcodeGen for Xcode project generation. Apple has since open-sourced
+<a href="https://github.com/apple/xcode-project-format"><code>xcode-project-format</code></a>, an
+official Swift library and <code>xcprojformatter</code> CLI for the JSON-based
+<code>project.xcproj</code> format that Xcode 16+ uses. Should project generation move to
+this new, official format?</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This would be implemented later. For the first few releases of Jasonelle v4 it would
+keep the traditional xcode project file to be compatible with older but still used Xcode
+versions. Since the new format is compatible with only Xcode 27+.
+Apple&#8217;s current submission documentation says that starting April 2027,
+the minimum will move to Xcode 27 / iOS 27 SDK <a href="https://developer.apple.com/app-store/submitting/" class="bare">https://developer.apple.com/app-store/submitting/</a></p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -217,13 +246,13 @@ to discover. How should common commands be defined and run?</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Use <a href="https://taskfile.dev/">Task</a> with a <code>Taskfile.yml</code></p>
+<p><a href="https://github.com/apple/xcode-project-format">Apple <code>xcode-project-format</code></a></p>
 </li>
 <li>
-<p>Use a Makefile</p>
+<p>Continue using <a href="https://github.com/yonaskolb/xcodegen">XcodeGen</a></p>
 </li>
 <li>
-<p>Use custom shell scripts</p>
+<p>Generate Xcode projects by hand (no tool)</p>
 </li>
 </ul>
 </div>
@@ -233,28 +262,65 @@ to discover. How should common commands be defined and run?</p>
 <h2 id="decision-outcome"><a class="anchor" href="#decision-outcome"></a>Decision Outcome</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Chosen option: "Use Task with a Taskfile.yml", because it is a single
-cross-platform binary with zero dependencies that runs the same Taskfile on
-Linux, macOS, and Windows, and its YAML syntax is readable and gives built-in
-features like task dependencies, command chaining, and caching based on file
-changes. Positive consequences: one declarative entry point for contributors,
-consistent behavior across platforms and CI, and easy discovery via <code>task
---list</code>. Negative consequences: contributors must install the <code>task</code> binary
-(one download or package manager install).</p>
+<p>Chosen option: "Apple <code>xcode-project-format`", because it is the official
+format moving forward: Xcode 16+ embraces the JSON-based `project.xcproj</code>,
+and Apple provides <code>xcprojformatter</code> plus the typed <code>XCSchema</code> Swift model
+to read and write it. It aligns with
+<a href="0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.html" class="xref page">ADR-0000009</a>,
+which chose Swift for Xcode-related tooling. Positive consequences: an
+official, Apache-2.0 licensed format instead of the reverse-engineered
+<code>project.pbxproj</code>; Swift-native tooling that can be maintained alongside the
+app code. Negative consequences: the package is young (<code>0.1.x</code>) and the
+format is still evolving, so tooling and ecosystem support are thinner than
+XcodeGen&#8217;s.</p>
 </div>
 <div class="paragraph">
-<p>Task is the best option, because it is purpose-built for modern workflows and
-works uniformly on every developer machine and in CI. If "Use a Makefile" was
-chosen, recipes would depend on <code>sh</code> and shell quirks and tab indentation
-across platforms. If "Use custom shell scripts" was chosen, every script would
-need manual argument parsing, error handling, and duplication of common
-command logic.</p>
+<p>Apple <code>xcode-project-format</code> is the best fit because it follows the platform
+owner and removes the reverse-engineering burden. If XcodeGen were kept,
+we would stay on the classic <code>project.pbxproj</code> format as Xcode shifts focus
+to <code>project.xcproj</code>. Hand-generating projects would be error-prone and
+ignores the tooling Apple already provides.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="https://developer.apple.com/documentation/xcode/updating-your-xcode-project-configuration-file-format" class="bare">https://developer.apple.com/documentation/xcode/updating-your-xcode-project-configuration-file-format</a></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This ADR will supersede in the future
+<a href="0000011-select-xcodegen-for-xcodeproject-generation.html" class="xref page">ADR-0000011</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This ADR is superseded by
+<a href="0000016-use-golang-script-to-parse-and-modify-xcode-and-android-projects.html" class="xref page">ADR-0000016</a>,
+which chooses a Golang script over the existing tools. If the Golang scripts are not
+good enough, reconsider implementing this decision in the future.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="0000003-use-jsonc-for-configuration-and-settings.html">Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files</a></span>
-  <span class="next"><a href="0000005-use-fastlane-for-app-store-and-play-store-automation.html">Use Fastlane for App Store and Play Store automation</a></span>
+  <span class="prev"><a href="0000012-use-swiftlint-for-swift-formatting-and-code-standardization.html">Use SwiftLint for Swift Formatting and Code Standardization</a></span>
+  <span class="next"><a href="0000014-add-adoption-of-spec-driven-development-using-superpowers-plugin.html">Add Adoption of Spec Driven Development Using Superpowers Plugin</a></span>
 </nav>
 </article>
   </div>

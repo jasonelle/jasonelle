@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts :: Jasonelle Documentation</title>
-    <link rel="canonical" href="https://jasonelle.com/docs/decisions/0000004-use-taskfile-for-running-common-commands.html">
-    <link rel="prev" href="0000003-use-jsonc-for-configuration-and-settings.html">
-    <link rel="next" href="0000005-use-fastlane-for-app-store-and-play-store-automation.html">
+    <title>Use SwiftLint for Swift Formatting and Code Standardization :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/decisions/0000012-use-swiftlint-for-swift-formatting-and-code-standardization.html">
+    <link rel="prev" href="0000011-select-xcodegen-for-xcodeproject-generation.html">
+    <link rel="next" href="0000013-supersede-xcodegen-with-xcode-project-format.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
@@ -60,7 +60,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000003-use-jsonc-for-configuration-and-settings.html">Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000004-use-taskfile-for-running-common-commands.html">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -84,7 +84,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000011-select-xcodegen-for-xcodeproject-generation.html">Select XcodeGen for Xcode Project Generation</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="0000012-use-swiftlint-for-swift-formatting-and-code-standardization.html">Use SwiftLint for Swift Formatting and Code Standardization</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -165,23 +165,23 @@
   <ul>
     <li><a href="../index.html">Jasonelle Documentation</a></li>
     <li>Arquitecture Decision Records</li>
-    <li><a href="0000004-use-taskfile-for-running-common-commands.html">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</a></li>
+    <li><a href="0000012-use-swiftlint-for-swift-formatting-and-code-standardization.html">Use SwiftLint for Swift Formatting and Code Standardization</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///antora/antora/modules/decisions/pages/0000004-use-taskfile-for-running-common-commands.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/decisions/pages/0000012-use-swiftlint-for-swift-formatting-and-code-standardization.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</h1>
+<h1 class="page">Use SwiftLint for Swift Formatting and Code Standardization</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>id: 0000004</p>
+<p>id: 0000012</p>
 </li>
 </ul>
 </div>
@@ -193,7 +193,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Accepted (2026-08-15) by: @clsource</p>
+<p>Accepted (2026-08-26) by: @clsource</p>
 </li>
 </ul>
 </div>
@@ -203,11 +203,7 @@
 <h2 id="context-and-problem-statement"><a class="anchor" href="#context-and-problem-statement"></a>Context and Problem Statement</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Jasonelle needs to run common development commands (build docs, serve the site,
-lint, git chores) consistently across macOS, Linux, and CI. Makefiles are
-limited by <code>sh</code> semantics and tab-sensitive recipes that behave differently
-across platforms, while custom shell scripts split command logic and are hard
-to discover. How should common commands be defined and run?</p>
+<p>How should Swift code across the Xcode projects (JLKernel, Application, JLPluginHello) be formatted and checked for style consistency? A automated tool is needed to enforce rules like line length, naming conventions, and cyclomatic complexity without manual review overhead.</p>
 </div>
 </div>
 </div>
@@ -217,13 +213,13 @@ to discover. How should common commands be defined and run?</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Use <a href="https://taskfile.dev/">Task</a> with a <code>Taskfile.yml</code></p>
+<p><a href="https://github.com/realm/SwiftLint">SwiftLint</a></p>
 </li>
 <li>
-<p>Use a Makefile</p>
+<p><a href="https://github.com/nicklockwood/SwiftFormat">SwiftFormat</a></p>
 </li>
 <li>
-<p>Use custom shell scripts</p>
+<p>Manual code review only</p>
 </li>
 </ul>
 </div>
@@ -233,28 +229,31 @@ to discover. How should common commands be defined and run?</p>
 <h2 id="decision-outcome"><a class="anchor" href="#decision-outcome"></a>Decision Outcome</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Chosen option: "Use Task with a Taskfile.yml", because it is a single
-cross-platform binary with zero dependencies that runs the same Taskfile on
-Linux, macOS, and Windows, and its YAML syntax is readable and gives built-in
-features like task dependencies, command chaining, and caching based on file
-changes. Positive consequences: one declarative entry point for contributors,
-consistent behavior across platforms and CI, and easy discovery via <code>task
---list</code>. Negative consequences: contributors must install the <code>task</code> binary
-(one download or package manager install).</p>
+<p>Chosen option: "SwiftLint", because it provides both linting and auto-fix capabilities via <code>swiftlint lint --fix</code>, integrates easily via <code>brew install swiftlint</code>, and supports custom configuration through <code>.swiftlint.yml</code>. Positive consequences: consistent style enforcement, automated detection of complexity and naming issues, configurable per-project rules. Negative consequences: none significant.</p>
 </div>
 <div class="paragraph">
-<p>Task is the best option, because it is purpose-built for modern workflows and
-works uniformly on every developer machine and in CI. If "Use a Makefile" was
-chosen, recipes would depend on <code>sh</code> and shell quirks and tab indentation
-across platforms. If "Use custom shell scripts" was chosen, every script would
-need manual argument parsing, error handling, and duplication of common
-command logic.</p>
+<p>SwiftLint is the best fit. SwiftFormat focuses only on formatting (no linting rules like cyclomatic complexity). Manual review is error-prone and doesn&#8217;t scale.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="references"><a class="anchor" href="#references"></a>References</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>sources/xcode/.swiftlint.yml</code> — project configuration</p>
+</li>
+<li>
+<p><code>sources/xcode/Taskfile.yml</code> — <code>task lint</code> and <code>task fix</code> tasks</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="0000003-use-jsonc-for-configuration-and-settings.html">Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files</a></span>
-  <span class="next"><a href="0000005-use-fastlane-for-app-store-and-play-store-automation.html">Use Fastlane for App Store and Play Store automation</a></span>
+  <span class="prev"><a href="0000011-select-xcodegen-for-xcodeproject-generation.html">Select XcodeGen for Xcode Project Generation</a></span>
+  <span class="next"><a href="0000013-supersede-xcodegen-with-xcode-project-format.html">Supersede XcodeGen with Xcode Project Format from Apple</a></span>
 </nav>
 </article>
   </div>

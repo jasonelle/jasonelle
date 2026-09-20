@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>CLI esbuild :: Jasonelle Documentation</title>
-    <link rel="canonical" href="https://jasonelle.com/docs/tools/esbuild.html">
-    <link rel="prev" href="bundler.html">
-    <link rel="next" href="../specs/2026-09-20-link-copy-artifacts-design.html">
+    <title>Link Tool Copies App Artifacts into the Assembled Tree :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/specs/2026-09-20-link-copy-artifacts-design.html">
+    <link rel="prev" href="../tools/esbuild.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
@@ -106,28 +105,28 @@
     <span class="nav-text">Tools</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="icon.html">Icon Generator</a>
+    <a class="nav-link" href="../tools/icon.html">Icon Generator</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="jsonc.html">JSONC Merger</a>
+    <a class="nav-link" href="../tools/jsonc.html">JSONC Merger</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="core.html">Core</a>
+    <a class="nav-link" href="../tools/core.html">Core</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="appid.html">Appid</a>
+    <a class="nav-link" href="../tools/appid.html">Appid</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugins.html">Plugins</a>
+    <a class="nav-link" href="../tools/plugins.html">Plugins</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="link.html">Link</a>
+    <a class="nav-link" href="../tools/link.html">Link</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="bundler.html">Bundler</a>
+    <a class="nav-link" href="../tools/bundler.html">Bundler</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="esbuild.html">CLI esbuild</a>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/esbuild.html">CLI esbuild</a>
   </li>
 </ul>
   </li>
@@ -135,8 +134,8 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Specs</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../specs/2026-09-20-link-copy-artifacts-design.html">Link Tool Copies App Artifacts into the Assembled Tree</a>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="2026-09-20-link-copy-artifacts-design.html">Link Tool Copies App Artifacts into the Assembled Tree</a>
   </li>
 </ul>
   </li>
@@ -164,80 +163,136 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Jasonelle Documentation</a></li>
-    <li>Tools</li>
-    <li><a href="esbuild.html">CLI esbuild</a></li>
+    <li>Specs</li>
+    <li><a href="2026-09-20-link-copy-artifacts-design.html">Link Tool Copies App Artifacts into the Assembled Tree</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///antora/antora/modules/tools/pages/esbuild.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/specs/pages/2026-09-20-link-copy-artifacts-design.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">CLI esbuild</h1>
+<h1 class="page">Link Tool Copies App Artifacts into the Assembled Tree</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p>Vendored <a href="https://esbuild.github.io">esbuild</a> compiles TypeScript scripts to JavaScript files
-used inside WebView for Android and iOS.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The bundler.xcode and bundler.android tasks use the Bundler tool internally.
-The bundler task handles all file operations cross-platform.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="tasks"><a class="anchor" href="#tasks"></a>Tasks</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>From the repository root:</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>task esbuild.install</code> (<code>esi</code>): re-download the vendored esbuild binary.</p>
+<p>Status: Approved (2026-09-20) by: @clsource</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="bundle-flags"><a class="anchor" href="#bundle-flags"></a>Bundle flags</h2>
+<h2 id="problem"><a class="anchor" href="#problem"></a>Problem</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The <code>task link</code> tool links the plugins present in the assembled source trees
+into the native projects, but the freshly built app files never reach the
+assembled <code>Application</code> tree. The <code>task core</code> tool copies the stock
+<code>config.jsonc</code> and <code>webview.js</code> placeholders and never overwrites them, so the
+merged configuration and the bundled scripts produced by <code>task jsonc</code> and
+<code>task bundler</code> are lost when the app is built from <code>build/&lt;platform&gt;/sources/</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="design"><a class="anchor" href="#design"></a>Design</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After linking plugins, <code>link</code> copies the freshly built artifacts over the
+stock placeholders in each assembled <code>Application</code> tree:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>--bundle</code>&#8201;&#8212;&#8201;resolves imports and produces a single output file.</p>
+<p>Xcode: <code>build/xcode/config/config.jsonc</code> →
+<code>build/xcode/sources/Application/Application/config.jsonc</code>, and
+<code>build/xcode/scripts/webview.js</code> →
+<code>build/xcode/sources/Application/Application/webview.js</code>.</p>
 </li>
 <li>
-<p><code>--target=safari11</code>&#8201;&#8212;&#8201;output compatible with Safari 11+ (WKWebView).</p>
-</li>
-<li>
-<p><code>--analyze</code>&#8201;&#8212;&#8201;prints a bundle size breakdown.</p>
-</li>
-<li>
-<p><code>--tsconfig</code>&#8201;&#8212;&#8201;uses <code>lib/common/config/bundler.json</code> for module resolution.</p>
+<p>Android: <code>build/android/config/config.jsonc</code> →
+<code>build/android/sources/Application/src/main/assets/config.jsonc</code>, and
+<code>build/android/scripts/webview.js</code> →
+<code>build/android/sources/Application/src/main/assets/webview.js</code>.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>The input paths derive from the existing <code>--&lt;platform&gt;-sources</code> flags as the
+sibling <code>config/</code> and <code>scripts/</code> directories under the same <code>build/&lt;platform&gt;/</code>
+root. No new flags and no <code>Taskfile.yml</code> change are needed.</p>
+</div>
+<div class="sect2">
+<h3 id="behavior"><a class="anchor" href="#behavior"></a>Behavior</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>A missing input (<code>config.jsonc</code> or <code>webview.js</code>) fails loudly, consistent
+with the rest of the tool and signaling that <code>task jsonc</code>/<code>task bundler</code>
+were skipped.</p>
+</li>
+<li>
+<p>A destination that already matches is left untouched, so a rerun is a
+no-op and every file stays byte-stable.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="implementation"><a class="anchor" href="#implementation"></a>Implementation</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>A single <code>copyArtifact(sources, artifact, rel)</code> helper reads
+<code>filepath.Join(filepath.Dir(sources), artifact)</code>, compares it with the
+destination <code>&lt;sources&gt;/&lt;rel&gt;</code>, and writes only when it differs.</p>
+</li>
+<li>
+<p><code>run()</code> wires the shared artifact list (<code>config/config.jsonc</code>,
+<code>scripts/webview.js</code>) with platform-specific destination relative paths.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tests"><a class="anchor" href="#tests"></a>Tests</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>TestRunIntegration</code> is restructured around a base temp dir with sources at
+<code>base/&lt;platform&gt;/sources</code> and seeded sibling <code>config/</code>/<code>scripts/</code> dirs; the
+copied files are asserted and added to the rerun-stability snapshot.</p>
+</li>
+<li>
+<p>A new <code>TestCopyArtifact</code> covers the happy path and the missing-input error.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="documentation"><a class="anchor" href="#documentation"></a>Documentation</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>tools/link/README.md</code> and the Antora <code>modules/tools/pages/link.adoc</code> page
+document the copy; the "anything not a linked plugin is left untouched"
+wording is fixed.</p>
+</li>
+<li>
+<p><code>tools/README.md</code> extends the <code>link/</code> blurb.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="bundler.html">Bundler</a></span>
-  <span class="next"><a href="../specs/2026-09-20-link-copy-artifacts-design.html">Link Tool Copies App Artifacts into the Assembled Tree</a></span>
+  <span class="prev"><a href="../tools/esbuild.html">CLI esbuild</a></span>
 </nav>
 </article>
   </div>

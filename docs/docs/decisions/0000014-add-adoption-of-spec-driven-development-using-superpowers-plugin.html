@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts :: Jasonelle Documentation</title>
-    <link rel="canonical" href="https://jasonelle.com/docs/decisions/0000004-use-taskfile-for-running-common-commands.html">
-    <link rel="prev" href="0000003-use-jsonc-for-configuration-and-settings.html">
-    <link rel="next" href="0000005-use-fastlane-for-app-store-and-play-store-automation.html">
+    <title>Add Adoption of Spec Driven Development Using Superpowers Plugin :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/decisions/0000014-add-adoption-of-spec-driven-development-using-superpowers-plugin.html">
+    <link rel="prev" href="0000013-supersede-xcodegen-with-xcode-project-format.html">
+    <link rel="next" href="0000015-add-opencode-for-agentic-programming-using-the-plugins-superpowers-ponytail-and-mcp-context7-for-harnesses.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
@@ -60,7 +60,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000003-use-jsonc-for-configuration-and-settings.html">Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000004-use-taskfile-for-running-common-commands.html">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -90,7 +90,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="0000013-supersede-xcodegen-with-xcode-project-format.html">Supersede XcodeGen with Xcode Project Format from Apple</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="0000014-add-adoption-of-spec-driven-development-using-superpowers-plugin.html">Add Adoption of Spec Driven Development Using Superpowers Plugin</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -165,23 +165,23 @@
   <ul>
     <li><a href="../index.html">Jasonelle Documentation</a></li>
     <li>Arquitecture Decision Records</li>
-    <li><a href="0000004-use-taskfile-for-running-common-commands.html">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</a></li>
+    <li><a href="0000014-add-adoption-of-spec-driven-development-using-superpowers-plugin.html">Add Adoption of Spec Driven Development Using Superpowers Plugin</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///antora/antora/modules/decisions/pages/0000004-use-taskfile-for-running-common-commands.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/decisions/pages/0000014-add-adoption-of-spec-driven-development-using-superpowers-plugin.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</h1>
+<h1 class="page">Add Adoption of Spec Driven Development Using Superpowers Plugin</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>id: 0000004</p>
+<p>id: 0000014</p>
 </li>
 </ul>
 </div>
@@ -193,7 +193,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Accepted (2026-08-15) by: @clsource</p>
+<p>Accepted (2026-09-20) by: @clsource</p>
 </li>
 </ul>
 </div>
@@ -203,11 +203,15 @@
 <h2 id="context-and-problem-statement"><a class="anchor" href="#context-and-problem-statement"></a>Context and Problem Statement</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Jasonelle needs to run common development commands (build docs, serve the site,
-lint, git chores) consistently across macOS, Linux, and CI. Makefiles are
-limited by <code>sh</code> semantics and tab-sensitive recipes that behave differently
-across platforms, while custom shell scripts split command logic and are hard
-to discover. How should common commands be defined and run?</p>
+<p>AI helpers such as opencode make it easy to change the codebase, but without a
+shared workflow every agent session invents its own process: some write tests,
+most do not, and plans are written once and then lost. The result is uneven
+quality, requests that drift from the original intent, and work that is hard to
+review. The specs produced by the workflow would also be lost: they are useful
+documentation, so they must be converted to asciidoc and published in the
+Antora docs (following <code>.agents/rules/specs.md</code>) instead of being thrown away.
+How should we drive the work of AI helpers so that it is
+spec-driven, testable, repeatable, and its specs end up in the published docs?</p>
 </div>
 </div>
 </div>
@@ -217,13 +221,15 @@ to discover. How should common commands be defined and run?</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Use <a href="https://taskfile.dev/">Task</a> with a <code>Taskfile.yml</code></p>
+<p>Adopt <a href="https://github.com/obra/superpowers">superpowers</a>, a plugin for opencode
+that bundles skills for spec driven development (brainstorming, writing plans,
+test driven development, and systematic debugging)</p>
 </li>
 <li>
-<p>Use a Makefile</p>
+<p>Write the same rules by hand into <code>AGENTS.md</code></p>
 </li>
 <li>
-<p>Use custom shell scripts</p>
+<p>Keep using ad hoc prompts with no shared workflow</p>
 </li>
 </ul>
 </div>
@@ -233,28 +239,33 @@ to discover. How should common commands be defined and run?</p>
 <h2 id="decision-outcome"><a class="anchor" href="#decision-outcome"></a>Decision Outcome</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Chosen option: "Use Task with a Taskfile.yml", because it is a single
-cross-platform binary with zero dependencies that runs the same Taskfile on
-Linux, macOS, and Windows, and its YAML syntax is readable and gives built-in
-features like task dependencies, command chaining, and caching based on file
-changes. Positive consequences: one declarative entry point for contributors,
-consistent behavior across platforms and CI, and easy discovery via <code>task
---list</code>. Negative consequences: contributors must install the <code>task</code> binary
-(one download or package manager install).</p>
+<p>Chosen option: "Adopt superpowers", because it ships a complete, battle-tested
+workflow as reusable skills instead of prose, and it registers and updates
+itself through opencode&#8217;s plugin manager. Positive consequences: bundled skills
+(brainstorming, plan writing, TDD, verification) keep agent work
+spec-driven and consistent across sessions, new conventions are
+discoverable as skills rather than buried in docs, and the written specs
+become long-lived documentation once converted to antora pages under
+<code>antora/modules/specs/</code> per <code>.agents/rules/specs.md</code>. Negative consequences:
+agents lean on guidance code that lives in a third-party repository, and the
+workflow adds overhead to trivially small tasks.</p>
 </div>
 <div class="paragraph">
-<p>Task is the best option, because it is purpose-built for modern workflows and
-works uniformly on every developer machine and in CI. If "Use a Makefile" was
-chosen, recipes would depend on <code>sh</code> and shell quirks and tab indentation
-across platforms. If "Use custom shell scripts" was chosen, every script would
-need manual argument parsing, error handling, and duplication of common
-command logic.</p>
+<p>Adopting superpowers is the best option, because it gives a maintained,
+coherent process for free and updates through the opencode plugin ecosystem.
+Hand-writing the rules in <code>AGENTS.md</code> was not the best, because rules as prose
+are easy to ignore and drift out of date. Sticking with ad hoc prompts would
+keep the quality problems that motivated this ADR unsolved.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="https://github.com/obra/superpowers/blob/main/docs/README.opencode.md" class="bare">https://github.com/obra/superpowers/blob/main/docs/README.opencode.md</a>
+for the installation and usage instructions for opencode.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="0000003-use-jsonc-for-configuration-and-settings.html">Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files</a></span>
-  <span class="next"><a href="0000005-use-fastlane-for-app-store-and-play-store-automation.html">Use Fastlane for App Store and Play Store automation</a></span>
+  <span class="prev"><a href="0000013-supersede-xcodegen-with-xcode-project-format.html">Supersede XcodeGen with Xcode Project Format from Apple</a></span>
+  <span class="next"><a href="0000015-add-opencode-for-agentic-programming-using-the-plugins-superpowers-ponytail-and-mcp-context7-for-harnesses.html">Add OpenCode for Agentic Programming Using the Plugins Superpowers, Ponytail and MCP Context7 for Harnesses</a></span>
 </nav>
 </article>
   </div>

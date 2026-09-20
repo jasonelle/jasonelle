@@ -15,3 +15,4 @@
 * xref:0000013-supersede-xcodegen-with-xcode-project-format.adoc[]
 * xref:0000014-add-adoption-of-spec-driven-development-using-superpowers-plugin.adoc[]
 * xref:0000015-add-opencode-for-agentic-programming-using-the-plugins-superpowers-ponytail-and-mcp-context7-for-harnesses.adoc[]
+* xref:0000016-use-golang-script-to-parse-and-modify-xcode-and-android-projects.adoc[]

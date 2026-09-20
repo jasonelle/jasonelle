@@ -4,10 +4,11 @@
 
 == Status
 
-- Superseded by xref:0000011-select-xcodegen-for-xcodeproject-generation.adoc[ADR-0000011] (2026-08-17) by: @clsource
+- Superseded by xref:0000016-use-golang-script-to-parse-and-modify-xcode-and-android-projects.adoc[ADR-0000016] (2026-09-20) by: @clsource
 
 === History
 
+- Superseded by xref:0000011-select-xcodegen-for-xcodeproject-generation.adoc[ADR-0000011] (2026-08-17) by: @clsource
 - Accepted (2026-08-16) by: @clsource
 
 == Context and Problem Statement

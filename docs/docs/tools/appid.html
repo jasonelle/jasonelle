@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>CLI esbuild :: Jasonelle Documentation</title>
-    <link rel="canonical" href="https://jasonelle.com/docs/tools/esbuild.html">
-    <link rel="prev" href="bundler.html">
-    <link rel="next" href="../specs/2026-09-20-link-copy-artifacts-design.html">
+    <title>Appid :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/tools/appid.html">
+    <link rel="prev" href="core.html">
+    <link rel="next" href="plugins.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
@@ -114,7 +114,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="core.html">Core</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="appid.html">Appid</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -126,7 +126,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="bundler.html">Bundler</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="esbuild.html">CLI esbuild</a>
   </li>
 </ul>
@@ -165,37 +165,144 @@
   <ul>
     <li><a href="../index.html">Jasonelle Documentation</a></li>
     <li>Tools</li>
-    <li><a href="esbuild.html">CLI esbuild</a></li>
+    <li><a href="appid.html">Appid</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///antora/antora/modules/tools/pages/esbuild.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/tools/pages/appid.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">CLI esbuild</h1>
+<h1 class="page">Appid</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Vendored <a href="https://esbuild.github.io">esbuild</a> compiles TypeScript scripts to JavaScript files
-used inside WebView for Android and iOS.</p>
+<p>A <a href="https://go.dev">Go</a> tool that sets the application identifiers of the
+assembled projects to the <code>app_id</code> in the merged per-platform configs. Run
+after <code>task core</code>, against <code>build/</code>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
 <div class="paragraph">
-<p>The bundler.xcode and bundler.android tasks use the Bundler tool internally.
-The bundler task handles all file operations cross-platform.</p>
+<p>The Xcode project file is rewritten in place:
+<code>PRODUCT_BUNDLE_IDENTIFIER</code> of the Application (<code>app_id</code>), ApplicationTests
+(<code>app_id.Tests</code>) and ApplicationUITests (<code>app_id.UITests</code>) targets, in both
+Debug and Release configs. The Android <code>applicationId</code> is rewritten to
+<code>app_id</code>; the <code>namespace</code> is left untouched.</p>
 </div>
-</td>
+<div class="paragraph">
+<p>Values are written literally, so the default wildcard <code>app_id</code>
+(<code>com.example.*</code>) is not translated. Re-running is a no-op.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="requirements"><a class="anchor" href="#requirements"></a>Requirements</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://go.dev">Go</a> 1.26 or newer (only for compilation. <code>dist/</code> directory
+contains binaries).</p>
+</li>
+<li>
+<p><a href="https://taskfile.dev">go-task</a> (optional, only for the tasks below).</p>
+</li>
+<li>
+<p>The assembled projects and merged config files, produced by <code>task core</code> and
+<code>task jsonc</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage"><a class="anchor" href="#usage"></a>Usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>From the repository root:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">tools/appid/dist/appid-{{os}}-{{arch}}</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="flags"><a class="anchor" href="#flags"></a>Flags</h3>
+<div class="paragraph">
+<p>All flags have defaults that point to the standard <code>build/</code> tree.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Flag</th>
+<th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Description</th>
 </tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--xcode-config</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the merged Xcode config file. Default:
+<code>build/xcode/config/config.jsonc</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--xcode-project</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the assembled Xcode project. Default:
+<code>build/xcode/sources/Application/Application.xcodeproj/project.pbxproj</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--android-config</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the merged Android config file. Default:
+<code>build/android/config/config.jsonc</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--android-project</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the assembled Android Application module. Default:
+<code>build/android/sources/Application/build.gradle.kts</code>.</p></td>
+</tr>
+</tbody>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="how-it-works"><a class="anchor" href="#how-it-works"></a>How it works</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Reads <code>app_id</code> from the Xcode config. A missing or empty <code>app_id</code> is an
+error.</p>
+</li>
+<li>
+<p>Rewrites the three <code>PRODUCT_BUNDLE_IDENTIFIER</code> markers in the pbxproj.
+Each marker must appear exactly twice (Debug + Release) or, when the file
+was already patched, the new value must appear twice. Any other count means
+the file was customized and the tool fails rather than guess. Matches are
+case-sensitive, so the Application id never collides with the test ids.</p>
+</li>
+<li>
+<p>Reads <code>app_id</code> from the Android config.</p>
+</li>
+<li>
+<p>Rewrites the single <code>applicationId = "&#8230;&#8203;"</code> line in the
+<code>build.gradle.kts</code>. The line must appear exactly once; when its value
+already equals <code>app_id</code> it is left unchanged.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Files are only written when they changed.</p>
 </div>
 </div>
 </div>
@@ -208,36 +315,41 @@ The bundler task handles all file operations cross-platform.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>task esbuild.install</code> (<code>esi</code>): re-download the vendored esbuild binary.</p>
+<p><code>task appid</code> (<code>aid</code>): set the app identifiers for both Xcode and Android.</p>
+</li>
+<li>
+<p><code>task appid.build</code> (<code>aib</code>): build the <code>tools/appid</code> binary.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>From <code>tools/appid/src</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>task build</code> (<code>b</code>): cross-compile binaries into <code>../dist/</code> for macOS
+(amd64/arm64), Linux (amd64) and Windows (amd64).</p>
+</li>
+<li>
+<p><code>task test</code> (<code>t</code>): run the test suite.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="bundle-flags"><a class="anchor" href="#bundle-flags"></a>Bundle flags</h2>
+<h2 id="release-binaries"><a class="anchor" href="#release-binaries"></a>Release binaries</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><code>--bundle</code>&#8201;&#8212;&#8201;resolves imports and produces a single output file.</p>
-</li>
-<li>
-<p><code>--target=safari11</code>&#8201;&#8212;&#8201;output compatible with Safari 11+ (WKWebView).</p>
-</li>
-<li>
-<p><code>--analyze</code>&#8201;&#8212;&#8201;prints a bundle size breakdown.</p>
-</li>
-<li>
-<p><code>--tsconfig</code>&#8201;&#8212;&#8201;uses <code>lib/common/config/bundler.json</code> for module resolution.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><code>dist/</code> contains prebuilt binaries for each platform, named
+<code>appid-&lt;os&gt;-&lt;arch&gt;</code> (Windows uses <code>.exe</code>).</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="bundler.html">Bundler</a></span>
-  <span class="next"><a href="../specs/2026-09-20-link-copy-artifacts-design.html">Link Tool Copies App Artifacts into the Assembled Tree</a></span>
+  <span class="prev"><a href="core.html">Core</a></span>
+  <span class="next"><a href="plugins.html">Plugins</a></span>
 </nav>
 </article>
   </div>
