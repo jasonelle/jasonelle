@@ -12,77 +12,109 @@ documentation and code. It breaks compatibility with previous versions.
 
 ### Added
 
+- Add agent rules and opencode plugins
+- Add allowed URLs config and Safari navigation handling
+- Add appid and link tools
+- Add apple sign in plugin
+- Add changelog generation command
+- Add command-create and version-bump commands
+- Add commit task to Taskfile
+- Add cookies plugin and refactor plugin JS bridge
+- Add core and plugins tools
+- Add device plugin for iOS
+- Add Go tool to generate app icons
+- Add id field to ADR documents
+- Add iOS Application and Core sources
+- Add Jasonelle Android app and kernel
+- Add JLPluginHello sample plugin for Android and Xcode
 - Add license verification system
+- Add native events for plugins
 - Add native-JS plugin bridge with WKWebView SwiftUI view
 - Add plugin system with JS injection
-- Add tool to merge JSONC files
-- Add Go tool to generate app icons
-- Add version bump tasks
-- Add command-create and version-bump commands
-- Add changelog generation command
-- Add commit task to Taskfile
 - Add rule-create command
-- Add agent rules and opencode plugins
-- Add id field to ADR documents
+- Add tool to merge JSONC files
+- Add version bump tasks
+- Added architecture.adoc
 - Adopt ADR documents for design decisions
 - Bootstrap Xcode projects and plugin system
-- Implement bundler tool
-- Implement esbuild bundler
-- Migrate to TypeScript and implement esbuild bundler
-- Replace placeholder tests with plugin registration and call tests
-- Scaffold bundler Go tool structure
-- Vendor esbuild for webview JS bundling
+- Copy built app artifacts into assembled tree
 - Generate per-platform icons with --xcode/--android
-- Add iOS Application and Core sources
+- Implement bundler tool
+- Inject app webview.js after plugin scripts
+- Load app configuration from config jsonc
+- Migrate to TypeScript and implement esbuild bundler
+- Refine allowed-hosts navigation and download to Safari
+- Resolve native calls via promise bridge
+- Scaffold Go tool structure
+- Vendor esbuild for webview JS bundling
 
 ### Changed
 
 - Add ADR-0000011 for XcodeGen and supersede ADR-0000009
 - Add ADRs for OneSignal and RevenueCat
-- Add cross-compiled binaries
+- Add architecture README with C4 diagrams
+- Add architecture README with C4 diagrams
+- Add automated semver pre-releases
 - Add basic tests
 - Add bundler tool documentation
-- Add Go tool to merge JSONC files
-- Add license headers to tools
-- Add lint.yaml task to format and lint YAML files
-- Add opsx workflow commands and skills
-- Add VERSION file and document it
-- Add automated semver pre-releases
+- Add CNAME for jasonelle.com
+- Add cross-compiled binaries
+- Add design doc for tools/xcode bundle id task
+- Add dual-license headers to xcode sources
 - Add git.add and git.all tasks
 - Add git.pull task
 - Add git.push task and rename commit to git.commit
-- Create CNAME file for GitHub Pages
+- Add headers to tools and consolidate command
+- Add implementation plan and spec guard for empty app id
+- Add license headers to tools
+- Add lint.yaml task to format and lint YAML files
+- Add opsx workflow commands and skills
+- Add SwiftLint tooling and fix all lint warnings
+- Add TypeScript ADR and esbuild tool page
+- Add VERSION file and document it
+- Create CNAME
 - Delete tags when pruning pre-releases
 - Derive Xcode icon sizes from appIconImages
 - Document icon generator and add tooling ADRs
+- Document plugin API and response format
+- Document promise response in plugin js
+- Document the Android project layout
 - Drop git.add from git.all pipeline
+- Drop JL prefix from LogLevel and Plugin types
+- Fixed
 - Improve overview, diagrams, and directory accuracy
 - Mark tools binaries as binary in .gitattributes
-- Remove vendored skills and consolidate opencode commands
+- Redesign plugin API with name/id separation and typed helpers
 - Remove andrej-karpathy-skill
-- Remove xcuserdata files and track .gitignore
+- Remove unused vendored highlight.js languages
+- Remove vendored skills and consolidate opencode commands
+- Removed old version code
 - Rename json-merger to jsonc
+- Rename tool spec from xcode to bundleid
+- Replace placeholder tests with plugin registration and call tests
+- Untrack xcuserdata files and track gitignore
 - Update AGENTS.md commands and directory layout
-- Update bundler tool documentation
-- Update changelog for v4.0
 - Update changelog for ADR documents
+- Update changelog for v4.0
 - Update flow and fastlane diagrams
 - Update icons task alias in AGENTS.md
+- Update plugins lookup key from name to id
 - Update README to list actual tools and build instructions
-- Update website
+- Update v4.0 section from git commits
+- Updated website
 - Use bundler tool for esbuild tasks
+- Vendor skills with lockfile and reorganize commands
 - Write commit message to .commit-message file
+
+### Removed
+
+- Establish the overall project structure V4 is built from scratch with better documentation and code It breaks compatibility with previous versions
 
 ### Fixed
 
 - Break long bundler commands to fit yamllint line-length
+- Improve license check logic and error message
 - Remove stale jsDir only, preserve output in scriptsDir
-
-### Removed
-
-- Establish the overall project structure V4 is built from scratch with better documentation and code. It breaks compatibility with previous versions
-- Old version code
-- Unused vendored highlight.js languages
 
 ## [3.0.4] - 2026-03-02
 
