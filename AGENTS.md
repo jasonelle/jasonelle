@@ -65,6 +65,7 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
   - `/license`: Append a license template as a comment to the first lines of a file or directory.
   - `/rule-create`: Create a new rule inside `.agents/rules`.
   - `/tool-create-go`: Create a new Go tool inside `tools/`.
+  - `/todo`: Add a pending task to the `TODO` file in the repository root.
   - `/update-agents`: Update AGENTS.md with the latest project changes.
   - `/version-bump`: Bump the version in a version file to the next version.
   - `/yaml`: Lint and format YAML files with yamllint and prettier.

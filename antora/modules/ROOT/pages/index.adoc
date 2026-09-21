@@ -1,1 +1,65 @@
 = Jasonelle Documentation
+
+image:jasonelle.png[Jasonelle, width=50%, height=auto]
+
+*Write for the Web. Ship Native.*
+
+https://github.com/jasonelle/jasonelle[image:https://img.shields.io/static/v1?label=jasonelle&message=jasonelle&color=blueviolet&logo=github[Jasonelle on GitHub]]
+https://github.com/jasonelle/jasonelle[image:https://img.shields.io/github/stars/jasonelle/jasonelle?style=social[Stars]]
+https://github.com/jasonelle/jasonelle[image:https://img.shields.io/github/forks/jasonelle/jasonelle?style=social[Forks]]
+https://en.wikipedia.org/wiki/Chile[image:chile.svg[Proudly Coded in 🇨🇱 Chile]]
+https://ninjas.cl[image:ninjas.svg[Made with ❤️ by Ninjas.cl]]
+
+https://github.com/jasonelle/jasonelle[Jasonelle] is a native wrapper for your
+web application. Build native iOS and Android apps from your existing web
+application, with a bidirectional JavaScript-to-native bridge and an extensible
+plugin architecture.
+
+
+
+== What is Jasonelle?
+
+Jasonelle wraps your web application into a native *iOS* and *Android* app, so you
+keep writing with the web technologies you already know and ship it as a native
+app. Your web frontend runs inside a native container, connected to the platform
+through a bidirectional bridge:
+
+* *JavaScript to native*: your web app can call native features -- device APIs,
+  native UI, plugins, and more.
+* *Native to JavaScript*: native code can push data and events back into your web
+  app.
+
+Because the bridge and the plugin system are extensible, Jasonelle grows with the
+capabilities your app needs, without leaving the web.
+
+== Releases
+
+The current version is *v4*. The latest releases are available at
+https://github.com/jasonelle/jasonelle/releases[Jasonelle GitHub Releases].
+
+A https://github.com/jasonelle/jasonelle/tree/v3.0.4/[legacy version]
+is also available for older _Jasonette/Jasonelle_ (v1, v2, v3) features, 
+but they are without official support.
+
+== License
+
+Jasonelle is *dual licensed*: https://github.com/jasonelle/jasonelle/blob/main/LICENSE.adoc[AGPLv3 or MPLv2].
+
+*Without* a license key, Jasonelle is licensed under _AGPLv3_ and will *not* execute
+on real devices (though full mode can be activated for testing).
+*With* a valid https://jasonelle.gumroad.com/[Jasonelle Key], purchased from the
+official https://jasonelle.gumroad.com/[Jasonelle Store], the _MPLv2_ license
+applies and real device execution is allowed.
+
+Some features, such as _GPS_, require real hardware to test. Please purchase a
+license if you use Jasonelle in your projects.
+
+== Community
+
+For help and general chat, join the https://t.me/jasonelle[Jasonelle Telegram group].
+
+== Next Steps
+
+* xref:architecture.adoc[]: how the build system assembles your projects.
+* https://jasonelle.com/[Jasonelle website].
+* https://github.com/jasonelle/jasonelle[Github repository].

@@ -140,58 +140,6 @@ Rel(appid, build_android, "Sets applicationId")
 @enduml
 ----
 
-== C4 Architecture Diagram
-
-The diagram below shows the target architecture. Some components (e.g., `gen`,
-`android CLI`, `fastlane gen`) are planned but not yet implemented as standalone
-tools.
-
-[plantuml, c4_architecture, png]
-----
-@startuml
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
-
-Person(developer, "Developer", "Uses the CLI to generate native apps")
-
-System_Boundary(jasonelle, "Jasonelle Framework") {
-    Container(gen, "gen CLI", "Go", "Orchestrates the build process and merges configurations")
-    Container(android_cli, "android CLI", "Go", "Handles Android project setup")
-    Container(xcode_cli, "xcode CLI", "Swift", "Handles Xcode project setup")
-    Container(fastlane_gen, "fastlane gen CLI", "Go", "Generates Fastlane automation scripts")
-
-    Container(esbuild, "esbuild", "Go", "Bundles TypeScript files into webview.js")
-
-    ContainerDb(sources, "sources/", "File System", "Base Xcode project template")
-    ContainerDb(lib, "lib/", "File System", "User customizations: config, assets, scripts, and native overrides")
-}
-
-System_Ext(build_xcode, "build/xcode/", "Generated Xcode Project and Fastlane Files")
-System_Ext(build_android, "build/android/", "Generated Android Studio Project and Fastlane Files")
-
-Rel(developer, gen, "Runs generation command")
-Rel(developer, lib, "Configures app via JSONC, .env & overrides")
-
-Rel(gen, sources, "Reads base templates")
-Rel(gen, lib, "Reads and merges configs & overrides")
-
-Rel(gen, esbuild, "Triggers TS bundling")
-Rel(gen, android_cli, "Triggers Android config")
-Rel(gen, xcode_cli, "Triggers Xcode config")
-Rel(gen, fastlane_gen, "Triggers Fastlane generation")
-
-Rel(esbuild, build_xcode, "Writes webview.js")
-Rel(esbuild, build_android, "Writes webview.js")
-
-Rel(xcode_cli, build_xcode, "Configures Xcode project")
-Rel(android_cli, build_android, "Configures Android project")
-
-Rel(fastlane_gen, lib, "Reads store.jsonc & .env")
-Rel(fastlane_gen, build_xcode, "Writes Fastfile/Appfile")
-Rel(fastlane_gen, build_android, "Writes Fastfile/Appfile")
-
-@enduml
-----
-
 == Architecture Flow Diagram
 
 The diagram below shows the data flow through the build pipeline.
