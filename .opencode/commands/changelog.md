@@ -41,12 +41,15 @@ messages, following Keep a Changelog.
    heading, append the generated categories at the end of the section.
 8. If there are no commits in the range, report it and do not modify the
    file.
+9. Apply `git add .`
+10. Generate a conventional commits following `gitmoji.md` command
+11. Recommend using `task gal` for commiting the change.
 
 ## Restrictions
 
 - Only modify `CHANGELOG.md`. Do not commit or push.
 - Do not touch sections below the top section.
-- Once ready create a git commit message using `@.opencode/command/git-commit-message.md`.
+- Once ready create a git commit message using `git add .` and `@.opencode/command/gitmoji.md`.
 
 ## Output
 
