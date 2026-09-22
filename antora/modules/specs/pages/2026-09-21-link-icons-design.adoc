@@ -1,0 +1,69 @@
+= Link Tool Copies and Verifies App Icons
+
+- Status: Approved (2026-09-21) by: @clsource
+
+== Problem
+
+`task icons` generates the app icons into the committed `lib/<platform>/assets`
+directories, but nothing copies them into the assembled trees. The Xcode
+`Assets.xcassets/AppIcon.appiconset` in `build/xcode/sources/` only holds a
+modern `Contents.json` with no image files, and the Android tree has no `res/`
+directory at all and its `AndroidManifest.xml` has no `android:icon`
+attribute, so apps built from `build/<platform>/sources/` show no custom icon.
+
+== Design
+
+After copying app artifacts, `link` mirrors the icon output from
+`lib/<platform>/assets` into the assembled `Application` tree and verifies it
+landed:
+
+- Xcode: `lib/xcode/assets/AppIcon.appiconset/` →
+  `build/xcode/sources/Application/Application/Assets.xcassets/AppIcon.appiconset/`.
+  The pbxproj already sets `ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon`, so a
+  populated appiconset is all the project needs.
+- Android: `lib/android/assets/icon/res/` →
+  `build/android/sources/Application/src/main/res/` (the lib-internal `icon/`
+  grouping drops, so `mipmap-*` land straight under `src/main/res/`). The
+  `AndroidManifest.xml` `<application>` tag gains
+  `android:icon="@mipmap/ic_launcher"` and
+  `android:roundIcon="@mipmap/ic_launcher_round"`, being replaced when already
+  present and inserted when missing.
+
+Two new flags (`--xcode-assets`, `--android-assets`) default to those lib
+paths, mirroring how `--<platform>-sources` defaults to the build paths.
+
+=== Behavior
+
+- The copy is a mirror: files in the destination that no longer exist in the
+  source are removed, so the stale modern-format `Contents.json` is replaced.
+- A destination file that already matches is left untouched; a rerun is a
+  byte-stable no-op.
+- After the mirror, every source file is re-read from the destination and
+  compared byte-for-byte; any gap or mismatch fails the run by name.
+- Missing `lib/<platform>/assets` or a missing `<application>` tag fails
+  loudly.
+
+=== Implementation
+
+- `linkIconsXcode(sources, assets)` and `linkIconsAndroid(sources, assets)`
+  wrap a shared `syncIconDir(src, dst)` that mirrors (`mirrorDir`) and then
+  verifies (`verifyIcons`) the two trees.
+- `ensureManifestIcons(content)` rewrites only the `<application>` opening tag;
+  `rewriteFile` skips the write when the tag already matches.
+- `run()` calls both icon steps after the existing artifact copies.
+
+=== Tests
+
+- `TestMirrorDir` covers copy, byte-stable rerun, stale-file removal and the
+  missing-source error.
+- `TestVerifyIcons` covers matching, mismatched and missing destinations.
+- `TestEnsureManifestIcons` covers insertion, replacement, byte-stable rerun
+  and the missing-tag error.
+- `TestRunIntegration` seeds temp icon asset trees, asserts the icons land in
+  `Assets.xcassets` and `src/main/res`, asserts the manifest attributes, and
+  adds them to the rerun-stability snapshot.
+
+=== Documentation
+
+- `tools/link/README.md` and the Antora `modules/tools/pages/link.adoc` page
+  document the icon copy under a new "App icons" section.
