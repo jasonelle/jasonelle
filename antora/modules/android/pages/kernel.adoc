@@ -1,0 +1,50 @@
+= JLKernel
+
+The core library for Jasonelle Android apps.
+
+== Overview
+
+JLKernel provides the runtime backbone for Jasonelle applications. It bundles a Jetpack Compose `JasonelleWebView` backed by the Android `WebView` with a bidirectional JavaScript bridge, a plugin system for native extensions, native `Events` that plugins can listen to, structured logging via `Logger`, semantic `Version` reading, and `License` verification.
+
+A typical app creates a `JasonelleWebView` with a map of `Plugin` instances. JavaScript code communicates with native plugins through `window.jasonelle.post(name, args)`, and plugins respond by executing JavaScript back in the web view. Native code communicates with plugins through `Events`.
+
+== Quick Start
+
+[source,kotlin]
+----
+import androidx.compose.runtime.*
+import com.jasonelle.kernel.JasonelleWebView
+import com.jasonelle.kernel.AppConfiguration
+
+@Composable
+fun ContentView(config: AppConfiguration) {
+    val plugins = remember { mapOf("myplugin" to MyPlugin()) }
+    JasonelleWebView(
+        config = config,
+        plugins = plugins,
+    )
+}
+----
+
+== How the Bridge Works
+
+1. The `JasonelleWebView` registers the `Coordinator` as the `jasonelleBridge` JavaScript interface and injects the `JasonelleBridge` `window.jasonelle` script on page load.
+2. JavaScript calls `window.jasonelle.plugins.<name>.call(args)`, which posts a JSON message through `jasonelleBridge.postMessage(json)`.
+3. The `Coordinator` receives the message, looks up the `Plugin` by name, and invokes its `handle_call(args:callbackId:respond:)` method.
+4. The plugin calls `respond(script)` to execute JavaScript back in the web view and resolve the promise returned by `window.jasonelle.post`. With `call().then(response => ...)` a JavaScript caller awaits the native response.
+
+== Native Events
+
+Native code can notify plugins about app lifecycle events. The app registers its `Plugin` map once with `Events.register(plugins:)` (e.g. in `MainActivity.onCreate`), then broadcasts an event when the `ContentView` first appears. Every registered plugin receives it through `handle_event(name:args:respond:)`, with the event name given by the raw value of the `Events` case.
+
+== Reference
+
+* `JasonelleWebView`
+* `Coordinator`
+* `JasonelleBridge`
+* `Plugin`
+* `Events`
+* `ConfigurationLoader`
+* `Logger`
+* `Version`
+* `License`
