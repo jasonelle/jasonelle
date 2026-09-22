@@ -19,16 +19,17 @@ CLI approach, and a strictly separated directory structure.
 4. *TypeScript Bundling*: the `bundler` tool merges TypeScript files from
    `lib/common` and `lib/<platform>` into a single `webview.js`. Common scripts
    are copied first, platform scripts overlay on top.
-5. *Unified Build Pipeline*: the `Taskfile` orchestrates the Go tools `icon`,
-   `jsonc`, `bundler`, `plugins`, `core`, `link` and `appid` to assemble both
-   `build/xcode` and `build/android` from the same `lib/` and `sources/`
-   inputs.
+5. *Unified Build Pipeline*: the `gen` tool (run via the `Taskfile` `gen` task)
+   orchestrates the Go tools `icon`, `jsonc`, `bundler`, `plugins`, `core`,
+   `link` and `appid` to assemble both `build/xcode` and `build/android` from
+   the same `lib/` and `sources/` inputs.
 
 == Build Pipeline
 
 The build pipeline turns the user workspace (`lib/`) and the stock templates
-(`sources/`) into two runnable native projects under `build/`. The `Taskfile`
-runs the tools in order for both platforms:
+(`sources/`) into two runnable native projects under `build/`. The `gen` tool
+(`task gen`, or `tools/gen/dist/gen-<os>-<arch>`) runs the steps in order for
+both platforms:
 
 [cols="1,1,1,3"]
 |===
@@ -83,7 +84,7 @@ configured native project ready to open and build.
 
 == C4 Architecture Diagram
 
-The diagram below shows the current architecture. The `Taskfile` runs the
+The diagram below shows the current architecture. The `gen` tool runs the
 `icon`, `jsonc`, `bundler`, `plugins`, `core`, `link` and `appid` Go tools in
 order for both platforms, reading from `lib/` and `sources/` and writing to
 `build/`.
@@ -93,9 +94,10 @@ order for both platforms, reading from `lib/` and `sources/` and writing to
 @startuml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
-Person(developer, "Developer", "Runs the task pipeline")
+Person(developer, "Developer", "Runs the gen build pipeline")
 
 System_Boundary(jasonelle, "Jasonelle Framework") {
+    Container(gen, "gen", "Go", "Orchestrates the pipeline: icon, jsonc, bundler, plugins, core, link and appid")
     Container(icon, "icon", "Go", "Generates per-platform app icons")
     Container(jsonc, "jsonc", "Go", "Merges cascading config.jsonc / store.jsonc")
     Container(bundler, "bundler", "Go", "Bundles TypeScript into webview.js (esbuild)")
@@ -111,7 +113,16 @@ System_Boundary(jasonelle, "Jasonelle Framework") {
 System_Ext(build_xcode, "build/xcode/", "Assembled Xcode project source tree")
 System_Ext(build_android, "build/android/", "Assembled Android Studio project source tree")
 
+Rel(developer, gen, "Runs one command")
 Rel(developer, lib, "Configures app via JSONC, .env & overrides")
+
+Rel(gen, icon, "Runs step 1")
+Rel(gen, jsonc, "Runs step 2")
+Rel(gen, bundler, "Runs step 3")
+Rel(gen, plugins, "Runs step 4")
+Rel(gen, core, "Runs step 5")
+Rel(gen, link, "Runs step 6")
+Rel(gen, appid, "Runs step 7")
 
 Rel(icon, lib, "Writes per-platform icons")
 
@@ -174,6 +185,7 @@ package "Framework Inputs" {
 }
 
 package "CLI Tools (tools/)" {
+  [gen (Go)] as gen
   [icon (Go)] as icon
   [jsonc (Go)] as jsonc
   [bundler (Go)] as bundler
@@ -196,6 +208,15 @@ package "Build Output (build/)" {
     file "scripts/"
   }
 }
+
+' Pipeline orchestration
+gen --> icon : Runs step 1
+gen --> jsonc : Runs step 2
+gen --> bundler : Runs step 3
+gen --> plugins : Runs step 4
+gen --> core : Runs step 5
+gen --> link : Runs step 6
+gen --> appid : Runs step 7
 
 ' Icon generation
 lib --> icon : Reads 1024x1024.png
@@ -263,6 +284,8 @@ appid --> build_android : Sets applicationId
 *** `resources/`: Raw files copied to the Xcode app bundle.
 
 * `tools/`: CLI tools and vendored binaries.
+** `tools/gen/`: Runs the full build pipeline (`icon`, `jsonc`, `bundler`,
+`plugins`, `core`, `link`, `appid`) as the `Taskfile` would (Go).
 ** `tools/icon/`: Generates per-platform app icons from a 1024x1024 PNG (Go).
 ** `tools/jsonc/`: Merges cascading JSONC config files (Go).
 ** `tools/bundler/`: Bundles TypeScript into `webview.js` via esbuild (Go).

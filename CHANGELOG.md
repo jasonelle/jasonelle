@@ -31,17 +31,19 @@ documentation and code. It breaks compatibility with previous versions.
 - Add native events for plugins
 - Add native-JS plugin bridge with WKWebView SwiftUI view
 - Add plugin system with JS injection
+- Add rule to rebuild tools after source changes
 - Add rule-create command
 - Add tool to merge JSONC files
 - Add version bump tasks
 - Added architecture.adoc
 - Adopt ADR documents for design decisions
 - Bootstrap Xcode projects and plugin system
+- Copy and verify app icons into assembled trees
 - Copy built app artifacts into assembled tree
 - Generate per-platform icons with --xcode/--android
 - Implement bundler tool
 - Inject app webview.js after plugin scripts
-- Load app configuration from config jsonc
+- Load app configuration from config.jsonc
 - Migrate to TypeScript and implement esbuild bundler
 - Refine allowed-hosts navigation and download to Safari
 - Resolve native calls via promise bridge
@@ -52,7 +54,6 @@ documentation and code. It breaks compatibility with previous versions.
 
 - Add ADR-0000011 for XcodeGen and supersede ADR-0000009
 - Add ADRs for OneSignal and RevenueCat
-- Add architecture README with C4 diagrams
 - Add architecture README with C4 diagrams
 - Add automated semver pre-releases
 - Add basic tests
@@ -65,7 +66,7 @@ documentation and code. It breaks compatibility with previous versions.
 - Add git.pull task
 - Add git.push task and rename commit to git.commit
 - Add headers to tools and consolidate command
-- Add implementation plan and spec guard for empty app id
+- Add implementation plan and spec guard for empty app_id
 - Add license headers to tools
 - Add lint.yaml task to format and lint YAML files
 - Add opsx workflow commands and skills
@@ -77,30 +78,34 @@ documentation and code. It breaks compatibility with previous versions.
 - Derive Xcode icon sizes from appIconImages
 - Document icon generator and add tooling ADRs
 - Document plugin API and response format
-- Document promise response in plugin js
+- Document promise response in plugin.js
 - Document the Android project layout
 - Drop git.add from git.all pipeline
 - Drop JL prefix from LogLevel and Plugin types
 - Fixed
 - Improve overview, diagrams, and directory accuracy
 - Mark tools binaries as binary in .gitattributes
+- Present the framework in the Antora landing page
 - Redesign plugin API with name/id separation and typed helpers
 - Remove andrej-karpathy-skill
+- Remove placeholder scripts and CLAUDE.md
 - Remove unused vendored highlight.js languages
 - Remove vendored skills and consolidate opencode commands
 - Removed old version code
 - Rename json-merger to jsonc
 - Rename tool spec from xcode to bundleid
 - Replace placeholder tests with plugin registration and call tests
-- Untrack xcuserdata files and track gitignore
+- Untrack xcuserdata files and track .gitignore
 - Update AGENTS.md commands and directory layout
 - Update changelog for ADR documents
 - Update changelog for v4.0
+- Update docs to current tool pipeline
 - Update flow and fastlane diagrams
 - Update icons task alias in AGENTS.md
 - Update plugins lookup key from name to id
 - Update README to list actual tools and build instructions
 - Update v4.0 section from git commits
+- Updated changelog
 - Updated website
 - Use bundler tool for esbuild tasks
 - Vendor skills with lockfile and reorganize commands
@@ -108,12 +113,13 @@ documentation and code. It breaks compatibility with previous versions.
 
 ### Removed
 
-- Establish the overall project structure V4 is built from scratch with better documentation and code It breaks compatibility with previous versions
+- Establish the overall project structure V4 is built from scratch with better documentation and code. It breaks compatibility with previous versions
 
 ### Fixed
 
 - Break long bundler commands to fit yamllint line-length
 - Improve license check logic and error message
+- Rebuild binaries with app artifact copy
 - Remove stale jsDir only, preserve output in scriptsDir
 
 ## [3.0.4] - 2026-03-02

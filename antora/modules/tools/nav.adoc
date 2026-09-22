@@ -1,4 +1,5 @@
 .Tools
+* xref:gen.adoc[]
 * xref:icon.adoc[]
 * xref:jsonc.adoc[]
 * xref:core.adoc[]

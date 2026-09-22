@@ -18,12 +18,15 @@ CLI tools and vendored binaries used by the build pipeline.
   Xcode workspace, the Xcode Application project frameworks, the Android
   Gradle files, and copies the built `config.jsonc`/`webview.js` into the
   assembled Application tree (Go). Prebuilt binaries in `dist/`.
+- `gen/` — Runs the full build pipeline (`icon`, `jsonc`, `bundler`,
+  `plugins`, `core`, `link`, `appid`) as the root Taskfile would, without
+  needing `task` installed (Go). Prebuilt binaries in `dist/`.
 - `vendor/esbuild/` — Vendored esbuild binary for TypeScript bundling.
   Selected per OS and architecture automatically.
 
 ## Building from source
 
-Go tools (`bundler`, `icon`, `appid`, `jsonc`, `plugins`, `link`) can be rebuilt from their `src/` directories:
+Go tools (`bundler`, `icon`, `appid`, `jsonc`, `plugins`, `link`, `gen`) can be rebuilt from their `src/` directories:
 
 ```
 cd <tool>/src

@@ -272,3 +272,16 @@ tasks:
     desc: Generate tools/link binary
     cmds:
       - task build
+
+  # Gen Tool
+  gen:
+    desc: Run the full build pipeline (icon, jsonc, bundler, plugins, core, link, appid)
+    cmds:
+      - 'tools/gen/dist/gen-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }}'
+  gen.build:
+    aliases:
+      - gb
+    dir: tools/gen/src
+    desc: Generate tools/gen binary
+    cmds:
+      - task build

@@ -42,6 +42,8 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
 - `task appid.build` (alias `aib`): Generate the `tools/appid` binary.
 - `task link` (alias `l`): Link the plugins present in `build/<platform>/sources` into the Xcode workspace and the Android projects.
 - `task link.build` (alias `lb`): Generate the `tools/link` binary.
+- `task gen`: Run the full build pipeline (icon, jsonc, bundler, plugins, core, link, appid).
+- `task gen.build` (alias `gb`): Generate the `tools/gen` binary.
 
 ## Directory layout
 
@@ -53,7 +55,7 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
 - `docs/`: Generated site committed for GitHub Pages. Do not edit by hand.
 - `CHANGELOG.md`: Notable changes per version, following Keep a Changelog. Update with `/changelog`.
 - `Taskfile.yml`: Task runner config (go-task), alternative to a Makefile.
-- `.agents/`: Agent rules. Contains `.agents/rules/` with behavioral guidelines for LLM coding agents (e.g. `adhd.md`, `karpathy.md`, `specs.md`).
+- `.agents/`: Agent rules. Contains `.agents/rules/` with behavioral guidelines for LLM coding agents (e.g. `adhd.md`, `karpathy.md`, `rebuild-tools.md`, `specs.md`).
 - `.github/workflows/`: CI builds and publishes docs, creates SemVer pre-releases, and promotes them to releases.
 - `.opencode/commands/`: Custom opencode commands:
   - `/adr`: Create a new Architecture Decision Record (MADR) page.

@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Link Tool Copies App Artifacts into the Assembled Tree :: Jasonelle Documentation</title>
-    <link rel="canonical" href="https://jasonelle.com/docs/specs/2026-09-20-link-copy-artifacts-design.html">
-    <link rel="prev" href="../tools/esbuild.html">
-    <link rel="next" href="2026-09-21-link-icons-design.html">
+    <title>Link Tool Copies and Verifies App Icons :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/specs/2026-09-21-link-icons-design.html">
+    <link rel="prev" href="2026-09-20-link-copy-artifacts-design.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
@@ -138,10 +137,10 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Specs</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="2026-09-20-link-copy-artifacts-design.html">Link Tool Copies App Artifacts into the Assembled Tree</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="2026-09-21-link-icons-design.html">Link Tool Copies and Verifies App Icons</a>
   </li>
 </ul>
@@ -171,23 +170,23 @@
   <ul>
     <li><a href="../index.html">Jasonelle Documentation</a></li>
     <li>Specs</li>
-    <li><a href="2026-09-20-link-copy-artifacts-design.html">Link Tool Copies App Artifacts into the Assembled Tree</a></li>
+    <li><a href="2026-09-21-link-icons-design.html">Link Tool Copies and Verifies App Icons</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///antora/antora/modules/specs/pages/2026-09-20-link-copy-artifacts-design.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/specs/pages/2026-09-21-link-icons-design.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Link Tool Copies App Artifacts into the Assembled Tree</h1>
+<h1 class="page">Link Tool Copies and Verifies App Icons</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>Status: Approved (2026-09-20) by: @clsource</p>
+<p>Status: Approved (2026-09-21) by: @clsource</p>
 </li>
 </ul>
 </div>
@@ -197,12 +196,12 @@
 <h2 id="problem"><a class="anchor" href="#problem"></a>Problem</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>task link</code> tool links the plugins present in the assembled source trees
-into the native projects, but the freshly built app files never reach the
-assembled <code>Application</code> tree. The <code>task core</code> tool copies the stock
-<code>config.jsonc</code> and <code>webview.js</code> placeholders and never overwrites them, so the
-merged configuration and the bundled scripts produced by <code>task jsonc</code> and
-<code>task bundler</code> are lost when the app is built from <code>build/&lt;platform&gt;/sources/</code>.</p>
+<p><code>task icons</code> generates the app icons into the committed <code>lib/&lt;platform&gt;/assets</code>
+directories, but nothing copies them into the assembled trees. The Xcode
+<code>Assets.xcassets/AppIcon.appiconset</code> in <code>build/xcode/sources/</code> only holds a
+modern <code>Contents.json</code> with no image files, and the Android tree has no <code>res/</code>
+directory at all and its <code>AndroidManifest.xml</code> has no <code>android:icon</code>
+attribute, so apps built from <code>build/&lt;platform&gt;/sources/</code> show no custom icon.</p>
 </div>
 </div>
 </div>
@@ -210,42 +209,52 @@ merged configuration and the bundled scripts produced by <code>task jsonc</code>
 <h2 id="design"><a class="anchor" href="#design"></a>Design</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After linking plugins, <code>link</code> copies the freshly built artifacts over the
-stock placeholders in each assembled <code>Application</code> tree:</p>
+<p>After copying app artifacts, <code>link</code> mirrors the icon output from
+<code>lib/&lt;platform&gt;/assets</code> into the assembled <code>Application</code> tree and verifies it
+landed:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Xcode: <code>build/xcode/config/config.jsonc</code> →
-<code>build/xcode/sources/Application/Application/config.jsonc</code>, and
-<code>build/xcode/scripts/webview.js</code> →
-<code>build/xcode/sources/Application/Application/webview.js</code>.</p>
+<p>Xcode: <code>lib/xcode/assets/AppIcon.appiconset/</code> →
+<code>build/xcode/sources/Application/Application/Assets.xcassets/AppIcon.appiconset/</code>.
+The pbxproj already sets <code>ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon</code>, so a
+populated appiconset is all the project needs.</p>
 </li>
 <li>
-<p>Android: <code>build/android/config/config.jsonc</code> →
-<code>build/android/sources/Application/src/main/assets/config.jsonc</code>, and
-<code>build/android/scripts/webview.js</code> →
-<code>build/android/sources/Application/src/main/assets/webview.js</code>.</p>
+<p>Android: <code>lib/android/assets/icon/res/</code> →
+<code>build/android/sources/Application/src/main/res/</code> (the lib-internal <code>icon/</code>
+grouping drops, so <code>mipmap-*</code> land straight under <code>src/main/res/</code>). The
+<code>AndroidManifest.xml</code> <code>&lt;application&gt;</code> tag gains
+<code>android:icon="@mipmap/ic_launcher"</code> and
+<code>android:roundIcon="@mipmap/ic_launcher_round"</code>, being replaced when already
+present and inserted when missing.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The input paths derive from the existing <code>--&lt;platform&gt;-sources</code> flags as the
-sibling <code>config/</code> and <code>scripts/</code> directories under the same <code>build/&lt;platform&gt;/</code>
-root. No new flags and no <code>Taskfile.yml</code> change are needed.</p>
+<p>Two new flags (<code>--xcode-assets</code>, <code>--android-assets</code>) default to those lib
+paths, mirroring how <code>--&lt;platform&gt;-sources</code> defaults to the build paths.</p>
 </div>
 <div class="sect2">
 <h3 id="behavior"><a class="anchor" href="#behavior"></a>Behavior</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>A missing input (<code>config.jsonc</code> or <code>webview.js</code>) fails loudly, consistent
-with the rest of the tool and signaling that <code>task jsonc</code>/<code>task bundler</code>
-were skipped.</p>
+<p>The copy is a mirror: files in the destination that no longer exist in the
+source are removed, so the stale modern-format <code>Contents.json</code> is replaced.</p>
 </li>
 <li>
-<p>A destination that already matches is left untouched, so a rerun is a
-no-op and every file stays byte-stable.</p>
+<p>A destination file that already matches is left untouched; a rerun is a
+byte-stable no-op.</p>
+</li>
+<li>
+<p>After the mirror, every source file is re-read from the destination and
+compared byte-for-byte; any gap or mismatch fails the run by name.</p>
+</li>
+<li>
+<p>Missing <code>lib/&lt;platform&gt;/assets</code> or a missing <code>&lt;application&gt;</code> tag fails
+loudly.</p>
 </li>
 </ul>
 </div>
@@ -255,13 +264,16 @@ no-op and every file stays byte-stable.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>A single <code>copyArtifact(sources, artifact, rel)</code> helper reads
-<code>filepath.Join(filepath.Dir(sources), artifact)</code>, compares it with the
-destination <code>&lt;sources&gt;/&lt;rel&gt;</code>, and writes only when it differs.</p>
+<p><code>linkIconsXcode(sources, assets)</code> and <code>linkIconsAndroid(sources, assets)</code>
+wrap a shared <code>syncIconDir(src, dst)</code> that mirrors (<code>mirrorDir</code>) and then
+verifies (<code>verifyIcons</code>) the two trees.</p>
 </li>
 <li>
-<p><code>run()</code> wires the shared artifact list (<code>config/config.jsonc</code>,
-<code>scripts/webview.js</code>) with platform-specific destination relative paths.</p>
+<p><code>ensureManifestIcons(content)</code> rewrites only the <code>&lt;application&gt;</code> opening tag;
+<code>rewriteFile</code> skips the write when the tag already matches.</p>
+</li>
+<li>
+<p><code>run()</code> calls both icon steps after the existing artifact copies.</p>
 </li>
 </ul>
 </div>
@@ -271,12 +283,20 @@ destination <code>&lt;sources&gt;/&lt;rel&gt;</code>, and writes only when it di
 <div class="ulist">
 <ul>
 <li>
-<p><code>TestRunIntegration</code> is restructured around a base temp dir with sources at
-<code>base/&lt;platform&gt;/sources</code> and seeded sibling <code>config/</code>/<code>scripts/</code> dirs; the
-copied files are asserted and added to the rerun-stability snapshot.</p>
+<p><code>TestMirrorDir</code> covers copy, byte-stable rerun, stale-file removal and the
+missing-source error.</p>
 </li>
 <li>
-<p>A new <code>TestCopyArtifact</code> covers the happy path and the missing-input error.</p>
+<p><code>TestVerifyIcons</code> covers matching, mismatched and missing destinations.</p>
+</li>
+<li>
+<p><code>TestEnsureManifestIcons</code> covers insertion, replacement, byte-stable rerun
+and the missing-tag error.</p>
+</li>
+<li>
+<p><code>TestRunIntegration</code> seeds temp icon asset trees, asserts the icons land in
+<code>Assets.xcassets</code> and <code>src/main/res</code>, asserts the manifest attributes, and
+adds them to the rerun-stability snapshot.</p>
 </li>
 </ul>
 </div>
@@ -287,11 +307,7 @@ copied files are asserted and added to the rerun-stability snapshot.</p>
 <ul>
 <li>
 <p><code>tools/link/README.md</code> and the Antora <code>modules/tools/pages/link.adoc</code> page
-document the copy; the "anything not a linked plugin is left untouched"
-wording is fixed.</p>
-</li>
-<li>
-<p><code>tools/README.md</code> extends the <code>link/</code> blurb.</p>
+document the icon copy under a new "App icons" section.</p>
 </li>
 </ul>
 </div>
@@ -299,8 +315,7 @@ wording is fixed.</p>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="../tools/esbuild.html">CLI esbuild</a></span>
-  <span class="next"><a href="2026-09-21-link-icons-design.html">Link Tool Copies and Verifies App Icons</a></span>
+  <span class="prev"><a href="2026-09-20-link-copy-artifacts-design.html">Link Tool Copies App Artifacts into the Assembled Tree</a></span>
 </nav>
 </article>
   </div>

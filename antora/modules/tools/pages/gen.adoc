@@ -1,0 +1,67 @@
+= Gen
+
+A https://go.dev[Go] tool that runs the full build pipeline — `icon`, `jsonc`,
+`bundler`, `plugins`, `core`, `link`, `appid` — the way `task gen` would, but
+without needing https://taskfile.dev[go-task] installed. It invokes each
+step's prebuilt `tools/<step>/dist/` binary with the arguments the pipeline
+ordinarily passes, resolving the repository root from the running binary's
+location, so it works from any working directory.
+
+== Requirements
+
+* https://go.dev[Go] 1.26 or newer (only for compilation. `dist/` directory
+  contains binaries).
+* The prebuilt binary for every step you run, produced by `task build` inside
+  each `tools/<step>/src/`. A missing binary fails the run with a hint.
+
+== Usage
+
+From the repository root:
+
+```
+tools/gen/dist/gen-<os>-<arch>
+```
+
+This runs all steps in order. To run a subset:
+
+```
+tools/gen/dist/gen-<os>-<arch> --steps icon,jsonc
+```
+
+Each step's output is printed as `==> gen <step>`.
+
+=== Flags
+
+[cols="1,3"]
+|===
+|Flag |Description
+
+|`--steps`
+|Comma-separated steps to run (`icon,jsonc,bundler,plugins,core,link,appid`).
+Default: all.
+|===
+
+== Pipeline order
+
+Steps run in dependency order: `plugins` wipes `build/<platform>/sources/`,
+so it must run before `core`. `core`, `link` and `appid` take no arguments —
+the rest are passed the paths pointing into `lib/` and `build/` their docs on
+this page describe.
+
+== Tasks
+
+From the repository root:
+
+* `task gen`: run the full build pipeline for both Xcode and Android.
+* `task gen.build` (`gb`): build the `tools/gen` binary.
+
+From `tools/gen/src`:
+
+* `task build` (`b`): cross-compile binaries into `../dist/` for macOS
+  (amd64/arm64), Linux (amd64) and Windows (amd64).
+* `task test` (`t`): run the test suite.
+
+== Release binaries
+
+`dist/` contains prebuilt binaries for each platform, named
+`gen-<os>-<arch>` (Windows uses `.exe`).

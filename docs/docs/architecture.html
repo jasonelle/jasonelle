@@ -106,6 +106,9 @@
     <span class="nav-text">Tools</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tools/gen.html">Gen</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="tools/icon.html">Icon Generator</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -137,6 +140,9 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="specs/2026-09-20-link-copy-artifacts-design.html">Link Tool Copies App Artifacts into the Assembled Tree</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="specs/2026-09-21-link-icons-design.html">Link Tool Copies and Verifies App Icons</a>
   </li>
 </ul>
   </li>
@@ -212,10 +218,10 @@ secrets. <code>task jsonc</code> merges them per platform into <code>build/xcode
 are copied first, platform scripts overlay on top.</p>
 </li>
 <li>
-<p><strong>Unified Build Pipeline</strong>: the <code>Taskfile</code> orchestrates the Go tools <code>icon</code>,
-<code>jsonc</code>, <code>bundler</code>, <code>plugins</code>, <code>core</code>, <code>link</code> and <code>appid</code> to assemble both
-<code>build/xcode</code> and <code>build/android</code> from the same <code>lib/</code> and <code>sources/</code>
-inputs.</p>
+<p><strong>Unified Build Pipeline</strong>: the <code>gen</code> tool (run via the <code>Taskfile</code> <code>gen</code> task)
+orchestrates the Go tools <code>icon</code>, <code>jsonc</code>, <code>bundler</code>, <code>plugins</code>, <code>core</code>,
+<code>link</code> and <code>appid</code> to assemble both <code>build/xcode</code> and <code>build/android</code> from
+the same <code>lib/</code> and <code>sources/</code> inputs.</p>
 </li>
 </ol>
 </div>
@@ -226,8 +232,9 @@ inputs.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The build pipeline turns the user workspace (<code>lib/</code>) and the stock templates
-(<code>sources/</code>) into two runnable native projects under <code>build/</code>. The <code>Taskfile</code>
-runs the tools in order for both platforms:</p>
+(<code>sources/</code>) into two runnable native projects under <code>build/</code>. The <code>gen</code> tool
+(<code>task gen</code>, or <code>tools/gen/dist/gen-&lt;os&gt;-&lt;arch&gt;</code>) runs the steps in order for
+both platforms:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -307,14 +314,14 @@ configured native project ready to open and build.</p>
 <h2 id="c4-architecture-diagram"><a class="anchor" href="#c4-architecture-diagram"></a>C4 Architecture Diagram</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The diagram below shows the current architecture. The <code>Taskfile</code> runs the
+<p>The diagram below shows the current architecture. The <code>gen</code> tool runs the
 <code>icon</code>, <code>jsonc</code>, <code>bundler</code>, <code>plugins</code>, <code>core</code>, <code>link</code> and <code>appid</code> Go tools in
 order for both platforms, reading from <code>lib/</code> and <code>sources/</code> and writing to
 <code>build/</code>.</p>
 </div>
 <div class="imageblock kroki">
 <div class="content">
-<img src="_images/c4_architecture-be544fca147f30d1c6e55f46e2af4a815ced7158.png" alt="c4_architecture">
+<img src="_images/c4_architecture-249b16ededd777ea29fc91a9b32ef976574f18a0.png" alt="c4_architecture">
 </div>
 </div>
 </div>
@@ -327,7 +334,7 @@ order for both platforms, reading from <code>lib/</code> and <code>sources/</cod
 </div>
 <div class="imageblock kroki">
 <div class="content">
-<img src="_images/architecture_flow-a0758f6520f9161b940d934a4d913b5c0873a3e7.png" alt="architecture_flow">
+<img src="_images/architecture_flow-6e8b9b6e049d4de9139767b6a95043c26e07e2ea.png" alt="architecture_flow">
 </div>
 </div>
 </div>
@@ -442,6 +449,10 @@ order for both platforms, reading from <code>lib/</code> and <code>sources/</cod
 <p><code>tools/</code>: CLI tools and vendored binaries.</p>
 <div class="ulist">
 <ul>
+<li>
+<p><code>tools/gen/</code>: Runs the full build pipeline (<code>icon</code>, <code>jsonc</code>, <code>bundler</code>,
+<code>plugins</code>, <code>core</code>, <code>link</code>, <code>appid</code>) as the <code>Taskfile</code> would (Go).</p>
+</li>
 <li>
 <p><code>tools/icon/</code>: Generates per-platform app icons from a 1024x1024 PNG (Go).</p>
 </li>
