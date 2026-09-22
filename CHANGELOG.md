@@ -22,6 +22,7 @@ documentation and code. It breaks compatibility with previous versions.
 - Add cookies plugin and refactor plugin JS bridge
 - Add core and plugins tools
 - Add device plugin for iOS
+- Add gen build pipeline orchestrator
 - Add Go tool to generate app icons
 - Add id field to ADR documents
 - Add iOS Application and Core sources
@@ -46,6 +47,7 @@ documentation and code. It breaks compatibility with previous versions.
 - Load app configuration from config.jsonc
 - Migrate to TypeScript and implement esbuild bundler
 - Refine allowed-hosts navigation and download to Safari
+- Rename appid and set the app name
 - Resolve native calls via promise bridge
 - Scaffold Go tool structure
 - Vendor esbuild for webview JS bundling
@@ -73,6 +75,7 @@ documentation and code. It breaks compatibility with previous versions.
 - Add SwiftLint tooling and fix all lint warnings
 - Add TypeScript ADR and esbuild tool page
 - Add VERSION file and document it
+- Bump common app name and document plugins
 - Create CNAME
 - Delete tags when pruning pre-releases
 - Derive Xcode icon sizes from appIconImages
