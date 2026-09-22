@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>CLI esbuild :: Jasonelle Documentation</title>
-    <link rel="canonical" href="https://jasonelle.com/docs/tools/esbuild.html">
-    <link rel="prev" href="bundler.html">
-    <link rel="next" href="../specs/2026-09-20-link-copy-artifacts-design.html">
+    <title>Appconf Sets the App Name :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/specs/2026-09-22-appconf-app-name-design.html">
+    <link rel="prev" href="2026-09-21-link-icons-design.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
@@ -106,31 +105,31 @@
     <span class="nav-text">Tools</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="gen.html">Gen</a>
+    <a class="nav-link" href="../tools/gen.html">Gen</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="icon.html">Icon Generator</a>
+    <a class="nav-link" href="../tools/icon.html">Icon Generator</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="jsonc.html">JSONC Merger</a>
+    <a class="nav-link" href="../tools/jsonc.html">JSONC Merger</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="core.html">Core</a>
+    <a class="nav-link" href="../tools/core.html">Core</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="appconf.html">Appconf</a>
+    <a class="nav-link" href="../tools/appconf.html">Appconf</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugins.html">Plugins</a>
+    <a class="nav-link" href="../tools/plugins.html">Plugins</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="link.html">Link</a>
+    <a class="nav-link" href="../tools/link.html">Link</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="bundler.html">Bundler</a>
+    <a class="nav-link" href="../tools/bundler.html">Bundler</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="esbuild.html">CLI esbuild</a>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/esbuild.html">CLI esbuild</a>
   </li>
 </ul>
   </li>
@@ -139,13 +138,13 @@
     <span class="nav-text">Specs</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../specs/2026-09-20-link-copy-artifacts-design.html">Link Tool Copies App Artifacts into the Assembled Tree</a>
+    <a class="nav-link" href="2026-09-20-link-copy-artifacts-design.html">Link Tool Copies App Artifacts into the Assembled Tree</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../specs/2026-09-21-link-icons-design.html">Link Tool Copies and Verifies App Icons</a>
+    <a class="nav-link" href="2026-09-21-link-icons-design.html">Link Tool Copies and Verifies App Icons</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../specs/2026-09-22-appconf-app-name-design.html">Appconf Sets the App Name</a>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="2026-09-22-appconf-app-name-design.html">Appconf Sets the App Name</a>
   </li>
 </ul>
   </li>
@@ -173,80 +172,144 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Jasonelle Documentation</a></li>
-    <li>Tools</li>
-    <li><a href="esbuild.html">CLI esbuild</a></li>
+    <li>Specs</li>
+    <li><a href="2026-09-22-appconf-app-name-design.html">Appconf Sets the App Name</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///antora/antora/modules/tools/pages/esbuild.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/specs/pages/2026-09-22-appconf-app-name-design.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">CLI esbuild</h1>
+<h1 class="page">Appconf Sets the App Name</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p>Vendored <a href="https://esbuild.github.io">esbuild</a> compiles TypeScript scripts to JavaScript files
-used inside WebView for Android and iOS.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The bundler.xcode and bundler.android tasks use the Bundler tool internally.
-The bundler task handles all file operations cross-platform.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="tasks"><a class="anchor" href="#tasks"></a>Tasks</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>From the repository root:</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>task esbuild.install</code> (<code>esi</code>): re-download the vendored esbuild binary.</p>
+<p>Status: Approved (2026-09-22) by: @clsource</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="bundle-flags"><a class="anchor" href="#bundle-flags"></a>Bundle flags</h2>
+<h2 id="problem"><a class="anchor" href="#problem"></a>Problem</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The installed/launcher app name is hardcoded ("Jasonelle") in the Xcode and
+Android projects. The <code>appconf</code> tool patches only the application identifier
+(<code>app_id</code>). It should also set the app name from the merged <code>config.jsonc</code> via
+a new <code>app_name</code> key, on both platforms.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="decision"><a class="anchor" href="#decision"></a>Decision</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><code>--bundle</code>&#8201;&#8212;&#8201;resolves imports and produces a single output file.</p>
+<p>App name comes from <code>app_name</code> in the merged <code>config.jsonc</code>. It is
+<strong>optional</strong>: empty or missing means only <code>app_id</code> is patched, so existing
+configs keep working.</p>
 </li>
 <li>
-<p><code>--target=safari11</code>&#8201;&#8212;&#8201;output compatible with Safari 11+ (WKWebView).</p>
+<p>iOS uses <code>INFOPLIST_KEY_CFBundleDisplayName</code> (shown under the icon) added to
+the Application target&#8217;s Debug and Release build blocks only.
+<code>PRODUCT_NAME = "$(TARGET_NAME)"</code> is left untouched so the bundle stays
+<code>Application.app</code> and the test <code>TEST_HOST</code> paths keep working.</p>
 </li>
 <li>
-<p><code>--analyze</code>&#8201;&#8212;&#8201;prints a bundle size breakdown.</p>
+<p>Android uses <code>android:label</code> in <code>AndroidManifest.xml</code> (the launcher name).</p>
 </li>
 <li>
-<p><code>--tsconfig</code>&#8201;&#8212;&#8201;uses <code>lib/common/config/bundler.json</code> for module resolution.</p>
+<p>Both patches are idempotent and follow the existing strictness: unexpected
+marker counts fail rather than guess.</p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="changes"><a class="anchor" href="#changes"></a>Changes</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="toolsappconfsrcmain-go"><a class="anchor" href="#toolsappconfsrcmain-go"></a><code>tools/appconf/src/main.go</code></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Read <code>app_name</code> beside <code>app_id</code>.</p>
+</li>
+<li>
+<p><code>applyXcodeDisplayName</code>: anchor on the Application bundle-id line
+(<code>PRODUCT_BUNDLE_IDENTIFIER = &lt;app_id&gt;;</code>, the empty-suffix one, exactly 2
+occurrences), then per block: no-op if <code>"&lt;app_name&gt;"</code> is already set,
+replace another value, else insert the line after the bundle-id line.</p>
+</li>
+<li>
+<p><code>applyAndroidLabel</code>: <code>android:label="&#8230;&#8203;"</code> must appear exactly once;
+replace its value (no-op if equal).</p>
+</li>
+<li>
+<p>New <code>--android-manifest</code> flag defaulting to
+<code>build/android/sources/Application/src/main/AndroidManifest.xml</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="toolsappconfsrcmain_test-go"><a class="anchor" href="#toolsappconfsrcmain_test-go"></a><code>tools/appconf/src/main_test.go</code></h3>
+<div class="paragraph">
+<p>Fixtures (stock + renamed Xcode, Android manifest), idempotency, wrong-count
+errors, and the end-to-end <code>TestRun</code>/<code>TestRunNoName</code> cases.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="documentation"><a class="anchor" href="#documentation"></a>Documentation</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>tools/appconf/README.md</code> and the Antora
+<code>modules/tools/pages/appconf.adoc</code> page document the app name under the
+identifier rewrites.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="non-goals"><a class="anchor" href="#non-goals"></a>Non-goals</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>No <code>PRODUCT_NAME</code> change.</p>
+</li>
+<li>
+<p>No changes to <code>lib/common/config/config.jsonc</code> (<code>app_name</code> already added).</p>
+</li>
+<li>
+<p>No gen tool changes (its defaults already resolve).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="testing"><a class="anchor" href="#testing"></a>Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>go test ./&#8230;&#8203;</code> in <code>tools/appconf/src</code>, plus rebuilding the <code>appconf</code> dist
+binaries with <code>task appconf.build</code> and a full <code>task gen</code>.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="bundler.html">Bundler</a></span>
-  <span class="next"><a href="../specs/2026-09-20-link-copy-artifacts-design.html">Link Tool Copies App Artifacts into the Assembled Tree</a></span>
+  <span class="prev"><a href="2026-09-21-link-icons-design.html">Link Tool Copies and Verifies App Icons</a></span>
 </nav>
 </article>
   </div>

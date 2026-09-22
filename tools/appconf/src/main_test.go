@@ -1,6 +1,6 @@
 //
 //  main_test.go
-//  tools/appid
+//  tools/appconf
 //
 //  Created by [Camilo Castro (@clsource)](https://ninjas.cl) on 2026-09-20
 //  Made with love in Chile.
@@ -48,6 +48,12 @@ const stockGradle = `android {
         applicationId = "com.example.application"
     }
 }`
+
+const stockManifest = `<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application
+        android:label="Jasonelle">
+    </application>
+</manifest>`
 
 func TestApplyXcodeProjectIDs(t *testing.T) {
 	got, err := applyXcodeProjectIDs([]byte(stockPbxproj), "com.mycompany.app")
@@ -101,6 +107,78 @@ func TestApplyXcodeProjectIDsEmptyID(t *testing.T) {
 	}
 }
 
+func TestApplyXcodeDisplayName(t *testing.T) {
+	got, err := applyXcodeDisplayName([]byte(stockPbxproj), "com.example.application", "My App")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if n := strings.Count(string(got), `INFOPLIST_KEY_CFBundleDisplayName = "My App";`); n != 2 {
+		t.Errorf("display name count = %d, want 2\n%s", n, got)
+	}
+}
+
+func TestApplyXcodeDisplayNameAppliesAfterIDs(t *testing.T) {
+	ids, err := applyXcodeProjectIDs([]byte(stockPbxproj), "com.mycompany.app")
+	if err != nil {
+		t.Fatal(err)
+	}
+	got, err := applyXcodeDisplayName(ids, "com.mycompany.app", "My App")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if n := strings.Count(string(got), `INFOPLIST_KEY_CFBundleDisplayName = "My App";`); n != 2 {
+		t.Errorf("display name count = %d, want 2\n%s", n, got)
+	}
+}
+
+func TestApplyXcodeDisplayNameIdempotent(t *testing.T) {
+	once, err := applyXcodeDisplayName([]byte(stockPbxproj), "com.example.application", "My App")
+	if err != nil {
+		t.Fatal(err)
+	}
+	twice, err := applyXcodeDisplayName(once, "com.example.application", "My App")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if string(twice) != string(once) {
+		t.Errorf("second run must be a no-op")
+	}
+}
+
+func TestApplyXcodeDisplayNameRename(t *testing.T) {
+	once, err := applyXcodeDisplayName([]byte(stockPbxproj), "com.example.application", "My App")
+	if err != nil {
+		t.Fatal(err)
+	}
+	twice, err := applyXcodeDisplayName(once, "com.example.application", "New Name")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if strings.Contains(string(twice), "My App") {
+		t.Errorf("old name must be replaced\n%s", twice)
+	}
+	if n := strings.Count(string(twice), `INFOPLIST_KEY_CFBundleDisplayName = "New Name";`); n != 2 {
+		t.Errorf("new name count = %d, want 2\n%s", n, twice)
+	}
+}
+
+func TestApplyXcodeDisplayNameEmptyName(t *testing.T) {
+	got, err := applyXcodeDisplayName([]byte(stockPbxproj), "com.example.application", "")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if string(got) != string(stockPbxproj) {
+		t.Errorf("empty app_name must be a no-op")
+	}
+}
+
+func TestApplyXcodeDisplayNameMissingMarker(t *testing.T) {
+	bad := strings.Replace(stockPbxproj, "com.example.application;", "", 1)
+	if _, err := applyXcodeDisplayName([]byte(bad), "com.example.application", "My App"); err == nil {
+		t.Errorf("unexpected marker count must error")
+	}
+}
+
 func TestApplyAndroidAppID(t *testing.T) {
 	got, err := applyAndroidAppID([]byte(stockGradle), "com.mycompany.app")
 	if err != nil {
@@ -142,17 +220,63 @@ func TestApplyAndroidAppIDEmptyID(t *testing.T) {
 	}
 }
 
+func TestApplyAndroidLabel(t *testing.T) {
+	got, err := applyAndroidLabel([]byte(stockManifest), "My App")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(got), `android:label="My App"`) {
+		t.Errorf("label not patched:\n%s", got)
+	}
+	if strings.Contains(string(got), "Jasonelle") {
+		t.Errorf("stock label must be gone:\n%s", got)
+	}
+}
+
+func TestApplyAndroidLabelIdempotent(t *testing.T) {
+	once, err := applyAndroidLabel([]byte(stockManifest), "My App")
+	if err != nil {
+		t.Fatal(err)
+	}
+	twice, err := applyAndroidLabel(once, "My App")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if string(twice) != string(once) {
+		t.Errorf("second run must be a no-op")
+	}
+}
+
+func TestApplyAndroidLabelEmptyName(t *testing.T) {
+	got, err := applyAndroidLabel([]byte(stockManifest), "")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if string(got) != string(stockManifest) {
+		t.Errorf("empty app_name must be a no-op")
+	}
+}
+
+func TestApplyAndroidLabelUnexpectedCount(t *testing.T) {
+	bad := stockManifest + `<application android:label="Other"></application>`
+	if _, err := applyAndroidLabel([]byte(bad), "My App"); err == nil {
+		t.Errorf("multiple labels must error")
+	}
+}
+
 func TestRun(t *testing.T) {
 	dir := t.TempDir()
 	xcfg := filepath.Join(dir, "xcode-config.json")
 	acfg := filepath.Join(dir, "android-config.json")
 	xproj := filepath.Join(dir, "project.pbxproj")
 	aproj := filepath.Join(dir, "build.gradle.kts")
+	manifest := filepath.Join(dir, "AndroidManifest.xml")
 	for path, data := range map[string]string{
-		xcfg:  `{"app_id": "com.mycompany.app"}`,
-		acfg:  `{"app_id": "com.mycompany.app"}`,
-		xproj: stockPbxproj,
-		aproj: stockGradle,
+		xcfg:     `{"app_id": "com.mycompany.app", "app_name": "My App"}`,
+		acfg:     `{"app_id": "com.mycompany.app", "app_name": "My App"}`,
+		xproj:    stockPbxproj,
+		aproj:    stockGradle,
+		manifest: stockManifest,
 	} {
 		if err := os.WriteFile(path, []byte(data), 0644); err != nil {
 			t.Fatal(err)
@@ -162,6 +286,7 @@ func TestRun(t *testing.T) {
 	if err := run([]string{
 		"--xcode-config", xcfg, "--xcode-project", xproj,
 		"--android-config", acfg, "--android-project", aproj,
+		"--android-manifest", manifest,
 	}); err != nil {
 		t.Fatal(err)
 	}
@@ -173,6 +298,9 @@ func TestRun(t *testing.T) {
 	if !strings.Contains(string(xdata), "PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.app;") {
 		t.Errorf("xcode project not patched:\n%s", xdata)
 	}
+	if n := strings.Count(string(xdata), `INFOPLIST_KEY_CFBundleDisplayName = "My App";`); n != 2 {
+		t.Errorf("xcode display name count = %d, want 2:\n%s", n, xdata)
+	}
 
 	adata, err := os.ReadFile(aproj)
 	if err != nil {
@@ -180,5 +308,56 @@ func TestRun(t *testing.T) {
 	}
 	if !strings.Contains(string(adata), `applicationId = "com.mycompany.app"`) {
 		t.Errorf("android project not patched:\n%s", adata)
+	}
+
+	mdata, err := os.ReadFile(manifest)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(mdata), `android:label="My App"`) {
+		t.Errorf("android manifest not patched:\n%s", mdata)
+	}
+}
+
+func TestRunNoName(t *testing.T) {
+	dir := t.TempDir()
+	xcfg := filepath.Join(dir, "xcode-config.json")
+	acfg := filepath.Join(dir, "android-config.json")
+	xproj := filepath.Join(dir, "project.pbxproj")
+	aproj := filepath.Join(dir, "build.gradle.kts")
+	manifest := filepath.Join(dir, "AndroidManifest.xml")
+	for path, data := range map[string]string{
+		xcfg:     `{"app_id": "com.mycompany.app"}`,
+		acfg:     `{"app_id": "com.mycompany.app"}`,
+		xproj:    stockPbxproj,
+		aproj:    stockGradle,
+		manifest: stockManifest,
+	} {
+		if err := os.WriteFile(path, []byte(data), 0644); err != nil {
+			t.Fatal(err)
+		}
+	}
+
+	if err := run([]string{
+		"--xcode-config", xcfg, "--xcode-project", xproj,
+		"--android-config", acfg, "--android-project", aproj,
+		"--android-manifest", manifest,
+	}); err != nil {
+		t.Fatal(err)
+	}
+
+	xdata, err := os.ReadFile(xproj)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if strings.Contains(string(xdata), "INFOPLIST_KEY_CFBundleDisplayName") {
+		t.Errorf("xcode must not set display name without app_name:\n%s", xdata)
+	}
+	mdata, err := os.ReadFile(manifest)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(mdata), `android:label="Jasonelle"`) {
+		t.Errorf("android manifest must keep stock label without app_name:\n%s", mdata)
 	}
 }

@@ -38,11 +38,11 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
 - `task plugins.build` (alias `pb`): Generate the `tools/plugins` binary.
 - `task core` (alias `cr`): Assemble the app source tree into `build/<platform>/sources`, overlaying `lib/` overrides.
 - `task core.build` (alias `cb`): Generate the `tools/core` binary.
-- `task appid` (alias `aid`): Set the Xcode bundle identifiers and Android `applicationId` from the `app_id` in the merged configs.
-- `task appid.build` (alias `aib`): Generate the `tools/appid` binary.
+- `task appconf` (alias `aid`): Set the Xcode bundle identifiers/display name and Android `applicationId`/label from the `app_id` and `app_name` in the merged configs.
+- `task appconf.build` (alias `aib`): Generate the `tools/appconf` binary.
 - `task link` (alias `l`): Link the plugins present in `build/<platform>/sources` into the Xcode workspace and the Android projects.
 - `task link.build` (alias `lb`): Generate the `tools/link` binary.
-- `task gen`: Run the full build pipeline (icon, jsonc, bundler, plugins, core, link, appid).
+- `task gen`: Run the full build pipeline (icon, jsonc, bundler, plugins, core, link, appconf).
 - `task gen.build` (alias `gb`): Generate the `tools/gen` binary.
 
 ## Directory layout

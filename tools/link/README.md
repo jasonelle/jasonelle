@@ -1,7 +1,7 @@
 # Link
 
 Links the plugins present in the assembled source trees into the native
-projects. Run it after `task plugins` and `task core`, before `task appid`:
+projects. Run it after `task plugins` and `task core`, before `task appconf`:
 
 ```
 task jsonc
@@ -9,7 +9,7 @@ task bundler
 task plugins
 task core
 task link
-task appid
+task appconf
 ```
 
 The tool scans `build/<platform>/sources/` for top-level `JLPlugin*`

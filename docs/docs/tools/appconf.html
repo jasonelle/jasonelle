@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Appid :: Jasonelle Documentation</title>
-    <link rel="canonical" href="https://jasonelle.com/docs/tools/appid.html">
+    <title>Appconf :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/tools/appconf.html">
     <link rel="prev" href="core.html">
     <link rel="next" href="plugins.html">
     <meta name="generator" content="Antora 3.1.14">
@@ -118,7 +118,7 @@
     <a class="nav-link" href="core.html">Core</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="appid.html">Appid</a>
+    <a class="nav-link" href="appconf.html">Appconf</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugins.html">Plugins</a>
@@ -143,6 +143,9 @@
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../specs/2026-09-21-link-icons-design.html">Link Tool Copies and Verifies App Icons</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-22-appconf-app-name-design.html">Appconf Sets the App Name</a>
   </li>
 </ul>
   </li>
@@ -171,30 +174,37 @@
   <ul>
     <li><a href="../index.html">Jasonelle Documentation</a></li>
     <li>Tools</li>
-    <li><a href="appid.html">Appid</a></li>
+    <li><a href="appconf.html">Appconf</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///antora/antora/modules/tools/pages/appid.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/tools/pages/appconf.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Appid</h1>
+<h1 class="page">Appconf</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>A <a href="https://go.dev">Go</a> tool that sets the application identifiers of the
-assembled projects to the <code>app_id</code> in the merged per-platform configs. Run
+<p>A <a href="https://go.dev">Go</a> tool that sets the application identifiers and display
+names of the assembled projects from the merged per-platform configs. Run
 after <code>task core</code>, against <code>build/</code>.</p>
 </div>
 <div class="paragraph">
 <p>The Xcode project file is rewritten in place:
 <code>PRODUCT_BUNDLE_IDENTIFIER</code> of the Application (<code>app_id</code>), ApplicationTests
 (<code>app_id.Tests</code>) and ApplicationUITests (<code>app_id.UITests</code>) targets, in both
-Debug and Release configs. The Android <code>applicationId</code> is rewritten to
-<code>app_id</code>; the <code>namespace</code> is left untouched.</p>
+Debug and Release configs. <code>INFOPLIST_KEY_CFBundleDisplayName</code> is set on the
+Application target to <code>app_name</code>; <code>PRODUCT_NAME</code> stays <code>$(TARGET_NAME)</code> so
+the bundle keeps the name <code>Application.app</code> in the test host paths. The
+Android <code>applicationId</code> is rewritten to <code>app_id</code>; the <code>namespace</code> is left
+untouched. The Android <code>android:label</code> is rewritten to <code>app_name</code>.</p>
+</div>
+<div class="paragraph">
+<p>A missing or empty <code>app_name</code> leaves the app name untouched (only identifiers
+are set).</p>
 </div>
 <div class="paragraph">
 <p>Values are written literally, so the default wildcard <code>app_id</code>
@@ -230,7 +240,7 @@ contains binaries).</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">tools/appid/dist/appid-{{os}}-{{arch}}</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">tools/appconf/dist/appconf-{{os}}-{{arch}}</code></pre>
 </div>
 </div>
 <div class="sect2">
@@ -276,6 +286,12 @@ contains binaries).</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Path to the assembled Android Application module. Default:
 <code>build/android/sources/Application/build.gradle.kts</code>.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--android-manifest</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the assembled Android manifest. Default:
+<code>build/android/sources/Application/src/main/AndroidManifest.xml</code>.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -287,8 +303,9 @@ contains binaries).</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Reads <code>app_id</code> from the Xcode config. A missing or empty <code>app_id</code> is an
-error.</p>
+<p>Reads <code>app_id</code> and <code>app_name</code> from the Xcode config. A missing or empty
+<code>app_id</code> is an error; a missing or empty <code>app_name</code> skips the display
+name.</p>
 </li>
 <li>
 <p>Rewrites the three <code>PRODUCT_BUNDLE_IDENTIFIER</code> markers in the pbxproj.
@@ -298,12 +315,21 @@ the file was customized and the tool fails rather than guess. Matches are
 case-sensitive, so the Application id never collides with the test ids.</p>
 </li>
 <li>
-<p>Reads <code>app_id</code> from the Android config.</p>
+<p>Sets <code>INFOPLIST_KEY_CFBundleDisplayName</code> in both Application
+configurations. When a different name is already set it is replaced.</p>
+</li>
+<li>
+<p>Reads <code>app_id</code> and <code>app_name</code> from the Android config.</p>
 </li>
 <li>
 <p>Rewrites the single <code>applicationId = "&#8230;&#8203;"</code> line in the
 <code>build.gradle.kts</code>. The line must appear exactly once; when its value
 already equals <code>app_id</code> it is left unchanged.</p>
+</li>
+<li>
+<p>Rewrites the single <code>android:label="&#8230;&#8203;"</code> line in the manifest. The line
+must appear exactly once; when its value already equals <code>app_name</code> it is
+left unchanged.</p>
 </li>
 </ol>
 </div>
@@ -321,15 +347,15 @@ already equals <code>app_id</code> it is left unchanged.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>task appid</code> (<code>aid</code>): set the app identifiers for both Xcode and Android.</p>
+<p><code>task appconf</code> (<code>aid</code>): set the app identifiers for both Xcode and Android.</p>
 </li>
 <li>
-<p><code>task appid.build</code> (<code>aib</code>): build the <code>tools/appid</code> binary.</p>
+<p><code>task appconf.build</code> (<code>aib</code>): build the <code>tools/appconf</code> binary.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>From <code>tools/appid/src</code>:</p>
+<p>From <code>tools/appconf/src</code>:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -349,7 +375,7 @@ already equals <code>app_id</code> it is left unchanged.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p><code>dist/</code> contains prebuilt binaries for each platform, named
-<code>appid-&lt;os&gt;-&lt;arch&gt;</code> (Windows uses <code>.exe</code>).</p>
+<code>appconf-&lt;os&gt;-&lt;arch&gt;</code> (Windows uses <code>.exe</code>).</p>
 </div>
 </div>
 </div>

@@ -32,6 +32,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"path/filepath"
 )
 
 func main() {
@@ -70,6 +71,9 @@ func run(args []string) error {
 
 	out, err := json.MarshalIndent(merged, "", "  ")
 	if err != nil {
+		return err
+	}
+	if err := os.MkdirAll(filepath.Dir(*output), 0755); err != nil {
 		return err
 	}
 	return os.WriteFile(*output, append(out, '\n'), 0644)

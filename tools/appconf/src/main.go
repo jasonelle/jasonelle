@@ -1,6 +1,6 @@
 //
 //  main.go
-//  tools/appid
+//  tools/appconf
 //
 //  Created by [Camilo Castro (@clsource)](https://ninjas.cl) on 2026-09-20
 //  Made with love in Chile.
@@ -43,16 +43,17 @@ func main() {
 }
 
 func run(args []string) error {
-	fs := flag.NewFlagSet("appid", flag.ContinueOnError)
+	fs := flag.NewFlagSet("appconf", flag.ContinueOnError)
 	xcodeConfig := fs.String("xcode-config", "build/xcode/config/config.jsonc", "path to the merged Xcode config.jsonc")
 	xcodeProject := fs.String("xcode-project", "build/xcode/sources/Application/Application.xcodeproj/project.pbxproj", "path to the Xcode project.pbxproj")
 	androidConfig := fs.String("android-config", "build/android/config/config.jsonc", "path to the merged Android config.jsonc")
 	androidProject := fs.String("android-project", "build/android/sources/Application/build.gradle.kts", "path to the Android Application build.gradle.kts")
+	androidManifest := fs.String("android-manifest", "build/android/sources/Application/src/main/AndroidManifest.xml", "path to the Android Application AndroidManifest.xml")
 	if err := fs.Parse(args); err != nil {
 		return err
 	}
 
-	appID, err := readAppID(*xcodeConfig)
+	cfg, err := readConfig(*xcodeConfig)
 	if err != nil {
 		return err
 	}
@@ -61,7 +62,11 @@ func run(args []string) error {
 	if err != nil {
 		return err
 	}
-	patched, err := applyXcodeProjectIDs(xcodeContent, appID)
+	patched, err := applyXcodeProjectIDs(xcodeContent, cfg.AppID)
+	if err != nil {
+		return err
+	}
+	patched, err = applyXcodeDisplayName(patched, cfg.AppID, cfg.AppName)
 	if err != nil {
 		return err
 	}
@@ -71,7 +76,7 @@ func run(args []string) error {
 		}
 	}
 
-	appID, err = readAppID(*androidConfig)
+	cfg, err = readConfig(*androidConfig)
 	if err != nil {
 		return err
 	}
@@ -80,7 +85,7 @@ func run(args []string) error {
 	if err != nil {
 		return err
 	}
-	patched, err = applyAndroidAppID(androidContent, appID)
+	patched, err = applyAndroidAppID(androidContent, cfg.AppID)
 	if err != nil {
 		return err
 	}
@@ -89,25 +94,43 @@ func run(args []string) error {
 			return err
 		}
 	}
+
+	manifestContent, err := os.ReadFile(*androidManifest)
+	if err != nil {
+		return err
+	}
+	patched, err = applyAndroidLabel(manifestContent, cfg.AppName)
+	if err != nil {
+		return err
+	}
+	if string(manifestContent) != string(patched) {
+		if err := os.WriteFile(*androidManifest, patched, 0644); err != nil {
+			return err
+		}
+	}
 	return nil
 }
 
-// readAppID reads the JSON config and returns the app_id property.
-func readAppID(path string) (string, error) {
+type appConfig struct {
+	AppID   string `json:"app_id"`
+	AppName string `json:"app_name"`
+}
+
+// readConfig reads the JSON config properties. app_id is required; app_name is
+// optional and an empty value simply leaves the app name untouched.
+func readConfig(path string) (appConfig, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
-		return "", err
+		return appConfig{}, err
 	}
-	var cfg struct {
-		AppID string `json:"app_id"`
-	}
+	var cfg appConfig
 	if err := json.Unmarshal(data, &cfg); err != nil {
-		return "", fmt.Errorf("%s: %w", path, err)
+		return appConfig{}, fmt.Errorf("%s: %w", path, err)
 	}
 	if cfg.AppID == "" {
-		return "", fmt.Errorf("%s: app_id is required", path)
+		return appConfig{}, fmt.Errorf("%s: app_id is required", path)
 	}
-	return cfg.AppID, nil
+	return cfg, nil
 }
 
 // xcodeBundles pairs each target's stock bundle id marker with the suffix
@@ -148,7 +171,54 @@ func applyXcodeProjectIDs(content []byte, appID string) ([]byte, error) {
 	return []byte(out), nil
 }
 
+var xcodeDisplayNameRe = regexp.MustCompile(`\n(\t+)INFOPLIST_KEY_CFBundleDisplayName = "[^"]*";`)
+
+// applyXcodeDisplayName adds INFOPLIST_KEY_CFBundleDisplayName to the
+// Application target's two build configurations (Debug + Release), anchoring
+// on the Application PRODUCT_BUNDLE_IDENTIFIER line (the one with no suffix).
+// A missing appName is a no-op. When the name is already applied twice the
+// content is unchanged; when a different name is applied twice it is replaced;
+// any other count means the file was customized and the tool fails.
+func applyXcodeDisplayName(content []byte, appID, appName string) ([]byte, error) {
+	if appName == "" {
+		return content, nil
+	}
+	add := "\n\t\t\t\tINFOPLIST_KEY_CFBundleDisplayName = \"" + appName + "\";"
+	marker := "PRODUCT_BUNDLE_IDENTIFIER = " + appID + ";"
+	stockN := strings.Count(string(content), marker)
+	oldN := len(xcodeDisplayNameRe.FindAll(content, -1))
+	switch {
+	case oldN == 2:
+		return xcodeDisplayNameRe.ReplaceAll(content, []byte(add)), nil
+	case stockN == 2:
+		out := strings.Replace(string(content), marker, marker+add, 2)
+		return []byte(out), nil
+	default:
+		return nil, fmt.Errorf("unexpected %q occurrences (markers: %d, names: %d)", marker, stockN, oldN)
+	}
+}
+
+// applyAndroidLabel rewrites the android:label value in the AndroidManifest.xml
+// content to match appName. A missing appName is a no-op. Exactly one label
+// line is expected; when its value already equals appName the content is
+// returned unchanged. Any other count means the file was customized and the
+// tool fails rather than guess.
+func applyAndroidLabel(content []byte, appName string) ([]byte, error) {
+	if appName == "" {
+		return content, nil
+	}
+	matches := androidLabelRe.FindAllStringSubmatch(string(content), -1)
+	if len(matches) != 1 {
+		return nil, fmt.Errorf("expected exactly one android:label line, found %d", len(matches))
+	}
+	if matches[0][1] == appName {
+		return content, nil
+	}
+	return androidLabelRe.ReplaceAll(content, []byte("android:label=\""+appName+"\"")), nil
+}
+
 var androidAppIDRe = regexp.MustCompile(`applicationId = "([^"]*)"`)
+var androidLabelRe = regexp.MustCompile(`android:label="([^"]*)"`)
 
 // applyAndroidAppID rewrites the applicationId value in the build.gradle.kts
 // content to match appID. Exactly one applicationId line is expected; when its

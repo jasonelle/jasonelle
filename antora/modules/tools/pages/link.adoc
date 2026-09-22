@@ -10,7 +10,7 @@ linked plugin (`JLKernel`, non-`JLPlugin` projects) is left untouched;
 xref:specs:2026-09-20-link-copy-artifacts-design.adoc[app artifact copy]
 below.
 
-Run it after `task plugins` and `task core`, before `task appid`:
+Run it after `task plugins` and `task core`, before `task appconf`:
 
 ```
 task jsonc
@@ -18,7 +18,7 @@ task bundler
 task plugins
 task core
 task link
-task appid
+task appconf
 ```
 
 == Requirements

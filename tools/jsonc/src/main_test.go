@@ -84,6 +84,18 @@ func TestRunMergesJSONC(t *testing.T) {
 	}
 }
 
+func TestRunCreatesOutputDirs(t *testing.T) {
+	dir := t.TempDir()
+	in := writeJSONC(t, dir, "base.jsonc", `{"a": 1}`)
+	out := filepath.Join(dir, "nested", "deep", "config.jsonc")
+	if err := run([]string{"--output", out, in}); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := os.Stat(out); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestRunErrors(t *testing.T) {
 	dir := t.TempDir()
 	if err := run(nil); err == nil || !strings.Contains(err.Error(), "-output") {

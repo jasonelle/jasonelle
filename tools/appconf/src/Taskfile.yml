@@ -1,5 +1,5 @@
 #
-#  tools/appid/Taskfile.yml
+#  tools/appconf/Taskfile.yml
 #
 #  Created by [Camilo Castro (@clsource)](https://ninjas.cl) on 2026-09-20
 #  Made with love in Chile.
@@ -42,14 +42,14 @@ tasks:
     cmds:
       - rm -rf ../dist
       - mkdir -p ../dist
-      - GOOS=darwin GOARCH=amd64 go build -o ../dist/appid-darwin-amd64 .
-      - GOOS=darwin GOARCH=arm64 go build -o ../dist/appid-darwin-arm64 .
-      - GOOS=linux GOARCH=amd64 go build -o ../dist/appid-linux-amd64 .
-      - GOOS=windows GOARCH=amd64 go build -o ../dist/appid-windows-amd64.exe .
+      - GOOS=darwin GOARCH=amd64 go build -o ../dist/appconf-darwin-amd64 .
+      - GOOS=darwin GOARCH=arm64 go build -o ../dist/appconf-darwin-arm64 .
+      - GOOS=linux GOARCH=amd64 go build -o ../dist/appconf-linux-amd64 .
+      - GOOS=windows GOARCH=amd64 go build -o ../dist/appconf-windows-amd64.exe .
   test:
     aliases:
       - t
-    desc: Test the current version of the appid tool
+    desc: Test the current version of the appconf tool
     cmds:
       - go test
   format:

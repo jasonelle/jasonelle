@@ -1,3 +1,4 @@
 .Specs
 * xref:2026-09-20-link-copy-artifacts-design.adoc[]
 * xref:2026-09-21-link-icons-design.adoc[]
+* xref:2026-09-22-appconf-app-name-design.adoc[]

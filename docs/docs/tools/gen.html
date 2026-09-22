@@ -118,7 +118,7 @@
     <a class="nav-link" href="core.html">Core</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="appid.html">Appid</a>
+    <a class="nav-link" href="appconf.html">Appconf</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugins.html">Plugins</a>
@@ -143,6 +143,9 @@
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../specs/2026-09-21-link-icons-design.html">Link Tool Copies and Verifies App Icons</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-22-appconf-app-name-design.html">Appconf Sets the App Name</a>
   </li>
 </ul>
   </li>
@@ -186,7 +189,7 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>A <a href="https://go.dev">Go</a> tool that runs the full build pipeline — <code>icon</code>, <code>jsonc</code>,
-<code>bundler</code>, <code>plugins</code>, <code>core</code>, <code>link</code>, <code>appid</code> — the way <code>task gen</code> would, but
+<code>bundler</code>, <code>plugins</code>, <code>core</code>, <code>link</code>, <code>appconf</code> — the way <code>task gen</code> would, but
 without needing <a href="https://taskfile.dev">go-task</a> installed. It invokes each
 step&#8217;s prebuilt <code>tools/&lt;step&gt;/dist/</code> binary with the arguments the pipeline
 ordinarily passes, resolving the repository root from the running binary&#8217;s
@@ -249,7 +252,7 @@ each <code>tools/&lt;step&gt;/src/</code>. A missing binary fails the run with a
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--steps</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated steps to run (<code>icon,jsonc,bundler,plugins,core,link,appid</code>).
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated steps to run (<code>icon,jsonc,bundler,plugins,core,link,appconf</code>).
 Default: all.</p></td>
 </tr>
 </tbody>
@@ -262,7 +265,7 @@ Default: all.</p></td>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Steps run in dependency order: <code>plugins</code> wipes <code>build/&lt;platform&gt;/sources/</code>,
-so it must run before <code>core</code>. <code>core</code>, <code>link</code> and <code>appid</code> take no arguments —
+so it must run before <code>core</code>. <code>core</code>, <code>link</code> and <code>appconf</code> take no arguments —
 the rest are passed the paths pointing into <code>lib/</code> and <code>build/</code> their docs on
 this page describe.</p>
 </div>

@@ -21,7 +21,7 @@ CLI approach, and a strictly separated directory structure.
    are copied first, platform scripts overlay on top.
 5. *Unified Build Pipeline*: the `gen` tool (run via the `Taskfile` `gen` task)
    orchestrates the Go tools `icon`, `jsonc`, `bundler`, `plugins`, `core`,
-   `link` and `appid` to assemble both `build/xcode` and `build/android` from
+   `link` and `appconf` to assemble both `build/xcode` and `build/android` from
    the same `lib/` and `sources/` inputs.
 
 == Build Pipeline
@@ -73,7 +73,7 @@ and the Application project, and copies the built `config.jsonc` and
 `webview.js` into the assembled app.
 
 |7
-|`appid`
+|`appconf`
 |`build/<platform>/sources/`
 |Rewrites `PRODUCT_BUNDLE_IDENTIFIER` / `applicationId` from the `app_id` in
 the merged configs.
@@ -85,7 +85,7 @@ configured native project ready to open and build.
 == C4 Architecture Diagram
 
 The diagram below shows the current architecture. The `gen` tool runs the
-`icon`, `jsonc`, `bundler`, `plugins`, `core`, `link` and `appid` Go tools in
+`icon`, `jsonc`, `bundler`, `plugins`, `core`, `link` and `appconf` Go tools in
 order for both platforms, reading from `lib/` and `sources/` and writing to
 `build/`.
 
@@ -97,14 +97,14 @@ order for both platforms, reading from `lib/` and `sources/` and writing to
 Person(developer, "Developer", "Runs the gen build pipeline")
 
 System_Boundary(jasonelle, "Jasonelle Framework") {
-    Container(gen, "gen", "Go", "Orchestrates the pipeline: icon, jsonc, bundler, plugins, core, link and appid")
+    Container(gen, "gen", "Go", "Orchestrates the pipeline: icon, jsonc, bundler, plugins, core, link and appconf")
     Container(icon, "icon", "Go", "Generates per-platform app icons")
     Container(jsonc, "jsonc", "Go", "Merges cascading config.jsonc / store.jsonc")
     Container(bundler, "bundler", "Go", "Bundles TypeScript into webview.js (esbuild)")
     Container(plugins, "plugins", "Go", "Copies configured plugins into sources")
     Container(core, "core", "Go", "Assembles app source tree (overlays overrides)")
     Container(link, "link", "Go", "Links plugins into native projects; copies artifacts")
-    Container(appid, "appid", "Go", "Sets bundle ID / applicationId from app_id")
+    Container(appconf, "appconf", "Go", "Sets bundle ID / applicationId from app_id")
 
     ContainerDb(sources, "sources/", "File System", "Stock Xcode and Android project templates")
     ContainerDb(lib, "lib/", "File System", "Cascading config, scripts, assets and overrides")
@@ -122,7 +122,7 @@ Rel(gen, bundler, "Runs step 3")
 Rel(gen, plugins, "Runs step 4")
 Rel(gen, core, "Runs step 5")
 Rel(gen, link, "Runs step 6")
-Rel(gen, appid, "Runs step 7")
+Rel(gen, appconf, "Runs step 7")
 
 Rel(icon, lib, "Writes per-platform icons")
 
@@ -145,8 +145,8 @@ Rel(core, build_android, "Assembles sources/")
 Rel(link, build_xcode, "Links plugins; copies config & webview")
 Rel(link, build_android, "Links plugins; copies config & webview")
 
-Rel(appid, build_xcode, "Sets bundle identifiers")
-Rel(appid, build_android, "Sets applicationId")
+Rel(appconf, build_xcode, "Sets bundle identifiers")
+Rel(appconf, build_android, "Sets applicationId")
 
 @enduml
 ----
@@ -192,7 +192,7 @@ package "CLI Tools (tools/)" {
   [plugins (Go)] as plugins
   [core (Go)] as core
   [link (Go)] as link
-  [appid (Go)] as appid
+  [appconf (Go)] as appconf
 }
 
 package "Build Output (build/)" {
@@ -216,7 +216,7 @@ gen --> bundler : Runs step 3
 gen --> plugins : Runs step 4
 gen --> core : Runs step 5
 gen --> link : Runs step 6
-gen --> appid : Runs step 7
+gen --> appconf : Runs step 7
 
 ' Icon generation
 lib --> icon : Reads 1024x1024.png
@@ -247,8 +247,8 @@ link --> build_xcode : Links plugins; copies config & webview
 link --> build_android : Links plugins; copies config & webview
 
 ' App identifiers
-appid --> build_xcode : Sets bundle identifiers
-appid --> build_android : Sets applicationId
+appconf --> build_xcode : Sets bundle identifiers
+appconf --> build_android : Sets applicationId
 
 @enduml
 ----
@@ -285,14 +285,14 @@ appid --> build_android : Sets applicationId
 
 * `tools/`: CLI tools and vendored binaries.
 ** `tools/gen/`: Runs the full build pipeline (`icon`, `jsonc`, `bundler`,
-`plugins`, `core`, `link`, `appid`) as the `Taskfile` would (Go).
+`plugins`, `core`, `link`, `appconf`) as the `Taskfile` would (Go).
 ** `tools/icon/`: Generates per-platform app icons from a 1024x1024 PNG (Go).
 ** `tools/jsonc/`: Merges cascading JSONC config files (Go).
 ** `tools/bundler/`: Bundles TypeScript into `webview.js` via esbuild (Go).
 ** `tools/plugins/`: Copies the configured plugins into the build sources (Go).
 ** `tools/core/`: Assembles the app source tree, overlaying overrides (Go).
 ** `tools/link/`: Links plugins into the native projects and copies app artifacts (Go).
-** `tools/appid/`: Sets the app identifiers from the merged configs (Go).
+** `tools/appconf/`: Sets the app identifiers from the merged configs (Go).
 ** `tools/vendor/esbuild/`: Vendored esbuild binary for TypeScript bundling.
 
 * `build/`: Generated output (git-ignored).

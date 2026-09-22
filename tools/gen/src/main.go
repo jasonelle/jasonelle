@@ -40,7 +40,7 @@ import (
 
 // stepOrder is the canonical pipeline order. plugins wipes
 // build/<platform>/sources, so it must run before core.
-var stepOrder = []string{"icon", "jsonc", "bundler", "plugins", "core", "link", "appid"}
+var stepOrder = []string{"icon", "jsonc", "bundler", "plugins", "core", "link", "appconf"}
 
 // genStep builds the arguments for every invocation of one pipeline step.
 type genStep struct {
@@ -116,7 +116,7 @@ func defaultSteps() []genStep {
 		{"plugins", pluginsCmds},
 		{"core", noArgs},
 		{"link", noArgs},
-		{"appid", noArgs},
+		{"appconf", noArgs},
 	}
 }
 
@@ -181,14 +181,33 @@ func binPath(root, name, goos, goarch string) string {
 	return p
 }
 
+// resetBuild wipes build/ and recreates the base layout every step expects.
+func resetBuild(root string) error {
+	build := filepath.Join(root, "build")
+	if err := os.RemoveAll(build); err != nil {
+		return err
+	}
+	for _, plat := range []string{"xcode", "android"} {
+		for _, dir := range []string{"config", "scripts", "sources"} {
+			if err := os.MkdirAll(filepath.Join(build, plat, dir), 0755); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
 func execute(root string, steps []genStep, goos, goarch string) error {
+	if err := resetBuild(root); err != nil {
+		return fmt.Errorf("reset build: %w", err)
+	}
 	for _, s := range steps {
 		bin := binPath(root, s.name, goos, goarch)
 		if _, err := os.Stat(bin); err != nil {
 			return fmt.Errorf("missing %s binary %s: build it first with 'cd tools/%s/src && task build'", s.name, bin, s.name)
 		}
 		for _, args := range s.cmds(root, goos, goarch) {
-			fmt.Fprintf(os.Stderr, "==> gen %s\n", s.name)
+			fmt.Fprintf(os.Stderr, "==> gen %s %s\n", s.name, strings.Join(args, " "))
 			cmd := exec.Command(bin, args...)
 			cmd.Dir = root
 			cmd.Stdout = os.Stdout

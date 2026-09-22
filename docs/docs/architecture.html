@@ -118,7 +118,7 @@
     <a class="nav-link" href="tools/core.html">Core</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tools/appid.html">Appid</a>
+    <a class="nav-link" href="tools/appconf.html">Appconf</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="tools/plugins.html">Plugins</a>
@@ -143,6 +143,9 @@
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="specs/2026-09-21-link-icons-design.html">Link Tool Copies and Verifies App Icons</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="specs/2026-09-22-appconf-app-name-design.html">Appconf Sets the App Name</a>
   </li>
 </ul>
   </li>
@@ -220,7 +223,7 @@ are copied first, platform scripts overlay on top.</p>
 <li>
 <p><strong>Unified Build Pipeline</strong>: the <code>gen</code> tool (run via the <code>Taskfile</code> <code>gen</code> task)
 orchestrates the Go tools <code>icon</code>, <code>jsonc</code>, <code>bundler</code>, <code>plugins</code>, <code>core</code>,
-<code>link</code> and <code>appid</code> to assemble both <code>build/xcode</code> and <code>build/android</code> from
+<code>link</code> and <code>appconf</code> to assemble both <code>build/xcode</code> and <code>build/android</code> from
 the same <code>lib/</code> and <code>sources/</code> inputs.</p>
 </li>
 </ol>
@@ -297,7 +300,7 @@ and the Application project, and copies the built <code>config.jsonc</code> and
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>appid</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>appconf</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>build/&lt;platform&gt;/sources/</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Rewrites <code>PRODUCT_BUNDLE_IDENTIFIER</code> / <code>applicationId</code> from the <code>app_id</code> in
 the merged configs.</p></td>
@@ -315,13 +318,13 @@ configured native project ready to open and build.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The diagram below shows the current architecture. The <code>gen</code> tool runs the
-<code>icon</code>, <code>jsonc</code>, <code>bundler</code>, <code>plugins</code>, <code>core</code>, <code>link</code> and <code>appid</code> Go tools in
+<code>icon</code>, <code>jsonc</code>, <code>bundler</code>, <code>plugins</code>, <code>core</code>, <code>link</code> and <code>appconf</code> Go tools in
 order for both platforms, reading from <code>lib/</code> and <code>sources/</code> and writing to
 <code>build/</code>.</p>
 </div>
 <div class="imageblock kroki">
 <div class="content">
-<img src="_images/c4_architecture-249b16ededd777ea29fc91a9b32ef976574f18a0.png" alt="c4_architecture">
+<img src="_images/c4_architecture-8f9014e85d922d2c4e98bcfeed2184babfe4483f.png" alt="c4_architecture">
 </div>
 </div>
 </div>
@@ -334,7 +337,7 @@ order for both platforms, reading from <code>lib/</code> and <code>sources/</cod
 </div>
 <div class="imageblock kroki">
 <div class="content">
-<img src="_images/architecture_flow-6e8b9b6e049d4de9139767b6a95043c26e07e2ea.png" alt="architecture_flow">
+<img src="_images/architecture_flow-65a3f6351c348803575d542ee644e9c70096ed80.png" alt="architecture_flow">
 </div>
 </div>
 </div>
@@ -451,7 +454,7 @@ order for both platforms, reading from <code>lib/</code> and <code>sources/</cod
 <ul>
 <li>
 <p><code>tools/gen/</code>: Runs the full build pipeline (<code>icon</code>, <code>jsonc</code>, <code>bundler</code>,
-<code>plugins</code>, <code>core</code>, <code>link</code>, <code>appid</code>) as the <code>Taskfile</code> would (Go).</p>
+<code>plugins</code>, <code>core</code>, <code>link</code>, <code>appconf</code>) as the <code>Taskfile</code> would (Go).</p>
 </li>
 <li>
 <p><code>tools/icon/</code>: Generates per-platform app icons from a 1024x1024 PNG (Go).</p>
@@ -472,7 +475,7 @@ order for both platforms, reading from <code>lib/</code> and <code>sources/</cod
 <p><code>tools/link/</code>: Links plugins into the native projects and copies app artifacts (Go).</p>
 </li>
 <li>
-<p><code>tools/appid/</code>: Sets the app identifiers from the merged configs (Go).</p>
+<p><code>tools/appconf/</code>: Sets the app identifiers from the merged configs (Go).</p>
 </li>
 <li>
 <p><code>tools/vendor/esbuild/</code>: Vendored esbuild binary for TypeScript bundling.</p>

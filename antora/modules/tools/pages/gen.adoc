@@ -1,7 +1,7 @@
 = Gen
 
 A https://go.dev[Go] tool that runs the full build pipeline — `icon`, `jsonc`,
-`bundler`, `plugins`, `core`, `link`, `appid` — the way `task gen` would, but
+`bundler`, `plugins`, `core`, `link`, `appconf` — the way `task gen` would, but
 without needing https://taskfile.dev[go-task] installed. It invokes each
 step's prebuilt `tools/<step>/dist/` binary with the arguments the pipeline
 ordinarily passes, resolving the repository root from the running binary's
@@ -37,14 +37,14 @@ Each step's output is printed as `==> gen <step>`.
 |Flag |Description
 
 |`--steps`
-|Comma-separated steps to run (`icon,jsonc,bundler,plugins,core,link,appid`).
+|Comma-separated steps to run (`icon,jsonc,bundler,plugins,core,link,appconf`).
 Default: all.
 |===
 
 == Pipeline order
 
 Steps run in dependency order: `plugins` wipes `build/<platform>/sources/`,
-so it must run before `core`. `core`, `link` and `appid` take no arguments —
+so it must run before `core`. `core`, `link` and `appconf` take no arguments —
 the rest are passed the paths pointing into `lib/` and `build/` their docs on
 this page describe.
 

@@ -244,17 +244,17 @@ tasks:
       - task build
 
   # Appid Tool
-  appid:
+  appconf:
     aliases:
       - aid
     desc: Set the Xcode bundle identifiers and Android applicationId from the app_id in the merged configs
     cmds:
-      - 'tools/appid/dist/appid-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }}'
-  appid.build:
+      - 'tools/appconf/dist/appconf-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }}'
+  appconf.build:
     aliases:
       - aib
-    dir: tools/appid/src
-    desc: Generate tools/appid binary
+    dir: tools/appconf/src
+    desc: Generate tools/appconf binary
     cmds:
       - task build
 
@@ -275,7 +275,7 @@ tasks:
 
   # Gen Tool
   gen:
-    desc: Run the full build pipeline (icon, jsonc, bundler, plugins, core, link, appid)
+    desc: Run the full build pipeline (icon, jsonc, bundler, plugins, core, link, appconf)
     cmds:
       - 'tools/gen/dist/gen-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }}'
   gen.build:

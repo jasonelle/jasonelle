@@ -2,6 +2,7 @@
 {
     "url": "https://jasonelle.com",
     "app_id": "com.example.application", // bundle identifier for xcode and application identifier for android
+    "app_name": "Jasonelle",
     "inspectable": true, // allows debugging information to be inspected by safari (xcode)
     "allowed": ["github.com"], // If is empty or nil all urls will load in the main webview. Otherwise only the domains present will load inside the main webview.
     "plugins": {

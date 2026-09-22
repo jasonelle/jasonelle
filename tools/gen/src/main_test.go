@@ -130,6 +130,41 @@ func TestExecute(t *testing.T) {
 	}
 }
 
+func TestExecuteResetsBuild(t *testing.T) {
+	root := t.TempDir()
+	goos, goarch := runtime.GOOS, runtime.GOARCH
+	for _, name := range stepOrder {
+		writeStub(t, filepath.Join(root, "tools", name, "dist"), name+"-"+goos+"-"+goarch, name, filepath.Join(root, "calls.log"))
+	}
+	stale := filepath.Join(root, "build", "xcode", "stale.txt")
+	if err := os.MkdirAll(filepath.Dir(stale), 0755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(stale, []byte("old"), 0644); err != nil {
+		t.Fatal(err)
+	}
+
+	steps, err := selectSteps("core")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := execute(root, steps, goos, goarch); err != nil {
+		t.Fatal(err)
+	}
+
+	if _, err := os.Stat(stale); !os.IsNotExist(err) {
+		t.Fatalf("stale build file survived reset: %v", err)
+	}
+	for _, plat := range []string{"xcode", "android"} {
+		for _, dir := range []string{"config", "scripts", "sources"} {
+			p := filepath.Join(root, "build", plat, dir)
+			if fi, err := os.Stat(p); err != nil || !fi.IsDir() {
+				t.Fatalf("missing base dir %s: %v", p, err)
+			}
+		}
+	}
+}
+
 func TestExecuteMissingBinary(t *testing.T) {
 	root := t.TempDir()
 	steps, err := selectSteps("core")

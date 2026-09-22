@@ -1,14 +1,20 @@
-= Appid
+= Appconf
 
-A https://go.dev[Go] tool that sets the application identifiers of the
-assembled projects to the `app_id` in the merged per-platform configs. Run
+A https://go.dev[Go] tool that sets the application identifiers and display
+names of the assembled projects from the merged per-platform configs. Run
 after `task core`, against `build/`.
 
 The Xcode project file is rewritten in place:
 `PRODUCT_BUNDLE_IDENTIFIER` of the Application (`app_id`), ApplicationTests
 (`app_id.Tests`) and ApplicationUITests (`app_id.UITests`) targets, in both
-Debug and Release configs. The Android `applicationId` is rewritten to
-`app_id`; the `namespace` is left untouched.
+Debug and Release configs. `INFOPLIST_KEY_CFBundleDisplayName` is set on the
+Application target to `app_name`; `PRODUCT_NAME` stays `$(TARGET_NAME)` so
+the bundle keeps the name `Application.app` in the test host paths. The
+Android `applicationId` is rewritten to `app_id`; the `namespace` is left
+untouched. The Android `android:label` is rewritten to `app_name`.
+
+A missing or empty `app_name` leaves the app name untouched (only identifiers
+are set).
 
 Values are written literally, so the default wildcard `app_id`
 (`com.example.*`) is not translated. Re-running is a no-op.
@@ -27,7 +33,7 @@ From the repository root:
 
 [source,sh]
 ----
-tools/appid/dist/appid-{{os}}-{{arch}}
+tools/appconf/dist/appconf-{{os}}-{{arch}}
 ----
 
 === Flags
@@ -57,21 +63,32 @@ All flags have defaults that point to the standard `build/` tree.
 |No
 |Path to the assembled Android Application module. Default:
 `build/android/sources/Application/build.gradle.kts`.
+
+|`--android-manifest`
+|No
+|Path to the assembled Android manifest. Default:
+`build/android/sources/Application/src/main/AndroidManifest.xml`.
 |===
 
 == How it works
 
-1. Reads `app_id` from the Xcode config. A missing or empty `app_id` is an
-   error.
+1. Reads `app_id` and `app_name` from the Xcode config. A missing or empty
+   `app_id` is an error; a missing or empty `app_name` skips the display
+   name.
 2. Rewrites the three `PRODUCT_BUNDLE_IDENTIFIER` markers in the pbxproj.
    Each marker must appear exactly twice (Debug + Release) or, when the file
    was already patched, the new value must appear twice. Any other count means
    the file was customized and the tool fails rather than guess. Matches are
    case-sensitive, so the Application id never collides with the test ids.
-3. Reads `app_id` from the Android config.
-4. Rewrites the single `applicationId = "..."` line in the
+3. Sets `INFOPLIST_KEY_CFBundleDisplayName` in both Application
+   configurations. When a different name is already set it is replaced.
+4. Reads `app_id` and `app_name` from the Android config.
+5. Rewrites the single `applicationId = "..."` line in the
    `build.gradle.kts`. The line must appear exactly once; when its value
    already equals `app_id` it is left unchanged.
+6. Rewrites the single `android:label="..."` line in the manifest. The line
+   must appear exactly once; when its value already equals `app_name` it is
+   left unchanged.
 
 Files are only written when they changed.
 
@@ -79,10 +96,10 @@ Files are only written when they changed.
 
 From the repository root:
 
-* `task appid` (`aid`): set the app identifiers for both Xcode and Android.
-* `task appid.build` (`aib`): build the `tools/appid` binary.
+* `task appconf` (`aid`): set the app identifiers for both Xcode and Android.
+* `task appconf.build` (`aib`): build the `tools/appconf` binary.
 
-From `tools/appid/src`:
+From `tools/appconf/src`:
 
 * `task build` (`b`): cross-compile binaries into `../dist/` for macOS
   (amd64/arm64), Linux (amd64) and Windows (amd64).
@@ -91,4 +108,4 @@ From `tools/appid/src`:
 == Release binaries
 
 `dist/` contains prebuilt binaries for each platform, named
-`appid-<os>-<arch>` (Windows uses `.exe`).
+`appconf-<os>-<arch>` (Windows uses `.exe`).
