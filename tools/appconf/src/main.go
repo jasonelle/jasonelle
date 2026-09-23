@@ -33,7 +33,9 @@ import (
 	"fmt"
 	"os"
 	"regexp"
+	"strconv"
 	"strings"
+	"time"
 )
 
 func main() {
@@ -57,6 +59,7 @@ func run(args []string) error {
 	if err != nil {
 		return err
 	}
+	build := time.Now().Unix()
 
 	xcodeContent, err := os.ReadFile(*xcodeProject)
 	if err != nil {
@@ -67,6 +70,10 @@ func run(args []string) error {
 		return err
 	}
 	patched, err = applyXcodeDisplayName(patched, cfg.AppID, cfg.AppName)
+	if err != nil {
+		return err
+	}
+	patched, err = applyXcodeVersion(patched, cfg.AppID, cfg.AppVersion, build)
 	if err != nil {
 		return err
 	}
@@ -86,6 +93,10 @@ func run(args []string) error {
 		return err
 	}
 	patched, err = applyAndroidAppID(androidContent, cfg.AppID)
+	if err != nil {
+		return err
+	}
+	patched, err = applyAndroidVersion(patched, cfg.AppVersion, build)
 	if err != nil {
 		return err
 	}
@@ -112,8 +123,9 @@ func run(args []string) error {
 }
 
 type appConfig struct {
-	AppID   string `json:"app_id"`
-	AppName string `json:"app_name"`
+	AppID      string `json:"app_id"`
+	AppName    string `json:"app_name"`
+	AppVersion string `json:"app_version"`
 }
 
 // readConfig reads the JSON config properties. app_id is required; app_name is
@@ -219,6 +231,60 @@ func applyAndroidLabel(content []byte, appName string) ([]byte, error) {
 
 var androidAppIDRe = regexp.MustCompile(`applicationId = "([^"]*)"`)
 var androidLabelRe = regexp.MustCompile(`android:label="([^"]*)"`)
+
+var xcodeProjectVersionRe = regexp.MustCompile(`CURRENT_PROJECT_VERSION = [0-9]+;`)
+var xcodeMarketingVersionRe = regexp.MustCompile(`MARKETING_VERSION = [^;\n]+;`)
+
+var androidVersionCodeRe = regexp.MustCompile(`versionCode = [0-9]+`)
+var androidVersionNameRe = regexp.MustCompile(`versionName = "[^"]*"`)
+
+// applyXcodeVersion sets the Application target's MARKETING_VERSION to version
+// and CURRENT_PROJECT_VERSION to build in its two build configurations
+// (Debug + Release), anchoring on the Application PRODUCT_BUNDLE_IDENTIFIER
+// line (the one with no suffix). A missing version is a no-op. When the values
+// are already set the content is unchanged; when the Application configs do not
+// appear exactly twice the tool fails rather than guess.
+func applyXcodeVersion(content []byte, appID, version string, build int64) ([]byte, error) {
+	if version == "" {
+		return content, nil
+	}
+	blockRe := regexp.MustCompile(
+		`CURRENT_PROJECT_VERSION = [0-9]+;\n(?s:.+?)MARKETING_VERSION = [^;\n]+;\n\t+PRODUCT_BUNDLE_IDENTIFIER = ` +
+			regexp.QuoteMeta(appID) + `;`,
+	)
+	if n := len(blockRe.FindAll(content, -1)); n != 2 {
+		return nil, fmt.Errorf("unexpected Application build configs found: %d, want 2", n)
+	}
+	return blockRe.ReplaceAllFunc(content, func(m []byte) []byte {
+		out := xcodeProjectVersionRe.ReplaceAll(m, []byte("CURRENT_PROJECT_VERSION = "+strconv.FormatInt(build, 10)+";"))
+		out = xcodeMarketingVersionRe.ReplaceAll(out, []byte("MARKETING_VERSION = \""+version+"\";"))
+		return out
+	}), nil
+}
+
+// applyAndroidVersion rewrites the versionCode and versionName values in the
+// build.gradle.kts content to match build and version. A missing version is a
+// no-op. Exactly one versionCode and one versionName line are expected; when
+// both already match the content is returned unchanged. Any other count means
+// the file was customized and the tool fails rather than guess.
+func applyAndroidVersion(content []byte, version string, build int64) ([]byte, error) {
+	if version == "" {
+		return content, nil
+	}
+	if n := len(androidVersionCodeRe.FindAll(content, -1)); n != 1 {
+		return nil, fmt.Errorf("expected exactly one versionCode line, found %d", n)
+	}
+	if n := len(androidVersionNameRe.FindAll(content, -1)); n != 1 {
+		return nil, fmt.Errorf("expected exactly one versionName line, found %d", n)
+	}
+	if strings.Contains(string(content), "versionCode = "+strconv.FormatInt(build, 10)) &&
+		strings.Contains(string(content), `versionName = "`+version+`"`) {
+		return content, nil
+	}
+	out := androidVersionCodeRe.ReplaceAllString(string(content), "versionCode = "+strconv.FormatInt(build, 10))
+	out = androidVersionNameRe.ReplaceAllString(out, `versionName = "`+version+`"`)
+	return []byte(out), nil
+}
 
 // applyAndroidAppID rewrites the applicationId value in the build.gradle.kts
 // content to match appID. Exactly one applicationId line is expected; when its

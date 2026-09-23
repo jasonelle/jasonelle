@@ -147,6 +147,9 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../specs/2026-09-22-appconf-app-name-design.html">Appconf Sets the App Name</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-22-appconf-app-version-design.html">Appconf Sets the App Version and Timestamp Build Number</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -323,6 +326,11 @@ Downstream tools use this file to configure the Xcode project and copy plugins.<
 <td class="tableblock halign-left valign-top"><p class="tableblock">The application display name shown below the home screen icon.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app_version</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The base application version (for example, <code>1.0</code>). The build number is the current Unix timestamp, so the version becomes <code>1.0.&lt;timestamp&gt;</code>. In Xcode <code>app_version</code> becomes <code>MARKETING_VERSION</code> and the timestamp becomes <code>CURRENT_PROJECT_VERSION</code>.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>inspectable</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enables remote web debugging through Safari Web Inspector.</p></td>
@@ -389,6 +397,7 @@ Downstream tools use this file to configure the Xcode project and copy plugins.<
   "url": "https://jasonelle.com",
   "app_id": "com.example.application",
   "app_name": "Jasonelle v4",
+  "app_version": "1.0",
   "inspectable": true,
   "allowed": ["github.com"],
   "plugins": {
@@ -433,6 +442,7 @@ Downstream tools use this file to configure the Xcode project and copy plugins.<
   ],
   "app_id": "com.example.application",
   "app_name": "Jasonelle v4",
+  "app_version": "1.0",
   "inspectable": true,
   "plugins": {
     "JLPluginCookies": "@jasonelle",
@@ -453,7 +463,7 @@ Downstream tools use this file to configure the Xcode project and copy plugins.<
 <div class="ulist">
 <ul>
 <li>
-<p><code>tools/appconf</code>: Reads <code>app_id</code> to update <code>PRODUCT_BUNDLE_IDENTIFIER</code> in <code>project.pbxproj</code>. Reads <code>app_name</code> to update <code>INFOPLIST_KEY_CFBundleDisplayName</code>.</p>
+<p><code>tools/appconf</code>: Reads <code>app_id</code> to update <code>PRODUCT_BUNDLE_IDENTIFIER</code> in <code>project.pbxproj</code>. Reads <code>app_name</code> to update <code>INFOPLIST_KEY_CFBundleDisplayName</code>. Reads <code>app_version</code> to set <code>MARKETING_VERSION</code> and a timestamped <code>CURRENT_PROJECT_VERSION</code> (the build number).</p>
 </li>
 <li>
 <p><code>tools/plugins</code>: Reads <code>plugins</code> to copy declared plugin code into <code>build/xcode/sources/</code>.</p>

@@ -147,6 +147,9 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="specs/2026-09-22-appconf-app-name-design.html">Appconf Sets the App Name</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="specs/2026-09-22-appconf-app-version-design.html">Appconf Sets the App Version and Timestamp Build Number</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -360,7 +363,8 @@ and the Application project, and copies the built <code>config.jsonc</code> and
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>appconf</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>build/&lt;platform&gt;/sources/</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Rewrites <code>PRODUCT_BUNDLE_IDENTIFIER</code> / <code>applicationId</code> from the <code>app_id</code> in
-the merged configs.</p></td>
+the merged configs, and sets the app name and the version / build number from
+<code>app_name</code> and <code>app_version</code>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -381,7 +385,7 @@ order for both platforms, reading from <code>lib/</code> and <code>sources/</cod
 </div>
 <div class="imageblock kroki">
 <div class="content">
-<img src="_images/c4_architecture-8f9014e85d922d2c4e98bcfeed2184babfe4483f.png" alt="c4_architecture">
+<img src="_images/c4_architecture-4dcc05ebbaf013e94dfdf74d71c487252c2bacba.png" alt="c4_architecture">
 </div>
 </div>
 </div>
@@ -532,7 +536,7 @@ order for both platforms, reading from <code>lib/</code> and <code>sources/</cod
 <p><code>tools/link/</code>: Links plugins into the native projects and copies app artifacts (Go).</p>
 </li>
 <li>
-<p><code>tools/appconf/</code>: Sets the app identifiers from the merged configs (Go).</p>
+<p><code>tools/appconf/</code>: Sets the app identifiers, name and version / build number from the merged configs (Go).</p>
 </li>
 <li>
 <p><code>tools/vendor/esbuild/</code>: Vendored esbuild binary for TypeScript bundling.</p>

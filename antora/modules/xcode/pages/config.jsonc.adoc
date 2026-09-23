@@ -43,6 +43,10 @@ The `lib/common/config/config.jsonc` file defines common application settings ac
 |String
 |The application display name shown below the home screen icon.
 
+|`app_version`
+|String
+|The base application version (for example, `1.0`). The build number is the current Unix timestamp, so the version becomes `1.0.<timestamp>`. In Xcode `app_version` becomes `MARKETING_VERSION` and the timestamp becomes `CURRENT_PROJECT_VERSION`.
+
 |`inspectable`
 |Boolean
 |Enables remote web debugging through Safari Web Inspector.
@@ -81,6 +85,7 @@ The `plugins` object maps plugin class names to location specifiers:
   "url": "https://jasonelle.com",
   "app_id": "com.example.application",
   "app_name": "Jasonelle v4",
+  "app_version": "1.0",
   "inspectable": true,
   "allowed": ["github.com"],
   "plugins": {
@@ -115,6 +120,7 @@ The following example shows the resulting merged file after running `task jsonc.
   ],
   "app_id": "com.example.application",
   "app_name": "Jasonelle v4",
+  "app_version": "1.0",
   "inspectable": true,
   "plugins": {
     "JLPluginCookies": "@jasonelle",
@@ -128,5 +134,5 @@ The following example shows the resulting merged file after running `task jsonc.
 
 Downstream build tools consume `build/xcode/config/config.jsonc`:
 
-* `tools/appconf`: Reads `app_id` to update `PRODUCT_BUNDLE_IDENTIFIER` in `project.pbxproj`. Reads `app_name` to update `INFOPLIST_KEY_CFBundleDisplayName`.
+* `tools/appconf`: Reads `app_id` to update `PRODUCT_BUNDLE_IDENTIFIER` in `project.pbxproj`. Reads `app_name` to update `INFOPLIST_KEY_CFBundleDisplayName`. Reads `app_version` to set `MARKETING_VERSION` and a timestamped `CURRENT_PROJECT_VERSION` (the build number).
 * `tools/plugins`: Reads `plugins` to copy declared plugin code into `build/xcode/sources/`.

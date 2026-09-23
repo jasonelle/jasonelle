@@ -30,13 +30,20 @@ package main
 import (
 	"os"
 	"path/filepath"
+	"regexp"
+	"strconv"
 	"strings"
 	"testing"
+	"time"
 )
 
-const stockPbxproj = "\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = com.example.application;\n" +
+const stockPbxproj = "\t\t\t\tCURRENT_PROJECT_VERSION = 1;\n" +
+	"\t\t\t\tMARKETING_VERSION = 1.0;\n" +
+	"\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = com.example.application;\n" +
 	"\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = com.example.ApplicationTests;\n" +
 	"\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = com.example.ApplicationUITests;\n" +
+	"\t\t\t\tCURRENT_PROJECT_VERSION = 1;\n" +
+	"\t\t\t\tMARKETING_VERSION = 1.0;\n" +
 	"\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = com.example.application;\n" +
 	"\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = com.example.ApplicationTests;\n" +
 	"\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = com.example.ApplicationUITests;"
@@ -46,6 +53,8 @@ const stockGradle = `android {
 
     defaultConfig {
         applicationId = "com.example.application"
+        versionCode = 1
+        versionName = "4.0.0"
     }
 }`
 
@@ -264,6 +273,107 @@ func TestApplyAndroidLabelUnexpectedCount(t *testing.T) {
 	}
 }
 
+func TestApplyXcodeVersion(t *testing.T) {
+	got, err := applyXcodeVersion([]byte(stockPbxproj), "com.example.application", "1.0", 1620000000)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if n := strings.Count(string(got), "MARKETING_VERSION = \"1.0\";"); n != 2 {
+		t.Errorf("marketing version count = %d, want 2\n%s", n, got)
+	}
+	if n := strings.Count(string(got), "CURRENT_PROJECT_VERSION = 1620000000;"); n != 2 {
+		t.Errorf("project version count = %d, want 2\n%s", n, got)
+	}
+}
+
+func TestApplyXcodeVersionOnlyApplication(t *testing.T) {
+	got, err := applyXcodeVersion([]byte(stockPbxproj), "com.example.application", "2.1", 1620000000)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if strings.Contains(string(got), "MARKETING_VERSION = \"1.0\";") {
+		t.Errorf("stock marketing version must be gone\n%s", got)
+	}
+	if n := strings.Count(string(got), "CURRENT_PROJECT_VERSION = 1620000000;"); n != 2 {
+		t.Errorf("project version count = %d, want 2\n%s", n, got)
+	}
+}
+
+func TestApplyXcodeVersionIdempotent(t *testing.T) {
+	once, err := applyXcodeVersion([]byte(stockPbxproj), "com.example.application", "1.0", 1620000000)
+	if err != nil {
+		t.Fatal(err)
+	}
+	twice, err := applyXcodeVersion(once, "com.example.application", "1.0", 1620000000)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if string(twice) != string(once) {
+		t.Errorf("second run must be a no-op")
+	}
+}
+
+func TestApplyXcodeVersionEmptyVersion(t *testing.T) {
+	got, err := applyXcodeVersion([]byte(stockPbxproj), "com.example.application", "", 1620000000)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if string(got) != string(stockPbxproj) {
+		t.Errorf("empty app_version must be a no-op")
+	}
+}
+
+func TestApplyXcodeVersionMissingMarker(t *testing.T) {
+	bad := strings.Replace(stockPbxproj, "com.example.application;", "", 1)
+	if _, err := applyXcodeVersion([]byte(bad), "com.example.application", "1.0", 1620000000); err == nil {
+		t.Errorf("unexpected config count must error")
+	}
+}
+
+func TestApplyAndroidVersion(t *testing.T) {
+	got, err := applyAndroidVersion([]byte(stockGradle), "1.0", 1620000000)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(got), "versionCode = 1620000000") {
+		t.Errorf("versionCode not patched:\n%s", got)
+	}
+	if !strings.Contains(string(got), `versionName = "1.0"`) {
+		t.Errorf("versionName not patched:\n%s", got)
+	}
+}
+
+func TestApplyAndroidVersionIdempotent(t *testing.T) {
+	once, err := applyAndroidVersion([]byte(stockGradle), "1.0", 1620000000)
+	if err != nil {
+		t.Fatal(err)
+	}
+	twice, err := applyAndroidVersion(once, "1.0", 1620000000)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if string(twice) != string(once) {
+		t.Errorf("second run must be a no-op")
+	}
+}
+
+func TestApplyAndroidVersionEmptyVersion(t *testing.T) {
+	got, err := applyAndroidVersion([]byte(stockGradle), "", 1620000000)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if string(got) != string(stockGradle) {
+		t.Errorf("empty app_version must be a no-op")
+	}
+}
+
+func TestApplyAndroidVersionUnexpectedCount(t *testing.T) {
+	bad := stockGradle + "\n    versionCode = 9"
+	if _, err := applyAndroidVersion([]byte(bad), "1.0", 1620000000); err == nil {
+		t.Errorf("multiple versionCode lines must error")
+	}
+}
+
 func TestRun(t *testing.T) {
 	dir := t.TempDir()
 	xcfg := filepath.Join(dir, "xcode-config.json")
@@ -272,8 +382,8 @@ func TestRun(t *testing.T) {
 	aproj := filepath.Join(dir, "build.gradle.kts")
 	manifest := filepath.Join(dir, "AndroidManifest.xml")
 	for path, data := range map[string]string{
-		xcfg:     `{"app_id": "com.mycompany.app", "app_name": "My App"}`,
-		acfg:     `{"app_id": "com.mycompany.app", "app_name": "My App"}`,
+		xcfg:     `{"app_id": "com.mycompany.app", "app_name": "My App", "app_version": "1.0"}`,
+		acfg:     `{"app_id": "com.mycompany.app", "app_name": "My App", "app_version": "1.0"}`,
 		xproj:    stockPbxproj,
 		aproj:    stockGradle,
 		manifest: stockManifest,
@@ -283,6 +393,7 @@ func TestRun(t *testing.T) {
 		}
 	}
 
+	before := time.Now().Unix()
 	if err := run([]string{
 		"--xcode-config", xcfg, "--xcode-project", xproj,
 		"--android-config", acfg, "--android-project", aproj,
@@ -290,6 +401,7 @@ func TestRun(t *testing.T) {
 	}); err != nil {
 		t.Fatal(err)
 	}
+	after := time.Now().Unix()
 
 	xdata, err := os.ReadFile(xproj)
 	if err != nil {
@@ -301,6 +413,9 @@ func TestRun(t *testing.T) {
 	if n := strings.Count(string(xdata), `INFOPLIST_KEY_CFBundleDisplayName = "My App";`); n != 2 {
 		t.Errorf("xcode display name count = %d, want 2:\n%s", n, xdata)
 	}
+	if n := strings.Count(string(xdata), `MARKETING_VERSION = "1.0";`); n != 2 {
+		t.Errorf("xcode marketing version count = %d, want 2:\n%s", n, xdata)
+	}
 
 	adata, err := os.ReadFile(aproj)
 	if err != nil {
@@ -308,6 +423,22 @@ func TestRun(t *testing.T) {
 	}
 	if !strings.Contains(string(adata), `applicationId = "com.mycompany.app"`) {
 		t.Errorf("android project not patched:\n%s", adata)
+	}
+	if !strings.Contains(string(adata), `versionName = "1.0"`) {
+		t.Errorf("android versionName not patched:\n%s", adata)
+	}
+
+	codeRe := regexp.MustCompile(`versionCode = ([0-9]+)`)
+	codeMatch := codeRe.FindStringSubmatch(string(adata))
+	if len(codeMatch) != 2 {
+		t.Fatalf("android versionCode not patched:\n%s", adata)
+	}
+	code, err := strconv.ParseInt(codeMatch[1], 10, 64)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if code < before || code > after {
+		t.Errorf("android versionCode %d not within the run window [%d,%d]", code, before, after)
 	}
 
 	mdata, err := os.ReadFile(manifest)
@@ -359,5 +490,12 @@ func TestRunNoName(t *testing.T) {
 	}
 	if !strings.Contains(string(mdata), `android:label="Jasonelle"`) {
 		t.Errorf("android manifest must keep stock label without app_name:\n%s", mdata)
+	}
+	adata, err := os.ReadFile(aproj)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(adata), `versionName = "4.0.0"`) || !strings.Contains(string(adata), "versionCode = 1") {
+		t.Errorf("android must keep stock versions without app_version:\n%s", adata)
 	}
 }

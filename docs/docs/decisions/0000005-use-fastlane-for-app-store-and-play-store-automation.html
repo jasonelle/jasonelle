@@ -147,6 +147,9 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../specs/2026-09-22-appconf-app-name-design.html">Appconf Sets the App Name</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-22-appconf-app-version-design.html">Appconf Sets the App Version and Timestamp Build Number</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -302,6 +305,451 @@ handled?</p>
 <p>Release manually using Xcode and Android Studio</p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overall-automation-workflow"><a class="anchor" href="#overall-automation-workflow"></a>Overall Automation Workflow</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The release automation follows a four-stage workflow:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Define</strong>: The user defines release metadata in JSONC format under <code>lib/</code>.</p>
+</li>
+<li>
+<p><strong>Merge</strong>: The <code>jsonc</code> tool merges common settings with platform overrides into <code>build/&lt;platform&gt;/config/store.jsonc</code>.</p>
+</li>
+<li>
+<p><strong>Generate</strong>: The pipeline generates standard Ruby Fastlane files inside <code>build/&lt;platform&gt;/fastlane/</code>.</p>
+</li>
+<li>
+<p><strong>Deploy</strong>: Developers or continuous integration runners execute lanes through standard Fastlane commands.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 1. Merge configurations
+task jsonc
+
+# 2. Run lanes in the generated projects
+cd build/android &amp;&amp; fastlane release
+cd build/xcode &amp;&amp; fastlane release</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration-in-store-jsonc"><a class="anchor" href="#configuration-in-store-jsonc"></a>Configuration in store.jsonc</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The configuration values in <code>store.jsonc</code> map directly to Fastlane parameters.</p>
+</div>
+<div class="sect2">
+<h3 id="common-configuration-libcommonconfigstore-jsonc"><a class="anchor" href="#common-configuration-libcommonconfigstore-jsonc"></a>Common Configuration (lib/common/config/store.jsonc)</h3>
+<div class="paragraph">
+<p>The common configuration sets baseline values shared between Android and iOS:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>metadata</code>: Localized text fields under <code>metadata.&lt;locale&gt;</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>title</code>: Application name.</p>
+</li>
+<li>
+<p><code>description</code>: Full app description.</p>
+</li>
+<li>
+<p><code>keywords</code>: Comma-separated search keywords.</p>
+</li>
+<li>
+<p><code>privacy_url</code>: URL for the mandatory privacy policy.</p>
+</li>
+<li>
+<p><code>support_url</code>: Help and support URL.</p>
+</li>
+<li>
+<p><code>marketing_url</code>: Product website URL.</p>
+</li>
+<li>
+<p><code>release_notes</code>: What is new in this version.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>review_information</code>: Store reviewer contact details and test credentials.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>contact_first_name</code>, <code>contact_last_name</code>, <code>contact_email</code>, <code>contact_phone</code>.</p>
+</li>
+<li>
+<p><code>demo_user</code>, <code>demo_password</code>: Credentials for app review.</p>
+</li>
+<li>
+<p><code>notes</code>: Specific instructions for reviewers.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>release</code>: Shared release flags.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>skip_screenshots</code>: Skip uploading screenshot images.</p>
+</li>
+<li>
+<p><code>skip_metadata</code>: Skip uploading text metadata.</p>
+</li>
+<li>
+<p><code>submit_for_review</code>: Submit automatically after upload.</p>
+</li>
+<li>
+<p><code>automatic_release</code>: Release automatically upon store approval.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="android-configuration-libandroidconfigstore-jsonc"><a class="anchor" href="#android-configuration-libandroidconfigstore-jsonc"></a>Android Configuration (lib/android/config/store.jsonc)</h3>
+<div class="paragraph">
+<p>The Android configuration defines Google Play Store parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appfile</code>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>package_name</code>: Application package ID.</p>
+</li>
+<li>
+<p><code>json_key_file</code>: Path to the Google Play service account JSON key.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>supply</code>: Fastlane <code>upload_to_play_store</code> parameters.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>track</code>: Target track (<code>internal</code>, <code>alpha</code>, <code>beta</code>, <code>production</code>).</p>
+</li>
+<li>
+<p><code>rollout</code>: Rollout percentage (<code>0.0</code> to <code>1.0</code>).</p>
+</li>
+<li>
+<p><code>skip_upload_aab</code>, <code>skip_upload_apk</code>: Control binary uploads.</p>
+</li>
+<li>
+<p><code>skip_upload_metadata</code>, <code>skip_upload_changelogs</code>: Control text metadata.</p>
+</li>
+<li>
+<p><code>skip_upload_images</code>, <code>skip_upload_screenshots</code>: Control graphic assets.</p>
+</li>
+<li>
+<p><code>validate_only</code>: Validate without publishing.</p>
+</li>
+<li>
+<p><code>changes_not_sent_for_review</code>: Immediate review flag.</p>
+</li>
+<li>
+<p><code>ack_bundle_installation_warning</code>: Device compatibility acknowledgement.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>metadata</code>: Android-specific fields.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>short_description</code>: Summary text (maximum 80 characters).</p>
+</li>
+<li>
+<p><code>video</code>: YouTube video promotional link.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>gradle</code>: Build action settings (<code>task: bundleRelease</code>, <code>build_type: Release</code>).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="xcode-configuration-libxcodeconfigstore-jsonc"><a class="anchor" href="#xcode-configuration-libxcodeconfigstore-jsonc"></a>Xcode Configuration (lib/xcode/config/store.jsonc)</h3>
+<div class="paragraph">
+<p>The Xcode configuration defines Apple App Store parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appfile</code>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>app_identifier</code>: Bundle identifier.</p>
+</li>
+<li>
+<p><code>apple_id</code>: Apple ID email address.</p>
+</li>
+<li>
+<p><code>team_id</code>: Developer Portal Team ID.</p>
+</li>
+<li>
+<p><code>itc_team_id</code>: App Store Connect Team ID.</p>
+</li>
+<li>
+<p><code>team_name</code>: Developer Portal Team Name.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>deliver</code>: Fastlane <code>upload_to_app_store</code> parameters.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>platform</code>: Target platform (<code>ios</code>).</p>
+</li>
+<li>
+<p><code>edit_live</code>: Modify live version metadata.</p>
+</li>
+<li>
+<p><code>skip_binary_upload</code>, <code>skip_screenshots</code>, <code>skip_metadata</code>: Upload filters.</p>
+</li>
+<li>
+<p><code>skip_app_version_update</code>: Keep current store version.</p>
+</li>
+<li>
+<p><code>force</code>: Skip HTML preview verification.</p>
+</li>
+<li>
+<p><code>phased_release</code>: 7-day phased rollout for updates.</p>
+</li>
+<li>
+<p><code>reset_ratings</code>: Reset rating summary for the version.</p>
+</li>
+<li>
+<p><code>price_tier</code>: Store pricing tier (<code>0</code> for free apps).</p>
+</li>
+<li>
+<p><code>app_rating_config_path</code>: Path to age rating JSON.</p>
+</li>
+<li>
+<p><code>submission_information</code>: Export compliance and IDFA flags.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>match</code>: Fastlane code signing settings (<code>type</code>, <code>storage_mode</code>, <code>git_url</code>, <code>readonly</code>, <code>shallow_clone</code>).</p>
+</li>
+<li>
+<p><code>metadata</code>: iOS-specific fields.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>subtitle</code>: Summary text (maximum 30 characters).</p>
+</li>
+<li>
+<p><code>promotional_text</code>: Highlight text (maximum 170 characters).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>gym</code>: Build action settings (<code>scheme: Application</code>, <code>clean: true</code>, <code>export_method: app-store</code>).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="generated-fastlane-files"><a class="anchor" href="#generated-fastlane-files"></a>Generated Fastlane Files</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The build pipeline generates standard Ruby-based Fastlane files in each platform directory.</p>
+</div>
+<div class="sect2">
+<h3 id="android-files-buildandroidfastlane"><a class="anchor" href="#android-files-buildandroidfastlane"></a>Android Files (build/android/fastlane/)</h3>
+<div class="sect3">
+<h4 id="appfile"><a class="anchor" href="#appfile"></a>Appfile</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">json_key_file("lib/android/config/play-store-key.json")
+package_name("com.example.application")</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="supplyfile"><a class="anchor" href="#supplyfile"></a>Supplyfile</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">track("internal")
+rollout("1.0")
+skip_upload_apk(true)
+skip_upload_aab(false)
+validate_only(false)
+changes_not_sent_for_review(false)
+ack_bundle_installation_warning(true)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="fastfile"><a class="anchor" href="#fastfile"></a>Fastfile</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">default_platform(:android)
+
+platform :android do
+  desc "Build the Android App Bundle"
+  lane :build do
+    gradle(task: "bundleRelease", build_type: "Release")
+  end
+
+  desc "Deploy a new version to the Google Play Store"
+  lane :release do
+    build
+    supply(
+      track: "internal",
+      rollout: 1.0,
+      skip_upload_apk: true
+    )
+  end
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="localized-metadata-directory-buildandroidfastlanemetadataandroid"><a class="anchor" href="#localized-metadata-directory-buildandroidfastlanemetadataandroid"></a>Localized Metadata Directory (build/android/fastlane/metadata/android/)</h4>
+<div class="paragraph">
+<p>The generator creates localized metadata text files:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>metadata/android/
+└── en-US/
+    ├── title.txt
+    ├── short_description.txt
+    ├── full_description.txt
+    ├── video.txt
+    └── changelogs/
+        └── default.txt</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="xcode-files-buildxcodefastlane"><a class="anchor" href="#xcode-files-buildxcodefastlane"></a>Xcode Files (build/xcode/fastlane/)</h3>
+<div class="sect3">
+<h4 id="appfile-2"><a class="anchor" href="#appfile-2"></a>Appfile</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">app_identifier("com.example.application")
+apple_id("developer@example.com")
+team_id("XXXXXXXXXX")
+itc_team_id("12345678")</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deliverfile"><a class="anchor" href="#deliverfile"></a>Deliverfile</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">platform("ios")
+phased_release(true)
+price_tier(0)
+submission_information({
+  export_compliance_uses_encryption: false,
+  add_id_info_uses_idfa: false
+})</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="matchfile"><a class="anchor" href="#matchfile"></a>Matchfile</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">git_url("git@github.com:example/certificates.git")
+storage_mode("git")
+type("appstore")
+shallow_clone(true)
+readonly(true)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="fastfile-2"><a class="anchor" href="#fastfile-2"></a>Fastfile</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">default_platform(:ios)
+
+platform :ios do
+  desc "Sync signing certificates"
+  lane :certificates do
+    match(type: "appstore", readonly: true)
+  end
+
+  desc "Build and archive the iOS application"
+  lane :build do
+    certificates
+    gym(
+      scheme: "Application",
+      clean: true,
+      export_method: "app-store"
+    )
+  end
+
+  desc "Deploy a new version to the Apple App Store"
+  lane :release do
+    build
+    deliver(
+      force: true,
+      phased_release: true
+    )
+  end
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="localized-metadata-directory-buildxcodefastlanemetadata"><a class="anchor" href="#localized-metadata-directory-buildxcodefastlanemetadata"></a>Localized Metadata Directory (build/xcode/fastlane/metadata/)</h4>
+<div class="paragraph">
+<p>The generator creates localized metadata text files:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>metadata/
+└── en-US/
+    ├── name.txt
+    ├── subtitle.txt
+    ├── promotional_text.txt
+    ├── description.txt
+    ├── keywords.txt
+    ├── privacy_url.txt
+    ├── support_url.txt
+    ├── marketing_url.txt
+    └── release_notes.txt</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>

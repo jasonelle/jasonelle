@@ -147,6 +147,9 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../specs/2026-09-22-appconf-app-name-design.html">Appconf Sets the App Name</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-22-appconf-app-version-design.html">Appconf Sets the App Version and Timestamp Build Number</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -255,17 +258,23 @@ after <code>task core</code>, against <code>build/</code>.</p>
 (<code>app_id.Tests</code>) and ApplicationUITests (<code>app_id.UITests</code>) targets, in both
 Debug and Release configs. <code>INFOPLIST_KEY_CFBundleDisplayName</code> is set on the
 Application target to <code>app_name</code>; <code>PRODUCT_NAME</code> stays <code>$(TARGET_NAME)</code> so
-the bundle keeps the name <code>Application.app</code> in the test host paths. The
-Android <code>applicationId</code> is rewritten to <code>app_id</code>; the <code>namespace</code> is left
-untouched. The Android <code>android:label</code> is rewritten to <code>app_name</code>.</p>
+the bundle keeps the name <code>Application.app</code> in the test host paths. On the
+Application target only, <code>MARKETING_VERSION</code> is set to <code>app_version</code> and
+<code>CURRENT_PROJECT_VERSION</code> to the current Unix timestamp (the build number).
+The Android <code>applicationId</code> is rewritten to <code>app_id</code>; the <code>namespace</code> is left
+untouched. Android <code>versionName</code> is rewritten to <code>app_version</code> and
+<code>versionCode</code> to the current Unix timestamp. The Android <code>android:label</code> is
+rewritten to <code>app_name</code>.</p>
 </div>
 <div class="paragraph">
 <p>A missing or empty <code>app_name</code> leaves the app name untouched (only identifiers
-are set).</p>
+are set). A missing or empty <code>app_version</code> leaves the versions untouched.</p>
 </div>
 <div class="paragraph">
 <p>Values are written literally, so the default wildcard <code>app_id</code>
-(<code>com.example.*</code>) is not translated. Re-running is a no-op.</p>
+(<code>com.example.*</code>) is not translated. Re-running is a no-op, except the build
+number (<code>CURRENT_PROJECT_VERSION</code> / <code>versionCode</code>) changes because it is the
+current timestamp.</p>
 </div>
 </div>
 </div>
@@ -360,9 +369,9 @@ contains binaries).</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Reads <code>app_id</code> and <code>app_name</code> from the Xcode config. A missing or empty
-<code>app_id</code> is an error; a missing or empty <code>app_name</code> skips the display
-name.</p>
+<p>Reads <code>app_id</code>, <code>app_name</code> and <code>app_version</code> from the Xcode config. A
+missing or empty <code>app_id</code> is an error; a missing or empty <code>app_name</code> skips
+the display name and a missing or empty <code>app_version</code> skips the versions.</p>
 </li>
 <li>
 <p>Rewrites the three <code>PRODUCT_BUNDLE_IDENTIFIER</code> markers in the pbxproj.
@@ -376,12 +385,22 @@ case-sensitive, so the Application id never collides with the test ids.</p>
 configurations. When a different name is already set it is replaced.</p>
 </li>
 <li>
-<p>Reads <code>app_id</code> and <code>app_name</code> from the Android config.</p>
+<p>Sets <code>MARKETING_VERSION</code> to <code>app_version</code> and <code>CURRENT_PROJECT_VERSION</code> to
+the current Unix timestamp in both Application configurations. When the
+values are already set they are replaced. Test targets are left untouched.</p>
+</li>
+<li>
+<p>Reads <code>app_id</code>, <code>app_name</code> and <code>app_version</code> from the Android config.</p>
 </li>
 <li>
 <p>Rewrites the single <code>applicationId = "&#8230;&#8203;"</code> line in the
 <code>build.gradle.kts</code>. The line must appear exactly once; when its value
 already equals <code>app_id</code> it is left unchanged.</p>
+</li>
+<li>
+<p>Rewrites the single <code>versionName = "&#8230;&#8203;"</code> and <code>versionCode = &#8230;&#8203;</code> lines in
+the <code>build.gradle.kts</code>. Each line must appear exactly once; <code>versionName</code>
+becomes <code>app_version</code> and <code>versionCode</code> the current Unix timestamp.</p>
 </li>
 <li>
 <p>Rewrites the single <code>android:label="&#8230;&#8203;"</code> line in the manifest. The line
