@@ -1,0 +1,58 @@
+= Fastlane Generator Tool Design
+
+- Status: Approved (2026-09-22) by: @clsource
+
+== Problem
+
+The release automation workflow (ADR https://jasonelle.com/adr/0000005[0000005])
+defines release metadata in `store.jsonc` and merges it into
+`build/<platform>/config/store.jsonc`, but nothing generates the standard Ruby
+Fastlane files developers run (`fastlane release`). The merge step ends the
+pipeline, leaving the developer to hand-write Fastfiles, Appfiles, Deliverfiles
+and Supplyfiles every release.
+
+== Decision
+
+A new Go tool `tools/fastlane`, run after `appconf` as the final pipeline step
+(step order: `icon, jsonc, bundler, plugins, core, link, appconf, fastlane`).
+
+- Reads the merged `build/<platform>/config/store.jsonc` (JSONC stripped, then
+  `encoding/json`).
+- Generates standard Fastlane files into `build/<platform>/fastlane/`. Each
+  lane passes the full configured parameter block (`supply`/`deliver`/`gym`/
+  `match`/`gradle`) as keyword arguments, so configuration values map directly
+  to Fastlane parameters.
+- Mirrors the generated directory into `build/<platform>/sources/fastlane/`
+  (byte-stable copy that removes stale files), so lanes run from the assembled
+  project root: `cd build/android/sources && fastlane release`.
+- Repo-relative path values (`json_key_file`, `app_rating_config_path`) are
+  resolved against the working directory; when the file exists it is copied
+  next to the `Fastfile` and the emitted value is its basename. When it is
+  missing the value is emitted verbatim and a warning is printed to stderr, so
+  the default configs (which reference key files that do not exist yet) keep
+  working.
+- Output is deterministic: fixed key order per block, no timestamps, reruns are
+  byte-stable.
+
+== Changes
+
+- New tool `tools/fastlane` following the Go tool standards (`src/main.go`,
+  `src/main_test.go`, `src/go.mod`, `src/Taskfile.yml`, `src/VERSION`,
+  `src/.gitignore`, `dist/` binaries, `README.md`).
+- Android output: `Appfile`, `Supplyfile`, `Fastfile`, `metadata/android/<locale>/`
+  (`title.txt`, `short_description.txt`, `full_description.txt`, `video.txt`,
+  `changelogs/default.txt`).
+- Xcode output: `Appfile`, `Deliverfile`, `Matchfile`, `Fastfile`,
+  `metadata/<locale>/` (`name.txt`, `subtitle.txt`, `promotional_text.txt`,
+  `description.txt`, `keywords.txt`, `privacy_url.txt`, `support_url.txt`,
+  `marketing_url.txt`, `release_notes.txt`).
+- `gen` gains the `fastlane` step; `Taskfile.yml` and `AGENTS.md` gain
+  `task fastlane` (`fl`) and `task fastlane.build` (`flb`).
+- Docs: expand `antora/modules/tools/pages/fastlane.adoc`, uncomment its nav
+  entry, update `gen.adoc`, `tools/README.md` and `CHANGELOG.md`.
+- Tests cover Ruby value formatting, both renderers, the missing-path-file
+  fallback, idempotency and a `run()` integration test.
+- `sources/xcode/Taskfile.yml` and `sources/android/Taskfile.yml` gain
+  `fastlane.run` (`fr`) and `fastlane.run.release` (`frr`), which the `core`
+  step copies into `build/<platform>/sources/`, so lanes run with
+  `task fastlane.run.release` from the assembled project.

@@ -8,3 +8,5 @@ build/
 .commit-message
 graphify-out
 TODO
+# Key to Playstore deployments
+play-store-key.json

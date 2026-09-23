@@ -40,7 +40,7 @@ import (
 
 // stepOrder is the canonical pipeline order. plugins wipes
 // build/<platform>/sources, so it must run before core.
-var stepOrder = []string{"icon", "jsonc", "bundler", "plugins", "core", "link", "appconf"}
+var stepOrder = []string{"icon", "jsonc", "bundler", "plugins", "core", "link", "appconf", "fastlane"}
 
 // genStep builds the arguments for every invocation of one pipeline step.
 type genStep struct {
@@ -117,6 +117,7 @@ func defaultSteps() []genStep {
 		{"core", noArgs},
 		{"link", noArgs},
 		{"appconf", noArgs},
+		{"fastlane", noArgs},
 	}
 }
 

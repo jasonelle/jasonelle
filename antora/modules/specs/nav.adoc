@@ -3,3 +3,4 @@
 * xref:2026-09-21-link-icons-design.adoc[]
 * xref:2026-09-22-appconf-app-name-design.adoc[]
 * xref:2026-09-22-appconf-app-version-design.adoc[]
+* xref:2026-09-22-fastlane-tool-design.adoc[]

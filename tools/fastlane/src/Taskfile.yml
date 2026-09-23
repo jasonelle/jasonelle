@@ -1,7 +1,7 @@
 #
-#  xcode/Taskfile.yml
+#  tools/fastlane/Taskfile.yml
 #
-#  Created by [Camilo Castro (@clsource)](https://ninjas.cl) on 2026-08-26
+#  Created by [Camilo Castro (@clsource)](https://ninjas.cl) on 2026-09-22
 #  Made with love in Chile.
 #
 #  Copyright (c) Jasonelle.com
@@ -33,29 +33,45 @@ version: "3.17"
 tasks:
   default:
     cmds:
-      - task lint
-  lint:
+      - task build
+  build:
     aliases:
-      - l
-    desc: Lint Swift sources with SwiftLint
+      - b
+    desc: Build cross-platform binaries into ../dist
     cmds:
-      - swiftlint lint
-  fix:
+      - rm -rf ../dist
+      - mkdir -p ../dist
+      - GOOS=darwin GOARCH=amd64 go build -o ../dist/fastlane-darwin-amd64 .
+      - GOOS=darwin GOARCH=arm64 go build -o ../dist/fastlane-darwin-arm64 .
+      - GOOS=linux GOARCH=amd64 go build -o ../dist/fastlane-linux-amd64 .
+      - GOOS=windows GOARCH=amd64 go build -o ../dist/fastlane-windows-amd64.exe .
+  test:
+    aliases:
+      - t
+    desc: Test the current version of the fastlane tool
+    cmds:
+      - go test
+  format:
     aliases:
       - f
-    desc: Auto-fix SwiftLint issues where possible
+    desc: Format the current project
     cmds:
-      - swiftlint lint --fix
-
-  fastlane.run:
+      - go fmt
+  version.major:
     aliases:
-      - fr
-    desc: Run a Fastlane lane in the Xcode project, defaults to the build lane
+      - v
+    desc: Bump VERSION to the next major version
     cmds:
-      - 'fastlane {{default "build" .CLI_ARGS}}'
-  fastlane.run.release:
+      - awk -F. '{print ($1 + 1) ".0.0"}' VERSION > VERSION.tmp && mv VERSION.tmp VERSION
+  version.minor:
     aliases:
-      - frr
-    desc: Run the release lane in the Xcode project
+      - vm
+    desc: Bump VERSION to the next minor version
     cmds:
-      - fastlane release
+      - awk -F. '{print $1 "." ($2 + 1) ".0"}' VERSION > VERSION.tmp && mv VERSION.tmp VERSION
+  version.patch:
+    aliases:
+      - vp
+    desc: Bump VERSION to the next patch version
+    cmds:
+      - awk -F. '{print $1 "." $2 "." ($3 + 1)}' VERSION > VERSION.tmp && mv VERSION.tmp VERSION

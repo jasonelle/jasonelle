@@ -273,9 +273,24 @@ tasks:
     cmds:
       - task build
 
+  # Fastlane Tool
+  fastlane:
+    aliases:
+      - fl
+    desc: Generate the Fastlane files from the merged store.jsonc into build/<platform>/fastlane and the assembled sources
+    cmds:
+      - 'tools/fastlane/dist/fastlane-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }}'
+  fastlane.build:
+    aliases:
+      - flb
+    dir: tools/fastlane/src
+    desc: Generate tools/fastlane binary
+    cmds:
+      - task build
+
   # Gen Tool
   gen:
-    desc: Run the full build pipeline (icon, jsonc, bundler, plugins, core, link, appconf)
+    desc: Run the full build pipeline (icon, jsonc, bundler, plugins, core, link, appconf, fastlane)
     cmds:
       - 'tools/gen/dist/gen-{{OS}}-{{ARCH}}{{ if eq OS "windows" }}.exe{{ end }}'
   gen.build:

@@ -76,3 +76,16 @@ tasks:
     desc: Clean build outputs
     cmds:
       - ./gradlew clean
+
+  fastlane.run:
+    aliases:
+      - fr
+    desc: Run a Fastlane lane in the Android project, defaults to the build lane
+    cmds:
+      - 'fastlane {{default "build" .CLI_ARGS}}'
+  fastlane.run.release:
+    aliases:
+      - frr
+    desc: Run the release lane in the Android project
+    cmds:
+      - fastlane release

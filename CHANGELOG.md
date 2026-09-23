@@ -23,6 +23,9 @@ documentation and code. It breaks compatibility with previous versions.
 - Add core and plugins tools
 - Add device plugin for iOS
 - Add gen build pipeline orchestrator
+- Add fastlane tool to generate Fastlane release files from store.jsonc
+- Add fastlane.run and fastlane.run.release tasks to the assembled Xcode and
+  Android projects
 - Add Go tool to generate app icons
 - Add id field to ADR documents
 - Add iOS Application and Core sources

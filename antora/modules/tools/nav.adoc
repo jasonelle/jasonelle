@@ -8,4 +8,4 @@
 * xref:link.adoc[]
 * xref:bundler.adoc[]
 * xref:esbuild.adoc[]
-//* xref:fastlane.adoc[]
+* xref:fastlane.adoc[]

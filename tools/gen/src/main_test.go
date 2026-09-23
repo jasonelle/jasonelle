@@ -40,8 +40,8 @@ func TestSelectSteps(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(all) != 7 {
-		t.Fatalf("expected 7 steps, got %d", len(all))
+	if len(all) != 8 {
+		t.Fatalf("expected 8 steps, got %d", len(all))
 	}
 	for i, name := range stepOrder {
 		if all[i].name != name {

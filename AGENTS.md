@@ -42,7 +42,9 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
 - `task appconf.build` (alias `aib`): Generate the `tools/appconf` binary.
 - `task link` (alias `l`): Link the plugins present in `build/<platform>/sources` into the Xcode workspace and the Android projects.
 - `task link.build` (alias `lb`): Generate the `tools/link` binary.
-- `task gen`: Run the full build pipeline (icon, jsonc, bundler, plugins, core, link, appconf).
+- `task fastlane` (alias `fl`): Generate the Fastlane files from the merged `store.jsonc` into `build/<platform>/fastlane` and copy them into `build/<platform>/sources`.
+- `task fastlane.build` (alias `flb`): Generate the `tools/fastlane` binary.
+- `task gen`: Run the full build pipeline (icon, jsonc, bundler, plugins, core, link, appconf, fastlane).
 - `task gen.build` (alias `gb`): Generate the `tools/gen` binary.
 
 ## Directory layout
