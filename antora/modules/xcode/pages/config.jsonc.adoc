@@ -1,0 +1,132 @@
+= App Configuration (Xcode)
+
+Jasonelle controls application settings and plugin registration through `config.jsonc`.
+
+== Overview
+
+The build pipeline merges `lib/common/config/config.jsonc` with `lib/xcode/config/config.jsonc`.
+The merged output is written to `build/xcode/config/config.jsonc`.
+Downstream tools use this file to configure the Xcode project and copy plugins.
+
+Run the following command to merge the configuration files:
+
+[source,bash]
+----
+task jsonc.xcode
+----
+
+== File Locations
+
+* `lib/common/config/config.jsonc`: Baseline application settings and plugins.
+* `lib/xcode/config/config.jsonc`: Xcode specific settings and overrides.
+* `build/xcode/config/config.jsonc`: Merged file consumed by the build pipeline.
+
+== Common Configuration (lib/common/config/config.jsonc)
+
+The `lib/common/config/config.jsonc` file defines common application settings across platforms.
+
+=== Configuration Properties
+
+[cols="1,1,2"]
+|===
+|Property |Type |Description
+
+|`url`
+|String
+|The initial URL loaded inside the main web view.
+
+|`app_id`
+|String
+|The application bundle identifier (for example, `com.example.application`).
+
+|`app_name`
+|String
+|The application display name shown below the home screen icon.
+
+|`inspectable`
+|Boolean
+|Enables remote web debugging through Safari Web Inspector.
+
+|`allowed`
+|Array of Strings
+|Allowed domain hostnames for internal navigation.
+
+|`plugins`
+|Object
+|Map of registered plugins and their source locations.
+|===
+
+=== Domain Whitelist (allowed)
+
+The `allowed` array controls web view navigation:
+
+* When empty or omitted, all URLs open inside the main web view.
+* When domains are present, only matching hostnames load inside the main web view.
+* External links not matching the whitelist open in the system default browser.
+
+=== Plugin Resolution
+
+The `plugins` object maps plugin class names to location specifiers:
+
+* `@jasonelle`: Core plugin present in both Android and Xcode templates (`sources/android/` and `sources/xcode/`).
+* `@jasonelle/xcode`: Core plugin present only in the Xcode template (`sources/xcode/`). Example: `JLPluginAppleSignIn`.
+* `@lib/<PluginName>`: Custom workspace plugin located at `lib/common/sources/plugins/<PluginName>`.
+* `@lib/xcode/<PluginName>`: Custom Xcode plugin located at `lib/common/sources/plugins/<PluginName>/xcode`.
+
+=== Common Configuration Example
+
+[source,json5]
+----
+{
+  "url": "https://jasonelle.com",
+  "app_id": "com.example.application",
+  "app_name": "Jasonelle v4",
+  "inspectable": true,
+  "allowed": ["github.com"],
+  "plugins": {
+    "JLPluginCookies": "@jasonelle",
+    "JLPluginDevice": "@jasonelle"
+  }
+}
+----
+
+== Xcode Configuration (lib/xcode/config/config.jsonc)
+
+The `lib/xcode/config/config.jsonc` file specifies overrides and settings specific to Xcode.
+
+=== Xcode Configuration Example
+
+[source,json5]
+----
+{
+  "url": "https://jasonelle.com"
+}
+----
+
+== Merged Output (build/xcode/config/config.jsonc)
+
+The following example shows the resulting merged file after running `task jsonc.xcode`:
+
+[source,json5]
+----
+{
+  "allowed": [
+    "github.com"
+  ],
+  "app_id": "com.example.application",
+  "app_name": "Jasonelle v4",
+  "inspectable": true,
+  "plugins": {
+    "JLPluginCookies": "@jasonelle",
+    "JLPluginDevice": "@jasonelle"
+  },
+  "url": "https://jasonelle.com"
+}
+----
+
+== Pipeline Integration
+
+Downstream build tools consume `build/xcode/config/config.jsonc`:
+
+* `tools/appconf`: Reads `app_id` to update `PRODUCT_BUNDLE_IDENTIFIER` in `project.pbxproj`. Reads `app_name` to update `INFOPLIST_KEY_CFBundleDisplayName`.
+* `tools/plugins`: Reads `plugins` to copy declared plugin code into `build/xcode/sources/`.

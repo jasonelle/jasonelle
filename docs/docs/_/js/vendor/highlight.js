@@ -61720,6 +61720,49 @@ if (typeof exports === 'object' && typeof module !== 'undefined') { module.expor
 })();
 
     hljs.registerLanguage('zephir', hljsGrammar);
-  })();
+
+    hljs.registerLanguage('jsonc', function (hljs) {
+      const ATTRIBUTE = {
+        className: 'attr',
+        begin: /"(\\.|[^\\"\r\n])*"(?=\s*:)/,
+        relevance: 1.01
+      };
+
+      const STRING = {
+        className: 'string',
+        begin: /"/,
+        end: /"/,
+        contains: [hljs.BACKSLASH_ESCAPE]
+      };
+
+      const COMMENT = hljs.COMMENT(
+        /\/\//,
+        /$/,
+        { relevance: 0 }
+      );
+
+      const BLOCK_COMMENT = hljs.COMMENT(
+        /\/\*/,
+        /\*\//,
+        { relevance: 0 }
+      );
+
+      return {
+        name: 'JSON with Comments',
+        aliases: ['jsonc'],
+        keywords: {
+          literal: 'true false null'
+        },
+        contains: [
+          COMMENT,
+          BLOCK_COMMENT,
+          ATTRIBUTE,
+          STRING,
+          hljs.C_NUMBER_MODE
+        ]
+      };
+    });
+
+})();
 
 hljs.highlightAll();

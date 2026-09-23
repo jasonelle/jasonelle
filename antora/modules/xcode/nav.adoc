@@ -1,5 +1,7 @@
 .Xcode
 * xref:index.adoc[]
+* xref:config.jsonc.adoc[]
+* xref:store.jsonc.adoc[]
 * xref:kernel.adoc[]
 * xref:plugin-hello.adoc[]
 * xref:plugin-device.adoc[]

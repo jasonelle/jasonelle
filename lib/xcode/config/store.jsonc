@@ -1,2 +1,54 @@
-// Overwrites of store.jsonc and specific configuration for xcode
-{}
+// Overwrites of store.jsonc and specific Fastlane configuration for xcode
+{
+  // Fastlane Appfile settings for iOS
+  "appfile": {
+    "app_identifier": "com.example.application", // iOS bundle identifier
+    "apple_id": "developer@example.com", // Apple ID email address
+    "team_id": "XXXXXXXXXX", // Apple Developer Portal Team ID (10-character alphanumeric)
+    "itc_team_id": "12345678", // App Store Connect Team ID
+    "team_name": "Example Team" // Apple Developer Portal Team Name
+  },
+  // Fastlane Deliver configuration (upload_to_app_store)
+  "deliver": {
+    "platform": "ios", // Deployment platform
+    "edit_live": false, // Set to true to modify metadata of live app versions
+    "skip_binary_upload": false, // Set to true to skip IPA build upload
+    "skip_screenshots": false, // Set to true to skip uploading screenshots
+    "skip_metadata": false, // Set to true to skip uploading App Store metadata
+    "skip_app_version_update": false, // Set to true to keep existing app version
+    "force": false, // Set to true to bypass HTML verification preview
+    "phased_release": true, // Enable 7-day phased rollout for version updates
+    "reset_ratings": false, // Reset rating summary for this app version
+    "price_tier": 0, // Free app pricing tier (tier 0)
+    "app_rating_config_path": "lib/xcode/config/rating.json", // Path to age rating configuration file
+    "submission_information": {
+      "export_compliance_uses_encryption": false, // Whether the app uses cryptography
+      "export_compliance_encryption_updated": false,
+      "add_id_info_uses_idfa": false, // Whether the app uses Advertising Identifier (IDFA)
+      "add_id_info_serves_ads": false,
+      "add_id_info_tracks_install": false,
+      "add_id_info_tracks_action": false
+    }
+  },
+  // Fastlane Match configuration for automated code signing
+  "match": {
+    "type": "appstore", // Certificate and profile type: appstore, development, adhoc, enterprise
+    "storage_mode": "git", // Certificate storage backend: git, google_cloud, or s3
+    "git_url": "git@github.com:example/certificates.git", // Repository URL storing encrypted certificates
+    "shallow_clone": true, // Perform shallow git clone
+    "readonly": true // Read-only mode to prevent certificate regeneration in CI
+  },
+  // iOS-specific store metadata overrides and additions
+  "metadata": {
+    "en-US": {
+      "subtitle": "Web to Native Wrapper", // App Store subtitle (max 30 chars)
+      "promotional_text": "Experience Jasonelle v4 with modern web technologies." // App Store promotional text (max 170 chars)
+    }
+  },
+  // Fastlane Gym configuration for building and archiving the Xcode project
+  "gym": {
+    "scheme": "Application", // Xcode scheme name
+    "clean": true, // Clean build folder before archiving
+    "export_method": "app-store" // Export destination: app-store, ad-hoc, development, enterprise
+  }
+}

@@ -1,1 +1,33 @@
-{}
+// Common app store configuration using Fastlane configuration values
+{
+  // Localized metadata for App Store (Deliver) and Google Play (Supply)
+  "metadata": {
+    "default_language": "en-US",
+    "en-US": {
+      "title": "Jasonelle v4", // App name displayed on the store listing
+      "description": "Jasonelle turns web applications into high-performance native iOS and Android apps with full native capabilities.", // Full store description
+      "keywords": "jasonelle, webview, mobile, ios, android, hybrid, native", // Keywords for search indexing
+      "privacy_url": "https://jasonelle.com/privacy", // Privacy policy URL required by stores
+      "support_url": "https://jasonelle.com/support", // Support URL for user assistance
+      "marketing_url": "https://jasonelle.com", // Marketing or website URL
+      "release_notes": "Initial release of Jasonelle v4." // What's new in this version
+    }
+  },
+  // Store reviewer contact and test account details
+  "review_information": {
+    "contact_first_name": "Jason",
+    "contact_last_name": "Elle",
+    "contact_email": "developer@example.com",
+    "contact_phone": "+1234567890",
+    "demo_user": "demo@example.com", // Demo account username for store reviewers
+    "demo_password": "DemoPassword123!", // Demo account password for store reviewers
+    "notes": "Test login credentials provided above for app review." // Instructions for store review team
+  },
+  // Common release and upload behavior (Deliver & Supply)
+  "release": {
+    "skip_screenshots": false, // Set to true to skip uploading screenshots
+    "skip_metadata": false, // Set to true to skip uploading store metadata
+    "submit_for_review": false, // Submit the build for review automatically
+    "automatic_release": false // Automatically release the app once approved
+  }
+}
