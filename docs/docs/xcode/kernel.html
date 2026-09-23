@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>JLKernel :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/xcode/kernel.html">
+    <link rel="prev" href="store.jsonc.html">
+    <link rel="next" href="plugin-hello.html">
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../_/css/site.css">
+    <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://jasonelle.com/docs">Jasonelle Documentation</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search">
+        </div>
+      </div>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ROOT" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../index.html">Jasonelle Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../architecture.html">Architecture</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Arquitecture Decision Records</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000000-adopt-adr-documents.html">Adopt ADR documents</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000001-use-onesignal.html">Use OneSignal for managing push notifications in iOS and Android</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000002-use-revenuecat-for-in-app-sales.html">Use RevenueCat for managing in-app sales</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000003-use-jsonc-for-configuration-and-settings.html">Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000004-use-taskfile-for-running-common-commands.html">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000005-use-fastlane-for-app-store-and-play-store-automation.html">Use Fastlane for App Store and Play Store automation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000006-use-esbuild-to-bundle-js-files-for-the-webview.html">Use esbuild to bundle JS files for the webview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000007-use-antora-for-technical-project-documentation.html">Use Antora for technical project documentation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000008-use-golang-for-cross-platform-tools.html">Use Go for cross platform tools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.html">Add Swift for Xcode related command line tools instead of Go</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000010-use-typescript-instead-of-javascript-for-the-scripts-inside-lib.html">Use TypeScript instead of JavaScript for the scripts inside lib</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000011-select-xcodegen-for-xcodeproject-generation.html">Select XcodeGen for Xcode Project Generation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000012-use-swiftlint-for-swift-formatting-and-code-standardization.html">Use SwiftLint for Swift Formatting and Code Standardization</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000013-supersede-xcodegen-with-xcode-project-format.html">Supersede XcodeGen with Xcode Project Format from Apple</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000014-add-adoption-of-spec-driven-development-using-superpowers-plugin.html">Add Adoption of Spec Driven Development Using Superpowers Plugin</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000015-add-opencode-for-agentic-programming-using-the-plugins-superpowers-ponytail-and-mcp-context7-for-harnesses.html">Add OpenCode for Agentic Programming Using the Plugins Superpowers, Ponytail and MCP Context7 for Harnesses</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000016-use-golang-script-to-parse-and-modify-xcode-and-android-projects.html">Use a Golang Script to Parse and Modify Xcode and Android Projects</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tools</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/gen.html">Gen</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/icon.html">Icon Generator</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/jsonc.html">JSONC Merger</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/core.html">Core</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/appconf.html">Appconf</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/plugins.html">Plugins</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/link.html">Link</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/bundler.html">Bundler</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/esbuild.html">CLI esbuild</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Specs</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-20-link-copy-artifacts-design.html">Link Tool Copies App Artifacts into the Assembled Tree</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-21-link-icons-design.html">Link Tool Copies and Verifies App Icons</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-22-appconf-app-name-design.html">Appconf Sets the App Name</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-22-appconf-app-version-design.html">Appconf Sets the App Version and Timestamp Build Number</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Android</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../android/index.html">Android Source Project</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../android/config.jsonc.html">App Configuration (Android)</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../android/store.jsonc.html">Store Configuration (Android)</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../android/kernel.html">JLKernel</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../android/plugin-hello.html">JLPluginHello</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../android/plugin-device.html">JLPluginDevice</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../android/plugin-cookies.html">JLPluginCookies</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Xcode</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Xcode (iOS) Source Project</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="config.jsonc.html">App Configuration (Xcode)</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="store.jsonc.html">Store Configuration (Xcode)</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="kernel.html">JLKernel</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-hello.html">JLPluginHello</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-device.html">JLPluginDevice</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-cookies.html">JLPluginCookies</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-apple-sign-in.html">JLPluginAppleSignIn</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Jasonelle Documentation</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="../index.html">Jasonelle Documentation</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Jasonelle Documentation</a></li>
+    <li>Xcode</li>
+    <li><a href="kernel.html">JLKernel</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/xcode/pages/kernel.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">JLKernel</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The core framework for Jasonelle iOS apps.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>JLKernel provides the runtime backbone for Jasonelle applications. It bundles a SwiftUI <code>WebView</code> backed by <code>WKWebView</code> with a bidirectional JavaScript bridge, a plugin system for native extensions, native <code>Events</code> that plugins can listen to, structured logging via <code>Logger</code>, semantic <code>Version</code> reading, and <code>License</code> verification.</p>
+</div>
+<div class="paragraph">
+<p>A typical app creates a <code>WebView</code> with a dictionary of <code>Plugin</code> instances. JavaScript code communicates with native plugins through <code>window.jasonelle.post(name, args)</code>, and plugins respond by executing JavaScript back in the web view. Native code communicates with plugins through <code>Events</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quick-start"><a class="anchor" href="#quick-start"></a>Quick Start</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">import JLKernel
+
+struct ContentView: View {
+    var body: some View {
+        JLKernel.WebView(
+            url: URL(string: "https://example.com")!,
+            plugins: ["myplugin": MyPlugin()]
+        )
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="how-the-bridge-works"><a class="anchor" href="#how-the-bridge-works"></a>How the Bridge Works</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The <code>WebView</code> injects a <code>window.jasonelle</code> JavaScript object at document start.</p>
+</li>
+<li>
+<p>JavaScript calls <code>window.jasonelle.plugins.&lt;name&gt;.call(args)</code>, which posts a message to the native side via <code>webkit.messageHandlers</code>.</p>
+</li>
+<li>
+<p>The <code>Coordinator</code> receives the message, looks up the <code>Plugin</code> by name, and invokes its <code>handle_call(args:callbackId:respond:)</code> method.</p>
+</li>
+<li>
+<p>The plugin calls <code>respond(script)</code> to execute JavaScript back in the web view and resolve the promise returned by <code>window.jasonelle.post</code>. With <code>call().then(response &#8658; &#8230;&#8203;)</code> a JavaScript caller awaits the native response.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="native-events"><a class="anchor" href="#native-events"></a>Native Events</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Native code can notify plugins about app lifecycle events. The app registers its <code>Plugin</code> dictionary once with <code>Events.register(plugins:)</code> (e.g. in <code>Main.init()</code>), then broadcasts an event with <code>Events.sendOnAppear()</code>. Every registered plugin receives it through <code>handle_event(name:args:respond:)</code>, with the event name given by the raw value of the <code>Events</code> case.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="reference"><a class="anchor" href="#reference"></a>Reference</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>Kernel</code></p>
+</li>
+<li>
+<p><code>WebView</code></p>
+</li>
+<li>
+<p><code>Coordinator</code></p>
+</li>
+<li>
+<p><code>Plugin</code></p>
+</li>
+<li>
+<p><code>Events</code></p>
+</li>
+<li>
+<p><code>Logger</code></p>
+</li>
+<li>
+<p><code>LogLevel</code></p>
+</li>
+<li>
+<p><code>Ratlog</code></p>
+</li>
+<li>
+<p><code>Version</code></p>
+</li>
+<li>
+<p><code>License</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="store.jsonc.html">Store Configuration (Xcode)</a></span>
+  <span class="next"><a href="plugin-hello.html">JLPluginHello</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+<script src="../_/js/vendor/lunr.js"></script>
+<script src="../_/js/search-ui.js" id="search-ui-script" data-site-root-path=".." data-snippet-length="100" data-stylesheet="../_/css/search.css"></script>
+<script async src="../search-index.js"></script>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      ignoreHtmlClass: 'nostem|no-mathjax'
+    }
+  };
+</script>
+<script id="MathJax-script" async src="../_/js/vendor/tex-chtml.js"></script>  </body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:JLPluginAppleSignIn/JLPluginAppleSignIn.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:JLPluginCookies/JLPluginCookies.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:JLPluginDevice/JLPluginDevice.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:JLPluginHello/JLPluginHello.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:JLKernel/JLKernel.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "container:Application/Application.xcodeproj">
+   </FileRef>
+</Workspace>

@@ -1,0 +1,59 @@
+= Appconf Sets the App Name
+
+- Status: Approved (2026-09-22) by: @clsource
+
+== Problem
+
+The installed/launcher app name is hardcoded ("Jasonelle") in the Xcode and
+Android projects. The `appconf` tool patches only the application identifier
+(`app_id`). It should also set the app name from the merged `config.jsonc` via
+a new `app_name` key, on both platforms.
+
+== Decision
+
+- App name comes from `app_name` in the merged `config.jsonc`. It is
+  *optional*: empty or missing means only `app_id` is patched, so existing
+  configs keep working.
+- iOS uses `INFOPLIST_KEY_CFBundleDisplayName` (shown under the icon) added to
+  the Application target's Debug and Release build blocks only.
+  `PRODUCT_NAME = "$(TARGET_NAME)"` is left untouched so the bundle stays
+  `Application.app` and the test `TEST_HOST` paths keep working.
+- Android uses `android:label` in `AndroidManifest.xml` (the launcher name).
+- Both patches are idempotent and follow the existing strictness: unexpected
+  marker counts fail rather than guess.
+
+== Changes
+
+=== `tools/appconf/src/main.go`
+
+- Read `app_name` beside `app_id`.
+- `applyXcodeDisplayName`: anchor on the Application bundle-id line
+  (`PRODUCT_BUNDLE_IDENTIFIER = <app_id>;`, the empty-suffix one, exactly 2
+  occurrences), then per block: no-op if `"<app_name>"` is already set,
+  replace another value, else insert the line after the bundle-id line.
+- `applyAndroidLabel`: `android:label="..."` must appear exactly once;
+  replace its value (no-op if equal).
+- New `--android-manifest` flag defaulting to
+  `build/android/sources/Application/src/main/AndroidManifest.xml`.
+
+=== `tools/appconf/src/main_test.go`
+
+Fixtures (stock + renamed Xcode, Android manifest), idempotency, wrong-count
+errors, and the end-to-end `TestRun`/`TestRunNoName` cases.
+
+=== Documentation
+
+- `tools/appconf/README.md` and the Antora
+  `modules/tools/pages/appconf.adoc` page document the app name under the
+  identifier rewrites.
+
+== Non-goals
+
+- No `PRODUCT_NAME` change.
+- No changes to `lib/common/config/config.jsonc` (`app_name` already added).
+- No gen tool changes (its defaults already resolve).
+
+== Testing
+
+`go test ./...` in `tools/appconf/src`, plus rebuilding the `appconf` dist
+binaries with `task appconf.build` and a full `task gen`.

@@ -1,0 +1,22 @@
+// Main common configuration
+{
+    "url": "https://jasonelle.com",
+    "app_id": "com.example.application", // bundle identifier for xcode and application identifier for android
+    "app_name": "Jasonelle v4", // The app name that shows below icon inside the device
+    "app_version": "1.0.0", // The base marketing version. The build number is the current timestamp, eg 1.0.<timestamp>
+    "inspectable": true, // allows debugging information to be inspected by safari (xcode)
+    "allowed": ["github.com"], // If is empty or nil all urls will load in the main webview. Otherwise only the domains present will load inside the main webview.
+    "plugins": {
+      // JLPluginHello is an example custom plugin inside lib/common/sources/plugins. Can be @lib/xcode or @lib/android for just a specific platform.
+      // e.g @lib/xcode/JLPluginHello will translate to lib/common/sources/plugins/JLPluginHello/xcode
+      //"JLPluginHello": "@lib/JLPluginHello",
+      // Example Optional Xcode core only plugin @jasonelle/xcode. For android would be @jasonelle/android
+      // e.g @jasonelle/xcode/JLPluginHello will translate to sources/xcode/JLPluginHello
+      // "JLPluginAppleSignIn": "@jasonelle/xcode/JLPluginAppleSignIn",
+      // Optional Android and Xcode core plugin @jasonelle
+      // A plugin that can manage cookies for login persistence.
+      "JLPluginCookies": "@jasonelle",
+      // A plugin that returns the current device info such as screen size, os and so on.
+      "JLPluginDevice": "@jasonelle"
+    }
+}

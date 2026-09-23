@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Android Source Project :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/android/index.html">
+    <link rel="prev" href="../specs/2026-09-22-appconf-app-version-design.html">
+    <link rel="next" href="config.jsonc.html">
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../_/css/site.css">
+    <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://jasonelle.com/docs">Jasonelle Documentation</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search">
+        </div>
+      </div>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ROOT" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../index.html">Jasonelle Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../architecture.html">Architecture</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Arquitecture Decision Records</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000000-adopt-adr-documents.html">Adopt ADR documents</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000001-use-onesignal.html">Use OneSignal for managing push notifications in iOS and Android</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000002-use-revenuecat-for-in-app-sales.html">Use RevenueCat for managing in-app sales</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000003-use-jsonc-for-configuration-and-settings.html">Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000004-use-taskfile-for-running-common-commands.html">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000005-use-fastlane-for-app-store-and-play-store-automation.html">Use Fastlane for App Store and Play Store automation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000006-use-esbuild-to-bundle-js-files-for-the-webview.html">Use esbuild to bundle JS files for the webview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000007-use-antora-for-technical-project-documentation.html">Use Antora for technical project documentation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000008-use-golang-for-cross-platform-tools.html">Use Go for cross platform tools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.html">Add Swift for Xcode related command line tools instead of Go</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000010-use-typescript-instead-of-javascript-for-the-scripts-inside-lib.html">Use TypeScript instead of JavaScript for the scripts inside lib</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000011-select-xcodegen-for-xcodeproject-generation.html">Select XcodeGen for Xcode Project Generation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000012-use-swiftlint-for-swift-formatting-and-code-standardization.html">Use SwiftLint for Swift Formatting and Code Standardization</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000013-supersede-xcodegen-with-xcode-project-format.html">Supersede XcodeGen with Xcode Project Format from Apple</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000014-add-adoption-of-spec-driven-development-using-superpowers-plugin.html">Add Adoption of Spec Driven Development Using Superpowers Plugin</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000015-add-opencode-for-agentic-programming-using-the-plugins-superpowers-ponytail-and-mcp-context7-for-harnesses.html">Add OpenCode for Agentic Programming Using the Plugins Superpowers, Ponytail and MCP Context7 for Harnesses</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000016-use-golang-script-to-parse-and-modify-xcode-and-android-projects.html">Use a Golang Script to Parse and Modify Xcode and Android Projects</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tools</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/gen.html">Gen</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/icon.html">Icon Generator</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/jsonc.html">JSONC Merger</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/core.html">Core</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/appconf.html">Appconf</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/plugins.html">Plugins</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/link.html">Link</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/bundler.html">Bundler</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/esbuild.html">CLI esbuild</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Specs</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-20-link-copy-artifacts-design.html">Link Tool Copies App Artifacts into the Assembled Tree</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-21-link-icons-design.html">Link Tool Copies and Verifies App Icons</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-22-appconf-app-name-design.html">Appconf Sets the App Name</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-22-appconf-app-version-design.html">Appconf Sets the App Version and Timestamp Build Number</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Android</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="index.html">Android Source Project</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="config.jsonc.html">App Configuration (Android)</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="store.jsonc.html">Store Configuration (Android)</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="kernel.html">JLKernel</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-hello.html">JLPluginHello</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-device.html">JLPluginDevice</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-cookies.html">JLPluginCookies</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Xcode</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/index.html">Xcode (iOS) Source Project</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/config.jsonc.html">App Configuration (Xcode)</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/store.jsonc.html">Store Configuration (Xcode)</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/kernel.html">JLKernel</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/plugin-hello.html">JLPluginHello</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/plugin-device.html">JLPluginDevice</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/plugin-cookies.html">JLPluginCookies</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/plugin-apple-sign-in.html">JLPluginAppleSignIn</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Jasonelle Documentation</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="../index.html">Jasonelle Documentation</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Jasonelle Documentation</a></li>
+    <li>Android</li>
+    <li><a href="index.html">Android Source Project</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/android/pages/index.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Android Source Project</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Android source project for Jasonelle. It is a native Kotlin app (Jetpack
+Compose) that renders a website inside a <code>WebView</code> and bridges JavaScript calls
+to native Kotlin plugins through a bidirectional message channel, mirroring the
+iOS (Xcode) implementation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="repository-layout"><a class="anchor" href="#repository-layout"></a>Repository layout</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gradlew</code>, <code>gradle/</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gradle wrapper used to build every module.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>settings.gradle.kts</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Declares the modules: <code>:Application</code>, <code>:JLKernel</code> and the three plugins.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Application/</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Android app module. Contains the Compose <code>MainActivity</code>, <code>ContentView</code>, the plugin registry, assets (<code>config.jsonc</code>, <code>webview.js</code>) and the <code>AndroidManifest.xml</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="kernel.html" class="xref page"><code>JLKernel/</code></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The core library: <code>JasonelleWebView</code>, <code>Coordinator</code>, <code>JasonelleBridge</code>, <code>Plugin</code>, <code>Events</code>, <code>ConfigurationLoader</code>, <code>Logger</code>, <code>Version</code> and <code>License</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="plugin-hello.html" class="xref page"><code>JLPluginHello/</code></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A sample plugin that demonstrates the native–JavaScript bridge.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="plugin-device.html" class="xref page"><code>JLPluginDevice/</code></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A plugin that reports device information to JavaScript.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="plugin-cookies.html" class="xref page"><code>JLPluginCookies/</code></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A plugin that persists web view cookies in encrypted storage.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>local.properties</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Local SDK path (gitignored, not committed).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Taskfile.yml</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>task build</code>, <code>task test</code>, <code>task assemble</code>, <code>task lint</code> wrap the Gradle tasks.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="architecture"><a class="anchor" href="#architecture"></a>Architecture</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Jasonelle Android follows the same layered architecture as the iOS project. The
+<strong>Application</strong> module owns the activity lifecycle and the registered plugin
+instances. The <strong>JLKernel</strong> module provides the web view, the JavaScript bridge
+and the message routing. The <strong>plugins</strong> modules implement native features
+callable from JavaScript.</p>
+</div>
+<div class="sect2">
+<h3 id="system-context-c4-l1"><a class="anchor" href="#system-context-c4-l1"></a>System Context (C4 L1)</h3>
+<div class="imageblock kroki">
+<div class="content">
+<img src="_images/android_c4_context-b71d712ff9ef6cf81c74c55ad1366407784fb9a8.png" alt="android_c4_context">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="containers-c4-l2"><a class="anchor" href="#containers-c4-l2"></a>Containers (C4 L2)</h3>
+<div class="imageblock kroki">
+<div class="content">
+<img src="_images/android_c4_container-f5e008a2da2cd1fdb124bf2e99e184836d056583.png" alt="android_c4_container">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="the-javascript-bridge"><a class="anchor" href="#the-javascript-bridge"></a>The JavaScript Bridge</h3>
+<div class="paragraph">
+<p>The bridge is a bidirectional message channel between the page loaded in the
+<code>WebView</code> and native code.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The native side registers the <code>Coordinator</code> as a JavaScript interface named
+<code>jasonelleBridge</code> with <code>addJavascriptInterface</code>.</p>
+</li>
+<li>
+<p><code>JasonelleBridge.JS_BRIDGE_SCRIPT</code> defines <code>window.jasonelle</code> with
+<code>post(name, args)</code>, <code>result.resolve</code>, <code>result.reject</code> and <code>plugin.init</code>.</p>
+</li>
+<li>
+<p>Each plugin&#8217;s <code>Plugin.js</code> registers itself on
+<code>window.jasonelle.plugins.&lt;name&gt;</code>.</p>
+</li>
+<li>
+<p><code>post</code> stringifies <code>{ name, args, callbackId }</code> and calls
+<code>window.jasonelleBridge.postMessage(json)</code>.</p>
+</li>
+<li>
+<p>The <code>Coordinator.postMessage</code> (<code>@JavascriptInterface</code>) parses the JSON, looks
+up the plugin and invokes <code>handle_call(callbackId, args, respond)</code>. Plugins
+reply through <code>resolve</code> or <code>reject</code>, which evaluate
+<code>window.jasonelle.result.resolve|reject(&#8230;&#8203;)</code> back in the page on the main
+thread.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Because the bridge script also installs a <code>window.webkit.messageHandlers.*</code>
+shim, the same <code>Plugin.js</code> files work unchanged on Android and iOS.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="_images/android_js_bridge-76fd93b9983893f9c47aaf88d09481e9ecd3f2cb.png" alt="android_js_bridge">
+</div>
+</div>
+<div class="paragraph">
+<p>The message body (JSON stringified by <code>post</code>) is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{ "name": "com.jasonelle.plugins.hello", "args": ["Hello", "World"], "callbackId": "&lt;uuid&gt;" }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>name</code> is the <strong>plugin id</strong> (reverse domain notation), which is also the key in
+the plugins map registered by the application.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="script-injection"><a class="anchor" href="#script-injection"></a>Script injection</h3>
+<div class="paragraph">
+<p>Android WebView has no document-start/end user scripts, so the bridge, plugin
+and app scripts are all evaluated from <code>onPageFinished</code>, in the same order as
+iOS injects them. The <code>jasonelleBridge</code> native interface is available before
+the first load, so early page code can still call it.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="_images/android_script_injection-9416d02cf1754a5f0e9477196a3cb437f1d62ed7.png" alt="android_script_injection">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="navigation-policy"><a class="anchor" href="#navigation-policy"></a>Navigation policy</h3>
+<div class="paragraph">
+<p>The app keeps the user inside the web view unless the destination is not
+allowed, in which case it opens Chrome Custom Tabs (falling back to a browser
+intent). Downloads are also handed to Custom Tabs.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="_images/android_navigation_policy-9ce6d2e58fcd70bedd20c64f4bd2a480dabe9838.png" alt="android_navigation_policy">
+</div>
+</div>
+<div class="paragraph">
+<p>Downloads are opened in Chrome Custom Tabs:</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="_images/android_navigation_download-a06b8ade9e11338f3403c2cac414772773527600.png" alt="android_navigation_download">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="native-events"><a class="anchor" href="#native-events"></a>Native events</h3>
+<div class="paragraph">
+<p>Native code notifies all registered plugins about lifecycle events. The app
+registers plugins in <code>MainActivity.onCreate</code> and broadcasts when the
+<code>ContentView</code> first appears:</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="_images/android_native_events-1df1f6db3977a5fc33d99e174b7f0731ed47b01e.png" alt="android_native_events">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="jlkernel-components"><a class="anchor" href="#jlkernel-components"></a>JLKernel components</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Component</th>
+<th class="tableblock halign-left valign-top">Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>JasonelleWebView</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compose composable built on <code>AndroidView</code>; creates the <code>WebView</code> via <code>createJasonelleWebView</code> and loads the configured URL.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Coordinator</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@JavascriptInterface</code> receiver for JS messages, plus the navigation policy. <code>handleMessage</code> and <code>decidePolicyForHost</code> are extracted for JVM unit testing.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>JasonelleBridge</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Holds <code>JS_BRIDGE_SCRIPT</code> (injected into the page) and the interface name <code>jasonelleBridge</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Plugin</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base class every plugin subclasses. Provides <code>name</code>/<code>id</code> defaults, <code>handle_call</code>, <code>handle_event</code>, the <code>resolve</code>/<code>reject</code>/<code>event</code> helpers and the <code>js()</code> loader that reads <code>plugins/&lt;name&gt;/Plugin.js</code> from assets.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Events</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enum of native events with a static plugin registry, <code>register(plugins:)</code> and <code>sendOnAppear()</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ConfigurationLoader</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Loads <code>config.jsonc</code> from app assets, strips comments (<code>//</code> and <code>/* */</code>) and decodes it into <code>AppConfiguration</code> (<code>urlString</code>, <code>inspectable</code>, <code>allowed</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Logger</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Structured logging with <code>LogLevel</code> severities and Ratlog-format output via <code>Ratlog</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Version</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reads the bundled <code>VERSION</code> resource and returns the semantic version.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>License</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verifies a Jasonelle license key.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="plugins"><a class="anchor" href="#plugins"></a>Plugins</h3>
+<div class="paragraph">
+<p>Each plugin is an independent Gradle module that subclasses <code>JLKernel.Plugin</code>
+(imported as <code>KernelPlugin</code> to avoid the class-name clash). Plugins are
+composed by the <strong>Application</strong> in <code>Plugins.kt</code>, which instantiates them; the
+Cookies plugin receives the application <code>Context</code>. Keys must match the plugin
+id used in JavaScript (<code>window.jasonelle.plugins.&lt;name&gt;</code>).</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Plugin</th>
+<th class="tableblock halign-left valign-top">Native API</th>
+<th class="tableblock halign-left valign-top">JS object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="plugin-hello.html" class="xref page"><code>JLPluginHello</code></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>handle_call</code> echoes a response</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>plugins.hello.call()</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="plugin-device.html" class="xref page"><code>JLPluginDevice</code></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>handle_call</code> returns device info</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>plugins.device.info()</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="plugin-cookies.html" class="xref page"><code>JLPluginCookies</code></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>handle_call</code> stores/reads cookies in <code>EncryptedSharedPreferences</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>plugins.cookies.save()</code>, <code>restore()</code>, <code>persist()</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="development"><a class="anchor" href="#development"></a>Development</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Build all modules with <code>task build</code> (<code>./gradlew assembleDebug</code>).</p>
+</li>
+<li>
+<p>Run <code>task test</code> (<code>./gradlew test</code>) for the JVM unit tests in every module
+(<code>JLKernelTests</code>, <code>JLPluginHelloTests</code>, <code>JLPluginDeviceTests</code>,
+<code>JLPluginCookiesTests</code>).</p>
+</li>
+<li>
+<p>Build just the app APK with <code>task assemble</code>
+(<code>./gradlew :Application:assembleDebug</code>), output in
+<code>Application/build/outputs/apk/debug/</code>.</p>
+</li>
+<li>
+<p>Run lint with <code>task lint</code>.</p>
+</li>
+<li>
+<p>Every plugin ships a <code>docs/&lt;Plugin&gt;.md</code> file describing its native code and
+JavaScript bridge.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../specs/2026-09-22-appconf-app-version-design.html">Appconf Sets the App Version and Timestamp Build Number</a></span>
+  <span class="next"><a href="config.jsonc.html">App Configuration (Android)</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+<script src="../_/js/vendor/lunr.js"></script>
+<script src="../_/js/search-ui.js" id="search-ui-script" data-site-root-path=".." data-snippet-length="100" data-stylesheet="../_/css/search.css"></script>
+<script async src="../search-index.js"></script>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      ignoreHtmlClass: 'nostem|no-mathjax'
+    }
+  };
+</script>
+<script id="MathJax-script" async src="../_/js/vendor/tex-chtml.js"></script>  </body>
+</html>

@@ -1,0 +1,311 @@
+= Xcode (iOS) Source Project
+
+The iOS source project for Jasonelle. It is a native SwiftUI app that renders a
+website inside a `WKWebView` and bridges JavaScript calls to native Swift
+plugins through a bidirectional message channel.
+
+== Repository layout
+
+[cols="1,3"]
+|===
+| Path | Contents
+
+| `Jasonelle.xcworkspace/`
+| Xcode workspace that groups the app, the kernel framework and the plugins.
+
+| `Application/`
+| The iOS app target. Contains SwiftUI views, resources (`Assets.xcassets`),
+`config.jsonc`, `webview.js` and the `Application.docc` documentation.
+
+| xref:kernel.adoc[`JLKernel/`]
+| A reusable framework consumed by the app: `WebView`, `Coordinator`, `Plugin`,
+`Events`, `ConfigurationLoader`, `Logger`, `Version` and `License`.
+
+| xref:plugin-hello.adoc[`JLPluginHello/`]
+| A sample plugin that demonstrates the native–JavaScript bridge.
+
+| xref:plugin-device.adoc[`JLPluginDevice/`]
+| A plugin that reports device information to JavaScript.
+
+| xref:plugin-cookies.adoc[`JLPluginCookies/`]
+| A plugin that persists web view cookies in the iOS Keychain.
+
+| xref:plugin-apple-sign-in.adoc[`JLPluginAppleSignIn/`]
+| A plugin that provides Sign in with Apple.
+
+| `.swiftlint.yml`
+| SwiftLint rules.
+
+| `.clang-format`
+| Formatting rules for C/C++/Objective-C sources.
+
+| `Taskfile.yml`
+| `task lint` / `task fix` run SwiftLint.
+|===
+
+== Architecture
+
+Jasonelle iOS follows a layered architecture. The *Application* layer owns the
+SwiftUI lifecycle and the registered plugin instances. The *JLKernel* layer
+provides the web view, the JavaScript bridge and the message routing. The
+*plugins* layer implements native features callable from JavaScript.
+
+=== System Context (C4 L1)
+
+[plantuml, xcode_c4_context, png]
+----
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+title System Context for Jasonelle iOS
+
+Person(user, "User", "Operates the app on an iPhone or iPad")
+System(app, "Jasonelle iOS App", "Renders a remote website in a WKWebView and bridges JavaScript calls to native plugins")
+
+System_Ext(web, "Website Content", "The remote website loaded in the web view, e.g. jasonelle.com")
+System_Ext(safari, "Safari", "Opens links and downloads that are not allowed inside the web view")
+System_Ext(apple, "Apple Services", "AuthenticationServices (Sign in with Apple) and the iOS Keychain")
+
+Rel(user, app, "Uses", "views the website and interacts with plugins")
+Rel(app, web, "Loads and renders", "WKNavigation requests")
+Rel(app, safari, "Opens external links in modal SFSafariViewController", "navigation policy")
+Rel(app, apple, "Stores cookies and authenticates users", "Sign in with Apple / Keychain")
+@enduml
+----
+
+=== Containers (C4 L2)
+
+[plantuml, xcode_c4_container, png]
+----
+@startuml
+skinparam componentStyle rectangle
+
+package "Application" {
+  [Main] as main
+  [ContentView] as contentView
+  [Plugins registry] as plugins
+}
+
+package "JLKernel" {
+  [WebView] as webView
+  [Coordinator] as coordinator
+  [Plugin] as basePlugin
+  [Events] as events
+  [ConfigurationLoader] as configLoader
+}
+
+package "Plugins" {
+  [JLPluginHello] as hello
+  [JLPluginDevice] as device
+  [JLPluginCookies] as cookies
+  [JLPluginAppleSignIn] as auth
+}
+
+main --> contentView : shows
+contentView --> webView : renders
+main --> plugins : holds
+webView --> coordinator : forwards JS messages and navigation events
+coordinator --> basePlugin : looks up by id and dispatches
+main --> events : broadcasts
+webView --> configLoader : loads configuration from bundle
+
+@enduml
+----
+
+=== The JavaScript Bridge
+
+The bridge is a bidirectional message channel between the page loaded in the
+`WKWebView` and native code.
+
+* `WebView.jsBridgeScript` is injected at *document start* and defines the
+`window.jasonelle` object with `post(name, args)`, `result.resolve`,
+`result.reject` and `plugin.init`.
+* Each plugin's `Plugin.js` is injected at *document end* and registers itself
+on `window.jasonelle.plugins.<name>`.
+* JavaScript posts a message to `window.webkit.messageHandlers.jasonelle`.
+* The `Coordinator` resolves the message to a plugin and invokes
+`handle_call(callbackId:args:respond:)`; plugins reply through `resolve` or
+`reject`, which evaluate `window.jasonelle.result.resolve|reject(...)` back in
+the page.
+
+[plantuml, xcode_js_bridge, png]
+----
+@startuml
+autonumber
+actor "Web Page" as JS
+participant "WKWebView" as webview
+participant "Coordinator" as coord
+participant "Plugin.handle_call" as plugin
+participant "respond(script)" as respond
+
+JS->>JS: plugins.hello.call("Hello", "World")
+JS->>webview: jasonelle.post(id, args) returns Promise (callbackId = uuid)
+webview->>coord: messageHandlers.jasonelle { name, args, callbackId }
+coord->>coord: handleMessage: look up plugin by name in plugins dict
+coord->>plugin: handle_call(callbackId, args, respond)
+plugin->>plugin: build response { status, callbackId, ... }
+plugin->>respond: resolve(args, callbackId, respond)
+respond->>webview: evaluateJavaScript window.jasonelle.result.resolve({...})
+webview->>JS: resolve args.callbackId & delete pending callback
+JS-->JS: promise .then(response => ...)
+@enduml
+----
+
+The message body is a dictionary:
+
+[source,json]
+----
+{ "name": "com.jasonelle.plugins.hello", "args": ["Hello", "World"], "callbackId": "<uuid>" }
+----
+
+`name` is the *plugin id* (reverse domain notation), which is also the key in
+the plugins dictionary registered by the application.
+
+=== Script injection order
+
+[plantuml, xcode_script_injection, png]
+----
+@startuml
+:makeUIView;
+:bridge script @ documentStart;
+:plugin scripts Plugin.js @ documentEnd;
+:app webview.js @ documentEnd;
+:load initial URL;
+:webview.js runs: window.jasonelle.plugins.cookies.restore;
+@enduml
+----
+
+=== Navigation policy
+
+The app keeps the user inside the web view unless the destination is not
+allowed, in which case it opens a modal `SFSafariViewController`.
+
+[plantuml, xcode_navigation_policy, png]
+----
+@startuml
+start
+:WKNavigationAction;
+if (allowed is nil or empty?) then (yes)
+  :.allow everything in web view;
+  stop
+else (no)
+  if (host in allowed or host == main URL?) then (yes)
+    :.allow in web view;
+    stop
+  else (no)
+    :.cancel + present SFSafariViewController;
+    stop
+  endif
+endif
+@enduml
+----
+
+Main-frame responses the web view cannot render (downloads) also go to Safari:
+
+[plantuml, xcode_navigation_response, png]
+----
+@startuml
+start
+:WKNavigationResponse main frame;
+if (canShowMIMEType?) then (yes)
+  :.allow;
+  stop
+else (no)
+  :.cancel + present SFSafariViewController;
+  stop
+endif
+@enduml
+----
+
+=== Native events
+
+Native code notifies all registered plugins about lifecycle events. The app
+registers plugins once in `Main.init()` and broadcasts on
+`ContentView.onAppear`:
+
+[plantuml, xcode_native_events, png]
+----
+@startuml
+participant "Main.init" as main
+participant "JLKernel.Events" as events
+participant "Plugin (cookies)" as p1
+participant "Plugin (device)" as p2
+
+main->>main: License.verify(key)
+main->>events: Events.register(plugins:)
+group ContentView.onAppear
+  events->>p1: handle_event("ContentView.onAppear")
+  events->>p2: handle_event("ContentView.onAppear")
+end
+@enduml
+----
+
+== JLKernel components
+
+[cols="1,3"]
+|===
+| Component | Responsibility
+
+| `WebView`
+| SwiftUI `UIViewRepresentable` that creates the `WKWebView`, registers the message handler, injects the bridge, plugin and app scripts, and applies the navigation delegate.
+
+| `Coordinator`
+| `WKNavigationDelegate` + `WKScriptMessageHandler`. Routes JavaScript messages to plugins, executes responses back in the page and applies the navigation policy. `handleMessage(body:)` and `decidePolicy(url:allowed:mainURL:)` are extracted for unit testing.
+
+| `Plugin`
+| Base class every plugin subclasses. Provides `name`/`id` defaults, `handle_call`, `handle_event`, the `resolve`/`reject`/`event` helpers and `js()`/`inject(into:)` script injection.
+
+| `Events`
+| Enum of native events with a static plugin registry, `register(plugins:)` and `sendOnAppear()`.
+
+| `ConfigurationLoader`
+| Loads `config.jsonc` from the app bundle, strips comments (`//` and `/* */`) and decodes it into `AppConfiguration` (`url`, `inspectable`, `allowed`).
+
+| `Logger`
+| Structured logging over `os.Logger` with `LogLevel` severities and Ratlog-format output via `Ratlog`.
+
+| `Version`
+| Reads the bundled `VERSION` resource and returns the semantic version.
+
+| `License`
+| Verifies a Jasonelle license key; aborts on physical devices without a license, logs a reminder in the simulator.
+|===
+
+=== Plugins
+
+Each plugin is an independent Swift module (a framework inside the workspace)
+that subclasses `JLKernel.Plugin`. Plugins are composed by the *Application* in
+`Plugins.swift`, which imports and instantiates them. Keys must match the
+plugin id used in JavaScript (`window.jasonelle.plugins.<name>`).
+
+[cols="1,2,2"]
+|===
+| Plugin | Native API | JS object
+
+| xref:plugin-hello.adoc[`JLPluginHello`]
+| `handle_call` echoes a response
+| `plugins.hello.call()`
+
+| xref:plugin-device.adoc[`JLPluginDevice`]
+| `handle_call` returns device info
+| `plugins.device.info()`
+
+| xref:plugin-cookies.adoc[`JLPluginCookies`]
+| `handle_call` stores/reads cookies in the Keychain
+| `plugins.cookies.save()`, `restore()`, `persist()`
+
+| xref:plugin-apple-sign-in.adoc[`JLPluginAppleSignIn`]
+| Sign in, credential state and native button via `ASAuthorizationController`
+| `plugins.applesignin.signIn()`, `getCredentialState()`, `showNativeButton()`
+|===
+
+== Development
+
+* Open `Jasonelle.xcworkspace` in Xcode to build the `Application` scheme.
+* Unit tests live in each module's `<Module>Tests` target (`JLKernelTests`,
+`JLPluginHelloTests`, `JLPluginDeviceTests`, `JLPluginCookiesTests`,
+`JLPluginAppleSignInTests`, `ApplicationTests`).
+* Run SwiftLint with `task lint` (auto-fix with `task fix`).
+* Each module ships a DocC catalog (`*.docc`) describing its public API. Open
+the workspace in Xcode and select "Documentation" in the navigator to browse
+them.

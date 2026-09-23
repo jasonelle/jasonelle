@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Store Configuration (Android) :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/android/store.jsonc.html">
+    <link rel="prev" href="config.jsonc.html">
+    <link rel="next" href="kernel.html">
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../_/css/site.css">
+    <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://jasonelle.com/docs">Jasonelle Documentation</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search">
+        </div>
+      </div>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ROOT" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../index.html">Jasonelle Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../architecture.html">Architecture</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Arquitecture Decision Records</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000000-adopt-adr-documents.html">Adopt ADR documents</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000001-use-onesignal.html">Use OneSignal for managing push notifications in iOS and Android</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000002-use-revenuecat-for-in-app-sales.html">Use RevenueCat for managing in-app sales</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000003-use-jsonc-for-configuration-and-settings.html">Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000004-use-taskfile-for-running-common-commands.html">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000005-use-fastlane-for-app-store-and-play-store-automation.html">Use Fastlane for App Store and Play Store automation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000006-use-esbuild-to-bundle-js-files-for-the-webview.html">Use esbuild to bundle JS files for the webview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000007-use-antora-for-technical-project-documentation.html">Use Antora for technical project documentation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000008-use-golang-for-cross-platform-tools.html">Use Go for cross platform tools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.html">Add Swift for Xcode related command line tools instead of Go</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000010-use-typescript-instead-of-javascript-for-the-scripts-inside-lib.html">Use TypeScript instead of JavaScript for the scripts inside lib</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000011-select-xcodegen-for-xcodeproject-generation.html">Select XcodeGen for Xcode Project Generation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000012-use-swiftlint-for-swift-formatting-and-code-standardization.html">Use SwiftLint for Swift Formatting and Code Standardization</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000013-supersede-xcodegen-with-xcode-project-format.html">Supersede XcodeGen with Xcode Project Format from Apple</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000014-add-adoption-of-spec-driven-development-using-superpowers-plugin.html">Add Adoption of Spec Driven Development Using Superpowers Plugin</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000015-add-opencode-for-agentic-programming-using-the-plugins-superpowers-ponytail-and-mcp-context7-for-harnesses.html">Add OpenCode for Agentic Programming Using the Plugins Superpowers, Ponytail and MCP Context7 for Harnesses</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000016-use-golang-script-to-parse-and-modify-xcode-and-android-projects.html">Use a Golang Script to Parse and Modify Xcode and Android Projects</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tools</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/gen.html">Gen</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/icon.html">Icon Generator</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/jsonc.html">JSONC Merger</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/core.html">Core</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/appconf.html">Appconf</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/plugins.html">Plugins</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/link.html">Link</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/bundler.html">Bundler</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/esbuild.html">CLI esbuild</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Specs</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-20-link-copy-artifacts-design.html">Link Tool Copies App Artifacts into the Assembled Tree</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-21-link-icons-design.html">Link Tool Copies and Verifies App Icons</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-22-appconf-app-name-design.html">Appconf Sets the App Name</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-22-appconf-app-version-design.html">Appconf Sets the App Version and Timestamp Build Number</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Android</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Android Source Project</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="config.jsonc.html">App Configuration (Android)</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="store.jsonc.html">Store Configuration (Android)</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="kernel.html">JLKernel</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-hello.html">JLPluginHello</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-device.html">JLPluginDevice</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-cookies.html">JLPluginCookies</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Xcode</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/index.html">Xcode (iOS) Source Project</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/config.jsonc.html">App Configuration (Xcode)</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/store.jsonc.html">Store Configuration (Xcode)</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/kernel.html">JLKernel</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/plugin-hello.html">JLPluginHello</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/plugin-device.html">JLPluginDevice</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/plugin-cookies.html">JLPluginCookies</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/plugin-apple-sign-in.html">JLPluginAppleSignIn</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Jasonelle Documentation</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="../index.html">Jasonelle Documentation</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Jasonelle Documentation</a></li>
+    <li>Android</li>
+    <li><a href="store.jsonc.html">Store Configuration (Android)</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/android/pages/store.jsonc.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Store Configuration (Android)</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Jasonelle manages Google Play Store release metadata through <code>store.jsonc</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The build pipeline merges <code>lib/common/config/store.jsonc</code> with <code>lib/android/config/store.jsonc</code>.
+The merged output is written to <code>build/android/config/store.jsonc</code>.
+The configuration follows standard Fastlane parameter names.</p>
+</div>
+<div class="paragraph">
+<p>Run the following command to merge the configuration files:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">task jsonc.android</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="file-locations"><a class="anchor" href="#file-locations"></a>File Locations</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>lib/common/config/store.jsonc</code>: Common store metadata and release settings.</p>
+</li>
+<li>
+<p><code>lib/android/config/store.jsonc</code>: Android specific settings and overrides.</p>
+</li>
+<li>
+<p><code>build/android/config/store.jsonc</code>: Merged file consumed by the build pipeline.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="common-configuration-libcommonconfigstore-jsonc"><a class="anchor" href="#common-configuration-libcommonconfigstore-jsonc"></a>Common Configuration (lib/common/config/store.jsonc)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>lib/common/config/store.jsonc</code> file defines settings shared across Android and iOS stores.
+These values provide the baseline store presence for the application.</p>
+</div>
+<div class="sect2">
+<h3 id="common-sections"><a class="anchor" href="#common-sections"></a>Common Sections</h3>
+<div class="sect3">
+<h4 id="metadata"><a class="anchor" href="#metadata"></a>metadata</h4>
+<div class="paragraph">
+<p>Provides localized store listing content per language code.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>default_language</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The primary locale code for store listings (for example, <code>en-US</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application name displayed on store listings.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>description</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The full descriptive text for the application.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>keywords</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The comma-separated keywords for search indexing.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>privacy_url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The privacy policy URL required by app stores.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>support_url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The customer support website URL.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>marketing_url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The marketing or product website URL.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>release_notes</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The changelog description for this release.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="review_information"><a class="anchor" href="#review_information"></a>review_information</h4>
+<div class="paragraph">
+<p>Stores contact information and test account credentials for app reviewers.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>contact_first_name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The first name of the developer contact.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>contact_last_name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The last name of the developer contact.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>contact_email</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The email address of the developer contact.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>contact_phone</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The telephone number of the developer contact.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>demo_user</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The username for the reviewer test account.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>demo_password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password for the reviewer test account.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>notes</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Instructions for the store review team.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="release"><a class="anchor" href="#release"></a>release</h4>
+<div class="paragraph">
+<p>Controls shared release and upload automation behavior.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>skip_screenshots</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Skip uploading screenshots during deployment.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>skip_metadata</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Skip uploading store metadata during deployment.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>submit_for_review</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Submit the release for review automatically.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>automatic_release</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Release the app automatically after store approval.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="common-configuration-example"><a class="anchor" href="#common-configuration-example"></a>Common Configuration Example</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-jsonc hljs" data-lang="jsonc">{
+  "metadata": {
+    "default_language": "en-US",
+    "en-US": {
+      "title": "Jasonelle v4",
+      "description": "Jasonelle turns web applications into high-performance native iOS and Android apps with full native capabilities.",
+      "keywords": "jasonelle, webview, mobile, ios, android, hybrid, native",
+      "privacy_url": "https://jasonelle.com/privacy",
+      "support_url": "https://jasonelle.com/support",
+      "marketing_url": "https://jasonelle.com",
+      "release_notes": "Initial release of Jasonelle v4."
+    }
+  },
+  "review_information": {
+    "contact_first_name": "Jason",
+    "contact_last_name": "Elle",
+    "contact_email": "developer@example.com",
+    "contact_phone": "+1234567890",
+    "demo_user": "demo@example.com",
+    "demo_password": "DemoPassword123!",
+    "notes": "Test login credentials provided above for app review."
+  },
+  "release": {
+    "skip_screenshots": false,
+    "skip_metadata": false,
+    "submit_for_review": false,
+    "automatic_release": false
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="android-configuration-libandroidconfigstore-jsonc"><a class="anchor" href="#android-configuration-libandroidconfigstore-jsonc"></a>Android Configuration (lib/android/config/store.jsonc)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>lib/android/config/store.jsonc</code> file specifies Google Play Store parameters and overrides.</p>
+</div>
+<div class="sect2">
+<h3 id="android-sections"><a class="anchor" href="#android-sections"></a>Android Sections</h3>
+<div class="sect3">
+<h4 id="appfile"><a class="anchor" href="#appfile"></a>appfile</h4>
+<div class="paragraph">
+<p>Configures credentials and package identifiers for Fastlane tools.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>package_name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application package identifier matching <code>AndroidManifest.xml</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>json_key_file</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to the Google Play service account JSON key file.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="supply"><a class="anchor" href="#supply"></a>supply</h4>
+<div class="paragraph">
+<p>Configures the Fastlane <code>supply</code> tool for Google Play publishing.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>track</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The target release track (<code>internal</code>, <code>alpha</code>, <code>beta</code>, <code>production</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>rollout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The staged rollout percentage from <code>0.0</code> to <code>1.0</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>skip_upload_aab</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Skip uploading the Android App Bundle file.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>skip_upload_apk</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Skip uploading APK files when using App Bundles.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>skip_upload_metadata</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Skip uploading text metadata to the store listing.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>skip_upload_changelogs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Skip uploading release notes and changelogs.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>skip_upload_images</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Skip uploading app icons and promotional images.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>skip_upload_screenshots</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Skip uploading device screenshots.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>validate_only</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Validate the release with Google Play without publishing.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>changes_not_sent_for_review</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Send release changes to Google review immediately.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ack_bundle_installation_warning</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Acknowledge warnings when the bundle drops device support.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="metadata-overrides"><a class="anchor" href="#metadata-overrides"></a>metadata Overrides</h4>
+<div class="paragraph">
+<p>Android-specific metadata additions inside <code>metadata.&lt;locale&gt;</code>.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>short_description</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Google Play summary text (maximum 80 characters).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>video</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The YouTube promotional video URL.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="gradle"><a class="anchor" href="#gradle"></a>gradle</h4>
+<div class="paragraph">
+<p>Configures the Gradle build action for Fastlane.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>task</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Gradle build task (<code>bundleRelease</code> or <code>assembleRelease</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>build_type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The target build type (<code>Release</code>).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="android-configuration-example"><a class="anchor" href="#android-configuration-example"></a>Android Configuration Example</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-jsonc hljs" data-lang="jsonc">{
+  "appfile": {
+    "package_name": "com.example.application",
+    "json_key_file": "lib/android/config/play-store-key.json"
+  },
+  "supply": {
+    "track": "internal",
+    "rollout": 1.0,
+    "skip_upload_aab": false,
+    "skip_upload_apk": true,
+    "skip_upload_metadata": false,
+    "skip_upload_changelogs": false,
+    "skip_upload_images": false,
+    "skip_upload_screenshots": false,
+    "validate_only": false,
+    "changes_not_sent_for_review": false,
+    "ack_bundle_installation_warning": true
+  },
+  "metadata": {
+    "en-US": {
+      "short_description": "Build native Android apps with web technologies.",
+      "video": "https://www.youtube.com/watch?v=example"
+    }
+  },
+  "gradle": {
+    "task": "bundleRelease",
+    "build_type": "Release"
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="merged-output-buildandroidconfigstore-jsonc"><a class="anchor" href="#merged-output-buildandroidconfigstore-jsonc"></a>Merged Output (build/android/config/store.jsonc)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following example shows the resulting merged file after running <code>task jsonc.android</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-jsonc hljs" data-lang="jsonc">{
+  "appfile": {
+    "json_key_file": "lib/android/config/play-store-key.json",
+    "package_name": "com.example.application"
+  },
+  "gradle": {
+    "build_type": "Release",
+    "task": "bundleRelease"
+  },
+  "metadata": {
+    "default_language": "en-US",
+    "en-US": {
+      "description": "Jasonelle turns web applications into high-performance native iOS and Android apps with full native capabilities.",
+      "keywords": "jasonelle, webview, mobile, ios, android, hybrid, native",
+      "marketing_url": "https://jasonelle.com",
+      "privacy_url": "https://jasonelle.com/privacy",
+      "release_notes": "Initial release of Jasonelle v4.",
+      "short_description": "Build native Android apps with web technologies.",
+      "support_url": "https://jasonelle.com/support",
+      "title": "Jasonelle v4",
+      "video": "https://www.youtube.com/watch?v=example"
+    }
+  },
+  "release": {
+    "automatic_release": false,
+    "skip_metadata": false,
+    "skip_screenshots": false,
+    "submit_for_review": false
+  },
+  "review_information": {
+    "contact_email": "developer@example.com",
+    "contact_first_name": "Jason",
+    "contact_last_name": "Elle",
+    "contact_phone": "+1234567890",
+    "demo_password": "DemoPassword123!",
+    "demo_user": "demo@example.com",
+    "notes": "Test login credentials provided above for app review."
+  },
+  "supply": {
+    "ack_bundle_installation_warning": true,
+    "changes_not_sent_for_review": false,
+    "rollout": 1,
+    "skip_upload_aab": false,
+    "skip_upload_apk": true,
+    "skip_upload_changelogs": false,
+    "skip_upload_images": false,
+    "skip_upload_metadata": false,
+    "skip_upload_screenshots": false,
+    "track": "internal",
+    "validate_only": false
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="config.jsonc.html">App Configuration (Android)</a></span>
+  <span class="next"><a href="kernel.html">JLKernel</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+<script src="../_/js/vendor/lunr.js"></script>
+<script src="../_/js/search-ui.js" id="search-ui-script" data-site-root-path=".." data-snippet-length="100" data-stylesheet="../_/css/search.css"></script>
+<script async src="../search-index.js"></script>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      ignoreHtmlClass: 'nostem|no-mathjax'
+    }
+  };
+</script>
+<script id="MathJax-script" async src="../_/js/vendor/tex-chtml.js"></script>  </body>
+</html>
