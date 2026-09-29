@@ -74,6 +74,125 @@ container) and publishes them to GitHub Pages via a GitHub Actions workflow.
   - `/version-bump`: Bump the version in a version file to the next version.
   - `/yaml`: Lint and format YAML files with yamllint and prettier.
 
+## Skills
+
+Invoke the matching skill instead of improvising the workflow. Sources:
+
+- `.agents/skills/`: project skills.
+- `.opencode/opencode.jsonc` → `plugin[]`: the `superpowers` and `ponytail`
+  plugins, whose skills ship with the plugin packages.
+
+<available_skills>
+  <skill>
+    <name>generate-tests</name>
+    <description>Use when the user asks to generate, create, write, or add unit tests for existing code, or to cover a class, method, or file with tests — including Java targets using JUnit 5, Mockito, or AssertJ. Not for analysis-only requests that stop at listing test cases.</description>
+  </skill>
+  <skill>
+    <name>generate-test-cases</name>
+    <description>Use when the user asks to analyze code for test coverage, list what test cases are needed, or review testing strategy — WITHOUT generating actual test code.</description>
+  </skill>
+  <skill>
+    <name>using-superpowers</name>
+    <description>Load first, before any response or action. Establishes how and when to invoke skills.</description>
+  </skill>
+  <skill>
+    <name>brainstorming</name>
+    <description>Use before any creative work — new features, components, or changed behavior. Explores intent and design before implementation.</description>
+  </skill>
+  <skill>
+    <name>writing-plans</name>
+    <description>Use when a spec or requirements exist for a multi-step task, before touching code.</description>
+  </skill>
+  <skill>
+    <name>executing-plans</name>
+    <description>Use when executing a written implementation plan in a separate session, with review checkpoints.</description>
+  </skill>
+  <skill>
+    <name>subagent-driven-development</name>
+    <description>Use when executing an implementation plan whose tasks are independent and can run in this session.</description>
+  </skill>
+  <skill>
+    <name>dispatching-parallel-agents</name>
+    <description>Use when facing two or more independent tasks with no shared state or ordering.</description>
+  </skill>
+  <skill>
+    <name>using-git-worktrees</name>
+    <description>Use to isolate feature work from the current workspace, or before executing an implementation plan.</description>
+  </skill>
+  <skill>
+    <name>systematic-debugging</name>
+    <description>Use on any bug, test failure, or unexpected behavior, before proposing fixes. Find the root cause.</description>
+  </skill>
+  <skill>
+    <name>test-driven-development</name>
+    <description>Use when implementing any feature or bugfix, before writing implementation code.</description>
+  </skill>
+  <skill>
+    <name>verification-before-completion</name>
+    <description>Use before claiming work is complete, fixed, or passing. Run the command, read the output, then assert.</description>
+  </skill>
+  <skill>
+    <name>requesting-code-review</name>
+    <description>Use when completing tasks or before merging, to verify the work meets its requirements.</description>
+  </skill>
+  <skill>
+    <name>receiving-code-review</name>
+    <description>Use when acting on review feedback, especially when it is unclear or technically questionable. Verify before implementing.</description>
+  </skill>
+  <skill>
+    <name>finishing-a-development-branch</name>
+    <description>Use when implementation is done and all tests pass, to decide how to integrate the work.</description>
+  </skill>
+  <skill>
+    <name>writing-skills</name>
+    <description>Use when creating new skills or editing existing ones.</description>
+  </skill>
+  <skill>
+    <name>ponytail</name>
+    <description>Use on any coding task to find the laziest solution that actually works. YAGNI, reuse, stdlib, native, fewest files. Switch level with <code>lite|full|ultra</code>.</description>
+  </skill>
+  <skill>
+    <name>ponytail-review</name>
+    <description>Code review that only hunts over-engineering: what to delete, what stdlib or native feature replaces it.</description>
+  </skill>
+  <skill>
+    <name>ponytail-audit</name>
+    <description>Whole-repo over-engineering audit. One-shot ranked report of what to delete or simplify. Changes nothing.</description>
+  </skill>
+  <skill>
+    <name>ponytail-debt</name>
+    <description>Harvest every <code>ponytail:</code> comment into a debt ledger of deliberate shortcuts. One-shot report.</description>
+  </skill>
+  <skill>
+    <name>ponytail-gain</name>
+    <description>Show ponytail's measured impact as a scoreboard: less code, less cost, more speed. One-shot display.</description>
+  </skill>
+  <skill>
+    <name>ponytail-help</name>
+    <description>Quick-reference card for all ponytail modes, skills, and commands. One-shot display.</description>
+  </skill>
+</available_skills>
+
+Plugin skills ship with the packages, not this file. Keep their entries
+one-liners: the skill's own <code>SKILL.md</code> is the source of truth, so
+regenerate this block rather than paraphrasing detail into it.
+
+### Test workflow
+
+Run the two skills in order — do not go straight to `generate-tests`:
+
+1. `generate-test-cases <target>`: its Given-When-Then list is the plan and stays
+   visible so the tests can be checked against it.
+2. `generate-tests <target>`: generate from **that** list. Do not re-analyse the
+   target from scratch; name any case added or dropped, and why.
+
+Stop after step 1 only when the user asked for the analysis alone.
+
+Key principles: INCLUDE each code branch, unique return value, and exception
+type. EXCLUDE duplicate scenarios, collection size variations, and speculative
+cases. Format: `{method}_{state}_{outcome}` naming. Structure: Given-When-Then
+with `actual`/`expected` prefixes.
+
 ## Conventions
 
 - YAML: 2-space indentation. Lint with `yamllint` and format with `prettier`
