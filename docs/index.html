@@ -202,9 +202,9 @@
 <span class="c-key">const</span> device = <span class="c-key">await</span> window.jasonelle.plugins.device.<span class="c-fn">info</span>();
 console.<span class="c-fn">log</span>(device.platform);  <span class="c-cm">// "ios" | "android"</span>
 
-<span class="c-cm">// ...and native code pushes events back</span>
-window.jasonelle.<span class="c-fn">on</span>(<span class="c-str">"cart.purchase"</span>, (payload) =&gt; {
-  cart.<span class="c-fn">refresh</span>(payload);
+<span class="c-cm">// native pushes an event back into your app</span>
+window.jasonelle.plugins.hello.handle = ({ event, ...payload }) =&gt; {
+  <span class="c-key">if</span> (event === <span class="c-str">"ContentView.onAppear"</span>) cart.<span class="c-fn">refresh</span>(payload);
 });</code></pre>
               </div>
               <img

@@ -35,6 +35,39 @@ struct ContentView: View {
 
 Native code can notify plugins about app lifecycle events. The app registers its `Plugin` dictionary once with `Events.register(plugins:)` (e.g. in `Main.init()`), then broadcasts an event with `Events.sendOnAppear()`. Every registered plugin receives it through `handle_event(name:args:respond:)`, with the event name given by the raw value of the `Events` case.
 
+=== Events Pushed Back to JavaScript
+
+To let the page react to an event, a plugin forwards it to JavaScript from its `handle_event` override using the `event(_:plugin:args:respond:)` helper:
+
+[source,swift]
+----
+public override func handle_event(_ event: String, args: [String: Any]? = [:], respond: @escaping (String) -> Void) {
+    self.event(event, plugin: Plugin.name, args: args ?? [:], respond: respond)
+}
+----
+
+The helper merges `event` and `plugin` with the plugin's own `args`, serializes the result and evaluates it in the page:
+
+[source,javascript]
+----
+window.jasonelle.plugins.hello.handle({"event":"ContentView.onAppear","plugin":"hello"});
+----
+
+The page receives it in the `handle` function that the plugin's own `Plugin.js` assigns, not in a global listener:
+
+[source,javascript]
+----
+plugin.handle = ({ event, ...payload }) => {
+  if (event === "ContentView.onAppear") cart.refresh(payload);
+};
+----
+
+=== Event Timing
+
+`handle_event` itself runs natively and is never delayed. Reaching JavaScript is a different matter: plugin scripts are evaluated at *document end*, so an event broadcast from `ContentView.onAppear` would arrive before the page could possibly have run them. Evaluating it against an unloaded document drops it silently.
+
+The `Coordinator` therefore buffers native responses while the page is loading and replays them in order on `didFinish navigation`. A new navigation clears the buffer, since those scripts belong to a page that never finished loading.
+
 == Reference
 
 * `Kernel`

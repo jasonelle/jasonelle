@@ -62,6 +62,36 @@ import WebKit
         #expect(plugin.receivedArgs == nil)
     }
 
+    @Test @MainActor func queuesNativeScriptsUntilPageIsReady() async throws {
+        let webview = JLKernel.WebView(config: AppConfiguration(url: URL(string: "https://jasonelle.com")!), plugins: [:])
+        let coordinator = webview.makeCoordinator()
+
+        // ContentView.onAppear fires before navigation completes.
+        coordinator.respondToJS(script: "window.jasonelle.plugins.hello.handle({\"event\":\"ContentView.onAppear\"});")
+        #expect(coordinator.pendingScripts.count == 1)
+
+        coordinator.pageReady = true
+        coordinator.flushPendingScripts()
+        #expect(coordinator.pendingScripts.isEmpty)
+
+        // Once ready, scripts evaluate directly instead of queueing.
+        coordinator.respondToJS(script: "console.log('ready');")
+        #expect(coordinator.pendingScripts.isEmpty)
+    }
+
+    @Test @MainActor func discardsQueuedScriptsOnNewNavigation() async throws {
+        let webview = JLKernel.WebView(config: AppConfiguration(url: URL(string: "https://jasonelle.com")!), plugins: [:])
+        let coordinator = webview.makeCoordinator()
+        coordinator.pageReady = true
+
+        coordinator.respondToJS(script: "stale();")
+        #expect(coordinator.pendingScripts.isEmpty)
+
+        coordinator.webView(WKWebView(), didStartProvisionalNavigation: nil)
+
+        #expect(!coordinator.pageReady)
+    }
+
 }
 
 // MARK: - Ratlog

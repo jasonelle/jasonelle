@@ -56,6 +56,46 @@ first appears. Every registered plugin receives it through
 `handle_event(name:args:respond:)`, with the event name given by the raw value
 of the ``Events`` case.
 
+### Events Pushed Back to JavaScript
+
+To let the page react to an event, a plugin forwards it to JavaScript from its
+`handle_event` override using the `event(event, plugin, args, respond)` helper:
+
+```kotlin
+override fun handle_event(event: String, args: Map<String, Any?>?, respond: (String) -> Unit) {
+    event(event, plugin = name, args = args ?: emptyMap(), respond = respond)
+}
+```
+
+The helper merges `event` and `plugin` with the plugin's own `args`, serializes
+the result and evaluates it in the page:
+
+```javascript
+window.jasonelle.plugins.hello.handle({"event":"ContentView.onAppear","plugin":"hello"});
+```
+
+The page receives it in the `handle` function that the plugin's own ``Plugin``
+JavaScript assigns, not in a global listener:
+
+```javascript
+plugin.handle = ({ event, ...payload }) => {
+  if (event === "ContentView.onAppear") cart.refresh(payload);
+};
+```
+
+### Event Timing
+
+``handle_event`` itself runs natively and is never delayed. Reaching JavaScript
+is a different matter: the Android `WebView` has no document-start/end user
+scripts, so plugin scripts are only evaluated from `onPageFinished`. An event
+broadcast from ``ContentView`` would arrive before the page could possibly have
+run them. Evaluating it against an unloaded document drops it silently.
+
+The ``Coordinator`` therefore buffers native responses while the page is loading
+and replays them in `onPageFinished`, right after the plugin and app scripts are
+injected. `onPageStarted` clears the buffer, since those scripts belong to a page
+that never finished loading.
+
 ## Reference
 
 - ``JasonelleWebView``

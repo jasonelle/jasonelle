@@ -36,4 +36,5 @@ Standards: HTML5, CSS3
 Components: Bootstrap, animate.css, WOW.js
 Template: Play by UIdeck, https://github.com/uideck/play-bootstrap
 Software: Antora, go-task, Go, TypeScript, esbuild, OpenCode
-Agents: Superpowers, Ponytail, Context7 MCP
+Model: Big Pickle
+Harnesses: Superpowers, Ponytail, Context7 MCP, Custom Skills, Commands and Rules

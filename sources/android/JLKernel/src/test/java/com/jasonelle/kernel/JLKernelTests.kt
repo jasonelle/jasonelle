@@ -333,6 +333,25 @@ class WebViewBridgeTests {
   }
 }
 
+class PendingScriptTests {
+  @Test
+  fun queuesNativeScriptsUntilPageIsReady() {
+    val coordinator = Coordinator(AppConfiguration(urlString = "https://jasonelle.com"), emptyMap())
+
+    // ContentView.onAppear fires before navigation completes.
+    coordinator.respondToJS("window.jasonelle.plugins.hello.handle({\"event\":\"ContentView.onAppear\"});")
+    assertEquals(1, coordinator.pendingScripts.size)
+
+    coordinator.pageReady = true
+    coordinator.flushPendingScripts()
+    assertTrue(coordinator.pendingScripts.isEmpty())
+
+    // Once ready, scripts evaluate directly instead of queueing.
+    coordinator.respondToJS("console.log('ready');")
+    assertTrue(coordinator.pendingScripts.isEmpty())
+  }
+}
+
 class ConfigurationLoaderTests {
   @Test
   fun decodeReturnsURLFromValidJSON() {

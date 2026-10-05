@@ -33,6 +33,13 @@ public class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler
     var parent: JLKernel.WebView
     weak var webView: WKWebView?
 
+    // Native -> JS scripts are buffered until the page is ready. Events such as
+    // ContentView.onAppear fire before navigation completes, and evaluating them
+    // against an unloaded document drops them silently.
+    // ponytail: unbounded queue, but events only fire on lifecycle boundaries.
+    var pageReady = false
+    var pendingScripts: [String] = []
+
     init(_ parent: JLKernel.WebView) {
         self.parent = parent
     }
@@ -61,10 +68,12 @@ public class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler
         // window.jasonelle.plugins.hello.call()
         // This reaches the native handler:
         // JLPluginHello.Plugin.handle_call(args:callbackId:respond:)
-        // The handler then calls respond(script:) which runs
-        // respondToJS to send an event back to the JS side, e.g.
-        // window.jasonelle.handle({ callbackId: 'call_N', ... })
-        // which resolves the promise that window.jasonelle.post returned.
+        // The handler then calls resolve(args:callbackId:respond:),
+        // which runs respondToJS to evaluate
+        // window.jasonelle.result.resolve({ callbackId: 'call_N', ... })
+        // and settle the promise that window.jasonelle.post returned.
+        // (window.jasonelle.handle is a separate global catch-all logger,
+        // not the promise resolver.)
         guard let name = bodyDict["name"] as? String,
               let plugin = parent.plugins[name] else {
           self.logger.warning("No plugin registered for message: \(body)")
@@ -82,6 +91,11 @@ public class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler
 
     // MARK: Native -> Webview
     func respondToJS(script: String) {
+        guard pageReady else {
+            self.logger.debug("Page not ready, queueing script: \(script)")
+            pendingScripts.append(script)
+            return
+        }
         self.logger.debug("Evaluating \(script)")
         webView?.evaluateJavaScript(script) { result, error in
             if let error = error {
@@ -92,9 +106,29 @@ public class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler
         }
     }
 
+    /// Replays everything buffered while the page was loading, in order.
+    func flushPendingScripts() {
+        guard !pendingScripts.isEmpty else { return }
+        let scripts = pendingScripts
+        pendingScripts = []
+        self.logger.debug("Flushing \(scripts.count) queued script(s)")
+        for script in scripts {
+            respondToJS(script: script)
+        }
+    }
+
     // MARK: WKNavigationDelegate
+    public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        pageReady = false
+        pendingScripts.removeAll()
+    }
+
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
       self.logger.info("Finished loading webview")
+
+      // Plugin scripts are injected at document end, so they have already run.
+      pageReady = true
+      flushPendingScripts()
 
       // Example of native -> webview call on load finish
       // respondToJS(script: "console.log('Native says hello!');")

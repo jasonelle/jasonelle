@@ -28,6 +28,7 @@ package com.jasonelle.kernel
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
@@ -41,6 +42,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import org.json.JSONObject
+import java.util.concurrent.ConcurrentLinkedQueue
 
 enum class NavigationPolicy {
   ALLOW,
@@ -54,6 +56,21 @@ class Coordinator(
   val logger = Logger(Coordinator::class.java)
   var webView: WebView? = null
   private val mainHandler = Handler(Looper.getMainLooper())
+
+  /**
+   * Native -> JS scripts are buffered until the page is ready. Events such as
+   * ContentView.onAppear fire before navigation completes, and evaluating them
+   * against an unloaded document drops them silently.
+   *
+   * respondToJS is reached from the JS bridge thread while the navigation
+   * callbacks run on the main thread, so the queue has to be thread safe.
+   *
+   * ponytail: unbounded queue, but events only fire on lifecycle boundaries.
+   */
+  @Volatile
+  var pageReady = false
+  private val pending = ConcurrentLinkedQueue<String>()
+  val pendingScripts: Collection<String> get() = pending.toList()
 
   @JavascriptInterface
   fun postMessage(messageJson: String) {
@@ -101,11 +118,39 @@ class Coordinator(
   }
 
   fun respondToJS(script: String) {
+    if (!pageReady) {
+      logger.debug("Page not ready, queueing script: $script")
+      pending.add(script)
+      return
+    }
     logger.debug("Evaluating $script")
     mainHandler.post {
       webView?.evaluateJavascript(script) { result ->
         logger.debug("JS execution result: $result")
       }
+    }
+  }
+
+  /**
+   * Drops everything buffered. Used when a navigation starts, since those
+   * scripts belong to a page that will never finish loading.
+   */
+  fun clearPendingScripts() {
+    pending.clear()
+  }
+
+  /**
+   * Replays everything buffered while the page was loading, in order.
+   */
+  fun flushPendingScripts() {
+    var flushed = 0
+    while (true) {
+      val script = pending.poll() ?: break
+      respondToJS(script)
+      flushed++
+    }
+    if (flushed > 0) {
+      logger.debug("Flushed $flushed queued script(s)")
     }
   }
 
@@ -268,6 +313,16 @@ fun createJasonelleWebView(
 
       webViewClient =
         object : WebViewClient() {
+          override fun onPageStarted(
+            view: WebView?,
+            url: String?,
+            favicon: Bitmap?,
+          ) {
+            super.onPageStarted(view, url, favicon)
+            coordinator.pageReady = false
+            coordinator.clearPendingScripts()
+          }
+
           override fun shouldOverrideUrlLoading(
             view: WebView?,
             request: WebResourceRequest?,
@@ -290,6 +345,11 @@ fun createJasonelleWebView(
             super.onPageFinished(view, url)
             logger.info("Finished loading webview: $url")
             injectUserScripts(this@apply, context, plugins)
+            // Plugin scripts have been evaluated above, so the page is ready.
+            // evaluateJavascript is FIFO on the main thread, so queued scripts
+            // still run after them.
+            coordinator.pageReady = true
+            coordinator.flushPendingScripts()
           }
         }
 
