@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Android Source Project :: Jasonelle Documentation</title>
     <link rel="canonical" href="https://jasonelle.com/docs/android/index.html">
-    <link rel="prev" href="../specs/2026-09-22-appconf-app-version-design.html">
+    <link rel="prev" href="../specs/2026-09-22-fastlane-tool-design.html">
     <link rel="next" href="config.jsonc.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
@@ -132,6 +132,9 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../tools/esbuild.html">CLI esbuild</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/fastlane.html">Fastlane</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -150,6 +153,9 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../specs/2026-09-22-appconf-app-version-design.html">Appconf Sets the App Version and Timestamp Build Number</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-22-fastlane-tool-design.html">Fastlane Generator Tool Design</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -166,6 +172,9 @@
     <a class="nav-link" href="store.jsonc.html">Store Configuration (Android)</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="creating-plugins.html">Creating Android Plugins</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="kernel.html">JLKernel</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -176,6 +185,9 @@
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-cookies.html">JLPluginCookies</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-opentelemetry.html">JLPluginOpenTelemetry</a>
   </li>
 </ul>
   </li>
@@ -193,6 +205,9 @@
     <a class="nav-link" href="../xcode/store.jsonc.html">Store Configuration (Xcode)</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/creating-plugins.html">Creating Xcode Plugins</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../xcode/kernel.html">JLKernel</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -206,6 +221,9 @@
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../xcode/plugin-apple-sign-in.html">JLPluginAppleSignIn</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/plugin-opentelemetry.html">JLPluginOpenTelemetry</a>
   </li>
 </ul>
   </li>
@@ -276,7 +294,7 @@ iOS (Xcode) implementation.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>settings.gradle.kts</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Declares the modules: <code>:Application</code>, <code>:JLKernel</code> and the three plugins.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Declares the modules: <code>:Application</code>, <code>:JLKernel</code> and the four plugins. A new plugin is invisible to Gradle until it is added here with <code>include(":JLPluginYourName")</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Application/</code></p></td>
@@ -297,6 +315,10 @@ iOS (Xcode) implementation.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="plugin-cookies.html" class="xref page"><code>JLPluginCookies/</code></a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A plugin that persists web view cookies in encrypted storage.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="plugin-opentelemetry.html" class="xref page"><code>JLPluginOpenTelemetry/</code></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A plugin that records OpenTelemetry counters and histograms.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>local.properties</code></p></td>
@@ -332,7 +354,7 @@ callable from JavaScript.</p>
 <h3 id="containers-c4-l2"><a class="anchor" href="#containers-c4-l2"></a>Containers (C4 L2)</h3>
 <div class="imageblock kroki">
 <div class="content">
-<img src="_images/android_c4_container-f5e008a2da2cd1fdb124bf2e99e184836d056583.png" alt="android_c4_container">
+<img src="_images/android_c4_container-ceace28da271e3813281d78cf94ae1bf24fc356e.png" alt="android_c4_container">
 </div>
 </div>
 </div>
@@ -528,6 +550,11 @@ id used in JavaScript (<code>window.jasonelle.plugins.&lt;name&gt;</code>).</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>plugins.device.info()</code></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="plugin-opentelemetry.html" class="xref page"><code>JLPluginOpenTelemetry</code></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>handle_call</code> performs metric recording actions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>plugins.opentelemetry.counter()</code>, <code>histogram()</code></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="plugin-cookies.html" class="xref page"><code>JLPluginCookies</code></a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>handle_call</code> stores/reads cookies in <code>EncryptedSharedPreferences</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>plugins.cookies.save()</code>, <code>restore()</code>, <code>persist()</code></p></td>
@@ -548,7 +575,7 @@ id used in JavaScript (<code>window.jasonelle.plugins.&lt;name&gt;</code>).</p>
 <li>
 <p>Run <code>task test</code> (<code>./gradlew test</code>) for the JVM unit tests in every module
 (<code>JLKernelTests</code>, <code>JLPluginHelloTests</code>, <code>JLPluginDeviceTests</code>,
-<code>JLPluginCookiesTests</code>).</p>
+<code>JLPluginCookiesTests</code>, <code>JLPluginOpenTelemetryTests</code>).</p>
 </li>
 <li>
 <p>Build just the app APK with <code>task assemble</code>
@@ -566,8 +593,20 @@ JavaScript bridge.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="guides"><a class="anchor" href="#guides"></a>Guides</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="creating-plugins.html" class="xref page">Creating Plugins</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <nav class="pagination">
-  <span class="prev"><a href="../specs/2026-09-22-appconf-app-version-design.html">Appconf Sets the App Version and Timestamp Build Number</a></span>
+  <span class="prev"><a href="../specs/2026-09-22-fastlane-tool-design.html">Fastlane Generator Tool Design</a></span>
   <span class="next"><a href="config.jsonc.html">App Configuration (Android)</a></span>
 </nav>
 </article>

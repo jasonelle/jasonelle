@@ -173,7 +173,8 @@ final class EventStubPlugin: JLKernel.Plugin {
     }
 }
 
-struct EventTests {
+// ponytail: serialized because these tests share the global Events.plugins state
+@Suite(.serialized) struct EventTests {
 
     @Test func onAppearSendDispatchesToRegisteredPlugins() {
         let plugins: [String: JLKernel.Plugin] = [

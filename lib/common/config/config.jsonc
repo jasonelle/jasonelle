@@ -17,6 +17,8 @@
       // A plugin that can manage cookies for login persistence.
       "JLPluginCookies": "@jasonelle",
       // A plugin that returns the current device info such as screen size, os and so on.
-      "JLPluginDevice": "@jasonelle"
+      "JLPluginDevice": "@jasonelle",
+      // OpenTelemetry wrapper for metrics.
+      "JLPluginOpenTelemetry": "@jasonelle"
     }
 }

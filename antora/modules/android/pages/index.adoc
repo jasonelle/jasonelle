@@ -15,7 +15,7 @@ iOS (Xcode) implementation.
 | Gradle wrapper used to build every module.
 
 | `settings.gradle.kts`
-| Declares the modules: `:Application`, `:JLKernel` and the three plugins.
+| Declares the modules: `:Application`, `:JLKernel` and the four plugins. A new plugin is invisible to Gradle until it is added here with `include(":JLPluginYourName")`.
 
 | `Application/`
 | The Android app module. Contains the Compose `MainActivity`, `ContentView`, the plugin registry, assets (`config.jsonc`, `webview.js`) and the `AndroidManifest.xml`.
@@ -31,6 +31,9 @@ iOS (Xcode) implementation.
 
 | xref:plugin-cookies.adoc[`JLPluginCookies/`]
 | A plugin that persists web view cookies in encrypted storage.
+
+| xref:plugin-opentelemetry.adoc[`JLPluginOpenTelemetry/`]
+| A plugin that records OpenTelemetry counters and histograms.
 
 | `local.properties`
 | Local SDK path (gitignored, not committed).
@@ -96,6 +99,7 @@ package "Plugins" {
   [JLPluginHello] as hello
   [JLPluginDevice] as device
   [JLPluginCookies] as cookies
+  [JLPluginOpenTelemetry] as telemetry
 }
 
 main --> contentView : setContent
@@ -303,6 +307,10 @@ id used in JavaScript (`window.jasonelle.plugins.<name>`).
 | `handle_call` returns device info
 | `plugins.device.info()`
 
+| xref:plugin-opentelemetry.adoc[`JLPluginOpenTelemetry`]
+| `handle_call` performs metric recording actions
+| `plugins.opentelemetry.counter()`, `histogram()`
+
 | xref:plugin-cookies.adoc[`JLPluginCookies`]
 | `handle_call` stores/reads cookies in `EncryptedSharedPreferences`
 | `plugins.cookies.save()`, `restore()`, `persist()`
@@ -313,10 +321,14 @@ id used in JavaScript (`window.jasonelle.plugins.<name>`).
 * Build all modules with `task build` (`./gradlew assembleDebug`).
 * Run `task test` (`./gradlew test`) for the JVM unit tests in every module
 (`JLKernelTests`, `JLPluginHelloTests`, `JLPluginDeviceTests`,
-`JLPluginCookiesTests`).
+`JLPluginCookiesTests`, `JLPluginOpenTelemetryTests`).
 * Build just the app APK with `task assemble`
 (`./gradlew :Application:assembleDebug`), output in
 `Application/build/outputs/apk/debug/`.
 * Run lint with `task lint`.
 * Every plugin ships a `docs/<Plugin>.md` file describing its native code and
 JavaScript bridge.
+
+== Guides
+
+* xref:creating-plugins.adoc[Creating Plugins]

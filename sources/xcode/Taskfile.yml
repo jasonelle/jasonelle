@@ -47,6 +47,19 @@ tasks:
     cmds:
       - swiftlint lint --fix
 
+  build:
+    aliases:
+      - b
+    desc: Build a scheme from the workspace, defaults to Application. Use `task build -- <scheme>`
+    cmds:
+      - xcodebuild build -workspace Jasonelle.xcworkspace -scheme '{{default "Application" .CLI_ARGS}}' -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
+  test:
+    aliases:
+      - t
+    desc: Test a scheme from the workspace, defaults to Application. Use `task test -- <scheme>`
+    cmds:
+      - xcodebuild test -workspace Jasonelle.xcworkspace -scheme '{{default "Application" .CLI_ARGS}}' -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
+
   fastlane.run:
     aliases:
       - fr

@@ -1,0 +1,221 @@
+= Creating Xcode Plugins
+
+Jasonelle allows you to extend the core functionality by writing native iOS/macOS plugins in Swift and exposing them to your JavaScript web application. 
+
+This guide outlines the general process for creating a new Xcode plugin for Jasonelle.
+
+== 1. Project Structure
+
+A plugin in Jasonelle is an Xcode project containing the Swift source code. If you are creating a core plugin, it resides in `sources/xcode/JLPluginYourName`. If you are creating a custom user plugin, it usually goes into `lib/common/sources/plugins/JLPluginYourName/xcode`.
+
+The easiest way to get started is to copy an existing simple plugin, such as `JLPluginHello`:
+
+[source,bash]
+----
+cp -R sources/xcode/JLPluginHello sources/xcode/JLPluginYourName
+----
+
+Then, rename the `.xcodeproj` package, folders, and inner files from `hello` to `yourname` and `JLPluginHello` to `JLPluginYourName`.
+
+== 2. Implement the Plugin Class
+
+Your plugin's entry point is a Swift class that inherits from `JLKernel.Plugin`. 
+
+[source,swift]
+----
+import Foundation
+import JLKernel
+
+public final class Plugin: JLKernel.Plugin {
+  // The name used to call this plugin from JavaScript
+  override public static var name: String { "yourname" }
+
+  public override func handle_call(callbackId: String, args: [String: Any]? = [:], respond: @escaping (String) -> Void) {
+    
+    self.logger.info("Handling request in YourName plugin")
+
+    guard let action = args?["action"] as? String else {
+      self.reject(
+        args: ["error": "No action provided"],
+        callbackId: callbackId,
+        status: "error",
+        respond: respond
+      )
+      return
+    }
+
+    if action == "doSomething" {
+      // Perform your native action...
+
+      // Send a successful response back to JS
+      let result : [String : Any] = ["success": true]
+      self.resolve(args: result, callbackId: callbackId, respond: respond)
+    } else {
+      self.reject(
+        args: ["error": "Unknown action \(action)"],
+        callbackId: callbackId,
+        status: "error",
+        respond: respond
+      )
+    }
+  }
+}
+----
+
+=== Important Methods:
+* `self.resolve(args: [String: Any], callbackId: String, status: String = "ok", respond: (String) -> Void)`: Resolves the JS Promise successfully with a return dictionary.
+* `self.reject(args: [String: Any], callbackId: String, status: String = "ok", respond: (String) -> Void)`: Rejects the JS Promise with an error dictionary.
+
+CAUTION: `reject` takes a dictionary, not a message string, and its `status` defaults to
+`"ok"`. Always pass `status: "error"` explicitly, otherwise the Promise rejects with a
+`"status": "ok"` payload that the JavaScript client reads as a success.
+
+== 3. Add Dependencies
+
+If your plugin requires third-party SDKs, open the `JLPluginYourName.xcodeproj` in
+Xcode and add a Swift Package Dependency to the target. Then add the project to the
+workspace, otherwise `JLKernel.framework` cannot be resolved and the build fails with
+`unable to resolve module dependency: 'JLKernel'`:
+
+[source,xml]
+----
+<Workspace version = "1.0">
+   <FileRef location = "group:JLPluginYourName/JLPluginYourName.xcodeproj"></FileRef>
+</Workspace>
+----
+
+Adding that project to `Jasonelle.xcworkspace` is also what makes the plugin's schemes
+available to `task build` and `task test`. See the
+xref:plugin-opentelemetry.adoc[OpenTelemetry plugin] for a worked example.
+
+== 4. Register the Plugin
+
+To ensure Jasonelle's build system links and bundles the plugin into the final Xcode workspace, register it in `lib/common/config/config.jsonc` (for both platforms) or `lib/xcode/config/config.jsonc` (for Xcode only).
+
+[source,json]
+----
+"plugins": {
+  // If it's a core plugin inside sources/xcode:
+  "JLPluginYourName": "@jasonelle",
+  
+  // OR if it's a custom plugin in lib/common/sources/plugins/JLPluginYourName:
+  // "JLPluginYourName": "@lib/JLPluginYourName"
+}
+----
+
+== 5. Call it from JavaScript
+
+Native code is reached through the `window.jasonelle` object that Jasonelle injects
+into the web view. Each plugin exposes its own methods on
+`window.jasonelle.plugins.<name>`, so first add a `Plugin.js` next to `Plugin.swift`
+that registers them. Copying `JLPluginHello` in step 1 already brought one over,
+so you only need to update it:
+
+[source,javascript]
+----
+(() => {
+  const native = window.jasonelle;
+  const plugin = native.plugin.init("yourname", "com.jasonelle.plugins.yourname");
+
+  plugin.doSomething = () => native.post(plugin.id, { action: "doSomething" });
+
+  window.jasonelle.plugins.yourname = plugin;
+})();
+----
+
+The first argument to `plugin.init` is the short `name`, the second is the plugin
+`id` that native code registers the plugin under. `native.post` returns a Promise
+that resolves or rejects with whatever `resolve` or `reject` sent:
+
+[source,javascript]
+----
+window.jasonelle.plugins.yourname.doSomething()
+    .then(response => console.log("Success:", response))
+    .catch(error => console.error("Error:", error));
+----
+
+To skip the wrapper, `window.jasonelle.post` sends the arguments straight to
+`handle_call` using the plugin `id`:
+
+[source,javascript]
+----
+await window.jasonelle.post("com.jasonelle.plugins.yourname", { action: "doSomething" });
+----
+
+== 6. Add Tests
+
+Copy the test target from a simple plugin and cover every branch of `handle_call`: the
+exposed name and id, the null and empty argument rejects, each action resolving, the
+malformed arguments that are dropped silently, the unknown action reject, and the
+bundled JavaScript.
+
+[source,swift]
+----
+import Foundation
+import Testing
+import JLKernel
+@testable import JLPluginYourName
+
+struct JLPluginYourNameTests {
+    @Test func exposesNameAndId() async throws {
+      #expect(JLPluginYourName.Plugin.name == "yourname")
+      #expect(JLPluginYourName.Plugin.id == "com.jasonelle.plugins.yourname")
+    }
+
+    @Test func unknownActionRejectsWithError() async throws {
+      let plugin = JLPluginYourName.Plugin()
+      var response: String?
+
+      plugin.handle_call(callbackId: "call_1", args: ["action": "nope"]) { response = $0 }
+
+      let script = response ?? ""
+      #expect(script.hasPrefix("window.jasonelle.result.reject({"))
+      #expect(script.contains("\"status\":\"error\""))
+    }
+}
+----
+
+=== Test Isolation
+
+Swift Testing runs tests in parallel, so any test that mutates a global static must be
+serialized. `Events.plugins` is one such global, and the tests that set it are marked
+`@Suite(.serialized)`.
+
+== 7. Build and Test
+
+Both the build and the test tasks run from `Jasonelle.xcworkspace` and default to the
+`Application` scheme. Pass a scheme as an argument to build or test a single plugin:
+
+[source,bash]
+----
+cd sources/xcode
+
+task build                            # or: task b
+task test                             # or: task t
+task build -- JLPluginYourName
+task test -- JLPluginYourNameTests
+----
+
+NOTE: pass the scheme after `--`, otherwise go-task treats it as a task name.
+
+`task test` also runs `ApplicationUITests`, which needs a working Simulator UI, so it
+fails on headless machines. Test the plugin scheme directly while developing.
+
+The kernel is shared, so a change can break plugins you are not working on. Before
+opening a pull request run the whole set:
+
+[source,bash]
+----
+cd sources/xcode
+for s in JLKernel JLPluginHelloTests JLPluginDeviceTests JLPluginCookiesTests \
+         JLPluginAppleSignInTests JLPluginOpenTelemetryTests; do
+  task test -- "$s" | grep -E '^\*\* TEST' || echo "$s FAILED"
+done
+----
+
+Lint with `task lint` (`task fix` to auto-correct) before committing.
+
+NOTE: the plugin frameworks are built for the current architecture only, so build
+against a concrete simulator as the tasks do. A `generic/platform=iOS Simulator`
+destination asks for an `x86_64` slice that the frameworks do not contain, and the link
+step fails.

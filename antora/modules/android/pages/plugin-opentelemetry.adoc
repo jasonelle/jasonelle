@@ -1,0 +1,146 @@
+= JLPluginOpenTelemetry
+
+A Jasonelle plugin that wraps the OpenTelemetry SDK to track application metrics.
+
+== Overview
+
+JLPluginOpenTelemetry bridges the OpenTelemetry Java SDK to JavaScript. It records
+counters and histograms on any meter, so metrics raised in the web view reach
+whatever exporter the app has configured.
+
+=== Structure
+
+[cols="1,3"]
+|===
+| File | Role
+
+| `Plugin.kt`
+| Native side – connects to `GlobalOpenTelemetry` and records the requested metric.
+
+| `Plugin.js`
+| JavaScript side – registers the plugin on `window.jasonelle.plugins.opentelemetry`.
+|===
+
+=== How it works
+
+1. The plugin is injected into the web view on page load and registers itself on
+`window.jasonelle.plugins.opentelemetry`.
+2. `counter(name, value, meterName)` and `histogram(name, value, meterName)` post a
+message to native and return a promise.
+3. The call is routed to `Plugin.kt` `handle_call(callbackId:args:respond:)`, which reads
+`action` and dispatches to the requested metric action.
+4. The plugin builds the instrument on the requested meter, records the value, and
+resolves the promise.
+
+[source,javascript]
+----
+await window.jasonelle.plugins.opentelemetry.counter("button_clicks", 1);
+await window.jasonelle.plugins.opentelemetry.histogram("load_time_ms", 124.5);
+----
+
+The same call can be made without the JavaScript wrapper, using `window.jasonelle.post`
+to send the arguments straight to `handle_call`. The first argument is the plugin
+id, not the short name used to register it on `window.jasonelle.plugins`:
+
+[source,javascript]
+----
+await window.jasonelle.post("com.jasonelle.plugins.opentelemetry", {
+    action: "counter.add",
+    name: "button_clicks",
+    value: 1,
+    meterName: "jasonelle.app.meter"
+});
+----
+
+=== Arguments
+
+[cols="1,1,1,1,3"]
+|===
+| Key | Type | Required | Default | Description
+
+| `action`
+| string
+| yes
+| –
+| `counter.add` or `histogram.record`.
+
+| `name`
+| string
+| yes
+| –
+| Instrument name, for example `button_clicks`.
+
+| `value`
+| number
+| yes
+| –
+| Value added to the counter, or recorded in the histogram.
+
+| `meterName`
+| string
+| no
+| `jasonelle.app.meter`
+| Meter the instrument is created on.
+|===
+
+`counter.add` truncates `value` to a whole number, matching the `LongCounter`
+instrument on other platforms.
+
+=== Response
+
+[source,json]
+----
+{
+  "status": "ok",
+  "callbackId": "call_1",
+  "success": true
+}
+----
+
+`success` reports that the bridge call was accepted, not that a value reached the
+SDK. A missing or non-numeric `name` or `value` is dropped natively and the promise
+*still* resolves with `success: true`.
+
+=== Errors
+
+[source,json]
+----
+{
+  "status": "error",
+  "callbackId": "call_1",
+  "error": "No action provided"
+}
+----
+
+* `No action provided` – the arguments carried no string `action`.
+* `Unknown action <action>` – `action` was neither `counter.add` nor
+`histogram.record`.
+
+=== SDK requirement
+
+CAUTION: The app must register an OpenTelemetry SDK before the first call. Without one
+`GlobalOpenTelemetry.get()` returns a no-op `OpenTelemetry`, every value is discarded
+and the promise still resolves with `success: true`.
+
+[source,kotlin]
+----
+GlobalOpenTelemetry.set(
+  OpenTelemetrySdk.builder()
+    .setMeterProvider(
+      SdkMeterProvider.builder()
+        .setResource(Resource.getDefault().merge(Resource.create(Attributes.of(...))))
+        .registerMetricReader(PeriodicMetricReader.create(exporter))
+        .build()
+    )
+    .build()
+)
+----
+
+Register the SDK in the *Application* module, before the web view loads the page that
+raises the first metric.
+
+== Reference
+
+* `com.jasonelle.kernel.Plugin` – the base class this plugin extends.
+* `Plugin.js` in `src/main/assets/plugins/opentelemetry/` – the JavaScript client, byte-identical to the xref:xcode:plugin-opentelemetry.adoc[Xcode plugin].
+* `io.opentelemetry:opentelemetry-api` and `io.opentelemetry:opentelemetry-sdk` 1.30.0, declared in the module's `build.gradle.kts`.

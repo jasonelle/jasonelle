@@ -1,0 +1,217 @@
+= Creating Android Plugins
+
+Jasonelle allows you to extend the core functionality by writing native Android plugins in Kotlin or Java and exposing them to your JavaScript web application. 
+
+This guide outlines the general process for creating a new Android plugin for Jasonelle.
+
+== 1. Project Structure
+
+A plugin in Jasonelle is essentially an Android Library module. If you are creating a core plugin, it resides in `sources/android/JLPluginYourName`. If you are creating a custom user plugin, it usually goes into `lib/common/sources/plugins/JLPluginYourName/android`.
+
+The easiest way to get started is to copy an existing simple plugin, such as `JLPluginHello`:
+
+[source,bash]
+----
+cp -R sources/android/JLPluginHello sources/android/JLPluginYourName
+----
+
+Then, rename the packages, folders, and references from `hello` to `yourname` and `JLPluginHello` to `JLPluginYourName`.
+
+== 2. Implement the Plugin Class
+
+Your plugin's entry point is a Kotlin (or Java) class that inherits from `com.jasonelle.kernel.Plugin`. 
+
+[source,kotlin]
+----
+package com.jasonelle.plugins.yourname
+
+import android.content.Context
+import com.jasonelle.kernel.Plugin as KernelPlugin
+
+class Plugin(
+  context: Context? = null,
+) : KernelPlugin(context) {
+  
+  // The name used to call this plugin from JavaScript
+  override val name: String get() = "yourname"
+
+  // The unique identifier for this plugin
+  override val id: String get() = "com.jasonelle.plugins.yourname"
+
+  override fun handle_call(
+    callbackId: String,
+    args: Map<String, Any?>?,
+    respond: (String) -> Unit,
+  ) {
+    logger.info("Handling request in YourName plugin")
+    
+    val action = args?.get("action") as? String
+    if (action == null) {
+      reject(
+        args = mapOf("error" to "No action provided"),
+        callbackId = callbackId,
+        status = "error",
+        respond = respond,
+      )
+      return
+    }
+
+    if (action == "doSomething") {
+      // Perform your native action...
+
+      // Send a successful response back to JS
+      resolve(args = mapOf("success" to true), callbackId = callbackId, respond = respond)
+    } else {
+      reject(
+        args = mapOf("error" to "Unknown action $action"),
+        callbackId = callbackId,
+        status = "error",
+        respond = respond,
+      )
+    }
+  }
+}
+----
+
+=== Important Methods:
+* `resolve(args: Map<String, Any?>, callbackId: String, status: String = "ok", respond: (String) -> Unit)`: Resolves the JS Promise successfully with a return payload.
+* `reject(args: Map<String, Any?>, callbackId: String, status: String = "ok", respond: (String) -> Unit)`: Rejects the JS Promise with an error payload.
+
+CAUTION: `reject` takes a payload map, not a message string, and its `status` defaults
+to `"ok"`. Always pass `status = "error"` explicitly, otherwise the Promise rejects with
+a `"status": "ok"` payload that the JavaScript client reads as a success.
+
+== 3. Add Dependencies
+
+If your plugin requires third-party SDKs, declare them in the module's `build.gradle.kts` (or `build.gradle`).
+
+[source,kotlin]
+----
+dependencies {
+  implementation(project(":JLKernel"))
+
+  // Add your custom SDK dependencies here:
+  // implementation("com.example:custom-sdk:1.0.0")
+}
+----
+
+== 4. Register the Plugin
+
+To ensure Jasonelle's build system links and bundles the plugin into the final app, register it in `lib/common/config/config.jsonc` (for both platforms) or `lib/android/config/config.jsonc` (for Android only).
+
+[source,json]
+----
+"plugins": {
+  // If it's a core plugin inside sources/android:
+  "JLPluginYourName": "@jasonelle",
+  
+  // OR if it's a custom plugin in lib/common/sources/plugins/JLPluginYourName:
+  // "JLPluginYourName": "@lib/JLPluginYourName"
+}
+----
+
+== 5. Call it from JavaScript
+
+Native code is reached through the `window.jasonelle` object that Jasonelle injects
+into the web view. Each plugin exposes its own methods on
+`window.jasonelle.plugins.<name>`, so first add a `Plugin.js` in the plugin's
+`src/main/assets/plugins/yourname/` folder that registers them. Copying
+`JLPluginHello` in step 1 already brought one over, so you only need to update it:
+
+[source,javascript]
+----
+(() => {
+  const native = window.jasonelle;
+  const plugin = native.plugin.init("yourname", "com.jasonelle.plugins.yourname");
+
+  plugin.doSomething = () => native.post(plugin.id, { action: "doSomething" });
+
+  window.jasonelle.plugins.yourname = plugin;
+})();
+----
+
+The first argument to `plugin.init` is the short `name`, the second is the plugin
+`id` that native code registers the plugin under. `native.post` returns a Promise
+that resolves or rejects with whatever `resolve` or `reject` sent:
+
+[source,javascript]
+----
+window.jasonelle.plugins.yourname.doSomething()
+    .then(response => console.log("Success:", response))
+    .catch(error => console.error("Error:", error));
+----
+
+To skip the wrapper, `window.jasonelle.post` sends the arguments straight to
+`handle_call` using the plugin `id`:
+
+[source,javascript]
+----
+await window.jasonelle.post("com.jasonelle.plugins.yourname", { action: "doSomething" });
+----
+
+== 6. Add Tests
+
+Cover every branch of `handle_call` with a JUnit 5 test, using a no-op or mocked
+dependency so the test asserts the bridge contract rather than a live SDK. The
+exposed name and id, the null and empty argument rejects, each action resolving, the
+malformed arguments that are dropped silently, the unknown action reject, and the
+bundled JavaScript are all worth a case.
+
+[source,kotlin]
+----
+@Test
+fun `handle_call counterAdd resolves success`() {
+  val plugin = Plugin()
+
+  val response = StringBuilder()
+  plugin.handle_call(
+    callbackId = "call_1",
+    args = mapOf("action" to "counter.add", "name" to "button_clicks", "value" to 1),
+    respond = { response.append(it) },
+  )
+
+  val script = response.toString()
+  assertThat(script).startsWith("window.jasonelle.result.resolve({")
+  assertThat(script).contains("\"success\":true")
+}
+----
+
+[source,kotlin]
+----
+@Test
+fun `handle_call unknown action rejects with error`() {
+  val plugin = Plugin()
+
+  val response = StringBuilder()
+  plugin.handle_call(
+    callbackId = "call_1",
+    args = mapOf("action" to "gauge.record"),
+    respond = { response.append(it) },
+  )
+
+  val script = response.toString()
+  assertThat(script).startsWith("window.jasonelle.result.reject({")
+  assertThat(script).contains("\"status\":\"error\"")
+  assertThat(script).contains("\"error\":\"Unknown action gauge.record\"")
+}
+----
+
+=== Verify the Tests Bite
+
+A test that never fails proves nothing. Temporarily change an expected string in the
+plugin and confirm the matching tests fail, then restore it. The xref:plugin-opentelemetry.adoc[OpenTelemetry
+plugin] does this for every error message it asserts.
+
+== 7. Build and Test
+
+Run the whole suite plus the linter, which the build enforces:
+
+[source,bash]
+----
+cd sources/android
+task test                          # ./gradlew test across all modules
+./gradlew test ktlintCheck         # or run it directly
+./gradlew :JLPluginYourName:testDebugUnitTest   # just this module
+----
+
+See the xref:plugin-opentelemetry.adoc[OpenTelemetry plugin] for a worked example.

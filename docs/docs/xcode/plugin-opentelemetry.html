@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>JLPluginOpenTelemetry :: Jasonelle Documentation</title>
+    <link rel="canonical" href="https://jasonelle.com/docs/xcode/plugin-opentelemetry.html">
+    <link rel="prev" href="plugin-apple-sign-in.html">
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../_/css/site.css">
+    <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://jasonelle.com/docs">Jasonelle Documentation</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search">
+        </div>
+      </div>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ROOT" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../index.html">Jasonelle Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../architecture.html">Architecture</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Arquitecture Decision Records</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000000-adopt-adr-documents.html">Adopt ADR documents</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000001-use-onesignal.html">Use OneSignal for managing push notifications in iOS and Android</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000002-use-revenuecat-for-in-app-sales.html">Use RevenueCat for managing in-app sales</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000003-use-jsonc-for-configuration-and-settings.html">Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000004-use-taskfile-for-running-common-commands.html">Use Task (Taskfile.dev) for running common commands instead of Makefiles or custom scripts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000005-use-fastlane-for-app-store-and-play-store-automation.html">Use Fastlane for App Store and Play Store automation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000006-use-esbuild-to-bundle-js-files-for-the-webview.html">Use esbuild to bundle JS files for the webview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000007-use-antora-for-technical-project-documentation.html">Use Antora for technical project documentation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000008-use-golang-for-cross-platform-tools.html">Use Go for cross platform tools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.html">Add Swift for Xcode related command line tools instead of Go</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000010-use-typescript-instead-of-javascript-for-the-scripts-inside-lib.html">Use TypeScript instead of JavaScript for the scripts inside lib</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000011-select-xcodegen-for-xcodeproject-generation.html">Select XcodeGen for Xcode Project Generation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000012-use-swiftlint-for-swift-formatting-and-code-standardization.html">Use SwiftLint for Swift Formatting and Code Standardization</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000013-supersede-xcodegen-with-xcode-project-format.html">Supersede XcodeGen with Xcode Project Format from Apple</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000014-add-adoption-of-spec-driven-development-using-superpowers-plugin.html">Add Adoption of Spec Driven Development Using Superpowers Plugin</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000015-add-opencode-for-agentic-programming-using-the-plugins-superpowers-ponytail-and-mcp-context7-for-harnesses.html">Add OpenCode for Agentic Programming Using the Plugins Superpowers, Ponytail and MCP Context7 for Harnesses</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../decisions/0000016-use-golang-script-to-parse-and-modify-xcode-and-android-projects.html">Use a Golang Script to Parse and Modify Xcode and Android Projects</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tools</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/gen.html">Gen</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/icon.html">Icon Generator</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/jsonc.html">JSONC Merger</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/core.html">Core</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/appconf.html">Appconf</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/plugins.html">Plugins</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/link.html">Link</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/bundler.html">Bundler</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/esbuild.html">CLI esbuild</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools/fastlane.html">Fastlane</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Specs</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-20-link-copy-artifacts-design.html">Link Tool Copies App Artifacts into the Assembled Tree</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-21-link-icons-design.html">Link Tool Copies and Verifies App Icons</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-22-appconf-app-name-design.html">Appconf Sets the App Name</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-22-appconf-app-version-design.html">Appconf Sets the App Version and Timestamp Build Number</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-22-fastlane-tool-design.html">Fastlane Generator Tool Design</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Android</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../android/index.html">Android Source Project</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../android/config.jsonc.html">App Configuration (Android)</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../android/store.jsonc.html">Store Configuration (Android)</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../android/creating-plugins.html">Creating Android Plugins</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../android/kernel.html">JLKernel</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../android/plugin-hello.html">JLPluginHello</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../android/plugin-device.html">JLPluginDevice</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../android/plugin-cookies.html">JLPluginCookies</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../android/plugin-opentelemetry.html">JLPluginOpenTelemetry</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Xcode</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Xcode (iOS) Source Project</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="config.jsonc.html">App Configuration (Xcode)</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="store.jsonc.html">Store Configuration (Xcode)</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="creating-plugins.html">Creating Xcode Plugins</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="kernel.html">JLKernel</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-hello.html">JLPluginHello</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-device.html">JLPluginDevice</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-cookies.html">JLPluginCookies</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-apple-sign-in.html">JLPluginAppleSignIn</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="plugin-opentelemetry.html">JLPluginOpenTelemetry</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Jasonelle Documentation</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="../index.html">Jasonelle Documentation</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Jasonelle Documentation</a></li>
+    <li>Xcode</li>
+    <li><a href="plugin-opentelemetry.html">JLPluginOpenTelemetry</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="file:///antora/antora/modules/xcode/pages/plugin-opentelemetry.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">JLPluginOpenTelemetry</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>A Jasonelle plugin that wraps the OpenTelemetry SDK to track application metrics.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>JLPluginOpenTelemetry bridges the OpenTelemetry Swift API to JavaScript. It records
+counters and histograms on any meter, so metrics raised in the web view reach
+whatever exporter the app has configured.</p>
+</div>
+<div class="sect2">
+<h3 id="structure"><a class="anchor" href="#structure"></a>Structure</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">File</th>
+<th class="tableblock halign-left valign-top">Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Plugin.swift</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Native side – resolves a <code>Meter</code> from <code>OpenTelemetry.instance.meterProvider</code> and records the requested metric.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Plugin.js</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JavaScript side – registers the plugin on <code>window.jasonelle.plugins.opentelemetry</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="how-it-works"><a class="anchor" href="#how-it-works"></a>How it works</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The plugin is injected into the web view on page load and registers itself on
+<code>window.jasonelle.plugins.opentelemetry</code>.</p>
+</li>
+<li>
+<p><code>counter(name, value, meterName)</code> and <code>histogram(name, value, meterName)</code> post a
+message to native and return a promise.</p>
+</li>
+<li>
+<p>The call is routed to <code>Plugin.swift</code> <code>handle_call(callbackId:args:respond:)</code>, which
+reads <code>action</code> and dispatches to the requested metric action.</p>
+</li>
+<li>
+<p>The plugin gets a meter, builds the instrument, records the value, and resolves the
+promise.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">await window.jasonelle.plugins.opentelemetry.counter("button_clicks", 1);
+await window.jasonelle.plugins.opentelemetry.histogram("load_time_ms", 124.5);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The same call can be made without the JavaScript wrapper, using <code>window.jasonelle.post</code>
+to send the arguments straight to <code>handle_call</code>. The first argument is the plugin
+id, not the short name used to register it on <code>window.jasonelle.plugins</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">await window.jasonelle.post("com.jasonelle.plugins.opentelemetry", {
+    action: "counter.add",
+    name: "button_clicks",
+    value: 1,
+    meterName: "jasonelle.app.meter"
+});</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 42.8572%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Key</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>action</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">–</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>counter.add</code> or <code>histogram.record</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">–</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Instrument name, for example <code>button_clicks</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>value</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">–</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Value added to the counter, or recorded in the histogram.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>meterName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jasonelle.app.meter</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Meter the instrument is created on.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>JavaScript numbers arrive in the message as <code>NSNumber</code>, so <code>Plugin.swift</code> coerces them
+to <code>Int</code> and <code>Double</code>. <code>counter.add</code> truncates <code>value</code> to a whole number, matching the
+<code>LongCounter</code> instrument on the <a href="../android/plugin-opentelemetry.html" class="xref page">Android plugin</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="response"><a class="anchor" href="#response"></a>Response</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "status": "ok",
+  "callbackId": "call_1",
+  "success": true
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>success</code> reports that the bridge call was accepted, not that a value reached the
+SDK. A missing or non-numeric <code>name</code> or <code>value</code> is dropped natively and the promise
+<strong>still</strong> resolves with <code>success: true</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="errors"><a class="anchor" href="#errors"></a>Errors</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "status": "error",
+  "callbackId": "call_1",
+  "error": "No action provided"
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>No action provided</code> – the arguments carried no string <code>action</code>.</p>
+</li>
+<li>
+<p><code>Unknown action &lt;action&gt;</code> – <code>action</code> was neither <code>counter.add</code> nor
+<code>histogram.record</code>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>JLKernel.Plugin.reject</code> defaults its <code>status</code> to <code>"ok"</code>, so every reject call
+must pass <code>status: "error"</code> explicitly. Otherwise the promise rejects with a
+<code>"status": "ok"</code> payload the JavaScript client treats as a success.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sdk-requirement"><a class="anchor" href="#sdk-requirement"></a>SDK requirement</h3>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+The app must register a <code>MeterProvider</code> before the first call. Without one the
+default is a no-op <code>DefaultMeterProvider</code>, every value is discarded and the promise
+still resolves with <code>success: true</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>OpenTelemetry.instance.meterProvider</code> is read-only. Register a provider with
+<code>OpenTelemetry.registerMeterProvider(meterProvider:)</code>, which takes any <code>MeterProvider</code>
+including a <code>MeterProviderSdk</code> built from <code>OpenTelemetrySdk</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">import OpenTelemetryApi
+import OpenTelemetrySdk
+
+let provider = MeterProviderSdk.builder()
+  .setResource(Resource(attributes: ["service.name": .string("jasonelle-app")]))
+  .registerMetricReader(metricReader) // e.g. a periodic reader over your exporter
+  .build()
+
+OpenTelemetry.registerMeterProvider(meterProvider: provider)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Register the provider in the <strong>Application</strong> module, before the web view loads the page
+that raises the first metric. The plugin links only <code>OpenTelemetryApi</code>, so <code>MeterProviderSdk</code>
+and any exporter are the app&#8217;s dependency to add.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="wiring"><a class="anchor" href="#wiring"></a>Wiring</h3>
+<div class="paragraph">
+<p>The plugin is a Swift Package consumer. <code>project.pbxproj</code> references
+<code>opentelemetry-swift-core</code> 2.6.0 and links its <code>OpenTelemetryApi</code> product, and the
+project is listed in <code>Jasonelle.xcworkspace</code>. Add both when creating a plugin that
+depends on an external package.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="tests"><a class="anchor" href="#tests"></a>Tests</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Eleven cases in <code>JLPluginOpenTelemetryTests</code> cover the exposed name and id, the null
+and empty argument rejects, both actions resolving, the silently dropped malformed
+arguments, the unknown action reject, the unhandled event, and the bundled
+JavaScript.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd sources/xcode
+task test -- JLPluginOpenTelemetryTests</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the <code>JLKernel.framework</code> dependency resolves through <code>BUILT_PRODUCTS_DIR</code>, so the
+project only builds from <code>Jasonelle.xcworkspace</code>, never on its own with <code>-project</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="reference"><a class="anchor" href="#reference"></a>Reference</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>JLKernel.Plugin</code> – the base class this plugin extends.</p>
+</li>
+<li>
+<p><code>Plugin.js</code> – the JavaScript client, byte-identical to the <a href="../android/plugin-opentelemetry.html" class="xref page">Android plugin</a>.</p>
+</li>
+<li>
+<p><code>OpenTelemetryApi</code> from <code>opentelemetry-swift-core</code> 2.6.0, declared as a Swift Package dependency in <code>project.pbxproj</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="plugin-apple-sign-in.html">JLPluginAppleSignIn</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+<script src="../_/js/vendor/lunr.js"></script>
+<script src="../_/js/search-ui.js" id="search-ui-script" data-site-root-path=".." data-snippet-length="100" data-stylesheet="../_/css/search.css"></script>
+<script async src="../search-index.js"></script>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      ignoreHtmlClass: 'nostem|no-mathjax'
+    }
+  };
+</script>
+<script id="MathJax-script" async src="../_/js/vendor/tex-chtml.js"></script>  </body>
+</html>

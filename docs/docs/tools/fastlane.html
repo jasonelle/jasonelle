@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Fastlane Generator :: Jasonelle Documentation</title>
+    <title>Fastlane :: Jasonelle Documentation</title>
     <link rel="canonical" href="https://jasonelle.com/docs/tools/fastlane.html">
+    <link rel="prev" href="esbuild.html">
+    <link rel="next" href="../specs/2026-09-20-link-copy-artifacts-design.html">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/js/vendor/styles/monokai.css">  </head>
@@ -130,6 +132,9 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="esbuild.html">CLI esbuild</a>
   </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="fastlane.html">Fastlane</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -148,6 +153,9 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../specs/2026-09-22-appconf-app-version-design.html">Appconf Sets the App Version and Timestamp Build Number</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../specs/2026-09-22-fastlane-tool-design.html">Fastlane Generator Tool Design</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -164,6 +172,9 @@
     <a class="nav-link" href="../android/store.jsonc.html">Store Configuration (Android)</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../android/creating-plugins.html">Creating Android Plugins</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../android/kernel.html">JLKernel</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -174,6 +185,9 @@
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../android/plugin-cookies.html">JLPluginCookies</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../android/plugin-opentelemetry.html">JLPluginOpenTelemetry</a>
   </li>
 </ul>
   </li>
@@ -191,6 +205,9 @@
     <a class="nav-link" href="../xcode/store.jsonc.html">Store Configuration (Xcode)</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/creating-plugins.html">Creating Xcode Plugins</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../xcode/kernel.html">JLKernel</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -204,6 +221,9 @@
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../xcode/plugin-apple-sign-in.html">JLPluginAppleSignIn</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xcode/plugin-opentelemetry.html">JLPluginOpenTelemetry</a>
   </li>
 </ul>
   </li>
@@ -231,7 +251,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Jasonelle Documentation</a></li>
-    <li><a href="fastlane.html">Fastlane Generator</a></li>
+    <li>Tools</li>
+    <li><a href="fastlane.html">Fastlane</a></li>
   </ul>
 </nav>
 <div class="edit-this-page"><a href="file:///antora/antora/modules/tools/pages/fastlane.adoc">Edit this Page</a></div>
@@ -241,15 +262,21 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Fastlane Generator</h1>
+<h1 class="page">Fastlane</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>fastlane-gen</code> tool generates standard Ruby-based Fastlane files
-(a Fastfile, Appfile, and Deliverfile/Supplyfile) to each build directory
-<code>build/xcode</code> and <code>build/android</code>. This way, developers familiar with Fastlane
-can easily inspect, debug, and run standard fastlane release commands, rather
-than relying on a giant, hard-to-read bash script with dozens of CLI arguments.</p>
+<p>A <a href="https://go.dev">Go</a> tool that generates the standard Ruby-based Fastlane files
+(Fastfile, Appfile, and Deliverfile/Supplyfile) from the merged <code>store.jsonc</code>
+configs, into each build directory <code>build/xcode/fastlane</code> and
+<code>build/android/fastlane</code>, and mirrors them into the assembled source projects
+(<code>build/&lt;platform&gt;/sources/fastlane</code>). This way, developers familiar with
+Fastlane can easily inspect, debug, and run standard fastlane release
+commands, rather than relying on a giant, hard-to-read bash script with dozens
+of CLI arguments.</p>
+</div>
+<div class="paragraph">
+<p>Run after <code>task appconf</code>, as the final step that generates the projects.</p>
 </div>
 </div>
 </div>
@@ -301,6 +328,240 @@ hundreds of community-built <a href="https://docs.fastlane.tools/actions/">actio
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="generated-files"><a class="anchor" href="#generated-files"></a>Generated files</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Each lane in the generated Fastfiles passes the full configured parameter block
+(<code>supply</code>/<code>deliver</code>/<code>gym</code>/<code>match</code>/<code>gradle</code>) as keyword arguments, so the store
+configuration values map directly to Fastlane parameters. Output is
+deterministic: fixed key order per block, and reruns are byte-stable.</p>
+</div>
+<div class="sect2">
+<h3 id="android-buildandroidfastlane"><a class="anchor" href="#android-buildandroidfastlane"></a>Android (<code>build/android/fastlane/</code>)</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Appfile</code> — <code>package_name</code> and <code>json_key_file</code> from <code>store.jsonc</code>.</p>
+</li>
+<li>
+<p><code>Supplyfile</code> — the <code>upload_to_play_store</code> parameters from <code>store.jsonc</code>.</p>
+</li>
+<li>
+<p><code>Fastfile</code> — <code>build</code> lane (<code>gradle</code>) and <code>release</code> lane (<code>supply</code>).</p>
+</li>
+<li>
+<p><code>metadata/android/&lt;locale&gt;/</code> — <code>title.txt</code>, <code>short_description.txt</code>,
+<code>full_description.txt</code>, <code>video.txt</code> and <code>changelogs/default.txt</code> from the
+localized <code>metadata</code> block.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="xcode-buildxcodefastlane"><a class="anchor" href="#xcode-buildxcodefastlane"></a>Xcode (<code>build/xcode/fastlane/</code>)</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Appfile</code> — <code>app_identifier</code>, <code>apple_id</code>, <code>team_id</code>, <code>itc_team_id</code> and
+<code>team_name</code> from <code>store.jsonc</code>.</p>
+</li>
+<li>
+<p><code>Deliverfile</code> — the <code>upload_to_app_store</code> parameters from <code>store.jsonc</code>,
+including the nested <code>submission_information</code> hash.</p>
+</li>
+<li>
+<p><code>Matchfile</code> — the code signing parameters from <code>store.jsonc</code>.</p>
+</li>
+<li>
+<p><code>Fastfile</code> — <code>certificates</code> lane (<code>match</code>), <code>build</code> lane (<code>gym</code>), and
+<code>release</code> lane (<code>deliver</code>).</p>
+</li>
+<li>
+<p><code>metadata/&lt;locale&gt;/</code> — <code>name.txt</code>, <code>subtitle.txt</code>, <code>promotional_text.txt</code>,
+<code>description.txt</code>, <code>keywords.txt</code>, <code>privacy_url.txt</code>, <code>support_url.txt</code>,
+<code>marketing_url.txt</code> and <code>release_notes.txt</code> from the localized <code>metadata</code>
+block.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="key-file-handling"><a class="anchor" href="#key-file-handling"></a>Key file handling</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Repo-relative path values such as <code>json_key_file</code>
+(<code>lib/android/config/play-store-key.json</code>) and <code>app_rating_config_path</code> are
+resolved against the working directory. When the file exists it is copied next
+to the <code>Fastfile</code> and the emitted value becomes its basename
+(<code>json_key_file("play-store-key.json")</code>). When it is missing the value is
+emitted verbatim and a warning is printed to stderr, so the default configs
+(which reference key files that do not exist yet) keep working.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="requirements"><a class="anchor" href="#requirements"></a>Requirements</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://go.dev">Go</a> 1.26 or newer (only for compilation. <code>dist/</code> directory
+contains binaries).</p>
+</li>
+<li>
+<p><a href="https://taskfile.dev">go-task</a> (optional, only for the tasks below).</p>
+</li>
+<li>
+<p>The merged store configs, produced by <code>task jsonc</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage"><a class="anchor" href="#usage"></a>Usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>From the repository root:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">tools/fastlane/dist/fastlane-{{os}}-{{arch}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This reads <code>build/xcode/config/store.jsonc</code> and <code>build/android/config/store.jsonc</code>,
+generates the Fastlane files, and mirrors them into the assembled projects.
+Run the lanes from the assembled projects with the per-platform tasks
+(requires <code>task gen</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd build/android/sources &amp;&amp; task fastlane.run.release
+cd build/xcode/sources   &amp;&amp; task fastlane.run -- release</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="flags"><a class="anchor" href="#flags"></a>Flags</h3>
+<div class="paragraph">
+<p>All flags have defaults that point to the standard <code>build/</code> tree.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Flag</th>
+<th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--xcode-config</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the merged Xcode store config. Default:
+<code>build/xcode/config/store.jsonc</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--android-config</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the merged Android store config. Default:
+<code>build/android/config/store.jsonc</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--xcode-out</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the generated Xcode fastlane directory. Default:
+<code>build/xcode/fastlane</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--android-out</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the generated Android fastlane directory. Default:
+<code>build/android/fastlane</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--xcode-sources</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the assembled Xcode source tree. Default: <code>build/xcode/sources</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--android-sources</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the assembled Android source tree. Default: <code>build/android/sources</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="tasks"><a class="anchor" href="#tasks"></a>Tasks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>From the repository root:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>task fastlane</code> (<code>fl</code>): generate the Fastlane files for both Xcode and
+Android.</p>
+</li>
+<li>
+<p><code>task fastlane.build</code> (<code>flb</code>): build the <code>tools/fastlane</code> binary.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>From each assembled project (<code>build/&lt;platform&gt;/sources/</code>, requires <code>task gen</code>):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>task fastlane.run</code> (<code>fr</code>): run a lane, defaulting to <code>build</code>; pass another lane
+after <code>--</code> (<code>task fastlane.run&#8201;&#8212;&#8201;release</code>).</p>
+</li>
+<li>
+<p><code>task fastlane.run.release</code> (<code>frr</code>): run the <code>release</code> lane.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>From <code>tools/fastlane/src</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>task build</code> (<code>b</code>): cross-compile binaries into <code>../dist/</code> for macOS
+(amd64/arm64), Linux (amd64) and Windows (amd64).</p>
+</li>
+<li>
+<p><code>task test</code> (<code>t</code>): run the test suite.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="release-binaries"><a class="anchor" href="#release-binaries"></a>Release binaries</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>dist/</code> contains prebuilt binaries for each platform, named
+<code>fastlane-&lt;os&gt;-&lt;arch&gt;</code> (Windows uses <code>.exe</code>).</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="esbuild.html">CLI esbuild</a></span>
+  <span class="next"><a href="../specs/2026-09-20-link-copy-artifacts-design.html">Link Tool Copies App Artifacts into the Assembled Tree</a></span>
+</nav>
 </article>
   </div>
 </main>

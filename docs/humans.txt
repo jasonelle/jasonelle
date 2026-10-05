@@ -1,0 +1,39 @@
+/* TEAM */
+
+/* ROLE */
+Creator: Camilo Castro
+
+/* CONTACT */
+Location: Chile
+Web: https://ninjas.cl
+Telegram: https://t.me/jasonelle
+Docs: https://jasonelle.com/docs
+
+/* HISTORY */
+
+Jasonelle v1 and v2 were forks of Jasonette with improvements, from
+2018 to 2022. Jasonette was created by Ethan Gliechtenstein. Its core
+began in late 2014 and ended in late 2018.
+
+Jasonelle v3 was created from scratch by Camilo Castro in 2022, a total
+rewrite to avoid license issues with the previous core. It was refined
+until July 2026.
+
+Jasonelle v4 was built from scratch again, starting in August 2026 and
+released in October 2026. A complete rewrite, with better documentation
+and better code, and with Android support restored. It breaks
+compatibility with the earlier versions. It is built for the era of
+agentic programming tools.
+
+History:
+https://github.com/jasonelle/jasonelle/wiki/History
+https://github.com/jasonelle-archive/jasonelle-v2/wiki/History
+
+/* SITE */
+
+Last update: 2026/10/05
+Standards: HTML5, CSS3
+Components: Bootstrap, animate.css, WOW.js
+Template: Play by UIdeck, https://github.com/uideck/play-bootstrap
+Software: Antora, go-task, Go, TypeScript, esbuild, OpenCode
+Agents: Superpowers, Ponytail, Context7 MCP

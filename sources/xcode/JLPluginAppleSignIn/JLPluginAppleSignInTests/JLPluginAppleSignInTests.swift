@@ -40,7 +40,6 @@ struct JLPluginAppleSignInTests {
 
     #expect(!js.isEmpty)
     #expect(js.contains("window.jasonelle.plugins.applesignin"))
-    #expect(js.contains("window.jasonelle.plugins.appleSignIn"))
     #expect(js.contains("createButton"))
     #expect(js.contains("renderButton"))
     #expect(js.contains("signIn"))

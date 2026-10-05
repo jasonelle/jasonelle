@@ -33,6 +33,9 @@ plugins through a bidirectional message channel.
 | xref:plugin-apple-sign-in.adoc[`JLPluginAppleSignIn/`]
 | A plugin that provides Sign in with Apple.
 
+| xref:plugin-opentelemetry.adoc[`JLPluginOpenTelemetry/`]
+| A plugin that records OpenTelemetry counters and histograms.
+
 | `.swiftlint.yml`
 | SwiftLint rules.
 
@@ -99,6 +102,7 @@ package "Plugins" {
   [JLPluginDevice] as device
   [JLPluginCookies] as cookies
   [JLPluginAppleSignIn] as auth
+  [JLPluginOpenTelemetry] as telemetry
 }
 
 main --> contentView : shows
@@ -290,6 +294,10 @@ plugin id used in JavaScript (`window.jasonelle.plugins.<name>`).
 | `handle_call` returns device info
 | `plugins.device.info()`
 
+| xref:plugin-opentelemetry.adoc[`JLPluginOpenTelemetry`]
+| `handle_call` performs metric recording actions
+| `plugins.opentelemetry.counter()`, `histogram()`
+
 | xref:plugin-cookies.adoc[`JLPluginCookies`]
 | `handle_call` stores/reads cookies in the Keychain
 | `plugins.cookies.save()`, `restore()`, `persist()`
@@ -304,8 +312,14 @@ plugin id used in JavaScript (`window.jasonelle.plugins.<name>`).
 * Open `Jasonelle.xcworkspace` in Xcode to build the `Application` scheme.
 * Unit tests live in each module's `<Module>Tests` target (`JLKernelTests`,
 `JLPluginHelloTests`, `JLPluginDeviceTests`, `JLPluginCookiesTests`,
-`JLPluginAppleSignInTests`, `ApplicationTests`).
+`JLPluginAppleSignInTests`, `JLPluginOpenTelemetryTests`, `ApplicationTests`).
 * Run SwiftLint with `task lint` (auto-fix with `task fix`).
+* Build a scheme with `task build` and run its tests with `task test` (see
+xref:creating-plugins.adoc[Creating Plugins] for the full command reference).
 * Each module ships a DocC catalog (`*.docc`) describing its public API. Open
 the workspace in Xcode and select "Documentation" in the navigator to browse
 them.
+
+== Guides
+
+* xref:creating-plugins.adoc[Creating Plugins]

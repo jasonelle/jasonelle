@@ -1,0 +1,8 @@
+# https://jasonelle.com
+
+User-agent: *
+Allow: /
+Disallow: /reference/
+
+Sitemap: https://jasonelle.com/sitemap.xml
+Sitemap: https://jasonelle.com/docs/sitemap.xml
