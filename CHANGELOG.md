@@ -14,6 +14,7 @@ documentation and code. It breaks compatibility with previous versions.
 
 - Add agent rules and opencode plugins
 - Add allowed URLs config and Safari navigation handling
+- Add app_version and timestamped build number
 - Add appid and link tools
 - Add apple sign in plugin
 - Add changelog generation command
@@ -23,9 +24,7 @@ documentation and code. It breaks compatibility with previous versions.
 - Add core and plugins tools
 - Add device plugin for iOS
 - Add gen build pipeline orchestrator
-- Add fastlane tool to generate Fastlane release files from store.jsonc
-- Add fastlane.run and fastlane.run.release tasks to the assembled Xcode and
-  Android projects
+- Add generator tool and run tasks to pipeline
 - Add Go tool to generate app icons
 - Add id field to ADR documents
 - Add iOS Application and Core sources
@@ -38,6 +37,7 @@ documentation and code. It breaks compatibility with previous versions.
 - Add rule to rebuild tools after source changes
 - Add rule-create command
 - Add tool to merge JSONC files
+- Add unit test generation skills
 - Add version bump tasks
 - Added architecture.adoc
 - Adopt ADR documents for design decisions
@@ -52,6 +52,7 @@ documentation and code. It breaks compatibility with previous versions.
 - Refine allowed-hosts navigation and download to Safari
 - Rename appid and set the app name
 - Resolve native calls via promise bridge
+- Rewrite jasonelle.com homepage for v4
 - Scaffold Go tool structure
 - Vendor esbuild for webview JS bundling
 
@@ -64,6 +65,7 @@ documentation and code. It breaks compatibility with previous versions.
 - Add basic tests
 - Add bundler tool documentation
 - Add CNAME for jasonelle.com
+- Add config.jsonc and store.jsonc pages
 - Add cross-compiled binaries
 - Add design doc for tools/xcode bundle id task
 - Add dual-license headers to xcode sources
@@ -78,6 +80,7 @@ documentation and code. It breaks compatibility with previous versions.
 - Add SwiftLint tooling and fix all lint warnings
 - Add TypeScript ADR and esbuild tool page
 - Add VERSION file and document it
+- Add xcode and android module pages
 - Bump common app name and document plugins
 - Create CNAME
 - Delete tags when pruning pre-releases
@@ -110,6 +113,7 @@ documentation and code. It breaks compatibility with previous versions.
 - Update icons task alias in AGENTS.md
 - Update plugins lookup key from name to id
 - Update README to list actual tools and build instructions
+- Update v4.0 section for recent commits
 - Update v4.0 section from git commits
 - Updated changelog
 - Updated website
@@ -124,6 +128,7 @@ documentation and code. It breaks compatibility with previous versions.
 ### Fixed
 
 - Break long bundler commands to fit yamllint line-length
+- Buffer native->JS scripts until page is ready
 - Improve license check logic and error message
 - Rebuild binaries with app artifact copy
 - Remove stale jsDir only, preserve output in scriptsDir
