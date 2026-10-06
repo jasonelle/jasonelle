@@ -327,6 +327,46 @@ struct ContentView: View {
 <div class="paragraph">
 <p>Native code can notify plugins about app lifecycle events. The app registers its <code>Plugin</code> dictionary once with <code>Events.register(plugins:)</code> (e.g. in <code>Main.init()</code>), then broadcasts an event with <code>Events.sendOnAppear()</code>. Every registered plugin receives it through <code>handle_event(name:args:respond:)</code>, with the event name given by the raw value of the <code>Events</code> case.</p>
 </div>
+<div class="sect2">
+<h3 id="events-pushed-back-to-javascript"><a class="anchor" href="#events-pushed-back-to-javascript"></a>Events Pushed Back to JavaScript</h3>
+<div class="paragraph">
+<p>To let the page react to an event, a plugin forwards it to JavaScript from its <code>handle_event</code> override using the <code>event(_:plugin:args:respond:)</code> helper:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">public override func handle_event(_ event: String, args: [String: Any]? = [:], respond: @escaping (String) -&gt; Void) {
+    self.event(event, plugin: Plugin.name, args: args ?? [:], respond: respond)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The helper merges <code>event</code> and <code>plugin</code> with the plugin&#8217;s own <code>args</code>, serializes the result and evaluates it in the page:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">window.jasonelle.plugins.hello.handle({"event":"ContentView.onAppear","plugin":"hello"});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The page receives it in the <code>handle</code> function that the plugin&#8217;s own <code>Plugin.js</code> assigns, not in a global listener:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">plugin.handle = ({ event, ...payload }) =&gt; {
+  if (event === "ContentView.onAppear") cart.refresh(payload);
+};</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="event-timing"><a class="anchor" href="#event-timing"></a>Event Timing</h3>
+<div class="paragraph">
+<p><code>handle_event</code> itself runs natively and is never delayed. Reaching JavaScript is a different matter: plugin scripts are evaluated at <strong>document end</strong>, so an event broadcast from <code>ContentView.onAppear</code> would arrive before the page could possibly have run them. Evaluating it against an unloaded document drops it silently.</p>
+</div>
+<div class="paragraph">
+<p>The <code>Coordinator</code> therefore buffers native responses while the page is loading and replays them in order on <code>didFinish navigation</code>. A new navigation clears the buffer, since those scripts belong to a page that never finished loading.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
