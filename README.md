@@ -1,4 +1,14 @@
-# Jasonelle
+# [Jasonelle](https://github.com/jasonelle)
+
+<img src="website/jasonelle.png" style="width:50%;height:auto">
+
+[![jasonelle - jasonelle](https://img.shields.io/static/v1?label=jasonelle&message=jasonelle&color=blueviolet&logo=github)](https://github.com/jasonelle/jasonelle "Go to GitHub repo")
+[![stars - jasonelle](https://img.shields.io/github/stars/jasonelle/jasonelle?style=social)](https://github.com/jasonelle/jasonelle)
+[![forks - jasonelle](https://img.shields.io/github/forks/jasonelle/jasonelle?style=social)](https://github.com/jasonelle/jasonelle)
+
+![Coded in 🇨🇱 Chile](https://img.shields.io/badge/Proudly_Coded_in-🇨🇱_Chile-white?style=for-the-badge&logo=xcode&logoColor=white)
+
+[![view - Documentation](https://img.shields.io/badge/view-Documentation-blueviolet?style=for-the-badge)](https://jasonelle.com/docs "Go to project documentation")
 
 Write for the Web. Ship Native.
 
@@ -114,3 +124,15 @@ Adding your own is covered in the
 Dual licensed. Without a Jasonelle Key the project is licensed under the
 **AGPL-3.0**. With a valid key it is licensed under the **MPL-2.0** instead.
 Copyright © Jasonelle.com and contributors. See [LICENSE.md](LICENSE.md).
+
+## Purchase a License Key
+
+To run Jasonelle on real devices and distribute to the App Store or Google Play,
+you need a Jasonelle Key. Purchase one at:
+- [https://jasonelle.gumroad.com/l/thanks](https://jasonelle.gumroad.com/l/thanks)
+
+## Credits
+
+<a href="https://ninjas.cl">
+<img src="https://github.com/jasonelle/jasonelle/assets/292738/2aca9acb-dfd1-4098-a846-4476c6e64c06" width="300px" height="auto" alt="Ninjas.cl" title="Made with Love by Ninjas.cl">
+</a>
