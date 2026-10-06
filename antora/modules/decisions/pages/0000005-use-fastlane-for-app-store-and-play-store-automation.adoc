@@ -1,0 +1,287 @@
+= Use Fastlane for App Store and Play Store automation
+
+- id: 0000005
+
+== Status
+
+- Accepted (2026-08-15) by: @clsource
+
+=== History
+
+- Proposed (2026-08-15) by: @clsource
+
+== Context and Problem Statement
+
+Jasonelle distributes iOS and Android apps through the App Store and Play
+Store, each with its own signing, metadata, screenshot, and release process.
+Releasing to both stores by hand means repetitive, error-prone steps repeated
+for every build. How should App Store and Play Store release automation be
+handled?
+
+== Considered Options
+
+* Use https://fastlane.tools/[Fastlane] for App Store and Play Store automation
+* Build custom release scripts per platform
+* Release manually using Xcode and Android Studio
+
+== Overall Automation Workflow
+
+The release automation follows a four-stage workflow:
+
+1. *Define*: The user defines release metadata in JSONC format under `lib/`.
+2. *Merge*: The `jsonc` tool merges common settings with platform overrides into `build/<platform>/config/store.jsonc`.
+3. *Generate*: The pipeline generates standard Ruby Fastlane files inside `build/<platform>/fastlane/`.
+4. *Deploy*: Developers or continuous integration runners execute lanes through standard Fastlane commands.
+
+[source,bash]
+----
+# 1. Merge configurations
+task jsonc
+
+# 2. Run lanes in the generated projects
+cd build/android && fastlane release
+cd build/xcode && fastlane release
+----
+
+== Configuration in store.jsonc
+
+The configuration values in `store.jsonc` map directly to Fastlane parameters.
+
+=== Common Configuration (lib/common/config/store.jsonc)
+
+The common configuration sets baseline values shared between Android and iOS:
+
+* `metadata`: Localized text fields under `metadata.<locale>`.
+** `title`: Application name.
+** `description`: Full app description.
+** `keywords`: Comma-separated search keywords.
+** `privacy_url`: URL for the mandatory privacy policy.
+** `support_url`: Help and support URL.
+** `marketing_url`: Product website URL.
+** `release_notes`: What is new in this version.
+* `review_information`: Store reviewer contact details and test credentials.
+** `contact_first_name`, `contact_last_name`, `contact_email`, `contact_phone`.
+** `demo_user`, `demo_password`: Credentials for app review.
+** `notes`: Specific instructions for reviewers.
+* `release`: Shared release flags.
+** `skip_screenshots`: Skip uploading screenshot images.
+** `skip_metadata`: Skip uploading text metadata.
+** `submit_for_review`: Submit automatically after upload.
+** `automatic_release`: Release automatically upon store approval.
+
+=== Android Configuration (lib/android/config/store.jsonc)
+
+The Android configuration defines Google Play Store parameters:
+
+* `appfile`:
+** `package_name`: Application package ID.
+** `json_key_file`: Path to the Google Play service account JSON key.
+* `supply`: Fastlane `upload_to_play_store` parameters.
+** `track`: Target track (`internal`, `alpha`, `beta`, `production`).
+** `rollout`: Rollout percentage (`0.0` to `1.0`).
+** `skip_upload_aab`, `skip_upload_apk`: Control binary uploads.
+** `skip_upload_metadata`, `skip_upload_changelogs`: Control text metadata.
+** `skip_upload_images`, `skip_upload_screenshots`: Control graphic assets.
+** `validate_only`: Validate without publishing.
+** `changes_not_sent_for_review`: Immediate review flag.
+** `ack_bundle_installation_warning`: Device compatibility acknowledgement.
+* `metadata`: Android-specific fields.
+** `short_description`: Summary text (maximum 80 characters).
+** `video`: YouTube video promotional link.
+* `gradle`: Build action settings (`task: bundleRelease`, `build_type: Release`).
+
+=== Xcode Configuration (lib/xcode/config/store.jsonc)
+
+The Xcode configuration defines Apple App Store parameters:
+
+* `appfile`:
+** `app_identifier`: Bundle identifier.
+** `apple_id`: Apple ID email address.
+** `team_id`: Developer Portal Team ID.
+** `itc_team_id`: App Store Connect Team ID.
+** `team_name`: Developer Portal Team Name.
+* `deliver`: Fastlane `upload_to_app_store` parameters.
+** `platform`: Target platform (`ios`).
+** `edit_live`: Modify live version metadata.
+** `skip_binary_upload`, `skip_screenshots`, `skip_metadata`: Upload filters.
+** `skip_app_version_update`: Keep current store version.
+** `force`: Skip HTML preview verification.
+** `phased_release`: 7-day phased rollout for updates.
+** `reset_ratings`: Reset rating summary for the version.
+** `price_tier`: Store pricing tier (`0` for free apps).
+** `app_rating_config_path`: Path to age rating JSON.
+** `submission_information`: Export compliance and IDFA flags.
+* `match`: Fastlane code signing settings (`type`, `storage_mode`, `git_url`, `readonly`, `shallow_clone`).
+* `metadata`: iOS-specific fields.
+** `subtitle`: Summary text (maximum 30 characters).
+** `promotional_text`: Highlight text (maximum 170 characters).
+* `gym`: Build action settings (`scheme: Application`, `clean: true`, `export_method: app-store`).
+
+== Generated Fastlane Files
+
+The build pipeline generates standard Ruby-based Fastlane files in each platform directory.
+
+=== Android Files (build/android/fastlane/)
+
+==== Appfile
+
+[source,ruby]
+----
+json_key_file("lib/android/config/play-store-key.json")
+package_name("com.example.application")
+----
+
+==== Supplyfile
+
+[source,ruby]
+----
+track("internal")
+rollout("1.0")
+skip_upload_apk(true)
+skip_upload_aab(false)
+validate_only(false)
+changes_not_sent_for_review(false)
+ack_bundle_installation_warning(true)
+----
+
+==== Fastfile
+
+[source,ruby]
+----
+default_platform(:android)
+
+platform :android do
+  desc "Build the Android App Bundle"
+  lane :build do
+    gradle(task: "bundleRelease", build_type: "Release")
+  end
+
+  desc "Deploy a new version to the Google Play Store"
+  lane :release do
+    build
+    supply(
+      track: "internal",
+      rollout: 1.0,
+      skip_upload_apk: true
+    )
+  end
+end
+----
+
+==== Localized Metadata Directory (build/android/fastlane/metadata/android/)
+
+The generator creates localized metadata text files:
+
+----
+metadata/android/
+└── en-US/
+    ├── title.txt
+    ├── short_description.txt
+    ├── full_description.txt
+    ├── video.txt
+    └── changelogs/
+        └── default.txt
+----
+
+=== Xcode Files (build/xcode/fastlane/)
+
+==== Appfile
+
+[source,ruby]
+----
+app_identifier("com.example.application")
+apple_id("developer@example.com")
+team_id("XXXXXXXXXX")
+itc_team_id("12345678")
+----
+
+==== Deliverfile
+
+[source,ruby]
+----
+platform("ios")
+phased_release(true)
+price_tier(0)
+submission_information({
+  export_compliance_uses_encryption: false,
+  add_id_info_uses_idfa: false
+})
+----
+
+==== Matchfile
+
+[source,ruby]
+----
+git_url("git@github.com:example/certificates.git")
+storage_mode("git")
+type("appstore")
+shallow_clone(true)
+readonly(true)
+----
+
+==== Fastfile
+
+[source,ruby]
+----
+default_platform(:ios)
+
+platform :ios do
+  desc "Sync signing certificates"
+  lane :certificates do
+    match(type: "appstore", readonly: true)
+  end
+
+  desc "Build and archive the iOS application"
+  lane :build do
+    certificates
+    gym(
+      scheme: "Application",
+      clean: true,
+      export_method: "app-store"
+    )
+  end
+
+  desc "Deploy a new version to the Apple App Store"
+  lane :release do
+    build
+    deliver(
+      force: true,
+      phased_release: true
+    )
+  end
+end
+----
+
+==== Localized Metadata Directory (build/xcode/fastlane/metadata/)
+
+The generator creates localized metadata text files:
+
+----
+metadata/
+└── en-US/
+    ├── name.txt
+    ├── subtitle.txt
+    ├── promotional_text.txt
+    ├── description.txt
+    ├── keywords.txt
+    ├── privacy_url.txt
+    ├── support_url.txt
+    ├── marketing_url.txt
+    └── release_notes.txt
+----
+
+== Decision Outcome
+
+Chosen option: "Use Fastlane for App Store and Play Store automation", because
+a single tool abstracts the platform specific release flows: `Fastfile` lanes
+handle signing, building, screenshots, metadata upload, and submission for both
+the App Store (via deliver, gym, sigh, pilot) and the Play Store (via supply).
+Positive consequences: one definition of the release process, repeatable and
+reviewable lanes in CI, and reduced human error. Negative consequences:
+additional dependency and Fastlane configuration to learn and maintain.
+
+Fastlane is the best option, because it removes the per-store boilerplate while
+keeping the workflow declarative and testable in CI. If "Build custom release
+scripts" was chosen, each store's signing and upload logic would be reimplemented
+and drift apart. If "Release manually" was chosen, every release would depend on
+a developer's machine and take significant manual time.

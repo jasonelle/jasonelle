@@ -1,0 +1,459 @@
+= Store Configuration (Xcode)
+
+Jasonelle manages Apple App Store release metadata through `store.jsonc`.
+
+== Overview
+
+The build pipeline merges `lib/common/config/store.jsonc` with `lib/xcode/config/store.jsonc`.
+The merged output is written to `build/xcode/config/store.jsonc`.
+The configuration follows standard Fastlane parameter names.
+
+Run the following command to merge the configuration files:
+
+[source,bash]
+----
+task jsonc.xcode
+----
+
+== File Locations
+
+* `lib/common/config/store.jsonc`: Common store metadata and release settings.
+* `lib/xcode/config/store.jsonc`: Xcode specific settings and overrides.
+* `build/xcode/config/store.jsonc`: Merged file consumed by the build pipeline.
+
+== Common Configuration (lib/common/config/store.jsonc)
+
+The `lib/common/config/store.jsonc` file defines settings shared across Android and iOS stores.
+These values provide the baseline store presence for the application.
+
+=== Common Sections
+
+==== metadata
+
+Provides localized store listing content per language code.
+
+[cols="1,1,2"]
+|===
+|Property |Type |Description
+
+|`default_language`
+|String
+|The primary locale code for store listings (for example, `en-US`).
+
+|`title`
+|String
+|The application name displayed on store listings.
+
+|`description`
+|String
+|The full descriptive text for the application.
+
+|`keywords`
+|String
+|The comma-separated keywords for search indexing.
+
+|`privacy_url`
+|String
+|The privacy policy URL required by app stores.
+
+|`support_url`
+|String
+|The customer support website URL.
+
+|`marketing_url`
+|String
+|The marketing or product website URL.
+
+|`release_notes`
+|String
+|The changelog description for this release.
+|===
+
+==== review_information
+
+Stores contact information and test account credentials for app reviewers.
+
+[cols="1,1,2"]
+|===
+|Property |Type |Description
+
+|`contact_first_name`
+|String
+|The first name of the developer contact.
+
+|`contact_last_name`
+|String
+|The last name of the developer contact.
+
+|`contact_email`
+|String
+|The email address of the developer contact.
+
+|`contact_phone`
+|String
+|The telephone number of the developer contact.
+
+|`demo_user`
+|String
+|The username for the reviewer test account.
+
+|`demo_password`
+|String
+|The password for the reviewer test account.
+
+|`notes`
+|String
+|Instructions for the store review team.
+|===
+
+==== release
+
+Controls shared release and upload automation behavior.
+
+[cols="1,1,2"]
+|===
+|Property |Type |Description
+
+|`skip_screenshots`
+|Boolean
+|Skip uploading screenshots during deployment.
+
+|`skip_metadata`
+|Boolean
+|Skip uploading store metadata during deployment.
+
+|`submit_for_review`
+|Boolean
+|Submit the release for review automatically.
+
+|`automatic_release`
+|Boolean
+|Release the app automatically after store approval.
+|===
+
+=== Common Configuration Example
+
+[source,json5]
+----
+{
+  "metadata": {
+    "default_language": "en-US",
+    "en-US": {
+      "title": "Jasonelle v4",
+      "description": "Jasonelle turns web applications into high-performance native iOS and Android apps with full native capabilities.",
+      "keywords": "jasonelle, webview, mobile, ios, android, hybrid, native",
+      "privacy_url": "https://jasonelle.com/privacy",
+      "support_url": "https://jasonelle.com/support",
+      "marketing_url": "https://jasonelle.com",
+      "release_notes": "Initial release of Jasonelle v4."
+    }
+  },
+  "review_information": {
+    "contact_first_name": "Jason",
+    "contact_last_name": "Elle",
+    "contact_email": "developer@example.com",
+    "contact_phone": "+1234567890",
+    "demo_user": "demo@example.com",
+    "demo_password": "DemoPassword123!",
+    "notes": "Test login credentials provided above for app review."
+  },
+  "release": {
+    "skip_screenshots": false,
+    "skip_metadata": false,
+    "submit_for_review": false,
+    "automatic_release": false
+  }
+}
+----
+
+== Xcode Configuration (lib/xcode/config/store.jsonc)
+
+The `lib/xcode/config/store.jsonc` file specifies Apple App Store parameters and overrides.
+
+=== Xcode Sections
+
+==== appfile
+
+Configures Apple identifiers and credentials for Fastlane tools.
+
+[cols="1,1,2"]
+|===
+|Property |Type |Description
+
+|`app_identifier`
+|String
+|The iOS bundle identifier.
+
+|`apple_id`
+|String
+|The Apple ID email address.
+
+|`team_id`
+|String
+|The Apple Developer Portal Team ID.
+
+|`itc_team_id`
+|String
+|The App Store Connect Team ID.
+
+|`team_name`
+|String
+|The Apple Developer Portal Team Name.
+|===
+
+==== deliver
+
+Configures the Fastlane `deliver` tool for App Store publishing.
+
+[cols="1,1,2"]
+|===
+|Property |Type |Description
+
+|`platform`
+|String
+|The deployment platform (`ios`).
+
+|`edit_live`
+|Boolean
+|Modify metadata of the currently live version.
+
+|`skip_binary_upload`
+|Boolean
+|Skip uploading the IPA build package.
+
+|`skip_screenshots`
+|Boolean
+|Skip uploading device screenshots.
+
+|`skip_metadata`
+|Boolean
+|Skip uploading App Store text metadata.
+
+|`skip_app_version_update`
+|Boolean
+|Retain existing app version number on App Store Connect.
+
+|`force`
+|Boolean
+|Bypass HTML verification report preview.
+
+|`phased_release`
+|Boolean
+|Enable 7-day phased rollout for app updates.
+
+|`reset_ratings`
+|Boolean
+|Reset the rating summary for this app version.
+
+|`price_tier`
+|Number
+|The pricing tier number (`0` for free apps).
+
+|`app_rating_config_path`
+|String
+|Path to the age rating configuration JSON file.
+
+|`submission_information`
+|Object
+|Export compliance and advertising identifier declarations.
+|===
+
+==== match
+
+Configures Fastlane `match` for automated iOS code signing.
+
+[cols="1,1,2"]
+|===
+|Property |Type |Description
+
+|`type`
+|String
+|Certificate type (`appstore`, `development`, `adhoc`, `enterprise`).
+
+|`storage_mode`
+|String
+|Certificate storage backend (`git`, `google_cloud`, `s3`).
+
+|`git_url`
+|String
+|Git repository URL containing encrypted certificates.
+
+|`shallow_clone`
+|Boolean
+|Execute shallow git clone during signing operations.
+
+|`readonly`
+|Boolean
+|Prevent certificate regeneration in CI environments.
+|===
+
+==== metadata Overrides
+
+iOS-specific metadata additions inside `metadata.<locale>`.
+
+[cols="1,1,2"]
+|===
+|Property |Type |Description
+
+|`subtitle`
+|String
+|The summary text (maximum 30 characters).
+
+|`promotional_text`
+|String
+|Promotional text displayed above description (maximum 170 characters).
+|===
+
+==== gym
+
+Configures the Fastlane `gym` build action for Xcode.
+
+[cols="1,1,2"]
+|===
+|Property |Type |Description
+
+|`scheme`
+|String
+|The Xcode scheme name.
+
+|`clean`
+|Boolean
+|Clean the build directory before archiving.
+
+|`export_method`
+|String
+|The export destination (`app-store`, `ad-hoc`, `development`, `enterprise`).
+|===
+
+=== Xcode Configuration Example
+
+[source,json5]
+----
+{
+  "appfile": {
+    "app_identifier": "com.example.application",
+    "apple_id": "developer@example.com",
+    "team_id": "XXXXXXXXXX",
+    "itc_team_id": "12345678",
+    "team_name": "Example Team"
+  },
+  "deliver": {
+    "platform": "ios",
+    "edit_live": false,
+    "skip_binary_upload": false,
+    "skip_screenshots": false,
+    "skip_metadata": false,
+    "skip_app_version_update": false,
+    "force": false,
+    "phased_release": true,
+    "reset_ratings": false,
+    "price_tier": 0,
+    "app_rating_config_path": "lib/xcode/config/rating.json",
+    "submission_information": {
+      "export_compliance_uses_encryption": false,
+      "export_compliance_encryption_updated": false,
+      "add_id_info_uses_idfa": false,
+      "add_id_info_serves_ads": false,
+      "add_id_info_tracks_install": false,
+      "add_id_info_tracks_action": false
+    }
+  },
+  "match": {
+    "type": "appstore",
+    "storage_mode": "git",
+    "git_url": "git@github.com:example/certificates.git",
+    "shallow_clone": true,
+    "readonly": true
+  },
+  "metadata": {
+    "en-US": {
+      "subtitle": "Web to Native Wrapper",
+      "promotional_text": "Experience Jasonelle v4 with modern web technologies."
+    }
+  },
+  "gym": {
+    "scheme": "Application",
+    "clean": true,
+    "export_method": "app-store"
+  }
+}
+----
+
+== Merged Output (build/xcode/config/store.jsonc)
+
+The following example shows the resulting merged file after running `task jsonc.xcode`:
+
+[source,json5]
+----
+{
+  "appfile": {
+    "app_identifier": "com.example.application",
+    "apple_id": "developer@example.com",
+    "itc_team_id": "12345678",
+    "team_id": "XXXXXXXXXX",
+    "team_name": "Example Team"
+  },
+  "deliver": {
+    "app_rating_config_path": "lib/xcode/config/rating.json",
+    "edit_live": false,
+    "force": false,
+    "phased_release": true,
+    "platform": "ios",
+    "price_tier": 0,
+    "reset_ratings": false,
+    "skip_app_version_update": false,
+    "skip_binary_upload": false,
+    "skip_metadata": false,
+    "skip_screenshots": false,
+    "submission_information": {
+      "add_id_info_serves_ads": false,
+      "add_id_info_tracks_action": false,
+      "add_id_info_tracks_install": false,
+      "add_id_info_uses_idfa": false,
+      "export_compliance_encryption_updated": false,
+      "export_compliance_uses_encryption": false
+    }
+  },
+  "gym": {
+    "clean": true,
+    "export_method": "app-store",
+    "scheme": "Application"
+  },
+  "match": {
+    "git_url": "git@github.com:example/certificates.git",
+    "readonly": true,
+    "shallow_clone": true,
+    "storage_mode": "git",
+    "type": "appstore"
+  },
+  "metadata": {
+    "default_language": "en-US",
+    "en-US": {
+      "description": "Jasonelle turns web applications into high-performance native iOS and Android apps with full native capabilities.",
+      "keywords": "jasonelle, webview, mobile, ios, android, hybrid, native",
+      "marketing_url": "https://jasonelle.com",
+      "privacy_url": "https://jasonelle.com/privacy",
+      "promotional_text": "Experience Jasonelle v4 with modern web technologies.",
+      "release_notes": "Initial release of Jasonelle v4.",
+      "subtitle": "Web to Native Wrapper",
+      "support_url": "https://jasonelle.com/support",
+      "title": "Jasonelle v4"
+    }
+  },
+  "release": {
+    "automatic_release": false,
+    "skip_metadata": false,
+    "skip_screenshots": false,
+    "submit_for_review": false
+  },
+  "review_information": {
+    "contact_email": "developer@example.com",
+    "contact_first_name": "Jason",
+    "contact_last_name": "Elle",
+    "contact_phone": "+1234567890",
+    "demo_password": "DemoPassword123!",
+    "demo_user": "demo@example.com",
+    "notes": "Test login credentials provided above for app review."
+  }
+}
+----

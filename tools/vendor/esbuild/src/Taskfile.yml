@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+# A Taskfile.yml as an alternative to Makefile
+version: "3.17"
+vars:
+  ESBUILD_VERSION: 0.28.2
+  TGZ: "esbuild-{{.ESBUILD_VERSION}}.tgz"
+tasks:
+  default:
+    cmds:
+      - task install
+  install:
+    aliases:
+      - b
+    desc: Download cross-platform binaries into ../dist
+    cmds:
+      - rm -rf ../dist
+      - mkdir -p ../dist
+      # ARM macOS
+      - curl -fo {{.TGZ}} "https://registry.npmjs.org/@esbuild/darwin-arm64/-/darwin-arm64-{{.ESBUILD_VERSION}}.tgz"
+      - tar -xzf "{{.TGZ}}" -C .
+      - mv package/bin/esbuild ../dist/esbuild-darwin-arm64
+      - rm -rf package/
+      - rm -rf "{{.TGZ}}"
+      # x86 macOS
+      - curl -fo {{.TGZ}} "https://registry.npmjs.org/@esbuild/darwin-x64/-/darwin-x64-{{.ESBUILD_VERSION}}.tgz"
+      - tar -xzf "{{.TGZ}}" -C .
+      - mv package/bin/esbuild ../dist/esbuild-darwin-amd64
+      - rm -rf package/
+      - rm -rf "{{.TGZ}}"
+      # x86 Linux
+      - curl -fo {{.TGZ}} "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-{{.ESBUILD_VERSION}}.tgz"
+      - tar -xzf "{{.TGZ}}" -C .
+      - mv package/bin/esbuild ../dist/esbuild-linux-amd64
+      - rm -rf package/
+      - rm -rf "{{.TGZ}}"
+      # Windows
+      - curl -fo {{.TGZ}} "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-{{.ESBUILD_VERSION}}.tgz"
+      - tar -xzf "{{.TGZ}}" -C .
+      - mv package/esbuild.exe ../dist/esbuild-windows-amd64.exe
+      - rm -rf package/
+      - rm -rf "{{.TGZ}}"

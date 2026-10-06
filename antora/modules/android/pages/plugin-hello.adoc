@@ -1,0 +1,36 @@
+= JLPluginHello
+
+A sample Jasonelle plugin that demonstrates the native–JavaScript bridge.
+
+== Overview
+
+JLPluginHello is the simplest working plugin for Jasonelle. It shows how to:
+
+* Subclass `com.jasonelle.kernel.Plugin` and override its native handler.
+* Register a JavaScript object on `window.jasonelle.plugins.*`.
+* Call native code from JavaScript and receive a response back in the web view.
+
+=== Structure
+
+[cols="1,3"]
+|===
+| File | Role
+
+| `Plugin.kt`
+| Native side – handles calls from JavaScript.
+
+| `Plugin.js`
+| JavaScript side – registers the plugin, injects a button, and calls the native handler.
+|===
+
+=== How it works
+
+1. The plugin is injected into the web view on page load.
+2. `Plugin.js` creates a "Click Me" button and appends it to the DOM.
+3. Clicking the button calls `window.jasonelle.plugins.hello.call("Hello", "World")`, which returns a promise.
+4. The call is routed to `Plugin.kt` `handle_call(callbackId:args:respond:)`, which responds by resolving the promise in the web view with `{ status: 'ok' }`.
+
+== Reference
+
+* `com.jasonelle.kernel.Plugin` – the base class this plugin extends.
+* `Plugin.js` in `src/main/assets/plugins/hello/` – the JavaScript client, byte-identical to the xref:xcode:plugin-hello.adoc[Xcode plugin].

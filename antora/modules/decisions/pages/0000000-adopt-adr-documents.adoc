@@ -1,0 +1,38 @@
+= Adopt ADR documents
+
+- id: 0000000
+
+== Status
+
+- Accepted (2026-08-11) by: @clsource
+
+=== History
+
+- Proposed (2026-08-11) by: @clsource
+
+== Context and Problem Statement
+
+Jasonelle documents decisions implicitly across issues, changelogs, and source
+code, which makes it hard to know why a design choice was made. We want a
+lightweight, versioned way to record important decisions and their rationale so
+future contributors can understand the reasoning.
+
+== Considered Options
+
+* Use Architecture Decision Records (ADRs) following the MADR format.
+* Keep documenting decisions ad hoc in issue comments and pull requests.
+* Use a standalone wiki outside the repository.
+
+== Decision Outcome
+
+Chosen option: "Use Architecture Decision Records (ADRs) following the MADR
+format", because ADRs are lightweight, versioned alongside the code in this
+repository, and published automatically with the Antora docs. Positive
+consequences: decisions are easy to find, reviewable in pull requests, and
+searchable in the published site. Negative consequences: a small authoring
+overhead is required to keep records up to date.
+
+ADR is the best option, because the other options scatter knowledge outside the
+codebase or outside review. If "Keep documenting decisions ad hoc in issue
+comments" was chosen, decisions would remain hard to discover. If "Use a
+standalone wiki" was chosen, the wiki would drift out of sync with the code.

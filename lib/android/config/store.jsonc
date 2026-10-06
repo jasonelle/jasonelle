@@ -1,0 +1,34 @@
+// Overwrites of store.jsonc and specific Fastlane configuration for android
+{
+  // Fastlane Appfile settings for Android
+  "appfile": {
+    "package_name": "com.example.application", // Application ID matching AndroidManifest.xml
+    "json_key_file": "lib/android/config/play-store-key.json" // Path to Google Play service account JSON key file
+  },
+  // Fastlane Supply configuration (upload_to_play_store)
+  "supply": {
+    "track": "internal", // Target release track: internal, alpha, beta, production
+    "rollout": 1.0, // Staged rollout percentage (0.0 to 1.0)
+    "skip_upload_aab": false, // Set to true to skip uploading Android App Bundle (.aab)
+    "skip_upload_apk": true, // Set to true when using App Bundles instead of APKs
+    "skip_upload_metadata": false, // Set to true to skip updating Play Store text metadata
+    "skip_upload_changelogs": false, // Set to true to skip updating release changelogs
+    "skip_upload_images": false, // Set to true to skip updating store icons and feature graphics
+    "skip_upload_screenshots": false, // Set to true to skip uploading device screenshots
+    "validate_only": false, // Validate release with Google Play without publishing
+    "changes_not_sent_for_review": false, // Send release changes to Google review immediately
+    "ack_bundle_installation_warning": true // Acknowledge warning when new bundle does not support some devices
+  },
+  // Android-specific store metadata overrides and additions
+  "metadata": {
+    "en-US": {
+      "short_description": "Build native Android apps with web technologies.", // Play Store short description (max 80 chars)
+      "video": "https://www.youtube.com/watch?v=example" // YouTube video promotional URL
+    }
+  },
+  // Fastlane Gradle action configuration for building the Android project
+  "gradle": {
+    "task": "bundleRelease", // Gradle task to build production bundle (bundleRelease or assembleRelease)
+    "build_type": "Release" // Target build type
+  }
+}

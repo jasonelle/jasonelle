@@ -1,0 +1,63 @@
+//
+//  ApplicationUITests/ApplicationUITests.swift
+//
+//  Created by [Camilo Castro (@clsource)](https://ninjas.cl) on 2026-08-19
+//  Made with love in Chile.
+//
+//  Copyright (c) Jasonelle.com
+//
+//  This file is part of Jasonelle Project <https://jasonelle.com>.
+//  Jasonelle Project is dual licensed. You can choose between AGPLv3 or MPLv2.
+//  MPLv2 is only valid if the software has a unique Jasonelle Key which was purchased in official channels at https://jasonelle.com.
+//
+//  == AGPLv3
+//  Jasonelle is free software: you can redistribute it and/or modify it under the terms of the Affero GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+//  Jasonelle is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the Affero GNU General Public License for more details.
+//  You should have received a copy of the Affero GNU General Public License along with Jasonelle. If not, see <https://www.gnu.org/licenses/agpl-3.0.txt>.
+//
+//  == MPLv2 (Only valid if purchased a Jasonelle Key)
+//  This Source Code Form is subject to the terms
+//  of the Mozilla Public License, v. 2.0.
+//  If a copy of the MPL was not distributed
+//  with this file, You can obtain one at
+//
+//  <https://mozilla.org/MPL/2.0/>.
+
+import XCTest
+
+final class ApplicationUITests: XCTestCase {
+
+    override func setUpWithError() throws {
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+
+        // In UI tests it is usually best to stop immediately when a failure occurs.
+        continueAfterFailure = false
+
+        // In UI tests it's important to set the initial state - such as
+        // interface orientation - required for your tests before they run.
+        // The setUp method is a good place to do this.
+    }
+
+    override func tearDownWithError() throws {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+
+    @MainActor
+    func testExample() throws {
+        // UI tests must launch the application that they test.
+        let app = XCUIApplication()
+        app.launch()
+
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        // XCUIAutomation Documentation
+        // https://developer.apple.com/documentation/xcuiautomation
+    }
+
+    @MainActor
+    func testLaunchPerformance() throws {
+        // This measures how long it takes to launch your application.
+        measure(metrics: [XCTApplicationLaunchMetric()]) {
+            XCUIApplication().launch()
+        }
+    }
+}

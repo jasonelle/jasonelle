@@ -1,0 +1,41 @@
+= Use JSONC (JSON with Comments) files for configuration and settings instead of plain JSON or platform-specific configuration files
+
+- id: 0000003
+
+== Status
+
+- Accepted (2026-08-15) by: @clsource
+
+=== History
+
+- Proposed (2026-08-15) by: @clsource
+
+== Context and Problem Statement
+
+Jasonelle needs a single way to store configuration and settings that works
+across iOS, Android, and the website. Plain JSON cannot hold comments, which
+makes it hard to document options and templates in place, while platform
+specific formats (e.g. plist, XML, .properties) split configuration logic and
+duplicate tooling. How should configuration and settings files be stored?
+
+== Considered Options
+
+* Use JSONC (JSON with comments) files
+* Use plain JSON files
+* Use platform specific configuration files (plist, XML, .properties)
+
+== Decision Outcome
+
+Chosen option: "Use JSONC (JSON with comments) files", because it keeps a
+single standard format across platforms, supports comments for documenting
+options, and is parsed by common tooling by stripping comments before
+`JSON.parse`. Positive consequences: one source of truth for configuration,
+inline documentation for every setting, and reuse across platforms. Negative
+consequences: JSONC is not valid JSON, so consumers must strip comments before
+parsing.
+
+JSONC is the best option, because it is a superset of JSON and still readable by
+standard parsers after a simple comment-stripping step. If "Use plain JSON
+files" was chosen, configuration would lose inline documentation and need
+external docs. If "Use platform specific configuration files" was chosen,
+configuration logic would be duplicated and tooling maintained per platform.

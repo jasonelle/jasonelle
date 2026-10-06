@@ -1,0 +1,83 @@
+= JLKernel
+
+The core library for Jasonelle Android apps.
+
+== Overview
+
+JLKernel provides the runtime backbone for Jasonelle applications. It bundles a Jetpack Compose `JasonelleWebView` backed by the Android `WebView` with a bidirectional JavaScript bridge, a plugin system for native extensions, native `Events` that plugins can listen to, structured logging via `Logger`, semantic `Version` reading, and `License` verification.
+
+A typical app creates a `JasonelleWebView` with a map of `Plugin` instances. JavaScript code communicates with native plugins through `window.jasonelle.post(name, args)`, and plugins respond by executing JavaScript back in the web view. Native code communicates with plugins through `Events`.
+
+== Quick Start
+
+[source,kotlin]
+----
+import androidx.compose.runtime.*
+import com.jasonelle.kernel.JasonelleWebView
+import com.jasonelle.kernel.AppConfiguration
+
+@Composable
+fun ContentView(config: AppConfiguration) {
+    val plugins = remember { mapOf("myplugin" to MyPlugin()) }
+    JasonelleWebView(
+        config = config,
+        plugins = plugins,
+    )
+}
+----
+
+== How the Bridge Works
+
+1. The `JasonelleWebView` registers the `Coordinator` as the `jasonelleBridge` JavaScript interface and injects the `JasonelleBridge` `window.jasonelle` script on page load.
+2. JavaScript calls `window.jasonelle.plugins.<name>.call(args)`, which posts a JSON message through `jasonelleBridge.postMessage(json)`.
+3. The `Coordinator` receives the message, looks up the `Plugin` by name, and invokes its `handle_call(args:callbackId:respond:)` method.
+4. The plugin calls `respond(script)` to execute JavaScript back in the web view and resolve the promise returned by `window.jasonelle.post`. With `call().then(response => ...)` a JavaScript caller awaits the native response.
+
+== Native Events
+
+Native code can notify plugins about app lifecycle events. The app registers its `Plugin` map once with `Events.register(plugins:)` (e.g. in `MainActivity.onCreate`), then broadcasts an event when the `ContentView` first appears. Every registered plugin receives it through `handle_event(name:args:respond:)`, with the event name given by the raw value of the `Events` case.
+
+=== Events Pushed Back to JavaScript
+
+To let the page react to an event, a plugin forwards it to JavaScript from its `handle_event` override using the `event(event, plugin, args, respond)` helper:
+
+[source,kotlin]
+----
+override fun handle_event(event: String, args: Map<String, Any?>?, respond: (String) -> Unit) {
+    event(event, plugin = name, args = args ?: emptyMap(), respond = respond)
+}
+----
+
+The helper merges `event` and `plugin` with the plugin's own `args`, serializes the result and evaluates it in the page:
+
+[source,javascript]
+----
+window.jasonelle.plugins.hello.handle({"event":"ContentView.onAppear","plugin":"hello"});
+----
+
+The page receives it in the `handle` function that the plugin's own `Plugin.js` assigns, not in a global listener:
+
+[source,javascript]
+----
+plugin.handle = ({ event, ...payload }) => {
+  if (event === "ContentView.onAppear") cart.refresh(payload);
+};
+----
+
+=== Event Timing
+
+`handle_event` itself runs natively and is never delayed. Reaching JavaScript is a different matter: the Android `WebView` has no document-start/end user scripts, so plugin scripts are only evaluated from `onPageFinished`. An event broadcast from `ContentView` would arrive before the page could possibly have run them. Evaluating it against an unloaded document drops it silently.
+
+The `Coordinator` therefore buffers native responses while the page is loading and replays them in `onPageFinished`, right after the plugin and app scripts are injected. `onPageStarted` clears the buffer, since those scripts belong to a page that never finished loading.
+
+== Reference
+
+* `JasonelleWebView`
+* `Coordinator`
+* `JasonelleBridge`
+* `Plugin`
+* `Events`
+* `ConfigurationLoader`
+* `Logger`
+* `Version`
+* `License`

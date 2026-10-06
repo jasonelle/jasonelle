@@ -1,0 +1,47 @@
+= Use a Golang Script to Parse and Modify Xcode and Android Projects
+
+- id: 0000016
+
+== Status
+
+- Accepted (2026-09-20) by: @clsource
+
+== Context and Problem Statement
+
+xref:0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.adoc[ADR-0000009]
+chose Swift for Xcode CLI tools,
+xref:0000011-select-xcodegen-for-xcodeproject-generation.adoc[ADR-0000011]
+chose XcodeGen, and
+xref:0000013-supersede-xcodegen-with-xcode-project-format.adoc[ADR-0000013]
+chose Apple's `xcode-project-format` for project generation. This fragments
+the toolchain across languages, third-party generators, and a young evolving
+format. The actual need is narrower: parse the Xcode and Android projects and
+apply changes through the existing Go tools (`core`, `plugins`, `link`,
+`appid`). Should the decision be reverted to a single Golang script?
+
+== Considered Options
+
+* One Golang script on top of the existing Go tools (`core`, `plugins`, `link`, `appid`)
+* Keep Swift and Apple `xcode-project-format` (ADR-0000009, ADR-0000013)
+* Keep XcodeGen (ADR-0000011)
+
+== Decision Outcome
+
+Chosen option: "One Golang script", because it follows
+xref:0000008-use-golang-for-cross-platform-tools.adoc[ADR-0000008] (Go for all
+cross platform tools), drops the Swift toolchain and third-party generators,
+and lets a single script parse both the Xcode and Android projects and drive
+the `core`, `plugins`, `link`, and `appid` tools. Positive consequences: one
+toolchain, fewer moving parts, and simpler to build, test, and distribute in
+CI. Negative consequences: the Xcode project formats must be parsed in-house
+in Go, which is less mature than the official Swift tooling.
+
+The Golang script is the best option because it simplifies tool usage. If
+XcodeGen or `xcode-project-format` were kept, project generation would demand
+extra dependencies and a second language.
+
+This ADR supersedes:
+
+- xref:0000009-add-swift-for-xcode-related-command-line-tools-instead-of-golang.adoc[ADR-0000009] (Swift for Xcode related command line tools)
+- xref:0000011-select-xcodegen-for-xcodeproject-generation.adoc[ADR-0000011] (XcodeGen for project generation)
+- xref:0000013-supersede-xcodegen-with-xcode-project-format.adoc[ADR-0000013] (Apple `xcode-project-format`)

@@ -1,0 +1,121 @@
+/* ===== jasonelle ===== */
+.brand-name {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--white);
+}
+.sticky .brand-name {
+  color: var(--heading-color);
+}
+.navbar-brand img {
+  width: 40px;
+  height: 40px;
+  padding: 3px;
+  background: var(--white);
+  border-radius: 10px;
+}
+.ud-footer .ud-widget img {
+  width: 44px;
+  height: 44px;
+  padding: 3px;
+  background: var(--white);
+  border-radius: 11px;
+  margin-bottom: 20px;
+}
+
+.hero-badges {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.code-card {
+  background: #131c2e;
+  border-radius: 10px;
+  padding: 26px 30px;
+  text-align: left;
+  -webkit-box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+}
+.code-dots {
+  display: flex;
+  gap: 7px;
+  margin-bottom: 18px;
+}
+.code-dots span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #33415c;
+}
+.code-card pre {
+  margin: 0;
+  overflow-x: auto;
+}
+.code-card code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 14px;
+  line-height: 27px;
+  color: #e6ecf5;
+}
+.c-cm { color: #7b8aa3; }
+.c-key { color: #7cc4ff; }
+.c-str { color: #9ee6a4; }
+.c-fn { color: #ffd479; }
+
+.ud-about-image .card {
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  width: 470px;
+  max-width: 100%;
+}
+.card-title {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--heading-color);
+  margin-bottom: 20px;
+}
+.steps {
+  list-style: none;
+}
+.steps li {
+  display: flex;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+}
+.steps li:last-child {
+  border-bottom: 0;
+}
+.steps b {
+  color: var(--primary-color);
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 14px;
+  min-width: 26px;
+}
+.steps strong {
+  display: block;
+  font-weight: 600;
+  color: var(--heading-color);
+  font-size: 15px;
+}
+.steps span {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+@media (max-width: 767px) {
+  .code-card {
+    padding: 22px 20px;
+  }
+  .code-card code {
+    font-size: 12px;
+    line-height: 24px;
+  }
+  .ud-about-image .card {
+    padding: 28px 22px;
+  }
+}

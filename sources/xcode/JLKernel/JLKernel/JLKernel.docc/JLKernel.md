@@ -1,0 +1,89 @@
+# ``JLKernel``
+
+The core framework for Jasonelle iOS apps.
+
+## Overview
+
+JLKernel provides the runtime backbone for Jasonelle applications. It bundles a SwiftUI ``WebView`` backed by `WKWebView` with a bidirectional JavaScript bridge, a plugin system for native extensions, native ``Events`` that plugins can listen to, structured logging via ``Logger``, semantic ``Version`` reading, and ``License`` verification.
+
+A typical app creates a ``WebView`` with a dictionary of ``Plugin`` instances. JavaScript code communicates with native plugins through `window.jasonelle.post(name, args)`, and plugins respond by executing JavaScript back in the web view. Native code communicates with plugins through ``Events``.
+
+### Quick Start
+
+```swift
+import JLKernel
+
+struct ContentView: View {
+    var body: some View {
+        JLKernel.WebView(
+            url: URL(string: "https://example.com")!,
+            plugins: ["myplugin": MyPlugin()]
+        )
+    }
+}
+```
+
+### How the Bridge Works
+
+1. The ``WebView`` injects a `window.jasonelle` JavaScript object at document start.
+2. JavaScript calls `window.jasonelle.plugins.<name>.call(args)`, which posts a message to the native side via `webkit.messageHandlers`.
+3. The ``Coordinator`` receives the message, looks up the ``Plugin`` by name, and invokes its ``Plugin/handle_call(args:callbackId:respond:)`` method.
+4. The plugin calls `respond(script)` to execute JavaScript back in the web view and resolve the promise returned by `window.jasonelle.post`. With `call().then(response => ...)` a JavaScript caller awaits the native response.
+
+### Native Events
+
+Native code can notify plugins about app lifecycle events. The app registers its ``Plugin`` dictionary once with ``Events/register(plugins:)`` (e.g. in `Main.init()`), then broadcasts an event with ``Events/sendOnAppear()``. Every registered plugin receives it through `handle_event(name:args:respond:)`, with the event name given by the raw value of the ``Events`` case.
+
+### Events Pushed Back to JavaScript
+
+To let the page react to an event, a plugin forwards it to JavaScript from its `handle_event` override using the `event(_:plugin:args:respond:)` helper:
+
+```swift
+public override func handle_event(_ event: String, args: [String: Any]? = [:], respond: @escaping (String) -> Void) {
+    self.event(event, plugin: Plugin.name, args: args ?? [:], respond: respond)
+}
+```
+
+The helper merges `event` and `plugin` with the plugin's own `args`, serializes the result and evaluates it in the page:
+
+```javascript
+window.jasonelle.plugins.hello.handle({"event":"ContentView.onAppear","plugin":"hello"});
+```
+
+The page receives it in the `handle` function that the plugin's own ``Plugin`` JavaScript assigns, not in a global listener:
+
+```javascript
+plugin.handle = ({ event, ...payload }) => {
+  if (event === "ContentView.onAppear") cart.refresh(payload);
+};
+```
+
+### Event Timing
+
+``handle_event`` itself runs natively and is never delayed. Reaching JavaScript is a different matter: plugin scripts are evaluated at *document end*, so an event broadcast from `ContentView.onAppear` would arrive before the page could possibly have run them. Evaluating it against an unloaded document drops it silently.
+
+The ``Coordinator`` therefore buffers native responses while the page is loading and replays them in order on `didFinish navigation`. A new navigation clears the buffer, since those scripts belong to a page that never finished loading.
+
+## Topics
+
+### Core
+
+- ``Kernel``
+- ``WebView``
+- ``Coordinator``
+
+### Plugin System
+
+- ``Plugin``
+- ``Events``
+
+### Logging
+
+- ``Logger``
+- ``LogLevel``
+- ``Ratlog``
+
+### App Infrastructure
+
+- ``Version``
+- ``License``

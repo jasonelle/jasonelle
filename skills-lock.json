@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "generate-test-cases": {
+      "source": "mavka-ai/unit-tests-skills",
+      "sourceType": "github",
+      "skillPath": "skills/generate-test-cases/SKILL.md",
+      "computedHash": "e86140660da4b5c026660c9dd2463e8921a4df63577ace104fc07d275cbe3d54"
+    },
+    "generate-tests": {
+      "source": "mavka-ai/unit-tests-skills",
+      "sourceType": "github",
+      "skillPath": "skills/generate-tests/SKILL.md",
+      "computedHash": "be6edbdb9bb66aeb1f97fc31eb988804d61b5feb7bbedf6e2c35de81b134e807"
+    }
+  }
+}

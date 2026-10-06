@@ -1,0 +1,372 @@
+= Store Configuration (Android)
+
+Jasonelle manages Google Play Store release metadata through `store.jsonc`.
+
+== Overview
+
+The build pipeline merges `lib/common/config/store.jsonc` with `lib/android/config/store.jsonc`.
+The merged output is written to `build/android/config/store.jsonc`.
+The configuration follows standard Fastlane parameter names.
+
+Run the following command to merge the configuration files:
+
+[source,bash]
+----
+task jsonc.android
+----
+
+== File Locations
+
+* `lib/common/config/store.jsonc`: Common store metadata and release settings.
+* `lib/android/config/store.jsonc`: Android specific settings and overrides.
+* `build/android/config/store.jsonc`: Merged file consumed by the build pipeline.
+
+== Common Configuration (lib/common/config/store.jsonc)
+
+The `lib/common/config/store.jsonc` file defines settings shared across Android and iOS stores.
+These values provide the baseline store presence for the application.
+
+=== Common Sections
+
+==== metadata
+
+Provides localized store listing content per language code.
+
+[cols="1,1,2"]
+|===
+|Property |Type |Description
+
+|`default_language`
+|String
+|The primary locale code for store listings (for example, `en-US`).
+
+|`title`
+|String
+|The application name displayed on store listings.
+
+|`description`
+|String
+|The full descriptive text for the application.
+
+|`keywords`
+|String
+|The comma-separated keywords for search indexing.
+
+|`privacy_url`
+|String
+|The privacy policy URL required by app stores.
+
+|`support_url`
+|String
+|The customer support website URL.
+
+|`marketing_url`
+|String
+|The marketing or product website URL.
+
+|`release_notes`
+|String
+|The changelog description for this release.
+|===
+
+==== review_information
+
+Stores contact information and test account credentials for app reviewers.
+
+[cols="1,1,2"]
+|===
+|Property |Type |Description
+
+|`contact_first_name`
+|String
+|The first name of the developer contact.
+
+|`contact_last_name`
+|String
+|The last name of the developer contact.
+
+|`contact_email`
+|String
+|The email address of the developer contact.
+
+|`contact_phone`
+|String
+|The telephone number of the developer contact.
+
+|`demo_user`
+|String
+|The username for the reviewer test account.
+
+|`demo_password`
+|String
+|The password for the reviewer test account.
+
+|`notes`
+|String
+|Instructions for the store review team.
+|===
+
+==== release
+
+Controls shared release and upload automation behavior.
+
+[cols="1,1,2"]
+|===
+|Property |Type |Description
+
+|`skip_screenshots`
+|Boolean
+|Skip uploading screenshots during deployment.
+
+|`skip_metadata`
+|Boolean
+|Skip uploading store metadata during deployment.
+
+|`submit_for_review`
+|Boolean
+|Submit the release for review automatically.
+
+|`automatic_release`
+|Boolean
+|Release the app automatically after store approval.
+|===
+
+=== Common Configuration Example
+
+[source,jsonc]
+----
+{
+  "metadata": {
+    "default_language": "en-US",
+    "en-US": {
+      "title": "Jasonelle v4",
+      "description": "Jasonelle turns web applications into high-performance native iOS and Android apps with full native capabilities.",
+      "keywords": "jasonelle, webview, mobile, ios, android, hybrid, native",
+      "privacy_url": "https://jasonelle.com/privacy",
+      "support_url": "https://jasonelle.com/support",
+      "marketing_url": "https://jasonelle.com",
+      "release_notes": "Initial release of Jasonelle v4."
+    }
+  },
+  "review_information": {
+    "contact_first_name": "Jason",
+    "contact_last_name": "Elle",
+    "contact_email": "developer@example.com",
+    "contact_phone": "+1234567890",
+    "demo_user": "demo@example.com",
+    "demo_password": "DemoPassword123!",
+    "notes": "Test login credentials provided above for app review."
+  },
+  "release": {
+    "skip_screenshots": false,
+    "skip_metadata": false,
+    "submit_for_review": false,
+    "automatic_release": false
+  }
+}
+----
+
+== Android Configuration (lib/android/config/store.jsonc)
+
+The `lib/android/config/store.jsonc` file specifies Google Play Store parameters and overrides.
+
+=== Android Sections
+
+==== appfile
+
+Configures credentials and package identifiers for Fastlane tools.
+
+[cols="1,1,2"]
+|===
+|Property |Type |Description
+
+|`package_name`
+|String
+|The application package identifier matching `AndroidManifest.xml`.
+
+|`json_key_file`
+|String
+|The path to the Google Play service account JSON key file.
+|===
+
+==== supply
+
+Configures the Fastlane `supply` tool for Google Play publishing.
+
+[cols="1,1,2"]
+|===
+|Property |Type |Description
+
+|`track`
+|String
+|The target release track (`internal`, `alpha`, `beta`, `production`).
+
+|`rollout`
+|Number
+|The staged rollout percentage from `0.0` to `1.0`.
+
+|`skip_upload_aab`
+|Boolean
+|Skip uploading the Android App Bundle file.
+
+|`skip_upload_apk`
+|Boolean
+|Skip uploading APK files when using App Bundles.
+
+|`skip_upload_metadata`
+|Boolean
+|Skip uploading text metadata to the store listing.
+
+|`skip_upload_changelogs`
+|Boolean
+|Skip uploading release notes and changelogs.
+
+|`skip_upload_images`
+|Boolean
+|Skip uploading app icons and promotional images.
+
+|`skip_upload_screenshots`
+|Boolean
+|Skip uploading device screenshots.
+
+|`validate_only`
+|Boolean
+|Validate the release with Google Play without publishing.
+
+|`changes_not_sent_for_review`
+|Boolean
+|Send release changes to Google review immediately.
+
+|`ack_bundle_installation_warning`
+|Boolean
+|Acknowledge warnings when the bundle drops device support.
+|===
+
+==== metadata Overrides
+
+Android-specific metadata additions inside `metadata.<locale>`.
+
+[cols="1,1,2"]
+|===
+|Property |Type |Description
+
+|`short_description`
+|String
+|The Google Play summary text (maximum 80 characters).
+
+|`video`
+|String
+|The YouTube promotional video URL.
+|===
+
+==== gradle
+
+Configures the Gradle build action for Fastlane.
+
+[cols="1,1,2"]
+|===
+|Property |Type |Description
+
+|`task`
+|String
+|The Gradle build task (`bundleRelease` or `assembleRelease`).
+
+|`build_type`
+|String
+|The target build type (`Release`).
+|===
+
+=== Android Configuration Example
+
+[source,jsonc]
+----
+{
+  "appfile": {
+    "package_name": "com.example.application",
+    "json_key_file": "lib/android/config/play-store-key.json"
+  },
+  "supply": {
+    "track": "internal",
+    "rollout": 1.0,
+    "skip_upload_aab": false,
+    "skip_upload_apk": true,
+    "skip_upload_metadata": false,
+    "skip_upload_changelogs": false,
+    "skip_upload_images": false,
+    "skip_upload_screenshots": false,
+    "validate_only": false,
+    "changes_not_sent_for_review": false,
+    "ack_bundle_installation_warning": true
+  },
+  "metadata": {
+    "en-US": {
+      "short_description": "Build native Android apps with web technologies.",
+      "video": "https://www.youtube.com/watch?v=example"
+    }
+  },
+  "gradle": {
+    "task": "bundleRelease",
+    "build_type": "Release"
+  }
+}
+----
+
+== Merged Output (build/android/config/store.jsonc)
+
+The following example shows the resulting merged file after running `task jsonc.android`:
+
+[source,jsonc]
+----
+{
+  "appfile": {
+    "json_key_file": "lib/android/config/play-store-key.json",
+    "package_name": "com.example.application"
+  },
+  "gradle": {
+    "build_type": "Release",
+    "task": "bundleRelease"
+  },
+  "metadata": {
+    "default_language": "en-US",
+    "en-US": {
+      "description": "Jasonelle turns web applications into high-performance native iOS and Android apps with full native capabilities.",
+      "keywords": "jasonelle, webview, mobile, ios, android, hybrid, native",
+      "marketing_url": "https://jasonelle.com",
+      "privacy_url": "https://jasonelle.com/privacy",
+      "release_notes": "Initial release of Jasonelle v4.",
+      "short_description": "Build native Android apps with web technologies.",
+      "support_url": "https://jasonelle.com/support",
+      "title": "Jasonelle v4",
+      "video": "https://www.youtube.com/watch?v=example"
+    }
+  },
+  "release": {
+    "automatic_release": false,
+    "skip_metadata": false,
+    "skip_screenshots": false,
+    "submit_for_review": false
+  },
+  "review_information": {
+    "contact_email": "developer@example.com",
+    "contact_first_name": "Jason",
+    "contact_last_name": "Elle",
+    "contact_phone": "+1234567890",
+    "demo_password": "DemoPassword123!",
+    "demo_user": "demo@example.com",
+    "notes": "Test login credentials provided above for app review."
+  },
+  "supply": {
+    "ack_bundle_installation_warning": true,
+    "changes_not_sent_for_review": false,
+    "rollout": 1,
+    "skip_upload_aab": false,
+    "skip_upload_apk": true,
+    "skip_upload_changelogs": false,
+    "skip_upload_images": false,
+    "skip_upload_metadata": false,
+    "skip_upload_screenshots": false,
+    "track": "internal",
+    "validate_only": false
+  }
+}
+----

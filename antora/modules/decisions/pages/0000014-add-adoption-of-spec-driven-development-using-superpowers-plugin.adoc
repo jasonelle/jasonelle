@@ -1,0 +1,49 @@
+= Add Adoption of Spec Driven Development Using Superpowers Plugin
+
+- id: 0000014
+
+== Status
+
+- Accepted (2026-09-20) by: @clsource
+
+== Context and Problem Statement
+
+AI helpers such as opencode make it easy to change the codebase, but without a
+shared workflow every agent session invents its own process: some write tests,
+most do not, and plans are written once and then lost. The result is uneven
+quality, requests that drift from the original intent, and work that is hard to
+review. The specs produced by the workflow would also be lost: they are useful
+documentation, so they must be converted to asciidoc and published in the
+Antora docs (following `.agents/rules/specs.md`) instead of being thrown away.
+How should we drive the work of AI helpers so that it is
+spec-driven, testable, repeatable, and its specs end up in the published docs?
+
+== Considered Options
+
+* Adopt https://github.com/obra/superpowers[superpowers], a plugin for opencode
+  that bundles skills for spec driven development (brainstorming, writing plans,
+  test driven development, and systematic debugging)
+* Write the same rules by hand into `AGENTS.md`
+* Keep using ad hoc prompts with no shared workflow
+
+== Decision Outcome
+
+Chosen option: "Adopt superpowers", because it ships a complete, battle-tested
+workflow as reusable skills instead of prose, and it registers and updates
+itself through opencode's plugin manager. Positive consequences: bundled skills
+(brainstorming, plan writing, TDD, verification) keep agent work
+spec-driven and consistent across sessions, new conventions are
+discoverable as skills rather than buried in docs, and the written specs
+become long-lived documentation once converted to antora pages under
+`antora/modules/specs/` per `.agents/rules/specs.md`. Negative consequences:
+agents lean on guidance code that lives in a third-party repository, and the
+workflow adds overhead to trivially small tasks.
+
+Adopting superpowers is the best option, because it gives a maintained,
+coherent process for free and updates through the opencode plugin ecosystem.
+Hand-writing the rules in `AGENTS.md` was not the best, because rules as prose
+are easy to ignore and drift out of date. Sticking with ad hoc prompts would
+keep the quality problems that motivated this ADR unsolved.
+
+See https://github.com/obra/superpowers/blob/main/docs/README.opencode.md
+for the installation and usage instructions for opencode.

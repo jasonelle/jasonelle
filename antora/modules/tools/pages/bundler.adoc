@@ -1,0 +1,125 @@
+= Bundler
+
+A https://go.dev[Go] tool that bundles TypeScript scripts into a single
+`webview.js` for each platform (Android and Xcode). Replaces the shell-based
+esbuild tasks with a cross-platform binary that works on macOS, Linux, and
+Windows.
+
+== Requirements
+
+* https://go.dev[Go] 1.26 or newer (only for compilation. `dist` directory
+  contains binaries).
+* https://taskfile.dev[go-task] (optional, only for the tasks below).
+* esbuild. (provided by `task esbuild.install`)
+
+== Usage
+
+From `tools/bundler/src`:
+
+[source,sh]
+----
+go run . --platform android \
+  --common lib/common/scripts \
+  --platform-dir lib/android/scripts \
+  --esbuild tools/vendor/esbuild/dist/esbuild-$(go env GOOS)-$(go env GOARCH) \
+  --tsconfig lib/common/config/bundler.json \
+  --output build/android/scripts/webview.js
+----
+
+=== Flags
+
+[cols="1,1,3"]
+|===
+|Flag |Required |Description
+
+|`--platform`
+|Yes
+|Target platform: `android` or `xcode`.
+
+|`--common`
+|Yes
+|Path to common scripts directory (`lib/common/scripts`).
+
+|`--platform-dir`
+|Yes
+|Path to platform-specific scripts (`lib/android/scripts` or `lib/xcode/scripts`).
+
+|`--esbuild`
+|Yes
+|Path to the vendored esbuild binary.
+
+|`--output`
+|Yes
+|Final output path for the bundled JS file.
+
+|`--tsconfig`
+|No
+|Path to TypeScript config for the bundler. Default: `lib/common/config/bundler.json`.
+
+|`--target`
+|No
+|esbuild target. Default: `safari11`.
+
+|`--banner`
+|No
+|Banner comment prepended to output. Default: auto-generated comment.
+|===
+
+== How it works
+
+1. Creates a staging directory at `build/<platform>/js` and `build/<platform>/scripts`.
+2. Copies common scripts into `build/<platform>/scripts/`.
+3. Copies platform-specific scripts on top (overrides common files with the same name).
+4. Invokes the vendored esbuild binary via `os/exec` to bundle `main.ts` into `build/<platform>/js/main.js`.
+5. Moves the result to `--output` path.
+6. Cleans up staging directories.
+
+All file operations use Go's `os` and `filepath` packages, which are
+cross-platform. No shell commands are used.
+
+== Script structure
+
+[source]
+----
+lib/common/scripts/       # shared TypeScript, included in both platforms
+lib/android/scripts/      # Android overrides (copied over common)
+lib/xcode/scripts/        # Xcode overrides (copied over common)
+----
+
+TypeScript config for the bundler: `lib/common/config/bundler.json`.
+
+== Output
+
+* Xcode: `build/xcode/scripts/webview.js`
+* Android: `build/android/scripts/webview.js`
+
+A banner comment is prepended to mark the file as auto-generated.
+
+== Tasks
+
+From the repository root:
+
+* `task bundler` (`bn`): bundle scripts for both Xcode and Android.
+* `task bundler.xcode` (`bx`): bundle scripts for Xcode only.
+* `task bundler.android` (`ba`): bundle scripts for Android only.
+* `task bundler.build` (`bb`): build the `tools/bundler` binary.
+
+From `tools/bundler/src`:
+
+* `task build` (`b`): cross-compile binaries into `../dist/` for macOS
+  (amd64/arm64), Linux (amd64) and Windows (amd64).
+* `task test` (`t`): run the test suite.
+
+== Release binaries
+
+`dist` contains prebuilt binaries for each platform, named
+`bundler-<os>-<arch>` (Windows uses `.exe`).
+
+== Bundle flags (esbuild)
+
+The tool passes these flags to esbuild:
+
+* `--bundle` -- resolves imports and produces a single output file.
+* `--target=safari11` -- output compatible with Safari 11+ (WKWebView).
+* `--analyze` -- prints a bundle size breakdown.
+* `--tsconfig` -- uses the specified TypeScript config for module resolution.

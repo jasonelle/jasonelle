@@ -1,0 +1,60 @@
+= Link Tool Copies App Artifacts into the Assembled Tree
+
+- Status: Approved (2026-09-20) by: @clsource
+
+== Problem
+
+The `task link` tool links the plugins present in the assembled source trees
+into the native projects, but the freshly built app files never reach the
+assembled `Application` tree. The `task core` tool copies the stock
+`config.jsonc` and `webview.js` placeholders and never overwrites them, so the
+merged configuration and the bundled scripts produced by `task jsonc` and
+`task bundler` are lost when the app is built from `build/<platform>/sources/`.
+
+== Design
+
+After linking plugins, `link` copies the freshly built artifacts over the
+stock placeholders in each assembled `Application` tree:
+
+- Xcode: `build/xcode/config/config.jsonc` →
+  `build/xcode/sources/Application/Application/config.jsonc`, and
+  `build/xcode/scripts/webview.js` →
+  `build/xcode/sources/Application/Application/webview.js`.
+- Android: `build/android/config/config.jsonc` →
+  `build/android/sources/Application/src/main/assets/config.jsonc`, and
+  `build/android/scripts/webview.js` →
+  `build/android/sources/Application/src/main/assets/webview.js`.
+
+The input paths derive from the existing `--<platform>-sources` flags as the
+sibling `config/` and `scripts/` directories under the same `build/<platform>/`
+root. No new flags and no `Taskfile.yml` change are needed.
+
+=== Behavior
+
+- A missing input (`config.jsonc` or `webview.js`) fails loudly, consistent
+  with the rest of the tool and signaling that `task jsonc`/`task bundler`
+  were skipped.
+- A destination that already matches is left untouched, so a rerun is a
+  no-op and every file stays byte-stable.
+
+=== Implementation
+
+- A single `copyArtifact(sources, artifact, rel)` helper reads
+  `filepath.Join(filepath.Dir(sources), artifact)`, compares it with the
+  destination `<sources>/<rel>`, and writes only when it differs.
+- `run()` wires the shared artifact list (`config/config.jsonc`,
+  `scripts/webview.js`) with platform-specific destination relative paths.
+
+=== Tests
+
+- `TestRunIntegration` is restructured around a base temp dir with sources at
+  `base/<platform>/sources` and seeded sibling `config/`/`scripts/` dirs; the
+  copied files are asserted and added to the rerun-stability snapshot.
+- A new `TestCopyArtifact` covers the happy path and the missing-input error.
+
+=== Documentation
+
+- `tools/link/README.md` and the Antora `modules/tools/pages/link.adoc` page
+  document the copy; the "anything not a linked plugin is left untouched"
+  wording is fixed.
+- `tools/README.md` extends the `link/` blurb.

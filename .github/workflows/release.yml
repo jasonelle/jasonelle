@@ -1,0 +1,51 @@
+name: Promote Latest Pre-Release
+# yamllint disable-line rule:truthy
+on:
+  workflow_dispatch:
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Promote latest pre-release
+        run: |
+          RELEASE_ID=$(gh api repos/${{ github.repository }}/releases --paginate --jq '[.[] | select(.prerelease == true)] | sort_by(.published_at) | reverse | .[0].id')
+          CURRENT_BODY=$(gh api repos/${{ github.repository }}/releases/$RELEASE_ID --jq '.body')
+          RELEASE_BODY=$(printf '%s\n\n- Released by: [@%s](https://github.com/%s) at: %s' \
+            "$CURRENT_BODY" "${{ github.actor }}" "${{ github.actor }}" \
+            "$(date -u +'%Y-%m-%dT%H:%M:%SZ')")
+          gh api -X PATCH repos/${{ github.repository }}/releases/$RELEASE_ID \
+            -f prerelease=false -f body="$RELEASE_BODY"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Bump VERSION minor
+        id: bump
+        run: |
+          VERSION_VALUE=$(cat VERSION | tr -d '[:space:]')
+
+          if [[ ! "$VERSION_VALUE" =~ ^[0-9]+\.[0-9]+$ ]]; then
+            echo "Error: VERSION file must be formatted as X.Y (e.g: 1.0)"
+            exit 1
+          fi
+
+          MAJOR="${VERSION_VALUE%%.*}"
+          MINOR="${VERSION_VALUE##*.}"
+          MINOR=$((MINOR + 1))
+
+          echo "$MAJOR.$MINOR" > VERSION
+          echo "NEW_VERSION=$MAJOR.$MINOR" >> "$GITHUB_OUTPUT"
+          echo "Bumped VERSION to $MAJOR.$MINOR"
+
+      - name: Commit VERSION bump
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add VERSION
+          git commit -m "🧹 chore: bump VERSION to ${{ steps.bump.outputs.NEW_VERSION }}"
+          git push

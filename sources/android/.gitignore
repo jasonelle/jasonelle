@@ -1,0 +1,33 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Local configuration
+local.properties
+.idea/
+*.iml
+.DS_Store
+
+# Android Studio / IntelliJ
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+
+# Output APKs / AABs
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Native build
+.cxx/
+
+# Keystore
+*.jks
+*.keystore

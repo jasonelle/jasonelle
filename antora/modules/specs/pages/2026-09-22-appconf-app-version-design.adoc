@@ -1,0 +1,67 @@
+= Appconf Sets the App Version and Timestamp Build Number
+
+- Status: Approved (2026-09-22) by: @clsource
+
+== Problem
+
+The visible app version and the build number are hardcoded (`MARKETING_VERSION =
+1.0`, `CURRENT_PROJECT_VERSION = 1`, `versionName = "4.0.0"`, `versionCode = 1`)
+in the Xcode and Android projects and must be edited by hand. `appconf` should
+set them from the merged `config.jsonc` via a new `app_version` key, computing
+the build number as the current Unix timestamp so it grows automatically.
+
+== Decision
+
+- App version comes from `app_version` in the merged `config.jsonc`, for example
+  `"1.0"`. It is *optional*: empty or missing leaves the versions untouched, so
+  existing configs keep working.
+- The build number is `time.Now().Unix()` evaluated once per `appconf` run
+  (`1.0.<timestamp>`). It is monotonic in practice (a later run always gets a
+  greater or equal number).
+- Xcode: on the Application target only (anchored on
+  `PRODUCT_BUNDLE_IDENTIFIER = <app_id>;`, exactly 2 blocks = Debug + Release),
+  set `MARKETING_VERSION` to `app_version` and `CURRENT_PROJECT_VERSION` to the
+  build number. Test and plugin targets are left untouched.
+- Android: `versionName` becomes `app_version` and `versionCode` the build
+  number in `build.gradle.kts`. Each line must appear exactly once.
+- Both patches are idempotent and follow the existing strictness: unexpected
+  marker counts fail rather than guess.
+
+== Changes
+
+=== `lib/common/config/config.jsonc`
+
+- Add `"app_version": "1.0"`.
+
+=== `tools/appconf/src/main.go`
+
+- Read `app_version` beside `app_id` / `app_name`.
+- `applyXcodeVersion`: anchor on the Application bundle-id line (exactly 2
+  occurrences), rewrite `CURRENT_PROJECT_VERSION` and `MARKETING_VERSION` in
+  those blocks (no-op when `app_version` is empty).
+- `applyAndroidVersion`: `versionCode` and `versionName` must each appear
+  exactly once; replace their values (no-op when `app_version` is empty).
+
+=== `tools/appconf/src/main_test.go`
+
+Fixtures gain the version lines; idempotency, wrong-count errors,
+empty-version no-op cases, and the end-to-end `TestRun`/`TestRunNoName` cases
+(the build number is asserted within a `before/after` timestamp window).
+
+=== Documentation
+
+- `tools/appconf/README.md`, the Antora `modules/tools/pages/appconf.adoc`
+  page, and the Xcode/Android `config.jsonc.adoc` pages document
+  `app_version` and the timestamped build number.
+
+== Non-goals
+
+- No changes to the test/plugin target versions.
+- No separate config key for the build number (it is always the current
+  timestamp).
+- No stable/bit-reproducible builds: every run assigns a new build number.
+
+== Testing
+
+`go test ./...` in `tools/appconf/src`, plus rebuilding the `appconf` dist
+binaries with `task appconf.build` and a full `task gen`.

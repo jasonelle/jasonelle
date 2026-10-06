@@ -1,0 +1,36 @@
+= Use Go for cross platform tools
+
+- id: 0000008
+
+== Status
+
+- Accepted (2026-08-16) by: @clsource
+
+== Context and Problem Statement
+
+Jasonelle ships helper tools (such as `tools/icon`) that must run on macOS,
+Linux, and Windows, both on developer machines and in CI. Writing them as
+shell scripts or platform-specific binaries duplicates code and complicates
+distribution. Which language should be used for these cross platform tools?
+
+== Considered Options
+
+* Use https://go.dev/[Go]
+* Use https://www.rust-lang.org/[Rust]
+* Keep using Elixir scripts
+
+== Decision Outcome
+
+Chosen option: "Use Go", because it compiles to a single static native binary
+for each target platform with one toolchain, its standard library covers the
+common needs (CLI flags, files, images, JSON), and it is simple to read and
+build. Positive consequences: tools distribute as prebuilt binaries per
+platform, CI builds are fast and repeatable, and tests run with the standard
+`go test` tool. Negative consequences: an additional toolchain to install for
+developers who build the tools from source.
+
+Go is the best option, because a cross compiled binary can be produced for
+macOS, Linux, and Windows with a single command and no runtime dependency. If
+Rust was chosen, tooling would be more powerful but compilation and the
+toolchain are heavier. If Elixir scripts were kept, each target machine would
+need the Erlang/OTP runtime installed, which complicates distribution.

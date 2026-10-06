@@ -1,0 +1,46 @@
+= Add OpenCode for Agentic Programming Using the Plugins Superpowers, Ponytail and MCP Context7 for Harnesses
+
+- id: 0000015
+
+== Status
+
+- Accepted (2026-09-20) by: @clsource
+
+== Context and Problem Statement
+
+The repository increasingly relies on AI agents to write code, but without a
+standard agent harness every contributor picks their own tool and workflow:
+different assistants, no shared process, and no common source of up-to-date
+library documentation. The result is inconsistent output quality, workflows
+that cannot be enforced, and agents reasoning from stale API knowledge. Which
+harness and plugins should we standardize on for agentic programming?
+
+== Considered Options
+
+* Adopt https://opencode.ai/[OpenCode] with the
+  https://github.com/obra/superpowers[superpowers] and
+  https://github.com/DietrichGebert/ponytail[ponytail] plugins plus the
+  https://context7.com/[MCP Context7] server
+* Use another agent harness (e.g. a closed assistant or cloud editor agent)
+* Keep using ad hoc prompts across whatever assistant each contributor happens
+  to have
+
+== Decision Outcome
+
+Chosen option: "Adopt OpenCode with the superpowers, ponytail and MCP Context7"
+(because it is a CLI-first harness that standardizes agentic programming on top
+of an enforceable, plugin-driven workflow). Positive consequences: superpowers
+enforces an agent workflow for creating and debugging code; ponytail steers
+agents toward minimal code, guarding against over-engineering; and MCP Context7
+keeps library and framework documentation current; all three are registered
+through OpenCode's plugin and MCP configuration. Negative consequences: the
+workflow guidance lives in third-party repositories that we must track, plugin
+behavior can shift between OpenCode releases, and the harness adds a workflow
+overhead that some tasks do not need.
+
+OpenCode is the best option for agentic programming, because it is local,
+configurable via plugins and MCP servers, and its skills integrate directly
+with the repository's own commands and ADRs. If another assistant was chosen,
+the workflow could not be versioned with the repository. If we kept ad hoc
+prompts, nothing would prevent each agent session from drifting back to
+inconsistent behavior.

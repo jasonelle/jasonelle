@@ -1,103 +1,138 @@
 # [Jasonelle](https://github.com/jasonelle)
 
+<img src="website/jasonelle.png" style="width:50%;height:auto">
 
 [![jasonelle - jasonelle](https://img.shields.io/static/v1?label=jasonelle&message=jasonelle&color=blueviolet&logo=github)](https://github.com/jasonelle/jasonelle "Go to GitHub repo")
 [![stars - jasonelle](https://img.shields.io/github/stars/jasonelle/jasonelle?style=social)](https://github.com/jasonelle/jasonelle)
 [![forks - jasonelle](https://img.shields.io/github/forks/jasonelle/jasonelle?style=social)](https://github.com/jasonelle/jasonelle)
 
-<img src="https://jasonelle.com/docs/jasonelle.png" style="width:50%;height:auto" title="Jasonelle Icon">
-
-_Jasonelle_ is a nice native wrapper for your Web Application.
+![Coded in 🇨🇱 Chile](https://img.shields.io/badge/Proudly_Coded_in-🇨🇱_Chile-white?style=for-the-badge&logo=xcode&logoColor=white)
 
 [![view - Documentation](https://img.shields.io/badge/view-Documentation-blueviolet?style=for-the-badge)](https://jasonelle.com/docs "Go to project documentation")
 
-## Price
+Write for the Web. Ship Native.
 
-The project requires purchasing a license if you want to:
+Jasonelle wraps your web app as a native iOS and Android app, and gives that
+app a bidirectional bridge to native plugins. Your web code calls native
+features with `window.jasonelle.plugins.<name>`; native code pushes events
+back into the page. One set of configuration inputs drives both platforms.
 
-- Use MPLv2 code.
-- Execute in real hardware.
+> **Version 4** is a complete rewrite and breaks compatibility with earlier
+> versions. See [CHANGELOG.md](CHANGELOG.md).
 
-With this small contribution you enable us to continue creating awesome tools for your web applications.
+## Why
 
-By adquiring a **License Key** you agree with the following:
+- **One codebase.** The UI you already shipped is the UI. Jasonelle adds the
+  native shell, not a second rendering layer.
+- **Native, one call away.** Device info, cookies, Apple Sign In and
+  OpenTelemetry ship as plugins you call from JavaScript.
+- **One set of inputs.** `config.jsonc` and `store.jsonc` merge into both the
+  Xcode and Gradle projects, including app icons and Fastlane metadata.
+- **One plugin, both platforms.** The bridge installs a
+  `window.webkit.messageHandlers` shim on Android, so the same `Plugin.js`
+  runs unchanged on iOS and Android.
 
-- Use _Jasonelle_'s technologies and licenses in an ethical way.
-- Respect the artifacts license terms and conditions.
-- Must put a link to [_Jasonelle's Webpage_](https://jasonelle.com) (_jasonelle.com_) somewhere visible in your app.
-- Must not share the license keys with third parties.
-- Must not create direct competitors to _Jasonelle_ by rebranding, customizing and reselling the framework and related technologies or services.
+## Quick start
 
-Please select the **License Key** that better fits your project.
+Download the archive from the latest release or from git
 
-| [Jasonelle Friend's Membership Subscription](https://jasonelle.gumroad.com/l/love) | [Thank you Key](https://jasonelle.gumroad.com/l/thanks)
-|---|---|
-| Monthly Payment Requirement | Single Payment
-| Jasonelle's Membership Keys can be used up to 2 projects, as long as the subscription is maintained. | This license allows _Jasonelle framework_ to be used by you or one client, in a single commercial end product.
-| The license expires if the membership is terminated | Thank you key licenses do not expire. That's why they are a little more expensive than the subscription.
-| [Join Subscription](https://jasonelle.gumroad.com/l/love) | [Purchase Thank you Key](https://jasonelle.gumroad.com/l/thanks)
+```bash
+git clone https://github.com/jasonelle/jasonelle.git
+cd jasonelle
 
+task gen      # assemble build/<platform>/ from lib/ and your config
+```
 
-Please go to [Jasonelle Store](https://jasonelle.gumroad.com/) to purchase a license
-and edit [**Love.h**](https://github.com/jasonelle/jasonelle/blob/main/sources/xcode/Jasonelle/Jasonelle/Jasonelle/Love.h) to allow real device execution and **MPLv2** licensed code.
+`task gen` runs the full pipeline — icons, config merge, script bundling,
+plugins, sources, linking, app identifiers and Fastlane files. Each file under
+`lib/<platform>/sources/` overrides the stock source of the same name.
 
-If no license is purchased then the code is under **AGPLv3**. And will **not execute using real devices**. Although you can activate the full mode if you want to test if _Jasonelle_ is good for your use case (some features like _GPS_ need real hardware for testing).
+```
+build/xcode/sources/Jasonelle.xcworkspace    # open this in Xcode
+build/android/sources/                       # open this in Android Studio
+```
 
-Please *purchase a license key* if you want to use _Jasonelle_'s solutions in your project.
+To regenerate the documentation site:
 
-Since we cannot enforce this. We rely on your good heart. We trust you
-are a kind person who will **activate this mode ethically**.
+```bash
+task install  # build the Antora container image
+task build.docs
+```
 
+### Prerequisites
 
-## Community
+| Tool | Needed for |
+|------|------------|
+| [go-task](https://taskfile.dev) | Running the build pipeline |
+| Go | Building the tools in `tools/` |
+| Docker | Generating the docs site |
+| Xcode / Android SDK | Building the assembled apps |
 
-For help and general chat go to our _Telegram_ group.
+## How the bridge works
 
-- [Telegram Chat](https://t.me/jasonelle).
+JavaScript calls a native plugin, and native code calls back into the page.
+Both directions end at the same `Coordinator`:
 
-The main repository is:
+```
+JS  ──▶ window.jasonelle.post(name, args)   ──▶  Coordinator
+JS  ◀── window.jasonelle.result.resolve(...)  ◀──  Plugin.handle_call
+JS  ◀── window.jasonelle.plugins.x.handle(...) ◀── Plugin.event
+```
 
-- [Jasonelle](https://github.com/jasonelle)
+Native lifecycle events such as `ContentView.onAppear` reach plugins through
+`handle_event`. Because they fire before the page has finished loading, the
+`Coordinator` buffers native responses and replays them in order once the
+document is ready. Details in the kernel docs.
 
-## Releases
+## Repository layout
 
-The latest releases are available at:
+| Path | Contents |
+|------|----------|
+| `sources/xcode/` | iOS app: SwiftUI + `WKWebView`, `JLKernel`, plugins |
+| `sources/android/` | Android app: Compose + `WebView`, `JLKernel`, plugins |
+| `lib/` | Platform overrides layered onto the assembled sources |
+| `tools/` | Go CLI tools and vendored binaries used by the pipeline |
+| `antora/` | Antora module sources for the documentation site |
+| `website/` | The website sources |
+| `docs/` | Generated site, committed for GitHub Pages — do not edit by hand |
+| `Taskfile.yml` | Build and documentation tasks |
+| `AGENTS.md` | Guidelines for AI agents working in this repository |
 
-- [https://github.com/jasonelle/jasonelle/releases](https://github.com/jasonelle/jasonelle/releases)
-
-### Downloads
-
-The current version is *v3*.
-
-- [Bleeding Edge](https://github.com/jasonelle/jasonelle/archive/refs/heads/main.zip)
-- [Stable](https://github.com/jasonelle/jasonelle/archive/refs/heads/stable.zip)
-- [Latest Release](https://github.com/jasonelle/jasonelle/releases/latest/)
-
-#### Legacy
-
-A legacy version can be found inside the legacy directory.
-This version supports _JSON_ and other features available in older version of _Jasonette/Jasonelle_ (2016 - 2021).
-This version would have no new features. Only minor updates to support compilation in newer SDKs.
-
-- [Legacy Version](https://github.com/jasonelle/jasonelle/tree/main/sources/legacy/)
+Each platform has its own `README.md` with detailed architecture.
 
 ## Documentation
 
-The projects documentation is inside the `jasonelle.github.io` repository. You can access it online at:
+- Website — <https://jasonelle.com>
+- Docs — <https://jasonelle.com/docs>
+- Source — <https://github.com/jasonelle/jasonelle>
 
-- [https://github.com/jasonelle/jasonelle.github.io](https://github.com/jasonelle/jasonelle.github.io)
-- [https://jasonelle.com/](https://jasonelle.com/)
+## Plugins
+
+| Plugin | iOS | Android |
+|--------|-----|---------|
+| `hello` — sample bridge demo | ✅ | ✅ |
+| `cookies` — persist web view cookies | ✅ | ✅ |
+| `device` — device information | ✅ | ✅ |
+| `appleSignIn` — Sign in with Apple | ✅ | — |
+| `opentelemetry` — tracing | ✅ | ✅ |
+
+Adding your own is covered in the
+[plugin docs](https://jasonelle.com/docs/xcode/creating-plugins.html).
 
 ## License
 
-Jasonelle Project is dual licensed. You can choose between _AGPLv3_ or _MPLv2_.
-_MPLv2_ is only valid if the software has a unique [Jasonelle Key](https://jasonelle.gumroad.com/) which was purchased in [official channels](https://jasonelle.gumroad.com/).
+Dual licensed. Without a Jasonelle Key the project is licensed under the
+**AGPL-3.0**. With a valid key it is licensed under the **MPL-2.0** instead.
+Copyright © Jasonelle.com and contributors. See [LICENSE.md](LICENSE.md).
 
-[Read More](https://github.com/jasonelle/jasonelle/blob/main/LICENSE.adoc).
+## Purchase a License Key
 
-## 🤩 Credits
-[![Proudly Coded in - 🇨🇱 Chile](https://img.shields.io/badge/Proudly_Coded_in-🇨🇱_Chile-white?style=for-the-badge&logo=xcode&logoColor=white)](https://en.wikipedia.org/wiki/Chile)
-[![Made With ❤️ By - Ninjas.cl](https://img.shields.io/badge/Made_With_❤️_By-Ninjas.cl-2ea44f?style=for-the-badge)](https://ninjas.cl)
+To run Jasonelle on real devices and distribute to the App Store or Google Play,
+you need a Jasonelle Key. Purchase one at:
+- [https://jasonelle.gumroad.com/l/thanks](https://jasonelle.gumroad.com/l/thanks)
 
-[![Written-By-Human-Not-By-AI-Badge-white](https://user-images.githubusercontent.com/292738/225699293-9a0a90cd-1a93-49cb-b105-c3cd27882499.svg)
-](https://notbyai.fyi/)
+## Credits
+
+<a href="https://ninjas.cl">
+<img src="https://github.com/jasonelle/jasonelle/assets/292738/2aca9acb-dfd1-4098-a846-4476c6e64c06" width="300px" height="auto" alt="Ninjas.cl" title="Made with Love by Ninjas.cl">
+</a>

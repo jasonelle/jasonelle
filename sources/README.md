@@ -1,0 +1,45 @@
+# Sources
+
+This directory stores the source projects (android, xcode) used by Jasonelle.
+This directory is for core Jasonelle developers.
+Only touch if a customization of the core engine is required in your project.
+
+## Workflow
+
+1. Download the source files from `https://jasonelle.com`.
+2. Configure `config.jsonc`, images and scripts inside the `lib/` directory.
+3. Generate the application project with the `/ios` or `/android` command
+   inside your LLM service. This will create a `build/` directory.
+4. Configure the final generated project inside `build/`, compile and send to
+   the App Store (iOS) or Play Store (Android). You can generate the AppIcon
+   with `/icon`.
+
+## Layout
+
+- `xcode/`: Xcode projects.
+  - `Application/`: The iOS app. Contains the app target, assets
+    (`Assets.xcassets`), resources and the `Application.docc` documentation.
+  - `Core/`: Shared library consumed by the app. Contains the `Core.docc`
+    documentation.
+- `android/`: Android (Kotlin) project with a Gradle wrapper.
+  - `JLKernel/`: Library with the WebView JavaScript bridge, plugin system
+    and events. Ships JVM unit tests.
+  - `JLPluginHello/`, `JLPluginDevice/`, `JLPluginCookies/`: Sample plugins,
+    each with a `docs/` Markdown file documenting their native code.
+  - `Application/`: The Android app target with resources and assets.
+- `.clang-format`: Formatting rules for C/C++/Objective-C sources.
+- `.swiftlint.yml`: SwiftLint rules for the Swift sources.
+
+## Documentation
+
+Each Xcode project ships a DocC catalog (`*.docc`) with Markdown files
+describing its components. Open the project in Xcode to browse them.
+
+Each Android plugin ships a `docs/<Plugin>.md` file describing its native
+code and JavaScript bridge.
+
+## Notes
+
+The `android/` project builds with the Gradle wrapper (`./gradlew`). Run
+`./gradlew test` for the unit tests and `./gradlew :Application:assembleDebug`
+to build the app.
